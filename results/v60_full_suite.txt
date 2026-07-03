@@ -1,0 +1,5 @@
+=== v6.0 全スイート自己検証 (2026-07-04) ===
+シミュレーションバイナリ: 32 本 (v01_qm 〜 v53_decoupling)
+判定つき検証項目: PASS 87 / FAIL 0
+(各バイナリは厳密解・観測値・双対性・全数探索との比較を内蔵)
+再現方法: cd sim && cargo build --release && for b in target/release/v*; do $b; done
