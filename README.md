@@ -53,6 +53,11 @@ cargo build --release          # 外部依存なし (std のみ)
 | v3.3 | [uft-v3.3.md](docs/uft-v3.3.md) | `v33_ctheorem` | エントロピック c 定理: c(ℓ) 1→0 単調 + 普遍スケーリング。RG 不可逆性 = 情報単調性 |
 | v3.4 | [uft-v3.4.md](docs/uft-v3.4.md) | `v34_unruh` | Unruh 効果: T_eff = a/2π を 6×10⁻⁴ で検証。地平線の熱の共通機構 |
 | **v4.0** | [**uft-v4.0.md**](docs/uft-v4.0.md) | (統合) | **第四期統合: 最小性原理 (A4) と単調性原理 (M)。全 25 実験の最終地図** |
+| v4.1 | [uft-v4.1.md](docs/uft-v4.1.md) | `v41_qnec` | QNEC を実時間で検証: 全域で 2πT_kk−S″ ≥ 0 — 単調性原理の局所版 |
+| v4.2 | [uft-v4.2.md](docs/uft-v4.2.md) | `v42_neutrino` | シーソー M_R=6×10¹⁴ GeV (GUT と独立一致)、PMNS 68% 帯、η_B~10⁻⁹ |
+| v4.3 | [uft-v4.3.md](docs/uft-v4.3.md) | `v43_landscape` | 理論空間スペクトル {15:SM 唯一, 16:排除される隣人, 17–23:空白} — SM は孤立 |
+| v4.4 | [uft-v4.4.md](docs/uft-v4.4.md) | `v44_desitter` | dS 温度 H/2π 検証 (三位一体完結)、宇宙の情報使用率 10⁻¹⁸ |
+| **v5.0** | [**uft-v5.0.md**](docs/uft-v5.0.md) | (統合) | **第五期統合: 公理系最終形、初期条件問題を残高筆頭に。全 29 実験** |
 
 ## リポジトリ構成
 
