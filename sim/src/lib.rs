@@ -688,6 +688,64 @@ impl QrnState {
         }
         sj / (vf * sh)
     }
+
+    /// 読み出し: 自然なテンソル分解 — サイト間相互情報量 I(i:j) の貪欲最大マッチングで
+    /// サイトを対に組む。「どのテンソル分解が自然か」は状態が決める (残高 7 の第一級化)。
+    /// 戻り値: (対のリスト, 対に捕捉された Σ I の全ペア Σ I に対する割合)。
+    pub fn readout_natural_partition(&self) -> (Vec<(usize, usize)>, f64) {
+        let n = self.n;
+        let s1: Vec<f64> = (0..n).map(|i| h2_entropy(self.cre[i + i * n])).collect();
+        let mut mi = vec![0.0f64; n * n];
+        let mut total = 0.0f64;
+        for i in 0..n {
+            for j in (i + 1)..n {
+                // 2 サイトのエルミート相関行列のエントロピー
+                let cre = [
+                    self.cre[i + i * n],
+                    self.cre[j + i * n],
+                    self.cre[i + j * n],
+                    self.cre[j + j * n],
+                ];
+                let cim = [
+                    self.cim[i + i * n],
+                    self.cim[j + i * n],
+                    self.cim[i + j * n],
+                    self.cim[j + j * n],
+                ];
+                let s2 = entropy_corr_herm(&cre, &cim, 2);
+                let m = (s1[i] + s1[j] - s2).max(0.0);
+                mi[i + j * n] = m;
+                mi[j + i * n] = m;
+                total += m;
+            }
+        }
+        let mut used = vec![false; n];
+        let mut pairs = Vec::with_capacity(n / 2);
+        let mut captured = 0.0f64;
+        for _ in 0..n / 2 {
+            let (mut bi, mut bj, mut bm) = (0usize, 0usize, -1.0f64);
+            for i in 0..n {
+                if used[i] {
+                    continue;
+                }
+                for j in (i + 1)..n {
+                    if used[j] {
+                        continue;
+                    }
+                    if mi[i + j * n] > bm {
+                        bm = mi[i + j * n];
+                        bi = i;
+                        bj = j;
+                    }
+                }
+            }
+            used[bi] = true;
+            used[bj] = true;
+            captured += bm;
+            pairs.push((bi, bj));
+        }
+        (pairs, if total > 0.0 { captured / total } else { 0.0 })
+    }
 }
 
 /// 熱場二重 (TFD): 2 本の円環鎖 L/R をモードごとに縫った純粋状態。

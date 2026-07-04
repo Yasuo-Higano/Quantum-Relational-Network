@@ -1,0 +1,10 @@
+{
+  "claim_id": "QRN-CORE-004",
+  "ring_adjacent": true,
+  "ring_captured": 0.41156701919064925,
+  "tfd_mirror": true,
+  "tfd_captured": 0.6796108048775392,
+  "growing_arrival_pairs": true,
+  "growing_pairs_surviving_evolution": 0,
+  "pass": true
+}

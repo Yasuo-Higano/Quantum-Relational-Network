@@ -1008,3 +1008,16 @@
   limitations:
     - "傾き磁束 (非因子化 T4)・固定点オービフォールド・離散トーションは未検定。"
     - "窓は T2×Z6・N=18・Q=3・共通 σ_H。MAP の向きパターン (u,d,e が C) の選択則は未導出。"
+
+- id: QRN-CORE-004
+  version: "v11.4"
+  level: C3
+  claim: "動的テンソル分解の第一級化: サイト間相互情報量の貪欲最大マッチング readout_natural_partition を core に追加。同じ読み出しが RingChain では空間隣接対 (21/21)、TfdPair では L−R 鏡像対 (21/21, ER=EPR の分解版)、GrowingChain では到着ボンド対 (3/3) を「自然な分解」として発見し、発展 (t=30) は到着対を 0/3 に組み替える — 分解は入力ではなく状態依存の読み出しである。core 移行地図 (4 模型 + 読み出し群) は残高なく閉じた。"
+  status: "toy model による機構提示 (3 模型 × 構造の厳密一致 + purity 検査)"
+  evidence:
+    code: "sim/src/bin/v114_tensorcore.rs"
+    result: "results/v114_tensorcore.txt"
+    result: "results/v114_tensorcore.json"
+  limitations:
+    - "貪欲マッチング (大域最適の保証なし)・対 (2 サイト) 限定。多体ブロック分解 (QEC 符号の発見) はガウス系の外を含み将来課題。"
+    - "「自然さ」の基準は MI のみ。"
