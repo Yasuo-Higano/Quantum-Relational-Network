@@ -1,0 +1,14 @@
+{
+  "claim_id": "QRN-CORE-003",
+  "model": "PacketRing (RingChain + chiral/standing packet)",
+  "regression_source": "results/v63_qnec_budget.json (N=302)",
+  "min_gap_basic": 0.00004461878110121527,
+  "min_gap_strong": -0.000018673890336609765,
+  "chirality": 0.976494800370776,
+  "standing_chirality": 0.0000000000033690858680592036,
+  "standing_min_gap": 0.00006593513130201609,
+  "comoving_ratio": 9835.786556464684,
+  "purity_defect_init": 0.0000000000000009992012741906612,
+  "purity_defect_end": 0.000000000000008531041704256444,
+  "pass": true
+}

@@ -651,6 +651,43 @@ impl QrnState {
         }
         dmax
     }
+
+    /// 読み出し: ボンドエネルギー密度 h(x) = −2 Re C_{x,x+1} (生値; 基底状態値は引かない)
+    pub fn readout_bond_energy(&self, x: usize) -> f64 {
+        let n = self.n;
+        -2.0 * self.cre[x % n + ((x + 1) % n) * n]
+    }
+
+    /// 読み出し: 次近接流 j(x) = 2 Im C_{x−1,x+1} — 半充填の 2 部格子対称性で密度が
+    /// 凍結する系では、これが光円錐を運ぶ因果的観測量になる (v7.4 の教訓)
+    pub fn readout_current(&self, x: usize) -> f64 {
+        let n = self.n;
+        2.0 * self.cim[(x + n - 1) % n + ((x + 1) % n) * n]
+    }
+
+    /// 読み出し: 光的エネルギー T₋₋ 型 (3 ボンド平均)。T_kk = 4T₋₋ 規格化
+    /// (CLAUDE.md の落とし穴参照)。h_gs は基底状態のボンドエネルギー参照値。
+    pub fn readout_null_energy(&self, x: usize, vf: f64, h_gs: f64) -> f64 {
+        let (mut h, mut j) = (0.0, 0.0);
+        for b in [x - 1, x, x + 1] {
+            h += self.readout_bond_energy(b) - h_gs;
+            j += self.readout_current(b);
+        }
+        h /= 3.0;
+        j /= 3.0;
+        2.0 * (h / vf + j / (vf * vf))
+    }
+
+    /// 読み出し: カイラル度 Σj/(v_F Σh) — 右向きの波束なら +1、定在波なら ≈0
+    pub fn readout_chirality(&self, vf: f64, h_gs: f64) -> f64 {
+        let n = self.n;
+        let (mut sh, mut sj) = (0.0, 0.0);
+        for x in 2..n - 2 {
+            sh += self.readout_bond_energy(x) - h_gs;
+            sj += self.readout_current(x);
+        }
+        sj / (vf * sh)
+    }
 }
 
 /// 熱場二重 (TFD): 2 本の円環鎖 L/R をモードごとに縫った純粋状態。
@@ -1080,6 +1117,124 @@ impl QrnModel for RingChain {
             cre: b1.iter().zip(&b2).map(|(a, b)| a - b).collect(),
             cim: b3.iter().zip(&b4).map(|(a, b)| a + b).collect(),
         }
+    }
+}
+
+impl RingChain {
+    /// 基底状態のボンドエネルギー h_gs = −2 C⁰(1) (readout_null_energy の参照値)
+    pub fn gs_bond_energy(&self) -> f64 {
+        let n = self.n as f64;
+        -2.0 / (n * (std::f64::consts::PI / n).sin())
+    }
+}
+
+/// カイラル波束つき円環 — v4.1/v6.3 の QNEC 掃引状態を core の語彙で再定義した模型。
+/// 円環 GS の占有窓 [j_F−20, j_F] と空窓 [j_F+1, j_F+22] をガウス重み (幅 sig) で
+/// 束ねた波束対を角度 alpha で回転させた励起状態。standing=true は鏡像モード (k→−k)
+/// を重ねた定在波 (非カイラル対照 — QNEC は成立し続けるが共動凍結が壊れる)。
+pub struct PacketRing {
+    pub ring: RingChain,
+    pub xc: f64,    // 波束の実空間中心
+    pub alpha: f64, // 回転角 (励起の強さ)
+    pub sig: f64,   // モード窓のガウス幅
+    pub standing: bool,
+}
+
+impl QrnModel for PacketRing {
+    fn assumptions(&self) -> Vec<&'static str> {
+        let mut a = self.ring.assumptions();
+        a.push("励起: フェルミ面近傍のモード窓を波束に束ねた 1 粒子-1 空孔回転 (ガウス状態を保つ)");
+        a
+    }
+    fn claims(&self) -> Vec<&'static str> {
+        vec!["QRN-QNEC-001", "QRN-QNEC-002", "QRN-CORE-003"]
+    }
+    fn init(&self) -> QrnState {
+        let n = self.ring.n;
+        let two_pi = 2.0 * std::f64::consts::PI;
+        let mut s0 = self.ring.init();
+        let jq = n / 4;
+        let sig = self.sig;
+        let mut hre = vec![0.0; n];
+        let mut him = vec![0.0; n];
+        let mut pre = vec![0.0; n];
+        let mut pim = vec![0.0; n];
+        let (mut nh, mut np) = (0.0, 0.0);
+        let xc = self.xc;
+        let add_window =
+            |lo: i64, hi: i64, ctr: f64, re: &mut Vec<f64>, im: &mut Vec<f64>, nrm: &mut f64| {
+                for j in lo..=hi {
+                    let wj = (-((j as f64 - ctr) * (j as f64 - ctr)) / (2.0 * sig * sig)).exp();
+                    *nrm += wj * wj;
+                    for x in 0..n {
+                        let ph = two_pi * j as f64 * (x as f64 - xc) / n as f64;
+                        re[x] += wj * ph.cos();
+                        im[x] += wj * ph.sin();
+                    }
+                }
+            };
+        let (jh, jp) = (jq as i64 - 8, jq as i64 + 9);
+        add_window(
+            jq as i64 - 20,
+            jq as i64,
+            jh as f64,
+            &mut hre,
+            &mut him,
+            &mut nh,
+        );
+        add_window(
+            jq as i64 + 1,
+            jq as i64 + 22,
+            jp as f64,
+            &mut pre,
+            &mut pim,
+            &mut np,
+        );
+        if self.standing {
+            let ni = n as i64;
+            add_window(
+                ni - jq as i64,
+                ni - jq as i64 + 20,
+                (ni - jq as i64 + 8) as f64,
+                &mut hre,
+                &mut him,
+                &mut nh,
+            );
+            add_window(
+                ni - jq as i64 - 22,
+                ni - jq as i64 - 1,
+                (ni - jq as i64 - 9) as f64,
+                &mut pre,
+                &mut pim,
+                &mut np,
+            );
+        }
+        let (nh, np) = ((nh * n as f64).sqrt(), (np * n as f64).sqrt());
+        for x in 0..n {
+            hre[x] /= nh;
+            him[x] /= nh;
+            pre[x] /= np;
+            pim[x] /= np;
+        }
+        let (s, c) = (self.alpha.sin(), self.alpha.cos());
+        for x in 0..n {
+            for y in 0..n {
+                let hh_re = hre[x] * hre[y] + him[x] * him[y];
+                let hh_im = him[x] * hre[y] - hre[x] * him[y];
+                let pp_re = pre[x] * pre[y] + pim[x] * pim[y];
+                let pp_im = pim[x] * pre[y] - pre[x] * pim[y];
+                let hp_re = hre[x] * pre[y] + him[x] * pim[y];
+                let hp_im = him[x] * pre[y] - hre[x] * pim[y];
+                let ph_re = pre[x] * hre[y] + pim[x] * him[y];
+                let ph_im = pim[x] * hre[y] - pre[x] * him[y];
+                s0.cre[x + y * n] += -s * s * hh_re + s * s * pp_re + s * c * (hp_re + ph_re);
+                s0.cim[x + y * n] += -s * s * hh_im + s * s * pp_im + s * c * (hp_im + ph_im);
+            }
+        }
+        s0
+    }
+    fn evolve(&self, s: &QrnState, t: f64) -> QrnState {
+        self.ring.evolve(s, t)
     }
 }
 

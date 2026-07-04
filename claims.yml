@@ -893,3 +893,16 @@
   limitations:
     - "安定ラベルも一つの規約である。対の組み方 (1〜4 nats) は本来は幾何から導出されるべき模型の内容 — 残高 2 (対角世代対の導出) が先鋭化した。"
     - "走査は {T1,T2,T3}×{Z6,Z12}・N=18・Q=3 の窓。全 9 量の T3×Z12 は引き続き対象外。"
+
+- id: QRN-CORE-003
+  version: "v9.4"
+  level: C1
+  claim: "QNEC 掃引の core 化: v6.3 の状態構築と観測量を共有 core の PacketRing 模型 (円環 GS + カイラル/定在波束) と QrnState の読み出し 4 種 (bond_energy/current/null_energy/chirality) に移し、v6.3 の一次ソースの数値 (N=302 の基本/強形 min gap・カイラル度・定在波対照・共動凍結比 9835.787) を桁落ちなく回帰再現 (|Δ|<1e-9)。core 模型は 4 つ (RingChain/TfdPair/GrowingChain/PacketRing) になった。"
+  status: "core 再構成の回帰検証 (付加価値: 波束回転後と掃引終端の purity_defect < 1e-14、k_F 保存)"
+  evidence:
+    code: "sim/src/bin/v94_qneccore.rs"
+    result: "results/v94_qneccore.txt"
+    result: "results/v94_qneccore.json"
+  limitations:
+    - "回帰一致は N=302 のみ (N 掃引と誤差予算の再導出は v6.3 が引き続き担う)。"
+    - "残高 7 の core 移行は動的テンソル分解を残す。"
