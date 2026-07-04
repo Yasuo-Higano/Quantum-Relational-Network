@@ -1,0 +1,42 @@
+{
+  "claim_id": "QRN-QNEC-002",
+  "reframed_claim": "離散・有限サイズの自由フェルミオン toy model における QNEC 型不等式の数値再現 (C1)",
+  "deterministic": true,
+  "noise_seed": 6303,
+  "lattice_sizes": [
+    202,
+    302,
+    402
+  ],
+  "sweep_stencil_sites": 2,
+  "observable": "2*pi*T_kk - S'' (basic), - 6(S')^2 (strong), T_kk = 4*T_mm",
+  "min_gap_basic_by_n": [
+    -0.00012244311714927557,
+    0.00003972367803059175,
+    0.000019205081120273655
+  ],
+  "min_gap_strong_by_n": [
+    -0.002731891023800983,
+    -0.0013054676373276475,
+    -0.0007923357924312563
+  ],
+  "error_budget": {
+    "derivative_basic": 0.00427172638635163,
+    "derivative_strong": 0.005579023147191447,
+    "finite_size_basic": 0.000020518596910318092,
+    "finite_size_strong": 0.0005131318448963912,
+    "roundoff_measured": 0.000000000003561595462997502,
+    "tolerance_basic": 0.004292244986823544,
+    "tolerance_strong": 0.006092154995649434
+  },
+  "controls": [
+    {
+      "name": "standing (non-chiral) packet",
+      "expected": "chirality ~ 0, co-moving freeze broken, QNEC still holds",
+      "observed_chirality": 0.0000000000033708098880531914,
+      "observed_comoving_var_ratio": 7202.148799202503,
+      "observed_min_gap": 0.00006238537918399152
+    }
+  ],
+  "pass": true
+}

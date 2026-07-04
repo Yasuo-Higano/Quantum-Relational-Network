@@ -620,6 +620,18 @@
   limitations:
     - "線形アノマリー 3 条件の冗長性はこの探索領域内の事実であり、一般の定理として証明したものではない。"
 
+- id: QRN-QNEC-002
+  version: "v6.3"
+  level: C1
+  claim: "QNEC 型不等式を誤差予算つきで再評価: N=202/302/402 の相似設定で、tolerance = 微分打ち切り (Richardson) + 有限サイズ + 丸め (実測) と分解し、基本形 min gap +1.9e-5 > -4.3e-3、強形 -7.9e-4 > -6.1e-3。強形の負ギャップは N^(-1.8) で縮む離散化効果であり QNEC 破れではない。非カイラル対照でカイラル固有の共動凍結が 7200 倍壊れ、QNEC 自体は対照でも成立。"
+  status: "再現実装 (誤差予算・N 収束・陰性対照つき, JSON artifact)"
+  evidence:
+    code: "sim/src/bin/v63_qnec_budget.rs"
+    result: "results/v63_qnec_budget.txt"
+  limitations:
+    - "許容誤差は掃引全域の Richardson 最大値で保守的 (支配項は微分打ち切り 4e-3)。"
+    - "1+1 次元・自由場・単一波束の設定のみ。相互作用系・高次元は未検証。"
+
 # ---------- 統合文書の中心テーゼ (解釈) ----------
 
 - id: QRN-META-001
