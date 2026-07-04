@@ -1,0 +1,34 @@
+[
+  {
+    "run": "U2a",
+    "label": "≤4 多重項, |6Y|≤9, ≤16 成分",
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 4,
+    "max_components": 16,
+    "n_window_representatives": 0,
+    "planes_by_components": {},
+    "sha256_of_representatives": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "run": "U2b",
+    "label": "≤5 多重項, |6Y|≤6, ≤16 成分",
+    "hypercharge_6y_max": 6,
+    "max_multiplets": 5,
+    "max_components": 16,
+    "n_window_representatives": 0,
+    "planes_by_components": {},
+    "sha256_of_representatives": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "run": "U2c",
+    "label": "≤6 多重項, |6Y|≤4, ≤18 成分",
+    "hypercharge_6y_max": 4,
+    "max_multiplets": 6,
+    "max_components": 18,
+    "n_window_representatives": 10,
+    "planes_by_components": {
+      "16": 1
+    },
+    "sha256_of_representatives": "604451a018fc9b83fad4757b3e3d7c5a446408c8a57502713ef91651027048a6"
+  }
+]

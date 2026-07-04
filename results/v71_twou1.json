@@ -1,0 +1,27 @@
+{
+  "claim_id": "QRN-GAUGE-012",
+  "checks": [
+    {
+      "name": "SM+ν_R + (Y, B−L) は全条件を満たす rank-2 解",
+      "pass": true
+    },
+    {
+      "name": "Plücker 標準形は基底変換で不変 (混合基底も同一平面と判定)",
+      "pass": true
+    },
+    {
+      "name": "U2c: SM+ν_R の {Y, B−L} 平面が発見される",
+      "pass": true
+    },
+    {
+      "name": "U2a ∩ U2b の共通窓で解集合が一致 (実装の整合性)",
+      "pass": true
+    }
+  ],
+  "min_rank2_components": [
+    null,
+    null,
+    16
+  ],
+  "pass": true
+}
