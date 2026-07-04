@@ -1,0 +1,63 @@
+{
+  "claim_id": "QRN-YUK-006",
+  "boundary_distance": 0.0000000000011688428003253648,
+  "snap_deviation_max": 0.000000000003993250174971763,
+  "lnZ_mass": {
+    "T1xZ6": {
+      "published_label": -53.769391967547456,
+      "stable_label": -53.76939196753885
+    },
+    "T1xZ12": {
+      "published_label": -53.76488714685148,
+      "stable_label": -53.76488714681102
+    },
+    "T2xZ6": {
+      "published_label": -20.41404722914713,
+      "stable_label": -18.761895471783593
+    },
+    "T2xZ12": {
+      "published_label": -20.424283707249064,
+      "stable_label": -18.87381747934402
+    },
+    "T3xZ6": {
+      "published_label": -17.41368727115366,
+      "stable_label": -16.4918220802609
+    },
+    "T3xZ12": {
+      "published_label": -18.35501980725063,
+      "stable_label": -17.484642493981095
+    }
+  },
+  "lnZ_nine": {
+    "T1xZ6": {
+      "published_label": -63.570304529841486,
+      "stable_label": -63.57030452988765
+    },
+    "T2xZ6": {
+      "published_label": -27.127534901680548,
+      "stable_label": -23.61187168896634
+    },
+    "T2xZ12": {
+      "published_label": -27.353806216687943,
+      "stable_label": -23.935116497608195
+    },
+    "T3xZ6": {
+      "published_label": -25.55889468932937,
+      "stable_label": -21.843569420441305
+    }
+  },
+  "winner_invariant": true,
+  "ranking_invariant": true,
+  "stable_t3_map_preds": [
+    0.000015848904618099187,
+    0.016658314068332174,
+    0.0006854111035209077,
+    0.019236413246797198,
+    0.0002846666600919859,
+    0.0610114775955577,
+    0.11992386413285437,
+    0.025195003364764167,
+    0.00443117052156999
+  ],
+  "pass": true
+}
