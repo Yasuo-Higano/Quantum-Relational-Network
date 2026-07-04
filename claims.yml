@@ -863,3 +863,17 @@
     doc: "docs/uft-v9.0.md"
   limitations:
     - "残高 10 項目 (新規: 執筆) が未解決のまま残る。"
+
+- id: QRN-YUK-005
+  version: "v9.1"
+  level: C4
+  claim: "CKM 込みの幾何選択 (質量と混合の緊張の解消): 全 9 量 (質量比 6 + CKM 3) を尤度に入れ、e セクターのみ因子化・クォーク部 (K_Q,K_u,K_d) 三重和の厳密経路で 4 幾何模型の証拠を計算。全 9 量でも T3 が勝ち (lnZ9 = -25.56, T2 に +1.6)、その MAP は 9 量中 8 を factor 5 以内に置く (|V_cb| 比 1.01)。v8.1 の緊張は MAP 点評価と証拠 (Occam 積分) の混同による人工物で、尤度に混合を入れれば 3 枚のトーラスが質量と混合を同時に保つ。"
+  status: "幾何拘束付き現象論の模型選択 (退化検査: CKM 重み 0 で v8.1 の因子化経路と 3 模型厳密一致 — 独立実装の相互検証)"
+  evidence:
+    code: "sim/src/bin/v91_ckmselect.rs"
+    result: "results/v91_ckmselect.txt"
+    result: "results/v91_ckmselect.json"
+  limitations:
+    - "全 9 量を学習に使うため out-of-sample 検証はない (予測の検証は v7.2/v8.1 が担う)。"
+    - "T3×Z12 は三重和 5×10^9 のため対象外 (明示的打ち切り)。CP 位相・|V_td| は未使用。"
+    - "m_c/m_t は比 6.6 で唯一 factor 5 超え (M2 の既知の弱点、v7.2 から継続)。"

@@ -23,8 +23,11 @@
 > mass ratios and two of three out-of-sample CKM elements within a factor of five,
 > with Bayesian evidence exceeding the anarchic bound by 15 nats. Treating the
 > geometry itself as a hypothesis space, evidence from mass ratios alone selects
-> three tori over two, while coarse Wilson-line lattices are always preferred —
-> and a mass–mixing tension emerges that measures the misalignment between tori.
+> three tori over two, while coarse Wilson-line lattices are always preferred.
+> Including the CKM elements in the evidence — computed exactly by a triple sum
+> over the shared Wilson line — resolves the apparent mass–mixing tension:
+> three tori win on all nine observables, with the joint MAP placing eight of
+> nine within a factor of five.
 
 ## 構成
 
@@ -39,9 +42,10 @@
 4. **T²×T²** — 抑制の 2 乗。質量比 5/6 (m_u/m_t 比 2.2)、out-of-sample CKM 2/3
    (\|V_cb\| 比 1.03)。lnZ = −20.4 (アナーキー +15)。M1 との残差 −8.2 の分解。
 5. **Geometry selection** — 模型空間 {トーラス数}×{Wilson 格子}: 質量の証拠は T³
-   (+3.0)、格子細分化は常に Occam 罰負け。**質量と混合の緊張** (T³ の質量 MAP は
-   CKM を失う; 9 量点評価では T² が最良) — 「質量は次元を数え、混合は次元間の傾きを
-   測る」。CKM 込み証拠の非因子化問題を open problem として明示。
+   (+3.0)、格子細分化は常に Occam 罰負け。**質量と混合の緊張とその解消** (v8.1→v9.1):
+   質量のみの MAP は CKM を失うが、CKM 込みの証拠 (共有 Wilson 線 K_Q の三重和で厳密
+   計算、e セクターは因子化) でも T³ が勝つ (+1.6)。緊張は MAP 点評価と証拠 (Occam
+   積分) の混同による人工物 — **方法論の節として独立の価値** (点評価で模型を捨てるな)。
 6. **Limitations / Outlook (M3)** — 対角世代対の仮定、同一トーラス、Higgs 簡略化、
    Wilson 線・磁束・トーラス数の起源 (モジュライ安定化)。
 7. **Reproducibility** — 全て決定論 (乱数なし)、外部依存なし、v6.5 と同一の尤度で
@@ -51,7 +55,7 @@
 
 - 図 1: ゼロモードの局在と Wilson 線シフト (波動関数プロファイル; 要作成)
 - 図 2: 単一 T² vs T²×T² の到達可能な質量比集合 (要作成)
-- 図 3: 幾何模型の lnZ 比較棒グラフ + 質量-混合緊張 (要作成)
+- 図 3: 幾何模型の lnZ 比較棒グラフ (質量のみ vs 全 9 量 — 緊張の解消; 要作成)
 - 表 1: MAP 幾何と 9 量の予測/実測
 - 表 2: M0/M1/M2文献/M2geo/M2geo² の証拠とパラメータ数
 
@@ -62,4 +66,5 @@
 | ベイズ比較の枠組 (M0/M1) | QRN-YUK-002 | v65_bayes |
 | M2geo (単一 no-go + T²×T²) | QRN-YUK-003 | v72_geomfn |
 | 幾何の選択 (T³, 粗い格子) | QRN-YUK-004 | v81_geoselect |
+| CKM 込み証拠 (緊張の解消) | QRN-YUK-005 | v91_ckmselect |
 | 前提 (FN 機構, 磁束=世代) | QRN-C0-006, QRN-MATTER-001 | v23_matter |
