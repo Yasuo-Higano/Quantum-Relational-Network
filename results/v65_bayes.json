@@ -1,0 +1,23 @@
+{
+  "claim_id": "QRN-YUK-002",
+  "seeds": [
+    650101,
+    750201
+  ],
+  "sigma": 0.6931471805599453,
+  "n_mc_per_combo": 20000,
+  "charge_space": "q1>=q2>=0<=4 per sector, 3rd gen 0, 15^5=759375",
+  "lnZ_M0_naive_mc_biased_low": [
+    -93.69531075450999,
+    -78.27031921905109
+  ],
+  "lnZ_M0_rigorous_upper_bound": -35.40394428005678,
+  "lnZ_M1_fn_free": -12.19135004461285,
+  "lnZ_M2_v32_charges": -7.614612862721616,
+  "lnZ_M1_map": -6.416744963058331,
+  "lnB_M1_over_M0_lower_bound": 23.212594235443927,
+  "lnB_M2_over_M0_lower_bound": 27.789331417335163,
+  "q_star_percentile": 0.0011127572016460905,
+  "ckm_out_of_sample_within_factor5": 3,
+  "pass": true
+}
