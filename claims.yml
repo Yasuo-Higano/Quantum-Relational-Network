@@ -1,0 +1,634 @@
+# =====================================================================
+# QRN 主張台帳 (Claim Ledger) — v6.1 で導入
+# =====================================================================
+# 本プロジェクトの全主張を、証拠と限界つきで 6 等級に分類する。
+# 「どこまでが導出で、どこからが解釈か」を機械可読にすることが目的。
+#
+#   C0  教科書的・既存定理     : 本プロジェクトが前提として使う確立された結果
+#   C1  既存結果の再現実装     : 確立された結果の独立な数値再現 (本リポジトリの計算)
+#   C2  制限付き計算定理       : 明示された有限領域内の全数計算で成立する定理
+#   C3  toy model による機構提示: 機構が動くことの実演 (現実への適用は仮説)
+#   C4  現象論的 fit / 推定    : パラメータを含む一致・オーダー推定
+#   C5  解釈・哲学・スローガン : 反証条件を添えた世界像の言明
+#
+# 書式 (制限 YAML — sim/src/bin/v61_ledger.rs が機械検証する):
+#   - id: QRN-<領域>-<3桁>     一意
+#     version: "vX.Y"          主張が導入された文書バージョン
+#     level: C0..C5
+#     claim: "……"              1 行 (日本語)
+#     status: "……"             主張の性格の要約
+#     inputs:                  (任意) 探索領域・仮定などの入力
+#       key: "value"
+#     evidence:                code / result / doc のうち 1 つ以上 (実在検査される)
+#       code: "sim/src/bin/…"
+#       result: "results/…"
+#       doc: "docs/…"
+#     limitations:             C0 以外は 1 件以上必須
+#       - "……"
+# =====================================================================
+
+# ---------- C0: 前提として使う確立された定理・結果 ----------
+
+- id: QRN-C0-001
+  version: "v0.7"
+  level: C0
+  claim: "エンタングルメント第一法則 δS=δ⟨K⟩ と線形化 Einstein 方程式の同値性 (Jacobson 1995 / Faulkner et al. 2013) は確立された研究成果である。"
+  status: "前提 (確立された研究成果)"
+  evidence:
+    doc: "docs/uft-v0.7.md"
+
+- id: QRN-C0-002
+  version: "v4.1"
+  level: C0
+  claim: "QNEC (量子ヌルエネルギー条件) は場の量子論で証明済みの定理である (Bousso et al. 2016 / Balakrishnan et al. 2019 / Ceyhan–Faulkner 2020)。"
+  status: "前提 (確立された定理)"
+  evidence:
+    doc: "docs/uft-v4.1.md"
+
+- id: QRN-C0-003
+  version: "v0.8"
+  level: C0
+  claim: "ランダム純粋状態の部分系エントロピーの厳密公式 (Page 1993) は確立された結果である。"
+  status: "前提 (確立された定理)"
+  evidence:
+    doc: "docs/uft-v0.8.md"
+
+- id: QRN-C0-004
+  version: "v3.4"
+  level: C0
+  claim: "Unruh 温度 a/2π・Hawking 温度 κ/2π・Gibbons–Hawking 温度 H/2π は場の量子論の確立された結果である。"
+  status: "前提 (確立された定理)"
+  evidence:
+    doc: "docs/uft-v3.4.md"
+
+- id: QRN-C0-005
+  version: "v2.3"
+  level: C0
+  claim: "ゲージアノマリー消去条件・Witten SU(2) 大域アノマリー・Atiyah–Singer 指数定理・Nielsen–Ninomiya 定理は確立された定理である。"
+  status: "前提 (確立された定理)"
+  evidence:
+    doc: "docs/uft-v2.3.md"
+
+- id: QRN-C0-006
+  version: "v3.2"
+  level: C0
+  claim: "Froggatt–Nielsen 機構 (1979) — U(1) 電荷と小パラメータ ε による湯川行列の冪構造 — は確立された現象論的枠組みである。"
+  status: "前提 (確立された枠組み)"
+  evidence:
+    doc: "docs/uft-v3.2.md"
+
+# ---------- 第一期 (v0.1–v0.8): 各理論の再現と幾何=情報 ----------
+
+- id: QRN-QM-001
+  version: "v0.1"
+  level: C1
+  claim: "Crank–Nicolson 法による 1D Schrödinger 方程式の再現: トンネル透過率が厳密解と 0.2%、波束拡散が理論と 3e-4、ノルム保存 1e-12。"
+  status: "再現実装 (以後の創発検証の物差し)"
+  evidence:
+    code: "sim/src/bin/v01_qm.rs"
+    result: "results/v01_qm.txt"
+  limitations:
+    - "1 次元・一粒子・非相対論的。標準的な数値解法の検証であり新規性の主張はない。"
+
+- id: QRN-GR-001
+  version: "v0.1"
+  level: C1
+  claim: "Schwarzschild 測地線の数値積分: 水星近日点移動 42.979″/世紀 (観測 42.98±0.04)、光偏向 1.7512″ (観測 1.75)、光子球 b=3√3 GM/c²。"
+  status: "再現実装"
+  evidence:
+    code: "sim/src/bin/v01_gr.rs"
+    result: "results/v01_gr.txt"
+  limitations:
+    - "真空 Schwarzschild 解のテスト粒子近似のみ。初回計算は境界条件の扱いで 5.5% ずれた (失敗記録として文書に保存)。"
+
+- id: QRN-STAT-001
+  version: "v0.2"
+  level: C1
+  claim: "Wick 回転恒等式のもとで、零点エネルギー E0=0.502±0.007 (厳密 0.5) と二重井戸トンネル分裂 ΔE=0.411±0.005 (厳密 0.398) を古典モンテカルロのみで再現。"
+  status: "再現実装 (量子=虚時間の統計力学)"
+  evidence:
+    code: "sim/src/bin/v02_pimc.rs"
+    result: "results/v02_pimc.txt"
+  limitations:
+    - "トンネル分裂の 3% 差は励起状態混入と Δτ 離散化の系統誤差 (文書に明記)。"
+    - "「時間そのものがモジュラー流として創発する」(熱時間仮説) はここでは検証していない。"
+
+- id: QRN-FIELD-001
+  version: "v0.3"
+  level: C1
+  claim: "2D φ⁴ 格子場理論で自発的対称性の破れと Binder 交差 U≈0.61 (2D Ising 普遍値 0.6107) を再現 — 連続場理論は臨界現象である。"
+  status: "再現実装 (格子場理論の標準結果)"
+  evidence:
+    code: "sim/src/bin/v03_phi4.rs"
+    result: "results/v03_phi4.txt"
+  limitations:
+    - "普遍性の含意を時空自体へ適用する読み (v0.6) は作業仮説であり、ここで示したのは格子模型の臨界現象のみ。"
+
+- id: QRN-GAUGE-001
+  version: "v0.4"
+  level: C1
+  claim: "2D U(1) 格子ゲージ理論: プラケット平均が厳密解 I₁(β)/I₀(β) と一致 (4β 全て)、Wilson ループ面積則 (閉じ込め)、ゲージ不変性は機械精度。"
+  status: "再現実装 (力=接続の曲率)"
+  evidence:
+    code: "sim/src/bin/v04_u1.rs"
+    result: "results/v04_u1.txt"
+  limitations:
+    - "2D コンパクト U(1) は厳密可解な特殊例。非可換群・高次元の閉じ込めはここからは出ない。"
+
+- id: QRN-ENT-001
+  version: "v0.5"
+  level: C1
+  claim: "調和格子の基底状態エンタングルメントエントロピーが面積則に従う (2D: S=0.062×境界長−0.085, R²=0.99999)。1D 臨界鎖から中心電荷 c=0.974 (理論 1) を復元。"
+  status: "再現実装 (Bombelli/Srednicki/Calabrese–Cardy)"
+  evidence:
+    code: "sim/src/bin/v05_entangle.rs"
+    result: "results/v05_entangle.txt"
+  limitations:
+    - "自由場 (ガウス状態) の厳密計算。相互作用系・species 問題は扱っていない。"
+    - "「BH エントロピー=もつれ」への外挿は仮説 (文書に明記)。"
+
+- id: QRN-GEOM-001
+  version: "v0.6"
+  level: C1
+  claim: "因果集合: 順序構造だけから時空次元 2/3/4 を 2.00/3.00/4.01 と復元 (Myrheim–Meyer)。ポアソン撒布はブースト (v=0.6c) で統計が不変 — 離散性とローレンツ不変性は両立する。"
+  status: "再現実装 (因果集合プログラムの標準結果)"
+  evidence:
+    code: "sim/src/bin/v06_causet.rs"
+    result: "results/v06_causet.txt"
+  limitations:
+    - "因果集合には量子重ね合わせがない (運動学のみ)。現実の時空がこの離散性を持つかは仮説。"
+
+- id: QRN-GEOM-002
+  version: "v0.6"
+  level: C1
+  claim: "動的三角形分割 (DT): ハウスドルフ次元 d_H→4 へ接近 (3.72)、スペクトル次元 d_s=2 (対数補正 P〜ln t/t まで検証) — 次元は測り方に依存する創発量。"
+  status: "再現実装 (量子重力の複数アプローチが共有する結果)"
+  evidence:
+    code: "sim/src/bin/v06_dt.rs"
+    result: "results/v06_dt.txt"
+  limitations:
+    - "d_H の 4 への収束は有限サイズで未達 (2.70→3.24、既知の有限サイズ効果として文書に明記)。"
+
+- id: QRN-GEOM-003
+  version: "v0.7"
+  level: C3
+  claim: "202 サイト円環格子の基底状態の相互情報量のみを入力に、MDS で円環幾何を復元 (隣接復元率 101/101=100%、半径ばらつき 0.0%) — 距離=相関の減衰率という辞書の機構実証。"
+  status: "toy model による機構提示"
+  evidence:
+    code: "sim/src/bin/v07_infogeom.rs"
+    result: "results/v07_infogeom.txt"
+  limitations:
+    - "自由フェルミオンの 1 次元円環という最も単純な系。一般時空の導出ではない。"
+    - "陰性対照 (幾何を持たない状態で復元が壊れること) は v6.4 まで未検証だった。"
+
+- id: QRN-GRAV-001
+  version: "v0.7"
+  level: C1
+  claim: "エンタングルメント第一法則: 無限小ボンド摂動に対し δS_A=δ⟨K_A⟩ が比 1.002 で成立 (区間外の長距離応答は 1.0000)。FGHMV の 1+1 次元平坦時空版の直接数値検証。"
+  status: "再現実装 (線形化 Einstein 方程式の情報側)"
+  evidence:
+    code: "sim/src/bin/v07_infogeom.rs"
+    result: "results/v07_infogeom.txt"
+  limitations:
+    - "1+1 次元・自由場・線形化まで。非線形 Einstein 方程式の導出ではない。"
+    - "有限励起 (1 量子) では等式でなく不等式 S_rel≥0 になる (当初の設計ミスとして文書に記録)。"
+
+- id: QRN-GRAV-002
+  version: "v0.7"
+  level: C1
+  claim: "真空を区間に制限しただけでモジュラー核に Rindler 型の局所温度構造 (縁で高温・中央で低温) が現れる — Bisognano–Wichmann 構造の格子版。"
+  status: "再現実装"
+  evidence:
+    code: "sim/src/bin/v07_infogeom.rs"
+    result: "results/v07_infogeom.txt"
+  limitations:
+    - "厳密核は区間中央で CFT 局所形から偏差 (核の重みが近隣ボンドに分散するため。文書に明記)。"
+
+- id: QRN-BH-001
+  version: "v0.8"
+  level: C1
+  claim: "ランダム純粋状態の蒸発モデルで Page 曲線を厳密公式と最大偏差 0.0008 nats で再現、S_A=S_B を 6 桁で確認 — ユニタリー性と情報保存の実演。"
+  status: "再現実装 (Page 1993)"
+  evidence:
+    code: "sim/src/bin/v08_page.rs"
+    result: "results/v08_page.txt"
+  limitations:
+    - "n=12 qubit のランダム状態近似。実際の BH 蒸発がこの典型性に従うことは (アイランド公式で支持される) 仮説。"
+
+# ---------- 第二期 (v1.1–v1.6): 動力学・測定・宇宙論 ----------
+
+- id: QRN-CAUSAL-001
+  version: "v1.1"
+  level: C1
+  claim: "非相対論的な格子量子動力学から有効光円錐が創発: 相関前線 4.11t (理論 2v_max=4)、秩序変数 m(t)=|J₀(4t)| と機械精度一致 (3.9e-16)。"
+  status: "再現実装 (Lieb–Robinson / Calabrese–Cardy)"
+  evidence:
+    code: "sim/src/bin/v11_quench.rs"
+    result: "results/v11_quench.txt"
+  limitations:
+    - "可積分な自由フェルミオン鎖。現実の光円錐がこの機構で創発しているかは QRN の仮説。"
+
+- id: QRN-CAUSAL-002
+  version: "v1.1"
+  level: C3
+  claim: "時間の矢=もつれの拡散: 全系は純粋なまま、局所観測量は T=∞ 熱平衡値へ緩和し S_A は線形成長→体積則飽和 — 可逆な法則から不可逆な見えの機構実証。"
+  status: "toy model による機構提示"
+  evidence:
+    code: "sim/src/bin/v11_quench.rs"
+    result: "results/v11_quench.txt"
+  limitations:
+    - "初期状態の低エントロピー性は仮定 (宇宙論的起源は v5.1 の主題で、なお未解決)。"
+
+- id: QRN-ER-001
+  version: "v1.2"
+  level: C3
+  claim: "熱場二重状態の 2 本鎖で、温度 (もつれ) を絞ると鏡像領域間の相互情報量が 13.86→0.19 へ落ち「接続が千切れる」— ER=EPR の最小実演。"
+  status: "toy model による機構提示"
+  evidence:
+    code: "sim/src/bin/v12_erepr.rs"
+    result: "results/v12_erepr.txt"
+  limitations:
+    - "ER=EPR の証明ではない。AdS/CFT では強く支持されるが一般時空では未証明 (文書に明記)。"
+
+- id: QRN-QEC-001
+  version: "v1.3"
+  level: C1
+  claim: "3 クォートリット完全符号 (Almheiri–Dong–Harlow の最小模型): I(R:1 領域)=0、I(R:2 領域)=2ln3、消失誤り耐性を機械精度で検証 — ホログラフィー辞書=量子誤り訂正。"
+  status: "再現実装 (ADH 2015)"
+  evidence:
+    code: "sim/src/bin/v13_qec.rs"
+    result: "results/v13_qec.txt"
+  limitations:
+    - "AdS/CFT の新しい code subspace の提案ではない。我々の宇宙 (dS) への拡張は仮説。"
+
+- id: QRN-GAUGE-002
+  version: "v1.4"
+  level: C1
+  claim: "3D Z2 格子ゲージ理論の閉じ込め転移を Ising 双対点 β_c=0.7614 で確認 (Creutz 比 0.395→0.0000) — ただのスピン系が赤外でゲージ理論として振る舞う (創発ゲージ場)。"
+  status: "再現実装 (Wegner/Kitaev/Wen)"
+  evidence:
+    code: "sim/src/bin/v14_z2gauge.rs"
+    result: "results/v14_z2gauge.txt"
+  limitations:
+    - "Z2 という最小の群。標準模型のゲージ群が創発である直接証拠ではない。"
+
+- id: QRN-COSMO-001
+  version: "v1.5"
+  level: C1
+  claim: "ΛCDM 膨張史の再現: 宇宙年齢 13.79 Gyr (Planck 13.80)、減速→加速転換 z=0.632 (観測 0.6±0.1)、等密度 z_eq=3442 (観測 ≈3400)。"
+  status: "再現実装 (較正)"
+  evidence:
+    code: "sim/src/bin/v15_lambda.rs"
+    result: "results/v15_lambda.txt"
+  limitations:
+    - "標準宇宙論の数値再現であり QRN 固有の内容はない (以後の議論の較正)。"
+
+- id: QRN-COSMO-002
+  version: "v1.5"
+  level: C4
+  claim: "宇宙定数の観測値 Λ≈2.9e-122 (プランク単位) が 1/√V₄=1.5e-122 と比 1.9 で一致 — 因果集合系の Λ〜1/√V₄ 揺らぎ予言 (加速膨張発見前の事前予言) のオーダー追認。"
+  status: "オーダー推定 (説明を要する事実の指摘)"
+  evidence:
+    code: "sim/src/bin/v15_lambda.rs"
+    result: "results/v15_lambda.txt"
+  limitations:
+    - "オーダーの一致であり導出ではない。QFT 素朴見積りの 120 桁問題そのものは未解決。"
+
+- id: QRN-COSMO-003
+  version: "v1.5"
+  level: C3
+  claim: "常在 Λ (揺らぐ宇宙定数) トイ模型では物質密度が 36 桁変化する間 |Λ|/ρ_m が中央値 0.38 の帯に留まり、コインシデンス問題が構造的に消える。w(z) の揺らぎという検証可能な帰結を持つ。"
+  status: "toy model による機構提示 (投機的と文書に明記)"
+  evidence:
+    code: "sim/src/bin/v15_lambda.rs"
+    result: "results/v15_lambda.txt"
+  limitations:
+    - "CMB 音響ピークへの影響など観測的整合性は未検証 (文書が投機的と明記)。"
+
+- id: QRN-BORN-001
+  version: "v1.6"
+  level: C1
+  claim: "デコヒーレンス: 干渉項が環境サイズ N とともに不可逆化 (N=32 で max|r|=5e-4)、τ_D·√N=0.64–0.69 で一定 — ポインター基底の選択と古典性の起源。"
+  status: "再現実装 (Zeh/Zurek のデコヒーレンス理論)"
+  evidence:
+    code: "sim/src/bin/v16_born.rs"
+    result: "results/v16_born.txt"
+  limitations:
+    - "小規模スピン系。実験的にも確立した理論の再現であり新規性はない。"
+
+- id: QRN-BORN-002
+  version: "v1.6"
+  level: C1
+  claim: "エンバリアンス (もつれの対称性) + 数え上げからボルン則 P=|ψ|² を導出する Zurek の議論を数値再現 (5 枝で P(0)=2/5、環境ユニタリー不変性 3e-16)。"
+  status: "再現実装 (前提に論争が残る導出の検証)"
+  evidence:
+    code: "sim/src/bin/v16_born.rs"
+    result: "results/v16_born.txt"
+  limitations:
+    - "導出の前提 (確率の局所性・微細化可能性) 自体の妥当性には文献上論争が残る (文書に明記)。"
+
+# ---------- 第三期 (v2.1–v2.5): 非線形重力の土台・物質・審判 ----------
+
+- id: QRN-GRAV-003
+  version: "v2.1"
+  level: C1
+  claim: "相対エントロピーの正値性・二次性 (べき 1.959、二次係数=Fisher 計量=正準エネルギー)・単調性 (A⊂B で増加) をフェルミオン鎖で厳密検証 — 非線形重力の情報側の土台 (二次まで)。"
+  status: "再現実装 (量子情報の一般定理の実演)"
+  evidence:
+    code: "sim/src/bin/v21_relent.rs"
+    result: "results/v21_relent.txt"
+  limitations:
+    - "二次まで。全次数への拡張 (モジュラー非可換性) は未検証で、v6.0 残高 3 に対応。"
+
+- id: QRN-KK-001
+  version: "v2.2"
+  level: C1
+  claim: "カルツァ=クライン機構の核心 (KK 塔・Wilson 線による電荷=巻き数・ゲージ場=ねじれ・分散関係) を格子で機械精度 (1e-15) で再現。"
+  status: "再現実装"
+  evidence:
+    code: "sim/src/bin/v22_kk.rs"
+    result: "results/v22_kk.txt"
+  limitations:
+    - "現実の電荷が隠れ次元由来かは仮説。モジュライ安定化・なぜ 3+1 次元だけ大きいかは未解決。"
+    - "単純な KK からはカイラルフェルミオンが出ない (v2.3 の主題)。"
+
+- id: QRN-MATTER-001
+  version: "v2.3"
+  level: C1
+  claim: "磁束 Q を貫いたトーラス上のディラック演算子のゼロモード縮退度が Q に一致 (Q=1..4 全て) — 指数定理の数値再現。世代数=トポロジーの機構。"
+  status: "再現実装 (Atiyah–Singer)"
+  evidence:
+    code: "sim/src/bin/v23_matter.rs"
+    result: "results/v23_matter.txt"
+  limitations:
+    - "現実の 3 世代が磁束由来であることの証拠ではない (機構の実証まで)。"
+
+- id: QRN-MATTER-002
+  version: "v2.3"
+  level: C2
+  claim: "SM の場の内容 (Q,u,d,L,e) と 4 つのアノマリー消去条件を与えると、超電荷は SM の値 (1/6,-2/3,1/3,-1/2) に一意に決まる (逆問題の厳密解)。"
+  status: "制限付き計算定理 (場の内容は仮定)"
+  evidence:
+    code: "sim/src/bin/v23_matter.rs"
+    result: "results/v23_matter.txt"
+  limitations:
+    - "場の内容 (表現の組) を仮定した上での一意性。内容自体の探索は v3.1/v4.3 が行う。"
+
+- id: QRN-COSMO-004
+  version: "v2.4"
+  level: C1
+  claim: "Mukhanov–Sasaki 方程式の Bunch–Davies 初期条件からの厳密積分: dS 厳密解と 1e-9、準 dS で n_s−1=−0.1000 (理論 3−2ν と 4 桁一致) — CMB ゆらぎ=真空ゆらぎの機構。"
+  status: "再現実装 (インフレーション摂動論)"
+  evidence:
+    code: "sim/src/bin/v24_inflation.rs"
+    result: "results/v24_inflation.txt"
+  limitations:
+    - "インフラトンの正体・初期条件・トランスプランク問題は未解決 (機構の検証のみ)。"
+    - "固定 kη 評価はスケール不変と自己相似を区別できない (犯した設計ミスとして文書に記録)。"
+
+- id: QRN-EXP-001
+  version: "v2.5"
+  level: C4
+  claim: "BMV 型重力誘起もつれ実験の実現可能パラメータ (m=1e-14 kg, d=200-250μm, τ=2.5-5s) で concurrence C=0.03-0.50 — 実験審判の定量化。"
+  status: "現象論的推定 (提案論文に基づく)"
+  evidence:
+    code: "sim/src/bin/v25_bmv.rs"
+    result: "results/v25_bmv.txt"
+  limitations:
+    - "検証するのは摂動的重力の量子性 (量子チャネル性) であり、プランクスケール構造ではない。"
+    - "「C>0 なら量子・C=0 なら古典」という二分法は 2025 年の議論 (古典重力+QFT 的扱いでもつれ生成) により精密化が必要 — v6.6 で反証条件を更新。"
+
+# ---------- 第四期 (v3.1–v3.4): ゲージ・湯川・RG・地平線 ----------
+
+- id: QRN-GAUGE-003
+  version: "v3.1"
+  level: C2
+  claim: "明示された探索領域内で、3 因子すべてに帯電する無矛盾なカイラル物質集合の最小解は標準模型 1 世代 (15 成分) であり、かつ一意である (6.37e7 集合の全数探索)。"
+  status: "制限付き計算定理 (ゲージ群は仮定・領域は下記 inputs)"
+  inputs:
+    gauge_group: "SU(3)xSU(2)xU(1)"
+    reps: "SU(3) は 1,3,3bar / SU(2) は 1,2"
+    hypercharge: "|Y| ≤ 3/2 (6Y は整数)"
+    multiplets: "≤ 5 個"
+    components: "≤ 15"
+    conditions: "5 アノマリー + Witten + カイラル (質量項を許す対なし) + 全因子帯電"
+  evidence:
+    code: "sim/src/bin/v31_gauge.rs"
+    result: "results/v31_gauge.txt"
+  limitations:
+    - "ゲージ群自体は仮定であり導出していない。"
+    - "大表現・複数 U(1)・例外群は領域外 (大表現は v5.2、拡張軸は v6.2 が対処)。"
+    - "探索領域の物理的正当化は EFT 的仮定 (低エネルギーには小さい表現・小さい電荷) に依る。"
+
+- id: QRN-GAUGE-004
+  version: "v3.1"
+  level: C1
+  claim: "SU(5) のトレースレス超電荷生成子から 5̄⊕10 の電荷を計算すると SM 1 世代と厳密一致 — 電荷量子化の群論的起源 (教科書事実の整数演算による検証)。"
+  status: "再現実装 (Georgi–Glashow)"
+  evidence:
+    code: "sim/src/bin/v31_gauge.rs"
+    result: "results/v31_gauge.txt"
+  limitations:
+    - "埋め込みの存在は SU(5) GUT が正しいことを意味しない (陽子崩壊は未観測)。"
+
+- id: QRN-GAUGE-005
+  version: "v3.1"
+  level: C4
+  claim: "1 ループ RG で 3 結合が高エネルギーでほぼ収束 (MSSM: 2e16 GeV に α⁻¹ で ~2%) — 統一群の間接証拠。"
+  status: "現象論的推定"
+  evidence:
+    code: "sim/src/bin/v31_gauge.rs"
+    result: "results/v31_gauge.txt"
+  limitations:
+    - "MSSM の収束は超対称粒子 1 TeV の仮定に依存し、LHC 未発見と張力がある (v4.0 に明記)。"
+
+- id: QRN-YUK-001
+  version: "v3.2"
+  level: C4
+  claim: "FN 機構 (ε=0.22、文献の整数電荷、O(1) 乱数係数 2000 試行) で質量比 6 種+CKM 3 種の全 9 量の中央値が実測の 5 倍以内。構造なし対照では階層が出ない (m1/m3 中央値 0.178)。"
+  status: "現象論的 fit (M1 級: 電荷は選択されたもの)"
+  evidence:
+    code: "sim/src/bin/v32_yukawa.rs"
+    result: "results/v32_yukawa.txt"
+  limitations:
+    - "ε の起源と電荷割当ては未導出 (文書に明記)。「選んだ電荷で合った」段階であり、電荷全探索・模型比較 (ベイズ) は v6.5 が行う。"
+    - "学習に使った量と予測に使った量が分離されていなかった (v6.5 で対処)。"
+
+- id: QRN-RG-001
+  version: "v3.3"
+  level: C1
+  claim: "エントロピック c 関数 c(ℓ)=3ℓ·dS/dℓ が UV で 1.000-1.004 (ディラック CFT の c=1)、質量を入れると 1→0 へ全域単調減少、異なる m の曲線が x=ℓm の普遍関数に収束 (最大差 0.019)。"
+  status: "再現実装 (Casini–Huerta のエントロピック c 定理)"
+  evidence:
+    code: "sim/src/bin/v33_ctheorem.rs"
+    result: "results/v33_ctheorem.txt"
+  limitations:
+    - "1+1 次元。3+1 次元の a 定理・F 定理のエンタングルメント証明は研究前線 (文書に明記)。"
+
+- id: QRN-UNRUH-001
+  version: "v3.4"
+  level: C1
+  claim: "一様加速検出器の応答関数が厳密に熱的: 詳細釣り合い e^(-2πω/a) が 3 桁成立、T_eff=0.15926 vs a/2π=0.15915 (相対誤差 6e-4)、スペクトルがプランク分布と 7e-4。"
+  status: "再現実装 (Unruh 効果)"
+  evidence:
+    code: "sim/src/bin/v34_unruh.rs"
+    result: "results/v34_unruh.txt"
+  limitations:
+    - "Unruh 効果の実験的直接検出は未達 (アナログ系の統計的観測のみ)。"
+
+# ---------- 第五期 (v4.1–v4.4): QNEC・ニュートリノ・孤立性・dS ----------
+
+- id: QRN-QNEC-001
+  version: "v4.1"
+  level: C1
+  claim: "自由フェルミオン鎖 (N=302) のカイラル波束+光的端点変形で QNEC 型不等式を数値再現: 基本形 2πT_kk−S″ の最小ギャップ +4e-5 ≥ 0、強形 (−6(S′)² 込み) は −3e-5 (許容誤差内)。"
+  status: "再現実装 (証明済み定理の離散・有限サイズ toy での確認)"
+  evidence:
+    code: "sim/src/bin/v41_qnec.rs"
+    result: "results/v41_qnec.txt"
+  limitations:
+    - "QNEC の新証明ではない。離散化・有限サイズ・差分幅由来の誤差予算が未分解だった (v6.3 が tolerance を分解し N 依存性を検査)。"
+    - "強形の最小ギャップは負値 (−3e-5) を許容誤差 2e-4 で PASS としており、誤差の内訳提示が必要 (v6.3)。"
+
+- id: QRN-NU-001
+  version: "v4.2"
+  level: C4
+  claim: "シーソー機構: m_ν=0.05 eV, m_D=174 GeV から M_R=6e14 GeV — v3.1 の結合統一点と独立に同じ桁。FN+アナーキー M_R の 2000 試行で PMNS 全観測値が 68% 帯内。レプトジェネシスで η_B~1.3e-9 (観測 6.1e-10)。"
+  status: "現象論的推定 (機構の実証であり値の導出ではない)"
+  evidence:
+    code: "sim/src/bin/v42_neutrino.rs"
+    result: "results/v42_neutrino.txt"
+  limitations:
+    - "M_R・FN 電荷は手で置いた (文書に明記)。0νββ・CP 位相・質量順序の実験が審判。"
+
+- id: QRN-GAUGE-006
+  version: "v4.3"
+  level: C2
+  claim: "探索領域を ≤6 多重項・≤24 成分に拡張した全数探索で、理論空間のスペクトルは {15 成分: SM のみ 1 個, 16 成分: 8 個, 17-23 成分: 0 個, 24 成分: 459 個} — SM は最小かつ孤立。"
+  status: "制限付き計算定理"
+  inputs:
+    reps: "SU(3) は 1,3,3bar / SU(2) は 1,2"
+    hypercharge: "|Y| ≤ 3/2"
+    multiplets: "≤ 6 個"
+    components: "≤ 24"
+    conditions: "v3.1 と同一"
+  evidence:
+    code: "sim/src/bin/v43_landscape.rs"
+    result: "results/v43_landscape.txt"
+  limitations:
+    - "16 成分の隣人 8 個の排除は「分数電荷ハドロンの未観測」という観測事実に依る (計算のみでは排除されない)。"
+    - "2 世代分 (30 成分) の複製解は範囲外。"
+
+- id: QRN-DS-001
+  version: "v4.4"
+  level: C1
+  claim: "de Sitter 共動検出器の詳細釣り合い e^(-2πω/H) と T_eff=H/2π (相対誤差 6e-4) — 地平線の熱の三位一体 (加速 a/2π・BH κ/2π・宇宙論 H/2π) が同一機構で完結。"
+  status: "再現実装 (Gibbons–Hawking)"
+  evidence:
+    code: "sim/src/bin/v44_desitter.rs"
+    result: "results/v44_desitter.txt"
+  limitations:
+    - "dS 静的パッチの完全な量子論 (観測者の有限性) は未解決 (v6.0 残高)。"
+
+- id: QRN-DS-002
+  version: "v4.4"
+  level: C4
+  claim: "観測可能宇宙のエントロピー台帳 (桁): dS 地平線容量 ~2e122 に対し内容物 ~1e104 — 使用率 ~1e-18 でホログラフィック束縛を充足。ビッグバン時は容量の 1e-34。"
+  status: "オーダー推定"
+  evidence:
+    code: "sim/src/bin/v44_desitter.rs"
+    result: "results/v44_desitter.txt"
+  limitations:
+    - "全て桁の算術であり、初期条件問題 (なぜ 1e-34 か) は未解決のまま (v5.1 が機構を提案)。"
+
+# ---------- 第六期 (v5.1–v5.3): 初期条件・拡張探索・脱結合 ----------
+
+- id: QRN-ARROW-001
+  version: "v5.1"
+  level: C3
+  claim: "自由度が増える系 (鎖 16→96 サイト成長、新モードは断熱的に真空で到着) では、全系が純粋なまま観測窓のエントロピーが 0→4.37 へ単調成長 — 低エントロピーの過去は微調整でなく「自由度が少ない過去」の帰結という機構。"
+  status: "toy model による機構提示 (熱的到着との対照付き)"
+  evidence:
+    code: "sim/src/bin/v51_arrow.rs"
+    result: "results/v51_arrow.txt"
+  limitations:
+    - "「なぜ自由度は増えるのか」(膨張の起源) に問いが移動しただけで、それは未解決 (v6.0 残高 1)。"
+
+- id: QRN-GAUGE-007
+  version: "v5.2"
+  level: C2
+  claim: "大表現 ((1,3),(6,1),(6̄,1),(8,1)) を解禁した全数探索 (≤5 多重項・≤16 成分) でも、15 成分未満の解は 0 個・15 成分の解は SM ただ一つ — 孤立性は表現拡大に頑健。"
+  status: "制限付き計算定理"
+  inputs:
+    reps: "SU(3) は 1,3,3bar,6,6bar,8 / SU(2) は 1,2,3"
+    hypercharge: "|Y| ≤ 3/2"
+    multiplets: "≤ 5 個"
+    components: "≤ 16"
+  evidence:
+    code: "sim/src/bin/v52_bigreps.rs"
+    result: "results/v52_bigreps.txt"
+  limitations:
+    - "開発過程で (3,2) の弱次元二重計上バグを検出・修正した (探索系は較正が命 — 文書に記録)。独立実装によるクロスチェックは v6.2 が行う。"
+
+- id: QRN-EFT-001
+  version: "v5.3"
+  level: C1
+  claim: "重い場 (質量 M) が低エネルギー相関に残す痕跡が |ΔC|∝M^(-1.913) で退場 (理論 −2) — 脱結合定理の toy 検証。v4.3 の「なぜ小さな理論を考えてよいか」を EFT+カイラル保護+アノマリー一意性の連鎖で閉じる。"
+  status: "再現実装 (Appelquist–Carazzone)"
+  evidence:
+    code: "sim/src/bin/v53_decoupling.rs"
+    result: "results/v53_decoupling.txt"
+  limitations:
+    - "裏返せばプランクスケールの直接観測が絶望的に難しい理由でもある (文書に明記)。"
+
+# ---------- 統合文書の中心テーゼ (解釈) ----------
+
+- id: QRN-META-001
+  version: "v1.0"
+  level: C5
+  claim: "「世界の基本的実在は量子相関の網であり、時空・重力・力・物質はその異なる読み出しである」— 公理系 A0-A5 と 6 つの反証条件を持つ研究プログラムの言明。"
+  status: "解釈 (反証条件を v1.0 §4 に明示)"
+  evidence:
+    doc: "docs/uft-v1.0.md"
+  limitations:
+    - "文書自身が「完成した万物の理論ではない」と明記 (SM パラメータ・宇宙定数は未導出)。"
+
+- id: QRN-META-002
+  version: "v2.0"
+  level: C5
+  claim: "「冗長な記録こそが実在をつくる」— 時空 (誤り訂正)・古典性 (quantum Darwinism)・熱 (記録の拡散) を貫く中心テーゼ。"
+  status: "解釈"
+  evidence:
+    doc: "docs/uft-v2.0.md"
+  limitations:
+    - "同型の構造が三度現れたという観察であり、同一機構であることの証明ではない。"
+
+- id: QRN-META-003
+  version: "v4.0"
+  level: C5
+  claim: "最小性原理 (物質の内容は無矛盾に存在しうるカイラル構造の極小元) と単調性原理 M (不可逆性=情報の単調性) — 第四期の統合原理。"
+  status: "解釈 (数値的裏付けは C1/C2 級の各主張)"
+  evidence:
+    doc: "docs/uft-v4.0.md"
+  limitations:
+    - "「なぜ極小が実現するか」は形而上学的候補 (段階的創発・選択・変分原理) の列挙に留まる。"
+
+- id: QRN-META-004
+  version: "v5.0"
+  level: C5
+  claim: "公理系最終形: 一つの実在 (誤り訂正構造を持つ量子網) と少数の原理 (ユニタリー性・単調性・無矛盾性) から既知物理のほぼ全域が創発する、という統合の形。"
+  status: "解釈"
+  evidence:
+    doc: "docs/uft-v5.0.md"
+  limitations:
+    - "「ほぼ全域」の残り (FN 電荷の値・初期条件・QNEC 全次数など) は v6.0 §3 の残高リストが管理する。"
+
+- id: QRN-META-005
+  version: "v6.0"
+  level: C5
+  claim: "最終テーゼ: 世界は無矛盾に符号化できる最小の量子情報網であり、冗長な記録が時空と古典性を、単調性が時間と熱と重力を、無垢な成長が歴史を生む。"
+  status: "解釈 (全スイート 87/87 PASS の総括)"
+  evidence:
+    doc: "docs/uft-v6.0.md"
+  limitations:
+    - "検証できない残高 (v6.0 §3 の 5 項目) は実験の日程表に委ねられている。"
