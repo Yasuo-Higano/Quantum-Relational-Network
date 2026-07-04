@@ -26,8 +26,12 @@
 > three tori over two, while coarse Wilson-line lattices are always preferred.
 > Including the CKM elements in the evidence — computed exactly by a triple sum
 > over the shared Wilson line — resolves the apparent mass–mixing tension:
-> three tori win on all nine observables, with the joint MAP placing eight of
-> nine within a factor of five.
+> three tori win on all nine observables. The diagonal generation-pairing ansatz
+> is itself testable: marginalizing over all inter-torus pairings beats it by
+> 3.7 nats even after the Occam penalty, the pairing proves irreducible to any
+> Wilson-line refinement, mirror, or flux-orientation flip (it aligns Landau
+> towers, not positions), and the three-torus preference survives under a
+> certified-truncation evidence computation over ~10¹³ terms.
 
 ## 構成
 
@@ -46,8 +50,15 @@
    質量のみの MAP は CKM を失うが、CKM 込みの証拠 (共有 Wilson 線 K_Q の三重和で厳密
    計算、e セクターは因子化) でも T³ が勝つ (+1.6)。緊張は MAP 点評価と証拠 (Occam
    積分) の混同による人工物 — **方法論の節として独立の価値** (点評価で模型を捨てるな)。
-6. **Limitations / Outlook (M3)** — 対角世代対の仮定、同一トーラス、Higgs 簡略化、
-   Wilson 線・磁束・トーラス数の起源 (モジュライ安定化)。
+5b. **Generation pairing as a physical degree of freedom** (v10.1–v10.3) —
+   対角対はデータに否定される (marginal が Occam 罰 7.17 込みで +3.7)。対は
+   Wilson 細分化・鏡映・磁束反転のどれにも還元されない「Landau タワー整列」の
+   離散自由度 (36+54 状態の総当たり分類)。幾何選択は対 marginalize 込みでも
+   T³ が勝つ (証明付き打ち切り、区間幅 ~10⁻¹⁰)。**9 ゼロモード→3 世代の射影が
+   観測にかかる物理である**ことの実証 — 方法論 (仮定を模型空間に昇格して検定する)
+   としても独立の価値。
+6. **Limitations / Outlook (M3)** — 射影 (対) の第一原理機構 (オービフォールド等)、
+   同一トーラス、Higgs 簡略化、Wilson 線・磁束・トーラス数の起源 (モジュライ安定化)。
 7. **Reproducibility** — 全て決定論 (乱数なし)、外部依存なし、v6.5 と同一の尤度で
    の直接比較可能性。
 
@@ -69,4 +80,8 @@
 | M2geo (単一 no-go + T²×T²) | QRN-YUK-003 | v72_geomfn |
 | 幾何の選択 (T³, 粗い格子) | QRN-YUK-004 | v81_geoselect |
 | CKM 込み証拠 (緊張の解消) | QRN-YUK-005 | v91_ckmselect |
+| ラベル安定化と正誤表 | QRN-YUK-006 | v92_labelstab |
+| 対角対の棄却 (陰性結果) | QRN-YUK-007 | v101_pairing |
+| 対込みでも T³ (証明付き打ち切り) | QRN-YUK-008 | v102_geopair |
+| 対の既約性 (タワー整列) | QRN-YUK-009 | v103_pairgeom |
 | 前提 (FN 機構, 磁束=世代) | QRN-C0-006, QRN-MATTER-001 | v23_matter |

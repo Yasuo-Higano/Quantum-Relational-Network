@@ -470,66 +470,70 @@ def fig_attainable_ratios(mode_data):
 
 def fig_geometry_lnz():
     print(
-        "[E] 幾何模型の証拠比較 (data: results/v92_labelstab.json, v81_geoselect.json, "
-        "v91_ckmselect.json, v72_geomfn.json)"
+        "[E] 幾何模型の証拠比較 (data: results/v102_geopair.json, v92_labelstab.json, "
+        "v81_geoselect.json, v91_ckmselect.json, v72_geomfn.json)"
     )
     g92 = load("v92_labelstab.json")
+    g102 = load("v102_geopair.json")
     g81 = load("v81_geoselect.json")
     g91 = load("v91_ckmselect.json")
     g72 = load("v72_geomfn.json")
-    order = ["T1xZ6", "T1xZ12", "T2xZ6", "T2xZ12", "T3xZ6", "T3xZ12"]
-    disp = {
-        "T1xZ6": "$T^1{\\times}Z_6$", "T1xZ12": "$T^1{\\times}Z_{12}$",
-        "T2xZ6": "$T^2{\\times}Z_6$", "T2xZ12": "$T^2{\\times}Z_{12}$",
-        "T3xZ6": "$T^3{\\times}Z_6$", "T3xZ12": "$T^3{\\times}Z_{12}$",
-    }
-    mass = g92["lnZ_mass"]
-    nine = g92["lnZ_nine"]
-    nine_order = [g for g in order if g in nine]
     check("v9.2: 勝者と順位は両ラベル規約で不変", g92["winner_invariant"] and g92["ranking_invariant"])
-    for key, tbl in (("mass", mass), ("nine", nine)):
-        win_stb = max(tbl, key=lambda g: tbl[g]["stable_label"])
-        win_pub = max(tbl, key=lambda g: tbl[g]["published_label"])
-        check(f"{key}: 勝者 = T³×Z₆ (安定側/公表側とも)", win_stb == win_pub == "T3xZ6")
+    m102 = g102["lnZ_mass"]
+    n102 = g102["lnZ_nine"]
+    # 検査: v10.2 の対角側が v9.2 の安定側と一致し、T³ が全列で勝者
+    check(
+        "v10.2 対角側 = v9.2 安定側 (質量)",
+        abs(m102["T2_diag"] - g92["lnZ_mass"]["T2xZ6"]["stable_label"]) < 0.02
+        and abs(m102["T3_diag"] - g92["lnZ_mass"]["T3xZ6"]["stable_label"]) < 0.02,
+    )
+    check(
+        "T³ が全列 (対角/自由対 × 質量/全9) で勝者",
+        m102["T3_diag"] > m102["T2_diag"]
+        and m102["T3_perm"] > m102["T2_perm"]
+        and g92["lnZ_nine"]["T3xZ6"]["stable_label"] > g92["lnZ_nine"]["T2xZ6"]["stable_label"]
+        and n102["T3_perm_lo"] > n102["T2_perm"],
+    )
+    check("v10.2 の打ち切り区間は事実上厳密", n102["T3_perm_hi"] - n102["T3_perm_lo"] < 0.01)
 
     fig, (ax1, ax2, ax3) = plt.subplots(
-        1, 3, figsize=(10.2, 3.2), gridspec_kw={"width_ratios": [1.5, 1.1, 0.9], "wspace": 0.34}
+        1, 3, figsize=(10.2, 3.2), gridspec_kw={"width_ratios": [1.2, 1.2, 0.9], "wspace": 0.36}
     )
-    # (a) 質量のみ (6 幾何): 安定ラベルの棒 + 公表側の菱形マーカー
-    xs = np.arange(len(order))
-    stb = [mass[g]["stable_label"] for g in order]
-    pub = [mass[g]["published_label"] for g in order]
-    ax1.bar(xs, stb, 0.55, color="#8aa8c6", label="stable labelling (v9.2)")
-    ax1.plot(xs, pub, "D", ms=4, color="#444444", mfc="none",
-             label="published convention (v8.1)")
+    geoms = ["$T^1$", "$T^2$", "$T^3$"]
+    xs = np.arange(3)
+    # (a) 質量のみ: 対角対 vs 自由対 (T¹ は対なし → 同値)
+    diag_m = [m102["T1"], m102["T2_diag"], m102["T3_diag"]]
+    perm_m = [m102["T1"], m102["T2_perm"], m102["T3_perm"]]
+    ax1.bar(xs - 0.18, diag_m, 0.34, color="#8aa8c6", label="diagonal pairing")
+    ax1.bar(xs + 0.18, perm_m, 0.34, color="#2c5f8a", label="pairing marginalized (v10.1–2)")
     ax1.axhline(g72["lnZ_m1_from_v65"], color="#888888", lw=0.9, ls=":",
                 label="M1: free FN charges + 18 rand. coeffs")
     ax1.axhline(g72["lnZ_m0_upper_bound_from_v65"], color="#aaaaaa", lw=0.9, ls="--",
                 label="M0 anarchy (upper bound)")
-    star = order.index("T3xZ6")
-    ax1.text(star, stb[star] + 1.2, "★", ha="center", fontsize=11, color="#b8860b")
+    ax1.text(2 + 0.18, perm_m[2] + 1.2, "★", ha="center", fontsize=11, color="#b8860b")
     ax1.set_xticks(xs)
-    ax1.set_xticklabels([disp[g] for g in order], fontsize=7.2)
+    ax1.set_xticklabels(geoms)
     ax1.set_ylabel("ln evidence (6 mass ratios)")
-    ax1.set_title("mass-only evidence:\n$T^3$ wins under both label conventions")
-    ax1.legend(fontsize=6.6, loc="lower right")
-    ax1.set_ylim(min(stb + pub) * 1.22, 0)
+    ax1.set_title("mass-only evidence ($Z_6$, stable labels):\n$T^3$ wins with and without pairing freedom")
+    ax1.legend(fontsize=6.4, loc="lower right")
+    ax1.set_ylim(min(diag_m) * 1.22, 0)
 
-    # (b) 全 9 量 (4 幾何; T³×Z₁₂ は三重和 5×10⁹ のため対象外)
-    xs9 = np.arange(len(nine_order))
-    stb9 = [nine[g]["stable_label"] for g in nine_order]
-    pub9 = [nine[g]["published_label"] for g in nine_order]
-    ax2.bar(xs9, stb9, 0.5, color="#2c5f8a", label="stable labelling (v9.2)")
-    ax2.plot(xs9, pub9, "D", ms=4, color="#444444", mfc="none",
-             label="published convention (v9.1)")
-    star9 = nine_order.index("T3xZ6")
-    ax2.text(star9, stb9[star9] + 1.6, "★", ha="center", fontsize=11, color="#b8860b")
-    ax2.set_xticks(xs9)
-    ax2.set_xticklabels([disp[g] for g in nine_order], fontsize=7.2)
+    # (b) 全 9 量: 同じ構成
+    diag_9 = [
+        n102["T1"],
+        g92["lnZ_nine"]["T2xZ6"]["stable_label"],
+        n102["T3_diag"],
+    ]
+    perm_9 = [n102["T1"], n102["T2_perm"], n102["T3_perm_lo"]]
+    ax2.bar(xs - 0.18, diag_9, 0.34, color="#c6b08a", label="diagonal pairing")
+    ax2.bar(xs + 0.18, perm_9, 0.34, color="#8a5f2c", label="pairing marginalized")
+    ax2.text(2 + 0.18, perm_9[2] + 1.6, "★", ha="center", fontsize=11, color="#b8860b")
+    ax2.set_xticks(xs)
+    ax2.set_xticklabels(geoms)
     ax2.set_ylabel("ln evidence (6 masses + 3 CKM)")
-    ax2.set_title("full 9-observable evidence:\n$T^3$ keeps masses and CKM")
-    ax2.legend(fontsize=6.6, loc="lower right")
-    ax2.set_ylim(min(stb9 + pub9) * 1.25, 0)
+    ax2.set_title("full 9-observable evidence:\nrobust to labels (v9.2) and pairing (v10.2)")
+    ax2.legend(fontsize=6.4, loc="lower right")
+    ax2.set_ylim(min(diag_9) * 1.25, 0)
 
     # (c) 緊張の解消 — 9 量の点評価: 「質量のみ MAP」→「全 9 量 MAP」(公表側規約の記録値)
     m81 = {m["label"]: m for m in g81["models"]}
