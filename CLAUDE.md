@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 通常のソフトウェア開発ではなく**物理学の研究プロジェクト**。現代物理の各理論を Rust による第一原理シミュレーションで再現・検証しながら、統一的描像「量子情報網理論 (QRN)」をバージョン付き文書として積み上げている。原点の指示は `PROMPT/0.md`。
 
-現在の到達点は `docs/uft-v7.0.md`(第七期統合 = 監査期。Rust シミュレーション 38 本 158 PASS / 0 FAIL + Lean 4 機械検証定理)。第七期で導入された基盤: 主張台帳 `claims.yml`(C0–C5、`v61_ledger` が検証)、探索証明書 `certificates/`、誤差予算つき検証、陰性対照、QRN core (`lib.rs`)、`proofs/`(Lean)。**続きの作業は v7.0 §4 の残高から選ぶ**(自由度増加の起源、QRN 幾何からの FN 電荷 (M2/M3 級)、QNEC→Einstein 全次数、複数 U(1)・例外群の地図、QRN 固有予言の開発、core 移行拡大、形式化拡大、実験審判の追跡)。
+現在の到達点は `docs/uft-v8.0.md`(第八期統合。Rust シミュレーション 42 本 189 PASS / 0 FAIL + Lean 4 定理 6 本)。第七期の基盤(主張台帳 `claims.yml`・証明書 `certificates/`・誤差予算・陰性対照・QRN core・`proofs/`)の上に、第八期は残高を返済した: U(1)² で B−L 一意 (v7.1)、幾何からの湯川 M2 級 (v7.2)、BMV の (C,V) 平面判別 (v7.3)、core 3 模型 (v7.4)、大表現域の Lean 化 (v7.5)。**続きの作業は v8.0 §4 の残高 9 項目から選ぶ**(筆頭: M3 級 FN(Wilson 線格子の細分化・世代対の導出)、Wilson 線・磁束・トーラス数の起源、rank-3/例外群、v4.3 域の Lean 化、anomaly_search と幾何湯川の独立論文化)。
 
 **文書・コードコメント・コミットメッセージは全て日本語。**
 

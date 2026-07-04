@@ -1,0 +1,58 @@
+=== v8.0 全スイート自己検証 (2026-07-04) ===
+
+集計規則 (v7.0 で固定): 各バイナリの stdout に現れる文字列 [PASS] / [FAIL] の出現数。
+再現方法: cd sim && cargo build --release && for b in target/release/v??_*; do $b; done
+
+Rust シミュレーション: 42 本
+
+v01_gr PASS=2 FAIL=0
+v01_qm PASS=3 FAIL=0
+v02_pimc PASS=10 FAIL=0
+v03_phi4 PASS=0 FAIL=0
+v04_u1 PASS=11 FAIL=0
+v05_entangle PASS=3 FAIL=0
+v06_causet PASS=0 FAIL=0
+v06_dt PASS=0 FAIL=0
+v07_infogeom PASS=1 FAIL=0
+v08_page PASS=1 FAIL=0
+v11_quench PASS=2 FAIL=0
+v12_erepr PASS=1 FAIL=0
+v13_qec PASS=10 FAIL=0
+v14_z2gauge PASS=0 FAIL=0
+v15_lambda PASS=3 FAIL=0
+v16_born PASS=3 FAIL=0
+v21_relent PASS=7 FAIL=0
+v22_kk PASS=4 FAIL=0
+v23_matter PASS=6 FAIL=0
+v24_inflation PASS=3 FAIL=0
+v25_bmv PASS=0 FAIL=0
+v31_gauge PASS=2 FAIL=0
+v32_yukawa PASS=0 FAIL=0
+v33_ctheorem PASS=3 FAIL=0
+v34_unruh PASS=2 FAIL=0
+v41_qnec PASS=3 FAIL=0
+v42_neutrino PASS=0 FAIL=0
+v43_landscape PASS=0 FAIL=0
+v44_desitter PASS=2 FAIL=0
+v51_arrow PASS=2 FAIL=0
+v52_bigreps PASS=1 FAIL=0
+v53_decoupling PASS=1 FAIL=0
+v61_ledger PASS=7 FAIL=0
+v62_atlas PASS=39 FAIL=0
+v63_qnec_budget PASS=8 FAIL=0
+v64_controls PASS=3 FAIL=0
+v65_bayes PASS=8 FAIL=0
+v67_core PASS=7 FAIL=0
+v71_twou1 PASS=9 FAIL=0
+v72_geomfn PASS=2 FAIL=0
+v73_bmv2 PASS=9 FAIL=0
+v74_core2 PASS=11 FAIL=0
+
+合計: PASS 189 / FAIL 0
+
+Lean 4 機械検証 (別途): 定理 6 本 検証済み
+ - proofs/Anomaly.lean    (v6.8): 3 定理 (v3.1 域, 991 s)   → results/v68_lean.txt
+ - proofs/AnomalyBig.lean (v7.5): 3 定理 (v5.2 域, 9734 s)  → results/v75_lean.txt
+
+注記: スイート実行時の v61_ledger 行は、当該実行が results/v75_lean.txt の生成前
+だったため一時的に FAIL を含んでいた。上の行は生成後の再実行値 (results/v61_ledger.txt)。

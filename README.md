@@ -83,6 +83,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v7.3 | [uft-v7.3.md](docs/uft-v7.3.md) | `v73_bmv2` | **BMV 判別の定量化**: 量子は相補性円周 C²+V²=1 上 (可逆)、古典チャネルは C=0 かつ V≤e^(−Δφ/2) (相反定理)。判別は (C,V) 平面 — 3σ 試行数まで定量化 |
 | v7.4 | [uft-v7.4.md](docs/uft-v7.4.md) | `v74_core2` | **core 移行 (2)**: TFD (鏡像 MI 13.86、橋は動力学的に定常) と成長鎖 (窓 S 0→4.37、全系純粋) を共通 core で再現 — RingChain/TfdPair/GrowingChain の 3 模型が同じ語彙に |
 | v7.5 | [uft-v7.5.md](docs/uft-v7.5.md) | `proofs/AnomalyBig.lean` | **Lean 形式化の拡大**: 大表現込みの v5.2 域「解は SM 軌道 4 通りのみ」が native_decide の定理に (162 分の全列挙)。孤立性の表現拡大への頑健性が定理級に |
+| **v8.0** | [**uft-v8.0.md**](docs/uft-v8.0.md) | (統合+全スイート) | **第八期統合。全スイート 189 PASS / 0 FAIL + Lean 定理 6 本。M2 到達・B−L 一意性・(C,V) 判別・core 3 模型 — 残高を 9 項目に更新** |
 
 ## リポジトリ構成
 
