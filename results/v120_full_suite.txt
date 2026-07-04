@@ -1,0 +1,68 @@
+=== v12.0 全スイート自己検証 (2026-07-04) ===
+
+集計規則 (v7.0 で固定、v11.0 でグロブ改訂): 各バイナリの stdout に現れる [PASS] / [FAIL] の出現数。
+再現方法: cd sim && cargo build --release && for b in target/release/v*_* (実行可能のみ、.d 除外); do $b; done
+
+Rust シミュレーション: 54 本
+
+v01_gr PASS=2 FAIL=0
+v01_qm PASS=3 FAIL=0
+v02_pimc PASS=10 FAIL=0
+v03_phi4 PASS=0 FAIL=0
+v04_u1 PASS=11 FAIL=0
+v05_entangle PASS=3 FAIL=0
+v06_causet PASS=0 FAIL=0
+v06_dt PASS=0 FAIL=0
+v07_infogeom PASS=1 FAIL=0
+v08_page PASS=1 FAIL=0
+v101_pairing PASS=5 FAIL=0
+v102_geopair PASS=10 FAIL=0
+v103_pairgeom PASS=4 FAIL=0
+v11_quench PASS=2 FAIL=0
+v111_exceptional PASS=17 FAIL=0
+v112_orbifold PASS=5 FAIL=0
+v113_orient PASS=4 FAIL=0
+v114_tensorcore PASS=6 FAIL=0
+v12_erepr PASS=1 FAIL=0
+v13_qec PASS=10 FAIL=0
+v14_z2gauge PASS=0 FAIL=0
+v15_lambda PASS=3 FAIL=0
+v16_born PASS=3 FAIL=0
+v21_relent PASS=7 FAIL=0
+v22_kk PASS=4 FAIL=0
+v23_matter PASS=6 FAIL=0
+v24_inflation PASS=3 FAIL=0
+v25_bmv PASS=0 FAIL=0
+v31_gauge PASS=2 FAIL=0
+v32_yukawa PASS=0 FAIL=0
+v33_ctheorem PASS=3 FAIL=0
+v34_unruh PASS=2 FAIL=0
+v41_qnec PASS=3 FAIL=0
+v42_neutrino PASS=0 FAIL=0
+v43_landscape PASS=0 FAIL=0
+v44_desitter PASS=2 FAIL=0
+v51_arrow PASS=2 FAIL=0
+v52_bigreps PASS=1 FAIL=0
+v53_decoupling PASS=1 FAIL=0
+v61_ledger PASS=7 FAIL=0
+v62_atlas PASS=39 FAIL=0
+v63_qnec_budget PASS=8 FAIL=0
+v64_controls PASS=3 FAIL=0
+v65_bayes PASS=8 FAIL=0
+v67_core PASS=7 FAIL=0
+v71_twou1 PASS=9 FAIL=0
+v72_geomfn PASS=2 FAIL=0
+v73_bmv2 PASS=9 FAIL=0
+v74_core2 PASS=11 FAIL=0
+v81_geoselect PASS=4 FAIL=0
+v82_threeu1 PASS=11 FAIL=0
+v91_ckmselect PASS=5 FAIL=0
+v92_labelstab PASS=18 FAIL=0
+v94_qneccore PASS=10 FAIL=0
+TOTAL binaries=54 PASS=288 FAIL=0
+
+Lean 4 機械検証 (v7.5 から不変・本統合では再実行せず results/v55_lean.txt, v75_lean.txt が一次ソース):
+  proofs/Anomaly.lean    定理 4 本 (v3.1/v4.3 域の最小性・一意性・完全性)  991 s
+  proofs/AnomalyBig.lean 定理 2 本 (大表現域の孤立性)                    9734 s
+
+総計: Rust 288 PASS / 0 FAIL + Lean 定理 6 本
