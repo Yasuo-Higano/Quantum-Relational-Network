@@ -1,0 +1,29 @@
+{
+  "claim_id": "QRN-GAUGE-014",
+  "rank3_solutions_u3a": 0,
+  "rank3_solutions_u3b": 0,
+  "control_solutions": 355,
+  "checks": [
+    {
+      "name": "rank-2 の埋め込み (SM+ν_R, y₃=0) は階数条件で正しく除外される",
+      "pass": true
+    },
+    {
+      "name": "人工 rank-3 (vectorlike 3 対) はカイラル性オフで解・オンで非解",
+      "pass": true
+    },
+    {
+      "name": "対照窓では rank-3 (vectorlike) 解が見つかる — 装置は盲目でない",
+      "pass": true
+    },
+    {
+      "name": "27 の成分数 = 27 (16+10+1)",
+      "pass": true
+    },
+    {
+      "name": "E6 の 27 のカイラル芯 = SM 1 世代 (ν_R と 10 は vectorlike/中性として剥がれる)",
+      "pass": true
+    }
+  ],
+  "pass": true
+}

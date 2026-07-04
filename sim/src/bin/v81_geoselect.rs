@@ -640,6 +640,10 @@ fn main() {
                             ("lnZ".into(), Json::Num(o.lnz)),
                             ("map_lnL".into(), Json::Num(o.map_ll)),
                             ("map_lnL9_point".into(), Json::Num(lnl9(&o.preds))),
+                            (
+                                "map_k".into(),
+                                Json::Arr(o.map_k.iter().map(|&x| Json::Int(x as i64)).collect()),
+                            ),
                         ])
                     })
                     .collect(),
