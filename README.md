@@ -82,6 +82,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v7.2 | [uft-v7.2.md](docs/uft-v7.2.md) | `v72_geomfn` | **幾何からの湯川 (M2 級)**: 磁束ゼロモードの重なり積分 (乱雑係数ゼロ)。単一 T² は届かず (陰性)、**T²×T² で質量比 5/6・CKM 2/3 を的中、アナーキーに +15** — 階層の深さは余剰次元の数を数える |
 | v7.3 | [uft-v7.3.md](docs/uft-v7.3.md) | `v73_bmv2` | **BMV 判別の定量化**: 量子は相補性円周 C²+V²=1 上 (可逆)、古典チャネルは C=0 かつ V≤e^(−Δφ/2) (相反定理)。判別は (C,V) 平面 — 3σ 試行数まで定量化 |
 | v7.4 | [uft-v7.4.md](docs/uft-v7.4.md) | `v74_core2` | **core 移行 (2)**: TFD (鏡像 MI 13.86、橋は動力学的に定常) と成長鎖 (窓 S 0→4.37、全系純粋) を共通 core で再現 — RingChain/TfdPair/GrowingChain の 3 模型が同じ語彙に |
+| v7.5 | [uft-v7.5.md](docs/uft-v7.5.md) | `proofs/AnomalyBig.lean` | **Lean 形式化の拡大**: 大表現込みの v5.2 域「解は SM 軌道 4 通りのみ」が native_decide の定理に (162 分の全列挙)。孤立性の表現拡大への頑健性が定理級に |
 
 ## リポジトリ構成
 

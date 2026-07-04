@@ -1,0 +1,20 @@
+=== v7.5 Lean 4 機械検証 (proofs/AnomalyBig.lean) ===
+
+Lean (version 4.31.0, arm64-apple-darwin24.6.0, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
+
+実行: lean proofs/AnomalyBig.lean (終了コード 0 = 全定理検証済み)
+
+--- 出力 ---
+SM 軌道 (4 通り) = [[(0, 6), (1, -3), (4, -4), (4, 2), (5, 1)], [(0, -6), (1, 3), (3, -2), (3, 4), (6, -1)], [(0, -6), (1, 3), (4, -2), (4, 4), (5, -1)], [(0, 6), (1, -3), (3, -4), (3, 2), (6, 1)]]
+定理: sm_is_solution / sextet_pair_fails (核 decide), sm_unique_with_big_reps: scanResult = 4 (native_decide)
+このファイルがエラーなく通ったこと自体が全定理の検証である
+
+検証された定理:
+  sm_is_solution           : SM は拡張域でも全条件を満たす            [核のみの decide]
+  sextet_pair_fails        : 六重項を含む素朴な置換は SU(3)³ で落ちる [核のみの decide]
+  sm_unique_with_big_reps  : scanResult = 4                        [native_decide]
+    (= v5.2 域 (大表現込み・|6Y|≤9・≤5 多重項・≤16 成分) の全列挙で、
+       解は SM の同値軌道 4 通りのみ。毒値設計により列挙の完全性を定理が含意)
+
+実行時間: real 9734 s = 162 分 (全呼び出し ~1.7e10 — v6.8 の 10.3 倍、予測と整合)
+終了コード: 0  [PASS]

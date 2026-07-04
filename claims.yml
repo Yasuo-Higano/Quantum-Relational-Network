@@ -745,6 +745,18 @@
   limitations:
     - "QNEC 掃引の core 移行は未実施。GrowingChain の成長は trait の外のメソッド (動的テンソル分解の第一級化は残高)。"
 
+- id: QRN-GAUGE-013
+  version: "v7.5"
+  level: C2
+  claim: "機械検証済み定理 (2): v5.2 域 (SU(3)≤8・SU(2)≤3 の大表現込み, |6Y|≤9, ≤5 多重項, ≤16 成分) の全列挙で、無矛盾条件を満たす集合は SM の同値軌道 4 通りのみ (native_decide)。SM の充足性と六重項反例は Lean 核のみの decide。孤立性の表現拡大への頑健性 (v5.2) が定理証明器の検証済み定理になった。"
+  status: "制限付き計算定理 — 機械検証済み (毒値設計により列挙の完全性を定理が含意)"
+  evidence:
+    code: "proofs/AnomalyBig.lean"
+    result: "results/v75_lean.txt"
+  limitations:
+    - "native_decide は Lean コンパイラを信頼基盤に含む。v4.3 域 (≤24 成分)・拡張軸・U(1)² の形式化は残高。"
+    - "群論係数 (A(6)=7 等) は整数データとして仮定 (導出は未形式化)。"
+
 # ---------- 統合文書の中心テーゼ (解釈) ----------
 
 - id: QRN-META-001
