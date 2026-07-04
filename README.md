@@ -70,6 +70,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v5.1–5.3 | [uft-v5.1-5.3.md](docs/uft-v5.1-5.3.md) | `v51_arrow` `v52_bigreps` `v53_decoupling` | 時間の矢は全系純粋のまま生じる(初期条件問題の機構)/ 大表現でも SM 唯一 / 脱結合 M^−1.91 |
 | **v6.0** | [**uft-v6.0.md**](docs/uft-v6.0.md) | (統合+全スイート) | **第六期統合。全スイート自己検証 87 PASS / 0 FAIL。ループの不動点と最終テーゼ** |
 | v6.1 | [uft-v6.1.md](docs/uft-v6.1.md) | `v61_ledger` | **主張台帳 claims.yml 導入** — 全 53 主張を C0-C5 に分類し機械検証。既存研究との差分表 |
+| v6.2 | [uft-v6.2.md](docs/uft-v6.2.md) | `v62_atlas` | **探索の要塞化**: 独立実装 3 重照合、反例探索 (大表現/\|Y\|≤3/≤8多重項/ν_R) でも SM 最小・唯一。対照地図 (U(1)³ が一意性を担う)。第 2 U(1) は Y のみ、ν_R 込みで Y⊕(B−L)。certificates/ に SHA-256 証明書 |
 
 ## リポジトリ構成
 

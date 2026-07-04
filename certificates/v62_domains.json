@@ -1,0 +1,434 @@
+[
+  {
+    "run": "R1_v31",
+    "label": "v3.1 域: 小表現, |Y|≤3/2, ≤5 多重項, ≤15 成分",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 5,
+    "max_components": 15,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "R2_v43",
+    "label": "v4.3 域: 小表現, |Y|≤3/2, ≤6 多重項, ≤24 成分",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "R3_v52",
+    "label": "v5.2 域: 大表現込み, |Y|≤3/2, ≤5 多重項, ≤16 成分",
+    "types": [
+      "1,1",
+      "1,2",
+      "1,3",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2",
+      "6,1",
+      "6b,1",
+      "8,1"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 5,
+    "max_components": 16,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "E1_bigreps24",
+    "label": "E1: 大表現込み, |Y|≤3/2, ≤6 多重項, ≤24 成分",
+    "types": [
+      "1,1",
+      "1,2",
+      "1,3",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2",
+      "6,1",
+      "6b,1",
+      "8,1"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "E2_Y2",
+    "label": "E2: 大表現込み, |Y|≤2, ≤6 多重項, ≤18 成分",
+    "types": [
+      "1,1",
+      "1,2",
+      "1,3",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2",
+      "6,1",
+      "6b,1",
+      "8,1"
+    ],
+    "hypercharge_6y_max": 12,
+    "max_multiplets": 6,
+    "max_components": 18,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "E3_Y3",
+    "label": "E3: 大表現込み, |Y|≤3, ≤5 多重項, ≤16 成分",
+    "types": [
+      "1,1",
+      "1,2",
+      "1,3",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2",
+      "6,1",
+      "6b,1",
+      "8,1"
+    ],
+    "hypercharge_6y_max": 18,
+    "max_multiplets": 5,
+    "max_components": 16,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "E4_k8",
+    "label": "E4: 小表現, |Y|≤3/2, ≤8 多重項, ≤24 成分",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 8,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "E5_nuR",
+    "label": "E5: R2 域 + 完全中性 (1,1)_0 を許可 (ν_R)",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": true
+    }
+  },
+  {
+    "run": "N1_nochiral",
+    "label": "カイラル性 (vectorlike 対を許す)",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": false,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "N2_nofactors",
+    "label": "全因子帯電",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": false,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "N3_nowitten",
+    "label": "Witten 大域アノマリー",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": false,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "N4_nosu3cub",
+    "label": "SU(3)³ アノマリー",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": false,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "N5_nosu3sq",
+    "label": "SU(3)²U(1) アノマリー",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": false,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "N6_nosu2sq",
+    "label": "SU(2)²U(1) アノマリー",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": false,
+      "grav_u1": true,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "N7_nograv",
+    "label": "重力²U(1) アノマリー",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": false,
+      "u1_cubed": true,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  },
+  {
+    "run": "N8_nocubic",
+    "label": "U(1)³ アノマリー",
+    "types": [
+      "1,1",
+      "1,2",
+      "3,1",
+      "3b,1",
+      "3,2",
+      "3b,2"
+    ],
+    "hypercharge_6y_max": 9,
+    "max_multiplets": 6,
+    "max_components": 24,
+    "conditions": {
+      "su3cub": true,
+      "su3sq_u1": true,
+      "su2sq_u1": true,
+      "grav_u1": true,
+      "u1_cubed": false,
+      "witten": true,
+      "chiral": true,
+      "charged_under_all_factors": true,
+      "sterile_neutrino_allowed": false
+    }
+  }
+]

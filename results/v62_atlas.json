@@ -1,0 +1,147 @@
+{
+  "claim_ids": [
+    "QRN-GAUGE-003",
+    "QRN-GAUGE-006",
+    "QRN-GAUGE-007",
+    "QRN-GAUGE-008",
+    "QRN-GAUGE-009",
+    "QRN-GAUGE-010"
+  ],
+  "checks": [
+    {
+      "name": "SM は全条件を満たし、Y を 1 目盛ずらすと落ちる",
+      "pass": true
+    },
+    {
+      "name": "正準形は並べ替え・共役・U(1)反転・整数倍で不変",
+      "pass": true
+    },
+    {
+      "name": "R1: 解は SM 1 世代ただ一つ (v3.1 の再現)",
+      "pass": true
+    },
+    {
+      "name": "R1: 直接 DFS と MITM の解集合が一致 (二重実装)",
+      "pass": true
+    },
+    {
+      "name": "R2: スペクトル {15:1, 16:8, 24:459} (v4.3 の再現)",
+      "pass": true
+    },
+    {
+      "name": "R2: v4.3 公表の 16 成分解 4 例をすべて含む",
+      "pass": true
+    },
+    {
+      "name": "R3: 大表現込みでも {15:1} = SM のみ (v5.2 の再現)",
+      "pass": true
+    },
+    {
+      "name": "E1_bigreps24: 15 成分未満 0 個・15 成分は SM のみ",
+      "pass": true
+    },
+    {
+      "name": "E2_Y2: 15 成分未満 0 個・15 成分は SM のみ",
+      "pass": true
+    },
+    {
+      "name": "E3_Y3: 15 成分未満 0 個・15 成分は SM のみ",
+      "pass": true
+    },
+    {
+      "name": "E4_k8: 15 成分未満 0 個・15 成分は SM のみ",
+      "pass": true
+    },
+    {
+      "name": "E5: SM は最小のまま、16 成分に SM+ν_R が現れる",
+      "pass": true
+    },
+    {
+      "name": "N1–N8: 基線の解集合が全対照に含まれる (単調性)",
+      "pass": true
+    },
+    {
+      "name": "N1: カイラル性を外すと 15 成分未満の解 (vectorlike 対) が現れる",
+      "pass": true
+    },
+    {
+      "name": "U1: SM に独立な第 2 の U(1) は存在しない (全て Y ∝)",
+      "pass": true
+    },
+    {
+      "name": "U2: SM+ν_R の第 2 U(1) は Y と B−L の張る 2 次元格子に限る",
+      "pass": true
+    },
+    {
+      "name": "G1: SU(5) 5̄⊕10 の超電荷 = SM 1 世代 (トレースレス条件込み)",
+      "pass": true
+    },
+    {
+      "name": "G2: SO(10) 16 = 10⊕5̄⊕1 → SM+ν_R (アノマリー検査込み)",
+      "pass": true
+    },
+    {
+      "name": "G3: Pati–Salam 分岐 (Y=(B−L)/2+T3R) → SM+ν_R",
+      "pass": true
+    }
+  ],
+  "controls": [
+    {
+      "run": "N1_nochiral",
+      "solutions_below_15": 1410,
+      "solutions_at_15": 59,
+      "min_components": 10,
+      "total_solutions": 10214
+    },
+    {
+      "run": "N2_nofactors",
+      "solutions_below_15": 33,
+      "solutions_at_15": 1,
+      "min_components": 5,
+      "total_solutions": 522
+    },
+    {
+      "run": "N3_nowitten",
+      "solutions_below_15": 1,
+      "solutions_at_15": 1,
+      "min_components": 12,
+      "total_solutions": 527
+    },
+    {
+      "run": "N4_nosu3cub",
+      "solutions_below_15": 3,
+      "solutions_at_15": 6,
+      "min_components": 12,
+      "total_solutions": 2075
+    },
+    {
+      "run": "N5_nosu3sq",
+      "solutions_below_15": 0,
+      "solutions_at_15": 1,
+      "min_components": 15,
+      "total_solutions": 558
+    },
+    {
+      "run": "N6_nosu2sq",
+      "solutions_below_15": 0,
+      "solutions_at_15": 1,
+      "min_components": 15,
+      "total_solutions": 1199
+    },
+    {
+      "run": "N7_nograv",
+      "solutions_below_15": 0,
+      "solutions_at_15": 1,
+      "min_components": 15,
+      "total_solutions": 490
+    },
+    {
+      "run": "N8_nocubic",
+      "solutions_below_15": 0,
+      "solutions_at_15": 9,
+      "min_components": 15,
+      "total_solutions": 1803
+    }
+  ],
+  "pass": true
+}

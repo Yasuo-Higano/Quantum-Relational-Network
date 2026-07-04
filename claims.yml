@@ -581,6 +581,45 @@
   limitations:
     - "裏返せばプランクスケールの直接観測が絶望的に難しい理由でもある (文書に明記)。"
 
+# ---------- 第七期 (v6.1–): 監査期 ----------
+
+- id: QRN-GAUGE-008
+  version: "v6.2"
+  level: C2
+  claim: "独立アルゴリズム (meet-in-the-middle + 内蔵 DFS) が v3.1/v4.3/v5.2 の解集合を厳密再現し、拡張領域 (大表現+≤24 成分 / |Y|≤2 / |Y|≤3 / ≤8 多重項) の全てで 15 成分未満の解は 0 個・15 成分の解は SM ただ一つ。"
+  status: "制限付き計算定理 (三重の独立実装で照合、certificates/ に全解と SHA-256)"
+  inputs:
+    axes: "E1 大表現 ≤6 多重項 ≤24 成分 / E2 |Y|≤2 ≤18 成分 / E3 |Y|≤3 ≤16 成分 / E4 ≤8 多重項 ≤24 成分"
+    arithmetic: "全て i64 厳密整数 (6Y)、浮動小数なし"
+  evidence:
+    code: "sim/src/bin/v62_atlas.rs"
+    result: "results/v62_atlas.txt"
+  limitations:
+    - "領域は依然有限: 複数 U(1) の一般走査・例外群・(15,1) 等の巨大表現は範囲外。"
+    - "E2/E3 の成分上限は 18/16 で E1 (24) より狭い (計算量の設計判断、certificates/v62_domains.json に機械可読で固定)。"
+
+- id: QRN-GAUGE-009
+  version: "v6.2"
+  level: C2
+  claim: "SM 1 世代 (ν_R なし) に載る第 2 の超電荷は |6Y'|≤12 の全走査で Y の整数倍のみ。ν_R を加えると解は Y と B−L の張る 2 次元格子にちょうど一致する (B−L 自身を含む 104 解すべてが span 内)。"
+  status: "制限付き計算定理 (混合アノマリー Y²Y'・YY'² 込み)"
+  evidence:
+    code: "sim/src/bin/v62_atlas.rs"
+    result: "results/v62_atlas.txt"
+  limitations:
+    - "電荷範囲は |6Y'|≤12。一般の複数 U(1) 理論空間 (両電荷とも自由) の全数探索は残課題 (v6.0 残高 4 の一部解消)。"
+
+- id: QRN-GAUGE-010
+  version: "v6.2"
+  level: C2
+  claim: "陰性対照の地図: SM の最小性・一意性を担うのはカイラル性 (外すと最小 10 成分の vectorlike 解)・全因子帯電 (外すと 5 成分の純 U(1) カイラル解 {-9,-5,-1,7,8})・SU(3)³ (外すと 12 成分)・Witten (外すと 12 成分)・U(1)³ (外すと 15 成分に偽兄弟 8 個)。SU(3)²U(1)・SU(2)²U(1)・重力²U(1) は単独で外しても孤立性が保たれる (この領域では他条件から従う冗長条件)。"
+  status: "制限付き計算定理 (基線 ⊆ 対照の単調性も機械検証)"
+  evidence:
+    code: "sim/src/bin/v62_atlas.rs"
+    result: "results/v62_atlas.txt"
+  limitations:
+    - "線形アノマリー 3 条件の冗長性はこの探索領域内の事実であり、一般の定理として証明したものではない。"
+
 # ---------- 統合文書の中心テーゼ (解釈) ----------
 
 - id: QRN-META-001
