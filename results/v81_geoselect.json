@@ -1,0 +1,57 @@
+{
+  "claim_id": "QRN-YUK-004",
+  "models": [
+    {
+      "label": "T¹ × Z₆",
+      "tori": 1,
+      "wilson_grid": 6,
+      "lnZ": -53.769391967547456,
+      "map_lnL": -49.14724869530255,
+      "map_lnL9_point": -3318.4423308163273
+    },
+    {
+      "label": "T¹ × Z₁₂",
+      "tori": 1,
+      "wilson_grid": 12,
+      "lnZ": -53.76488714685148,
+      "map_lnL": -49.14724869530255,
+      "map_lnL9_point": -3318.4423308163273
+    },
+    {
+      "label": "T² × Z₆",
+      "tori": 2,
+      "wilson_grid": 6,
+      "lnZ": -20.41404722914713,
+      "map_lnL": -11.414811834501647,
+      "map_lnL9_point": -17.79293025191721
+    },
+    {
+      "label": "T² × Z₁₂",
+      "tori": 2,
+      "wilson_grid": 12,
+      "lnZ": -20.424283707249064,
+      "map_lnL": -10.285117299289515,
+      "map_lnL9_point": -21.494011111861404
+    },
+    {
+      "label": "T³ × Z₆",
+      "tori": 3,
+      "wilson_grid": 6,
+      "lnZ": -17.41368727115366,
+      "map_lnL": -5.925209414116034,
+      "map_lnL9_point": -36.17398938271319
+    },
+    {
+      "label": "T³ × Z₁₂",
+      "tori": 3,
+      "wilson_grid": 12,
+      "lnZ": -18.35501980725063,
+      "map_lnL": -5.62198470517192,
+      "map_lnL9_point": -35.39069745408607
+    }
+  ],
+  "winner": "T³ × Z₆",
+  "winner_within_factor5": 7,
+  "winner_ckm_within_factor5": 1,
+  "pass": true
+}
