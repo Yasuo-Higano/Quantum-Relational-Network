@@ -1,0 +1,27 @@
+{
+  "claim_id": "QRN-YUK-003",
+  "lattice": 18,
+  "flux": 3,
+  "wilson_grid": 6,
+  "lnZ_m2geo_single_torus": -53.769391967547456,
+  "lnZ_m2geo_product_torus": -20.41404722914713,
+  "product_mass_ratios_within_factor5": 5,
+  "product_ckm_within_factor5": 2,
+  "lnZ_m1_from_v65": -12.19,
+  "lnZ_m2lit_from_v65": -7.61,
+  "lnZ_m0_upper_bound_from_v65": -35.4,
+  "beats_anarchy_bound": true,
+  "map_geometry": {
+    "sigma_h": 1,
+    "wilson_k": [
+      3,
+      3,
+      3,
+      3,
+      3
+    ]
+  },
+  "mass_ratios_within_factor5": 3,
+  "ckm_within_factor5_out_of_sample": 0,
+  "pass": true
+}
