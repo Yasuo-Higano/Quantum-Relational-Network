@@ -63,3 +63,16 @@ jobs:
           path: |
             results/*.json
             certificates/
+
+  lean-proofs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: elan (Lean 4)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+      - name: 機械検証済み定理 (proofs/Anomaly.lean)
+        # native_decide の全列挙のため ~15-40 分かかる (並列ジョブなので許容)
+        working-directory: proofs
+        run: lean Anomaly.lean

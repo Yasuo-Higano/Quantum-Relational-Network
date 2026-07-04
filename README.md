@@ -76,6 +76,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v6.5 | [uft-v6.5.md](docs/uft-v6.5.md) | `v65_bayes` | **湯川のベイズ模型比較**: FN は 75 万電荷の Occam 罰込みでアナーキーに lnB≥23、v3.2 電荷は上位 0.11%。CKM は out-of-sample で 3/3 予測。合成データ較正つき |
 | v6.6 | [uft-v6.6.md](docs/uft-v6.6.md) | — | **反証条件の現代化** (BMV は Aziz–Howl 2025 を踏まえ位相スケーリングまで精密化) + LICENSE / CITATION / REPRODUCIBILITY / CI / 図 |
 | v6.7 | [uft-v6.7.md](docs/uft-v6.7.md) | `v67_core` | **単一 QRN core**: 同一状態から幾何 (円環 100%)・エントロピー (c=1.001)・物質 (k_F=π/2)・因果 (前線 2.10) を読み出し、読み出し間の整合 (前線=2 sin k_F) を検証。core の健全性検査が v6.3 の占有数バグを発見 (正誤記録) |
+| v6.8 | [uft-v6.8.md](docs/uft-v6.8.md) | `proofs/Anomaly.lean` | **Lean 4 機械検証**: v3.1 領域の全列挙定理「解は SM の同値軌道 4 通りのみ」(native_decide)。SM の充足性は核のみの decide。探索の C2 主張が定理証明器の検証つきに |
 
 ## リポジトリ構成
 

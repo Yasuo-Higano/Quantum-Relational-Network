@@ -1,0 +1,20 @@
+=== v6.8 Lean 4 機械検証 (proofs/Anomaly.lean) ===
+
+Lean (version 4.31.0, arm64-apple-darwin24.6.0, commit 68218e876d2a38b1985b8590fff244a83c321783, Release)
+
+実行: lean proofs/Anomaly.lean (終了コード 0 = 全定理検証済み)
+
+--- 出力 ---
+SM 軌道 (4 通り) = [[(0, 6), (1, -3), (3, -4), (3, 2), (4, 1)], [(0, -6), (1, 3), (2, -2), (2, 4), (5, -1)], [(0, -6), (1, 3), (3, -2), (3, 4), (4, -1)], [(0, 6), (1, -3), (2, -4), (2, 2), (5, 1)]]
+定理: sm_is_solution / sm_breaks_if_shifted (核 decide), sm_minimal_unique: scanResult = 4 (native_decide)
+このファイルがエラーなく通ったこと自体が全定理の検証である
+
+検証された定理:
+  sm_is_solution        : checkAll sm = true            [核のみの decide]
+  sm_breaks_if_shifted  : checkAll (e^c を 1 目盛ずらし) = false  [核のみの decide]
+  sm_minimal_unique     : scanResult = 4                [native_decide]
+    (= v3.1 領域の全列挙で、解は SM の同値軌道 4 通りのみ。
+       軌道外の解 +1e6・燃料切れ +1e9 の毒値設計により、定理の成立が列挙の完全性を含意)
+
+実行時間: real 991.8 s (native_decide の全列挙 ~6e7 節点)
+終了コード: 0  [PASS]
