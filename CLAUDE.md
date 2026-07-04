@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 通常のソフトウェア開発ではなく**物理学の研究プロジェクト**。現代物理の各理論を Rust による第一原理シミュレーションで再現・検証しながら、統一的描像「量子情報網理論 (QRN)」をバージョン付き文書として積み上げている。原点の指示は `PROMPT/0.md`。
 
-現在の到達点は `docs/uft-v8.0.md`(第八期統合。Rust シミュレーション 42 本 189 PASS / 0 FAIL + Lean 4 定理 6 本)。第七期の基盤(主張台帳 `claims.yml`・証明書 `certificates/`・誤差予算・陰性対照・QRN core・`proofs/`)の上に、第八期は残高を返済した: U(1)² で B−L 一意 (v7.1)、幾何からの湯川 M2 級 (v7.2)、BMV の (C,V) 平面判別 (v7.3)、core 3 模型 (v7.4)、大表現域の Lean 化 (v7.5)。**続きの作業は v8.0 §4 の残高 9 項目から選ぶ**(筆頭: M3 級 FN(Wilson 線格子の細分化・世代対の導出)、Wilson 線・磁束・トーラス数の起源、rank-3/例外群、v4.3 域の Lean 化、anomaly_search と幾何湯川の独立論文化)。
+現在の到達点は `docs/uft-v9.0.md`(第九期統合。Rust シミュレーション 44 本 204 PASS / 0 FAIL + Lean 4 定理 6 本、全スイートは results/v90_full_suite.txt)。第七期の基盤(主張台帳 `claims.yml`・証明書 `certificates/`・誤差予算・陰性対照・QRN core・`proofs/`)の上に、第八期は残高を返済した: U(1)² で B−L 一意 (v7.1)、幾何からの湯川 M2 級 (v7.2)、BMV の (C,V) 平面判別 (v7.3)、core 3 模型 (v7.4)、大表現域の Lean 化 (v7.5)。**続きの作業は v9.0 §3 の残高 10 項目から選ぶ**(筆頭: CKM 込みの幾何選択(尤度の非因子化)、対角世代対の導出、例外群走査、v4.3 域 Lean の高速化、論文骨子 2 本の本文化と図 5 点)。
 
 **文書・コードコメント・コミットメッセージは全て日本語。**
 
