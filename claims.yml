@@ -734,6 +734,17 @@
     - "古典チャネルは KTM 型 (測定+フィードバック) の族に対する結果 — あらゆる古典重力への一般定理ではない (Aziz–Howl 型古典 QFT 効果は別枠)。"
     - "環境デコヒーレンスは含めない (実験側で背景損失の較正が必要)。2 枝 × 2 質量の最小模型。"
 
+- id: QRN-CORE-002
+  version: "v7.4"
+  level: C3
+  claim: "core 移行 (2): TfdPair (ER=EPR) と GrowingChain (成長する宇宙) を共通 core (QrnState/QrnModel/共有読み出し) の実装として再現 — TFD は鏡像 MI 13.86 (v1.2 と一致・20 ln2 の上限) が β で単調減衰し H_L+H_R で厳密に定常 (橋は動力学的に安定)、成長鎖は窓 S 0→4.37・上昇 30/40 (v5.1 と一致) で全系純粋 (欠陥 3e-13)。v6.7 の健全性検査 purity_defect が「全系は純粋のまま」の物理判定器として再利用された。"
+  status: "toy model による機構提示 (core 移行地図: RingChain/TfdPair/GrowingChain ✓)"
+  evidence:
+    code: "sim/src/bin/v74_core2.rs"
+    result: "results/v74_core2.txt"
+  limitations:
+    - "QNEC 掃引の core 移行は未実施。GrowingChain の成長は trait の外のメソッド (動的テンソル分解の第一級化は残高)。"
+
 # ---------- 統合文書の中心テーゼ (解釈) ----------
 
 - id: QRN-META-001

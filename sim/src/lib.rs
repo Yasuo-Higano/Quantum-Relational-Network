@@ -609,6 +609,294 @@ impl QrnState {
         let dens: f64 = (0..n).map(|i| self.cre[i + i * n]).sum::<f64>() / n as f64;
         std::f64::consts::PI * dens
     }
+
+    /// 読み出し: 任意のサイト集合 A, B の相互情報量 I(A:B) = S(A)+S(B)−S(A∪B)
+    pub fn readout_mi_regions(&self, ra: &[usize], rb: &[usize]) -> f64 {
+        let sub = |sites: &[usize]| -> f64 {
+            let k = sites.len();
+            let n = self.n;
+            let mut cre = vec![0.0; k * k];
+            let mut cim = vec![0.0; k * k];
+            for (a, &sa) in sites.iter().enumerate() {
+                for (b, &sb) in sites.iter().enumerate() {
+                    cre[a + b * k] = self.cre[sa + sb * n];
+                    cim[a + b * k] = self.cim[sa + sb * n];
+                }
+            }
+            entropy_corr_herm(&cre, &cim, k)
+        };
+        let mut ab: Vec<usize> = ra.to_vec();
+        ab.extend_from_slice(rb);
+        sub(ra) + sub(rb) - sub(&ab)
+    }
+
+    /// 状態の健全性: 純粋なガウス状態なら C は射影子 (‖C²−C‖_max = 0)。
+    /// v6.7 でバグを発見した検査 — 全ての core 模型がこれを通ること。
+    pub fn purity_defect(&self) -> f64 {
+        let n = self.n;
+        let mut dmax: f64 = 0.0;
+        for i in 0..n {
+            for j in 0..n {
+                let (mut sre, mut sim) = (0.0, 0.0);
+                for k in 0..n {
+                    let (a, b) = (self.cre[i + k * n], self.cim[i + k * n]);
+                    let (c, d) = (self.cre[k + j * n], self.cim[k + j * n]);
+                    sre += a * c - b * d;
+                    sim += a * d + b * c;
+                }
+                let dre = sre - self.cre[i + j * n];
+                let dim = sim - self.cim[i + j * n];
+                dmax = dmax.max((dre * dre + dim * dim).sqrt());
+            }
+        }
+        dmax
+    }
+}
+
+/// 熱場二重 (TFD): 2 本の円環鎖 L/R をモードごとに縫った純粋状態。
+/// C_LL(k)=f_k (フェルミ分布), C_RR(k)=1−f_k, C_LR(k)=√(f_k(1−f_k)) — 各 k の
+/// 2×2 ブロックの固有値は {0,1} なので全体は厳密に純粋 (もつれで熱を装う)。
+/// v1.2 (ER=EPR) の状態を core の語彙で再定義したもの。
+pub struct TfdPair {
+    pub n: usize, // 各鎖のサイト数
+    pub beta: f64,
+}
+
+impl QrnModel for TfdPair {
+    fn assumptions(&self) -> Vec<&'static str> {
+        vec![
+            "A0: 2 本の鎖 L/R のテンソル積 (接続性は公理に置かない)",
+            "A1: ユニタリー発展 (H_L + H_R)",
+            "初期状態: 熱場二重 (全系純粋、片側は厳密に熱的)",
+        ]
+    }
+    fn claims(&self) -> Vec<&'static str> {
+        vec!["QRN-CORE-002", "QRN-ER-001"]
+    }
+    fn init(&self) -> QrnState {
+        let n = self.n;
+        let two_pi = 2.0 * std::f64::consts::PI;
+        // モード和で実空間ブロックを構成 (f_k = f_{-k} なので実対称)
+        let mut ff = vec![0.0; n];
+        let mut gg = vec![0.0; n];
+        for d in 0..n {
+            let (mut sf, mut sg) = (0.0, 0.0);
+            for j in 0..n {
+                let k = two_pi * j as f64 / n as f64;
+                let e = -2.0 * k.cos();
+                let f = 1.0 / (1.0 + (self.beta * e).exp());
+                let c = (k * d as f64).cos();
+                sf += f * c;
+                sg += (f * (1.0 - f)).max(0.0).sqrt() * c;
+            }
+            ff[d] = sf / n as f64;
+            gg[d] = sg / n as f64;
+        }
+        let m = 2 * n;
+        let mut cre = vec![0.0; m * m];
+        for x in 0..n {
+            for y in 0..n {
+                let d = (x + n - y) % n;
+                cre[x + y * m] = ff[d]; // LL
+                                        // RR = 1 − F (純粋性の条件)
+                cre[(x + n) + (y + n) * m] = if d == 0 { 1.0 - ff[0] } else { -ff[d] };
+                cre[x + (y + n) * m] = gg[d]; // LR
+                cre[(x + n) + y * m] = gg[d];
+            }
+        }
+        QrnState {
+            n: m,
+            cre,
+            cim: vec![0.0; m * m],
+        }
+    }
+    /// H_L + H_R の発展 (各鎖のリング発展をブロック対角に適用)
+    fn evolve(&self, s: &QrnState, t: f64) -> QrnState {
+        let n = self.n;
+        let two_pi = 2.0 * std::f64::consts::PI;
+        let mut ud = vec![(0.0f64, 0.0f64); n];
+        for (d, slot) in ud.iter_mut().enumerate() {
+            let (mut a, mut b) = (0.0, 0.0);
+            for j in 0..n {
+                let k = two_pi * j as f64 / n as f64;
+                let e = -2.0 * k.cos();
+                let ph = k * d as f64 - e * t;
+                a += ph.cos();
+                b += ph.sin();
+            }
+            *slot = (a / n as f64, b / n as f64);
+        }
+        let m = 2 * n;
+        let mut ur = vec![0.0; m * m];
+        let mut ui = vec![0.0; m * m];
+        for x in 0..n {
+            for y in 0..n {
+                let d = (x + n - y) % n;
+                ur[x + y * m] = ud[d].0;
+                ui[x + y * m] = ud[d].1;
+                ur[(x + n) + (y + n) * m] = ud[d].0;
+                ui[(x + n) + (y + n) * m] = ud[d].1;
+            }
+        }
+        let t1r = matmul(&ur, &s.cre, m);
+        let t1r2 = matmul(&ui, &s.cim, m);
+        let t1i = matmul(&ur, &s.cim, m);
+        let t1i2 = matmul(&ui, &s.cre, m);
+        let ar: Vec<f64> = t1r.iter().zip(&t1r2).map(|(a, b)| a - b).collect();
+        let ai: Vec<f64> = t1i.iter().zip(&t1i2).map(|(a, b)| a + b).collect();
+        let mut vr = vec![0.0; m * m];
+        let mut vi = vec![0.0; m * m];
+        for x in 0..m {
+            for y in 0..m {
+                vr[x + y * m] = ur[y + x * m];
+                vi[x + y * m] = -ui[y + x * m];
+            }
+        }
+        let b1 = matmul(&ar, &vr, m);
+        let b2 = matmul(&ai, &vi, m);
+        let b3 = matmul(&ar, &vi, m);
+        let b4 = matmul(&ai, &vr, m);
+        QrnState {
+            n: m,
+            cre: b1.iter().zip(&b2).map(|(a, b)| a - b).collect(),
+            cim: b3.iter().zip(&b4).map(|(a, b)| a + b).collect(),
+        }
+    }
+}
+
+/// 成長する鎖 (v5.1 の機構を core の語彙で): 固定の n_max サイトのうち active サイト
+/// だけがホッピングで結ばれ、新サイトは真空 (C=0) で到着する。
+/// 成長はテンソル分解自体の変化なので QrnModel::evolve の外に専用メソッドを持つ
+/// (「A0 のテンソル分解が動く」拡張は core の残高)。
+pub struct GrowingChain {
+    pub n_max: usize,
+}
+
+impl GrowingChain {
+    /// 最初の n0 サイトの開鎖基底状態 (残りは真空)
+    pub fn init(&self, n0: usize) -> QrnState {
+        let n = self.n_max;
+        let mut cre = vec![0.0; n * n];
+        let c0 = Self::open_gs(n0);
+        for i in 0..n0 {
+            for j in 0..n0 {
+                cre[i + j * n] = c0[i + j * n0];
+            }
+        }
+        QrnState {
+            n,
+            cre,
+            cim: vec![0.0; n * n],
+        }
+    }
+    fn open_gs(n0: usize) -> Vec<f64> {
+        let mut h = vec![0.0; n0 * n0];
+        for x in 0..n0 - 1 {
+            h[x + (x + 1) * n0] = -1.0;
+            h[(x + 1) + x * n0] = -1.0;
+        }
+        let (_, v) = jacobi_eigh(&h, n0);
+        let nocc = n0 / 2;
+        let mut c = vec![0.0; n0 * n0];
+        for m in 0..nocc {
+            for i in 0..n0 {
+                let vi = v[i + m * n0];
+                for j in 0..n0 {
+                    c[i + j * n0] += vi * v[j + m * n0];
+                }
+            }
+        }
+        c
+    }
+    /// active サイトの開鎖ハミルトニアンで時間 t 発展
+    pub fn evolve_active(&self, s: &QrnState, active: usize, t: f64) -> QrnState {
+        let n = self.n_max;
+        let mut h = vec![0.0; active * active];
+        for x in 0..active - 1 {
+            h[x + (x + 1) * active] = -1.0;
+            h[(x + 1) + x * active] = -1.0;
+        }
+        let (w, v) = jacobi_eigh(&h, active);
+        let mut ur = vec![0.0; active * active];
+        let mut ui = vec![0.0; active * active];
+        for i in 0..active {
+            for j in 0..active {
+                let (mut sr, mut si) = (0.0, 0.0);
+                for k in 0..active {
+                    let ph = -w[k] * t;
+                    sr += v[i + k * active] * ph.cos() * v[j + k * active];
+                    si += v[i + k * active] * ph.sin() * v[j + k * active];
+                }
+                ur[i + j * active] = sr;
+                ui[i + j * active] = si;
+            }
+        }
+        let mut cre = vec![0.0; active * active];
+        let mut cim = vec![0.0; active * active];
+        for i in 0..active {
+            for j in 0..active {
+                cre[i + j * active] = s.cre[i + j * n];
+                cim[i + j * active] = s.cim[i + j * n];
+            }
+        }
+        let t1r = matmul(&ur, &cre, active);
+        let t1r2 = matmul(&ui, &cim, active);
+        let t1i = matmul(&ur, &cim, active);
+        let t1i2 = matmul(&ui, &cre, active);
+        let ar: Vec<f64> = t1r.iter().zip(&t1r2).map(|(a, b)| a - b).collect();
+        let ai: Vec<f64> = t1i.iter().zip(&t1i2).map(|(a, b)| a + b).collect();
+        let mut vr = vec![0.0; active * active];
+        let mut vi = vec![0.0; active * active];
+        for x in 0..active {
+            for y in 0..active {
+                vr[x + y * active] = ur[y + x * active];
+                vi[x + y * active] = -ui[y + x * active];
+            }
+        }
+        let b1 = matmul(&ar, &vr, active);
+        let b2 = matmul(&ai, &vi, active);
+        let b3 = matmul(&ar, &vi, active);
+        let b4 = matmul(&ai, &vr, active);
+        let mut out = QrnState {
+            n,
+            cre: s.cre.clone(),
+            cim: s.cim.clone(),
+        };
+        for i in 0..active {
+            for j in 0..active {
+                out.cre[i + j * n] = b1[i + j * active] - b2[i + j * active];
+                out.cim[i + j * n] = b3[i + j * active] + b4[i + j * active];
+            }
+        }
+        out
+    }
+    /// 新 2 サイトを局所基底状態 (結合軌道に 1 粒子 = 純粋・半充填を保つ「真空」) で
+    /// 到着させる: C_new = [[1/2,1/2],[1/2,1/2]] (射影子)。v5.1 と同一のプロトコル。
+    pub fn arrive_pair_vacuum(&self, s: &QrnState, at: usize) -> QrnState {
+        let n = self.n_max;
+        let mut out = QrnState {
+            n,
+            cre: s.cre.clone(),
+            cim: s.cim.clone(),
+        };
+        out.cre[at + at * n] = 0.5;
+        out.cre[(at + 1) + (at + 1) * n] = 0.5;
+        out.cre[at + (at + 1) * n] = 0.5;
+        out.cre[(at + 1) + at * n] = 0.5;
+        out
+    }
+    /// 対照シナリオ: 新 2 サイトを熱的 (最大混合 C=1/2·I) に到着させる
+    pub fn arrive_pair_thermal(&self, s: &QrnState, at: usize) -> QrnState {
+        let n = self.n_max;
+        let mut out = QrnState {
+            n,
+            cre: s.cre.clone(),
+            cim: s.cim.clone(),
+        };
+        out.cre[at + at * n] = 0.5;
+        out.cre[(at + 1) + (at + 1) * n] = 0.5;
+        out
+    }
 }
 
 /// 幾何読み出しの結果 (v6.4 の円環判定と同じ規準)
