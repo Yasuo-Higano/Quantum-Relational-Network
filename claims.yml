@@ -917,3 +917,17 @@
     result: "results/v100_full_suite.txt"
   limitations:
     - "残高 10 項目 (筆頭: 対角世代対の導出 — v9.2 で先鋭化) が未解決のまま残る。"
+
+- id: QRN-YUK-007
+  version: "v10.1"
+  level: C4
+  claim: "対角世代対はデータに否定された (陰性結果): T2×T2 の世代対を置換 σ∈S3^4 (σQ=e ゲージ) として marginalize した M_perm は、Occam 罰 4ln6=7.17 を払ってなお対角対 M_diag に勝つ (質量のみ -15.08 vs -18.76 / 全 9 量 -19.86 vs -23.61)。MAP の対は非対角 (σu=(23) 等の互換 = 剛体並進では実現できない整列; 巡回成分は Wilson 格子の Z6→Z18 細分化と等価)。さらに T2+自由対 (-19.86) は T3+対角対 (-21.84) に勝ち、v8.1/v9.1 の幾何選択の結論が対仮定に条件付きだったことが判明した。"
+  status: "幾何拘束付き現象論の模型比較 (退化検査: σ 全て e で v9.2 安定側と厳密一致)"
+  evidence:
+    code: "sim/src/bin/v101_pairing.rs"
+    result: "results/v101_pairing.txt"
+    result: "results/v101_pairing.json"
+  limitations:
+    - "動機 (対角対の導出) と逆の結果。残高 2 は「世代対射影の機構の導出」に改題。"
+    - "幾何選択 (T2 vs T3) は対 marginalize 込みで要再検定 — T3 の五重和は 10^13 級で証明付き打ち切りが必要 (次版)。"
+    - "全 9 量学習のため out-of-sample 検証はない。磁束 (3,3) の厳密ゼロモード数 9 から 3 を選ぶ射影機構は未導出のまま。"

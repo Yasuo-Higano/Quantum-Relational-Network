@@ -1,0 +1,18 @@
+{
+  "claim_id": "QRN-YUK-007",
+  "gauge": "sigma_Q = e (torus-2 relabeling fixed)",
+  "lnZ_mass_diag": -18.761895471783593,
+  "lnZ_mass_perm": -15.083852846457935,
+  "lnZ_nine_diag": -23.611871684366417,
+  "lnZ_nine_perm": -19.86334559888438,
+  "map_sigma_nine": [
+    1,
+    4,
+    5,
+    3
+  ],
+  "map_is_diagonal": false,
+  "diag_wins_mass": false,
+  "diag_wins_nine": false,
+  "pass": true
+}
