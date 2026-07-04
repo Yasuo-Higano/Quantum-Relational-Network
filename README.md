@@ -86,6 +86,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | **v8.0** | [**uft-v8.0.md**](docs/uft-v8.0.md) | (統合+全スイート) | **第八期統合。全スイート 189 PASS / 0 FAIL + Lean 定理 6 本。M2 到達・B−L 一意性・(C,V) 判別・core 3 模型 — 残高を 9 項目に更新** |
 | v8.1 | [uft-v8.1.md](docs/uft-v8.1.md) | `v81_geoselect` | **幾何の選択問題**: 余剰次元の数を証拠にかける — T³ が勝ち (+3.0)、格子細分化は Occam 罰に見合わない。ただし T³ の質量 MAP は CKM を失う: 「質量は次元を数え、混合は傾きを測る」 |
 | v8.2 | [uft-v8.2.md](docs/uft-v8.2.md) | `v82_threeu1` | **三本目の U(1) は存在しない**: rank-3 カイラル解 0 個 (対照は 355 個で装置検証)。E6 の 27 のカイラル芯 = SM。U(1) の階段は 2 段 (Y, B−L) で終わる |
+| v8.3 | [uft-v8.3.md](docs/uft-v8.3.md) | `paper/` | **論文骨子**: anomaly-search (SM の孤立性 + 機械検証 + U(1) の階段) と geometric-yukawa (乱雑係数なしの階層 + 次元のベイズ選択) の 2 本を切り出し |
 
 ## リポジトリ構成
 
