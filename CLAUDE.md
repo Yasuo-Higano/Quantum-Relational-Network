@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 通常のソフトウェア開発ではなく**物理学の研究プロジェクト**。現代物理の各理論を Rust による第一原理シミュレーションで再現・検証しながら、統一的描像「量子情報網理論 (QRN)」をバージョン付き文書として積み上げている。原点の指示は `PROMPT/0.md`。
 
-現在の到達点は `docs/uft-v9.0.md`(第九期統合。Rust シミュレーション 44 本 204 PASS / 0 FAIL + Lean 4 定理 6 本、全スイートは results/v90_full_suite.txt)。第七期の基盤(主張台帳 `claims.yml`・証明書 `certificates/`・誤差予算・陰性対照・QRN core・`proofs/`)の上に、第八期は残高を返済した: U(1)² で B−L 一意 (v7.1)、幾何からの湯川 M2 級 (v7.2)、BMV の (C,V) 平面判別 (v7.3)、core 3 模型 (v7.4)、大表現域の Lean 化 (v7.5)。**続きの作業は v9.0 §3 の残高 10 項目から選ぶ**(筆頭: CKM 込みの幾何選択(尤度の非因子化)、対角世代対の導出、例外群走査、v4.3 域 Lean の高速化、論文骨子 2 本の本文化と図 5 点)。
+現在の到達点は `docs/uft-v10.0.md`(第十期統合。Rust シミュレーション 47 本 237 PASS / 0 FAIL + Lean 4 定理 6 本、全スイートは results/v100_full_suite.txt)。第七期の基盤(主張台帳 `claims.yml`・証明書 `certificates/`・誤差予算・陰性対照・QRN core・`proofs/`)の上に、第九期で U(1) の階段が閉じ (Y→B−L→3 本目なし)、第十期は幾何の選択を確定した: CKM 込みの証拠でも T³ が勝ち「質量と混合の緊張」は点評価の人工物 (v9.1)、世代ラベルの wrap 綱渡りを発見・安定化し勝者順位の規約不変を確認 (v9.2、python 独立実装が発見)、論文図 5 点 (v9.3)、QNEC core 化で core 4 模型 (v9.4)。**続きの作業は v10.0 §3 の残高 10 項目から選ぶ**(筆頭: 対角世代対の導出(置換 marginalize / 幾何からの対応)、論文 2 本の本文化、動的テンソル分解の core 化、例外群走査、v4.3 域 Lean の高速化)。
 
 **文書・コードコメント・コミットメッセージは全て日本語。**
 

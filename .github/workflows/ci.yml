@@ -39,6 +39,8 @@ jobs:
           ./target/release/v63_qnec_budget
           ./target/release/v64_controls
           ./target/release/v65_bayes
+          ./target/release/v92_labelstab
+          ./target/release/v94_qneccore
 
       - name: 探索証明書の同一性 (SHA-256)
         run: git diff --exit-code certificates/
