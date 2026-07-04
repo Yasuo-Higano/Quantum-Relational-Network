@@ -1,0 +1,9 @@
+{
+  "claim_id": "QRN-YUK-010",
+  "clock_offdiag_max": 0.00000000000200624513469472,
+  "projection_is_antidiagonal": true,
+  "lnZ_nine_uniform_family": -21.827469658836467,
+  "lnZ_nine_full": -19.86334559888438,
+  "uniform_family_wins": false,
+  "pass": true
+}
