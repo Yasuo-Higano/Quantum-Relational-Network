@@ -1082,3 +1082,16 @@
     result: "results/v130_full_suite.txt"
   limitations:
     - "残高 11 項目 (新規: 道具 = Lanczos 系疎ソルバ)。次期の的はいずれも session 級 (疎ソルバ + N=12 T4 / v4.3 域 Lean 再設計 / 論文本文化)。"
+
+- id: QRN-TOOL-001
+  version: "v13.1"
+  level: C1
+  claim: "Lanczos 疎ソルバの自作 (lib.rs, 外部クレートなし): 複素エルミート作用素の最低 k 固有対を完全再直交化・部分空間再スタート・残差検証つきで求める。検証 4 段 — 稠密ヤコビと 1.4e-13 一致 / 2D 磁束トーラスの縮退 3 バンド (ギャップ 0.1147 = 一次ソース 0.115) / N=6 傾き T4 の v12.1 回帰をヤコビ比 6700 倍速 (594 s → 89 ms) / 同シード bit 一致・異シード 8e-14。開発中に残差検査が未収束 (Krylov 120 での 2D) を正しく弾いた。"
+  status: "数値道具の再現実装 (残高 11 の解除 — N=18 T4 が射程に)"
+  evidence:
+    code: "sim/src/bin/v131_lanczos.rs"
+    result: "results/v131_lanczos.txt"
+    result: "results/v131_lanczos.json"
+  limitations:
+    - "完全再直交化は O(m²n) — m ≲ 千の範囲用。内部固有値 (shift-invert) は未実装。"
+    - "答えは常に残差とセットで読む規約 (未収束の検出は残差に依る)。"

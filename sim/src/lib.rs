@@ -1296,6 +1296,157 @@ impl QrnModel for PacketRing {
     }
 }
 
+// ---------------- 疎行列固有値 (Lanczos 法) ----------------
+// v13.1 (残高 11): 稠密ヤコビ法は ~2600 次元 (実埋め込み) が実用上限だった。
+// 大格子 (N=18 の T⁴ = 10 万サイト) の最低バンドには matvec だけで動く
+// Lanczos 法が要る。ここでは複素エルミート作用素の最低 k 固有対を、
+// **完全再直交化** (縮退帯で必須) と**残差検証**つきで求める。
+// ベクトルは (re, im) 対の Vec — 各バイナリの C3v 表現と互換。
+
+/// 複素ベクトルの内積 ⟨a|b⟩ = Σ conj(a) b
+pub fn cdot(a: &[(f64, f64)], b: &[(f64, f64)]) -> (f64, f64) {
+    let (mut re, mut im) = (0.0, 0.0);
+    for i in 0..a.len() {
+        let (ar, ai) = a[i];
+        let (br, bi) = b[i];
+        re += ar * br + ai * bi;
+        im += ar * bi - ai * br;
+    }
+    (re, im)
+}
+
+/// Lanczos 法: matvec で与えられた複素エルミート作用素の最低 k 固有対。
+/// 完全再直交化つき。戻り値: (固有値昇順 k 個, 固有ベクトル, 最大残差 ‖Hv−λv‖)。
+/// m は Krylov 次元 (k の 10 倍以上を推奨)。決定論 (固定シード)。
+pub fn lanczos_lowest_herm(
+    matvec: &dyn Fn(&[(f64, f64)]) -> Vec<(f64, f64)>,
+    n: usize,
+    k: usize,
+    m: usize,
+    seed: u64,
+) -> (Vec<f64>, Vec<Vec<(f64, f64)>>, f64) {
+    let mut rng = Rng::new(seed);
+    let m = m.min(n);
+    // 初期ベクトル (正規化した乱数)
+    let mut v: Vec<(f64, f64)> = (0..n)
+        .map(|_| (rng.gauss(), rng.gauss()))
+        .collect();
+    let nrm = cdot(&v, &v).0.sqrt();
+    for x in v.iter_mut() {
+        x.0 /= nrm;
+        x.1 /= nrm;
+    }
+    let mut basis: Vec<Vec<(f64, f64)>> = vec![v.clone()];
+    let mut alpha: Vec<f64> = Vec::new();
+    let mut beta: Vec<f64> = Vec::new();
+    for j in 0..m {
+        let mut w = matvec(&basis[j]);
+        let a = cdot(&basis[j], &w).0; // エルミートなので実
+        alpha.push(a);
+        // w -= α v_j + β v_{j-1} は完全再直交化に吸収させる
+        // 完全再直交化 (2 回 — "twice is enough")
+        for _ in 0..2 {
+            for b in &basis {
+                let (pr, pi) = cdot(b, &w);
+                for i in 0..n {
+                    let (br, bi) = b[i];
+                    w[i].0 -= pr * br - pi * bi;
+                    w[i].1 -= pr * bi + pi * br;
+                }
+            }
+        }
+        let bnorm = cdot(&w, &w).0.sqrt();
+        if j + 1 == m || bnorm < 1e-12 {
+            if bnorm < 1e-12 && j + 1 < m {
+                // 不変部分空間に到達 — 新しい乱数方向で再開
+                let mut r: Vec<(f64, f64)> = (0..n)
+                    .map(|_| (rng.gauss(), rng.gauss()))
+                    .collect();
+                for _ in 0..2 {
+                    for b in &basis {
+                        let (pr, pi) = cdot(b, &r);
+                        for i in 0..n {
+                            let (br, bi) = b[i];
+                            r[i].0 -= pr * br - pi * bi;
+                            r[i].1 -= pr * bi + pi * br;
+                        }
+                    }
+                }
+                let rn = cdot(&r, &r).0.sqrt();
+                if rn < 1e-12 {
+                    break; // 空間を張り切った
+                }
+                for x in r.iter_mut() {
+                    x.0 /= rn;
+                    x.1 /= rn;
+                }
+                beta.push(0.0);
+                basis.push(r);
+                continue;
+            }
+            break;
+        }
+        beta.push(bnorm);
+        for x in w.iter_mut() {
+            x.0 /= bnorm;
+            x.1 /= bnorm;
+        }
+        basis.push(w);
+    }
+    let mm = alpha.len();
+    // 三重対角 (再直交化・再開で正確には帯だが、Ritz には射影行列を使うのが安全):
+    // T_ij = ⟨v_i|H|v_j⟩ を陽に作る (mm ≤ 数百なので matvec mm 回ぶんは既に払った —
+    // ここでは α, β から三重対角を組む代わりに、基底での射影を再計算して頑健にする)
+    let mut t = vec![0.0f64; mm * mm];
+    for j in 0..mm {
+        let w = matvec(&basis[j]);
+        for i in 0..mm {
+            t[i + j * mm] = cdot(&basis[i], &w).0;
+        }
+    }
+    // 対称化 (数値ノイズ除去)
+    for i in 0..mm {
+        for j in (i + 1)..mm {
+            let a = 0.5 * (t[i + j * mm] + t[j + i * mm]);
+            t[i + j * mm] = a;
+            t[j + i * mm] = a;
+        }
+    }
+    let (w_t, v_t) = jacobi_eigh(&t, mm);
+    let kk = k.min(mm);
+    let mut evals = Vec::with_capacity(kk);
+    let mut evecs = Vec::with_capacity(kk);
+    let mut max_res = 0.0f64;
+    for e in 0..kk {
+        let mut vec: Vec<(f64, f64)> = vec![(0.0, 0.0); n];
+        for j in 0..mm {
+            let c = v_t[j + e * mm];
+            for i in 0..n {
+                vec[i].0 += c * basis[j][i].0;
+                vec[i].1 += c * basis[j][i].1;
+            }
+        }
+        let nrm = cdot(&vec, &vec).0.sqrt();
+        for x in vec.iter_mut() {
+            x.0 /= nrm;
+            x.1 /= nrm;
+        }
+        // 残差 ‖Hv − λv‖
+        let hv = matvec(&vec);
+        let lam = w_t[e];
+        let mut res = 0.0f64;
+        for i in 0..n {
+            let dr = hv[i].0 - lam * vec[i].0;
+            let di = hv[i].1 - lam * vec[i].1;
+            res += dr * dr + di * di;
+        }
+        max_res = max_res.max(res.sqrt());
+        evals.push(lam);
+        evecs.push(vec);
+    }
+    (evals, evecs, max_res)
+}
+
 // ---------------- 自己テスト ----------------
 pub fn self_test() {
     // ヤコビ法: ランダム対称行列で A v = λ v を検証
