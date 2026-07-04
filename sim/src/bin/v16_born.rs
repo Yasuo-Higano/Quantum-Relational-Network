@@ -8,6 +8,9 @@
 //!     により等確率でなければならない。振幅 √(m/M) の枝を m 本の等振幅微細枝に
 //!     分割すれば P = m/M = |振幅|² が **数え上げ** から出る。対称性を数値で厳密検証する。
 
+// 「行×列」のインデックス記法 (0*5+k 等) を可読性のため保持する
+#![allow(clippy::erasing_op, clippy::identity_op)]
+
 use uft_sim::*;
 
 fn main() {
@@ -46,7 +49,11 @@ fn main() {
             "  N={:3}: t∈[2,2000] での再帰の最大 |r| = {:.2e} {}",
             nenv,
             max_rev,
-            if nenv == 4 { "(小さい環境は情報を返す)" } else { "(大環境では事実上不可逆 = 古典性)" }
+            if nenv == 4 {
+                "(小さい環境は情報を返す)"
+            } else {
+                "(大環境では事実上不可逆 = 古典性)"
+            }
         );
     }
     // デコヒーレンス時間のスケーリング: 短時間 |r| ≈ exp(-2t² Σg²) → τ_D ∝ 1/√N
@@ -84,15 +91,29 @@ fn main() {
     let amps: Vec<f64> = (0..5)
         .map(|f| (psi[0 * 5 + f].powi(2) + psi[1 * 5 + f].powi(2)).sqrt())
         .collect();
-    println!("  微細化後の 5 本の枝の振幅: {:?}", amps.iter().map(|x| format!("{:.4}", x)).collect::<Vec<_>>());
-    let equal = amps.iter().all(|&x| (x - 1.0 / 5.0f64.sqrt()).abs() < 1e-12);
+    println!(
+        "  微細化後の 5 本の枝の振幅: {:?}",
+        amps.iter().map(|x| format!("{:.4}", x)).collect::<Vec<_>>()
+    );
+    let equal = amps
+        .iter()
+        .all(|&x| (x - 1.0 / 5.0f64.sqrt()).abs() < 1e-12);
     println!("  => 全枝が等振幅 1/√5  {}", pass(equal));
     // エンバリアンス: 等振幅枝のスワップ (系側) は環境側のスワップで打ち消せる
     // 例: 枝1↔枝2 (どちらも s=0): 環境スワップ F1↔F2 で状態は厳密に不変
     let mut psi_swapped = psi;
     psi_swapped.swap(0 * 5 + 0, 0 * 5 + 1); // 環境側 F1↔F2
-    let diff: f64 = psi.iter().zip(&psi_swapped).map(|(a, b)| (a - b).powi(2)).sum::<f64>().sqrt();
-    println!("  エンバリアンス検証 (F1↔F2 スワップで不変): ‖Δψ‖ = {:.1e}  {}", diff, pass(diff < 1e-14));
+    let diff: f64 = psi
+        .iter()
+        .zip(&psi_swapped)
+        .map(|(a, b)| (a - b).powi(2))
+        .sum::<f64>()
+        .sqrt();
+    println!(
+        "  エンバリアンス検証 (F1↔F2 スワップで不変): ‖Δψ‖ = {:.1e}  {}",
+        diff,
+        pass(diff < 1e-14)
+    );
     // 系の確率は環境ユニタリで変わらない (局所性): ρ_S の不変性を乱数ユニタリで検証
     let mut max_change = 0.0f64;
     for trial in 0..20 {
@@ -139,15 +160,22 @@ fn main() {
         let p0_ref = 2.0 / 5.0;
         max_change = max_change.max((rho[0][0].re - p0_ref).abs());
     }
-    println!("  局所性検証 (環境の任意ユニタリで ρ_S 不変): 20 個の乱数 U で |ΔP(0)| ≤ {:.1e}  {}",
-        max_change, pass(max_change < 1e-12));
+    println!(
+        "  局所性検証 (環境の任意ユニタリで ρ_S 不変): 20 個の乱数 U で |ΔP(0)| ≤ {:.1e}  {}",
+        max_change,
+        pass(max_change < 1e-12)
+    );
     println!("\n  論証: (i) 等振幅の枝は環境側で打ち消せるスワップ対称性を持つ (検証済)。");
     println!("        (ii) 系の確率は環境操作に依存しない (検証済)。");
     println!("        (i)+(ii) ⇒ 等振幅の枝は等確率 ⇒ 5 本中 2 本が「0」⇒ P(0) = 2/5 = |√(2/5)|²");
     println!("  *** ボルン則 P=|ψ|² は追加公理ではなく、もつれの対称性 + 数え上げの帰結 ***");
     println!("\n結論: 測定の見かけの非ユニタリー性はデコヒーレンス (もつれの一方向拡散) で、");
-    println!("      確率則はエンバリアンスで説明できる。公理は「ユニタリー + テンソル構造」だけに減る。");
-    println!("      (残る哲学的問い: 枝の「実在」の解釈。導出の前提 (局所性・微細化可能性) は明示した)");
+    println!(
+        "      確率則はエンバリアンスで説明できる。公理は「ユニタリー + テンソル構造」だけに減る。"
+    );
+    println!(
+        "      (残る哲学的問い: 枝の「実在」の解釈。導出の前提 (局所性・微細化可能性) は明示した)"
+    );
 }
 
 fn pass(ok: bool) -> &'static str {

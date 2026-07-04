@@ -71,7 +71,10 @@ fn main() {
     let dim = 1usize << n;
     let mut rng = Rng::new(20260703);
     println!("=== v0.8 Page 曲線: ブラックホール蒸発のユニタリー性 ===\n");
-    println!("n = {} qubits の BH+輻射系。輻射 k qubits のエントロピー (20 個のランダム状態平均)\n", n);
+    println!(
+        "n = {} qubits の BH+輻射系。輻射 k qubits のエントロピー (20 個のランダム状態平均)\n",
+        n
+    );
 
     let nstates = 20;
     let mut s_avg = vec![0.0f64; n];
@@ -117,7 +120,11 @@ fn main() {
             bar
         );
     }
-    println!("\n  => Page 公式との最大偏差 {:.4} nats  {}", max_dev, pass(max_dev < 0.02));
+    println!(
+        "\n  => Page 公式との最大偏差 {:.4} nats  {}",
+        max_dev,
+        pass(max_dev < 0.02)
+    );
     println!("     山型 = Page 曲線。半分を過ぎると新しい輻射は古い輻射と強く相関し、");
     println!("     エントロピーは下がり始める。最後は S=0: 全情報が輻射に戻っている。");
 

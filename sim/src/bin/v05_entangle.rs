@@ -76,7 +76,10 @@ fn main() {
 
     // ---- A: 1D 臨界(質量 0, 開境界=Dirichlet でゼロモード回避) 対数則と中心電荷 ----
     let n = 1024;
-    println!("[A] 1D 臨界鎖 (N={}, m=0, 開境界): S(ℓ) = (c/6)·ln[(2N/π)sin(πℓ/N)] + k", n);
+    println!(
+        "[A] 1D 臨界鎖 (N={}, m=0, 開境界): S(ℓ) = (c/6)·ln[(2N/π)sin(πℓ/N)] + k",
+        n
+    );
     // OBC の厳密モード: v_k(i)=√(2/(N+1))sin(πki/(N+1)), λ_k = 2-2cos(πk/(N+1))
     let lmax = 256usize;
     let nf = (n + 1) as f64;
@@ -87,7 +90,8 @@ fn main() {
         let sq = lam.sqrt();
         let mut vk = vec![0.0; lmax];
         for i in 0..lmax {
-            vk[i] = (2.0 / nf).sqrt() * (std::f64::consts::PI * k as f64 * (i + 1) as f64 / nf).sin();
+            vk[i] =
+                (2.0 / nf).sqrt() * (std::f64::consts::PI * k as f64 * (i + 1) as f64 / nf).sin();
         }
         for i in 0..lmax {
             for j in 0..=i {
@@ -118,8 +122,8 @@ fn main() {
             }
         }
         let s = entropy_from_xp(&xa, &pa, l);
-        let chord = (2.0 * nf / std::f64::consts::PI)
-            * (std::f64::consts::PI * l as f64 / nf).sin();
+        let chord =
+            (2.0 * nf / std::f64::consts::PI) * (std::f64::consts::PI * l as f64 / nf).sin();
         println!("  {:4}  {:.5}   {:8.2}", l, s, chord);
         lnchord.push(chord.ln());
         svals.push(s);
@@ -157,7 +161,10 @@ fn main() {
     // ---- C: 2D 面積則 ----
     let l2 = 32usize;
     let m2d = 0.2;
-    println!("[C] 2D 格子 ({}×{}, m={}): ℓ×ℓ ブロックの S vs 境界長 4ℓ", l2, l2, m2d);
+    println!(
+        "[C] 2D 格子 ({}×{}, m={}): ℓ×ℓ ブロックの S vs 境界長 4ℓ",
+        l2, l2, m2d
+    );
     // 相関テーブル (dx,dy)
     let mut xc2d = vec![0.0; l2 * l2];
     let mut pc2d = vec![0.0; l2 * l2];
@@ -196,7 +203,14 @@ fn main() {
             }
         }
         let s = entropy_from_xp(&xa, &pa, nn);
-        println!("  {}×{}   {:4}   {:.4}   {:.4}", l, l, 4 * l, s, s / (4 * l) as f64);
+        println!(
+            "  {}×{}   {:4}   {:.4}   {:.4}",
+            l,
+            l,
+            4 * l,
+            s,
+            s / (4 * l) as f64
+        );
         per.push((4 * l) as f64);
         s2d.push(s);
     }

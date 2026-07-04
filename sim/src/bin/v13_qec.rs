@@ -15,7 +15,9 @@
 use uft_sim::*;
 
 fn h_ent(w: &[f64]) -> f64 {
-    w.iter().map(|&l| if l > 1e-14 { -l * l.ln() } else { 0.0 }).sum()
+    w.iter()
+        .map(|&l| if l > 1e-14 { -l * l.ln() } else { 0.0 })
+        .sum()
 }
 
 /// 4 クォートリット純粋状態 (dim 81, 実振幅) の部分系エントロピー
@@ -85,7 +87,10 @@ fn main() {
     let ln3 = 3.0f64.ln();
     println!("\n[A] バルク情報 (参照系 R) は境界のどこにあるか");
     let s_r = subsystem_entropy(&psi, &[0]);
-    println!("  S(R) = {:.6} (= ln3 = {:.6}: R は符号と最大もつれ)", s_r, ln3);
+    println!(
+        "  S(R) = {:.6} (= ln3 = {:.6}: R は符号と最大もつれ)",
+        s_r, ln3
+    );
     println!("\n  領域        S(領域)   I(R:領域)     判定");
     let mut all_ok = true;
     for &i in &[1usize, 2, 3] {

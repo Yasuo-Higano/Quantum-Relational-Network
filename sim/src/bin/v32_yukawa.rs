@@ -48,7 +48,11 @@ fn eig_yyd(y: &M3) -> ([f64; 3], [[(f64, f64); 3]; 3]) {
             vecs[k][i] = (v[i + (2 * k) * m], v[(i + n) + (2 * k) * m]);
         }
         // 正規化
-        let nrm: f64 = vecs[k].iter().map(|&(a, b)| a * a + b * b).sum::<f64>().sqrt();
+        let nrm: f64 = vecs[k]
+            .iter()
+            .map(|&(a, b)| a * a + b * b)
+            .sum::<f64>()
+            .sqrt();
         for i in 0..3 {
             vecs[k][i].0 /= nrm;
             vecs[k][i].1 /= nrm;
@@ -60,14 +64,20 @@ fn eig_yyd(y: &M3) -> ([f64; 3], [[(f64, f64); 3]; 3]) {
 fn main() {
     let mut rng = Rng::new(31415);
     let eps = 0.22f64; // ~ カビボ角
-    // FN 電荷 (文献の標準的な割当て)
+                       // FN 電荷 (文献の標準的な割当て)
     let q_q = [3.0f64, 2.0, 0.0];
     let q_u = [4.0f64, 2.0, 0.0];
     let q_d = [1.0f64, 0.0, 0.0];
     let q_l = [1.0f64, 0.0, 0.0];
     let q_e = [4.0f64, 2.0, 0.0];
-    println!("=== v3.2 湯川階層: フロガット=ニールセン機構 (ε = {}) ===", eps);
-    println!("    FN電荷: q_Q={:?} q_u={:?} q_d={:?} q_L={:?} q_e={:?}\n", q_q, q_u, q_d, q_l, q_e);
+    println!(
+        "=== v3.2 湯川階層: フロガット=ニールセン機構 (ε = {}) ===",
+        eps
+    );
+    println!(
+        "    FN電荷: q_Q={:?} q_u={:?} q_d={:?} q_L={:?} q_e={:?}\n",
+        q_q, q_u, q_d, q_l, q_e
+    );
 
     let ntrial = 2000;
     // 記録: [u/t, c/t, d/b, s/b, e/τ, μ/τ, Vus, Vcb, Vub]
@@ -126,11 +136,30 @@ fn main() {
         samples[7].push(ckm[1][2]); // V_cb
         samples[8].push(ckm[0][2]); // V_ub
     }
-    let obs = [1.3e-5, 3.7e-3, 1.1e-3, 2.2e-2, 2.9e-4, 5.9e-2, 0.225, 0.041, 0.0037];
-    let names = ["m_u/m_t", "m_c/m_t", "m_d/m_b", "m_s/m_b", "m_e/m_τ", "m_μ/m_τ", "|V_us|", "|V_cb|", "|V_ub|"];
+    let obs = [
+        1.3e-5, 3.7e-3, 1.1e-3, 2.2e-2, 2.9e-4, 5.9e-2, 0.225, 0.041, 0.0037,
+    ];
+    let names = [
+        "m_u/m_t",
+        "m_c/m_t",
+        "m_d/m_b",
+        "m_s/m_b",
+        "m_e/m_τ",
+        "m_μ/m_τ",
+        "|V_us|",
+        "|V_cb|",
+        "|V_ub|",
+    ];
     let naive = [
-        eps.powi(7), eps.powi(4), eps.powi(4), eps.powi(2), eps.powi(5), eps.powi(2),
-        eps, eps * eps, eps.powi(3),
+        eps.powi(7),
+        eps.powi(4),
+        eps.powi(4),
+        eps.powi(2),
+        eps.powi(5),
+        eps.powi(2),
+        eps,
+        eps * eps,
+        eps.powi(3),
     ];
     println!("  量        FN予言(中央値 [16%,84%])       ε冪の見積り   実測        中央値/実測");
     let mut ok_count = 0;
@@ -146,7 +175,13 @@ fn main() {
         }
         println!(
             "  {:8}  {:9.2e} [{:8.2e},{:8.2e}]   {:8.2e}     {:8.2e}   {:5.2} {}",
-            names[k], med, lo, hi, naive[k], obs[k], ratio,
+            names[k],
+            med,
+            lo,
+            hi,
+            naive[k],
+            obs[k],
+            ratio,
             if within { "✓" } else { " " }
         );
     }
@@ -166,10 +201,17 @@ fn main() {
         flat.push(m[0] / m[2]);
     }
     flat.sort_by(|a, b| a.partial_cmp(b).unwrap());
-    println!("\n  対照 (FN構造なし, 全て O(1)): m_1/m_3 の中央値 = {:.3} — 階層は決して出ない", flat[ntrial / 2]);
+    println!(
+        "\n  対照 (FN構造なし, 全て O(1)): m_1/m_3 の中央値 = {:.3} — 階層は決して出ない",
+        flat[ntrial / 2]
+    );
     println!("     (実測 m_u/m_t = 1.3e-5 は 4 桁以上外れる)");
-    println!("\n結論: 質量の 6 桁の階層は「6 桁の微調整」を要求しない。小さい ε の冪 (=電荷の算術)");
+    println!(
+        "\n結論: 質量の 6 桁の階層は「6 桁の微調整」を要求しない。小さい ε の冪 (=電荷の算術)"
+    );
     println!("      と O(1) の乱雑な係数で、質量比と混合角の全パターンが桁で再現される。");
     println!("      ε の起源 (対称性の破れのスケール比) と電荷の割当てが残る問い (正直に)。");
-    println!("      QRN: 階層は隠れ構造の「距離/電荷の整数」に由来しうる (v2.2-2.3 の幾何と同型)。");
+    println!(
+        "      QRN: 階層は隠れ構造の「距離/電荷の整数」に由来しうる (v2.2-2.3 の幾何と同型)。"
+    );
 }

@@ -53,12 +53,19 @@ fn main() {
     let orbits_per_century = 100.0 * 365.25 / 87.9691;
     let shift_num = dphi_per_orbit * orbits_per_century * ARCSEC;
     let shift_th = 6.0 * std::f64::consts::PI / p * orbits_per_century * ARCSEC;
-    println!("  軌道: a = {:.4e} (GM/c²), e = {}, {} 周回を積分", a_mercury, e, n_orbit);
+    println!(
+        "  軌道: a = {:.4e} (GM/c²), e = {}, {} 周回を積分",
+        a_mercury, e, n_orbit
+    );
     println!("  近日点移動(数値)   : {:.4}″/世紀", shift_num);
     println!("  GR 一次摂動論 6πGM/(c²p): {:.4}″/世紀", shift_th);
     println!("  観測値 (レーダー測距)   : 42.98 ± 0.04 ″/世紀");
     let rel = ((shift_num - 42.98) / 42.98).abs();
-    println!("  => 観測との相対差 {:.2}%  {}\n", rel * 100.0, pass(rel < 0.01));
+    println!(
+        "  => 観測との相対差 {:.2}%  {}\n",
+        rel * 100.0,
+        pass(rel < 0.01)
+    );
 
     // ---- B: 光の偏向 ----
     println!("[B] 太陽縁をかすめる光の偏向");
@@ -92,10 +99,17 @@ fn main() {
     println!("  ニュートン論の予言 : {:.4}″ (半分!)", 2.0 / b * ARCSEC);
     println!("  観測値 (1919 皆既日食〜VLBI): 1.75″");
     let rel = ((defl_num - defl_th) / defl_th).abs();
-    println!("  => 一次摂動論との相対差 {:.2e}  {}\n", rel, pass(rel < 1e-3));
+    println!(
+        "  => 一次摂動論との相対差 {:.2e}  {}\n",
+        rel,
+        pass(rel < 1e-3)
+    );
 
     // ---- C: 強重力領域(光子球) ----
-    println!("[C] 強重力: 光子の捕獲 (臨界衝突径数 b_c = 3√3 = {:.4})", 3.0 * 3.0f64.sqrt());
+    println!(
+        "[C] 強重力: 光子の捕獲 (臨界衝突径数 b_c = 3√3 = {:.4})",
+        3.0 * 3.0f64.sqrt()
+    );
     for &btest in &[5.0, 5.196, 5.4] {
         let rhs_light = |u: f64| -u + 3.0 * u * u;
         let (mut u, mut w) = (1e-12, 1.0 / btest);

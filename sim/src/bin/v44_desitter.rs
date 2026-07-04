@@ -41,11 +41,22 @@ fn main() {
         let fp = response(om);
         let fm = response(-om);
         let teff = om / (fm / fp).ln();
-        max_err = max_err.max((teff - h / (2.0 * std::f64::consts::PI)).abs() * 2.0 * std::f64::consts::PI / h);
-        println!("  ω={:.1}: F(ω)/F(-ω) = {:.4e} (理論 e^{{-2πω/H}} = {:.4e}), T_eff = {:.5}",
-            om, fp / fm, (-2.0 * std::f64::consts::PI * om / h).exp(), teff);
+        max_err = max_err
+            .max((teff - h / (2.0 * std::f64::consts::PI)).abs() * 2.0 * std::f64::consts::PI / h);
+        println!(
+            "  ω={:.1}: F(ω)/F(-ω) = {:.4e} (理論 e^{{-2πω/H}} = {:.4e}), T_eff = {:.5}",
+            om,
+            fp / fm,
+            (-2.0 * std::f64::consts::PI * om / h).exp(),
+            teff
+        );
     }
-    println!("  => T = H/2π = {:.5} を相対誤差 {:.1e} で確認  {}", h / (2.0 * std::f64::consts::PI), max_err, pass(max_err < 0.01));
+    println!(
+        "  => T = H/2π = {:.5} を相対誤差 {:.1e} で確認  {}",
+        h / (2.0 * std::f64::consts::PI),
+        max_err,
+        pass(max_err < 0.01)
+    );
     println!("     三位一体完結: 加速 a/2π (v3.4) = BH κ/2π (v0.8) = dS H/2π (本節)。");
     println!("     どの場合も「地平線 = 情報の遮蔽 = 熱」。\n");
 
@@ -68,16 +79,29 @@ fn main() {
     println!("  CMB 光子           : {:.0e}", s_cmb);
     println!("  宇宙背景ニュートリノ : {:.0e}", s_nu);
     println!("  恒星質量ブラックホール: {:.0e}", s_stellar_bh);
-    println!("  超大質量ブラックホール: {:.0e}  ← 物質側の圧倒的王者", s_smbh);
+    println!(
+        "  超大質量ブラックホール: {:.0e}  ← 物質側の圧倒的王者",
+        s_smbh
+    );
     println!("  dS 地平線 (=宇宙の情報容量): {:.0e}", s_ds);
-    println!("  => 使用率 = S(BH)/S(dS) ~ {:.0e} — 宇宙は情報的にほぼ空 (まだ若い)", s_smbh / s_ds);
+    println!(
+        "  => 使用率 = S(BH)/S(dS) ~ {:.0e} — 宇宙は情報的にほぼ空 (まだ若い)",
+        s_smbh / s_ds
+    );
     println!("     エントロピーの主生産者はブラックホール = 「面積=情報」(v0.5) の天文学的実演\n");
 
     // ---- [C] ホログラフィック束縛 ----
     println!("[C] ホログラフィック束縛の検査: S(内容物) ≤ A/4 か");
-    println!("  S(全物質+BH) ~ {:.0e}  ≤  S_dS = {:.0e}  {}", s_smbh, s_ds, pass(s_smbh < s_ds));
+    println!(
+        "  S(全物質+BH) ~ {:.0e}  ≤  S_dS = {:.0e}  {}",
+        s_smbh,
+        s_ds,
+        pass(s_smbh < s_ds)
+    );
     println!("  ペンローズの初期条件問題: ビッグバンのエントロピー ~10^88 は最大値 ~10^122 の");
-    println!("  10^-34。初期宇宙は途方もなく「整った」状態だった — 時間の矢 (v1.1) の宇宙論的根源。");
+    println!(
+        "  10^-34。初期宇宙は途方もなく「整った」状態だった — 時間の矢 (v1.1) の宇宙論的根源。"
+    );
     println!("  これは QRN 最大の未解決問題として残る: なぜ初期状態のもつれは少なかったのか。");
     println!("\n結論: 宇宙論的地平線も熱を持ち (H/2π)、宇宙の情報収支はホログラフィック束縛に");
     println!("      従う。宇宙は情報容量の ~10^-18 しか使っておらず、進化の余地は膨大である。");

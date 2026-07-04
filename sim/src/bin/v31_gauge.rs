@@ -12,7 +12,14 @@
 use std::collections::HashSet;
 
 // (色次元, 弱次元, 色符号: +1=3, -1=3̄, 0=singlet)
-const TYPES: [(i64, i64, i64); 6] = [(1, 1, 0), (1, 2, 0), (3, 1, 1), (3, 1, -1), (3, 2, 1), (3, 2, -1)];
+const TYPES: [(i64, i64, i64); 6] = [
+    (1, 1, 0),
+    (1, 2, 0),
+    (3, 1, 1),
+    (3, 1, -1),
+    (3, 2, 1),
+    (3, 2, -1),
+];
 const TNAMES: [&str; 6] = ["(1,1)", "(1,2)", "(3,1)", "(3̄,1)", "(3,2)", "(3̄,2)"];
 const NYMAX: i64 = 9; // Y = n/6, n ∈ [-9, 9]
 const NY: usize = (2 * NYMAX + 1) as usize;
@@ -92,7 +99,11 @@ fn canonical(set: &[usize]) -> Vec<(usize, i64)> {
         let mut w: Vec<(usize, i64)> = v
             .iter()
             .map(|&(t, n)| {
-                let (t2, n2) = if op & 1 == 1 { (conj_type(t), -n) } else { (t, n) };
+                let (t2, n2) = if op & 1 == 1 {
+                    (conj_type(t), -n)
+                } else {
+                    (t, n)
+                };
                 if op & 2 == 2 {
                     (t2, -n2)
                 } else {
@@ -160,7 +171,10 @@ fn main() {
     rec(0, &mut slots, 0, &mut found, &mut seen, &mut tested);
     found.sort();
     println!("  検査した集合の数: {:.2e}", tested as f64);
-    println!("  条件を満たす解 (スケール・共役の重複除去後): {} 個", found.len());
+    println!(
+        "  条件を満たす解 (スケール・共役の重複除去後): {} 個",
+        found.len()
+    );
     for (comps, sol) in &found {
         let desc: Vec<String> = sol
             .iter()
@@ -169,15 +183,22 @@ fn main() {
         println!("   {} 成分: {}", comps, desc.join(" ⊕ "));
     }
     if found.len() == 1 && found[0].0 == 15 {
-        println!("  => 唯一の最小解 = 標準模型 1 世代 (Y×6 = 1,-4,2,-3,6 = Q,u^c,d^c,L,e^c)  [PASS]");
-        println!("     ***3 つの力すべてを感じる無矛盾なカイラル物質は、標準模型世代が最小である***");
+        println!(
+            "  => 唯一の最小解 = 標準模型 1 世代 (Y×6 = 1,-4,2,-3,6 = Q,u^c,d^c,L,e^c)  [PASS]"
+        );
+        println!(
+            "     ***3 つの力すべてを感じる無矛盾なカイラル物質は、標準模型世代が最小である***"
+        );
     } else {
         println!("  => 複数解/想定外の解 — 内訳を上に列挙 (要検討)");
     }
 
     println!("\n[B] SU(5) 埋め込み: Y = diag(-1/3,-1/3,-1/3,1/2,1/2) (トレースレス生成子)");
     let y5 = [-2i64, -2, -2, 3, 3]; // ×6
-    println!("  tr Y = {}/6 (トレースレス = 電荷の和が消える起源)", y5.iter().sum::<i64>());
+    println!(
+        "  tr Y = {}/6 (トレースレス = 電荷の和が消える起源)",
+        y5.iter().sum::<i64>()
+    );
     let mut fivebar: Vec<i64> = y5.iter().map(|&y| -y).collect();
     fivebar.sort();
     let mut ten = Vec::new();
@@ -196,7 +217,9 @@ fn main() {
     let ok = fivebar == expect5 && ten == expect10;
     println!("  => 5̄ ⊕ 10 = 標準模型 1 世代と厳密一致  {}", pass(ok));
     println!("     SO(10) ではさらに 16 = 10⊕5̄⊕1 (右巻きν込み) の単一スピノルに収まる。");
-    println!("     電荷が 1/3 の倍数なのは「色が 3 つ」だから (トレース条件) — 電荷量子化の群論。\n");
+    println!(
+        "     電荷が 1/3 の倍数なのは「色が 3 つ」だから (トレース条件) — 電荷量子化の群論。\n"
+    );
 
     println!("[C] 結合定数の 1 ループ走行 (入力: M_Z での実測値)");
     let a1_mz = 59.01f64; // α1^-1 (GUT規格化 5/3)
@@ -213,7 +236,13 @@ fn main() {
     println!("  標準模型のみ (b = 41/10, -19/6, -7):");
     for &(i, j) in &[(0usize, 1usize), (0, 2), (1, 2)] {
         let (mu, ai) = meet([a1_mz, a2_mz, a3_mz], b_sm, mz, i, j);
-        println!("   α{}=α{} : μ = {:.1e} GeV, α⁻¹ = {:.1}", i + 1, j + 1, mu, ai);
+        println!(
+            "   α{}=α{} : μ = {:.1e} GeV, α⁻¹ = {:.1}",
+            i + 1,
+            j + 1,
+            mu,
+            ai
+        );
     }
     // MSSM: 1 TeV で超対称粒子が現れると仮定
     let t1 = (1000.0f64 / mz).ln();
@@ -226,13 +255,23 @@ fn main() {
     let mut mus = Vec::new();
     for &(i, j) in &[(0usize, 1usize), (0, 2), (1, 2)] {
         let (mu, ai) = meet(a_tev, b_mssm, 1000.0, i, j);
-        println!("   α{}=α{} : μ = {:.2e} GeV, α⁻¹ = {:.2}", i + 1, j + 1, mu, ai);
+        println!(
+            "   α{}=α{} : μ = {:.2e} GeV, α⁻¹ = {:.2}",
+            i + 1,
+            j + 1,
+            mu,
+            ai
+        );
         mus.push(mu);
     }
     let spread_sm = 9.7e16f64 / 1.0e13;
     let spread_mssm = mus.iter().cloned().fold(0.0f64, f64::max)
         / mus.iter().cloned().fold(f64::INFINITY, f64::min);
-    println!("  => 交点のずれ: SM では ~{:.0}00 倍、MSSM では {:.1} 倍 (α⁻¹ で ~2%) に収束", spread_sm / 100.0, spread_mssm);
+    println!(
+        "  => 交点のずれ: SM では ~{:.0}00 倍、MSSM では {:.1} 倍 (α⁻¹ で ~2%) に収束",
+        spread_sm / 100.0,
+        spread_mssm
+    );
     println!("     3 本の直線が 1 点で交わる必然性はないのに、ほぼ交わる — 統一群の間接証拠。");
     println!("     交点 ~2×10^16 GeV は陽子崩壊の未観測 (>10^34 年) とも整合する高さ。");
     println!("\n結論: 群の「選択理由」は未解決のまま (正直に)。しかし (A) 内容の最小性、");

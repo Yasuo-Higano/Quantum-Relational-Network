@@ -123,7 +123,11 @@ fn main() {
         }
     }
     println!("  ノルム保存: |1-norm| = {:.2e}", (cn.norm() - 1.0).abs());
-    println!("  => 最大相対誤差 {:.2e}  {}\n", max_rel, pass(max_rel < 5e-3));
+    println!(
+        "  => 最大相対誤差 {:.2e}  {}\n",
+        max_rel,
+        pass(max_rel < 5e-3)
+    );
 
     // ---- B: トンネル効果 (Eckart 障壁 V = V0/cosh²x — 厳密透過率が既知) ----
     println!("[B] Eckart 障壁トンネル  V=1/cosh²(x), E≈0.5 (古典的には全反射)");
@@ -136,7 +140,9 @@ fn main() {
     let t_num = cn.prob_right_of(10.0);
     // 厳密透過率 T(k) = sinh²(πk) / [sinh²(πk) + cosh²(π√7/2)] を波束の運動量分布で平均
     let sig_k = 1.0 / (2.0 * sig);
-    let coshterm = (std::f64::consts::PI * (7.0f64).sqrt() / 2.0).cosh().powi(2);
+    let coshterm = (std::f64::consts::PI * (7.0f64).sqrt() / 2.0)
+        .cosh()
+        .powi(2);
     let mut t_th = 0.0;
     let mut wsum = 0.0;
     let nk = 4000;
@@ -152,9 +158,18 @@ fn main() {
     }
     t_th /= wsum;
     let rel = ((t_num - t_th) / t_th).abs();
-    println!("  透過率: 数値 {:.4}  厳密解(平面波平均) {:.4}  相対差 {:.1}%", t_num, t_th, rel * 100.0);
+    println!(
+        "  透過率: 数値 {:.4}  厳密解(平面波平均) {:.4}  相対差 {:.1}%",
+        t_num,
+        t_th,
+        rel * 100.0
+    );
     println!("  ノルム保存: |1-norm| = {:.2e}", (cn.norm() - 1.0).abs());
-    println!("  => 古典禁止領域を {:.1}% が通過(トンネル効果) {}\n", t_num * 100.0, pass(rel < 0.05));
+    println!(
+        "  => 古典禁止領域を {:.1}% が通過(トンネル効果) {}\n",
+        t_num * 100.0,
+        pass(rel < 0.05)
+    );
 
     // ---- C: 調和振動子コヒーレント状態 ----
     println!("[C] 調和振動子 V=x²/2 のコヒーレント状態  ⟨x⟩(t) = 3·cos t");
@@ -168,13 +183,22 @@ fn main() {
         let err = (m1 - 3.0 * t.cos()).abs();
         max_err = max_err.max(err);
         if step % (steps / 8) == 0 {
-            println!("  t={:6.3}  ⟨x⟩={:8.4}  3cos(t)={:8.4}", t, m1, 3.0 * t.cos());
+            println!(
+                "  t={:6.3}  ⟨x⟩={:8.4}  3cos(t)={:8.4}",
+                t,
+                m1,
+                3.0 * t.cos()
+            );
         }
         if step < steps {
             cn.step();
         }
     }
-    println!("  => 2周期での最大誤差 {:.2e}  {}", max_err, pass(max_err < 1e-2));
+    println!(
+        "  => 2周期での最大誤差 {:.2e}  {}",
+        max_err,
+        pass(max_err < 1e-2)
+    );
     println!("\n結論: ユニタリー時間発展・重ね合わせ・トンネルという QM の核心を数値で確認。");
 }
 

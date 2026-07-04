@@ -98,7 +98,10 @@ impl Tfd {
 fn main() {
     let n = 100usize;
     println!("=== v1.2 ER=EPR: 熱場二重状態 — もつれが2つの宇宙を縫う ===\n");
-    println!("2本の鎖 (各{}サイト) の TFD 純粋状態。鏡像ブロック (10サイト) 間の相互情報量:\n", n);
+    println!(
+        "2本の鎖 (各{}サイト) の TFD 純粋状態。鏡像ブロック (10サイト) 間の相互情報量:\n",
+        n
+    );
     let block: Vec<usize> = (40..50).collect();
     let block2: Vec<usize> = (50..60).collect(); // L 内の隣ブロック (基準)
     println!("  β(逆温度)  I(A_L:A_R) 鏡像間   I(A_L:B_L) 同一宇宙内の隣   橋/隣 比");
@@ -135,8 +138,12 @@ fn main() {
             e_th += e / (1.0 + (beta * e).exp());
         }
         e_th /= n as f64;
-        println!("[検証] β=1 で L 鎖単独のボンドエネルギー: TFD から {:.5}, 熱平均の解析値 {:.5}  {}",
-            e_num, e_th, pass((e_num - e_th).abs() < 1e-10));
+        println!(
+            "[検証] β=1 で L 鎖単独のボンドエネルギー: TFD から {:.5}, 熱平均の解析値 {:.5}  {}",
+            e_num,
+            e_th,
+            pass((e_num - e_th).abs() < 1e-10)
+        );
         println!("       純粋状態 |TFD⟩ の半分は、厳密に温度 1/β の熱状態 (熱 = 見えない相手とのもつれ)\n");
     }
 

@@ -1,0 +1,65 @@
+# CI: ビルド + 主張台帳 + 監査スイート + 代表シミュレーション
+# 外部クレート依存がないため、キャッシュなしでも高速にビルドできる。
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal --component rustfmt --component clippy
+          rustup default stable
+
+      - name: フォーマット検査
+        working-directory: sim
+        run: cargo fmt --check
+
+      - name: 静的解析 (correctness 系のみゲート)
+        working-directory: sim
+        run: cargo clippy --release -- -D clippy::correctness
+
+      - name: ビルド (外部依存なし)
+        working-directory: sim
+        run: cargo build --release
+
+      - name: 主張台帳の機械検証
+        run: sim/target/release/v61_ledger
+
+      - name: 監査スイート (FAIL 時は非ゼロ終了)
+        working-directory: sim
+        run: |
+          ./target/release/v62_atlas
+          ./target/release/v63_qnec_budget
+          ./target/release/v64_controls
+          ./target/release/v65_bayes
+
+      - name: 探索証明書の同一性 (SHA-256)
+        run: git diff --exit-code certificates/
+
+      - name: 代表シミュレーション ([FAIL] の検出)
+        working-directory: sim
+        run: |
+          set -e
+          for b in v01_qm v01_gr v05_entangle v07_infogeom v08_page; do
+            out=$(./target/release/$b)
+            echo "$out" | tail -3
+            if echo "$out" | grep -q "\[FAIL\]"; then
+              echo "::error::$b が FAIL を報告"
+              exit 1
+            fi
+          done
+
+      - name: 機械可読な結果のアップロード
+        uses: actions/upload-artifact@v4
+        with:
+          name: results-json
+          path: |
+            results/*.json
+            certificates/

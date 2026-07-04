@@ -41,7 +41,11 @@ fn canonical(ts: &[usize], ns: &[i64]) -> Vec<(usize, i64)> {
             .iter()
             .zip(ns)
             .map(|(&t, &n)| {
-                let (t2, n2) = if op & 1 == 1 { (TYPES[t].6, -n / g) } else { (t, n / g) };
+                let (t2, n2) = if op & 1 == 1 {
+                    (TYPES[t].6, -n / g)
+                } else {
+                    (t, n / g)
+                };
                 if op & 2 == 2 {
                     (t2, -n2)
                 } else {
@@ -89,7 +93,9 @@ fn full_check(ts: &[usize], ns: &[i64]) -> bool {
 }
 
 fn main() {
-    println!("=== v5.2 拡張理論空間: (1,3),(6,1),(8,1) を加えた全数探索 (≤5 多重項, ≤16 成分) ===\n");
+    println!(
+        "=== v5.2 拡張理論空間: (1,3),(6,1),(8,1) を加えた全数探索 (≤5 多重項, ≤16 成分) ===\n"
+    );
     // 構造列挙
     let mut structures: Vec<Vec<usize>> = Vec::new();
     fn gen(start: usize, cur: &mut Vec<usize>, comps: i64, out: &mut Vec<Vec<usize>>) {
@@ -114,7 +120,11 @@ fn main() {
     structures.retain(|s| {
         // 色A は表で弱次元込み ((3,2) は ±2)
         let su3cub: i64 = s.iter().map(|&t| TYPES[t].3).sum::<i64>();
-        let wit: i64 = s.iter().filter(|&&t| TYPES[t].2 == 2).map(|&t| TYPES[t].1).sum();
+        let wit: i64 = s
+            .iter()
+            .filter(|&&t| TYPES[t].2 == 2)
+            .map(|&t| TYPES[t].1)
+            .sum();
         let has_c = s.iter().any(|&t| TYPES[t].3 != 0 || TYPES[t].4 != 0);
         let has_w = s.iter().any(|&t| TYPES[t].2 >= 2);
         su3cub == 0 && wit % 2 == 0 && has_c && has_w
@@ -180,12 +190,18 @@ fn main() {
     }
     println!("成分数ごとの解: {:?}", by);
     for (c, sol) in sols.iter().take(6) {
-        let d: Vec<String> = sol.iter().map(|&(t, n)| format!("{}_{{{}}}", TYPES[t].0, n)).collect();
+        let d: Vec<String> = sol
+            .iter()
+            .map(|&(t, n)| format!("{}_{{{}}}", TYPES[t].0, n))
+            .collect();
         println!("  {} 成分: {}", c, d.join(" ⊕ "));
     }
     let sm = sols.iter().filter(|(c, _)| *c == 15).count();
     let below = sols.iter().filter(|(c, _)| *c < 15).count();
-    println!("\n  => 15 成分未満の解: {} 個 / 15 成分の解: {} 個", below, sm);
+    println!(
+        "\n  => 15 成分未満の解: {} 個 / 15 成分の解: {} 個",
+        below, sm
+    );
     println!("  {}", pass(below == 0 && sm == 1));
     println!("\n結論: SU(2) 三重項・SU(3) 六重項・随伴を解禁しても、標準模型 1 世代より小さい");
     println!("      無矛盾カイラル物質は存在せず、15 成分の解も SM ただ一つのまま。");

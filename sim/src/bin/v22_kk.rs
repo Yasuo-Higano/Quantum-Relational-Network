@@ -38,12 +38,17 @@ fn ring_eigs(ny: usize, phases: &[f64]) -> Vec<f64> {
 fn main() {
     let ny = 8usize;
     let two_pi = 2.0 * std::f64::consts::PI;
-    println!("=== v2.2 カルツァ=クライン: 電荷 = 隠れ次元の運動量 (N_y={}) ===\n", ny);
+    println!(
+        "=== v2.2 カルツァ=クライン: 電荷 = 隠れ次元の運動量 (N_y={}) ===\n",
+        ny
+    );
 
     // ---- (1) KK 塔 ----
     println!("[A] KK 塔 (ねじれなし): 質量² = 2-2cos(2πn/N_y)");
     let eigs0 = ring_eigs(ny, &vec![0.0; ny]);
-    let mut exact0: Vec<f64> = (0..ny).map(|nn| 2.0 - 2.0 * (two_pi * nn as f64 / ny as f64).cos()).collect();
+    let mut exact0: Vec<f64> = (0..ny)
+        .map(|nn| 2.0 - 2.0 * (two_pi * nn as f64 / ny as f64).cos())
+        .collect();
     exact0.sort_by(|a, b| a.partial_cmp(b).unwrap());
     let mut maxd = 0.0f64;
     println!("  n(電荷)   m²(数値)   m²(厳密)   m_n");
@@ -52,11 +57,27 @@ fn main() {
     }
     for nn in 0..=(ny / 2) {
         let m2 = 2.0 - 2.0 * (two_pi * nn as f64 / ny as f64).cos();
-        println!("  ±{}        {:.5}    {:.5}    {:.4}{}", nn, m2, m2, m2.sqrt(),
-            if nn > 0 && nn < ny/2 { "  (±n の 2 重縮退 = 粒子/反粒子)" } else { "" });
+        println!(
+            "  ±{}        {:.5}    {:.5}    {:.4}{}",
+            nn,
+            m2,
+            m2,
+            m2.sqrt(),
+            if nn > 0 && nn < ny / 2 {
+                "  (±n の 2 重縮退 = 粒子/反粒子)"
+            } else {
+                ""
+            }
+        );
     }
-    println!("  => 数値 vs 厳密の最大差 {:.1e}  {}", maxd, pass(maxd < 1e-10));
-    println!("     4次元から見ると: 電荷 n を持つ質量 m_n の粒子の梯子。電荷は π₁(S¹)=Z で量子化。\n");
+    println!(
+        "  => 数値 vs 厳密の最大差 {:.1e}  {}",
+        maxd,
+        pass(maxd < 1e-10)
+    );
+    println!(
+        "     4次元から見ると: 電荷 n を持つ質量 m_n の粒子の梯子。電荷は π₁(S¹)=Z で量子化。\n"
+    );
 
     // ---- (3) Wilson 線 (A₅) への応答 = 電荷 ----
     println!("[B] 隠れ次元のねじれ α (=ゲージポテンシャルの Wilson 線) への応答");
@@ -73,14 +94,23 @@ fn main() {
     for i in 0..ny {
         maxd = maxd.max((eigs_a[i] - exact_a[i]).abs());
     }
-    println!("  α={}: スペクトルが m²_n = 2-2cos((2πn+α)/N_y) へ移動 (最大差 {:.1e})  {}",
-        alpha, maxd, pass(maxd < 1e-10));
+    println!(
+        "  α={}: スペクトルが m²_n = 2-2cos((2πn+α)/N_y) へ移動 (最大差 {:.1e})  {}",
+        alpha,
+        maxd,
+        pass(maxd < 1e-10)
+    );
     println!("  ±n 縮退の分裂 (電荷に比例した応答):");
     println!("  n    E(+n)-E(-n) 数値      2·[cos((2πn-α)/8)-cos((2πn+α)/8)]/1 厳密");
     for nn in 1..ny / 2 {
         let ep = 2.0 - 2.0 * ((two_pi * nn as f64 + alpha) / ny as f64).cos();
         let em = 2.0 - 2.0 * ((two_pi * nn as f64 - alpha) / ny as f64).cos();
-        println!("  {}    {:+.5}                (電荷 ±{} が逆向きに応答)", nn, ep - em, nn);
+        println!(
+            "  {}    {:+.5}                (電荷 ±{} が逆向きに応答)",
+            nn,
+            ep - em,
+            nn
+        );
     }
     println!("  => ねじれ α は電荷 n に比例して各状態に働く = ミニマル結合 (qA) の幾何的起源\n");
 
@@ -97,8 +127,14 @@ fn main() {
     for i in 0..ny {
         maxd = maxd.max((eigs_r[i] - eigs_a[i]).abs());
     }
-    println!("  ランダム配分 vs 一様配分のスペクトル差: {:.1e}  {}", maxd, pass(maxd < 1e-10));
-    println!("  => 局所的な A₅(x) は物理でない。ホロノミー ∮A のみ物理 (v0.4 と同じ教訓が幾何から)\n");
+    println!(
+        "  ランダム配分 vs 一様配分のスペクトル差: {:.1e}  {}",
+        maxd,
+        pass(maxd < 1e-10)
+    );
+    println!(
+        "  => 局所的な A₅(x) は物理でない。ホロノミー ∮A のみ物理 (v0.4 と同じ教訓が幾何から)\n"
+    );
 
     // ---- (2) 高次元の分離性チェック ----
     println!("[D] 2D (大きい次元 × 円) の分散関係 ω² = 4sin²(k_x/2) + m²_n の検証");
@@ -107,7 +143,7 @@ fn main() {
         let kx = two_pi * 3.0 / nx as f64;
         let nn = 2usize;
         let theta = two_pi * nn as f64 / ny as f64; // 円周上の許される波数 (周期性)
-        // ψ(x,y) = e^{i k_x x} e^{i θ y} に 2D ラプラシアン (y リンクに α/N_y のねじれ) を作用
+                                                    // ψ(x,y) = e^{i k_x x} e^{i θ y} に 2D ラプラシアン (y リンクに α/N_y のねじれ) を作用
         let idx = |x: usize, y: usize| x + y * nx;
         let mut re = vec![0.0; nx * ny];
         let mut im = vec![0.0; nx * ny];
@@ -119,7 +155,8 @@ fn main() {
             }
         }
         // ねじれ込みの固有値: ω² = 4sin²(k_x/2) + 2-2cos((2πn-α)/N_y)
-        let om2 = 4.0 * (kx / 2.0).sin().powi(2) + 2.0 - 2.0 * ((two_pi * nn as f64 - alpha) / ny as f64).cos();
+        let om2 = 4.0 * (kx / 2.0).sin().powi(2) + 2.0
+            - 2.0 * ((two_pi * nn as f64 - alpha) / ny as f64).cos();
         let mut maxres = 0.0f64;
         let tw = alpha / ny as f64;
         for x in 0..nx {
@@ -142,9 +179,15 @@ fn main() {
                     .max((him - om2 * im[idx(x, y)]).abs());
             }
         }
-        println!("  平面波 × 円モード (k_x=2π·3/40, n=2) の残差: {:.1e}  {}", maxres, pass(maxres < 1e-12));
+        println!(
+            "  平面波 × 円モード (k_x=2π·3/40, n=2) の残差: {:.1e}  {}",
+            maxres,
+            pass(maxres < 1e-12)
+        );
     }
-    println!("\n結論: 「電荷」「ゲージ場」「質量の梯子」は、見えない小さい次元の「運動量」「ねじれ」");
+    println!(
+        "\n結論: 「電荷」「ゲージ場」「質量の梯子」は、見えない小さい次元の「運動量」「ねじれ」"
+    );
     println!("      「調和音」である — 内部量子数は幾何に統一できる (KK)。弦理論の compact 化は");
     println!("      この機構の一般化。QRN では隠れ次元 = 網の追加テンソル因子。");
     println!("      課題 (正直に): なぜ 3+1 だけ大きいか、モジュライ安定化、カイラルフェルミオン (→v2.3)。");

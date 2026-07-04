@@ -330,12 +330,20 @@ pub fn sha256(data: &[u8]) -> [u8; 32] {
     for chunk in msg.chunks(64) {
         let mut w = [0u32; 64];
         for i in 0..16 {
-            w[i] = u32::from_be_bytes([chunk[4 * i], chunk[4 * i + 1], chunk[4 * i + 2], chunk[4 * i + 3]]);
+            w[i] = u32::from_be_bytes([
+                chunk[4 * i],
+                chunk[4 * i + 1],
+                chunk[4 * i + 2],
+                chunk[4 * i + 3],
+            ]);
         }
         for i in 16..64 {
             let s0 = w[i - 15].rotate_right(7) ^ w[i - 15].rotate_right(18) ^ (w[i - 15] >> 3);
             let s1 = w[i - 2].rotate_right(17) ^ w[i - 2].rotate_right(19) ^ (w[i - 2] >> 10);
-            w[i] = w[i - 16].wrapping_add(s0).wrapping_add(w[i - 7]).wrapping_add(s1);
+            w[i] = w[i - 16]
+                .wrapping_add(s0)
+                .wrapping_add(w[i - 7])
+                .wrapping_add(s1);
         }
         let (mut a, mut b, mut c, mut d, mut e, mut f, mut g, mut hh) =
             (h[0], h[1], h[2], h[3], h[4], h[5], h[6], h[7]);
@@ -487,7 +495,8 @@ pub fn write_artifact(rel: &str, content: &str) -> String {
     if let Some(dir) = std::path::Path::new(&path).parent() {
         let _ = std::fs::create_dir_all(dir);
     }
-    std::fs::write(&path, content).unwrap_or_else(|e| panic!("成果物 {} の書き出し失敗: {}", path, e));
+    std::fs::write(&path, content)
+        .unwrap_or_else(|e| panic!("成果物 {} の書き出し失敗: {}", path, e));
     path
 }
 

@@ -61,7 +61,10 @@ fn entropy_herm(cre: &[f64], cim: &[f64], n: usize) -> f64 {
 
 fn main() {
     let n = 400usize;
-    println!("=== v1.1 実時間の創発: CDW クエンチの厳密動力学 (N={}) ===\n", n);
+    println!(
+        "=== v1.1 実時間の創発: CDW クエンチの厳密動力学 (N={}) ===\n",
+        n
+    );
     // OBC 単一粒子モード: φ_k(x) = √(2/(N+1)) sin(πk x/(N+1)), ε_k = -2cos(πk/(N+1))
     let nf = (n + 1) as f64;
     let mut v = vec![0.0; n * n]; // v[x + k*n]

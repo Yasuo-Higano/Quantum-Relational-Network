@@ -52,7 +52,10 @@ fn s_rel_pair(c_rho: &[f64], c_sig: &[f64], n: usize) -> (f64, f64) {
 fn main() {
     let n = 402usize;
     let nocc = 201usize;
-    println!("=== v2.1 非線形重力の土台: 相対エントロピーの構造 (N={} 鎖, 厳密) ===\n", n);
+    println!(
+        "=== v2.1 非線形重力の土台: 相対エントロピーの構造 (N={} 鎖, 厳密) ===\n",
+        n
+    );
     // ボンド摂動 t_x = 1 + ε g(x) の基底状態 (v0.7 と同じ機構)
     let diag_c = |eps: f64, xc: f64| -> Vec<f64> {
         let mut a = vec![0.0; n * n];
@@ -145,12 +148,19 @@ fn main() {
     {
         let ca = sub(&diag_c(0.04, 320.0), ia, l);
         let (srel, _) = s_rel_pair(&ca, &c0a, l);
-        println!("  S_rel = {:.3e} ≥ 0 {} (遠方の摂動はほとんど区別不能 — 因果的な情報の局在)",
-            srel, pass(srel >= -1e-12));
+        println!(
+            "  S_rel = {:.3e} ≥ 0 {} (遠方の摂動はほとんど区別不能 — 因果的な情報の局在)",
+            srel,
+            pass(srel >= -1e-12)
+        );
     }
     println!("\n結論: 第一法則 (v0.7, 一次) の上に、非線形化に必要な二次構造 —");
-    println!("      正値性 (エネルギー条件)・Fisher 計量 (正準エネルギー)・単調性 (ウェッジ入れ子) —");
-    println!("      がすべて成立していることを厳密に確認。完全な Einstein 方程式への既知の証明経路");
+    println!(
+        "      正値性 (エネルギー条件)・Fisher 計量 (正準エネルギー)・単調性 (ウェッジ入れ子) —"
+    );
+    println!(
+        "      がすべて成立していることを厳密に確認。完全な Einstein 方程式への既知の証明経路"
+    );
     println!("      (二次まで: Faulkner+ 2014) の情報側の前提は、この網で全て満たされている。");
 }
 

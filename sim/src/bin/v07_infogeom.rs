@@ -94,13 +94,16 @@ fn main() {
     {
         let (mut xs, mut ys) = (Vec::new(), Vec::new());
         for d in 2..=40usize {
-            let chord =
-                (nb as f64 / std::f64::consts::PI) * (std::f64::consts::PI * d as f64 / nb as f64).sin();
+            let chord = (nb as f64 / std::f64::consts::PI)
+                * (std::f64::consts::PI * d as f64 / nb as f64).sin();
             xs.push(chord.ln());
             ys.push(mi[0 + d * nb].ln());
         }
         let (_, slope) = linfit(&xs, &ys);
-        println!("  MI の減衰: MI ~ (距離)^{{{:.2}}}  (自由フェルミオンの理論値 -2)", slope);
+        println!(
+            "  MI の減衰: MI ~ (距離)^{{{:.2}}}  (自由フェルミオンの理論値 -2)",
+            slope
+        );
     }
     // 情報距離 D = -ln(MI/MI_max) で MDS 埋め込み
     let mut d2 = vec![0.0; nb * nb];
@@ -125,8 +128,13 @@ fn main() {
     }
     let (w, v) = jacobi_eigh(&b, nb);
     let (l1, l2) = (w[nb - 1], w[nb - 2]);
-    println!("  MDS 固有値 (上位4): {:.1}, {:.1}, {:.1}, {:.1} — 上位2つが同程度 = 2次元の円環",
-        w[nb-1], w[nb-2], w[nb-3], w[nb-4]);
+    println!(
+        "  MDS 固有値 (上位4): {:.1}, {:.1}, {:.1}, {:.1} — 上位2つが同程度 = 2次元の円環",
+        w[nb - 1],
+        w[nb - 2],
+        w[nb - 3],
+        w[nb - 4]
+    );
     // 埋め込み座標と角度順序
     let coords: Vec<(f64, f64)> = (0..nb)
         .map(|i| {
@@ -138,7 +146,11 @@ fn main() {
         .collect();
     let mut order: Vec<usize> = (0..nb).collect();
     order.sort_by(|&a, &bq| {
-        coords[a].1.atan2(coords[a].0).partial_cmp(&coords[bq].1.atan2(coords[bq].0)).unwrap()
+        coords[a]
+            .1
+            .atan2(coords[a].0)
+            .partial_cmp(&coords[bq].1.atan2(coords[bq].0))
+            .unwrap()
     });
     let mut adjacent_ok = 0;
     for k in 0..nb {
@@ -149,17 +161,22 @@ fn main() {
             adjacent_ok += 1;
         }
     }
-    let radii: Vec<f64> = coords.iter().map(|&(x, y)| (x * x + y * y).sqrt()).collect();
+    let radii: Vec<f64> = coords
+        .iter()
+        .map(|&(x, y)| (x * x + y * y).sqrt())
+        .collect();
     let rmean: f64 = radii.iter().sum::<f64>() / nb as f64;
-    let rsd: f64 =
-        (radii.iter().map(|r| (r - rmean).powi(2)).sum::<f64>() / nb as f64).sqrt();
+    let rsd: f64 = (radii.iter().map(|r| (r - rmean).powi(2)).sum::<f64>() / nb as f64).sqrt();
     println!(
         "  角度順に並べたとき、格子上の隣同士が隣に来る率: {}/{} = {:.1}%",
         adjacent_ok,
         nb,
         100.0 * adjacent_ok as f64 / nb as f64
     );
-    println!("  埋め込み半径のばらつき: {:.1}% (円環として復元)", 100.0 * rsd / rmean);
+    println!(
+        "  埋め込み半径のばらつき: {:.1}% (円環として復元)",
+        100.0 * rsd / rmean
+    );
     println!("  => もつれのパターンだけから「空間が円環である」ことが復元された。");
     println!("     距離とは相関の減衰率の別名である。\n");
 
@@ -188,7 +205,10 @@ fn main() {
         }
     }
     let s0 = entropy_real(&c0a, la);
-    println!("  区間 A = [{}..{}] (161 サイト), 基底状態の S_A = {:.4}", ia, ib, s0);
+    println!(
+        "  区間 A = [{}..{}] (161 サイト), 基底状態の S_A = {:.4}",
+        ia, ib, s0
+    );
     println!("  励起: 波数 k_F 近傍の粒子-正孔波束 (回転角 α), 中心 x_c を掃引\n");
     // モジュラー重み β(x) (円周 L 上の区間)
     let lf = n as f64;
@@ -199,7 +219,7 @@ fn main() {
         (lf / std::f64::consts::PI) * s1 * s2 / s12
     };
     let vf = 2.0 * (std::f64::consts::PI * nocc as f64 / n as f64).sin(); // = 2
-    // 波束を作って δC を返す
+                                                                          // 波束を作って δC を返す
     let make_dc = |alpha: f64, xc: f64| -> (Vec<f64>, Vec<f64>, f64) {
         // 正孔: 占有側 j∈[80,100] 中心 92 / 粒子: 空側 j∈[101,122] 中心 110, σ=5
         let (jh, jp, sig) = (92.0, 110.0, 5.0);
@@ -306,7 +326,10 @@ fn main() {
             }
         }
         let (icpt, sl) = linfit(&kcft_all, &kx_all);
-        println!("   => 厳密核 vs CFT 形の回帰: 勾配 {:.3} (理想 1), 切片 {:.3}", sl, icpt);
+        println!(
+            "   => 厳密核 vs CFT 形の回帰: 勾配 {:.3} (理想 1), 切片 {:.3}",
+            sl, icpt
+        );
         println!("      核は基底状態だけから計算した。どこにも温度を入れていないのに、");
         println!("      区間の縁で温度∞ (β→0)、中央で低温という Rindler 型の熱構造が現れる。");
     }
@@ -395,7 +418,11 @@ fn main() {
     println!(
         "  => δS = δ⟨K⟩(厳密核) の平均比 {:.4} (第一法則の予言 1)  {}",
         mean_r,
-        if (mean_r - 1.0).abs() < 0.05 { "[PASS]" } else { "[FAIL]" }
+        if (mean_r - 1.0).abs() < 0.05 {
+            "[PASS]"
+        } else {
+            "[FAIL]"
+        }
     );
     // 線形性 (ε スケーリング) チェック
     {
@@ -410,7 +437,10 @@ fn main() {
             }
             v2.push(entropy_real(&ca, la2) - s0b);
         }
-        println!("  線形応答の確認: δS(ε=0.02)/δS(ε=0.005) = {:.2} (線形なら 4.00)", v2[1] / v2[0]);
+        println!(
+            "  線形応答の確認: δS(ε=0.02)/δS(ε=0.005) = {:.2} (線形なら 4.00)",
+            v2[1] / v2[0]
+        );
     }
 
     // ---- [2c] 有限の励起では等式が不等式になる (相対エントロピー = 一般化 Bekenstein 束縛) ----
@@ -434,11 +464,17 @@ fn main() {
         dk *= two_pi / vf;
         println!(
             "   x_c={}: 注入エネルギー={:.4}, δS={:+.4}, δ⟨K⟩={:+.3} → S_rel={:.3} ≥ 0 ✓",
-            xc, de, ds, dk, dk - ds
+            xc,
+            de,
+            ds,
+            dk,
+            dk - ds
         );
     }
     println!("   (1 個の量子は「無限小の状態変化」ではないので等式でなく正値性が残る。");
-    println!("    これは「領域のエネルギーがもつれ得る情報量を制限する」Bekenstein 型束縛の顔である)");
+    println!(
+        "    これは「領域のエネルギーがもつれ得る情報量を制限する」Bekenstein 型束縛の顔である)"
+    );
 
     println!("\n結論: [2a] 熱をどこにも仮定していないのに、真空を区間に制限しただけで");
     println!("      局所温度構造 (モジュラー核 πβ(x)) が現れ、[2b] もつれの変化はエネルギー変化の");

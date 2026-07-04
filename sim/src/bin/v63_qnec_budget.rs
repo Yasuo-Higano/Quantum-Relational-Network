@@ -97,25 +97,54 @@ fn sweep(case: &Case, standing: bool) -> Sweep {
         let mut pim = vec![0.0; n];
         let (mut nh, mut np) = (0.0, 0.0);
         // 右向き成分 (＋ standing なら鏡像の左向き成分)
-        let add_window = |lo: i64, hi: i64, ctr: f64, re: &mut Vec<f64>, im: &mut Vec<f64>, nrm: &mut f64| {
-            for j in lo..=hi {
-                let wj = (-((j as f64 - ctr) * (j as f64 - ctr)) / (2.0 * sig * sig)).exp();
-                *nrm += wj * wj;
-                for x in 0..n {
-                    let ph = two_pi * j as f64 * (x as f64 - case.xc) / n as f64;
-                    re[x] += wj * ph.cos();
-                    im[x] += wj * ph.sin();
+        let add_window =
+            |lo: i64, hi: i64, ctr: f64, re: &mut Vec<f64>, im: &mut Vec<f64>, nrm: &mut f64| {
+                for j in lo..=hi {
+                    let wj = (-((j as f64 - ctr) * (j as f64 - ctr)) / (2.0 * sig * sig)).exp();
+                    *nrm += wj * wj;
+                    for x in 0..n {
+                        let ph = two_pi * j as f64 * (x as f64 - case.xc) / n as f64;
+                        re[x] += wj * ph.cos();
+                        im[x] += wj * ph.sin();
+                    }
                 }
-            }
-        };
+            };
         let (jh, jp) = (jq as i64 - 8, jq as i64 + 9);
-        add_window(jq as i64 - 20, jq as i64, jh as f64, &mut hre, &mut him, &mut nh);
-        add_window(jq as i64 + 1, jq as i64 + 22, jp as f64, &mut pre, &mut pim, &mut np);
+        add_window(
+            jq as i64 - 20,
+            jq as i64,
+            jh as f64,
+            &mut hre,
+            &mut him,
+            &mut nh,
+        );
+        add_window(
+            jq as i64 + 1,
+            jq as i64 + 22,
+            jp as f64,
+            &mut pre,
+            &mut pim,
+            &mut np,
+        );
         if standing {
             // 鏡像モード (k → −k): j → n − j
             let ni = n as i64;
-            add_window(ni - jq as i64, ni - jq as i64 + 20, (ni - jq as i64 + 8) as f64, &mut hre, &mut him, &mut nh);
-            add_window(ni - jq as i64 - 22, ni - jq as i64 - 1, (ni - jq as i64 - 9) as f64, &mut pre, &mut pim, &mut np);
+            add_window(
+                ni - jq as i64,
+                ni - jq as i64 + 20,
+                (ni - jq as i64 + 8) as f64,
+                &mut hre,
+                &mut him,
+                &mut nh,
+            );
+            add_window(
+                ni - jq as i64 - 22,
+                ni - jq as i64 - 1,
+                (ni - jq as i64 - 9) as f64,
+                &mut pre,
+                &mut pim,
+                &mut np,
+            );
         }
         let (nh, np) = ((nh * n as f64).sqrt(), (np * n as f64).sqrt());
         for x in 0..n {
@@ -226,7 +255,11 @@ fn sweep(case: &Case, standing: bool) -> Sweep {
     }
     // ---- 共動する光的変形 (x − v_F t = 一定): カイラルなら ΔS 凍結 ----
     // (掃引と独立に 4 点で評価)
-    Sweep { svals, tmm, chirality: chir }
+    Sweep {
+        svals,
+        tmm,
+        chirality: chir,
+    }
 }
 
 /// 共動変形での ΔS (波束寄与) の変動幅
@@ -291,24 +324,53 @@ fn sweep_state_at(case: &Case, standing: bool) -> impl Fn(f64) -> (Vec<f64>, Vec
     let mut pim = vec![0.0; n];
     let (mut nh, mut np) = (0.0, 0.0);
     {
-        let add_window = |lo: i64, hi: i64, ctr: f64, re: &mut Vec<f64>, im: &mut Vec<f64>, nrm: &mut f64| {
-            for j in lo..=hi {
-                let wj = (-((j as f64 - ctr) * (j as f64 - ctr)) / (2.0 * sig * sig)).exp();
-                *nrm += wj * wj;
-                for x in 0..n {
-                    let ph = two_pi * j as f64 * (x as f64 - case.xc) / n as f64;
-                    re[x] += wj * ph.cos();
-                    im[x] += wj * ph.sin();
+        let add_window =
+            |lo: i64, hi: i64, ctr: f64, re: &mut Vec<f64>, im: &mut Vec<f64>, nrm: &mut f64| {
+                for j in lo..=hi {
+                    let wj = (-((j as f64 - ctr) * (j as f64 - ctr)) / (2.0 * sig * sig)).exp();
+                    *nrm += wj * wj;
+                    for x in 0..n {
+                        let ph = two_pi * j as f64 * (x as f64 - case.xc) / n as f64;
+                        re[x] += wj * ph.cos();
+                        im[x] += wj * ph.sin();
+                    }
                 }
-            }
-        };
+            };
         let (jh, jp) = (jq as i64 - 8, jq as i64 + 9);
-        add_window(jq as i64 - 20, jq as i64, jh as f64, &mut hre, &mut him, &mut nh);
-        add_window(jq as i64 + 1, jq as i64 + 22, jp as f64, &mut pre, &mut pim, &mut np);
+        add_window(
+            jq as i64 - 20,
+            jq as i64,
+            jh as f64,
+            &mut hre,
+            &mut him,
+            &mut nh,
+        );
+        add_window(
+            jq as i64 + 1,
+            jq as i64 + 22,
+            jp as f64,
+            &mut pre,
+            &mut pim,
+            &mut np,
+        );
         if standing {
             let ni = n as i64;
-            add_window(ni - jq as i64, ni - jq as i64 + 20, (ni - jq as i64 + 8) as f64, &mut hre, &mut him, &mut nh);
-            add_window(ni - jq as i64 - 22, ni - jq as i64 - 1, (ni - jq as i64 - 9) as f64, &mut pre, &mut pim, &mut np);
+            add_window(
+                ni - jq as i64,
+                ni - jq as i64 + 20,
+                (ni - jq as i64 + 8) as f64,
+                &mut hre,
+                &mut him,
+                &mut nh,
+            );
+            add_window(
+                ni - jq as i64 - 22,
+                ni - jq as i64 - 1,
+                (ni - jq as i64 - 9) as f64,
+                &mut pre,
+                &mut pim,
+                &mut np,
+            );
         }
     }
     let (nh, np) = ((nh * n as f64).sqrt(), (np * n as f64).sqrt());
@@ -416,7 +478,13 @@ fn gaps(sw: &Sweep, nsteps: usize) -> Gaps {
         errd_b = errd_b.max((spp2 - spp4).abs() / 3.0);
         errd_s = errd_s.max((spp2 - spp4).abs() / 3.0 + 12.0 * sp2.abs() * (sp2 - sp4).abs() / 3.0);
     }
-    Gaps { basic, strong, argmin_basic: argmin, err_deriv_basic: errd_b, err_deriv_strong: errd_s }
+    Gaps {
+        basic,
+        strong,
+        argmin_basic: argmin,
+        err_deriv_basic: errd_b,
+        err_deriv_strong: errd_s,
+    }
 }
 
 fn pass(ok: bool) -> &'static str {
@@ -494,42 +562,104 @@ fn main() {
     };
     let tol_basic = last.err_deriv_basic + err_fs_basic + err_round;
     let tol_strong = last.err_deriv_strong + err_fs_strong + err_round;
-    println!("  微分打ち切り (Richardson):  基本 {:.2e} / 強形 {:.2e}", last.err_deriv_basic, last.err_deriv_strong);
-    println!("  有限サイズ (N=302→402 差):  基本 {:.2e} / 強形 {:.2e}", err_fs_basic, err_fs_strong);
+    println!(
+        "  微分打ち切り (Richardson):  基本 {:.2e} / 強形 {:.2e}",
+        last.err_deriv_basic, last.err_deriv_strong
+    );
+    println!(
+        "  有限サイズ (N=302→402 差):  基本 {:.2e} / 強形 {:.2e}",
+        err_fs_basic, err_fs_strong
+    );
     println!("  丸め (±1e-13 ノイズ実測):    {:.2e}", err_round);
-    println!("  → tolerance:               基本 {:.2e} / 強形 {:.2e}", tol_basic, tol_strong);
+    println!(
+        "  → tolerance:               基本 {:.2e} / 強形 {:.2e}",
+        tol_basic, tol_strong
+    );
 
     // ---- 判定 ----
     println!("\n[判定] N=402");
     let ok_basic = last.basic > -tol_basic;
     let ok_strong = last.strong > -tol_strong;
-    println!("  基本 QNEC: min gap {:+.2e} > -tol({:.2e})  {}", last.basic, tol_basic, pass(ok_basic));
-    println!("  強形 QNEC: min gap {:+.2e} > -tol({:.2e})  {}", last.strong, tol_strong, pass(ok_strong));
+    println!(
+        "  基本 QNEC: min gap {:+.2e} > -tol({:.2e})  {}",
+        last.basic,
+        tol_basic,
+        pass(ok_basic)
+    );
+    println!(
+        "  強形 QNEC: min gap {:+.2e} > -tol({:.2e})  {}",
+        last.strong,
+        tol_strong,
+        pass(ok_strong)
+    );
     // N 収束: |min gap| が N とともに縮む (真値 0 近傍への収束) か、符号が安定して正か
-    let conv_basic = rows.windows(2).all(|w| w[1].1.basic.abs() <= w[0].1.basic.abs() + 1e-6) || rows.iter().all(|r| r.1.basic > 0.0);
+    let conv_basic = rows
+        .windows(2)
+        .all(|w| w[1].1.basic.abs() <= w[0].1.basic.abs() + 1e-6)
+        || rows.iter().all(|r| r.1.basic > 0.0);
     let sgaps: Vec<f64> = rows.iter().map(|r| r.1.strong).collect();
-    let conv_strong = sgaps.windows(2).all(|w| w[1] >= w[0] - 1e-6) || sgaps.iter().all(|&g| g > 0.0);
-    println!("  基本ギャップの N 単調性/正値: {:?}  {}", rows.iter().map(|r| format!("{:+.1e}", r.1.basic)).collect::<Vec<_>>(), pass(conv_basic));
-    println!("  強形ギャップの N 単調性/正値: {:?}  {}", sgaps.iter().map(|g| format!("{:+.1e}", g)).collect::<Vec<_>>(), pass(conv_strong));
+    let conv_strong =
+        sgaps.windows(2).all(|w| w[1] >= w[0] - 1e-6) || sgaps.iter().all(|&g| g > 0.0);
+    println!(
+        "  基本ギャップの N 単調性/正値: {:?}  {}",
+        rows.iter()
+            .map(|r| format!("{:+.1e}", r.1.basic))
+            .collect::<Vec<_>>(),
+        pass(conv_basic)
+    );
+    println!(
+        "  強形ギャップの N 単調性/正値: {:?}  {}",
+        sgaps
+            .iter()
+            .map(|g| format!("{:+.1e}", g))
+            .collect::<Vec<_>>(),
+        pass(conv_strong)
+    );
 
     // ---- 陰性対照: 非カイラル (定在波) ----
-    println!("\n[対照] 非カイラル (定在波) 波束 @N=302 — 予言: QNEC は成立し続けるが、共動凍結は壊れる");
+    println!(
+        "\n[対照] 非カイラル (定在波) 波束 @N=302 — 予言: QNEC は成立し続けるが、共動凍結は壊れる"
+    );
     let case = make_case(302);
     let sw_st = sweep(&case, true);
     let g_st = gaps(&sw_st, case.nsteps);
     let cv_ch = comoving_var(&case, false);
     let cv_st = comoving_var(&case, true);
-    println!("  カイラル度: カイラル {:+.3} / 定在波 {:+.3}", rows[1].2, sw_st.chirality);
-    println!("  共動変形での ΔS 変動: カイラル {:.2e} / 定在波 {:.2e} (比 {:.0}倍)", cv_ch, cv_st, cv_st / cv_ch.max(1e-300));
+    println!(
+        "  カイラル度: カイラル {:+.3} / 定在波 {:+.3}",
+        rows[1].2, sw_st.chirality
+    );
+    println!(
+        "  共動変形での ΔS 変動: カイラル {:.2e} / 定在波 {:.2e} (比 {:.0}倍)",
+        cv_ch,
+        cv_st,
+        cv_st / cv_ch.max(1e-300)
+    );
     let ok_ctrl_chir = sw_st.chirality.abs() < 0.1 && rows[1].2 > 0.9;
     let ok_ctrl_frozen = cv_st > 20.0 * cv_ch && cv_ch < 5e-3;
     let ok_ctrl_qnec = g_st.basic > -(g_st.err_deriv_basic + err_round + err_fs_basic);
-    println!("  => 対照のカイラル度 ≈ 0 (右向き波束は ≈ 1)  {}", pass(ok_ctrl_chir));
-    println!("  => 共動凍結はカイラル状態だけの性質 (対照で >20 倍壊れる)  {}", pass(ok_ctrl_frozen));
-    println!("  => 定在波でも QNEC 自体は成立 (min gap {:+.2e}) — 定理どおり  {}", g_st.basic, pass(ok_ctrl_qnec));
+    println!(
+        "  => 対照のカイラル度 ≈ 0 (右向き波束は ≈ 1)  {}",
+        pass(ok_ctrl_chir)
+    );
+    println!(
+        "  => 共動凍結はカイラル状態だけの性質 (対照で >20 倍壊れる)  {}",
+        pass(ok_ctrl_frozen)
+    );
+    println!(
+        "  => 定在波でも QNEC 自体は成立 (min gap {:+.2e}) — 定理どおり  {}",
+        g_st.basic,
+        pass(ok_ctrl_qnec)
+    );
 
     // ---- JSON artifact ----
-    let all_ok = ok_basic && ok_strong && conv_basic && conv_strong && ok_ctrl_chir && ok_ctrl_frozen && ok_ctrl_qnec;
+    let all_ok = ok_basic
+        && ok_strong
+        && conv_basic
+        && conv_strong
+        && ok_ctrl_chir
+        && ok_ctrl_frozen
+        && ok_ctrl_qnec;
     let j = Json::Obj(vec![
         ("claim_id".into(), Json::Str("QRN-QNEC-002".into())),
         ("reframed_claim".into(), Json::Str("離散・有限サイズの自由フェルミオン toy model における QNEC 型不等式の数値再現 (C1)".into())),
@@ -564,7 +694,9 @@ fn main() {
     println!("\n  機械可読な結果: {}", p);
 
     println!("\n総合判定: {}", pass(all_ok));
-    println!("\n結論: v4.1 の経験的 tolerance 2e-4 は、微分打ち切り+有限サイズ+丸めの predictable な");
+    println!(
+        "\n結論: v4.1 の経験的 tolerance 2e-4 は、微分打ち切り+有限サイズ+丸めの predictable な"
+    );
     println!("      予算に置き換えられた。強形の負ギャップは N とともに縮む離散化効果であり、");
     println!("      QNEC 型不等式は誤差予算の範囲で全 N で成立。カイラル状態固有の共動凍結は");
     println!("      対照 (定在波) で予言どおり壊れ、QNEC 自体は対照でも成立する (定理の頑健性)。");

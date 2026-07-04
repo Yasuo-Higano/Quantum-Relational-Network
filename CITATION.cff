@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "本リポジトリを引用する場合は以下を使ってください。"
+title: "Quantum Relational Network (QRN): 量子情報網理論の実行可能な計算アトラス"
+authors:
+  - family-names: "Higano"
+    given-names: "Yasuo"
+date-released: "2026-07-04"
+version: "7.0-dev"
+repository-code: "https://github.com/Yasuo-Higano/Quantum-Relational-Network"
+license: MIT
+abstract: >-
+  量子情報・創発時空・ゲージ制約・標準模型的スペクトルに関する既存理論・
+  toy model・制限付き全数探索を、外部依存なしの Rust で再現可能な計算体系
+  として整理した研究プログラム。全主張は claims.yml で 6 等級 (C0-C5) に
+  分類され、証拠と限界つきで機械検証される。
+keywords:
+  - quantum information
+  - emergent spacetime
+  - anomaly cancellation
+  - standard model
+  - reproducible research

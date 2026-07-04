@@ -22,10 +22,14 @@ fn entropy_real(c: &[f64], n: usize) -> f64 {
 
 fn main() {
     let n = 400usize;
-    println!("=== v3.3 エントロピック c 定理: RG 流 c: 1 → 0 (N={} 鎖, 厳密) ===\n", n);
+    println!(
+        "=== v3.3 エントロピック c 定理: RG 流 c: 1 → 0 (N={} 鎖, 厳密) ===\n",
+        n
+    );
     println!("模型: H = -Σ(c†c+h.c.) + m Σ(-1)^x c†c  (m=0 で c=1 の CFT, m>0 でギャップ)");
     println!("c関数: c(ℓ) = 3·[S(ℓ+2)-S(ℓ-2)] / [ln chord(ℓ+2) - ln chord(ℓ-2)]\n");
-    let chord = |l: f64| (n as f64 / std::f64::consts::PI) * (std::f64::consts::PI * l / n as f64).sin();
+    let chord =
+        |l: f64| (n as f64 / std::f64::consts::PI) * (std::f64::consts::PI * l / n as f64).sin();
     let mut all_curves: Vec<(f64, Vec<(f64, f64)>)> = Vec::new();
     for &m in &[0.0f64, 0.05, 0.15, 0.5] {
         // 単一粒子ハミルトニアン
@@ -85,8 +89,12 @@ fn main() {
     let c0: Vec<f64> = all_curves[0].1.iter().map(|p| p.1).collect();
     let c0max = c0.iter().cloned().fold(0.0f64, f64::max);
     let c0min = c0.iter().cloned().fold(2.0f64, f64::min);
-    println!("\n  [1] UV 固定点 (m=0): c = {:.3}..{:.3} — 中心電荷 1 のプラトー  {}",
-        c0min, c0max, pass((c0max - 1.0).abs() < 0.05 && (c0min - 1.0).abs() < 0.05));
+    println!(
+        "\n  [1] UV 固定点 (m=0): c = {:.3}..{:.3} — 中心電荷 1 のプラトー  {}",
+        c0min,
+        c0max,
+        pass((c0max - 1.0).abs() < 0.05 && (c0min - 1.0).abs() < 0.05)
+    );
     // 検定 2: m>0 で単調非増加
     let mut mono = true;
     for (m, curve) in all_curves.iter().skip(1) {
@@ -120,7 +128,11 @@ fn main() {
             println!("      {:4.1}    {:.4}      {:.4}", x, c1, c2);
         }
     }
-    println!("      => 最大差 {:.3} (普遍スケーリング関数に収束)  {}", maxdiff, pass(maxdiff < 0.06));
+    println!(
+        "      => 最大差 {:.3} (普遍スケーリング関数に収束)  {}",
+        maxdiff,
+        pass(maxdiff < 0.06)
+    );
     println!("\n結論: RG 流は c(UV)=1 → c(IR)=0 へ単調に流れ、途中経過は普遍関数 f(ℓm) に乗る。");
     println!("      Casini–Huerta の証明はこの単調性が強劣加法性 (情報の一般定理) の帰結である");
     println!("      ことを示す。時間の矢 (v1.1)・データ処理 (v2.1)・RG (v3.3) — 物理の 3 つの");

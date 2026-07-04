@@ -67,33 +67,41 @@ fn parse(text: &str) -> Result<Vec<Claim>, String> {
             mode = Mode::Top;
         } else if let Some(rest) = line.strip_prefix("    ") {
             // 4 スペース: ブロック内要素
-            let cur = claims.last_mut().ok_or(format!("{}行目: エントリ外の要素", lno))?;
+            let cur = claims
+                .last_mut()
+                .ok_or(format!("{}行目: エントリ外の要素", lno))?;
             match mode {
                 Mode::Limitations => {
-                    let item = rest
-                        .strip_prefix("- ")
-                        .ok_or(format!("{}行目: limitations の要素は '- ' で始まる必要", lno))?;
+                    let item = rest.strip_prefix("- ").ok_or(format!(
+                        "{}行目: limitations の要素は '- ' で始まる必要",
+                        lno
+                    ))?;
                     cur.limitations.push(unquote(item));
                 }
                 Mode::Evidence => {
-                    let (k, v) = split_kv(rest).ok_or(format!("{}行目: evidence 内の書式エラー", lno))?;
+                    let (k, v) =
+                        split_kv(rest).ok_or(format!("{}行目: evidence 内の書式エラー", lno))?;
                     cur.evidence.push((k, v));
                 }
                 Mode::Inputs => {
-                    let (k, v) = split_kv(rest).ok_or(format!("{}行目: inputs 内の書式エラー", lno))?;
+                    let (k, v) =
+                        split_kv(rest).ok_or(format!("{}行目: inputs 内の書式エラー", lno))?;
                     cur.inputs.push((k, v));
                 }
                 Mode::Top => return Err(format!("{}行目: ブロック外の 4 スペース行", lno)),
             }
         } else if let Some(rest) = line.strip_prefix("  ") {
-            let cur = claims.last_mut().ok_or(format!("{}行目: エントリ外のフィールド", lno))?;
+            let cur = claims
+                .last_mut()
+                .ok_or(format!("{}行目: エントリ外のフィールド", lno))?;
             match rest {
                 "evidence:" => mode = Mode::Evidence,
                 "inputs:" => mode = Mode::Inputs,
                 "limitations:" => mode = Mode::Limitations,
                 _ => {
                     mode = Mode::Top;
-                    let (k, v) = split_kv(rest).ok_or(format!("{}行目: フィールドの書式エラー", lno))?;
+                    let (k, v) =
+                        split_kv(rest).ok_or(format!("{}行目: フィールドの書式エラー", lno))?;
                     match k.as_str() {
                         "version" => cur.version = v,
                         "level" => cur.level = v,
@@ -116,7 +124,9 @@ fn id_ok(id: &str) -> bool {
     parts.len() == 3
         && parts[0] == "QRN"
         && !parts[1].is_empty()
-        && parts[1].chars().all(|c| c.is_ascii_uppercase() || c.is_ascii_digit())
+        && parts[1]
+            .chars()
+            .all(|c| c.is_ascii_uppercase() || c.is_ascii_digit())
         && parts[2].len() == 3
         && parts[2].chars().all(|c| c.is_ascii_digit())
 }
@@ -240,11 +250,18 @@ fn main() {
             .iter()
             .flat_map(|c| c.evidence.iter())
             .filter(|(k, _)| k == "code")
-            .filter_map(|(_, p)| Path::new(p).file_name().map(|f| f.to_string_lossy().to_string()))
+            .filter_map(|(_, p)| {
+                Path::new(p)
+                    .file_name()
+                    .map(|f| f.to_string_lossy().to_string())
+            })
             .collect();
         let missing: Vec<&String> = bins.iter().filter(|b| !covered.contains(*b)).collect();
         if missing.is_empty() {
-            println!("[6] バイナリ被覆: 全 {} 本が台帳から参照されている  [PASS]", bins.len());
+            println!(
+                "[6] バイナリ被覆: 全 {} 本が台帳から参照されている  [PASS]",
+                bins.len()
+            );
         } else {
             println!("[6] バイナリ被覆: 未参照 {:?}  [FAIL]", missing);
             nfail += 1;

@@ -114,7 +114,10 @@ fn main() {
             pass(ok)
         );
     }
-    println!("  => 高温(β小)で古典値 kT に、低温で量子零点揺らぎ 1/2 に収束 {}\n", pass(all_pass));
+    println!(
+        "  => 高温(β小)で古典値 kT に、低温で量子零点揺らぎ 1/2 に収束 {}\n",
+        pass(all_pass)
+    );
 
     // ---- B: 基底エネルギー (ビリアル: E = ⟨V⟩ + ⟨xV'⟩/2 = ⟨x²⟩ for HO) ----
     println!("[B] 基底エネルギー E0 (β=32, ビリアル定理)");
@@ -151,7 +154,10 @@ fn main() {
         "  厳密対角化: E0={:.5}, E1={:.5}, E2={:.5} → 分裂 ΔE = {:.5}",
         lv[0], lv[1], lv[2], gap_exact
     );
-    println!("  (井戸の振動量子 ω = √(8η²) = {:.3} に比べ ΔE が桁違いに小さい = 障壁下の禁止過程)", (8.0 * eta * eta).sqrt());
+    println!(
+        "  (井戸の振動量子 ω = √(8η²) = {:.3} に比べ ΔE が桁違いに小さい = 障壁下の禁止過程)",
+        (8.0 * eta * eta).sqrt()
+    );
 
     let beta: f64 = 24.0;
     let dtau_dw: f64 = 0.05;
@@ -195,7 +201,10 @@ fn main() {
     }
     let (gap_mc, gap_err) = mean_err(&gaps);
     let kink_density = kinks as f64 / (nm as f64 * n as f64);
-    println!("  PIMC: β={}, Δτ={}, 経路上のキンク(井戸間の壁)密度 = {:.4} /サイト", beta, dtau_dw, kink_density);
+    println!(
+        "  PIMC: β={}, Δτ={}, 経路上のキンク(井戸間の壁)密度 = {:.4} /サイト",
+        beta, dtau_dw, kink_density
+    );
     println!(
         "  相関関数 C(τ)~cosh(ΔE(β/2-τ)) から: ΔE(MC) = {:.4} ± {:.4}  (厳密 {:.4})  {}",
         gap_mc,
@@ -203,7 +212,9 @@ fn main() {
         gap_exact,
         pass((gap_mc - gap_exact).abs() < 5.0 * gap_err.max(0.01))
     );
-    println!("  => 古典的には縮退した二つの真空が、虚時間の「キンク気体」(インスタントン) で混ざり");
+    println!(
+        "  => 古典的には縮退した二つの真空が、虚時間の「キンク気体」(インスタントン) で混ざり"
+    );
     println!("     エネルギー分裂が生じる。トンネル = ユークリッド統計力学の位相欠陥。");
     println!("\n結論: 量子力学と統計力学は Wick 回転で厳密に同型 (時間 ↔ 逆温度)。");
     println!("      これは v0.5 以降の「時間・温度・エンタングルメントの三位一体」の最初の証拠。");

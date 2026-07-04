@@ -56,7 +56,9 @@ fn count_relations(pts: &[Vec<f64>]) -> u64 {
             if dt <= 0.0 {
                 continue;
             }
-            let dr2: f64 = (1..pts[i].len()).map(|k| (pts[j][k] - pts[i][k]).powi(2)).sum();
+            let dr2: f64 = (1..pts[i].len())
+                .map(|k| (pts[j][k] - pts[i][k]).powi(2))
+                .sum();
             if dt * dt >= dr2 {
                 cnt += 1;
             }
@@ -79,7 +81,8 @@ fn main() {
             dims.push(dim_from_r(r));
         }
         let mean: f64 = dims.iter().sum::<f64>() / dims.len() as f64;
-        let sd: f64 = (dims.iter().map(|x| (x - mean).powi(2)).sum::<f64>() / (dims.len() - 1) as f64).sqrt();
+        let sd: f64 =
+            (dims.iter().map(|x| (x - mean).powi(2)).sum::<f64>() / (dims.len() - 1) as f64).sqrt();
         let pts = sprinkle(2000, d, &mut rng);
         let r = count_relations(&pts) as f64 / (2000.0 * 1999.0);
         println!(
@@ -93,7 +96,9 @@ fn main() {
         );
     }
     println!("  => 座標も計量も使わず、「AはBの過去か?」の表だけで次元が測れる。");
-    println!("     時空の幾何情報は (因果順序, 要素数) に完全に含まれる (Malament の定理 + 体積=数)。\n");
+    println!(
+        "     時空の幾何情報は (因果順序, 要素数) に完全に含まれる (Malament の定理 + 体積=数)。\n"
+    );
 
     println!("[B] ローレンツ不変性: sprinkling をブーストしても統計は不変か (d=2, v=0.6c)");
     {
@@ -118,13 +123,30 @@ fn main() {
         let s1 = sub(&boosted);
         let rr0 = count_relations(&s0) as f64 / (s0.len() as f64 * (s0.len() - 1) as f64);
         let rr1 = count_relations(&s1) as f64 / (s1.len() as f64 * (s1.len() - 1) as f64);
-        println!("  静止系の小ダイヤモンド: N={}, r={:.4} → d={:.2}", s0.len(), rr0, dim_from_r(rr0));
-        println!("  ブースト系の同領域   : N={}, r={:.4} → d={:.2}", s1.len(), rr1, dim_from_r(rr1));
-        println!("  (因果関係そのものはブーストで厳密に不変: r_full={:.4} → {:.4})", r0,
-            count_relations(&boosted) as f64 / (n as f64 * (n - 1) as f64));
+        println!(
+            "  静止系の小ダイヤモンド: N={}, r={:.4} → d={:.2}",
+            s0.len(),
+            rr0,
+            dim_from_r(rr0)
+        );
+        println!(
+            "  ブースト系の同領域   : N={}, r={:.4} → d={:.2}",
+            s1.len(),
+            rr1,
+            dim_from_r(rr1)
+        );
+        println!(
+            "  (因果関係そのものはブーストで厳密に不変: r_full={:.4} → {:.4})",
+            r0,
+            count_relations(&boosted) as f64 / (n as f64 * (n - 1) as f64)
+        );
         println!("  => 正方格子なら特定の慣性系が最初から刻印されるが、ポアソン撒布には");
         println!("     どの方向も刻印されていない。「離散 かつ ローレンツ不変」は両立する。");
     }
-    println!("\n結論: 時空の候補となる最小データは (集合, 半順序)。距離・次元・体積は導出量である。");
-    println!("      ただし因果集合だけでは量子重ね合わせがない — 量子データ(もつれ)が必要 (→v0.7)。");
+    println!(
+        "\n結論: 時空の候補となる最小データは (集合, 半順序)。距離・次元・体積は導出量である。"
+    );
+    println!(
+        "      ただし因果集合だけでは量子重ね合わせがない — 量子データ(もつれ)が必要 (→v0.7)。"
+    );
 }

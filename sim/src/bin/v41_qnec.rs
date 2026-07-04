@@ -36,7 +36,10 @@ fn main() {
     let nocc = 151usize; // 閉殻半充填
     let two_pi = 2.0 * std::f64::consts::PI;
     let vf = 2.0f64;
-    println!("=== v4.1 QNEC: 光的変形に沿うエントロピーとエネルギー (N={}, 厳密) ===\n", n);
+    println!(
+        "=== v4.1 QNEC: 光的変形に沿うエントロピーとエネルギー (N={}, 厳密) ===\n",
+        n
+    );
 
     // 基底状態相関 (実)
     let c0 = |d: isize| -> f64 {
@@ -201,8 +204,14 @@ fn main() {
             chir = (sh, sj);
         }
     }
-    println!("[較正] 波束の全エネルギー Σh = {:.4}, 全エネルギー流 Σj = {:.4}", chir.0, chir.1);
-    println!("       比 Σj/(v_F·Σh) = {:.3} (右向きカイラルなら +1)\n", chir.1 / (vf * chir.0));
+    println!(
+        "[較正] 波束の全エネルギー Σh = {:.4}, 全エネルギー流 Σj = {:.4}",
+        chir.0, chir.1
+    );
+    println!(
+        "       比 Σj/(v_F·Σh) = {:.3} (右向きカイラルなら +1)\n",
+        chir.1 / (vf * chir.0)
+    );
 
     // ---- QNEC 検定 (同パリティ差分 Δσ=2) ----
     println!("[A] 光的変形 (x+v_Ft=const, 波束が端点を横切る) に沿う QNEC");
@@ -222,15 +231,27 @@ fn main() {
         if m % 4 == 0 {
             println!(
                 "  {:3}  {:.5}  {:+.5}  {:+.5}  {:+.5}  {:+.5}    {:+.5}",
-                m, svals[m], spp, 6.0 * sp * sp, rhs, gap_b, gap_s
+                m,
+                svals[m],
+                spp,
+                6.0 * sp * sp,
+                rhs,
+                gap_b,
+                gap_s
             );
         }
     }
     let tol = 2e-4;
-    println!("\n  => 基本 QNEC (2πT₋₋ - S'' ≥ 0):   最小ギャップ {:+.5}  {}",
-        min_gap_basic, pass(min_gap_basic > -tol));
-    println!("     強い QNEC (- 6(S')² も含む):    最小ギャップ {:+.5}  {}",
-        min_gap_strong, pass(min_gap_strong > -tol));
+    println!(
+        "\n  => 基本 QNEC (2πT₋₋ - S'' ≥ 0):   最小ギャップ {:+.5}  {}",
+        min_gap_basic,
+        pass(min_gap_basic > -tol)
+    );
+    println!(
+        "     強い QNEC (- 6(S')² も含む):    最小ギャップ {:+.5}  {}",
+        min_gap_strong,
+        pass(min_gap_strong > -tol)
+    );
 
     // ---- 対照: 波束と並走する光的変形 (x - v_F t = const) — T₊₊ ≈ 0, S も不変のはず ----
     println!("\n[B] 並走する光的変形 (x-v_Ft=const): カイラル状態は静止して見える");
@@ -274,8 +295,11 @@ fn main() {
         dsmax = dsmax.max((ds - ds0).abs());
         print!("{:.5}  ", ds);
     }
-    println!("\n  => 並走系での ΔS の変動 {:.1e} (カイラル状態は x-v_Ft の関数 = 凍結)  {}",
-        dsmax, pass(dsmax < 5e-3));
+    println!(
+        "\n  => 並走系での ΔS の変動 {:.1e} (カイラル状態は x-v_Ft の関数 = 凍結)  {}",
+        dsmax,
+        pass(dsmax < 5e-3)
+    );
     println!("\n結論: 量子論では局所エネルギーは負にもなれるが、「情報の増え方の加速度 S''」が");
     println!("      常にエネルギー流でキャップされる (QNEC)。単調性原理 M の局所版が成立し、");
     println!("      これが一般化第二法則 (BH面積+外部エントロピーの単調性) の証明の要になる。");

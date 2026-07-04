@@ -47,7 +47,9 @@ impl Dt {
         for (t, tv) in self.tri.iter().enumerate() {
             for i in 0..3 {
                 let (a, b) = (tv[(i + 1) % 3], tv[(i + 2) % 3]);
-                map.entry(ekey(a, b)).or_default().push((t as u32, i as u32));
+                map.entry(ekey(a, b))
+                    .or_default()
+                    .push((t as u32, i as u32));
                 self.edges.insert(ekey(a, b));
             }
         }
@@ -399,7 +401,10 @@ fn main() {
             acc = dt.sweep_flips();
         }
         dt.validate();
-        println!("  N₂={} (熱化後 flip 受理率 {:.2}) — オイラー検査/整合性 OK", n2, acc);
+        println!(
+            "  N₂={} (熱化後 flip 受理率 {:.2}) — オイラー検査/整合性 OK",
+            n2, acc
+        );
         // 測定 (配位を替えて平均): 幾何は 12 配位、d_s は最初の 2 配位
         let mut dhs = Vec::new();
         let mut dss = Vec::new();
@@ -499,8 +504,12 @@ fn main() {
                 let pt = 0.5 * (p[t] + p[t + 1]) - 1.0 / nt as f64;
                 print!("{:8.4}", pt * t as f64);
             }
-            println!("\n    d_s(t)=2-2/ln t の予言: t=64:{:.2}, t=256:{:.2}, t=1000:{:.2}",
-                2.0 - 2.0 / (64f64).ln(), 2.0 - 2.0 / (256f64).ln(), 2.0 - 2.0 / (1000f64).ln());
+            println!(
+                "\n    d_s(t)=2-2/ln t の予言: t=64:{:.2}, t=256:{:.2}, t=1000:{:.2}",
+                2.0 - 2.0 / (64f64).ln(),
+                2.0 - 2.0 / (256f64).ln(),
+                2.0 - 2.0 / (1000f64).ln()
+            );
         }
         println!();
     }
@@ -524,6 +533,8 @@ fn main() {
     }
     println!("  (厳密解は d_H=4。これらのサイズでは下から接近する — 既知の強い有限サイズ効果)");
     println!("\n結論: 量子的に揺らぐ 2D 幾何は、体積で測ると ~4 次元 (d_H→4)、拡散で測ると");
-    println!("      2 次元 (d_s=2) のフラクタルである。「次元」は基本量ではなく測り方に依存する創発量。");
+    println!(
+        "      2 次元 (d_s=2) のフラクタルである。「次元」は基本量ではなく測り方に依存する創発量。"
+    );
     println!("      (4D CDT では d_s が大スケール 4 → プランク域 2 へ走る — 次元の走行は量子重力の一般的予言)");
 }

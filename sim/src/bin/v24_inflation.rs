@@ -22,8 +22,10 @@ fn evolve(k: f64, c: f64, eta0: f64, eta1: f64) -> (C64, C64) {
         C64::expi(-x0).scale(sq)
     };
     let mut u = if (c - 2.0).abs() < 1e-12 {
-        (C64::expi(-x0) * (C64::new(0.0, -k) * C64::new(1.0, -1.0 / x0) + C64::new(0.0, 1.0 / (k * eta0 * eta0))))
-            .scale(sq)
+        (C64::expi(-x0)
+            * (C64::new(0.0, -k) * C64::new(1.0, -1.0 / x0)
+                + C64::new(0.0, 1.0 / (k * eta0 * eta0))))
+        .scale(sq)
     } else {
         (C64::expi(-x0) * C64::new(0.0, -k)).scale(sq)
     };
@@ -32,8 +34,14 @@ fn evolve(k: f64, c: f64, eta0: f64, eta1: f64) -> (C64, C64) {
     while eta < eta1 {
         let h = (0.015 / k).min((-eta) / 400.0).min(eta1 - eta);
         let k1 = (u, acc(v, eta));
-        let k2 = (u + k1.1.scale(0.5 * h), acc(v + k1.0.scale(0.5 * h), eta + 0.5 * h));
-        let k3 = (u + k2.1.scale(0.5 * h), acc(v + k2.0.scale(0.5 * h), eta + 0.5 * h));
+        let k2 = (
+            u + k1.1.scale(0.5 * h),
+            acc(v + k1.0.scale(0.5 * h), eta + 0.5 * h),
+        );
+        let k3 = (
+            u + k2.1.scale(0.5 * h),
+            acc(v + k2.0.scale(0.5 * h), eta + 0.5 * h),
+        );
         let k4 = (u + k3.1.scale(h), acc(v + k3.0.scale(h), eta + h));
         v = v + (k1.0 + k2.0.scale(2.0) + k3.0.scale(2.0) + k4.0).scale(h / 6.0);
         u = u + (k1.1 + k2.1.scale(2.0) + k3.1.scale(2.0) + k4.1).scale(h / 6.0);
@@ -54,15 +62,28 @@ fn main() {
         let exact = (1.0 / (2.0 * k)) * (1.0 + 1.0 / (x * x));
         let rel = ((v.norm2() - exact) / exact).abs();
         max_rel = max_rel.max(rel);
-        println!("  k={:5.1}: |v|²(数値)={:.6e}  厳密={:.6e}  相対誤差 {:.1e}", k, v.norm2(), exact, rel);
+        println!(
+            "  k={:5.1}: |v|²(数値)={:.6e}  厳密={:.6e}  相対誤差 {:.1e}",
+            k,
+            v.norm2(),
+            exact,
+            rel
+        );
     }
-    println!("  => 最大相対誤差 {:.1e}  {}\n", max_rel, pass(max_rel < 1e-6));
+    println!(
+        "  => 最大相対誤差 {:.1e}  {}\n",
+        max_rel,
+        pass(max_rel < 1e-6)
+    );
 
     // ---- [B] スケール不変スペクトル ----
     // 全モードを「インフレーション終了」の共通時刻 η_end で評価する (物理的に正しい比較。
     // 固定 kη での評価は自己相似で任意の ν が平坦に見えてしまう)
     let eta_end = -0.002f64;
-    println!("[B] スペクトル (共通の終了時刻 η_end={} で評価): P_δφ(k)/(H/2π)²", eta_end);
+    println!(
+        "[B] スペクトル (共通の終了時刻 η_end={} で評価): P_δφ(k)/(H/2π)²",
+        eta_end
+    );
     println!("  k        P/(H/2π)²");
     let mut lnk = Vec::new();
     let mut lnp = Vec::new();
@@ -75,8 +96,11 @@ fn main() {
         lnp.push(ratio.ln());
     }
     let (_, ns1) = linfit(&lnk, &lnp);
-    println!("  => 傾き n_s - 1 = {:+.5} (dS の理論値 0: スケール不変)  {}\n",
-        ns1, pass(ns1.abs() < 2e-3));
+    println!(
+        "  => 傾き n_s - 1 = {:+.5} (dS の理論値 0: スケール不変)  {}\n",
+        ns1,
+        pass(ns1.abs() < 2e-3)
+    );
 
     // ---- [C] 準 de Sitter: 赤い傾き ----
     println!("[C] 準 dS (a''/a = (ν²-¼)/η², ν = 1.55): 理論 n_s-1 = 3-2ν = -0.10");
@@ -91,8 +115,12 @@ fn main() {
         lnp.push((2.0 * k.powi(3) * v.norm2() * eta_end * eta_end).ln());
     }
     let (_, ns1) = linfit(&lnk, &lnp);
-    println!("  数値: n_s - 1 = {:+.4}  (理論 {:+.4})  {}", ns1, 3.0 - 2.0 * nu,
-        pass((ns1 - (3.0 - 2.0 * nu)).abs() < 5e-3));
+    println!(
+        "  数値: n_s - 1 = {:+.4}  (理論 {:+.4})  {}",
+        ns1,
+        3.0 - 2.0 * nu,
+        pass((ns1 - (3.0 - 2.0 * nu)).abs() < 5e-3)
+    );
     println!("  観測 (Planck 2018): n_s = 0.9649 ± 0.0042 — わずかに赤い = 膨張がわずかに減速");
     println!("  => 10^26 倍の引き伸ばしの「わずかな非一様さ」が、CMB の傾きとして今も見えている\n");
 
@@ -100,8 +128,11 @@ fn main() {
     println!("[D] スクイージング: 真空ゆらぎとの振幅比 √(2k)|v| の成長 (k=1, dS)");
     for &etaf in &[-2.0f64, -0.5, -0.1, -0.02] {
         let (v, _) = evolve(1.0, 2.0, -100.0, etaf);
-        println!("  kη = {:5.2}: √(2k)|v| = {:8.2} (ホライズン外で ∝ 1/|kη| に凍結・増幅)",
-            etaf, (2.0f64 * v.norm2()).sqrt());
+        println!(
+            "  kη = {:5.2}: √(2k)|v| = {:8.2} (ホライズン外で ∝ 1/|kη| に凍結・増幅)",
+            etaf,
+            (2.0f64 * v.norm2()).sqrt()
+        );
     }
     println!("  => 増幅されたゆらぎは強くスクイーズされた状態 = 実質的に古典確率場。");
     println!("     デコヒーレンス (v1.6) が引き継ぎ、密度ゆらぎ→重力崩壊→銀河へ (v0.1 の重力)。");

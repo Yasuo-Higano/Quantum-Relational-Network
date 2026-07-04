@@ -35,8 +35,7 @@ impl U1 {
     /// プラケット角 θ_p at (x,y)
     fn plaq(&self, x: usize, y: usize) -> f64 {
         let n = self.l * self.l;
-        self.th[self.site(x, y)]
-            + self.th[n + self.site(x + 1, y)]
+        self.th[self.site(x, y)] + self.th[n + self.site(x + 1, y)]
             - self.th[self.site(x, y + 1)]
             - self.th[n + self.site(x, y)]
     }
@@ -117,7 +116,14 @@ fn main() {
         let (m, e) = mean_err(&ps);
         let exact = bessel_i(1, beta) / bessel_i(0, beta);
         let ok = (m - exact).abs() < 4.0 * e.max(2e-4);
-        println!("  {:.1}  {:.5}±{:.5}  {:.5}  {}", beta, m, e, exact, pass(ok));
+        println!(
+            "  {:.1}  {:.5}±{:.5}  {:.5}  {}",
+            beta,
+            m,
+            e,
+            exact,
+            pass(ok)
+        );
     }
 
     println!("\n[B] Wilson ループと閉じ込め (β=2.0)");
@@ -175,7 +181,9 @@ fn main() {
         let p_before = sys.mean_plaq();
         // ゲージ変換: θ_μ(x) → θ_μ(x) + α(x) - α(x+μ̂)
         let mut rng2 = Rng::new(555);
-        let alpha: Vec<f64> = (0..n).map(|_| rng2.f64() * 6.283).collect();
+        let alpha: Vec<f64> = (0..n)
+            .map(|_| rng2.f64() * 2.0 * std::f64::consts::PI)
+            .collect();
         for y in 0..l {
             for x in 0..l {
                 let s = sys.site(x, y);
@@ -187,9 +195,21 @@ fn main() {
         }
         let w_after = sys.wilson(3, 3);
         let p_after = sys.mean_plaq();
-        println!("  プラケット: {:+.6} → {:+.6}  (差 {:.1e})", p_before, p_after, (p_after - p_before).abs());
-        println!("  W(3,3)   : {:+.6} → {:+.6}  (差 {:.1e})", w_before, w_after, (w_after - w_before).abs());
-        println!("  => リンク変数(ポテンシャル A)は物理でない。閉ループ(ホロノミー=曲率)だけが物理。");
+        println!(
+            "  プラケット: {:+.6} → {:+.6}  (差 {:.1e})",
+            p_before,
+            p_after,
+            (p_after - p_before).abs()
+        );
+        println!(
+            "  W(3,3)   : {:+.6} → {:+.6}  (差 {:.1e})",
+            w_before,
+            w_after,
+            (w_after - w_before).abs()
+        );
+        println!(
+            "  => リンク変数(ポテンシャル A)は物理でない。閉ループ(ホロノミー=曲率)だけが物理。"
+        );
     }
     println!("\n結論: 力とは接続の曲率である。電磁気も核力も(そして v0.1 の重力も)同じ「幾何」の言語で書ける。");
     println!("      ゲージ原理は標準模型と GR を貫く唯一の設計原理 — 統一の最有力な手がかり。");

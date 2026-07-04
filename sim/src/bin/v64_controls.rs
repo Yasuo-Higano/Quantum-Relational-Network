@@ -72,7 +72,13 @@ struct Metrics {
 fn ring_metrics(mi: &[f64], mi_max: f64) -> Metrics {
     if mi_max < 1e-12 {
         // 相関が皆無 — 幾何は定義できない (それ自体が正しい検出)
-        return Metrics { adjacency: 0.0, rsd: f64::INFINITY, lam21: 0.0, mi_max, ring: false };
+        return Metrics {
+            adjacency: 0.0,
+            rsd: f64::INFINITY,
+            lam21: 0.0,
+            mi_max,
+            ring: false,
+        };
     }
     let mut d2 = vec![0.0; NB * NB];
     for i in 0..NB {
@@ -106,7 +112,11 @@ fn ring_metrics(mi: &[f64], mi_max: f64) -> Metrics {
         .collect();
     let mut order: Vec<usize> = (0..NB).collect();
     order.sort_by(|&a, &bq| {
-        coords[a].1.atan2(coords[a].0).partial_cmp(&coords[bq].1.atan2(coords[bq].0)).unwrap()
+        coords[a]
+            .1
+            .atan2(coords[a].0)
+            .partial_cmp(&coords[bq].1.atan2(coords[bq].0))
+            .unwrap()
     });
     let mut adjacent_ok = 0;
     for k in 0..NB {
@@ -117,14 +127,23 @@ fn ring_metrics(mi: &[f64], mi_max: f64) -> Metrics {
             adjacent_ok += 1;
         }
     }
-    let radii: Vec<f64> = coords.iter().map(|&(x, y)| (x * x + y * y).sqrt()).collect();
+    let radii: Vec<f64> = coords
+        .iter()
+        .map(|&(x, y)| (x * x + y * y).sqrt())
+        .collect();
     let rmean: f64 = radii.iter().sum::<f64>() / NB as f64;
     let rsd = (radii.iter().map(|r| (r - rmean).powi(2)).sum::<f64>() / NB as f64).sqrt()
         / rmean.max(1e-300);
     let adjacency = adjacent_ok as f64 / NB as f64;
     let lam21 = if l1 > 0.0 { l2 / l1 } else { 0.0 };
     let ring = adjacency >= 0.9 && rsd <= 0.10 && lam21 >= 0.9;
-    Metrics { adjacency, rsd, lam21, mi_max, ring }
+    Metrics {
+        adjacency,
+        rsd,
+        lam21,
+        mi_max,
+        ring,
+    }
 }
 
 fn pass(ok: bool) -> &'static str {
@@ -249,7 +268,9 @@ fn main() {
     let m_n4 = ring_metrics(&mi_cls, mm_cls);
 
     // ---- 表とその判定 ----
-    println!("  状態                          隣接復元率   半径ばらつき  λ2/λ1   MI_max     円環判定");
+    println!(
+        "  状態                          隣接復元率   半径ばらつき  λ2/λ1   MI_max     円環判定"
+    );
     let rows: [(&str, &Metrics, bool); 5] = [
         ("P  円環格子の基底状態", &m_p, true),
         ("N1 MI シャッフル", &m_n1, false),
@@ -272,16 +293,25 @@ fn main() {
             all_ok = false;
         }
     }
-    println!("\n  MI 減衰べき (正例): {:.2} (自由フェルミオンの理論値 -2)", slope);
+    println!(
+        "\n  MI 減衰べき (正例): {:.2} (自由フェルミオンの理論値 -2)",
+        slope
+    );
     let ok_slope = (slope + 2.0).abs() < 0.3;
-    println!("\n  => 正例のみ円環と判定される (対照 4 種は全て失敗する)  {}", pass(all_ok));
+    println!(
+        "\n  => 正例のみ円環と判定される (対照 4 種は全て失敗する)  {}",
+        pass(all_ok)
+    );
     println!("  => 正例の MI 減衰べき -2±0.3  {}", pass(ok_slope));
 
     // ---- JSON artifact ----
     let met_json = |m: &Metrics| {
         Json::Obj(vec![
             ("adjacency".into(), Json::Num(m.adjacency)),
-            ("radius_scatter".into(), Json::Num(if m.rsd.is_finite() { m.rsd } else { -1.0 })),
+            (
+                "radius_scatter".into(),
+                Json::Num(if m.rsd.is_finite() { m.rsd } else { -1.0 }),
+            ),
             ("lambda2_over_lambda1".into(), Json::Num(m.lam21)),
             ("mi_max".into(), Json::Num(m.mi_max)),
             ("ring_detected".into(), Json::Bool(m.ring)),
@@ -291,14 +321,42 @@ fn main() {
         ("claim_id".into(), Json::Str("QRN-GEOM-004".into())),
         ("seed".into(), Json::Int(6404)),
         ("lattice_size".into(), Json::Int(N as i64)),
-        ("criterion".into(), Json::Str("adjacency>=0.9 && radius_scatter<=0.10 && lam2/lam1>=0.9".into())),
+        (
+            "criterion".into(),
+            Json::Str("adjacency>=0.9 && radius_scatter<=0.10 && lam2/lam1>=0.9".into()),
+        ),
         ("positive".into(), met_json(&m_p)),
-        ("controls".into(), Json::Arr(vec![
-            Json::Obj(vec![("name".into(), Json::Str("shuffled_mi".into())), ("expected".into(), Json::Str("reconstruction fails".into())), ("metrics".into(), met_json(&m_n1))]),
-            Json::Obj(vec![("name".into(), Json::Str("nonlocal_goe_ground_state".into())), ("expected".into(), Json::Str("reconstruction fails".into())), ("metrics".into(), met_json(&m_n2))]),
-            Json::Obj(vec![("name".into(), Json::Str("volume_law_random_state".into())), ("expected".into(), Json::Str("reconstruction fails".into())), ("metrics".into(), met_json(&m_n3))]),
-            Json::Obj(vec![("name".into(), Json::Str("classical_uncorrelated_product".into())), ("expected".into(), Json::Str("no geometry definable (MI=0)".into())), ("metrics".into(), met_json(&m_n4))]),
-        ])),
+        (
+            "controls".into(),
+            Json::Arr(vec![
+                Json::Obj(vec![
+                    ("name".into(), Json::Str("shuffled_mi".into())),
+                    ("expected".into(), Json::Str("reconstruction fails".into())),
+                    ("metrics".into(), met_json(&m_n1)),
+                ]),
+                Json::Obj(vec![
+                    ("name".into(), Json::Str("nonlocal_goe_ground_state".into())),
+                    ("expected".into(), Json::Str("reconstruction fails".into())),
+                    ("metrics".into(), met_json(&m_n2)),
+                ]),
+                Json::Obj(vec![
+                    ("name".into(), Json::Str("volume_law_random_state".into())),
+                    ("expected".into(), Json::Str("reconstruction fails".into())),
+                    ("metrics".into(), met_json(&m_n3)),
+                ]),
+                Json::Obj(vec![
+                    (
+                        "name".into(),
+                        Json::Str("classical_uncorrelated_product".into()),
+                    ),
+                    (
+                        "expected".into(),
+                        Json::Str("no geometry definable (MI=0)".into()),
+                    ),
+                    ("metrics".into(), met_json(&m_n4)),
+                ]),
+            ]),
+        ),
         ("mi_decay_exponent_positive".into(), Json::Num(slope)),
         ("pass".into(), Json::Bool(all_ok && ok_slope)),
     ]);
@@ -307,7 +365,9 @@ fn main() {
 
     println!("\n総合判定: {}", pass(all_ok && ok_slope));
     println!("\n結論: MI→MDS の幾何読み出しは、局所構造を持つ状態 (正例) だけを円環と判定し、");
-    println!("      同じ MI 値の集合でも配置を壊すと (N1)、もつれがあっても局所性がないと (N2,N3)、");
+    println!(
+        "      同じ MI 値の集合でも配置を壊すと (N1)、もつれがあっても局所性がないと (N2,N3)、"
+    );
     println!("      相関そのものがないと (N4)、それぞれ異なる仕方で失敗する。");
     println!("      「距離=相関の減衰率」という辞書 (A2) は、減衰の *局所的パターン* が");
     println!("      あって初めて幾何を生む — 都合よく何でも幾何に見えているわけではない。");

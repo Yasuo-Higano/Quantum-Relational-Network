@@ -36,8 +36,12 @@ fn main() {
     }
     t0h0 *= dla / 3.0;
     let hubble_time_gyr = 9.7779 / 0.674;
-    println!("  宇宙年齢: t0·H0 = {:.4} → t0 = {:.2} Gyr   (Planck 観測: 13.80 Gyr)  {}",
-        t0h0, t0h0 * hubble_time_gyr, pass((t0h0 * hubble_time_gyr - 13.80).abs() < 0.1));
+    println!(
+        "  宇宙年齢: t0·H0 = {:.4} → t0 = {:.2} Gyr   (Planck 観測: 13.80 Gyr)  {}",
+        t0h0,
+        t0h0 * hubble_time_gyr,
+        pass((t0h0 * hubble_time_gyr - 13.80).abs() < 0.1)
+    );
     // 加速開始 (q=0): Ω_m a^-3 + 2Ω_r a^-4 = 2Ω_Λ
     let mut a_acc = 0.5f64;
     for _ in 0..100 {
@@ -45,10 +49,16 @@ fn main() {
         let df = -3.0 * om / a_acc.powi(4) - 8.0 * or_ / a_acc.powi(5);
         a_acc -= f / df;
     }
-    println!("  減速→加速の転換: z = {:.3}   (SNe Ia 観測: z ≈ 0.6±0.1)  {}",
-        1.0 / a_acc - 1.0, pass((1.0 / a_acc - 1.0 - 0.63).abs() < 0.1));
-    println!("  物質-輻射等密度: z_eq = {:.0}   (Planck: ≈3400)  {}\n",
-        om / or_ - 1.0, pass(((om / or_ - 1.0) - 3400.0).abs() < 100.0));
+    println!(
+        "  減速→加速の転換: z = {:.3}   (SNe Ia 観測: z ≈ 0.6±0.1)  {}",
+        1.0 / a_acc - 1.0,
+        pass((1.0 / a_acc - 1.0 - 0.63).abs() < 0.1)
+    );
+    println!(
+        "  物質-輻射等密度: z_eq = {:.0}   (Planck: ≈3400)  {}\n",
+        om / or_ - 1.0,
+        pass(((om / or_ - 1.0) - 3400.0).abs() < 100.0)
+    );
 
     // ---- [B] 数のゆらぎ仮説の算術 (観測的事実の指摘) ----
     println!("[B] 宇宙定数の値と 4 体積ゆらぎ (プランク単位の算術)");
@@ -97,7 +107,12 @@ fn main() {
         }
         cnt += 1;
         if t >= next_print {
-            println!("  {:7.2}    {:8.2}     {:+8.4}", t.log10(), rho_m.log10(), r);
+            println!(
+                "  {:7.2}    {:8.2}     {:+8.4}",
+                t.log10(),
+                rho_m.log10(),
+                r
+            );
             next_print *= 100.0;
         }
     }
@@ -105,12 +120,20 @@ fn main() {
     sorted.sort_by(|x, y| x.partial_cmp(y).unwrap());
     let med = sorted[sorted.len() / 2];
     let in_band = sorted.iter().filter(|&&x| x > 0.001 && x < 10.0).count();
-    println!("  => 密度が 36 桁変わる間、|Λ|/ρ_m の中央値 = {:.3}、[0.001,10] に留まる割合 {:.0}%",
-        med, 100.0 * in_band as f64 / sorted.len() as f64);
-    println!("     Λ が負の時間帯 {:.0}% (加速と減速が交代)", 100.0 * neg_frac as f64 / cnt as f64);
+    println!(
+        "  => 密度が 36 桁変わる間、|Λ|/ρ_m の中央値 = {:.3}、[0.001,10] に留まる割合 {:.0}%",
+        med,
+        100.0 * in_band as f64 / sorted.len() as f64
+    );
+    println!(
+        "     Λ が負の時間帯 {:.0}% (加速と減速が交代)",
+        100.0 * neg_frac as f64 / cnt as f64
+    );
     println!("     対照: 定数Λなら比は 10^-36 → 1 を通過する一瞬しか同程度にならない (なぜ今問題)");
     println!("\n結論: [A] 標準宇宙論は再現できる (較正)。[B] Λ の観測値は 1/√V₄ と一致 — 偶然か手がかりか。");
-    println!("      [C] Λ が離散時空の統計ゆらぎなら「なぜ今」は消え、w(z) の揺らぎという検証可能な");
+    println!(
+        "      [C] Λ が離散時空の統計ゆらぎなら「なぜ今」は消え、w(z) の揺らぎという検証可能な"
+    );
     println!("      予言を持つ。ただし CMB 時代の制約など課題は多い — 投機的段階と明記する。");
 }
 

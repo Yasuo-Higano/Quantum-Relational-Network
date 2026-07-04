@@ -46,7 +46,10 @@ fn main() {
     let g = 0.5f64;
     let d = 5usize;
     let c_inf = light_corr(1e9, g, d); // M→∞ の基準 (事実上純粋な軽鎖)
-    println!("軽い場の相関 C_aa(d=5)。混合 g={}。M→∞ 基準値 = {:.6}\n", g, c_inf);
+    println!(
+        "軽い場の相関 C_aa(d=5)。混合 g={}。M→∞ 基準値 = {:.6}\n",
+        g, c_inf
+    );
     println!("  M      C_aa(M)     |ΔC| = |C(M)-C(∞)|");
     let mut lnm = Vec::new();
     let mut lnd = Vec::new();
@@ -58,12 +61,18 @@ fn main() {
         lnd.push(dc.ln());
     }
     let (_, slope) = linfit(&lnm, &lnd);
-    println!("\n  => |ΔC| ∝ M^({:.3})   (脱結合定理の予言: -2)  {}", slope, pass((slope + 2.0).abs() < 0.15));
+    println!(
+        "\n  => |ΔC| ∝ M^({:.3})   (脱結合定理の予言: -2)  {}",
+        slope,
+        pass((slope + 2.0).abs() < 0.15)
+    );
     println!("\n結論: 重い場は低エネルギーから M^-2 で退場する (数値実証)。よって:");
     println!("      - 低エネルギーに見える物質 = 質量項を持てないカイラルな場だけ");
     println!("      - その内容は無矛盾性で一意に決まる (v4.3/v5.2: SM 世代のみ)");
     println!("      - UV に何があろうと (弦・網・未知の巨大構造)、我々に見える理論は小さい");
-    println!("      「なぜ小さな理論か」は謎ではなく、EFT + カイラル保護 + アノマリー一意性の定理連鎖。");
+    println!(
+        "      「なぜ小さな理論か」は謎ではなく、EFT + カイラル保護 + アノマリー一意性の定理連鎖。"
+    );
     println!("      裏返せば: プランクスケールの直接観測が絶望的に難しい理由でもある (正直に)。");
 }
 

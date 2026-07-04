@@ -31,7 +31,11 @@ fn eig_herm3(hre: &[[f64; 3]; 3], him: &[[f64; 3]; 3]) -> ([f64; 3], [[(f64, f64
         for i in 0..3 {
             vecs[k][i] = (v[i + (2 * k) * m], v[(i + n) + (2 * k) * m]);
         }
-        let nrm: f64 = vecs[k].iter().map(|&(a, b)| a * a + b * b).sum::<f64>().sqrt();
+        let nrm: f64 = vecs[k]
+            .iter()
+            .map(|&(a, b)| a * a + b * b)
+            .sum::<f64>()
+            .sqrt();
         for i in 0..3 {
             vecs[k][i].0 /= nrm;
             vecs[k][i].1 /= nrm;
@@ -230,8 +234,14 @@ fn main() {
     let kappa = 0.02f64; // washout 効率 (典型値)
     let gstar = 106.75f64;
     let eta_b = eps_cp * kappa / gstar * 7.04; // s→γ 換算込みの慣用近似
-    println!("  M₁ = {:.0e} GeV の右巻きνの CP 非対称崩壊: ε_CP ≤ (3/16π)·M₁m₃/v² = {:.1e}", m1, eps_cp);
-    println!("  washout κ~{}, g*~{} → η_B ~ ε·κ/g*·7 ≈ {:.1e}   (観測: 6.1×10⁻¹⁰)", kappa, gstar, eta_b);
+    println!(
+        "  M₁ = {:.0e} GeV の右巻きνの CP 非対称崩壊: ε_CP ≤ (3/16π)·M₁m₃/v² = {:.1e}",
+        m1, eps_cp
+    );
+    println!(
+        "  washout κ~{}, g*~{} → η_B ~ ε·κ/g*·7 ≈ {:.1e}   (観測: 6.1×10⁻¹⁰)",
+        kappa, gstar, eta_b
+    );
     println!("  => シーソーの CP 位相 → レプトン非対称 → スファレロンでバリオンへ。");
     println!("     「反物質が消えた理由」はニュートリノの重い相棒の崩壊でありうる。");
     println!("\n結論: 右巻きν (SO(10) が要求) を 10^10-15 GeV に置くだけで、(a) ν の軽さ、");

@@ -50,8 +50,10 @@ impl Phi4 {
             let old = self.phi[i];
             let new = old + self.step * (2.0 * self.rng.f64() - 1.0);
             let nb: f64 = self.neighbors(i).iter().map(|&j| self.phi[j]).sum();
-            let s_old = -2.0 * self.kappa * old * nb + old * old + self.lambda * (old * old - 1.0).powi(2);
-            let s_new = -2.0 * self.kappa * new * nb + new * new + self.lambda * (new * new - 1.0).powi(2);
+            let s_old =
+                -2.0 * self.kappa * old * nb + old * old + self.lambda * (old * old - 1.0).powi(2);
+            let s_new =
+                -2.0 * self.kappa * new * nb + new * new + self.lambda * (new * new - 1.0).powi(2);
             let ds = s_new - s_old;
             if ds <= 0.0 || self.rng.f64() < (-ds).exp() {
                 self.phi[i] = new;

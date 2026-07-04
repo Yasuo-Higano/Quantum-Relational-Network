@@ -74,6 +74,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v6.3 | [uft-v6.3.md](docs/uft-v6.3.md) | `v63_qnec_budget` | **QNEC の誤差予算**: tolerance = 微分+有限サイズ+丸め に分解。強形の負ギャップは N^(−1.8) で縮む離散化効果と判明。非カイラル対照で共動凍結だけが壊れる。JSON artifact 化 |
 | v6.4 | [uft-v6.4.md](docs/uft-v6.4.md) | `v64_controls` | **幾何読み出しの陰性対照**: 正例のみ円環 (隣接 100%)、MI シャッフル/GOE/volume-law/古典の 4 対照は全て失敗 — 検出しているのは「MI 減衰の局所的パターン」 |
 | v6.5 | [uft-v6.5.md](docs/uft-v6.5.md) | `v65_bayes` | **湯川のベイズ模型比較**: FN は 75 万電荷の Occam 罰込みでアナーキーに lnB≥23、v3.2 電荷は上位 0.11%。CKM は out-of-sample で 3/3 予測。合成データ較正つき |
+| v6.6 | [uft-v6.6.md](docs/uft-v6.6.md) | — | **反証条件の現代化** (BMV は Aziz–Howl 2025 を踏まえ位相スケーリングまで精密化) + LICENSE / CITATION / REPRODUCIBILITY / CI / 図 |
 
 ## リポジトリ構成
 
@@ -86,6 +87,13 @@ sim/             Rust ワークスペース (src/lib.rs: 乱数/複素数/Jacobi
   src/bin/       各バージョンのシミュレーション
 results/         実行出力 (文書中の数値の一次ソース)
 ```
+
+## 研究ソフトウェアとしての体裁
+
+- 再現手順と決定性の保証: [REPRODUCIBILITY.md](REPRODUCIBILITY.md)
+- 引用: [CITATION.cff](CITATION.cff) / ライセンス: MIT ([LICENSE](LICENSE))
+- 貢献規約 (外部クレート禁止・PASS/FAIL 内蔵・台帳追記): [CONTRIBUTING.md](CONTRIBUTING.md)
+- CI: ビルド + 主張台帳 + 監査スイート + 探索証明書の同一性 ([.github/workflows/ci.yml](.github/workflows/ci.yml))
 
 ## 知的誠実性について
 

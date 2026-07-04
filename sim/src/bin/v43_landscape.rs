@@ -9,7 +9,14 @@
 
 use std::collections::HashSet;
 
-const TYPES: [(i64, i64, i64); 6] = [(1, 1, 0), (1, 2, 0), (3, 1, 1), (3, 1, -1), (3, 2, 1), (3, 2, -1)];
+const TYPES: [(i64, i64, i64); 6] = [
+    (1, 1, 0),
+    (1, 2, 0),
+    (3, 1, 1),
+    (3, 1, -1),
+    (3, 2, 1),
+    (3, 2, -1),
+];
 const TNAMES: [&str; 6] = ["(1,1)", "(1,2)", "(3,1)", "(3̄,1)", "(3,2)", "(3̄,2)"];
 const NYMAX: i64 = 9;
 
@@ -42,7 +49,11 @@ fn canonical(types: &[usize], ns: &[i64]) -> Vec<(usize, i64)> {
             .iter()
             .zip(ns)
             .map(|(&t, &n)| {
-                let (t2, n2) = if op & 1 == 1 { (conj_type(t), -n / g) } else { (t, n / g) };
+                let (t2, n2) = if op & 1 == 1 {
+                    (conj_type(t), -n / g)
+                } else {
+                    (t, n / g)
+                };
                 if op & 2 == 2 {
                     (t2, -n2)
                 } else {
@@ -84,7 +95,11 @@ fn main() {
     // 構造レベルのフィルタ: SU(3)³, Witten の偶奇可能性, 3因子への帯電
     structures.retain(|s| {
         let su3cub: i64 = s.iter().map(|&t| TYPES[t].2 * TYPES[t].1).sum();
-        let wit: i64 = s.iter().filter(|&&t| TYPES[t].1 == 2).map(|&t| TYPES[t].0).sum();
+        let wit: i64 = s
+            .iter()
+            .filter(|&&t| TYPES[t].1 == 2)
+            .map(|&t| TYPES[t].0)
+            .sum();
         let has_c = s.iter().any(|&t| TYPES[t].2 != 0);
         let has_w = s.iter().any(|&t| TYPES[t].1 == 2);
         su3cub == 0 && wit % 2 == 0 && has_c && has_w
@@ -158,7 +173,10 @@ fn main() {
     for (c, sols) in &by_comps {
         println!("  {} 成分: {} 個", c, sols.len());
         for sol in sols.iter().take(4) {
-            let desc: Vec<String> = sol.iter().map(|&(t, n)| format!("{}_{{{}}}", TNAMES[t], n)).collect();
+            let desc: Vec<String> = sol
+                .iter()
+                .map(|&(t, n)| format!("{}_{{{}}}", TNAMES[t], n))
+                .collect();
             println!("     {}", desc.join(" ⊕ "));
         }
         if sols.len() > 4 {
@@ -167,11 +185,14 @@ fn main() {
     }
     if let Some((cmin, _)) = by_comps.iter().next() {
         let next = by_comps.keys().nth(1);
-        println!("\n  => 最小解: {} 成分 (標準模型世代)。次の解: {}", cmin,
+        println!(
+            "\n  => 最小解: {} 成分 (標準模型世代)。次の解: {}",
+            cmin,
             match next {
                 Some(c) => format!("{} 成分", c),
                 None => "この範囲 (≤24成分, ≤6多重項) に存在しない".to_string(),
-            });
+            }
+        );
     }
     println!("\n結論: 標準模型は理論空間で「最小」なだけでなく「孤立」している —");
     println!("      周囲に競合する無矛盾解がほとんど無い。物質内容の説明に恣意性の余地は薄い。");

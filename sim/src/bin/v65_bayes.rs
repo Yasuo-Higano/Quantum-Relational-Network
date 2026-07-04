@@ -36,16 +36,23 @@ fn pairs() -> Vec<(i64, i64)> {
 
 /// 3×3 エルミート行列の固有値 (昇順, 閉形式)
 fn eigvals3(hre: &[[f64; 3]; 3], him: &[[f64; 3]; 3]) -> [f64; 3] {
-    let p1 = hre[0][1] * hre[0][1] + him[0][1] * him[0][1]
-        + hre[0][2] * hre[0][2] + him[0][2] * him[0][2]
-        + hre[1][2] * hre[1][2] + him[1][2] * him[1][2];
+    let p1 = hre[0][1] * hre[0][1]
+        + him[0][1] * him[0][1]
+        + hre[0][2] * hre[0][2]
+        + him[0][2] * him[0][2]
+        + hre[1][2] * hre[1][2]
+        + him[1][2] * him[1][2];
     let q = (hre[0][0] + hre[1][1] + hre[2][2]) / 3.0;
     let p2 = (hre[0][0] - q).powi(2) + (hre[1][1] - q).powi(2) + (hre[2][2] - q).powi(2) + 2.0 * p1;
     if p2 < 1e-300 {
         return [q, q, q];
     }
     let p = (p2 / 6.0).sqrt();
-    let bd = [(hre[0][0] - q) / p, (hre[1][1] - q) / p, (hre[2][2] - q) / p];
+    let bd = [
+        (hre[0][0] - q) / p,
+        (hre[1][1] - q) / p,
+        (hre[2][2] - q) / p,
+    ];
     let (b01r, b01i) = (hre[0][1] / p, him[0][1] / p);
     let (b02r, b02i) = (hre[0][2] / p, him[0][2] / p);
     let (b12r, b12i) = (hre[1][2] / p, him[1][2] / p);
@@ -119,7 +126,9 @@ fn sector_table(target: [f64; 2], sigma: f64, eps: f64, seed: u64) -> Vec<f64> {
                 let lam = eigvals3(&hre, &him);
                 let r1 = (lam[0].max(1e-300) / lam[2].max(1e-300)).sqrt().ln();
                 let r2 = (lam[1].max(1e-300) / lam[2].max(1e-300)).sqrt().ln();
-                let w = -((r1 - target[0]).powi(2) + (r2 - target[1]).powi(2)) / (2.0 * sigma * sigma) + norm;
+                let w = -((r1 - target[0]).powi(2) + (r2 - target[1]).powi(2))
+                    / (2.0 * sigma * sigma)
+                    + norm;
                 if w > m {
                     s = s * (m - w).exp() + 1.0;
                     m = w;
@@ -160,8 +169,14 @@ fn aggregate(tu: &[f64], td: &[f64], te: &[f64], star: &[usize; 5]) -> Ev {
         let u: Vec<f64> = (0..np).map(|qu| tu[qq + qu * np]).collect();
         let d: Vec<f64> = (0..np).map(|qd| td[qq + qd * np]).collect();
         per_qq[qq] = lse(&u) + lse(&d);
-        let (bu, bui) = u.iter().cloned().enumerate().map(|(i, x)| (x, i)).fold((f64::NEG_INFINITY, 0), |a, b| if b.0 > a.0 { (b.0, b.1) } else { a });
-        let (bd_, bdi) = d.iter().cloned().enumerate().map(|(i, x)| (x, i)).fold((f64::NEG_INFINITY, 0), |a, b| if b.0 > a.0 { (b.0, b.1) } else { a });
+        let (bu, bui) = u.iter().cloned().enumerate().map(|(i, x)| (x, i)).fold(
+            (f64::NEG_INFINITY, 0),
+            |a, b| if b.0 > a.0 { (b.0, b.1) } else { a },
+        );
+        let (bd_, bdi) = d.iter().cloned().enumerate().map(|(i, x)| (x, i)).fold(
+            (f64::NEG_INFINITY, 0),
+            |a, b| if b.0 > a.0 { (b.0, b.1) } else { a },
+        );
         if bu + bd_ > best {
             best = bu + bd_;
             map_q[0] = qq;
@@ -170,14 +185,18 @@ fn aggregate(tu: &[f64], td: &[f64], te: &[f64], star: &[usize; 5]) -> Ev {
         }
     }
     let e_all: Vec<f64> = (0..np * np).map(|i| te[i]).collect();
-    let (be, bei) = e_all.iter().cloned().enumerate().map(|(i, x)| (x, i)).fold((f64::NEG_INFINITY, 0), |a, b| if b.0 > a.0 { (b.0, b.1) } else { a });
+    let (be, bei) = e_all.iter().cloned().enumerate().map(|(i, x)| (x, i)).fold(
+        (f64::NEG_INFINITY, 0),
+        |a, b| if b.0 > a.0 { (b.0, b.1) } else { a },
+    );
     map_q[3] = bei % np;
     map_q[4] = bei / np;
     let z_map = best + be;
     let ln_nq = 5.0 * (np as f64).ln();
     let z_m1 = lse(&per_qq) + lse(&e_all) - ln_nq;
     let z_m0 = tu[0] + td[0] + te[0]; // 全電荷 0 = アナーキー
-    let z_star = tu[star[0] + star[1] * np] + td[star[0] + star[2] * np] + te[star[3] + star[4] * np];
+    let z_star =
+        tu[star[0] + star[1] * np] + td[star[0] + star[2] * np] + te[star[3] + star[4] * np];
     // q* の百分位: lnZ_q > lnZ_star の割当て数 / 総数
     let mut n_better: u64 = 0;
     for qq in 0..np {
@@ -193,7 +212,14 @@ fn aggregate(tu: &[f64], td: &[f64], te: &[f64], star: &[usize; 5]) -> Ev {
         }
     }
     let pct_star = n_better as f64 / (np as f64).powi(5);
-    Ev { z_m1, z_m0, z_map, map_q, z_star, pct_star }
+    Ev {
+        z_m1,
+        z_m0,
+        z_map,
+        map_q,
+        z_star,
+        pct_star,
+    }
 }
 
 // ---------------- CKM の事後予測 (v3.2 と同じ完全対角化) ----------------
@@ -230,7 +256,11 @@ fn eig_yyd(y: &M3) -> ([f64; 3], [[(f64, f64); 3]; 3]) {
         for i in 0..3 {
             vecs[k][i] = (v[i + (2 * k) * m], v[(i + n) + (2 * k) * m]);
         }
-        let nrm: f64 = vecs[k].iter().map(|&(a, b)| a * a + b * b).sum::<f64>().sqrt();
+        let nrm: f64 = vecs[k]
+            .iter()
+            .map(|&(a, b)| a * a + b * b)
+            .sum::<f64>()
+            .sqrt();
         for i in 0..3 {
             vecs[k][i].0 /= nrm;
             vecs[k][i].1 /= nrm;
@@ -240,7 +270,14 @@ fn eig_yyd(y: &M3) -> ([f64; 3], [[(f64, f64); 3]; 3]) {
 }
 
 /// 与えた電荷で 9 量 (質量比 6 + CKM 3) の事後予測 (中央値と [16,84] 帯)
-fn predict9(qq: [f64; 3], qu: [f64; 3], qd: [f64; 3], ql: [f64; 3], qe: [f64; 3], seed: u64) -> [(f64, f64, f64); 9] {
+fn predict9(
+    qq: [f64; 3],
+    qu: [f64; 3],
+    qd: [f64; 3],
+    ql: [f64; 3],
+    qe: [f64; 3],
+    seed: u64,
+) -> [(f64, f64, f64); 9] {
     let ntr = 2000;
     let mut rng = Rng::new(seed);
     let mut samples: Vec<Vec<f64>> = vec![Vec::with_capacity(ntr); 9];
@@ -293,7 +330,11 @@ fn predict9(qq: [f64; 3], qu: [f64; 3], qd: [f64; 3], ql: [f64; 3], qe: [f64; 3]
     let mut out = [(0.0, 0.0, 0.0); 9];
     for k in 0..9 {
         samples[k].sort_by(|a, b| a.partial_cmp(b).unwrap());
-        out[k] = (samples[k][ntr * 16 / 100], samples[k][ntr / 2], samples[k][ntr * 84 / 100]);
+        out[k] = (
+            samples[k][ntr * 16 / 100],
+            samples[k][ntr / 2],
+            samples[k][ntr * 84 / 100],
+        );
     }
     out
 }
@@ -336,13 +377,28 @@ fn main() {
     self_test();
     println!("=== v6.5 湯川階層のベイズ模型比較: M0 アナーキー / M1 FN 電荷自由 / M2 v3.2 固定電荷 ===\n");
     let sigma = (2.0f64).ln();
-    let obs = [1.3e-5f64, 3.7e-3, 1.1e-3, 2.2e-2, 2.9e-4, 5.9e-2, 0.225, 0.041, 0.0037];
-    let names = ["m_u/m_t", "m_c/m_t", "m_d/m_b", "m_s/m_b", "m_e/m_τ", "m_μ/m_τ", "|V_us|", "|V_cb|", "|V_ub|"];
+    let obs = [
+        1.3e-5f64, 3.7e-3, 1.1e-3, 2.2e-2, 2.9e-4, 5.9e-2, 0.225, 0.041, 0.0037,
+    ];
+    let names = [
+        "m_u/m_t",
+        "m_c/m_t",
+        "m_d/m_b",
+        "m_s/m_b",
+        "m_e/m_τ",
+        "m_μ/m_τ",
+        "|V_us|",
+        "|V_cb|",
+        "|V_ub|",
+    ];
     let t_u = [obs[0].ln(), obs[1].ln()];
     let t_d = [obs[2].ln(), obs[3].ln()];
     let t_e = [obs[4].ln(), obs[5].ln()];
     println!("学習量 = 質量比 6 (σ=ln2 の対数正規)。CKM 3 量は学習に使わず予測で検証。");
-    println!("電荷空間: 各セクター (q1≥q2≥0≤{}, 第3世代 0) — 15^5 = 759,375 割当ての一様事前\n", QMAX);
+    println!(
+        "電荷空間: 各セクター (q1≥q2≥0≤{}, 第3世代 0) — 15^5 = 759,375 割当ての一様事前\n",
+        QMAX
+    );
 
     // ---- [0] 固有値閉形式の照合 ----
     {
@@ -373,13 +429,24 @@ fn main() {
                 dmax = dmax.max((lam1[k] - lam2[k]).abs() / lam2[2].max(1e-300));
             }
         }
-        println!("[0] 3×3 エルミート固有値: 閉形式 vs Jacobi の最大相対差 {:.1e}  {}", dmax, pass(dmax < 1e-9));
+        println!(
+            "[0] 3×3 エルミート固有値: 閉形式 vs Jacobi の最大相対差 {:.1e}  {}",
+            dmax,
+            pass(dmax < 1e-9)
+        );
         assert!(dmax < 1e-9);
     }
 
     // ---- [1] 実データの証拠 (シード 2 系統で再現性) ----
-    let star_pairs = |q1: i64, q2: i64| -> usize { pairs().iter().position(|&p| p == (q1, q2)).unwrap() };
-    let star = [star_pairs(3, 2), star_pairs(4, 2), star_pairs(1, 0), star_pairs(1, 0), star_pairs(4, 2)];
+    let star_pairs =
+        |q1: i64, q2: i64| -> usize { pairs().iter().position(|&p| p == (q1, q2)).unwrap() };
+    let star = [
+        star_pairs(3, 2),
+        star_pairs(4, 2),
+        star_pairs(1, 0),
+        star_pairs(1, 0),
+        star_pairs(4, 2),
+    ];
     let t0 = std::time::Instant::now();
     let (tu, td, te) = (
         sector_table(t_u, sigma, EPS, 650101),
@@ -393,10 +460,19 @@ fn main() {
         sector_table(t_e, sigma, EPS, 750203),
     );
     let ev2 = aggregate(&tu2, &td2, &te2, &star);
-    println!("\n[1] 実データの対数証拠 (2 シード, {} ms)", t0.elapsed().as_millis());
+    println!(
+        "\n[1] 実データの対数証拠 (2 シード, {} ms)",
+        t0.elapsed().as_millis()
+    );
     println!("    lnZ(M0 アナーキー)   = {:8.2} / {:8.2}  ← 素朴 MC は下方バイアス大 (裾積分) — 下記の上界を使う", ev.z_m0, ev2.z_m0);
-    println!("    lnZ(M1 FN 電荷自由)  = {:8.2} / {:8.2}", ev.z_m1, ev2.z_m1);
-    println!("    lnZ(M2 v3.2 電荷)    = {:8.2} / {:8.2}", ev.z_star, ev2.z_star);
+    println!(
+        "    lnZ(M1 FN 電荷自由)  = {:8.2} / {:8.2}",
+        ev.z_m1, ev2.z_m1
+    );
+    println!(
+        "    lnZ(M2 v3.2 電荷)    = {:8.2} / {:8.2}",
+        ev.z_star, ev2.z_star
+    );
     // M0 の厳密上界: アナーキーの ln r1 分布 (セクター共通) を大標本で採り、裾の閾値法で押さえる
     let (bound_m0, lnr1_min) = {
         let nbig = 20_000_000usize;
@@ -433,21 +509,44 @@ fn main() {
         let be = m0_sector_upper_bound(&lnr1, t_e[0], sigma);
         (bu + bd + be, lnr1[0])
     };
-    println!("    lnZ(M0) の保守的上界 ≤ {:8.2}  (2e7 標本の分割上界法; 最小の ln r1 = {:.1})", bound_m0, lnr1_min);
+    println!(
+        "    lnZ(M0) の保守的上界 ≤ {:8.2}  (2e7 標本の分割上界法; 最小の ln r1 = {:.1})",
+        bound_m0, lnr1_min
+    );
     let ps = pairs();
     println!(
         "    MAP 電荷 (質量のみで最良): q_Q={:?} q_u={:?} q_d={:?} q_L={:?} q_e={:?}, lnZ={:.2}",
-        ps[ev.map_q[0]], ps[ev.map_q[1]], ps[ev.map_q[2]], ps[ev.map_q[3]], ps[ev.map_q[4]], ev.z_map
+        ps[ev.map_q[0]],
+        ps[ev.map_q[1]],
+        ps[ev.map_q[2]],
+        ps[ev.map_q[3]],
+        ps[ev.map_q[4]],
+        ev.z_map
     );
     let repro = (ev.z_m1 - ev2.z_m1).abs();
-    println!("    再現性: |ΔlnZ(M1)| = {:.2}  {}", repro, pass(repro < 1.0));
+    println!(
+        "    再現性: |ΔlnZ(M1)| = {:.2}  {}",
+        repro,
+        pass(repro < 1.0)
+    );
     let lnb10 = ev.z_m1 - bound_m0; // 上界を使った保守的な下界
     let lnb20 = ev.z_star - bound_m0;
     println!("\n    ベイズ因子 (M0 は厳密上界 → 保守的下界):");
-    println!("      ln B(M1/M0) ≥ {:+.1}   ln B(M2/M0) ≥ {:+.1}   ln B(M2/M1) = {:+.1}", lnb10, lnb20, ev.z_star - ev.z_m1);
-    println!("    q* (v3.2 電荷) の位置: 全 759,375 割当て中 上位 {:.2}% (より良い割当ての割合)", 100.0 * ev.pct_star);
+    println!(
+        "      ln B(M1/M0) ≥ {:+.1}   ln B(M2/M0) ≥ {:+.1}   ln B(M2/M1) = {:+.1}",
+        lnb10,
+        lnb20,
+        ev.z_star - ev.z_m1
+    );
+    println!(
+        "    q* (v3.2 電荷) の位置: 全 759,375 割当て中 上位 {:.2}% (より良い割当ての割合)",
+        100.0 * ev.pct_star
+    );
     let ok_b = lnb10 > 10.0 && lnb20 > 10.0;
-    println!("    => FN 構造はアナーキーに対し保守的に見ても決定的に優位 (下界 lnB > 10)  {}", pass(ok_b));
+    println!(
+        "    => FN 構造はアナーキーに対し保守的に見ても決定的に優位 (下界 lnB > 10)  {}",
+        pass(ok_b)
+    );
 
     // ---- [2] AIC/BIC (擬似プロファイル: 係数は周辺化済み, 電荷を自由パラメータと数える) ----
     {
@@ -457,7 +556,10 @@ fn main() {
         for (i, name) in ["M0(≥)", "M1(MAP)", "M2"].iter().enumerate() {
             let aic = 2.0 * k[i] - 2.0 * lnl[i];
             let bic = k[i] * (6.0f64).ln() - 2.0 * lnl[i];
-            println!("    {:8}  lnL={:8.2}  AIC={:8.1}  BIC={:8.1}", name, lnl[i], aic, bic);
+            println!(
+                "    {:8}  lnL={:8.2}  AIC={:8.1}  BIC={:8.1}",
+                name, lnl[i], aic, bic
+            );
         }
     }
 
@@ -487,7 +589,11 @@ fn main() {
         );
         let evs = aggregate(&au, &ad, &ae, &star);
         let lnb = evs.z_m1 - evs.z_m0;
-        println!("\n[3] 較正 (a): アナーキー生成の合成データ → ln B(M1/M0) = {:+.2}  {}", lnb, pass(lnb < 0.0));
+        println!(
+            "\n[3] 較正 (a): アナーキー生成の合成データ → ln B(M1/M0) = {:+.2}  {}",
+            lnb,
+            pass(lnb < 0.0)
+        );
         println!("    (階層のないデータに対して FN の余分な自由度は Occam 罰で負ける — 装置は何でも FN と言わない)");
         assert!(lnb < 0.0, "較正失敗");
     }
@@ -498,13 +604,23 @@ fn main() {
         let np = ps.len();
         let mut nbeat = 0;
         for _ in 0..20 {
-            let q = [rng.range(np), rng.range(np), rng.range(np), rng.range(np), rng.range(np)];
+            let q = [
+                rng.range(np),
+                rng.range(np),
+                rng.range(np),
+                rng.range(np),
+                rng.range(np),
+            ];
             let z = tu[q[0] + q[1] * np] + td[q[0] + q[2] * np] + te[q[3] + q[4] * np];
             if ev.z_star > z {
                 nbeat += 1;
             }
         }
-        println!("[4] 較正 (b): ランダム電荷 20 組中 {} 組に q* が勝つ  {}", nbeat, pass(nbeat >= 19));
+        println!(
+            "[4] 較正 (b): ランダム電荷 20 組中 {} 組に q* が勝つ  {}",
+            nbeat,
+            pass(nbeat >= 19)
+        );
     }
 
     // ---- [5] 較正 (c): ε=1 で FN は厳密にアナーキーへ退化 (共通乱数なので全電荷の証拠が一致するはず) ----
@@ -512,13 +628,24 @@ fn main() {
         let u1 = sector_table(t_u, sigma, 1.0, 650501);
         let spread = u1.iter().cloned().fold(f64::NEG_INFINITY, f64::max)
             - u1.iter().cloned().fold(f64::INFINITY, f64::min);
-        println!("[5] 較正 (c): ε=1 の証拠表で全 225 電荷対の lnZ の幅 = {:.2e} (厳密に 0 のはず)  {}", spread, pass(spread < 1e-9));
+        println!(
+            "[5] 較正 (c): ε=1 の証拠表で全 225 電荷対の lnZ の幅 = {:.2e} (厳密に 0 のはず)  {}",
+            spread,
+            pass(spread < 1e-9)
+        );
         spread < 1e-9
     };
 
     // ---- [6] 学習/予測の分離: CKM は M2 の事後予測として検証 ----
     println!("\n[6] CKM の事後予測 (学習には質量比のみ使用 — CKM は out-of-sample)");
-    let pred = predict9([3.0, 2.0, 0.0], [4.0, 2.0, 0.0], [1.0, 0.0, 0.0], [1.0, 0.0, 0.0], [4.0, 2.0, 0.0], 650601);
+    let pred = predict9(
+        [3.0, 2.0, 0.0],
+        [4.0, 2.0, 0.0],
+        [1.0, 0.0, 0.0],
+        [1.0, 0.0, 0.0],
+        [4.0, 2.0, 0.0],
+        650601,
+    );
     println!("    量        予測中央値 [16%,84%]           実測      中央値/実測");
     let mut ok9 = 0;
     let mut ok_ckm = 0;
@@ -534,22 +661,40 @@ fn main() {
         }
         println!(
             "    {:8}  {:9.2e} [{:8.2e},{:8.2e}]  {:8.2e}  {:5.2} {}",
-            names[k], med, lo, hi, obs[k], ratio,
+            names[k],
+            med,
+            lo,
+            hi,
+            obs[k],
+            ratio,
             if within { "✓" } else { " " }
         );
     }
     let ok_pred = ok_ckm == 3 && ok9 == 9;
-    println!("    => 学習に使っていない CKM 3 量が全て実測の 5 倍以内 (9 量中 {})  {}", ok9, pass(ok_pred));
+    println!(
+        "    => 学習に使っていない CKM 3 量が全て実測の 5 倍以内 (9 量中 {})  {}",
+        ok9,
+        pass(ok_pred)
+    );
 
     // ---- JSON artifact ----
     let all_ok = repro < 1.0 && ok_b && ok_pred && ok_eps1;
     let j = Json::Obj(vec![
         ("claim_id".into(), Json::Str("QRN-YUK-002".into())),
-        ("seeds".into(), Json::Arr(vec![Json::Int(650101), Json::Int(750201)])),
+        (
+            "seeds".into(),
+            Json::Arr(vec![Json::Int(650101), Json::Int(750201)]),
+        ),
         ("sigma".into(), Json::Num(sigma)),
         ("n_mc_per_combo".into(), Json::Int(NSAMP as i64)),
-        ("charge_space".into(), Json::Str("q1>=q2>=0<=4 per sector, 3rd gen 0, 15^5=759375".into())),
-        ("lnZ_M0_naive_mc_biased_low".into(), Json::Arr(vec![Json::Num(ev.z_m0), Json::Num(ev2.z_m0)])),
+        (
+            "charge_space".into(),
+            Json::Str("q1>=q2>=0<=4 per sector, 3rd gen 0, 15^5=759375".into()),
+        ),
+        (
+            "lnZ_M0_naive_mc_biased_low".into(),
+            Json::Arr(vec![Json::Num(ev.z_m0), Json::Num(ev2.z_m0)]),
+        ),
         ("lnZ_M0_rigorous_upper_bound".into(), Json::Num(bound_m0)),
         ("lnZ_M1_fn_free".into(), Json::Num(ev.z_m1)),
         ("lnZ_M2_v32_charges".into(), Json::Num(ev.z_star)),
@@ -568,9 +713,13 @@ fn main() {
     println!("      アナーキーに保守的な下界で ln B > 10 (点推定では数十) の決定的な差をつける。");
     println!("      v3.2 の文献電荷は 75 万通り中の上位 ~0.1% に位置し、学習に使っていない");
     println!("      CKM 3 量を factor 5 以内で予測する。合成データ較正により、この装置は");
-    println!("      階層のないデータには FN と言わないことも確認。M0 の素朴 MC 証拠は下方バイアスが");
+    println!(
+        "      階層のないデータには FN と言わないことも確認。M0 の素朴 MC 証拠は下方バイアスが"
+    );
     println!("      強いため厳密上界で置き換えた (方法の正直な限界を含めて記録)。");
-    println!("      残る問い (正直に): 電荷の値と ε 自体の第一原理導出 (v6.0 残高 2) は未解決のまま。");
+    println!(
+        "      残る問い (正直に): 電荷の値と ε 自体の第一原理導出 (v6.0 残高 2) は未解決のまま。"
+    );
     if !all_ok {
         std::process::exit(1);
     }

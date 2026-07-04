@@ -40,16 +40,106 @@ struct Rep {
 
 const NT: usize = 10;
 const REPS: [Rep; NT] = [
-    Rep { name: "(1,1)", key: "1,1", cd: 1, wd: 1, a3: 0, t3x2: 0, t2x2: 0, conj: 0 },
-    Rep { name: "(1,2)", key: "1,2", cd: 1, wd: 2, a3: 0, t3x2: 0, t2x2: 1, conj: 1 },
-    Rep { name: "(1,3)", key: "1,3", cd: 1, wd: 3, a3: 0, t3x2: 0, t2x2: 4, conj: 2 },
-    Rep { name: "(3,1)", key: "3,1", cd: 3, wd: 1, a3: 1, t3x2: 1, t2x2: 0, conj: 4 },
-    Rep { name: "(3̄,1)", key: "3b,1", cd: 3, wd: 1, a3: -1, t3x2: 1, t2x2: 0, conj: 3 },
-    Rep { name: "(3,2)", key: "3,2", cd: 3, wd: 2, a3: 1, t3x2: 1, t2x2: 1, conj: 6 },
-    Rep { name: "(3̄,2)", key: "3b,2", cd: 3, wd: 2, a3: -1, t3x2: 1, t2x2: 1, conj: 5 },
-    Rep { name: "(6,1)", key: "6,1", cd: 6, wd: 1, a3: 7, t3x2: 5, t2x2: 0, conj: 8 },
-    Rep { name: "(6̄,1)", key: "6b,1", cd: 6, wd: 1, a3: -7, t3x2: 5, t2x2: 0, conj: 7 },
-    Rep { name: "(8,1)", key: "8,1", cd: 8, wd: 1, a3: 0, t3x2: 6, t2x2: 0, conj: 9 },
+    Rep {
+        name: "(1,1)",
+        key: "1,1",
+        cd: 1,
+        wd: 1,
+        a3: 0,
+        t3x2: 0,
+        t2x2: 0,
+        conj: 0,
+    },
+    Rep {
+        name: "(1,2)",
+        key: "1,2",
+        cd: 1,
+        wd: 2,
+        a3: 0,
+        t3x2: 0,
+        t2x2: 1,
+        conj: 1,
+    },
+    Rep {
+        name: "(1,3)",
+        key: "1,3",
+        cd: 1,
+        wd: 3,
+        a3: 0,
+        t3x2: 0,
+        t2x2: 4,
+        conj: 2,
+    },
+    Rep {
+        name: "(3,1)",
+        key: "3,1",
+        cd: 3,
+        wd: 1,
+        a3: 1,
+        t3x2: 1,
+        t2x2: 0,
+        conj: 4,
+    },
+    Rep {
+        name: "(3̄,1)",
+        key: "3b,1",
+        cd: 3,
+        wd: 1,
+        a3: -1,
+        t3x2: 1,
+        t2x2: 0,
+        conj: 3,
+    },
+    Rep {
+        name: "(3,2)",
+        key: "3,2",
+        cd: 3,
+        wd: 2,
+        a3: 1,
+        t3x2: 1,
+        t2x2: 1,
+        conj: 6,
+    },
+    Rep {
+        name: "(3̄,2)",
+        key: "3b,2",
+        cd: 3,
+        wd: 2,
+        a3: -1,
+        t3x2: 1,
+        t2x2: 1,
+        conj: 5,
+    },
+    Rep {
+        name: "(6,1)",
+        key: "6,1",
+        cd: 6,
+        wd: 1,
+        a3: 7,
+        t3x2: 5,
+        t2x2: 0,
+        conj: 8,
+    },
+    Rep {
+        name: "(6̄,1)",
+        key: "6b,1",
+        cd: 6,
+        wd: 1,
+        a3: -7,
+        t3x2: 5,
+        t2x2: 0,
+        conj: 7,
+    },
+    Rep {
+        name: "(8,1)",
+        key: "8,1",
+        cd: 8,
+        wd: 1,
+        a3: 0,
+        t3x2: 6,
+        t2x2: 0,
+        conj: 9,
+    },
 ];
 
 /// 条件トグル (陰性対照で 1 つずつ外す)
@@ -67,7 +157,17 @@ struct Cond {
 }
 impl Cond {
     fn all() -> Self {
-        Cond { su3cub: true, su3sq: true, su2sq: true, grav: true, cubic: true, witten: true, chiral: true, all_factors: true, sterile_ok: false }
+        Cond {
+            su3cub: true,
+            su3sq: true,
+            su2sq: true,
+            grav: true,
+            cubic: true,
+            witten: true,
+            chiral: true,
+            all_factors: true,
+            sterile_ok: false,
+        }
     }
 }
 
@@ -180,7 +280,11 @@ fn canonical(sp: &[Mult]) -> Vec<Mult> {
         let mut w: Vec<Mult> = sp
             .iter()
             .map(|&(t, n)| {
-                let (t2, n2) = if op & 1 == 1 { (REPS[t].conj, -n / g) } else { (t, n / g) };
+                let (t2, n2) = if op & 1 == 1 {
+                    (REPS[t].conj, -n / g)
+                } else {
+                    (t, n / g)
+                };
                 if op & 2 == 2 {
                     (t2, -n2)
                 } else {
@@ -235,7 +339,11 @@ fn gen_structures(dom: &Domain) -> Vec<Vec<usize>> {
     // 構造レベルで決まる条件 (超電荷に依らない) で先に絞る
     out.retain(|s| {
         let a3: i64 = s.iter().map(|&t| REPS[t].a3 * REPS[t].wd).sum();
-        let wit: i64 = s.iter().filter(|&&t| REPS[t].wd == 2).map(|&t| REPS[t].cd).sum();
+        let wit: i64 = s
+            .iter()
+            .filter(|&&t| REPS[t].wd == 2)
+            .map(|&t| REPS[t].cd)
+            .sum();
         let has_c = s.iter().any(|&t| REPS[t].cd > 1);
         let has_w = s.iter().any(|&t| REPS[t].wd > 1);
         (!dom.cond.su3cub || a3 == 0)
@@ -328,7 +436,16 @@ fn scan(dom: &Domain) -> ScanOut {
                     let sp: Vec<Mult> = s
                         .iter()
                         .enumerate()
-                        .map(|(i, &t)| (t, if i < k2 { lns[i] as i64 } else { rns[i - k2] as i64 }))
+                        .map(|(i, &t)| {
+                            (
+                                t,
+                                if i < k2 {
+                                    lns[i] as i64
+                                } else {
+                                    rns[i - k2] as i64
+                                },
+                            )
+                        })
                         .collect();
                     // 結合結果を独立な full_check で再検証 (エンジンの二重化)
                     if full_check(&sp, &dom.cond) {
@@ -342,7 +459,12 @@ fn scan(dom: &Domain) -> ScanOut {
         }
     }
     sols.sort();
-    ScanOut { sols, n_structures: structures.len(), n_side, ms: t0.elapsed().as_millis() }
+    ScanOut {
+        sols,
+        n_structures: structures.len(),
+        n_side,
+        ms: t0.elapsed().as_millis(),
+    }
 }
 
 /// 独立実装 2: v3.1 型の直接 DFS (小さい領域専用のクロスチェック)
@@ -442,7 +564,11 @@ fn main() {
         let mut bad = SM;
         bad[0].1 = 5;
         let ok2 = !full_check(&bad, &c);
-        record("SM は全条件を満たし、Y を 1 目盛ずらすと落ちる", ok1 && ok2, &mut checks);
+        record(
+            "SM は全条件を満たし、Y を 1 目盛ずらすと落ちる",
+            ok1 && ok2,
+            &mut checks,
+        );
         // canonical の不変性: 並べ替え・共役・反転・整数倍で同じ正準形
         let mut perm = vec![SM[3], SM[0], SM[4], SM[1], SM[2]];
         let can0 = canonical(&SM);
@@ -453,7 +579,11 @@ fn main() {
         let ok4 = canonical(&perm) == can0;
         let scaled: Vec<Mult> = SM.iter().map(|&(t, n)| (t, -2 * n)).collect(); // U(1) 反転 + 2 倍
         let ok5 = canonical(&scaled) == can0;
-        record("正準形は並べ替え・共役・U(1)反転・整数倍で不変", ok3 && ok4 && ok5, &mut checks);
+        record(
+            "正準形は並べ替え・共役・U(1)反転・整数倍で不変",
+            ok3 && ok4 && ok5,
+            &mut checks,
+        );
     }
 
     // ---------------- [R] 既存結果の独立再現 ----------------
@@ -462,23 +592,51 @@ fn main() {
     let all10: Vec<usize> = (0..NT).collect();
     let mut cert_runs: Vec<(Domain, ScanOut)> = Vec::new();
 
-    let r1 = Domain { name: "R1_v31", label: "v3.1 域: 小表現, |Y|≤3/2, ≤5 多重項, ≤15 成分", types: small.clone(), nymax: 9, kmax: 5, cmax: 15, cond: Cond::all() };
+    let r1 = Domain {
+        name: "R1_v31",
+        label: "v3.1 域: 小表現, |Y|≤3/2, ≤5 多重項, ≤15 成分",
+        types: small.clone(),
+        nymax: 9,
+        kmax: 5,
+        cmax: 15,
+        cond: Cond::all(),
+    };
     let r1out = scan(&r1);
     print_scan(r1.label, &r1out, 2);
     let sm_can = canonical(&SM);
     let ok_r1 = r1out.sols.len() == 1 && r1out.sols[0].0 == 15 && r1out.sols[0].1 == sm_can;
-    record("R1: 解は SM 1 世代ただ一つ (v3.1 の再現)", ok_r1, &mut checks);
+    record(
+        "R1: 解は SM 1 世代ただ一つ (v3.1 の再現)",
+        ok_r1,
+        &mut checks,
+    );
     let dfs = dfs_scan(&r1);
     let mitm: HashSet<Vec<Mult>> = r1out.sols.iter().map(|(_, s)| s.clone()).collect();
-    record("R1: 直接 DFS と MITM の解集合が一致 (二重実装)", dfs == mitm, &mut checks);
+    record(
+        "R1: 直接 DFS と MITM の解集合が一致 (二重実装)",
+        dfs == mitm,
+        &mut checks,
+    );
     cert_runs.push((r1, r1out));
 
-    let r2 = Domain { name: "R2_v43", label: "v4.3 域: 小表現, |Y|≤3/2, ≤6 多重項, ≤24 成分", types: small.clone(), nymax: 9, kmax: 6, cmax: 24, cond: Cond::all() };
+    let r2 = Domain {
+        name: "R2_v43",
+        label: "v4.3 域: 小表現, |Y|≤3/2, ≤6 多重項, ≤24 成分",
+        types: small.clone(),
+        nymax: 9,
+        kmax: 6,
+        cmax: 24,
+        cond: Cond::all(),
+    };
     let r2out = scan(&r2);
     print_scan(r2.label, &r2out, 1);
     let by2 = spectrum(&r2out.sols);
     let ok_r2 = by2 == BTreeMap::from([(15i64, 1usize), (16, 8), (24, 459)]);
-    record("R2: スペクトル {15:1, 16:8, 24:459} (v4.3 の再現)", ok_r2, &mut checks);
+    record(
+        "R2: スペクトル {15:1, 16:8, 24:459} (v4.3 の再現)",
+        ok_r2,
+        &mut checks,
+    );
     // v4.3 が公表した 16 成分解 4 例が解集合に含まれるか
     let published16: [&[Mult]; 4] = [
         &[(0, -9), (0, -3), (1, 6), (3, -1), (3, 5), (6, -2)],
@@ -488,24 +646,73 @@ fn main() {
     ];
     let set2: HashSet<Vec<Mult>> = r2out.sols.iter().map(|(_, s)| s.clone()).collect();
     let ok_pub = published16.iter().all(|sp| set2.contains(&canonical(sp)));
-    record("R2: v4.3 公表の 16 成分解 4 例をすべて含む", ok_pub, &mut checks);
+    record(
+        "R2: v4.3 公表の 16 成分解 4 例をすべて含む",
+        ok_pub,
+        &mut checks,
+    );
     let r2set = set2;
     cert_runs.push((r2, r2out));
 
-    let r3 = Domain { name: "R3_v52", label: "v5.2 域: 大表現込み, |Y|≤3/2, ≤5 多重項, ≤16 成分", types: all10.clone(), nymax: 9, kmax: 5, cmax: 16, cond: Cond::all() };
+    let r3 = Domain {
+        name: "R3_v52",
+        label: "v5.2 域: 大表現込み, |Y|≤3/2, ≤5 多重項, ≤16 成分",
+        types: all10.clone(),
+        nymax: 9,
+        kmax: 5,
+        cmax: 16,
+        cond: Cond::all(),
+    };
     let r3out = scan(&r3);
     print_scan(r3.label, &r3out, 1);
-    let ok_r3 = spectrum(&r3out.sols) == BTreeMap::from([(15i64, 1usize)]) && r3out.sols[0].1 == sm_can;
-    record("R3: 大表現込みでも {15:1} = SM のみ (v5.2 の再現)", ok_r3, &mut checks);
+    let ok_r3 =
+        spectrum(&r3out.sols) == BTreeMap::from([(15i64, 1usize)]) && r3out.sols[0].1 == sm_can;
+    record(
+        "R3: 大表現込みでも {15:1} = SM のみ (v5.2 の再現)",
+        ok_r3,
+        &mut checks,
+    );
     cert_runs.push((r3, r3out));
 
     // ---------------- [E] 拡張軸での反例探索 ----------------
     println!("\n[E] 反例探索: 領域を広げても SM より小さい解は現れないか");
     let exts = [
-        Domain { name: "E1_bigreps24", label: "E1: 大表現込み, |Y|≤3/2, ≤6 多重項, ≤24 成分", types: all10.clone(), nymax: 9, kmax: 6, cmax: 24, cond: Cond::all() },
-        Domain { name: "E2_Y2", label: "E2: 大表現込み, |Y|≤2, ≤6 多重項, ≤18 成分", types: all10.clone(), nymax: 12, kmax: 6, cmax: 18, cond: Cond::all() },
-        Domain { name: "E3_Y3", label: "E3: 大表現込み, |Y|≤3, ≤5 多重項, ≤16 成分", types: all10.clone(), nymax: 18, kmax: 5, cmax: 16, cond: Cond::all() },
-        Domain { name: "E4_k8", label: "E4: 小表現, |Y|≤3/2, ≤8 多重項, ≤24 成分", types: small.clone(), nymax: 9, kmax: 8, cmax: 24, cond: Cond::all() },
+        Domain {
+            name: "E1_bigreps24",
+            label: "E1: 大表現込み, |Y|≤3/2, ≤6 多重項, ≤24 成分",
+            types: all10.clone(),
+            nymax: 9,
+            kmax: 6,
+            cmax: 24,
+            cond: Cond::all(),
+        },
+        Domain {
+            name: "E2_Y2",
+            label: "E2: 大表現込み, |Y|≤2, ≤6 多重項, ≤18 成分",
+            types: all10.clone(),
+            nymax: 12,
+            kmax: 6,
+            cmax: 18,
+            cond: Cond::all(),
+        },
+        Domain {
+            name: "E3_Y3",
+            label: "E3: 大表現込み, |Y|≤3, ≤5 多重項, ≤16 成分",
+            types: all10.clone(),
+            nymax: 18,
+            kmax: 5,
+            cmax: 16,
+            cond: Cond::all(),
+        },
+        Domain {
+            name: "E4_k8",
+            label: "E4: 小表現, |Y|≤3/2, ≤8 多重項, ≤24 成分",
+            types: small.clone(),
+            nymax: 9,
+            kmax: 8,
+            cmax: 24,
+            cond: Cond::all(),
+        },
     ];
     for dom in exts {
         let out = scan(&dom);
@@ -525,14 +732,26 @@ fn main() {
     {
         let mut cond = Cond::all();
         cond.sterile_ok = true;
-        let dom = Domain { name: "E5_nuR", label: "E5: R2 域 + 完全中性 (1,1)_0 を許可 (ν_R)", types: small.clone(), nymax: 9, kmax: 6, cmax: 24, cond };
+        let dom = Domain {
+            name: "E5_nuR",
+            label: "E5: R2 域 + 完全中性 (1,1)_0 を許可 (ν_R)",
+            types: small.clone(),
+            nymax: 9,
+            kmax: 6,
+            cmax: 24,
+            cond,
+        };
         let out = scan(&dom);
         print_scan(dom.label, &out, 2);
         let by = spectrum(&out.sols);
         let below: usize = by.iter().filter(|(c, _)| **c < 15).map(|(_, n)| n).sum();
         let at15 = by.get(&15).copied().unwrap_or(0);
         let has_smnur = out.sols.iter().any(|(_, s)| *s == canonical(&SM_NUR));
-        record("E5: SM は最小のまま、16 成分に SM+ν_R が現れる", below == 0 && at15 == 1 && has_smnur, &mut checks);
+        record(
+            "E5: SM は最小のまま、16 成分に SM+ν_R が現れる",
+            below == 0 && at15 == 1 && has_smnur,
+            &mut checks,
+        );
         cert_runs.push((dom, out));
     }
 
@@ -540,20 +759,42 @@ fn main() {
     println!("\n[N] 陰性対照: どの条件が SM の最小性・一意性を担っているか (基線 = R2 域)");
     println!("  各行: 外した条件 → 15 成分未満の解の数 / 15 成分の解の数 / 最小成分数");
     let drops: [(&str, &str, fn(&mut Cond)); 8] = [
-        ("N1_nochiral", "カイラル性 (vectorlike 対を許す)", |c| c.chiral = false),
+        (
+            "N1_nochiral",
+            "カイラル性 (vectorlike 対を許す)",
+            |c| c.chiral = false,
+        ),
         ("N2_nofactors", "全因子帯電", |c| c.all_factors = false),
-        ("N3_nowitten", "Witten 大域アノマリー", |c| c.witten = false),
-        ("N4_nosu3cub", "SU(3)³ アノマリー", |c| c.su3cub = false),
-        ("N5_nosu3sq", "SU(3)²U(1) アノマリー", |c| c.su3sq = false),
-        ("N6_nosu2sq", "SU(2)²U(1) アノマリー", |c| c.su2sq = false),
-        ("N7_nograv", "重力²U(1) アノマリー", |c| c.grav = false),
+        ("N3_nowitten", "Witten 大域アノマリー", |c| {
+            c.witten = false
+        }),
+        ("N4_nosu3cub", "SU(3)³ アノマリー", |c| {
+            c.su3cub = false
+        }),
+        ("N5_nosu3sq", "SU(3)²U(1) アノマリー", |c| {
+            c.su3sq = false
+        }),
+        ("N6_nosu2sq", "SU(2)²U(1) アノマリー", |c| {
+            c.su2sq = false
+        }),
+        ("N7_nograv", "重力²U(1) アノマリー", |c| {
+            c.grav = false
+        }),
         ("N8_nocubic", "U(1)³ アノマリー", |c| c.cubic = false),
     ];
     let mut control_rows: Vec<(String, usize, usize, i64, usize)> = Vec::new();
     for (name, desc, dropf) in drops {
         let mut cond = Cond::all();
         dropf(&mut cond);
-        let dom = Domain { name, label: desc, types: small.clone(), nymax: 9, kmax: 6, cmax: 24, cond };
+        let dom = Domain {
+            name,
+            label: desc,
+            types: small.clone(),
+            nymax: 9,
+            kmax: 6,
+            cmax: 24,
+            cond,
+        };
         let out = scan(&dom);
         let by = spectrum(&out.sols);
         let below: usize = by.iter().filter(|(c, _)| **c < 15).map(|(_, n)| n).sum();
@@ -571,17 +812,33 @@ fn main() {
         let cset: HashSet<Vec<Mult>> = out.sols.iter().map(|(_, s)| s.clone()).collect();
         let superset = r2set.iter().all(|s| cset.contains(s));
         if !superset {
-            record(&format!("{}: 基線 ⊆ 対照 (単調性)", name), false, &mut checks);
+            record(
+                &format!("{}: 基線 ⊆ 対照 (単調性)", name),
+                false,
+                &mut checks,
+            );
         }
         control_rows.push((name.to_string(), below, at15, cmin, nsol));
         cert_runs.push((dom, out));
     }
     {
         let all_superset = control_rows.len() == 8;
-        record("N1–N8: 基線の解集合が全対照に含まれる (単調性)", all_superset && checks.iter().all(|(n, ok)| !n.contains("単調性") || *ok), &mut checks);
+        record(
+            "N1–N8: 基線の解集合が全対照に含まれる (単調性)",
+            all_superset && checks.iter().all(|(n, ok)| !n.contains("単調性") || *ok),
+            &mut checks,
+        );
         let n1 = &control_rows[0];
-        record("N1: カイラル性を外すと 15 成分未満の解 (vectorlike 対) が現れる", n1.1 > 0 && n1.3 < 15, &mut checks);
-        let uniq_broken: Vec<&str> = control_rows.iter().filter(|r| r.1 > 0 || r.2 != 1).map(|r| r.0.as_str()).collect();
+        record(
+            "N1: カイラル性を外すと 15 成分未満の解 (vectorlike 対) が現れる",
+            n1.1 > 0 && n1.3 < 15,
+            &mut checks,
+        );
+        let uniq_broken: Vec<&str> = control_rows
+            .iter()
+            .filter(|r| r.1 > 0 || r.2 != 1)
+            .map(|r| r.0.as_str())
+            .collect();
         println!("  最小性/一意性が壊れる対照: {:?}", uniq_broken);
         println!("  (壊れない対照 = その条件はこの領域では結論に効いていない、という地図)");
     }
@@ -618,7 +875,14 @@ fn main() {
                                 m1 += dw * y1[i] * y1[i] * y2[i];
                                 m2 += dw * y1[i] * y2[i] * y2[i];
                             }
-                            if s3 == 0 && s2 == 0 && gr == 0 && cu == 0 && m1 == 0 && m2 == 0 && y2 != [0; 5] {
+                            if s3 == 0
+                                && s2 == 0
+                                && gr == 0
+                                && cu == 0
+                                && m1 == 0
+                                && m2 == 0
+                                && y2 != [0; 5]
+                            {
                                 nsol += 1;
                                 // y2 ∥ y1 か (2×2 小行列式が全て 0)
                                 for i in 0..5 {
@@ -634,8 +898,15 @@ fn main() {
                 }
             }
         }
-        println!("  SM (ν_R なし): 非自明解 {} 個 — すべて Y に比例するか: {}", nsol, all_prop);
-        record("U1: SM に独立な第 2 の U(1) は存在しない (全て Y ∝)", nsol > 0 && all_prop, &mut checks);
+        println!(
+            "  SM (ν_R なし): 非自明解 {} 個 — すべて Y に比例するか: {}",
+            nsol, all_prop
+        );
+        record(
+            "U1: SM に独立な第 2 の U(1) は存在しない (全て Y ∝)",
+            nsol > 0 && all_prop,
+            &mut checks,
+        );
     }
     // SM+ν_R: 線形 3 条件で (d,l,ν) を消去し (q,u,e) を全走査
     {
@@ -696,8 +967,16 @@ fn main() {
                 }
             }
         }
-        println!("  SM+ν_R: 非自明解 {} 個 — B−L を含み、全て span{{Y, B−L}} 内: {}", nsol, found_bl && in_span);
-        record("U2: SM+ν_R の第 2 U(1) は Y と B−L の張る 2 次元格子に限る", nsol > 0 && found_bl && in_span, &mut checks);
+        println!(
+            "  SM+ν_R: 非自明解 {} 個 — B−L を含み、全て span{{Y, B−L}} 内: {}",
+            nsol,
+            found_bl && in_span
+        );
+        record(
+            "U2: SM+ν_R の第 2 U(1) は Y と B−L の張る 2 次元格子に限る",
+            nsol > 0 && found_bl && in_span,
+            &mut checks,
+        );
     }
 
     // ---------------- [G] GUT 降下の厳密検査 ----------------
@@ -709,7 +988,7 @@ fn main() {
         // 5̄: 3̄ 側 (最初の 3 成分) が d^c=(3̄,1), レプトン側 2 成分が L=(1,2)
         content5.push((4, -y5[0])); // (3̄,1)_{2}
         content5.push((1, -y5[3])); // (1,2)_{-3}
-        // 10 = 反対称 2 階: (i<j) の Y 和。色×色 → (3̄,1) [u^c], 色×弱 → (3,2) [Q], 弱×弱 → (1,1) [e^c]
+                                    // 10 = 反対称 2 階: (i<j) の Y 和。色×色 → (3̄,1) [u^c], 色×弱 → (3,2) [Q], 弱×弱 → (1,1) [e^c]
         let mut content10: Vec<Mult> = Vec::new();
         content10.push((4, y5[0] + y5[1])); // u^c = (3̄,1)_{-4}
         content10.push((5, y5[0] + y5[3])); // Q = (3,2)_{1}
@@ -718,25 +997,39 @@ fn main() {
         got.extend(&content10);
         let ok_su5 = canonical(&got) == sm_can && y5.iter().sum::<i64>() == 0;
         println!("  SU(5) 5̄⊕10 → {} ", fmt_sp(&got));
-        record("G1: SU(5) 5̄⊕10 の超電荷 = SM 1 世代 (トレースレス条件込み)", ok_su5, &mut checks);
+        record(
+            "G1: SU(5) 5̄⊕10 の超電荷 = SM 1 世代 (トレースレス条件込み)",
+            ok_su5,
+            &mut checks,
+        );
         // SO(10): 16 = 10 ⊕ 5̄ ⊕ 1 → SM + ν_R
         let mut got16 = got.clone();
         got16.push((0, 0));
         let ok_so10 = canonical(&got16) == canonical(&SM_NUR);
         let mut cond_s = Cond::all();
         cond_s.sterile_ok = true;
-        record("G2: SO(10) 16 = 10⊕5̄⊕1 → SM+ν_R (アノマリー検査込み)", ok_so10 && full_check(&got16, &cond_s), &mut checks);
-        // Pati–Salam: (4,2,1)⊕(4̄,1,2), Y = (B−L)/2 + T3R (6Y = 3(B−L)三分単位 + ±3)
+        record(
+            "G2: SO(10) 16 = 10⊕5̄⊕1 → SM+ν_R (アノマリー検査込み)",
+            ok_so10 && full_check(&got16, &cond_s),
+            &mut checks,
+        );
+        // Pati–Salam: (4,2,1)⊕(4̄,1,2), Y = (B−L)/2 + T3R。6Y = bl3 ± t3r6
+        // (bl3 = 3(B−L): クォーク +1 / レプトン −3, 共役は符号反転。t3r6 = 6T³_R = 3)
+        let t3r6 = 3i64;
         let mut ps: Vec<Mult> = Vec::new();
         ps.push((5, 1)); // (4,2,1) 色側: bl3=+1 → Q=(3,2)_{1}
         ps.push((1, -3)); // (4,2,1) レプトン側: bl3=−3 → L=(1,2)_{-3}
-        ps.push((4, -1 + 3)); // (4̄,1,2) 色, T3R=+1/2 → d^c=(3̄,1)_{2}
-        ps.push((4, -1 - 3)); // (4̄,1,2) 色, T3R=−1/2 → u^c=(3̄,1)_{-4}
-        ps.push((0, 3 + 3)); // (4̄,1,2) レプトン, T3R=+1/2 → e^c=(1,1)_{6}
-        ps.push((0, 3 - 3)); // (4̄,1,2) レプトン, T3R=−1/2 → ν_R=(1,1)_{0}
+        ps.push((4, -1 + t3r6)); // (4̄,1,2) 色, T3R=+1/2 → d^c=(3̄,1)_{2}
+        ps.push((4, -1 - t3r6)); // (4̄,1,2) 色, T3R=−1/2 → u^c=(3̄,1)_{-4}
+        ps.push((0, 3 + t3r6)); // (4̄,1,2) レプトン, T3R=+1/2 → e^c=(1,1)_{6}
+        ps.push((0, 3 - t3r6)); // (4̄,1,2) レプトン, T3R=−1/2 → ν_R=(1,1)_{0}
         let ok_ps = canonical(&ps) == canonical(&SM_NUR);
         println!("  Pati–Salam (4,2,1)⊕(4̄,1,2) → {}", fmt_sp(&ps));
-        record("G3: Pati–Salam 分岐 (Y=(B−L)/2+T3R) → SM+ν_R", ok_ps, &mut checks);
+        record(
+            "G3: Pati–Salam 分岐 (Y=(B−L)/2+T3R) → SM+ν_R",
+            ok_ps,
+            &mut checks,
+        );
     }
 
     // ---------------- 証明書の出力 ----------------
@@ -750,7 +1043,10 @@ fn main() {
             ("u1_cubed".into(), Json::Bool(c.cubic)),
             ("witten".into(), Json::Bool(c.witten)),
             ("chiral".into(), Json::Bool(c.chiral)),
-            ("charged_under_all_factors".into(), Json::Bool(c.all_factors)),
+            (
+                "charged_under_all_factors".into(),
+                Json::Bool(c.all_factors),
+            ),
             ("sterile_neutrino_allowed".into(), Json::Bool(c.sterile_ok)),
         ])
     };
@@ -762,7 +1058,15 @@ fn main() {
         domains_json.push(Json::Obj(vec![
             ("run".into(), Json::Str(dom.name.into())),
             ("label".into(), Json::Str(dom.label.into())),
-            ("types".into(), Json::Arr(dom.types.iter().map(|&t| Json::Str(REPS[t].key.into())).collect())),
+            (
+                "types".into(),
+                Json::Arr(
+                    dom.types
+                        .iter()
+                        .map(|&t| Json::Str(REPS[t].key.into()))
+                        .collect(),
+                ),
+            ),
             ("hypercharge_6y_max".into(), Json::Int(dom.nymax)),
             ("max_multiplets".into(), Json::Int(dom.kmax as i64)),
             ("max_components".into(), Json::Int(dom.cmax)),
@@ -779,7 +1083,12 @@ fn main() {
         sha_lines.push_str(&format!("{}  {}  n={}\n", h, dom.name, out.sols.len()));
         let truncated = out.sols.len() > JSON_CAP;
         if truncated {
-            println!("  注意: {} の解 {} 個は JSON では先頭 {} 個に切り詰め (ハッシュは全解)", dom.name, out.sols.len(), JSON_CAP);
+            println!(
+                "  注意: {} の解 {} 個は JSON では先頭 {} 個に切り詰め (ハッシュは全解)",
+                dom.name,
+                out.sols.len(),
+                JSON_CAP
+            );
         }
         sols_json.push(Json::Obj(vec![
             ("run".into(), Json::Str(dom.name.into())),
@@ -789,7 +1098,12 @@ fn main() {
             ("sha256_of_full_list".into(), Json::Str(h)),
             (
                 "spectrum".into(),
-                Json::Obj(spectrum(&out.sols).iter().map(|(c, n)| (c.to_string(), Json::Int(*n as i64))).collect()),
+                Json::Obj(
+                    spectrum(&out.sols)
+                        .iter()
+                        .map(|(c, n)| (c.to_string(), Json::Int(*n as i64)))
+                        .collect(),
+                ),
             ),
             (
                 "solutions".into(),
@@ -800,7 +1114,16 @@ fn main() {
                         .map(|(c, s)| {
                             Json::Obj(vec![
                                 ("components".into(), Json::Int(*c)),
-                                ("multiplets".into(), Json::Arr(s.iter().map(|&(t, n)| Json::Str(format!("{}:{}", REPS[t].key, n))).collect())),
+                                (
+                                    "multiplets".into(),
+                                    Json::Arr(
+                                        s.iter()
+                                            .map(|&(t, n)| {
+                                                Json::Str(format!("{}:{}", REPS[t].key, n))
+                                            })
+                                            .collect(),
+                                    ),
+                                ),
                             ])
                         })
                         .collect(),
@@ -808,30 +1131,62 @@ fn main() {
             ),
         ]));
     }
-    let p1 = write_artifact("certificates/v62_domains.json", &Json::Arr(domains_json).render());
-    let p2 = write_artifact("certificates/v62_solutions.json", &Json::Arr(sols_json).render());
+    let p1 = write_artifact(
+        "certificates/v62_domains.json",
+        &Json::Arr(domains_json).render(),
+    );
+    let p2 = write_artifact(
+        "certificates/v62_solutions.json",
+        &Json::Arr(sols_json).render(),
+    );
     let p3 = write_artifact("certificates/v62_sha256.txt", &sha_lines);
     println!("  {} / {} / {}", p1, p2, p3);
 
     // ---------------- 機械可読な結果 (results/v62_atlas.json) ----------------
     let all_ok = checks.iter().all(|(_, ok)| *ok);
     let summary = Json::Obj(vec![
-        ("claim_ids".into(), Json::Arr(vec![
-            Json::Str("QRN-GAUGE-003".into()),
-            Json::Str("QRN-GAUGE-006".into()),
-            Json::Str("QRN-GAUGE-007".into()),
-            Json::Str("QRN-GAUGE-008".into()),
-            Json::Str("QRN-GAUGE-009".into()),
-            Json::Str("QRN-GAUGE-010".into()),
-        ])),
-        ("checks".into(), Json::Arr(checks.iter().map(|(n, ok)| Json::Obj(vec![("name".into(), Json::Str(n.clone())), ("pass".into(), Json::Bool(*ok))])).collect())),
-        ("controls".into(), Json::Arr(control_rows.iter().map(|(n, below, at15, cmin, nsol)| Json::Obj(vec![
-            ("run".into(), Json::Str(n.clone())),
-            ("solutions_below_15".into(), Json::Int(*below as i64)),
-            ("solutions_at_15".into(), Json::Int(*at15 as i64)),
-            ("min_components".into(), Json::Int(*cmin)),
-            ("total_solutions".into(), Json::Int(*nsol as i64)),
-        ])).collect())),
+        (
+            "claim_ids".into(),
+            Json::Arr(vec![
+                Json::Str("QRN-GAUGE-003".into()),
+                Json::Str("QRN-GAUGE-006".into()),
+                Json::Str("QRN-GAUGE-007".into()),
+                Json::Str("QRN-GAUGE-008".into()),
+                Json::Str("QRN-GAUGE-009".into()),
+                Json::Str("QRN-GAUGE-010".into()),
+            ]),
+        ),
+        (
+            "checks".into(),
+            Json::Arr(
+                checks
+                    .iter()
+                    .map(|(n, ok)| {
+                        Json::Obj(vec![
+                            ("name".into(), Json::Str(n.clone())),
+                            ("pass".into(), Json::Bool(*ok)),
+                        ])
+                    })
+                    .collect(),
+            ),
+        ),
+        (
+            "controls".into(),
+            Json::Arr(
+                control_rows
+                    .iter()
+                    .map(|(n, below, at15, cmin, nsol)| {
+                        Json::Obj(vec![
+                            ("run".into(), Json::Str(n.clone())),
+                            ("solutions_below_15".into(), Json::Int(*below as i64)),
+                            ("solutions_at_15".into(), Json::Int(*at15 as i64)),
+                            ("min_components".into(), Json::Int(*cmin)),
+                            ("total_solutions".into(), Json::Int(*nsol as i64)),
+                        ])
+                    })
+                    .collect(),
+            ),
+        ),
         ("pass".into(), Json::Bool(all_ok)),
     ]);
     let p4 = write_artifact("results/v62_atlas.json", &summary.render());
