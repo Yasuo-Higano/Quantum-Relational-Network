@@ -1,0 +1,62 @@
+{
+  "claim_id": "QRN-EXP-003",
+  "deterministic": true,
+  "reciprocity": "classical channel: V1*V2 <= exp(-dPhi/2); quantum: C=|sin(dPhi/2)|, V=1",
+  "cases": [
+    {
+      "m_kg": 0.00000000000001,
+      "d_um": 250,
+      "dx_um": 50,
+      "tau_s": 2.5,
+      "delta_phi": 0.05273721474176618,
+      "concurrence_qrn": 0.026365551779813163,
+      "visibility_upper_bound_classical": 0.9739760086970106
+    },
+    {
+      "m_kg": 0.00000000000001,
+      "d_um": 200,
+      "dx_um": 100,
+      "tau_s": 2.5,
+      "delta_phi": 0.5273721474176625,
+      "concurrence_qrn": 0.2606409820237216,
+      "visibility_upper_bound_classical": 0.7682146645874738
+    },
+    {
+      "m_kg": 0.00000000000001,
+      "d_um": 200,
+      "dx_um": 100,
+      "tau_s": 5,
+      "delta_phi": 1.054744294835325,
+      "concurrence_qrn": 0.5032642685192436,
+      "visibility_upper_bound_classical": 0.5901537708872447
+    },
+    {
+      "m_kg": 0.000000000000001,
+      "d_um": 200,
+      "dx_um": 100,
+      "tau_s": 2.5,
+      "delta_phi": 0.005273721474176624,
+      "concurrence_qrn": 0.002636857681392074,
+      "visibility_upper_bound_classical": 0.9973666127265011
+    }
+  ],
+  "checks": [
+    {
+      "name": "量子チャネル: C=|sin Δφ/2|, V=|cos Δφ/2|, C²+V²=1, 純粋 (損失は可逆)",
+      "pass": true
+    },
+    {
+      "name": "古典チャネル: 条件付き位相 (力) は Δφ を再現",
+      "pass": true
+    },
+    {
+      "name": "古典チャネル: 負性 = 0 (PPT — 2 量子ビットでは分離可能と同値)",
+      "pass": true
+    },
+    {
+      "name": "相反定理: V₁V₂ ≤ e^(-Δφ/2)、最適は Γ=λ/4 (数値: Γ/λ=0.25)",
+      "pass": true
+    }
+  ],
+  "pass": true
+}
