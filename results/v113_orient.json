@@ -1,0 +1,18 @@
+{
+  "claim_id": "QRN-YUK-011",
+  "relativity_identity_dev": 0,
+  "lnZ_nine_orient": -20.863277909760527,
+  "lnZ_nine_full_ref": -19.86334559888438,
+  "lnZ_nine_allN": -21.827469658836467,
+  "map_orient": [
+    2,
+    1,
+    2,
+    1,
+    0,
+    0,
+    1,
+    1
+  ],
+  "pass": true
+}
