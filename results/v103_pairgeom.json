@@ -1,0 +1,9 @@
+{
+  "claim_id": "QRN-YUK-009",
+  "only_identity_matches": true,
+  "nontrivial_pairs_irreducible": true,
+  "erratum": "v10.1 §4 の「巡回対 = Z18 細分化と等価」は誤り (本バイナリが反証)",
+  "reflection_vs_conjugation_dev": 0.0008662311052438627,
+  "decisive": true,
+  "pass": true
+}
