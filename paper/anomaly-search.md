@@ -55,8 +55,8 @@
 ## 図表計画
 
 - 図 1: 理論空間スペクトル (figures/v62_landscape.svg — 既存)
-- 図 2: 対照地図 (条件を外す → 最小成分数/一意性の表を図に; 要作成)
-- 図 3: U(1) の階段 (Y → B−L → なし; 要作成)
+- 図 2: 対照地図 (figures/fig_controls_map.svg — v9.3 作成済み、数値は v62_atlas.json と照合)
+- 図 3: U(1) の階段 (figures/fig_u1_staircase.svg — v9.3 作成済み、数値は v71/v82 JSON と照合)
 - 表 1: 領域定義 (certificates から生成)
 - 表 2: 3 実装の一致と SHA-256
 - 表 3: Lean 定理と信頼基盤
