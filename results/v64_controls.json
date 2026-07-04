@@ -1,0 +1,61 @@
+{
+  "claim_id": "QRN-GEOM-004",
+  "seed": 6404,
+  "lattice_size": 202,
+  "criterion": "adjacency>=0.9 && radius_scatter<=0.10 && lam2/lam1>=0.9",
+  "positive": {
+    "adjacency": 1,
+    "radius_scatter": 0.0000000000001159983222346024,
+    "lambda2_over_lambda1": 0.9999999999999069,
+    "mi_max": 0.7090942497748776,
+    "ring_detected": true
+  },
+  "controls": [
+    {
+      "name": "shuffled_mi",
+      "expected": "reconstruction fails",
+      "metrics": {
+        "adjacency": 0.009900990099009901,
+        "radius_scatter": 0.44643527446713077,
+        "lambda2_over_lambda1": 0.9525343827614787,
+        "mi_max": 0.7090942497748776,
+        "ring_detected": false
+      }
+    },
+    {
+      "name": "nonlocal_goe_ground_state",
+      "expected": "reconstruction fails",
+      "metrics": {
+        "adjacency": 0.04950495049504951,
+        "radius_scatter": 0.7769222079900417,
+        "lambda2_over_lambda1": 0.8780623904639882,
+        "mi_max": 0.11873410174998389,
+        "ring_detected": false
+      }
+    },
+    {
+      "name": "volume_law_random_state",
+      "expected": "reconstruction fails",
+      "metrics": {
+        "adjacency": 0.019801980198019802,
+        "radius_scatter": 0.6865753751729631,
+        "lambda2_over_lambda1": 0.9757485540443894,
+        "mi_max": 0.0942383567412235,
+        "ring_detected": false
+      }
+    },
+    {
+      "name": "classical_uncorrelated_product",
+      "expected": "no geometry definable (MI=0)",
+      "metrics": {
+        "adjacency": 0,
+        "radius_scatter": -1,
+        "lambda2_over_lambda1": 0,
+        "mi_max": 0.0000000000000004440892098500626,
+        "ring_detected": false
+      }
+    }
+  ],
+  "mi_decay_exponent_positive": -2.043338655552487,
+  "pass": true
+}

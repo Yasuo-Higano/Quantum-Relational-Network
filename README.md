@@ -72,6 +72,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v6.1 | [uft-v6.1.md](docs/uft-v6.1.md) | `v61_ledger` | **主張台帳 claims.yml 導入** — 全 53 主張を C0-C5 に分類し機械検証。既存研究との差分表 |
 | v6.2 | [uft-v6.2.md](docs/uft-v6.2.md) | `v62_atlas` | **探索の要塞化**: 独立実装 3 重照合、反例探索 (大表現/\|Y\|≤3/≤8多重項/ν_R) でも SM 最小・唯一。対照地図 (U(1)³ が一意性を担う)。第 2 U(1) は Y のみ、ν_R 込みで Y⊕(B−L)。certificates/ に SHA-256 証明書 |
 | v6.3 | [uft-v6.3.md](docs/uft-v6.3.md) | `v63_qnec_budget` | **QNEC の誤差予算**: tolerance = 微分+有限サイズ+丸め に分解。強形の負ギャップは N^(−1.8) で縮む離散化効果と判明。非カイラル対照で共動凍結だけが壊れる。JSON artifact 化 |
+| v6.4 | [uft-v6.4.md](docs/uft-v6.4.md) | `v64_controls` | **幾何読み出しの陰性対照**: 正例のみ円環 (隣接 100%)、MI シャッフル/GOE/volume-law/古典の 4 対照は全て失敗 — 検出しているのは「MI 減衰の局所的パターン」 |
 
 ## リポジトリ構成
 
