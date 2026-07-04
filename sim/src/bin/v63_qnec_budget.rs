@@ -69,7 +69,7 @@ fn make_case(n: usize) -> Case {
 /// S(σ), T₋₋(σ) を返す。standing=true なら左右両向きの定在波 (非カイラル)。
 fn sweep(case: &Case, standing: bool) -> Sweep {
     let n = case.n;
-    let nocc = n / 2 + 1; // N ≡ 2 (mod 4) で閉殻・実相関
+    let nocc = n / 2; // N ≡ 2 (mod 4) で nocc が奇数 = 閉殻・実相関 (v4.1 と同一)
     let two_pi = 2.0 * std::f64::consts::PI;
     let vf = 2.0f64;
     let c0 = |d: isize| -> f64 {
@@ -265,7 +265,7 @@ fn sweep(case: &Case, standing: bool) -> Sweep {
 /// 共動変形での ΔS (波束寄与) の変動幅
 fn comoving_var(case: &Case, standing: bool) -> f64 {
     let n = case.n;
-    let nocc = n / 2 + 1;
+    let nocc = n / 2;
     let c0 = |d: isize| -> f64 {
         let d = d.unsigned_abs();
         if d == 0 {
@@ -305,7 +305,7 @@ fn comoving_var(case: &Case, standing: bool) -> f64 {
 /// 状態構築を関数として返す (comoving 用の薄いラッパ)
 fn sweep_state_at(case: &Case, standing: bool) -> impl Fn(f64) -> (Vec<f64>, Vec<f64>) + '_ {
     let n = case.n;
-    let nocc = n / 2 + 1;
+    let nocc = n / 2;
     let two_pi = 2.0 * std::f64::consts::PI;
     let c0 = move |d: isize| -> f64 {
         let d = d.unsigned_abs();

@@ -1,0 +1,15 @@
+{
+  "claim_id": "QRN-CORE-001",
+  "model": "RingChain",
+  "n": 202,
+  "geometry": {
+    "adjacency": 1,
+    "radius_scatter": 0.00000000000007137449778398771,
+    "ring": true
+  },
+  "central_charge": 1.0005851887998112,
+  "fermi_momentum": 1.5707963267948966,
+  "front_velocity": 2.1,
+  "vf_from_matter": 2,
+  "pass": true
+}

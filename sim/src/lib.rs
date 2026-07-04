@@ -500,6 +500,301 @@ pub fn write_artifact(rel: &str, content: &str) -> String {
     path
 }
 
+// ---------------- QRN core (v6.7) ----------------
+// 統一理論としての説得力は「新しいシミュレーションを増やすこと」ではなく
+// 「既存のシミュレーションを同じ core から出すこと」で上がる (改良方針 §7)。
+// 共通の状態空間 (ガウスフェルミオン網 = 相関行列) と共通の読み出しをここに置き、
+// 各 vXY バイナリは QrnModel の実装 + 読み出しの組合せとして書けるようにする。
+
+/// QRN の共通状態: ガウスフェルミオン状態。全ての物理量が相関行列
+/// C_ij = ⟨c†_i c_j⟩ (エルミート) から厳密に計算できる。
+pub struct QrnState {
+    pub n: usize,
+    pub cre: Vec<f64>,
+    pub cim: Vec<f64>,
+}
+
+/// QRN 模型: 状態空間の初期化と動力学。仮定と主張 (claims.yml の id) を明示する。
+pub trait QrnModel {
+    fn assumptions(&self) -> Vec<&'static str>;
+    fn claims(&self) -> Vec<&'static str>;
+    fn init(&self) -> QrnState;
+    fn evolve(&self, s: &QrnState, t: f64) -> QrnState;
+}
+
+/// 二値エントロピー h(z) = −z ln z − (1−z) ln(1−z)
+pub fn h2_entropy(z: f64) -> f64 {
+    let z = z.clamp(1e-14, 1.0 - 1e-14);
+    -z * z.ln() - (1.0 - z) * (1.0 - z).ln()
+}
+
+/// 実対称相関行列のエンタングルメントエントロピー
+pub fn entropy_corr_real(c: &[f64], n: usize) -> f64 {
+    let (w, _) = jacobi_eigh(c, n);
+    w.iter().map(|&z| h2_entropy(z)).sum()
+}
+
+/// エルミート相関行列のエントロピー (実埋め込み: 固有値は 2 重に出る)
+pub fn entropy_corr_herm(cre: &[f64], cim: &[f64], n: usize) -> f64 {
+    let m = 2 * n;
+    let mut a = vec![0.0; m * m];
+    for i in 0..n {
+        for j in 0..n {
+            a[i + j * m] = cre[i + j * n];
+            a[i + (j + n) * m] = -cim[i + j * n];
+            a[(i + n) + j * m] = cim[i + j * n];
+            a[(i + n) + (j + n) * m] = cre[i + j * n];
+        }
+    }
+    let (w, _) = jacobi_eigh(&a, m);
+    0.5 * w.iter().map(|&z| h2_entropy(z)).sum::<f64>()
+}
+
+impl QrnState {
+    /// 読み出し: 区間 [a, a+len) のエンタングルメントエントロピー
+    pub fn readout_entropy(&self, a: usize, len: usize) -> f64 {
+        let n = self.n;
+        let mut cre = vec![0.0; len * len];
+        let mut cim = vec![0.0; len * len];
+        let mut has_im = false;
+        for i in 0..len {
+            for j in 0..len {
+                cre[i + j * len] = self.cre[(a + i) % n + ((a + j) % n) * n];
+                cim[i + j * len] = self.cim[(a + i) % n + ((a + j) % n) * n];
+                if cim[i + j * len] != 0.0 {
+                    has_im = true;
+                }
+            }
+        }
+        if has_im {
+            entropy_corr_herm(&cre, &cim, len)
+        } else {
+            entropy_corr_real(&cre, len)
+        }
+    }
+
+    /// 読み出し: 2 サイトブロック間の相互情報量行列 (nb×nb) と最大値
+    pub fn readout_mi_blocks(&self) -> (Vec<f64>, usize, f64) {
+        let n = self.n;
+        let nb = n / 2;
+        let sub = |sites: &[usize]| -> f64 {
+            let k = sites.len();
+            let mut cre = vec![0.0; k * k];
+            let mut cim = vec![0.0; k * k];
+            for (a, &sa) in sites.iter().enumerate() {
+                for (b, &sb) in sites.iter().enumerate() {
+                    cre[a + b * k] = self.cre[sa + sb * n];
+                    cim[a + b * k] = self.cim[sa + sb * n];
+                }
+            }
+            entropy_corr_herm(&cre, &cim, k)
+        };
+        let sblk: Vec<f64> = (0..nb).map(|b| sub(&[2 * b, 2 * b + 1])).collect();
+        let mut mi = vec![0.0; nb * nb];
+        let mut mi_max = 0.0f64;
+        for i in 0..nb {
+            for j in (i + 1)..nb {
+                let m = (sblk[i] + sblk[j] - sub(&[2 * i, 2 * i + 1, 2 * j, 2 * j + 1])).max(0.0);
+                mi[i + j * nb] = m;
+                mi[j + i * nb] = m;
+                mi_max = mi_max.max(m);
+            }
+        }
+        (mi, nb, mi_max)
+    }
+
+    /// 読み出し: 密度 → フェルミ運動量 (ラッティンジャーの定理の顔 k_F = π⟨n⟩)
+    pub fn readout_fermi_momentum(&self) -> f64 {
+        let n = self.n;
+        let dens: f64 = (0..n).map(|i| self.cre[i + i * n]).sum::<f64>() / n as f64;
+        std::f64::consts::PI * dens
+    }
+}
+
+/// 幾何読み出しの結果 (v6.4 の円環判定と同じ規準)
+pub struct RingMetrics {
+    pub adjacency: f64,
+    pub rsd: f64,
+    pub lam21: f64,
+    pub mi_max: f64,
+    pub ring: bool,
+}
+
+/// 読み出し: MI 行列 → 情報距離 −ln(MI/MI_max) → 古典的 MDS → 円環判定
+pub fn readout_ring_geometry(mi: &[f64], nb: usize, mi_max: f64) -> RingMetrics {
+    if mi_max < 1e-12 {
+        return RingMetrics {
+            adjacency: 0.0,
+            rsd: f64::INFINITY,
+            lam21: 0.0,
+            mi_max,
+            ring: false,
+        };
+    }
+    let mut d2 = vec![0.0; nb * nb];
+    for i in 0..nb {
+        for j in 0..nb {
+            if i != j {
+                let m = (mi[i + j * nb] / mi_max).max(1e-300);
+                let dd = -m.ln();
+                d2[i + j * nb] = dd * dd;
+            }
+        }
+    }
+    let row_mean: Vec<f64> = (0..nb)
+        .map(|i| (0..nb).map(|j| d2[i + j * nb]).sum::<f64>() / nb as f64)
+        .collect();
+    let tot: f64 = row_mean.iter().sum::<f64>() / nb as f64;
+    let mut b = vec![0.0; nb * nb];
+    for i in 0..nb {
+        for j in 0..nb {
+            b[i + j * nb] = -0.5 * (d2[i + j * nb] - row_mean[i] - row_mean[j] + tot);
+        }
+    }
+    let (w, v) = jacobi_eigh(&b, nb);
+    let (l1, l2) = (w[nb - 1], w[nb - 2]);
+    let coords: Vec<(f64, f64)> = (0..nb)
+        .map(|i| {
+            (
+                l1.max(0.0).sqrt() * v[i + (nb - 1) * nb],
+                l2.max(0.0).sqrt() * v[i + (nb - 2) * nb],
+            )
+        })
+        .collect();
+    let mut order: Vec<usize> = (0..nb).collect();
+    order.sort_by(|&a, &bq| {
+        coords[a]
+            .1
+            .atan2(coords[a].0)
+            .partial_cmp(&coords[bq].1.atan2(coords[bq].0))
+            .unwrap()
+    });
+    let mut adjacent_ok = 0;
+    for k in 0..nb {
+        let a = order[k];
+        let bq = order[(k + 1) % nb];
+        let d = (a as isize - bq as isize).unsigned_abs();
+        if d == 1 || d == nb - 1 {
+            adjacent_ok += 1;
+        }
+    }
+    let radii: Vec<f64> = coords
+        .iter()
+        .map(|&(x, y)| (x * x + y * y).sqrt())
+        .collect();
+    let rmean: f64 = radii.iter().sum::<f64>() / nb as f64;
+    let rsd = (radii.iter().map(|r| (r - rmean).powi(2)).sum::<f64>() / nb as f64).sqrt()
+        / rmean.max(1e-300);
+    let adjacency = adjacent_ok as f64 / nb as f64;
+    let lam21 = if l1 > 0.0 { l2 / l1 } else { 0.0 };
+    let ring = adjacency >= 0.9 && rsd <= 0.10 && lam21 >= 0.9;
+    RingMetrics {
+        adjacency,
+        rsd,
+        lam21,
+        mi_max,
+        ring,
+    }
+}
+
+/// 具体的な QrnModel: 円環自由フェルミオン鎖 (半充填基底状態 + 最近接ホッピング)。
+/// v0.5/v0.7/v1.1/v4.1 などの土台になっている系を core として一箇所に定義する。
+pub struct RingChain {
+    pub n: usize, // N ≡ 2 (mod 4) で閉殻・実相関
+}
+
+impl QrnModel for RingChain {
+    fn assumptions(&self) -> Vec<&'static str> {
+        vec![
+            "A0: 有限次元ヒルベルト空間とテンソル分解 (サイト)",
+            "A1: ユニタリー発展 (二次ハミルトニアン H = -Σ c†_x c_{x+1} + h.c.)",
+            "初期状態: 半充填の基底状態 (ガウス状態)",
+            "幾何・因果・物質は公理に置かず、読み出しで創発させる",
+        ]
+    }
+    fn claims(&self) -> Vec<&'static str> {
+        vec![
+            "QRN-CORE-001",
+            "QRN-GEOM-003",
+            "QRN-ENT-001",
+            "QRN-CAUSAL-001",
+        ]
+    }
+    fn init(&self) -> QrnState {
+        let n = self.n;
+        let nocc = n / 2;
+        let c0 = |d: isize| -> f64 {
+            let d = d.unsigned_abs();
+            let d = d.min(n - d);
+            if d == 0 {
+                return nocc as f64 / n as f64;
+            }
+            (std::f64::consts::PI * d as f64 / 2.0).sin()
+                / (n as f64 * (std::f64::consts::PI * d as f64 / n as f64).sin())
+        };
+        let mut cre = vec![0.0; n * n];
+        for x in 0..n {
+            for y in 0..n {
+                cre[x + y * n] = c0(x as isize - y as isize);
+            }
+        }
+        QrnState {
+            n,
+            cre,
+            cim: vec![0.0; n * n],
+        }
+    }
+    /// U(t) C U† を厳密に計算 (並進不変な自由発展)
+    fn evolve(&self, s: &QrnState, t: f64) -> QrnState {
+        let n = self.n;
+        let two_pi = 2.0 * std::f64::consts::PI;
+        let mut ud = vec![(0.0f64, 0.0f64); n];
+        for (d, slot) in ud.iter_mut().enumerate() {
+            let (mut a, mut b) = (0.0, 0.0);
+            for j in 0..n {
+                let k = two_pi * j as f64 / n as f64;
+                let e = -2.0 * k.cos();
+                let ph = k * d as f64 - e * t;
+                a += ph.cos();
+                b += ph.sin();
+            }
+            *slot = (a / n as f64, b / n as f64);
+        }
+        let mut ur = vec![0.0; n * n];
+        let mut ui = vec![0.0; n * n];
+        for x in 0..n {
+            for y in 0..n {
+                let d = (x + n - y) % n;
+                ur[x + y * n] = ud[d].0;
+                ui[x + y * n] = ud[d].1;
+            }
+        }
+        let t1r = matmul(&ur, &s.cre, n);
+        let t1r2 = matmul(&ui, &s.cim, n);
+        let t1i = matmul(&ur, &s.cim, n);
+        let t1i2 = matmul(&ui, &s.cre, n);
+        let ar: Vec<f64> = t1r.iter().zip(&t1r2).map(|(a, b)| a - b).collect();
+        let ai: Vec<f64> = t1i.iter().zip(&t1i2).map(|(a, b)| a + b).collect();
+        let mut vr = vec![0.0; n * n];
+        let mut vi = vec![0.0; n * n];
+        for x in 0..n {
+            for y in 0..n {
+                vr[x + y * n] = ur[y + x * n];
+                vi[x + y * n] = -ui[y + x * n];
+            }
+        }
+        let b1 = matmul(&ar, &vr, n);
+        let b2 = matmul(&ai, &vi, n);
+        let b3 = matmul(&ar, &vi, n);
+        let b4 = matmul(&ai, &vr, n);
+        QrnState {
+            n,
+            cre: b1.iter().zip(&b2).map(|(a, b)| a - b).collect(),
+            cim: b3.iter().zip(&b4).map(|(a, b)| a + b).collect(),
+        }
+    }
+}
+
 // ---------------- 自己テスト ----------------
 pub fn self_test() {
     // ヤコビ法: ランダム対称行列で A v = λ v を検証

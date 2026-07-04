@@ -11,31 +11,31 @@
   "sweep_stencil_sites": 2,
   "observable": "2*pi*T_kk - S'' (basic), - 6(S')^2 (strong), T_kk = 4*T_mm",
   "min_gap_basic_by_n": [
-    -0.00012244311714927557,
-    0.00003972367803059175,
-    0.000019205081120273655
+    0.00008952297242830356,
+    0.0000446187813099372,
+    0.000027156868782202563
   ],
   "min_gap_strong_by_n": [
-    -0.002731891023800983,
-    -0.0013054676373276475,
-    -0.0007923357924312563
+    -0.000029582891444745525,
+    -0.000018673890336609765,
+    -0.000012952315985424167
   ],
   "error_budget": {
-    "derivative_basic": 0.00427172638635163,
-    "derivative_strong": 0.005579023147191447,
-    "finite_size_basic": 0.000020518596910318092,
-    "finite_size_strong": 0.0005131318448963912,
-    "roundoff_measured": 0.000000000003561595462997502,
-    "tolerance_basic": 0.004292244986823544,
-    "tolerance_strong": 0.006092154995649434
+    "derivative_basic": 0.00424182233526485,
+    "derivative_strong": 0.005123984444741152,
+    "finite_size_basic": 0.000017461912527734634,
+    "finite_size_strong": 0.000005721574351185598,
+    "roundoff_measured": 0.0000000002479167982016861,
+    "tolerance_basic": 0.004259284495709383,
+    "tolerance_strong": 0.005129706267009136
   },
   "controls": [
     {
       "name": "standing (non-chiral) packet",
       "expected": "chirality ~ 0, co-moving freeze broken, QNEC still holds",
-      "observed_chirality": 0.0000000000033708098880531914,
-      "observed_comoving_var_ratio": 7202.148799202503,
-      "observed_min_gap": 0.00006238537918399152
+      "observed_chirality": 0.0000000000033690858680592092,
+      "observed_comoving_var_ratio": 9835.786533238072,
+      "observed_min_gap": 0.00006593513202610355
     }
   ],
   "pass": true
