@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 通常のソフトウェア開発ではなく**物理学の研究プロジェクト**。現代物理の各理論を Rust による第一原理シミュレーションで再現・検証しながら、統一的描像「量子情報網理論 (QRN)」をバージョン付き文書として積み上げている。原点の指示は `PROMPT/0.md`。
 
-現在の到達点は `docs/uft-v10.0.md`(第十期統合。Rust シミュレーション 47 本 237 PASS / 0 FAIL + Lean 4 定理 6 本、全スイートは results/v100_full_suite.txt)。第七期の基盤(主張台帳 `claims.yml`・証明書 `certificates/`・誤差予算・陰性対照・QRN core・`proofs/`)の上に、第九期で U(1) の階段が閉じ (Y→B−L→3 本目なし)、第十期は幾何の選択を確定した: CKM 込みの証拠でも T³ が勝ち「質量と混合の緊張」は点評価の人工物 (v9.1)、世代ラベルの wrap 綱渡りを発見・安定化し勝者順位の規約不変を確認 (v9.2、python 独立実装が発見)、論文図 5 点 (v9.3)、QNEC core 化で core 4 模型 (v9.4)。**続きの作業は v10.0 §3 の残高 10 項目から選ぶ**(筆頭: 対角世代対の導出(置換 marginalize / 幾何からの対応)、論文 2 本の本文化、動的テンソル分解の core 化、例外群走査、v4.3 域 Lean の高速化)。
+現在の到達点は `docs/uft-v11.0.md`(第十一期統合。Rust シミュレーション 50 本 256 PASS / 0 FAIL + Lean 4 定理 6 本、全スイートは results/v110_full_suite.txt)。第九期で U(1) の階段が閉じ (Y→B−L→3 本目なし)、第十期で幾何選択が確定し (T³、ラベル規約に頑健)、第十一期は**対の三部作**を完結した: 対角世代対はデータに棄却され (v10.1、Occam 罰込み +3.7)、対を marginalize しても T³ が勝ち (v10.2、証明付き打ち切り ~10¹³ 項)、対は Wilson 細分化・鏡映・磁束反転のどれにも還元されない「Landau タワー整列」の既約な自由度と分類された (v10.3)。**続きの作業は v11.0 §3 の残高 10 項目から選ぶ**(筆頭: タワー整列 σ の第一原理(オービフォールド射影・傾き磁束)、例外群走査、動的テンソル分解の core 化、v4.3 域 Lean の高速化、論文 2 本の本文化)。
 
 **文書・コードコメント・コミットメッセージは全て日本語。**
 
@@ -17,7 +17,7 @@ cd sim
 cargo build --release                      # 全バイナリをビルド (外部依存なし、std のみ)
 ./target/release/v01_qm                    # 単一シミュレーションの実行
 cargo run --release --bin v34_unruh        # 同上 (ビルド込み)
-for b in target/release/v*; do $b; done    # 全スイート実行
+for b in target/release/v*_*; do $b; done  # 全スイート実行 (v??_* は 3 桁版名を漏らすので不可)
 ./target/release/v34_unruh > ../results/v34_unruh.txt   # 結果の保存 (stdout をリダイレクト)
 ```
 

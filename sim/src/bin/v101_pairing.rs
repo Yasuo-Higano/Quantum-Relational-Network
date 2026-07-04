@@ -664,9 +664,10 @@ fn main() {
     );
     let ok_nine_reg = (lnz9_diag - REF_NINE_DIAG).abs() < 0.02;
     let map_is_diag = map9.3 == [0, 0] && map9.4 == [0, 0];
+    // 物理の答え ([PASS]/[FAIL] は装置検査専用トークンなので使わない)
     println!(
-        "    => [B] MAP の対 = e (安定ラベルの中心整列 = 幾何が対を決める)  {}",
-        pass(map_is_diag)
+        "    => [B] MAP の対は中心整列 (e) か: {}",
+        if map_is_diag { "Yes" } else { "No" }
     );
 
     // ---- [3] 判定 ----
