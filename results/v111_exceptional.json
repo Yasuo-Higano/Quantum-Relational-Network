@@ -1,0 +1,14 @@
+{
+  "claim_id": "QRN-GAUGE-015",
+  "self_conjugate": {
+    "G2_7": true,
+    "G2_14": true,
+    "F4_26": true,
+    "F4_52": true,
+    "E7_56": true,
+    "E7_133": true,
+    "E8_248": true
+  },
+  "control_su3_complex": true,
+  "pass": true
+}

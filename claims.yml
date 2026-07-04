@@ -969,3 +969,16 @@
     result: "results/v110_full_suite.txt"
   limitations:
     - "残高 10 項目 (筆頭: タワー整列 σ の第一原理、例外群、動的テンソル core、v4.3 域 Lean、論文本文) が未解決のまま残る。"
+
+- id: QRN-GAUGE-015
+  version: "v11.1"
+  level: C2
+  claim: "例外群走査の完結: G2 (7,14), F4 (26,52), E7 (56,133), E8 (248) のウェイト系を整数厳密に構成し (次元・ノルム²・Weyl 鏡映閉性で構成を検証、E8 は全 240 鏡映)、多重集合として W = −W (自己共役) を機械検証した。対照 (SU(3) の 3) は非自己共役と正しく判定。自己共役表現はvectorlike に対にできるためカイラル芯は空 — 複素表現を持つ例外群は E6 のみで、v8.2 (27 の芯 = SM 1 世代) と合わせて例外群の走査は閉じた。"
+  status: "制限付き計算定理 (検査は最低次+随伴の代表 7 表現; 全既約表現の自己共役性は C0 の引用)"
+  evidence:
+    code: "sim/src/bin/v111_exceptional.rs"
+    result: "results/v111_exceptional.txt"
+    result: "results/v111_exceptional.json"
+  limitations:
+    - "全称部分 (全既約表現が自己共役) は教科書的事実の引用。機械検証は物質の入口となる代表表現。"
+    - "「vectorlike → カイラル芯空」は C0 (質量項が書ける)。本主張の寄与は走査完結の検証可能な宣言。"
