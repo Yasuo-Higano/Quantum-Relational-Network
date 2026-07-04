@@ -1,0 +1,9 @@
+{
+  "claim_id": "QRN-YUK-013",
+  "configs": 36,
+  "max_spread": 0.0000000000013820056210533949,
+  "min_gap": 0.3194700034272824,
+  "lnZ_nine": -94.51115540757203,
+  "beats_s3_ladder": false,
+  "pass": true
+}
