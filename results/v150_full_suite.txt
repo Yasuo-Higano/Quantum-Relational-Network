@@ -1,0 +1,14 @@
+=== v15.0 全スイート自己検証 (2026-07-05) ===
+
+第十五期 (v14.1–v14.5) は sim/ に変更がない (git log e705da3..HEAD -- sim/ = 空) ため、
+Rust スイートは v14.0 の結果 (results/v140_full_suite.txt) が現行コードに対して厳密に有効:
+
+  Rust シミュレーション: 59 本 — 314 PASS / 0 FAIL (v14.0 で全数実行)
+
+Lean 4 機械検証 (今期 2 本追加 — 配列ベース MITM):
+  proofs/Anomaly.lean         定理 3 本 (v3.1 域)                     991 s   (v6.8)
+  proofs/AnomalyBig.lean      定理 2 本 (v5.2 域, 大表現 ≤16 成分)    9734 s  (v7.5)
+  proofs/AnomalyArray.lean    定理 2 本 (v4.3 域, 配列ベース)         3.3 s   (v14.4)
+  proofs/AnomalyArrayBig.lean 定理 2 本 (E1 域, 大表現 ≤24 成分)      13.8 s  (v14.5)
+
+総計: Rust 314 PASS / 0 FAIL + Lean 定理 9 本 (4 ファイル)
