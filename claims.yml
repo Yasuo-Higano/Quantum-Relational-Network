@@ -1131,3 +1131,14 @@
   limitations:
     - "native_decide はコンパイラを信頼基盤に含む (Anomaly.lean と同じ選択、文書に明示)。"
     - "領域は v4.3 (小表現)。大表現込み E1 域の配列化は同設計で可能 (将来拡張)。"
+
+- id: QRN-GAUGE-017
+  version: "v14.5"
+  level: C2
+  claim: "E1 域 (大表現込み 10 型, |6Y|≤9, ≤6 多重項, ≤24 成分) の孤立地形の完全な Lean 機械検証: 定理 e1_spectrum : arrayScanBig = (1, 8, 1, 18, 2, 459, 0) が native_decide 13.8 秒で成立 — 正準形解の分布はちょうど {15:1, 16:8, 17:1, 18:18, 22:2, 24:459} で 19-21・23 成分は空白。AnomalyBig.lean (v5.2 域 ≤16 成分, 9734 s) より広い領域を ~700 分の 1 の時間で検証 (配列ベース MITM の移植、一発通過)。"
+  status: "制限付き計算定理の機械検証 (信頼基盤: Lean 核 + native_decide)"
+  evidence:
+    code: "proofs/AnomalyArrayBig.lean"
+    result: "results/v145_lean.txt"
+  limitations:
+    - "大表現は v62 の 10 型まで (窓の定義通り)。native_decide はコンパイラを信頼基盤に含む。"

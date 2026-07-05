@@ -85,3 +85,6 @@ jobs:
       - name: 機械検証済み定理・v4.3 域 (proofs/AnomalyArray.lean, 配列ベース ~3 秒)
         working-directory: proofs
         run: lean AnomalyArray.lean
+      - name: 機械検証済み定理・E1 域 (proofs/AnomalyArrayBig.lean, 配列ベース ~14 秒)
+        working-directory: proofs
+        run: lean AnomalyArrayBig.lean

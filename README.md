@@ -114,6 +114,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v14.2 | [uft-v14.2.md](docs/uft-v14.2.md) | `paper/anomaly-search-full.md` | **論文本文 2 (完全原稿)**: アノマリー探索 — 対照地図 (一意性は U(1)³)・三重実装 + SHA-256・毒燃料 Lean (完全性が定理の一部)・U(1) の階段と例外群の天井が同じ SM を指す構図。残高 10 は照合と整形のみに |
 | v14.3 | [uft-v14.3.md](docs/uft-v14.3.md) | `paper/` | **書誌の照合**: 両論文の引用文献を Web 検証で確定 (表題修正 2 件・arXiv 番号/頁範囲の確定)。残高 10 は LaTeX 整形と投稿先選定のみに |
 | v14.4 | [uft-v14.4.md](docs/uft-v14.4.md) | `proofs/AnomalyArray.lean` | **v4.3 域の Lean 化**: 配列ベース MITM で定理 `arrayScan = (1,8,459,0)` が **native_decide 3.3 秒** (従来設計の予測 17 時間から 1.8 万倍)。完全性が構造的になり毒燃料が不要に。初回の定理の偽が gcd 約分の欠落を検出 — 残高 8 の最大項目を解決 |
+| v14.5 | [uft-v14.5.md](docs/uft-v14.5.md) | `proofs/AnomalyArrayBig.lean` | **E1 域の Lean 化 (14 秒・一発通過)**: 大表現込み ≤24 成分の孤立地形の完全形 {15:1, 16:8, 17:1, 18:18, 22:2, 24:459} が定理に — AnomalyBig (162 分・狭い域) の ~700 分の 1。「列挙系の Lean 化は再帰を配列に」が確立 |
 
 ## リポジトリ構成
 

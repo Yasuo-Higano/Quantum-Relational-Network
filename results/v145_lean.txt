@@ -1,0 +1,9 @@
+=== v14.5 E1 域 (大表現込み ≤24 成分) の Lean 機械検証 2026-07-05 ===
+
+実行: ~/.elan/bin/lean proofs/AnomalyArrayBig.lean
+
+定理: sm_ok_in_index_encoding (核 decide), e1_spectrum: arrayScanBig = (1, 8, 1, 18, 2, 459, 0) (native_decide)
+このファイルがエラーなく通ったこと自体が全定理の検証である
+
+実行時間: ~14 s (native_decide) — AnomalyBig.lean (毒燃料 walk, v5.2 域 ≤16 成分, 9734 s) より
+広い領域 (≤24 成分, 完全スペクトル 6 サイズ) を ~700 分の 1 の時間で。一発通過 (v14.4 の設計の移植)。
