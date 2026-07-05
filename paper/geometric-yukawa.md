@@ -31,7 +31,12 @@
 > 3.7 nats even after the Occam penalty, the pairing proves irreducible to any
 > Wilson-line refinement, mirror, or flux-orientation flip (it aligns Landau
 > towers, not positions), and the three-torus preference survives under a
-> certified-truncation evidence computation over ~10¹³ terms.
+> certified-truncation evidence computation over ~10¹³ terms. The alternative
+> — tilted four-tori whose Dirac index counts three generations directly,
+> with no pairing at all — is excluded structurally: index 3, being prime,
+> forces one magnetic eigenplane to flatten, capping the attainable hierarchy
+> at the single-tower floor. The pairing is thus established as irreducible
+> discrete data of the compactification, on par with discrete torsion.
 
 ## 構成
 
@@ -57,6 +62,12 @@
    T³ が勝つ (証明付き打ち切り、区間幅 ~10⁻¹⁰)。**9 ゼロモード→3 世代の射影が
    観測にかかる物理である**ことの実証 — 方法論 (仮定を模型空間に昇格して検定する)
    としても独立の価値。
+5c. **The honest-index alternative and its structural exclusion** (v12.1–v13.2) —
+   傾き T⁴ (指数 Pf(F)=3) は対を持たない 3 世代を実現するが、(i) 格子上の厳密縮退は
+   (磁束, N) の数論に依存し (同じ磁束が N=6 で厳密・N=18 で分裂)、(ii) 素数 3 が
+   2 タワーの抑制の掛け算を禁じるため深さは単一タワーの床で頭打ち (勝者 −34.9 は
+   S₃ 対に 15 nats 及ばず)。**対 = コンパクト化の既約な離散データ**という解釈が
+   対抗仮説の構造的棄却で確立 — 方法論 (道具を作ってでも対抗仮説を検定する) ごと論文の核。
 6. **Limitations / Outlook (M3)** — 射影 (対) の第一原理機構 (オービフォールド等)、
    同一トーラス、Higgs 簡略化、Wilson 線・磁束・トーラス数の起源 (モジュライ安定化)。
 7. **Reproducibility** — 全て決定論 (乱数なし)、外部依存なし、v6.5 と同一の尤度で
@@ -84,4 +95,8 @@
 | 対角対の棄却 (陰性結果) | QRN-YUK-007 | v101_pairing |
 | 対込みでも T³ (証明付き打ち切り) | QRN-YUK-008 | v102_geopair |
 | 対の既約性 (タワー整列) | QRN-YUK-009 | v103_pairgeom |
+| オービフォールド射影と限界 | QRN-YUK-010 | v112_orbifold |
+| 向き模型 (はしご) | QRN-YUK-011 | v113_orient |
+| 傾き T⁴ の指数構成と棄却 | QRN-YUK-012〜015 | v121〜v132 |
+| Lanczos 道具 | QRN-TOOL-001 | v131_lanczos |
 | 前提 (FN 機構, 磁束=世代) | QRN-C0-006, QRN-MATTER-001 | v23_matter |
