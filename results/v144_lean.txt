@@ -1,0 +1,11 @@
+=== v14.4 v4.3 域の Lean 機械検証 (配列ベース MITM) 2026-07-05 ===
+
+実行: ~/.elan/bin/lean proofs/AnomalyArray.lean
+
+定理: sm_ok_in_index_encoding (核 decide), v43_spectrum: arrayScan = (1, 8, 459, 0) (native_decide)
+このファイルがエラーなく通ったこと自体が全定理の検証である
+
+実行時間: ~3.3 s (native_decide) — 従来の燃料つき再帰 walk 設計の予測 ~17 時間から ~18,000 倍の短縮
+定理: sm_ok_in_index_encoding (核 decide) / v43_spectrum: arrayScan = (1, 8, 459, 0) (native_decide)
+開発記録: 初回実行は (1, 11, 594, 0) で定理が偽 — 正準形に gcd 約分 (整数倍の同一視) が
+欠けていたことを定理の偽が検出した。修正後に成立。

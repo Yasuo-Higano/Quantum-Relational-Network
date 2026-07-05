@@ -1119,3 +1119,15 @@
     result: "results/v140_full_suite.txt"
   limitations:
     - "σ・磁束・Wilson 線を一括で決める上位原理 (弦の真空選択と同格) は残高のまま。次期の的は執筆 (対の物語が論文の核)・v4.3 域 Lean・格子指数の数論。"
+
+- id: QRN-GAUGE-016
+  version: "v14.4"
+  level: C2
+  claim: "v4.3 域の孤立性スペクトルの Lean 機械検証 (配列ベース MITM): 定理 v43_spectrum : arrayScan = (1, 8, 459, 0) が native_decide 3.3 秒で成立 — 正準形 (並べ替え・共役・U(1) 反転・整数倍) 解の成分数分布はちょうど {15:1, 16:8, 24:459} で他は 0。完全性は固定範囲 for ループの直積の構造から自明 (燃料の毒が不要 — 毒燃料設計より強い)。従来の再帰 walk 設計の予測 17 時間から約 18,000 倍の短縮。初回の定理の偽が正準形の gcd 約分の欠落を検出した (開発記録)。"
+  status: "制限付き計算定理の機械検証 (信頼基盤: Lean 核 + native_decide)"
+  evidence:
+    code: "proofs/AnomalyArray.lean"
+    result: "results/v144_lean.txt"
+  limitations:
+    - "native_decide はコンパイラを信頼基盤に含む (Anomaly.lean と同じ選択、文書に明示)。"
+    - "領域は v4.3 (小表現)。大表現込み E1 域の配列化は同設計で可能 (将来拡張)。"

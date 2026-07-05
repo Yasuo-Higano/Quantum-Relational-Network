@@ -82,3 +82,6 @@ jobs:
         # 原子数 190 の全列挙 (全呼び出し 1.7e10) — 約 3 時間かかる。孤立性の定理級保証と引き換えの計算コスト
         working-directory: proofs
         run: lean AnomalyBig.lean
+      - name: 機械検証済み定理・v4.3 域 (proofs/AnomalyArray.lean, 配列ベース ~3 秒)
+        working-directory: proofs
+        run: lean AnomalyArray.lean
