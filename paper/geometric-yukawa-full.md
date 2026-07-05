@@ -99,13 +99,13 @@ Everything is deterministic: no random Yukawa coefficients anywhere, fixed seeds
 
 ## References
 
-*(引用は執筆時の記憶に基づく — 投稿前に書誌情報の照合が必要)*
+*(書誌は 2026-07-05 に Web 照合済み。[1] は正典として据え置き)*
 
 [1] C. D. Froggatt and H. B. Nielsen, "Hierarchy of quark masses, Cabibbo angles and CP violation," Nucl. Phys. B 147 (1979) 277.
-[2] C. Bachas, "A way to break supersymmetry," hep-th/9503030.
-[3] D. Cremades, L. E. Ibáñez and F. Marchesano, "Computing Yukawa couplings from magnetized extra dimensions," JHEP 05 (2004) 079.
-[4] R. Blumenhagen, B. Körs, D. Lüst and S. Stieberger, "Four-dimensional string compactifications with D-branes, orientifolds and fluxes," Phys. Rept. 445 (2007) 1.
+[2] C. Bachas, "A way to break supersymmetry," arXiv:hep-th/9503030.
+[3] D. Cremades, L. E. Ibáñez and F. Marchesano, "Computing Yukawa couplings from magnetized extra dimensions," JHEP 05 (2004) 079, arXiv:hep-th/0404229.
+[4] R. Blumenhagen, B. Körs, D. Lüst and S. Stieberger, "Four-dimensional string compactifications with D-branes, orientifolds and fluxes," Phys. Rept. 445 (2007) 1–193.
 [5] L. E. Ibáñez and A. M. Uranga, *String Theory and Particle Physics: An Introduction to String Phenomenology*, Cambridge University Press (2012).
-[6] H. Jeffreys, *Theory of Probability*; R. Trotta, "Bayes in the sky: Bayesian inference and model selection in cosmology," Contemp. Phys. 49 (2008) 71.
-[7] N. Haba and H. Murayama, "Anarchy and hierarchy," Phys. Rev. D 63 (2001) 053010.
+[6] R. Trotta, "Bayes in the sky: Bayesian inference and model selection in cosmology," Contemp. Phys. 49 (2008) 71–104.
+[7] N. Haba and H. Murayama, "Anarchy and hierarchy: An approach to study models of fermion masses and mixings," Phys. Rev. D 63 (2001) 053010, arXiv:hep-ph/0009174.
 [8] 本計画のリポジトリ: Quantum Relational Network (claims.yml, results/, figures/) — 全数値の一次ソース。

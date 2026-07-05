@@ -79,13 +79,13 @@ Dependency-free Rust (std only), fixed seeds, exact integer arithmetic in all se
 
 ## References
 
-*(引用は執筆時の記憶に基づく — 投稿前に書誌情報の照合が必要)*
+*(書誌は 2026-07-05 に Web 照合済み。[1] は正典として据え置き)*
 
 [1] E. Witten, "An SU(2) anomaly," Phys. Lett. B 117 (1982) 324.
-[2] C. Q. Geng and R. E. Marshak, "Uniqueness of quark and lepton representations in the standard model from the anomalies viewpoint," Phys. Rev. D 39 (1989) 693; J. A. Minahan, P. Ramond and R. C. Warner, Phys. Rev. D 41 (1990) 715.
+[2] C. Q. Geng and R. E. Marshak, "Uniqueness of quark and lepton representations in the standard model from the anomalies viewpoint," Phys. Rev. D 39 (1989) 693; J. A. Minahan, P. Ramond and R. C. Warner, "A comment on anomaly cancellation in the standard model," Phys. Rev. D 41 (1990) 715.
 [3] K. S. Babu and R. N. Mohapatra, "Is there a connection between quantization of electric charge and a Majorana neutrino?," Phys. Rev. Lett. 63 (1989) 938.
 [4] R. Foot, G. C. Joshi, H. Lew and R. R. Volkas, "Charge quantization in the standard model and some of its extensions," Mod. Phys. Lett. A 5 (1990) 2721.
-[5] B. C. Allanach, B. Gripaios and J. Tooby-Smith, "Anomaly cancellation with an extra gauge boson," Phys. Rev. Lett. 125 (2020) 161601 (and the associated arithmetic of U(1) extensions).
-[6] D. B. Costa, B. A. Dobrescu and P. J. Fox, "General solution to the U(1) anomaly equations," Phys. Rev. Lett. 123 (2019) 151601.
-[7] The Lean 4 theorem prover and Mathlib community documentation (native_decide trust model).
+[5] B. C. Allanach, B. Gripaios and J. Tooby-Smith, "Anomaly cancellation with an extra gauge boson," Phys. Rev. Lett. 125 (2020) 161601.
+[6] D. B. Costa, B. A. Dobrescu and P. J. Fox, "General solution to the U(1) anomaly equations," Phys. Rev. Lett. 123 (2019) 151601, arXiv:1905.13729.
+[7] The Lean 4 theorem prover (native_decide の信頼基盤は本文 §4 に明示).
 [8] 本計画のリポジトリ: Quantum Relational Network (claims.yml, results/, certificates/, proofs/) — 全数値・全証明書の一次ソース。
