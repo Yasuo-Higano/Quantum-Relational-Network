@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 98 件 / 依存辺 113 本 / 仮定 38 件 / 反証条件 15 件。
+主張 99 件 / 依存辺 114 本 / 仮定 38 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -23,7 +23,7 @@
 | QRN-STAT-001 | C1 | v0.2 | CR | 0 | 3 | 1 | 0 |
 | QRN-FIELD-001 | C1 | v0.3 | CR | 0 | 2 | 1 | 0 |
 | QRN-GAUGE-001 | C1 | v0.4 | CR | 0 | 2 | 1 | 0 |
-| QRN-ENT-001 | C1 | v0.5 | CR | 0 | 2 | 2 | 3 |
+| QRN-ENT-001 | C1 | v0.5 | CR | 0 | 2 | 2 | 4 |
 | QRN-GEOM-001 | C1 | v0.6 | CR | 0 | 2 | 2 | 0 |
 | QRN-GEOM-002 | C1 | v0.6 | CR | 0 | 2 | 2 | 0 |
 | QRN-GEOM-003 | C3 | v0.7 | CR | 0 | 3 | 2 | 11 |
@@ -110,6 +110,7 @@
 | QRN-META-015 | C2 | v15.1 | CDR | 0 | 1 | 1 | 1 |
 | QRN-TOOL-002 | C2 | v15.2 | CDR | 1 | 1 | 1 | 0 |
 | QRN-CORE-005 | C3 | v15.3 | CDR | 1 | 3 | 2 | 0 |
+| QRN-CONT-001 | C1 | v15.4 | CDR | 1 | 4 | 2 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -117,10 +118,10 @@
 
 | 仮定 | type | status | 直接 | 閉包 | 閉包に含まれる主張 (抜粋) |
 |---|---|---|---|---|---|
-| ASM-LATTICE | framework | active | 22 | 52 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
+| ASM-LATTICE | framework | active | 23 | 53 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
 | ASM-SEED | design | active | 13 | 35 | QRN-BH-001, QRN-BORN-001, QRN-COSMO-003, QRN-FIELD-001, … |
-| ASM-LOWDIM | framework | active | 21 | 31 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
-| ASM-GAUSS | framework | active | 18 | 28 | QRN-ARROW-001, QRN-CAUSAL-001, QRN-CAUSAL-002, QRN-CORE-001, … |
+| ASM-LOWDIM | framework | active | 22 | 32 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
+| ASM-GAUSS | framework | active | 19 | 29 | QRN-ARROW-001, QRN-CAUSAL-001, QRN-CAUSAL-002, QRN-CONT-001, … |
 | ASM-PDG | data | active | 18 | 27 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
 | ASM-GAUGE-GROUP | model | active | 14 | 23 | QRN-GAUGE-003, QRN-GAUGE-004, QRN-GAUGE-006, QRN-GAUGE-007, … |
 | ASM-TORUS | model | active | 15 | 22 | QRN-KK-001, QRN-MATTER-001, QRN-META-007, QRN-META-008, … |
@@ -150,25 +151,25 @@
 | ASM-KTM | model | active | 1 | 2 | QRN-EXP-003, QRN-META-007 |
 | ASM-SMCONTENT | data | active | 2 | 2 | QRN-GAUGE-009, QRN-MATTER-002 |
 | ASM-WINDOW-EXC | window | active | 1 | 2 | QRN-GAUGE-015, QRN-META-011 |
+| ASM-Z2-MINIMAL | model | active | 2 | 2 | QRN-CONT-001, QRN-CORE-005 |
 | ASM-EDGE-SEMANTICS | design | active | 2 | 2 | QRN-META-015, QRN-TOOL-002 |
 | ASM-WICK | framework | active | 1 | 1 | QRN-STAT-001 |
 | ASM-ENVARIANCE | framework | active | 1 | 1 | QRN-BORN-002 |
-| ASM-Z2-MINIMAL | model | active | 1 | 1 | QRN-CORE-005 |
 | ASM-QM | framework | active | 0 | 0 |  |
 
 ## 反証条件の射程 — これが発火すると何が落ちるか
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 82 | 92 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 83 | 93 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CEX-WINDOW | open | 15 | 26 | 明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。 |
 | FAL-CKM-OOS | open | 8 | 21 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
-| FAL-CONTINUUM | open | 6 | 19 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
+| FAL-CONTINUUM | open | 7 | 20 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-EXOTIC-CHIRAL | open | 4 | 16 | SM 1 世代の外のカイラル物質 (第 4 世代・分数電荷ハドロン・エキゾチック表現) が発見される。 |
 | FAL-QNEC | open | 5 | 8 | QNEC 型不等式の真の破れ (誤差予算を超える負ギャップが N を上げても縮まない) が数値または理論で確立する。 |
 | FAL-BMV | open | 6 | 7 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
+| FAL-AREALAW | open | 3 | 6 | アナログ系 (冷却原子等) で面積則・エンタングルメント第一法則の系統的破れが観測される。 |
 | FAL-PAGE | open | 4 | 5 | ブラックホール蒸発で情報喪失が確立する (Page 曲線からの系統的逸脱)。 |
-| FAL-AREALAW | open | 3 | 5 | アナログ系 (冷却原子等) で面積則・エンタングルメント第一法則の系統的破れが観測される。 |
 | FAL-LORENTZ | open | 2 | 4 | プランクスケールのローレンツ不変性の破れが主要次数で確立する (GRB 光子のエネルギー依存遅延など)。 |
 | FAL-DIMFLOW | open | 2 | 4 | 超高エネルギーで実効スペクトル次元が 2 へ低下しないことが確立する。 |
 | FAL-GLOBALSYM | open | 1 | 3 | 厳密な大域的対称性の存在が確立する (例: 陽子の厳密な安定性)。 |

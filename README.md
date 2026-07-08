@@ -18,7 +18,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v15.3** — Rust 61 本 (物理 314 PASS / 0 FAIL + 監査・QrnCoreV2) +
+**現在の到達点: v15.4** — Rust 62 本 (物理 314 PASS / 0 FAIL + 監査・QrnCoreV2・連続極限) +
 Lean 4 定理 10 本 (4 ファイル) + 主張依存グラフの機械監査
 ([evidence_matrix.md](evidence_matrix.md)) と Prolog 独立推論 ([dag/report.md](dag/report.md))。
 最新統合は [docs/uft-v15.0.md](docs/uft-v15.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -124,6 +124,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v15.1 | [uft-v15.1.md](docs/uft-v15.1.md) | `v151_audit` | **監査版 (依存の台帳化)**: 全 96 主張の依存 DAG (claims.graph.yml) + 仮定 37 件 (assumptions.yml) + 反証条件 15 件 (falsifiers.yml) を機械検証 — 非循環 (深さ 11)・等級単調 (C2 定理は現象論に依存しない)・孤児なし。影響範囲を機械導出 (最大: 格子正則化 51 主張)。Lean 定理数 9→10 の誤記を検出・修正し再発防止を CI 化 |
 | v15.2 | [uft-v15.2.md](docs/uft-v15.2.md) | `dag/` | **DAG の Prolog 独立推論**: claims.graph.json → Python 正規化 → facts.pl → swipl 推論 → DOT/Mermaid/MD/JSON レポート。深さ・被支持閉包・仮定影響範囲・反証射程を Rust 監査と独立に導出し**全数一致** (97 主張・112 辺) — 監査自体に v6.2 流の独立実装照合を適用 |
 | v15.3 | [uft-v15.3.md](docs/uft-v15.3.md) | `v153_corev2` | **QrnCoreV2 (ガウスの外へ)**: Z2 格子ゲージ+staggered フェルミオンの Gauss 拘束を基底の構造として厳密に解き (超選択則が構成不能として現れる)、同一状態から幾何 100%・純粋性双対 1e-15・ゲージ誘起凝縮 χ=−0.25・弦張力 σ/2h=0.955・**弦切れ** (E(r) 飽和)・前線減速 v 比 0.60・S 成長の閉じ込め抑制 (0.37→0.03) を読み出し (25 検査)。拘束の解法は L=4 拘束なし全空間との厳密照合つき |
+| v15.4 | [uft-v15.4.md](docs/uft-v15.4.md) | `v154_continuum` | **連続極限の監査**: residual(N)=A·N^(−p)+B の fit 装置を合成+厳密系列 (e∞=−2/π を 1.4e-5 で復元) で較正し、Z2 core の e/χ/Δ/S/σ の収束・幾何の全 L 安定・ガウス core の c(N)→**B̂=0.99999** を確認。陰性発見: 前線推定器 v̂(L) は未収束 (LR 上界内でドリフト — 推定器の限界を記録)。**ASM-LATTICE (影響閉包 51) が監査済みに** — FAL-CONTINUUM 発火せず |
 
 ## リポジトリ構成
 

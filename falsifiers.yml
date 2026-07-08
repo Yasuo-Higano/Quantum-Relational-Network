@@ -104,7 +104,7 @@
   effect: "QRN-QNEC-001/002 と単調性原理 (QRN-META-003 の M) を棄却。"
 
 - id: FAL-CONTINUUM
-  source: "v15.1 (pre-registered — 第十六期の的)"
+  source: "v15.1 (pre-registered) / v15.4 (最初の適用)"
   status: open
   condition: "readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。"
-  effect: "該当 readout の機構主張 (C3) を「格子アーティファクト」へ降格。第十六期の連続極限監査で各 readout に適用予定。"
+  effect: "該当 readout の機構主張 (C3) を「格子アーティファクト」へ降格。v15.4 の監査では発火せず (e/χ/Δ/S/σ/幾何/c は収束、前線推定器のみ未収束と記録)。"
