@@ -282,6 +282,13 @@
   statement: "モジュラー読み出しの定義一式: 区間モジュラーハミルトニアン K、ヌル規格化 T_kk=4T₋₋、第一法則の検証は無限小のハミルトニアン摂動で行う。"
   note: "有限の 1 量子励起では等式でなく不等式 S_rel≥0 になる (v0.7 の設計ミスとして記録済み)。"
 
+- id: ASM-Z2-MINIMAL
+  type: model
+  scope: local
+  introduced: "v15.3"
+  status: active
+  statement: "Z₂ ゲージ + staggered フェルミオンの 1+1 次元環が「ゲージ拘束つき相互作用系」の機構を代表する (最小の非自明ゲージ群)。部分系エントロピーは拘束を解いた基底 (占有, ε) で ε を環境側に置く選択 (ゲージ理論の絡み合い中心の選択の一つ) で定義する。"
+
 - id: ASM-EDGE-SEMANTICS
   type: design
   scope: local

@@ -1443,6 +1443,480 @@ pub fn lanczos_lowest_herm(
     (evals, evecs, max_res)
 }
 
+// ================================================================
+// v15.2: QrnCoreV2 — ゲージ制約つき相互作用 core
+// ================================================================
+// v6.7 の core (QrnState = ガウスフェルミオン網) は相関行列で閉じる系のみを
+// 扱えた (ASM-GAUSS)。QrnCoreV2 は「制約を解いた基底上の多体波動関数」を状態とし、
+// 相互作用・ゲージ拘束・非可積分性を同じ語彙 (状態 + 発展 + 読み出し) に載せる。
+// 最初の模型は 1+1 次元 Z2 格子ゲージ + staggered フェルミオン (環):
+//
+//   H = -w Σ (c†_n σ^z_{n,n+1} c_{n+1} + h.c.) + m Σ (-1)^n c†_n c_n - h Σ σ^x_{n,n+1}
+//   Gauss 拘束: G_n = σ^x_{n-1,n} σ^x_{n,n+1} (-1)^{q_n} = +1,
+//   q_n = 占有 XOR (n が奇数) XOR (外部電荷)   (staggered 真空を電荷 0 とする)
+//
+// 拘束は基底の構造として厳密に解く: E_{n,n+1} = ε·(-1)^{P_n} (P_n = Σ_{k≤n} q_k)、
+// 残る自由度は (占有 bitmask, 巻き付き電場 ε=±1) のみ。環の整合性から全電荷は
+// 偶数に限られる (超選択則 — 奇電荷セクターは構成自体が不能)。
+
+/// 複素エルミート行列 (re/im, 列優先 n×n) の固有値昇順。
+/// 実 2n 埋め込み [[Re,-Im],[Im,Re]] — 固有値は厳密に 2 重なので 1 つおきに取る。
+pub fn eigvals_herm_c(re: &[f64], im: &[f64], n: usize) -> Vec<f64> {
+    let m = 2 * n;
+    let mut a = vec![0.0; m * m];
+    for i in 0..n {
+        for j in 0..n {
+            a[i + j * m] = re[i + j * n];
+            a[i + (j + n) * m] = -im[i + j * n];
+            a[(i + n) + j * m] = im[i + j * n];
+            a[(i + n) + (j + n) * m] = re[i + j * n];
+        }
+    }
+    let (w, _) = jacobi_eigh(&a, m);
+    (0..n).map(|i| w[2 * i]).collect()
+}
+
+/// フォン・ノイマンエントロピー S = -Σ λ ln λ (複素エルミート密度行列)
+pub fn entropy_rdm_c(re: &[f64], im: &[f64], n: usize) -> f64 {
+    eigvals_herm_c(re, im, n)
+        .iter()
+        .map(|&l| if l > 1e-14 { -l * l.ln() } else { 0.0 })
+        .sum()
+}
+
+/// QrnCoreV2 の状態: 制約を解いた基底上の波動関数と、その上の共通読み出し。
+/// ゲージ自由度・補助自由度 (ε) は部分トレースで常に環境側に含める。
+pub trait QrnStateV2 {
+    fn n_sites(&self) -> usize;
+    fn dim(&self) -> usize;
+    fn amp(&self) -> &[(f64, f64)];
+    /// サイト集合の縮約密度行列 (占有数基底 2^|sites|、複素エルミート、列優先)
+    fn rdm(&self, sites: &[usize]) -> (Vec<f64>, Vec<f64>, usize);
+    /// サイトの数密度 ⟨n_x⟩
+    fn density(&self, site: usize) -> f64;
+}
+
+/// QrnCoreV2 の動力学: 状態の時間発展と保存量の読み出し
+pub trait QrnDynamicsV2<S: QrnStateV2> {
+    fn step(&self, s: &S, dt: f64) -> S;
+    fn conserved(&self, s: &S) -> Vec<(String, f64)>;
+}
+
+/// 読み出し (トレイト越し — どの実装にも同じ関数を適用する):
+/// 部分系エントロピー
+pub fn v2_entropy(s: &dyn QrnStateV2, sites: &[usize]) -> f64 {
+    let (re, im, n) = s.rdm(sites);
+    entropy_rdm_c(&re, &im, n)
+}
+
+/// 読み出し: 全サイト対の相互情報量行列 (列優先 L×L) と最大値
+pub fn v2_mi_matrix(s: &dyn QrnStateV2) -> (Vec<f64>, f64) {
+    let l = s.n_sites();
+    let s1: Vec<f64> = (0..l).map(|i| v2_entropy(s, &[i])).collect();
+    let mut mi = vec![0.0; l * l];
+    let mut mx = 0.0f64;
+    for i in 0..l {
+        for j in (i + 1)..l {
+            let sij = v2_entropy(s, &[i, j]);
+            let m = (s1[i] + s1[j] - sij).max(0.0);
+            mi[i + j * l] = m;
+            mi[j + i * l] = m;
+            mx = mx.max(m);
+        }
+    }
+    (mi, mx)
+}
+
+/// 読み出し: 密度プロファイル
+pub fn v2_density_profile(s: &dyn QrnStateV2) -> Vec<f64> {
+    (0..s.n_sites()).map(|x| s.density(x)).collect()
+}
+
+/// Z2 格子ゲージ + staggered フェルミオンの環 (拘束を解いた基底)
+pub struct Z2GaugeRing {
+    pub l: usize,                 // サイト数 (偶数)
+    pub nf: usize,                // フェルミオン数 (固定 — H が保存)
+    pub w: f64,                   // ホッピング
+    pub h: f64,                   // 電場項 (弦張力の素)
+    pub m: f64,                   // staggered 質量
+    pub ext: Vec<usize>,          // 外部 (静的) Z2 電荷のサイト
+    masks: Vec<u32>,              // 占有 bitmask (popcount = nf, 昇順)
+    diag: Vec<f64>,               // 対角要素 (基底順: mask_idx + ncomb*eps)
+    hops: Vec<Vec<(usize, f64)>>, // 疎な非対角 (実対称: 両向きを格納)
+}
+
+impl Z2GaugeRing {
+    /// 全 Z2 電荷が偶数 (環の Gauss 拘束が充足可能) のときだけ構成できる。
+    /// 奇電荷は超選択則により状態が存在しない — Err を返す。
+    pub fn try_new(
+        l: usize,
+        nf: usize,
+        w: f64,
+        h: f64,
+        m: f64,
+        ext: Vec<usize>,
+    ) -> Result<Self, String> {
+        assert!(l % 2 == 0 && l <= 30);
+        if (nf + l / 2 + ext.len()) % 2 != 0 {
+            return Err(format!(
+                "全 Z2 電荷が奇数 (nf={} + 背景 {} + 外部 {}) — 環上で Gauss 拘束が充足不能 (超選択則)",
+                nf,
+                l / 2,
+                ext.len()
+            ));
+        }
+        let masks: Vec<u32> = (0u32..(1 << l))
+            .filter(|x| x.count_ones() as usize == nf)
+            .collect();
+        let ncomb = masks.len();
+        let mut me = Self {
+            l,
+            nf,
+            w,
+            h,
+            m,
+            ext,
+            masks,
+            diag: Vec::new(),
+            hops: Vec::new(),
+        };
+        me.build();
+        let _ = ncomb;
+        Ok(me)
+    }
+
+    pub fn dim(&self) -> usize {
+        2 * self.masks.len()
+    }
+
+    fn mask_index(&self, mask: u32) -> usize {
+        self.masks.binary_search(&mask).expect("mask 不在")
+    }
+
+    /// サイトの Z2 電荷 (占有 XOR staggered 背景 XOR 外部電荷)
+    fn q(&self, mask: u32, site: usize) -> u32 {
+        let occ = (mask >> site) & 1;
+        let stag = (site % 2) as u32;
+        let e = self.ext.contains(&site) as u32;
+        occ ^ stag ^ e
+    }
+
+    /// 電場列 E_j (リンク j = (j, j+1 mod l)、j = l-1 が巻き付きリンク = ε)
+    pub fn elinks(&self, mask: u32, eps: i32) -> Vec<i32> {
+        let mut out = vec![0; self.l];
+        let mut p = 0u32;
+        for j in 0..self.l {
+            p ^= self.q(mask, j);
+            out[j] = if p == 0 { eps } else { -eps };
+        }
+        debug_assert_eq!(out[self.l - 1], eps); // 全電荷偶数なら厳密
+        out
+    }
+
+    /// フェルミオンの生成消滅 (Jordan–Wigner 符号つき): c†_b c_a |mask⟩
+    fn hop_sign(mask: u32, a: usize, b: usize) -> Option<(u32, f64)> {
+        if (mask >> a) & 1 == 0 || (mask >> b) & 1 == 1 {
+            return None;
+        }
+        let m1 = mask & !(1 << a);
+        let s1 = ((mask & ((1 << a) - 1)).count_ones() % 2) as i32;
+        let s2 = ((m1 & ((1 << b) - 1)).count_ones() % 2) as i32;
+        let sign = if (s1 + s2) % 2 == 0 { 1.0 } else { -1.0 };
+        Some((m1 | (1 << b), sign))
+    }
+
+    fn build(&mut self) {
+        let ncomb = self.masks.len();
+        let dim = 2 * ncomb;
+        self.diag = vec![0.0; dim];
+        self.hops = vec![Vec::new(); dim];
+        for (mi_, &mask) in self.masks.iter().enumerate() {
+            for (ei, eps) in [1i32, -1i32].iter().enumerate() {
+                let idx = mi_ + ncomb * ei;
+                // 対角: 質量 + 電場
+                let mut d = 0.0;
+                for n in 0..self.l {
+                    if (mask >> n) & 1 == 1 {
+                        d += self.m * if n % 2 == 0 { 1.0 } else { -1.0 };
+                    }
+                }
+                for e in self.elinks(mask, *eps) {
+                    d -= self.h * e as f64;
+                }
+                self.diag[idx] = d;
+                // 非対角: ボンド (a, a+1 mod l) のホップ (σ^z は電場列の再計算に吸収、
+                // 巻き付きボンドだけ ε を反転する)
+                for a in 0..self.l {
+                    let b = (a + 1) % self.l;
+                    let wrap = a == self.l - 1;
+                    for (x, y) in [(a, b), (b, a)] {
+                        if let Some((m2, sgn)) = Self::hop_sign(mask, x, y) {
+                            let ei2 = if wrap { 1 - ei } else { ei };
+                            let jdx = self.mask_index(m2) + ncomb * ei2;
+                            self.hops[idx].push((jdx, -self.w * sgn));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    pub fn matvec_c(&self, v: &[(f64, f64)]) -> Vec<(f64, f64)> {
+        let mut out: Vec<(f64, f64)> = (0..v.len())
+            .map(|i| (self.diag[i] * v[i].0, self.diag[i] * v[i].1))
+            .collect();
+        for (i, hs) in self.hops.iter().enumerate() {
+            for &(j, a) in hs {
+                out[i].0 += a * v[j].0;
+                out[i].1 += a * v[j].1;
+            }
+        }
+        out
+    }
+
+    /// 基底状態 (Lanczos; 大域位相を実に回転して返す)
+    pub fn ground_state(&self, seed: u64) -> (f64, Z2CoreState, f64) {
+        let dim = self.dim();
+        let mv = |v: &[(f64, f64)]| self.matvec_c(v);
+        let krylov = (dim / 2).clamp(40, 160);
+        let (evals, evecs, res) = lanczos_lowest_herm(&mv, dim, 1, krylov, seed);
+        let mut psi = evecs[0].clone();
+        // 大域位相の固定 (最大成分を正の実に)
+        let mut imax = 0;
+        for (i, a) in psi.iter().enumerate() {
+            if a.0 * a.0 + a.1 * a.1 > psi[imax].0 * psi[imax].0 + psi[imax].1 * psi[imax].1 {
+                imax = i;
+            }
+        }
+        let (pr, pi) = psi[imax];
+        let ph = (pr * pr + pi * pi).sqrt();
+        let (cr, ci) = (pr / ph, -pi / ph);
+        for a in psi.iter_mut() {
+            let (x, y) = *a;
+            *a = (cr * x - ci * y, cr * y + ci * x);
+        }
+        (
+            evals[0],
+            Z2CoreState {
+                l: self.l,
+                masks: self.masks.clone(),
+                psi,
+            },
+            res,
+        )
+    }
+
+    /// ゲージ不変なボンド励起 (c†_x σ^z c_{x+1} + h.c.) を状態に作用させ正規化
+    pub fn apply_bond_op(&self, s: &Z2CoreState, x: usize) -> Z2CoreState {
+        let ncomb = self.masks.len();
+        let b = (x + 1) % self.l;
+        let wrap = x == self.l - 1;
+        let mut out = vec![(0.0, 0.0); self.dim()];
+        for (mi_, &mask) in self.masks.iter().enumerate() {
+            for ei in 0..2 {
+                let idx = mi_ + ncomb * ei;
+                let (ar, ai) = s.psi[idx];
+                if ar == 0.0 && ai == 0.0 {
+                    continue;
+                }
+                for (p, q2) in [(x, b), (b, x)] {
+                    if let Some((m2, sgn)) = Self::hop_sign(mask, p, q2) {
+                        let ei2 = if wrap { 1 - ei } else { ei };
+                        let jdx = self.mask_index(m2) + ncomb * ei2;
+                        out[jdx].0 += sgn * ar;
+                        out[jdx].1 += sgn * ai;
+                    }
+                }
+            }
+        }
+        let nrm = cdot(&out, &out).0.sqrt();
+        assert!(nrm > 1e-12, "ボンド励起が零ベクトル");
+        for a in out.iter_mut() {
+            a.0 /= nrm;
+            a.1 /= nrm;
+        }
+        Z2CoreState {
+            l: self.l,
+            masks: self.masks.clone(),
+            psi: out,
+        }
+    }
+}
+
+/// Z2GaugeRing の状態 (拘束を解いた基底上の波動関数)
+pub struct Z2CoreState {
+    pub l: usize,
+    pub masks: Vec<u32>,
+    pub psi: Vec<(f64, f64)>,
+}
+
+impl QrnStateV2 for Z2CoreState {
+    fn n_sites(&self) -> usize {
+        self.l
+    }
+    fn dim(&self) -> usize {
+        self.psi.len()
+    }
+    fn amp(&self) -> &[(f64, f64)] {
+        &self.psi
+    }
+    fn rdm(&self, sites: &[usize]) -> (Vec<f64>, Vec<f64>, usize) {
+        let na = sites.len();
+        let dima = 1usize << na;
+        let ncomb = self.masks.len();
+        // 環境キー (補集合ビット列 + ε) ごとに (a, 符号つき振幅) を集める
+        let mut groups: std::collections::HashMap<u64, Vec<(usize, (f64, f64))>> =
+            std::collections::HashMap::new();
+        let in_a: Vec<Option<usize>> = (0..self.l)
+            .map(|s| sites.iter().position(|&t| t == s))
+            .collect();
+        for (mi_, &mask) in self.masks.iter().enumerate() {
+            for ei in 0..2u64 {
+                let idx = mi_ + ncomb * (ei as usize);
+                let (ar, ai) = self.psi[idx];
+                if ar == 0.0 && ai == 0.0 {
+                    continue;
+                }
+                let mut akey = 0usize;
+                let mut bkey = 0u64;
+                let mut bpos = 0u32;
+                // 並べ替え符号: A の占有モードを B の占有モードの前に運ぶ転置の数
+                let mut sign = 1.0f64;
+                let mut b_seen = 0u32; // これまでに見た B 占有数 (サイト順)
+                for site in 0..self.l {
+                    let occ = (mask >> site) & 1;
+                    match in_a[site] {
+                        Some(k) => {
+                            if occ == 1 {
+                                akey |= 1 << k;
+                                if b_seen % 2 == 1 {
+                                    sign = -sign;
+                                }
+                            }
+                        }
+                        None => {
+                            if occ == 1 {
+                                bkey |= 1 << bpos;
+                                b_seen += 1;
+                            }
+                            bpos += 1;
+                        }
+                    }
+                }
+                bkey |= ei << 63;
+                groups
+                    .entry(bkey)
+                    .or_default()
+                    .push((akey, (sign * ar, sign * ai)));
+            }
+        }
+        let mut re = vec![0.0; dima * dima];
+        let mut im = vec![0.0; dima * dima];
+        for (_, g) in groups {
+            for &(a1, (x1, y1)) in &g {
+                for &(a2, (x2, y2)) in &g {
+                    // ρ[a1, a2] += ψ(a1,B) ψ*(a2,B)
+                    re[a1 + a2 * dima] += x1 * x2 + y1 * y2;
+                    im[a1 + a2 * dima] += y1 * x2 - x1 * y2;
+                }
+            }
+        }
+        (re, im, dima)
+    }
+    fn density(&self, site: usize) -> f64 {
+        let ncomb = self.masks.len();
+        let mut d = 0.0;
+        for (mi_, &mask) in self.masks.iter().enumerate() {
+            if (mask >> site) & 1 == 1 {
+                for ei in 0..2 {
+                    let (ar, ai) = self.psi[mi_ + ncomb * ei];
+                    d += ar * ar + ai * ai;
+                }
+            }
+        }
+        d
+    }
+}
+
+impl QrnDynamicsV2<Z2CoreState> for Z2GaugeRing {
+    /// Krylov 部分空間 (次元 ≤ 28) による exp(-iH dt) の作用
+    fn step(&self, s: &Z2CoreState, dt: f64) -> Z2CoreState {
+        let n = s.psi.len();
+        let mk = 28usize.min(n);
+        let mut basis: Vec<Vec<(f64, f64)>> = vec![s.psi.clone()];
+        for j in 0..mk - 1 {
+            let mut w = self.matvec_c(&basis[j]);
+            for _ in 0..2 {
+                for b in &basis {
+                    let (pr, pi) = cdot(b, &w);
+                    for i in 0..n {
+                        let (br, bi) = b[i];
+                        w[i].0 -= pr * br - pi * bi;
+                        w[i].1 -= pr * bi + pi * br;
+                    }
+                }
+            }
+            let nrm = cdot(&w, &w).0.sqrt();
+            if nrm < 1e-13 {
+                break;
+            }
+            for x in w.iter_mut() {
+                x.0 /= nrm;
+                x.1 /= nrm;
+            }
+            basis.push(w);
+        }
+        let mm = basis.len();
+        // 射影ハミルトニアン T (エルミート → 実対称部分のみ非零のはずだが陽に対称化)
+        let mut t = vec![0.0; mm * mm];
+        for j in 0..mm {
+            let hv = self.matvec_c(&basis[j]);
+            for i in 0..mm {
+                t[i + j * mm] = cdot(&basis[i], &hv).0;
+            }
+        }
+        for i in 0..mm {
+            for j in (i + 1)..mm {
+                let a = 0.5 * (t[i + j * mm] + t[j + i * mm]);
+                t[i + j * mm] = a;
+                t[j + i * mm] = a;
+            }
+        }
+        let (ev, vv) = jacobi_eigh(&t, mm);
+        // ψ(dt) = Σ_e e^{-i λ_e dt} (Σ_j V_je v_j) V_0e   (ψ = v_0)
+        let mut out = vec![(0.0, 0.0); n];
+        for e in 0..mm {
+            let (cr, ci) = ((-ev[e] * dt).cos(), (-ev[e] * dt).sin());
+            let amp0 = vv[e * mm]; // V_{0,e}
+            for j in 0..mm {
+                let c = vv[j + e * mm] * amp0;
+                for i in 0..n {
+                    let (br, bi) = basis[j][i];
+                    out[i].0 += c * (cr * br - ci * bi);
+                    out[i].1 += c * (cr * bi + ci * br);
+                }
+            }
+        }
+        Z2CoreState {
+            l: s.l,
+            masks: s.masks.clone(),
+            psi: out,
+        }
+    }
+
+    fn conserved(&self, s: &Z2CoreState) -> Vec<(String, f64)> {
+        let nrm = cdot(&s.psi, &s.psi).0;
+        let hv = self.matvec_c(&s.psi);
+        let en = cdot(&s.psi, &hv).0;
+        let nf: f64 = (0..self.l).map(|x| s.density(x)).sum();
+        vec![
+            ("norm".to_string(), nrm),
+            ("energy".to_string(), en),
+            ("N_f".to_string(), nf),
+        ]
+    }
+}
+
 // ---------------- 自己テスト ----------------
 pub fn self_test() {
     // ヤコビ法: ランダム対称行列で A v = λ v を検証
@@ -1482,5 +1956,12 @@ pub fn self_test() {
         sha256_hex(b"abc"),
         "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
     );
+    // 複素エルミート固有値 (実埋め込み): [[1, -i],[i, 1]] の固有値は {0, 2}
+    {
+        let re = [1.0, 0.0, 0.0, 1.0];
+        let im = [0.0, 1.0, -1.0, 0.0];
+        let ev = eigvals_herm_c(&re, &im, 2);
+        assert!((ev[0] - 0.0).abs() < 1e-12 && (ev[1] - 2.0).abs() < 1e-12);
+    }
     eprintln!("[self_test] OK (jacobi residual {:.2e})", max_res);
 }
