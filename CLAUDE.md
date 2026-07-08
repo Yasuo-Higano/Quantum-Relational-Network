@@ -50,3 +50,17 @@ for b in target/release/v*_*; do $b; done  # 全スイート実行 (v??_* は 3 
 ## 追加規則
 - シミュレーションは原則としてrustで行うが、定理証明器が得意な分野についてはcoqやlean4などを自由に導入して構わない。
 - 図表のような人間向け資料の作成にはpythonなどの便利な環境やフリーソフトウェア・ライブラリーを利用して構わない。
+
+## DAG/依存グラフ
+Prolog(swi-prolog)を使って処理できるようにする。
+```
+JSON
+ ↓
+Pythonで読み込み・正規化
+ ↓
+facts.plに変換
+ ↓
+Prologで推論
+ ↓
+DOT/Mermaid/Markdown/JSONレポート出力
+```
