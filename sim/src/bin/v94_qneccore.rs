@@ -120,7 +120,11 @@ fn main() {
     let pd = s0.purity_defect();
     let kf = s0.readout_fermi_momentum();
     let kf_err = (kf - std::f64::consts::PI / 2.0).abs();
-    println!("    波束回転後の purity_defect = {:.2e} (< 1e-9)  {}", pd, pass(pd < 1e-9));
+    println!(
+        "    波束回転後の purity_defect = {:.2e} (< 1e-9)  {}",
+        pd,
+        pass(pd < 1e-9)
+    );
     println!(
         "    k_F = π/2 (波束は粒子数を保存): 偏差 {:.2e} (< 1e-12)  {}",
         kf_err,
@@ -207,8 +211,14 @@ fn main() {
         && ok_ratio;
     let j = Json::Obj(vec![
         ("claim_id".into(), Json::Str("QRN-CORE-003".into())),
-        ("model".into(), Json::Str("PacketRing (RingChain + chiral/standing packet)".into())),
-        ("regression_source".into(), Json::Str("results/v63_qnec_budget.json (N=302)".into())),
+        (
+            "model".into(),
+            Json::Str("PacketRing (RingChain + chiral/standing packet)".into()),
+        ),
+        (
+            "regression_source".into(),
+            Json::Str("results/v63_qnec_budget.json (N=302)".into()),
+        ),
         ("min_gap_basic".into(), Json::Num(g.basic)),
         ("min_gap_strong".into(), Json::Num(g.strong)),
         ("chirality".into(), Json::Num(chir)),

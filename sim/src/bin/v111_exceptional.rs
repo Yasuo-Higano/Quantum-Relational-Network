@@ -142,9 +142,13 @@ fn main() {
     let mut g2_14 = g2_roots.clone();
     g2_14.push([0i64; 8]);
     g2_14.push([0i64; 8]); // 14 = 12 ルート + 零 × rank 2
-    // 単純ルート: α₁ = (1,−1,0) (短), α₂ = (−1,2,−1) (長)
+                           // 単純ルート: α₁ = (1,−1,0) (短), α₂ = (−1,2,−1) (長)
     let g2_simple = vec![pad(&[1, -1, 0]), pad(&[-1, 2, -1])];
-    check("次元: |7|=7, |14|=14", g2_7.len() == 7 && g2_14.len() == 14, &mut all_ok);
+    check(
+        "次元: |7|=7, |14|=14",
+        g2_7.len() == 7 && g2_14.len() == 14,
+        &mut all_ok,
+    );
     check(
         "ルートのノルム²: 短 2 / 長 6 (比 3 = G₂ の刻印)",
         g2_short.iter().all(|r| dot(r, r) == 2) && g2_long.iter().all(|r| dot(r, r) == 6),
@@ -199,7 +203,11 @@ fn main() {
         pad(&[0, 0, 0, 2]),
         pad(&[1, -1, -1, -1]),
     ];
-    check("次元: |26|=26, |52|=52", f4_26.len() == 26 && f4_52.len() == 52, &mut all_ok);
+    check(
+        "次元: |26|=26, |52|=52",
+        f4_26.len() == 26 && f4_52.len() == 52,
+        &mut all_ok,
+    );
     check(
         "ルート数 48 (長 24 ノルム² 8 / 短 24 ノルム² 4)",
         f4_roots.len() == 48
@@ -246,7 +254,11 @@ fn main() {
     // 単純ルート (2 倍座標, Bourbaki): α₁=(1,−1,…,−1,1)/…: ここでは検査に十分な生成系として
     // 隣接差 2e_i−2e_{i+1} (i=1..6) と 2e₆+2e₇, 偶スピノル (1,1,1,1,1,-1,-1,-1)… の代わりに
     // **全ルートでの閉性**を直接検査する (生成系の選び方に依らない強い検査)
-    check("ルート数 240, ノルム² 全て 8", e8_roots.len() == 240 && e8_roots.iter().all(|r| dot(r, r) == 8), &mut all_ok);
+    check(
+        "ルート数 240, ノルム² 全て 8",
+        e8_roots.len() == 240 && e8_roots.iter().all(|r| dot(r, r) == 8),
+        &mut all_ok,
+    );
     check("次元: |248|=248", e8_248.len() == 248, &mut all_ok);
     check(
         "Weyl 閉性: 全 240 ルートの鏡映で 248 が閉じる",
@@ -280,7 +292,11 @@ fn main() {
     for _ in 0..7 {
         e7_133.push([0i64; 8]);
     }
-    check("ルート数 126 (α 直交), |56|=56, |133|=133", e7_roots.len() == 126 && e7_56.len() == 56 && e7_133.len() == 133, &mut all_ok);
+    check(
+        "ルート数 126 (α 直交), |56|=56, |133|=133",
+        e7_roots.len() == 126 && e7_56.len() == 56 && e7_133.len() == 133,
+        &mut all_ok,
+    );
     check(
         "Weyl 閉性: E₇ の全ルート鏡映で 56 と 133 が閉じる",
         closed_under(&e7_56, &e7_roots) && closed_under(&e7_133, &e7_roots),
@@ -325,7 +341,10 @@ fn main() {
                 ("E8_248".into(), Json::Bool(self_conjugate(&e8_248))),
             ]),
         ),
-        ("control_su3_complex".into(), Json::Bool(!self_conjugate(&su3_3))),
+        (
+            "control_su3_complex".into(),
+            Json::Bool(!self_conjugate(&su3_3)),
+        ),
         ("pass".into(), Json::Bool(all_ok)),
     ]);
     let p = write_artifact("results/v111_exceptional.json", &j.render());

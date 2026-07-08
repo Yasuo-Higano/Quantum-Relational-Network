@@ -15,7 +15,6 @@
 
 use uft_sim::*;
 
-
 const N: usize = 6;
 const NS4: usize = N * N * N * N;
 type Flux = [i64; 4];
@@ -31,7 +30,16 @@ fn idx(x1: usize, y1: usize, x2: usize, y2: usize) -> usize {
     x1 + N * (y1 + N * (x2 + N * y2))
 }
 
-fn link_phase(f: &Flux, x1: usize, y1: usize, x2: usize, y2: usize, dir: usize, w1: f64, w2: f64) -> f64 {
+fn link_phase(
+    f: &Flux,
+    x1: usize,
+    y1: usize,
+    x2: usize,
+    y2: usize,
+    dir: usize,
+    w1: f64,
+    w2: f64,
+) -> f64 {
     let nn = (N * N) as f64;
     let two_pi = 2.0 * std::f64::consts::PI;
     let (p1, p2, pt, ps) = (
@@ -88,10 +96,26 @@ fn t4_modes_w(f: &Flux, w1: f64, w2: f64) -> (Vec<Vec<(f64, f64)>>, f64, f64) {
             for x2 in 0..N {
                 for y2 in 0..N {
                     let i = idx(x1, y1, x2, y2);
-                    addhop(i, idx((x1 + 1) % N, y1, x2, y2), link_phase(f, x1, y1, x2, y2, 0, w1, w2));
-                    addhop(i, idx(x1, (y1 + 1) % N, x2, y2), link_phase(f, x1, y1, x2, y2, 1, w1, w2));
-                    addhop(i, idx(x1, y1, (x2 + 1) % N, y2), link_phase(f, x1, y1, x2, y2, 2, w1, w2));
-                    addhop(i, idx(x1, y1, x2, (y2 + 1) % N), link_phase(f, x1, y1, x2, y2, 3, w1, w2));
+                    addhop(
+                        i,
+                        idx((x1 + 1) % N, y1, x2, y2),
+                        link_phase(f, x1, y1, x2, y2, 0, w1, w2),
+                    );
+                    addhop(
+                        i,
+                        idx(x1, (y1 + 1) % N, x2, y2),
+                        link_phase(f, x1, y1, x2, y2, 1, w1, w2),
+                    );
+                    addhop(
+                        i,
+                        idx(x1, y1, (x2 + 1) % N, y2),
+                        link_phase(f, x1, y1, x2, y2, 2, w1, w2),
+                    );
+                    addhop(
+                        i,
+                        idx(x1, y1, x2, (y2 + 1) % N),
+                        link_phase(f, x1, y1, x2, y2, 3, w1, w2),
+                    );
                 }
             }
         }
@@ -321,8 +345,10 @@ fn main() {
         .iter()
         .map(|&(f, _)| std::thread::spawn(move || t4_modes_w(&f, 0.0, 0.0)))
         .collect();
-    let outs: Vec<(Vec<Vec<(f64, f64)>>, f64, f64)> =
-        handles.into_iter().map(|h| h.join().expect("worker")).collect();
+    let outs: Vec<(Vec<Vec<(f64, f64)>>, f64, f64)> = handles
+        .into_iter()
+        .map(|h| h.join().expect("worker"))
+        .collect();
     println!("    完了 ({} ms)\n", t0.elapsed().as_millis());
     println!("    磁束              指数(幅/ギャップ)         深さ代理 ln r1   MI(x₁:x₂)");
     let mut ok_engine = true;
@@ -336,7 +362,13 @@ fn main() {
         let mi = band_mi(modes);
         println!(
             "    {:?} {:10} {:.1e}/{:.4} {}   {:+.2}        {:.4}",
-            f, tag, spread, gap, pass(ok), d, mi
+            f,
+            tag,
+            spread,
+            gap,
+            pass(ok),
+            d,
+            mi
         );
         if d < best_depth {
             best_depth = d;
@@ -360,10 +392,15 @@ fn main() {
 
     // ---- [3] 勝者の全 36 Wilson 配置の証拠 ----
     println!("\n[3] 勝者の全 36 Wilson 配置の証拠 (v12.2 と同一の機械, ~45 分)");
-    let nw = 12usize.min(std::thread::available_parallelism().map(|v| v.get()).unwrap_or(4));
+    let nw = 12usize.min(
+        std::thread::available_parallelism()
+            .map(|v| v.get())
+            .unwrap_or(4),
+    );
     let two_pi = 2.0 * std::f64::consts::PI;
     let t1 = std::time::Instant::now();
-    let mut results: Vec<Option<(Vec<Vec<(f64, f64)>>, f64, f64)>> = (0..36).map(|_| None).collect();
+    let mut results: Vec<Option<(Vec<Vec<(f64, f64)>>, f64, f64)>> =
+        (0..36).map(|_| None).collect();
     let mut next = 0usize;
     while next < 36 {
         let batch: Vec<usize> = (next..(next + nw).min(36)).collect();
@@ -383,7 +420,11 @@ fn main() {
             results[k] = Some(r);
         }
         next += nw;
-        println!("    … {}/36 完了 ({} ms)", next.min(36), t1.elapsed().as_millis());
+        println!(
+            "    … {}/36 完了 ({} ms)",
+            next.min(36),
+            t1.elapsed().as_millis()
+        );
     }
     let configs: Vec<(Vec<Vec<(f64, f64)>>, f64, f64)> =
         results.into_iter().map(|r| r.unwrap()).collect();
@@ -485,7 +526,10 @@ fn main() {
     let mut frows = Vec::new();
     for (f, d, mi, spread, gap) in &rows {
         frows.push(Json::Obj(vec![
-            ("flux".into(), Json::Arr(f.iter().map(|&x| Json::Int(x)).collect())),
+            (
+                "flux".into(),
+                Json::Arr(f.iter().map(|&x| Json::Int(x)).collect()),
+            ),
             ("depth_ln_r1".into(), Json::Num(*d)),
             ("band_mi".into(), Json::Num(*mi)),
             ("spread".into(), Json::Num(*spread)),
@@ -495,14 +539,20 @@ fn main() {
     let j = Json::Obj(vec![
         ("claim_id".into(), Json::Str("QRN-YUK-014".into())),
         ("family".into(), Json::Arr(frows)),
-        ("winner".into(), Json::Arr(best_f.iter().map(|&x| Json::Int(x)).collect())),
+        (
+            "winner".into(),
+            Json::Arr(best_f.iter().map(|&x| Json::Int(x)).collect()),
+        ),
         ("winner_lnZ_nine".into(), Json::Num(lnz)),
         ("beats_s3_ladder".into(), Json::Bool(beats)),
         ("pass".into(), Json::Bool(all_ok)),
     ]);
     let p = write_artifact("results/v123_fluxscan.json", &j.render());
     println!("\n  機械可読な結果: {}", p);
-    println!("\n総合判定: {} (PASS = 装置 — 走査の答えは [1]-[3] の表が本体)", pass(all_ok));
+    println!(
+        "\n総合判定: {} (PASS = 装置 — 走査の答えは [1]-[3] の表が本体)",
+        pass(all_ok)
+    );
     if !all_ok {
         std::process::exit(1);
     }

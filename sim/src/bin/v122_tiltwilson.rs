@@ -91,10 +91,26 @@ fn t4_modes_w(w1: f64, w2: f64) -> (Vec<Vec<(f64, f64)>>, f64, f64) {
             for x2 in 0..N {
                 for y2 in 0..N {
                     let i = idx(x1, y1, x2, y2);
-                    addhop(i, idx((x1 + 1) % N, y1, x2, y2), link_phase(x1, y1, x2, y2, 0, w1, w2));
-                    addhop(i, idx(x1, (y1 + 1) % N, x2, y2), link_phase(x1, y1, x2, y2, 1, w1, w2));
-                    addhop(i, idx(x1, y1, (x2 + 1) % N, y2), link_phase(x1, y1, x2, y2, 2, w1, w2));
-                    addhop(i, idx(x1, y1, x2, (y2 + 1) % N), link_phase(x1, y1, x2, y2, 3, w1, w2));
+                    addhop(
+                        i,
+                        idx((x1 + 1) % N, y1, x2, y2),
+                        link_phase(x1, y1, x2, y2, 0, w1, w2),
+                    );
+                    addhop(
+                        i,
+                        idx(x1, (y1 + 1) % N, x2, y2),
+                        link_phase(x1, y1, x2, y2, 1, w1, w2),
+                    );
+                    addhop(
+                        i,
+                        idx(x1, y1, (x2 + 1) % N, y2),
+                        link_phase(x1, y1, x2, y2, 2, w1, w2),
+                    );
+                    addhop(
+                        i,
+                        idx(x1, y1, x2, (y2 + 1) % N),
+                        link_phase(x1, y1, x2, y2, 3, w1, w2),
+                    );
                 }
             }
         }
@@ -233,7 +249,11 @@ fn pass(ok: bool) -> &'static str {
 fn main() {
     self_test();
     println!("=== v12.2 傾き T⁴ の証拠検定: アンザッツなしの 3 世代 vs 機構のはしご ===\n");
-    let nw = 12usize.min(std::thread::available_parallelism().map(|v| v.get()).unwrap_or(4));
+    let nw = 12usize.min(
+        std::thread::available_parallelism()
+            .map(|v| v.get())
+            .unwrap_or(4),
+    );
     println!(
         "[1] Wilson 36 配置の個別対角化 (2592², {} スレッド並列, ~30-60 分)",
         nw
@@ -241,7 +261,8 @@ fn main() {
     let t0 = std::time::Instant::now();
     let two_pi = 2.0 * std::f64::consts::PI;
     // ワーカー: 配置 k = k1 + 6·k2 を処理
-    let mut results: Vec<Option<(Vec<Vec<(f64, f64)>>, f64, f64)>> = (0..36).map(|_| None).collect();
+    let mut results: Vec<Option<(Vec<Vec<(f64, f64)>>, f64, f64)>> =
+        (0..36).map(|_| None).collect();
     let mut next = 0usize;
     while next < 36 {
         let batch: Vec<usize> = (next..(next + nw).min(36)).collect();
@@ -261,7 +282,11 @@ fn main() {
             results[k] = Some(r);
         }
         next += nw;
-        println!("    … {}/36 完了 ({} ms)", next.min(36), t0.elapsed().as_millis());
+        println!(
+            "    … {}/36 完了 ({} ms)",
+            next.min(36),
+            t0.elapsed().as_millis()
+        );
     }
     let configs: Vec<(Vec<Vec<(f64, f64)>>, f64, f64)> =
         results.into_iter().map(|r| r.unwrap()).collect();
@@ -358,13 +383,20 @@ fn main() {
         terms.push(lse(&per_q) + lse(&le));
     }
     let lnz = lse(&terms) - (5.0 * (nc as f64).ln() + (sig_grid.len() as f64).ln());
-    println!("    lnZ₉(傾き T⁴) = {:.4}  ({} ms)", lnz, t2.elapsed().as_millis());
+    println!(
+        "    lnZ₉(傾き T⁴) = {:.4}  ({} ms)",
+        lnz,
+        t2.elapsed().as_millis()
+    );
     println!("\n    機構のはしご (T²×T² 系):");
     println!("      対角対      −23.61");
     println!("      一様オービ  −21.83");
     println!("      向き+並進   −20.86");
     println!("      S₃ 対       −19.86");
-    println!("      傾き T⁴     {:+.2}   ← 本バイナリ (アンザッツ・ラベル・対が原理的に不在)", lnz);
+    println!(
+        "      傾き T⁴     {:+.2}   ← 本バイナリ (アンザッツ・ラベル・対が原理的に不在)",
+        lnz
+    );
     let beats = lnz > -19.86;
     println!(
         "\n    => 傾き T⁴ は S₃ 対を{} (差 {:+.2})",
@@ -388,7 +420,10 @@ fn main() {
     ]);
     let p = write_artifact("results/v122_tiltwilson.json", &j.render());
     println!("\n  機械可読な結果: {}", p);
-    println!("\n総合判定: {} (PASS = 指数の Wilson 不変性と回帰 — はしご比較は [2] が本体)", pass(all_ok));
+    println!(
+        "\n総合判定: {} (PASS = 指数の Wilson 不変性と回帰 — はしご比較は [2] が本体)",
+        pass(all_ok)
+    );
     if !all_ok {
         std::process::exit(1);
     }

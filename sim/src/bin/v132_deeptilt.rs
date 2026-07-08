@@ -37,7 +37,16 @@ fn idx(x1: usize, y1: usize, x2: usize, y2: usize) -> usize {
     x1 + N * (y1 + N * (x2 + N * y2))
 }
 
-fn link_phase(f: &Flux, x1: usize, y1: usize, x2: usize, y2: usize, dir: usize, w1: f64, w2: f64) -> f64 {
+fn link_phase(
+    f: &Flux,
+    x1: usize,
+    y1: usize,
+    x2: usize,
+    y2: usize,
+    dir: usize,
+    w1: f64,
+    w2: f64,
+) -> f64 {
     let nn = (N * N) as f64;
     let two_pi = 2.0 * std::f64::consts::PI;
     let (p1, p2, pt, ps) = (
@@ -81,10 +90,26 @@ fn hops(f: &Flux, w1: f64, w2: f64) -> Vec<(u32, u32, f64)> {
             for x2 in 0..N {
                 for y2 in 0..N {
                     let i = idx(x1, y1, x2, y2) as u32;
-                    h.push((i, idx((x1 + 1) % N, y1, x2, y2) as u32, link_phase(f, x1, y1, x2, y2, 0, w1, w2)));
-                    h.push((i, idx(x1, (y1 + 1) % N, x2, y2) as u32, link_phase(f, x1, y1, x2, y2, 1, w1, w2)));
-                    h.push((i, idx(x1, y1, (x2 + 1) % N, y2) as u32, link_phase(f, x1, y1, x2, y2, 2, w1, w2)));
-                    h.push((i, idx(x1, y1, x2, (y2 + 1) % N) as u32, link_phase(f, x1, y1, x2, y2, 3, w1, w2)));
+                    h.push((
+                        i,
+                        idx((x1 + 1) % N, y1, x2, y2) as u32,
+                        link_phase(f, x1, y1, x2, y2, 0, w1, w2),
+                    ));
+                    h.push((
+                        i,
+                        idx(x1, (y1 + 1) % N, x2, y2) as u32,
+                        link_phase(f, x1, y1, x2, y2, 1, w1, w2),
+                    ));
+                    h.push((
+                        i,
+                        idx(x1, y1, (x2 + 1) % N, y2) as u32,
+                        link_phase(f, x1, y1, x2, y2, 2, w1, w2),
+                    ));
+                    h.push((
+                        i,
+                        idx(x1, y1, x2, (y2 + 1) % N) as u32,
+                        link_phase(f, x1, y1, x2, y2, 3, w1, w2),
+                    ));
                 }
             }
         }
@@ -325,8 +350,10 @@ fn main() {
         .iter()
         .map(|&(f, _)| std::thread::spawn(move || solve(&f, 0.0, 0.0)))
         .collect();
-    let outs: Vec<(Vec<Vec<(f64, f64)>>, f64, f64, f64)> =
-        handles.into_iter().map(|h| h.join().expect("worker")).collect();
+    let outs: Vec<(Vec<Vec<(f64, f64)>>, f64, f64, f64)> = handles
+        .into_iter()
+        .map(|h| h.join().expect("worker"))
+        .collect();
     println!("    完了 ({} ms)\n", t0.elapsed().as_millis());
     println!("    磁束           指数 (幅/ギャップ/残差)              深さ ln r₁   MI(x₁:x₂)");
     let mut ok_engine = true;
@@ -388,7 +415,11 @@ fn main() {
 
     // ---- [3] 勝者の 36 Wilson 証拠 (深さに関わらず実施 — 証拠が最終の秤) ----
     println!("\n[3] 勝者の 36 Wilson 配置の証拠 (並列 Lanczos)");
-    let nw = 12usize.min(std::thread::available_parallelism().map(|v| v.get()).unwrap_or(4));
+    let nw = 12usize.min(
+        std::thread::available_parallelism()
+            .map(|v| v.get())
+            .unwrap_or(4),
+    );
     let two_pi = 2.0 * std::f64::consts::PI;
     let t1 = std::time::Instant::now();
     let mut results: Vec<Option<(Vec<Vec<(f64, f64)>>, f64, f64, f64)>> =
@@ -412,7 +443,11 @@ fn main() {
             results[k] = Some(r);
         }
         next += nw;
-        println!("    … {}/36 ({} ms)", next.min(36), t1.elapsed().as_millis());
+        println!(
+            "    … {}/36 ({} ms)",
+            next.min(36),
+            t1.elapsed().as_millis()
+        );
     }
     let configs: Vec<(Vec<Vec<(f64, f64)>>, f64, f64, f64)> =
         results.into_iter().map(|r| r.unwrap()).collect();
@@ -488,7 +523,10 @@ fn main() {
     let mut frows = Vec::new();
     for (f, d, mi, spread, gap) in &rows {
         frows.push(Json::Obj(vec![
-            ("flux".into(), Json::Arr(f.iter().map(|&x| Json::Int(x)).collect())),
+            (
+                "flux".into(),
+                Json::Arr(f.iter().map(|&x| Json::Int(x)).collect()),
+            ),
             ("depth_ln_r1".into(), Json::Num(*d)),
             ("band_mi".into(), Json::Num(*mi)),
             ("spread".into(), Json::Num(*spread)),
@@ -499,7 +537,10 @@ fn main() {
         ("claim_id".into(), Json::Str("QRN-YUK-015".into())),
         ("lattice".into(), Json::Int(N as i64)),
         ("family".into(), Json::Arr(frows)),
-        ("winner".into(), Json::Arr(best_f.iter().map(|&x| Json::Int(x)).collect())),
+        (
+            "winner".into(),
+            Json::Arr(best_f.iter().map(|&x| Json::Int(x)).collect()),
+        ),
         ("winner_lnZ_nine".into(), Json::Num(lnz)),
         ("n_exact_degenerate".into(), Json::Int(n_exact as i64)),
         ("beats_s3_ladder".into(), Json::Bool(beats)),
@@ -507,7 +548,10 @@ fn main() {
     ]);
     let p = write_artifact("results/v132_deeptilt.json", &j.render());
     println!("\n  機械可読な結果: {}", p);
-    println!("\n総合判定: {} (PASS = 残差・二分性・単一タワー帯 — はしご比較は [3] が本体)", pass(all_ok));
+    println!(
+        "\n総合判定: {} (PASS = 残差・二分性・単一タワー帯 — はしご比較は [3] が本体)",
+        pass(all_ok)
+    );
     if !all_ok {
         std::process::exit(1);
     }

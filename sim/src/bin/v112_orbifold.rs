@@ -24,7 +24,6 @@
 
 use uft_sim::*;
 
-
 const N: usize = 18;
 const NS: usize = N * N;
 const Q: usize = 3;
@@ -400,7 +399,11 @@ fn main() {
         let ord = order_stable(&cents);
         locs.push(ord.iter().map(|&i| raw[i]).collect());
     }
-    println!("    縮退・ギャップ不変  {}  ({} ms)", pass(ok_engine), t0.elapsed().as_millis());
+    println!(
+        "    縮退・ギャップ不変  {}  ({} ms)",
+        pass(ok_engine),
+        t0.elapsed().as_millis()
+    );
 
     // ---- [1] 磁気並進 T_y (6 サイト) のクロック作用 ----
     println!("\n[1] T_y (y 方向 6 サイト並進) はゼロモード上でクロック対角か");
@@ -442,11 +445,8 @@ fn main() {
     let near_int = |x: f64| (x - x.round()).abs() < 1e-8 || (x - x.round()).abs() > 3.0 - 1e-8;
     let step01 = d01.round() as i64 % 3;
     let step12 = d12.round() as i64 % 3;
-    let ok_clock = max_offdiag < 1e-10
-        && near_int(d01)
-        && near_int(d12)
-        && step01 == step12
-        && step01 != 0;
+    let ok_clock =
+        max_offdiag < 1e-10 && near_int(d01) && near_int(d12) && step01 == step12 && step01 != 0;
     println!(
         "    非対角 |T_y| 最大 {:.2e} / 対角位相の隣接差 = 2π/3 × {} (一定)  {}",
         max_offdiag,
@@ -490,8 +490,14 @@ fn main() {
 
     // ---- [3] 族制限つき証拠 ----
     println!("\n[3] 族制限つき証拠 (T²×Z₆, 安定ラベル, σ_Q = e ゲージ)");
-    println!("    M_uni  = 全場が同じ族 (偶置換 = 巡回のみ, 事前 4ln3 = {:.2})", 4.0 * (3.0f64).ln());
-    println!("    M_full = 全 S₃ (v10.1 の M_perm, 事前 4ln6 = {:.2})", 4.0 * (6.0f64).ln());
+    println!(
+        "    M_uni  = 全場が同じ族 (偶置換 = 巡回のみ, 事前 4ln3 = {:.2})",
+        4.0 * (3.0f64).ln()
+    );
+    println!(
+        "    M_full = 全 S₃ (v10.1 の M_perm, 事前 4ln6 = {:.2})",
+        4.0 * (6.0f64).ln()
+    );
     let nc = 36usize;
     let ll2 = |r: &[f64; 2], t0: f64, t1: f64| -> f64 {
         -((r[0] - t0).powi(2) + (r[1] - t1).powi(2)) / (2.0 * sigma * sigma) + 2.0 * norm1
@@ -579,7 +585,12 @@ fn main() {
     // 退化検査: M_full は v10.1 の lnZ₉(M_perm) と一致するはず
     let ref_full = -19.86334559888438; // results/v101_pairing.json lnZ_nine_perm
     let ok_reg = (lnz_full - ref_full).abs() < 0.02;
-    println!("    lnZ₉(M_full) = {:.4} vs v10.1 {:.4}  {}", lnz_full, ref_full, pass(ok_reg));
+    println!(
+        "    lnZ₉(M_full) = {:.4} vs v10.1 {:.4}  {}",
+        lnz_full,
+        ref_full,
+        pass(ok_reg)
+    );
     println!("    lnZ₉(M_uni)  = {:.4}", lnz_uni);
     let uni_wins = lnz_uni >= lnz_full;
     println!(
@@ -594,8 +605,7 @@ fn main() {
     let sig_names = ["e", "(23)", "(12)", "(123)", "(132)", "(13)"];
     println!(
         "    MAP のクォーク対: σ_u={} σ_d={} (v10.1 と同じく混合パリティか)",
-        sig_names[map_full.1[0]],
-        sig_names[map_full.1[1]]
+        sig_names[map_full.1[0]], sig_names[map_full.1[1]]
     );
 
     let all_ok = ok_engine && ok_clock && ok_proj && ok_reg;
@@ -610,7 +620,10 @@ fn main() {
     ]);
     let p = write_artifact("results/v112_orbifold.json", &j.render());
     println!("\n  機械可読な結果: {}", p);
-    println!("\n総合判定: {} (PASS = 装置検証 — 機構の判定は [3] が本体)", pass(all_ok));
+    println!(
+        "\n総合判定: {} (PASS = 装置検証 — 機構の判定は [3] が本体)",
+        pass(all_ok)
+    );
     if !all_ok {
         std::process::exit(1);
     }

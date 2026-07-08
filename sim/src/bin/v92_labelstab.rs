@@ -421,7 +421,13 @@ fn eval_mass(nt: usize, ks: &[usize], locs: &[Vec<C3v>], sig_grid: &[f64], sigma
 }
 
 /// 全 9 量 (質量 6 + CKM 3) の証拠 — v9.1 の eval9 と同一 (e 因子化 + クォーク三重和)。
-fn eval9(nt: usize, ks: &[usize], locs: &[Vec<C3v>], sig_grid: &[f64], sigma: f64) -> (f64, [f64; 9]) {
+fn eval9(
+    nt: usize,
+    ks: &[usize],
+    locs: &[Vec<C3v>],
+    sig_grid: &[f64],
+    sigma: f64,
+) -> (f64, [f64; 9]) {
     let nk = ks.len();
     let nc = nk.pow(nt as u32);
     let decoded: Vec<Vec<usize>> = (0..nc)
@@ -693,7 +699,8 @@ fn main() {
         );
     }
     // 単一トーラスはラベル不変のはず (特異値は置換に不変)
-    let ok_t1 = (mass_stb[0] - mass_pub[0]).abs() < 1e-6 && (mass_stb[1] - mass_pub[1]).abs() < 1e-6;
+    let ok_t1 =
+        (mass_stb[0] - mass_pub[0]).abs() < 1e-6 && (mass_stb[1] - mass_pub[1]).abs() < 1e-6;
     println!(
         "    単一トーラス (T¹) はラベル規約に厳密不変  {}",
         pass(ok_t1)
@@ -768,7 +775,8 @@ fn main() {
             ]),
         ));
     }
-    let all_ok = ok_engine && bdist_min < 1e-9 && snap_dev < 1e-6 && ok_pub && ok_t1 && ok_winner && ok_rank;
+    let all_ok =
+        ok_engine && bdist_min < 1e-9 && snap_dev < 1e-6 && ok_pub && ok_t1 && ok_winner && ok_rank;
     let art = Json::Obj(vec![
         ("claim_id".into(), Json::Str("QRN-YUK-006".into())),
         ("boundary_distance".into(), Json::Num(bdist_min)),

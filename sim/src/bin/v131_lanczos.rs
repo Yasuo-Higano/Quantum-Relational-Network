@@ -99,10 +99,26 @@ fn hops_t4() -> Vec<(usize, usize, f64)> {
             for x2 in 0..N4 {
                 for y2 in 0..N4 {
                     let i = idx4(x1, y1, x2, y2);
-                    hops.push((i, idx4((x1 + 1) % N4, y1, x2, y2), link_phase4(x1, y1, x2, y2, 0)));
-                    hops.push((i, idx4(x1, (y1 + 1) % N4, x2, y2), link_phase4(x1, y1, x2, y2, 1)));
-                    hops.push((i, idx4(x1, y1, (x2 + 1) % N4, y2), link_phase4(x1, y1, x2, y2, 2)));
-                    hops.push((i, idx4(x1, y1, x2, (y2 + 1) % N4), link_phase4(x1, y1, x2, y2, 3)));
+                    hops.push((
+                        i,
+                        idx4((x1 + 1) % N4, y1, x2, y2),
+                        link_phase4(x1, y1, x2, y2, 0),
+                    ));
+                    hops.push((
+                        i,
+                        idx4(x1, (y1 + 1) % N4, x2, y2),
+                        link_phase4(x1, y1, x2, y2, 1),
+                    ));
+                    hops.push((
+                        i,
+                        idx4(x1, y1, (x2 + 1) % N4, y2),
+                        link_phase4(x1, y1, x2, y2, 2),
+                    ));
+                    hops.push((
+                        i,
+                        idx4(x1, y1, x2, (y2 + 1) % N4),
+                        link_phase4(x1, y1, x2, y2, 3),
+                    ));
                 }
             }
         }

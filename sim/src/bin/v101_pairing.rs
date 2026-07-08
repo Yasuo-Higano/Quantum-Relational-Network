@@ -553,7 +553,13 @@ fn main() {
     let t2 = std::time::Instant::now();
     let mut terms9_diag = Vec::new();
     let mut terms9_perm = Vec::new();
-    let mut map9 = (f64::NEG_INFINITY, 0.0f64, [0usize; 3], [0usize; 2], [0usize; 2]);
+    let mut map9 = (
+        f64::NEG_INFINITY,
+        0.0f64,
+        [0usize; 3],
+        [0usize; 2],
+        [0usize; 2],
+    );
     for &sh in &sig_grid {
         let ytab: Vec<M3> = (0..NK12 * NK12)
             .map(|ab| yukawa(&locs[ab % NK12], &locs[ab / NK12], sh))
@@ -638,10 +644,7 @@ fn main() {
         REF_NINE_DIAG,
         pass((lnz9_diag - REF_NINE_DIAG).abs() < 0.02)
     );
-    println!(
-        "    lnZ₉(M_perm) = {:.2}  (Occam 罰 4ln6 込み)",
-        lnz9_perm
-    );
+    println!("    lnZ₉(M_perm) = {:.2}  (Occam 罰 4ln6 込み)", lnz9_perm);
     let sig_names = ["e", "(23)", "(12)", "(123)", "(132)", "(13)"];
     println!(
         "    => 全 9 量: {}  (差 {:+.2})",
@@ -679,12 +682,18 @@ fn main() {
         if a_mass { "Yes" } else { "No" },
         if a_nine { "Yes" } else { "No" }
     );
-    println!("    [B] MAP の対は中心整列 (e) か:  {}", if map_is_diag { "Yes" } else { "No" });
+    println!(
+        "    [B] MAP の対は中心整列 (e) か:  {}",
+        if map_is_diag { "Yes" } else { "No" }
+    );
 
     let all_ok = ok_engine && ok_mass_reg && ok_nine_reg;
     let j = Json::Obj(vec![
         ("claim_id".into(), Json::Str("QRN-YUK-007".into())),
-        ("gauge".into(), Json::Str("sigma_Q = e (torus-2 relabeling fixed)".into())),
+        (
+            "gauge".into(),
+            Json::Str("sigma_Q = e (torus-2 relabeling fixed)".into()),
+        ),
         ("lnZ_mass_diag".into(), Json::Num(lnz_mass_diag)),
         ("lnZ_mass_perm".into(), Json::Num(lnz_mass_perm)),
         ("lnZ_nine_diag".into(), Json::Num(lnz9_diag)),
@@ -705,7 +714,10 @@ fn main() {
     ]);
     let p = write_artifact("results/v101_pairing.json", &j.render());
     println!("\n  機械可読な結果: {}", p);
-    println!("\n総合判定: {} (PASS 条件は装置の検証 — [A][B] の答えは上の表が本体)", pass(all_ok));
+    println!(
+        "\n総合判定: {} (PASS 条件は装置の検証 — [A][B] の答えは上の表が本体)",
+        pass(all_ok)
+    );
     if !all_ok {
         std::process::exit(1);
     }

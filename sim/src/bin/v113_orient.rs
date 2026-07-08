@@ -395,7 +395,11 @@ fn pair_y_orient(
     let (a1, a2) = (2 * (a % 6), 2 * (a / 6));
     let (b1, b2) = (2 * (b % 6), 2 * (b / 6));
     let y1 = &ta[a1 + b1 * NK12];
-    let t2 = if er == eg { &ta[a2 + b2 * NK12] } else { &tb[a2 + b2 * NK12] };
+    let t2 = if er == eg {
+        &ta[a2 + b2 * NK12]
+    } else {
+        &tb[a2 + b2 * NK12]
+    };
     let (pr, pg) = (&PERMS[EVEN[cr]], &PERMS[EVEN[cg]]);
     let mut y = [[(0.0f64, 0.0f64); 3]; 3];
     for i in 0..3 {
@@ -429,7 +433,11 @@ fn main() {
         let ord = order_stable(&cents);
         locs.push(ord.iter().map(|&i| raw[i]).collect());
     }
-    println!("    縮退・ギャップ不変  {}  ({} ms)", pass(ok_engine), t0.elapsed().as_millis());
+    println!(
+        "    縮退・ギャップ不変  {}  ({} ms)",
+        pass(ok_engine),
+        t0.elapsed().as_millis()
+    );
 
     // ---- [1] 相対性の恒等式 (svals は共役に不変) ----
     println!("\n[1] 恒等式: 向きは相対だけが効く (svals(C,C) = svals(N,N) を機械精度で)");
@@ -454,17 +462,25 @@ fn main() {
             let cc = yukawa(&mk_conj(&locs[ka]), &mk_conj(&locs[kb]), sh);
             let (ra, _) = mass_and_vecs(&a_tab);
             let (rc, _) = mass_and_vecs(&cc);
-            max_dev = max_dev.max((ra[0] - rc[0]).abs()).max((ra[1] - rc[1]).abs());
+            max_dev = max_dev
+                .max((ra[0] - rc[0]).abs())
+                .max((ra[1] - rc[1]).abs());
             // (C,N) 直接 vs 双線形 B
             let cn = yukawa(&mk_conj(&locs[ka]), &locs[kb], sh);
             let bt = yukawa_bilinear(&locs[ka], &locs[kb], sh);
             let (r1, _) = mass_and_vecs(&cn);
             let (r2, _) = mass_and_vecs(&bt);
-            max_dev = max_dev.max((r1[0] - r2[0]).abs()).max((r1[1] - r2[1]).abs());
+            max_dev = max_dev
+                .max((r1[0] - r2[0]).abs())
+                .max((r1[1] - r2[1]).abs());
         }
     }
     let ok_rel = max_dev < 1e-12;
-    println!("    max|Δ質量対数比| = {:.2e} (< 1e-12)  {}", max_dev, pass(ok_rel));
+    println!(
+        "    max|Δ質量対数比| = {:.2e} (< 1e-12)  {}",
+        max_dev,
+        pass(ok_rel)
+    );
 
     // ---- [2] 機構対決: M_orient vs M_full (同じ事前 4ln6) ----
     println!("\n[2] 機構対決 (T²×Z₆, ゲージ ε_Q=N, c_Q=0)");
@@ -487,7 +503,16 @@ fn main() {
         let pair: Vec<([f64; 2], M3)> = (0..nc * nc * 6)
             .map(|q| {
                 let (ab, m) = (q % (nc * nc), q / (nc * nc));
-                mass_and_vecs(&pair_y_orient(&ta, &tb, ab % nc, ab / nc, 0, 0, m % 3, m / 3))
+                mass_and_vecs(&pair_y_orient(
+                    &ta,
+                    &tb,
+                    ab % nc,
+                    ab / nc,
+                    0,
+                    0,
+                    m % 3,
+                    m / 3,
+                ))
             })
             .collect();
         // e セクター: 行 L (mL) × 列 e (me) — 36 状態組
@@ -573,7 +598,12 @@ fn main() {
     let ref_uni = -21.82754; // v11.2 M_uni (results/v112_orbifold.json, 表示桁)
     let ref_full = -19.86334559888438; // v10.1 M_perm
     let ok_uni = (lnz_n - ref_uni).abs() < 0.01;
-    println!("    退化検査: ε 全 N = v11.2 M_uni: {:.4} vs {:.4}  {}", lnz_n, ref_uni, pass(ok_uni));
+    println!(
+        "    退化検査: ε 全 N = v11.2 M_uni: {:.4} vs {:.4}  {}",
+        lnz_n,
+        ref_uni,
+        pass(ok_uni)
+    );
     println!("    lnZ₉(M_orient) = {:.4}  (事前 4ln6 込み)", lnz_or);
     println!("    lnZ₉(M_full)   = {:.4}  (v10.1, S₃ 対)", ref_full);
     let verdict = if lnz_or > ref_full + 0.02 {
@@ -620,7 +650,10 @@ fn main() {
     ]);
     let p = write_artifact("results/v113_orient.json", &j.render());
     println!("\n  機械可読な結果: {}", p);
-    println!("\n総合判定: {} (PASS = 装置検証 — 機構対決は [2] が本体)", pass(all_ok));
+    println!(
+        "\n総合判定: {} (PASS = 装置検証 — 機構対決は [2] が本体)",
+        pass(all_ok)
+    );
     if !all_ok {
         std::process::exit(1);
     }

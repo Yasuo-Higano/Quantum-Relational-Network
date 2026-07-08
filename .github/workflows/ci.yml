@@ -32,6 +32,9 @@ jobs:
       - name: 主張台帳の機械検証
         run: sim/target/release/v61_ledger
 
+      - name: 主張依存グラフの機械検証 (DAG・等級単調性・Lean 定理数・README 網羅性)
+        run: sim/target/release/v151_audit
+
       - name: 監査スイート (FAIL 時は非ゼロ終了)
         working-directory: sim
         run: |

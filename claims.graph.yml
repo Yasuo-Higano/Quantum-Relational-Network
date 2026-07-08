@@ -1,0 +1,534 @@
+# =====================================================================
+# QRN 主張依存グラフ (Claim Dependency Graph) — v15.1 で導入
+# =====================================================================
+# claims.yml の全主張に対し、依存 (deps)・仮定 (asm)・反証条件 (fal) を
+# 機械可読で与える。v151_audit が以下を検証する:
+#   ・claims.yml と 1:1 対応 (過不足なし)
+#   ・全参照の実在 (deps → claims / asm → assumptions.yml / fal → falsifiers.yml)
+#   ・deps の非循環性 (DAG)
+#   ・等級単調性: level(dep) ≤ level(claim) — 計算定理は現象論・解釈に依存しない
+#   ・C0 は deps/asm/fal を持たない (外部の確立された前提)
+#   ・C1 以上は fal ≥ 1 件 / C2 は window または model の asm ≥ 1 件
+#
+# 辺の意味論 (重要):
+#   deps は「それが落ちればこの主張も落ちる」関係のみ。動機・歴史・引用の
+#   辺は張らない (例: v4.3 の全数探索は v2.3 の逆問題に動機づけられたが、
+#   v2.3 が誤りでも v4.3 の走査は独立に成立する — 辺なし)。
+#   上位主張 (この主張を支えに立つ解釈) は deps の逆向きに機械導出される。
+# =====================================================================
+
+# ---------- C0: 前提 (外部の確立された結果 — 依存グラフの根) ----------
+
+- id: QRN-C0-001
+  deps: []
+  asm: []
+  fal: []
+
+- id: QRN-C0-002
+  deps: []
+  asm: []
+  fal: []
+
+- id: QRN-C0-003
+  deps: []
+  asm: []
+  fal: []
+
+- id: QRN-C0-004
+  deps: []
+  asm: []
+  fal: []
+
+- id: QRN-C0-005
+  deps: []
+  asm: []
+  fal: []
+
+- id: QRN-C0-006
+  deps: []
+  asm: []
+  fal: []
+
+# ---------- 第一期 (v0.1–v0.8) ----------
+
+- id: QRN-QM-001
+  deps: []
+  asm: [ASM-LATTICE, ASM-LOWDIM]
+  fal: [FAL-SUITE]
+
+- id: QRN-GR-001
+  deps: []
+  asm: []
+  fal: [FAL-SUITE]
+
+- id: QRN-STAT-001
+  deps: []
+  asm: [ASM-WICK, ASM-LATTICE, ASM-SEED]
+  fal: [FAL-SUITE]
+
+- id: QRN-FIELD-001
+  deps: []
+  asm: [ASM-LATTICE, ASM-SEED]
+  fal: [FAL-SUITE]
+
+- id: QRN-GAUGE-001
+  deps: []
+  asm: [ASM-LATTICE, ASM-SEED]
+  fal: [FAL-SUITE]
+
+- id: QRN-ENT-001
+  deps: []
+  asm: [ASM-LATTICE, ASM-GAUSS]
+  fal: [FAL-SUITE, FAL-AREALAW]
+
+- id: QRN-GEOM-001
+  deps: []
+  asm: [ASM-LATTICE, ASM-SEED]
+  fal: [FAL-SUITE, FAL-LORENTZ]
+
+- id: QRN-GEOM-002
+  deps: []
+  asm: [ASM-LATTICE, ASM-SEED]
+  fal: [FAL-SUITE, FAL-DIMFLOW]
+
+- id: QRN-GEOM-003
+  deps: []
+  asm: [ASM-GAUSS, ASM-LATTICE, ASM-LOWDIM]
+  fal: [FAL-SUITE, FAL-CONTINUUM]
+
+- id: QRN-GRAV-001
+  deps: [QRN-C0-001]
+  asm: [ASM-GAUSS, ASM-MODK, ASM-LOWDIM]
+  fal: [FAL-SUITE, FAL-AREALAW]
+
+- id: QRN-GRAV-002
+  deps: []
+  asm: [ASM-GAUSS, ASM-MODK]
+  fal: [FAL-SUITE]
+
+- id: QRN-BH-001
+  deps: [QRN-C0-003]
+  asm: [ASM-SEED]
+  fal: [FAL-SUITE, FAL-PAGE]
+
+# ---------- 第二期 (v1.1–v1.6) ----------
+
+- id: QRN-CAUSAL-001
+  deps: []
+  asm: [ASM-GAUSS, ASM-LATTICE, ASM-LOWDIM]
+  fal: [FAL-SUITE, FAL-CONTINUUM]
+
+- id: QRN-CAUSAL-002
+  deps: [QRN-CAUSAL-001]
+  asm: [ASM-GAUSS, ASM-LOWDIM, ASM-INIT]
+  fal: [FAL-SUITE]
+
+- id: QRN-ER-001
+  deps: []
+  asm: [ASM-GAUSS, ASM-LOWDIM]
+  fal: [FAL-SUITE]
+
+- id: QRN-QEC-001
+  deps: []
+  asm: []
+  fal: [FAL-SUITE]
+
+- id: QRN-GAUGE-002
+  deps: []
+  asm: [ASM-LATTICE, ASM-SEED]
+  fal: [FAL-SUITE]
+
+- id: QRN-COSMO-001
+  deps: []
+  asm: [ASM-PDG]
+  fal: [FAL-SUITE]
+
+- id: QRN-COSMO-002
+  deps: [QRN-COSMO-001]
+  asm: [ASM-PDG]
+  fal: [FAL-SUITE, FAL-COSMO]
+
+- id: QRN-COSMO-003
+  deps: [QRN-COSMO-001]
+  asm: [ASM-SEED]
+  fal: [FAL-SUITE, FAL-COSMO]
+
+- id: QRN-BORN-001
+  deps: []
+  asm: [ASM-LATTICE, ASM-SEED, ASM-LOWDIM]
+  fal: [FAL-SUITE]
+
+- id: QRN-BORN-002
+  deps: []
+  asm: [ASM-ENVARIANCE]
+  fal: [FAL-SUITE]
+
+# ---------- 第三期 (v2.1–v2.5) ----------
+
+- id: QRN-GRAV-003
+  deps: []
+  asm: [ASM-GAUSS, ASM-MODK, ASM-LOWDIM]
+  fal: [FAL-SUITE]
+
+- id: QRN-KK-001
+  deps: []
+  asm: [ASM-LATTICE, ASM-TORUS]
+  fal: [FAL-SUITE]
+
+- id: QRN-MATTER-001
+  deps: [QRN-C0-005]
+  asm: [ASM-LATTICE, ASM-TORUS]
+  fal: [FAL-SUITE]
+
+- id: QRN-MATTER-002
+  deps: [QRN-C0-005]
+  asm: [ASM-GAUGE-GROUP, ASM-SMCONTENT, ASM-ANOMALY-COEFS]
+  fal: [FAL-CEX-WINDOW, FAL-SUITE]
+
+- id: QRN-COSMO-004
+  deps: []
+  asm: []
+  fal: [FAL-SUITE]
+
+- id: QRN-EXP-001
+  deps: []
+  asm: []
+  fal: [FAL-BMV, FAL-SUITE]
+
+# ---------- 第四期 (v3.1–v3.4) ----------
+
+- id: QRN-GAUGE-003
+  deps: [QRN-C0-005]
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-V31, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED, ASM-EFT-VALIDITY]
+  fal: [FAL-CEX-WINDOW, FAL-EXOTIC-CHIRAL, FAL-SUITE]
+
+- id: QRN-GAUGE-004
+  deps: []
+  asm: [ASM-GAUGE-GROUP]
+  fal: [FAL-SUITE]
+
+- id: QRN-GAUGE-005
+  deps: []
+  asm: [ASM-PDG]
+  fal: [FAL-SUSY, FAL-SUITE]
+
+- id: QRN-YUK-001
+  deps: [QRN-C0-006]
+  asm: [ASM-PDG, ASM-SEED, ASM-PRIOR]
+  fal: [FAL-CKM-OOS, FAL-SUITE]
+
+- id: QRN-RG-001
+  deps: []
+  asm: [ASM-GAUSS, ASM-LATTICE, ASM-LOWDIM]
+  fal: [FAL-SUITE]
+
+- id: QRN-UNRUH-001
+  deps: [QRN-C0-004]
+  asm: [ASM-LOWDIM]
+  fal: [FAL-SUITE]
+
+# ---------- 第五期 (v4.1–v4.4) ----------
+
+- id: QRN-QNEC-001
+  deps: [QRN-C0-002]
+  asm: [ASM-GAUSS, ASM-MODK, ASM-LATTICE, ASM-LOWDIM]
+  fal: [FAL-QNEC, FAL-SUITE]
+
+- id: QRN-NU-001
+  deps: [QRN-C0-006]
+  asm: [ASM-PDG, ASM-SEED, ASM-PRIOR]
+  fal: [FAL-NEUTRINO, FAL-SUITE]
+
+- id: QRN-GAUGE-006
+  deps: [QRN-GAUGE-003]
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-V43, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED, ASM-EFT-VALIDITY, ASM-OBS-FRACTIONAL]
+  fal: [FAL-CEX-WINDOW, FAL-EXOTIC-CHIRAL, FAL-SUITE]
+
+- id: QRN-DS-001
+  deps: [QRN-C0-004]
+  asm: [ASM-LOWDIM]
+  fal: [FAL-SUITE]
+
+- id: QRN-DS-002
+  deps: [QRN-DS-001]
+  asm: [ASM-PDG]
+  fal: [FAL-SUITE]
+
+# ---------- 第六期 (v5.1–v5.3) ----------
+
+- id: QRN-ARROW-001
+  deps: [QRN-CAUSAL-002]
+  asm: [ASM-GAUSS, ASM-LOWDIM, ASM-DOF-GROWTH]
+  fal: [FAL-SUITE]
+
+- id: QRN-GAUGE-007
+  deps: [QRN-GAUGE-003]
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-EXT, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED]
+  fal: [FAL-CEX-WINDOW, FAL-SUITE]
+
+- id: QRN-EFT-001
+  deps: []
+  asm: [ASM-GAUSS, ASM-LATTICE, ASM-LOWDIM]
+  fal: [FAL-SUITE]
+
+# ---------- 第七期 (v6.1–v6.8) ----------
+
+- id: QRN-GAUGE-008
+  deps: [QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007]
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-V31, ASM-WINDOW-V43, ASM-WINDOW-EXT, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED]
+  fal: [FAL-CEX-WINDOW, FAL-SUITE]
+
+- id: QRN-GAUGE-009
+  deps: [QRN-GAUGE-003]
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-U1SQ, ASM-ANOMALY-COEFS, ASM-SMCONTENT]
+  fal: [FAL-CEX-WINDOW, FAL-SUITE]
+
+- id: QRN-GAUGE-010
+  deps: [QRN-GAUGE-006, QRN-GAUGE-008]
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-V43, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED]
+  fal: [FAL-CEX-WINDOW, FAL-SUITE]
+
+- id: QRN-QNEC-002
+  deps: [QRN-C0-002, QRN-QNEC-001]
+  asm: [ASM-GAUSS, ASM-MODK, ASM-LATTICE, ASM-LOWDIM]
+  fal: [FAL-QNEC, FAL-CONTINUUM, FAL-SUITE]
+
+- id: QRN-GEOM-004
+  deps: [QRN-GEOM-003]
+  asm: [ASM-GAUSS, ASM-SEED, ASM-LOWDIM]
+  fal: [FAL-SUITE]
+
+- id: QRN-YUK-002
+  deps: [QRN-C0-006, QRN-YUK-001]
+  asm: [ASM-PRIOR, ASM-PDG, ASM-SEED]
+  fal: [FAL-CKM-OOS, FAL-SUITE]
+
+- id: QRN-EXP-002
+  deps: [QRN-EXP-001]
+  asm: []
+  fal: [FAL-BMV]
+
+- id: QRN-CORE-001
+  deps: [QRN-GEOM-003, QRN-CAUSAL-001]
+  asm: [ASM-GAUSS, ASM-LATTICE, ASM-LOWDIM]
+  fal: [FAL-CONTINUUM, FAL-SUITE]
+
+- id: QRN-GAUGE-011
+  deps: [QRN-GAUGE-003]
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-V31, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED, ASM-LEAN-TRUST]
+  fal: [FAL-CEX-WINDOW]
+
+# ---------- 第八期 (v7.1–v7.5) ----------
+
+- id: QRN-GAUGE-012
+  deps: []
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-U1SQ, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED]
+  fal: [FAL-CEX-WINDOW, FAL-SUITE]
+
+- id: QRN-YUK-003
+  deps: [QRN-C0-006, QRN-MATTER-001, QRN-YUK-002]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-DIAGPAIR, ASM-PRIOR, ASM-PDG, ASM-STABLE-LABEL]
+  fal: [FAL-CKM-OOS, FAL-SUITE]
+
+- id: QRN-EXP-003
+  deps: [QRN-EXP-001]
+  asm: [ASM-KTM]
+  fal: [FAL-BMV, FAL-SUITE]
+
+- id: QRN-CORE-002
+  deps: [QRN-CORE-001, QRN-ER-001, QRN-ARROW-001]
+  asm: [ASM-GAUSS, ASM-LOWDIM, ASM-DOF-GROWTH]
+  fal: [FAL-SUITE]
+
+- id: QRN-GAUGE-013
+  deps: [QRN-GAUGE-007]
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-EXT, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED, ASM-LEAN-TRUST]
+  fal: [FAL-CEX-WINDOW]
+
+# ---------- 第九期 (v8.1–v8.3) ----------
+
+- id: QRN-YUK-004
+  deps: [QRN-YUK-003]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-DIAGPAIR, ASM-PRIOR, ASM-PDG, ASM-STABLE-LABEL]
+  fal: [FAL-CKM-OOS, FAL-SUITE]
+
+- id: QRN-GAUGE-014
+  deps: []
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-U1CUBE, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED]
+  fal: [FAL-CEX-WINDOW, FAL-SUITE]
+
+# ---------- 統合文書の中心テーゼ (C5) ----------
+
+- id: QRN-META-001
+  deps: [QRN-GEOM-003, QRN-GRAV-001, QRN-CAUSAL-001, QRN-QEC-001, QRN-ENT-001]
+  asm: [ASM-NET-REAL]
+  fal: [FAL-BMV, FAL-PAGE, FAL-LORENTZ, FAL-DIMFLOW, FAL-GLOBALSYM, FAL-AREALAW]
+
+- id: QRN-META-002
+  deps: [QRN-QEC-001, QRN-BORN-001, QRN-CAUSAL-002]
+  asm: [ASM-NET-REAL]
+  fal: [FAL-PAGE]
+
+- id: QRN-META-003
+  deps: [QRN-GAUGE-003, QRN-RG-001, QRN-QNEC-001, QRN-GRAV-003]
+  asm: [ASM-NET-REAL, ASM-EFT-VALIDITY]
+  fal: [FAL-EXOTIC-CHIRAL, FAL-QNEC]
+
+- id: QRN-META-004
+  deps: [QRN-META-001, QRN-META-002, QRN-META-003, QRN-ARROW-001]
+  asm: [ASM-NET-REAL]
+  fal: [FAL-BMV, FAL-EXOTIC-CHIRAL, FAL-QNEC]
+
+- id: QRN-META-005
+  deps: [QRN-META-004]
+  asm: [ASM-NET-REAL]
+  fal: [FAL-BMV, FAL-PAGE, FAL-QNEC]
+
+- id: QRN-META-006
+  deps: [QRN-GAUGE-008, QRN-QNEC-002, QRN-GEOM-004, QRN-YUK-002, QRN-GAUGE-011]
+  asm: []
+  fal: [FAL-SUITE]
+
+- id: QRN-META-007
+  deps: [QRN-GAUGE-012, QRN-YUK-003, QRN-EXP-003, QRN-CORE-002, QRN-GAUGE-013]
+  asm: [ASM-NET-REAL]
+  fal: [FAL-SUITE]
+
+- id: QRN-META-008
+  deps: [QRN-YUK-004, QRN-GAUGE-014]
+  asm: [ASM-NET-REAL]
+  fal: [FAL-SUITE]
+
+# ---------- 第十期 (v9.1–v9.4) ----------
+
+- id: QRN-YUK-005
+  deps: [QRN-YUK-004]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-DIAGPAIR, ASM-PRIOR, ASM-PDG, ASM-STABLE-LABEL]
+  fal: [FAL-CKM-OOS, FAL-SUITE]
+
+- id: QRN-YUK-006
+  deps: [QRN-YUK-003, QRN-YUK-004, QRN-YUK-005]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-DIAGPAIR, ASM-PRIOR, ASM-PDG]
+  fal: [FAL-SUITE]
+
+- id: QRN-CORE-003
+  deps: [QRN-QNEC-002]
+  asm: [ASM-GAUSS, ASM-MODK, ASM-LATTICE, ASM-LOWDIM]
+  fal: [FAL-SUITE]
+
+- id: QRN-META-009
+  deps: [QRN-YUK-005, QRN-YUK-006, QRN-CORE-003]
+  asm: []
+  fal: [FAL-SUITE]
+
+# ---------- 第十一期 (v10.1–v10.4) ----------
+
+- id: QRN-YUK-007
+  deps: [QRN-YUK-006]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-SIGMA-DATA, ASM-PRIOR, ASM-PDG, ASM-STABLE-LABEL]
+  fal: [FAL-CKM-OOS, FAL-SUITE]
+
+- id: QRN-YUK-008
+  deps: [QRN-YUK-007]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-SIGMA-DATA, ASM-PRIOR, ASM-PDG, ASM-STABLE-LABEL]
+  fal: [FAL-CKM-OOS, FAL-SUITE]
+
+- id: QRN-YUK-009
+  deps: [QRN-MATTER-001]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-WINDOW-PAIR]
+  fal: [FAL-CEX-WINDOW, FAL-SUITE]
+
+- id: QRN-META-010
+  deps: [QRN-YUK-007, QRN-YUK-008, QRN-YUK-009]
+  asm: []
+  fal: [FAL-SUITE]
+
+# ---------- 第十二期 (v11.1–v11.4) ----------
+
+- id: QRN-GAUGE-015
+  deps: [QRN-C0-005, QRN-GAUGE-014]
+  asm: [ASM-WINDOW-EXC, ASM-ANOMALY-COEFS]
+  fal: [FAL-CEX-WINDOW, FAL-SUITE]
+
+- id: QRN-YUK-010
+  deps: [QRN-YUK-007]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-ORBIFOLD, ASM-PRIOR, ASM-PDG, ASM-STABLE-LABEL]
+  fal: [FAL-SUITE]
+
+- id: QRN-YUK-011
+  deps: [QRN-YUK-010]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-ORBIFOLD, ASM-SIGMA-DATA, ASM-PRIOR, ASM-PDG, ASM-STABLE-LABEL]
+  fal: [FAL-CKM-OOS, FAL-SUITE]
+
+- id: QRN-CORE-004
+  deps: [QRN-CORE-001, QRN-CORE-002]
+  asm: [ASM-GAUSS, ASM-LOWDIM]
+  fal: [FAL-CONTINUUM, FAL-SUITE]
+
+- id: QRN-META-011
+  deps: [QRN-GAUGE-015, QRN-YUK-010, QRN-YUK-011, QRN-CORE-004]
+  asm: []
+  fal: [FAL-SUITE]
+
+# ---------- 第十三期 (v12.1–v12.3) ----------
+
+- id: QRN-YUK-012
+  deps: [QRN-MATTER-001]
+  asm: [ASM-TORUS, ASM-LATTICE]
+  fal: [FAL-SUITE]
+
+- id: QRN-YUK-013
+  deps: [QRN-YUK-012, QRN-YUK-007]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-PRIOR, ASM-PDG]
+  fal: [FAL-SUITE]
+
+- id: QRN-YUK-014
+  deps: [QRN-YUK-013]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-PRIOR, ASM-PDG]
+  fal: [FAL-SUITE]
+
+- id: QRN-META-012
+  deps: [QRN-YUK-012, QRN-YUK-013, QRN-YUK-014]
+  asm: []
+  fal: [FAL-SUITE]
+
+# ---------- 第十四期 (v13.1–v13.2) ----------
+
+- id: QRN-TOOL-001
+  deps: []
+  asm: [ASM-LATTICE]
+  fal: [FAL-SUITE]
+
+- id: QRN-YUK-015
+  deps: [QRN-YUK-014, QRN-TOOL-001, QRN-YUK-009]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-PRIOR, ASM-PDG]
+  fal: [FAL-SUITE]
+
+- id: QRN-META-013
+  deps: [QRN-YUK-015, QRN-TOOL-001, QRN-YUK-009]
+  asm: []
+  fal: [FAL-SUITE]
+
+# ---------- 第十五期 (v14.4–v15.0) ----------
+
+- id: QRN-GAUGE-016
+  deps: [QRN-GAUGE-006]
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-V43, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED, ASM-LEAN-TRUST]
+  fal: [FAL-CEX-WINDOW]
+
+- id: QRN-GAUGE-017
+  deps: [QRN-GAUGE-008]
+  asm: [ASM-GAUGE-GROUP, ASM-WINDOW-EXT, ASM-ANOMALY-COEFS, ASM-CHIRALITY, ASM-ALL-CHARGED, ASM-LEAN-TRUST]
+  fal: [FAL-CEX-WINDOW]
+
+- id: QRN-META-014
+  deps: [QRN-GAUGE-016, QRN-GAUGE-017]
+  asm: []
+  fal: [FAL-SUITE]
+
+# ---------- 第十六期 (v15.1–) ----------
+
+- id: QRN-META-015
+  deps: []
+  asm: [ASM-EDGE-SEMANTICS]
+  fal: [FAL-SUITE]

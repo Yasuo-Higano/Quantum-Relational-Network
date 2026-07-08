@@ -67,9 +67,11 @@ fn main() {
     }
     let (pairs_g, frac_g) = s.readout_natural_partition();
     // 到着した 3 対 (6,7), (8,9), (10,11) がそのまま対として発見されるか
-    let arrived_ok = [(6usize, 7usize), (8, 9), (10, 11)]
-        .iter()
-        .all(|&(a, b)| pairs_g.iter().any(|&(i, j)| (i, j) == (a, b) || (j, i) == (a, b)));
+    let arrived_ok = [(6usize, 7usize), (8, 9), (10, 11)].iter().all(|&(a, b)| {
+        pairs_g
+            .iter()
+            .any(|&(i, j)| (i, j) == (a, b) || (j, i) == (a, b))
+    });
     println!(
         "    到着直後: 到着ボンド対 (6,7)(8,9)(10,11) が分解に現れる  {}  (捕捉 {:.3})",
         pass(arrived_ok),
@@ -99,7 +101,11 @@ fn main() {
         .purity_defect()
         .max(s_tfd.purity_defect())
         .max(s.purity_defect());
-    println!("    purity_defect 最大 {:.2e} (< 1e-9)  {}", pd, pass(pd < 1e-9));
+    println!(
+        "    purity_defect 最大 {:.2e} (< 1e-9)  {}",
+        pd,
+        pass(pd < 1e-9)
+    );
 
     let all_ok = adjacent && mirror && arrived_ok && dynamic && pd < 1e-9;
     let j = Json::Obj(vec![

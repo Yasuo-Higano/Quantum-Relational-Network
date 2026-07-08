@@ -1328,9 +1328,7 @@ pub fn lanczos_lowest_herm(
     let mut rng = Rng::new(seed);
     let m = m.min(n);
     // 初期ベクトル (正規化した乱数)
-    let mut v: Vec<(f64, f64)> = (0..n)
-        .map(|_| (rng.gauss(), rng.gauss()))
-        .collect();
+    let mut v: Vec<(f64, f64)> = (0..n).map(|_| (rng.gauss(), rng.gauss())).collect();
     let nrm = cdot(&v, &v).0.sqrt();
     for x in v.iter_mut() {
         x.0 /= nrm;
@@ -1359,9 +1357,7 @@ pub fn lanczos_lowest_herm(
         if j + 1 == m || bnorm < 1e-12 {
             if bnorm < 1e-12 && j + 1 < m {
                 // 不変部分空間に到達 — 新しい乱数方向で再開
-                let mut r: Vec<(f64, f64)> = (0..n)
-                    .map(|_| (rng.gauss(), rng.gauss()))
-                    .collect();
+                let mut r: Vec<(f64, f64)> = (0..n).map(|_| (rng.gauss(), rng.gauss())).collect();
                 for _ in 0..2 {
                     for b in &basis {
                         let (pr, pi) = cdot(b, &r);

@@ -1,0 +1,110 @@
+# =====================================================================
+# QRN 反証条件台帳 (Falsifier Ledger) — v15.1 で導入
+# =====================================================================
+# claims.graph.yml から参照される「何が出たら主張を降格するか」の登録簿。
+# v1.0 §4 の 6 条件 (v6.6 で現代化) と、監査期以降の計算的反証条件を統合する。
+# 各条件が発火したとき落ちる主張の範囲 (直接 + 依存閉包) は v151_audit が導出する。
+#
+# 書式 (制限 YAML — sim/src/bin/v151_audit.rs が機械検証する):
+#   - id: FAL-<大文字英数とハイフン>   一意
+#     source: "vX.Y §…"                条件の出典
+#     status: open | triggered | retired
+#     condition: "……"                  何が観測・計算されたら発火するか (1 行)
+#     effect: "……"                     発火したら何をどう降格するか (1 行)
+# =====================================================================
+
+# ---------- v1.0 §4 の 6 条件 (実験・観測) ----------
+
+- id: FAL-BMV
+  source: "v1.0 §4-1 / v6.6 / v7.3"
+  status: open
+  condition: "BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。"
+  effect: "A2/A3 (幾何=もつれ) と中心テーゼ QRN-META-001 の核を棄却。C>0 単独では量子化を主張しない (Aziz–Howl 2025 — v6.6 の精密化)。"
+
+- id: FAL-PAGE
+  source: "v1.0 §4-2"
+  status: open
+  condition: "ブラックホール蒸発で情報喪失が確立する (Page 曲線からの系統的逸脱)。"
+  effect: "A5 (ユニタリー性) ごと棄却 — QRN-BH-001 の外挿と「冗長な記録」テーゼ (QRN-META-002) が落ちる。"
+
+- id: FAL-LORENTZ
+  source: "v1.0 §4-3"
+  status: open
+  condition: "プランクスケールのローレンツ不変性の破れが主要次数で確立する (GRB 光子のエネルギー依存遅延など)。"
+  effect: "因果集合型 (ポアソン撒布) 離散性の主張 QRN-GEOM-001 の形が制約または棄却される。"
+
+- id: FAL-DIMFLOW
+  source: "v1.0 §4-4"
+  status: open
+  condition: "超高エネルギーで実効スペクトル次元が 2 へ低下しないことが確立する。"
+  effect: "次元の走行 (QRN-GEOM-002 が依拠する複数アプローチ収束予言) の普遍性解釈が降格。"
+
+- id: FAL-GLOBALSYM
+  source: "v1.0 §4-5"
+  status: open
+  condition: "厳密な大域的対称性の存在が確立する (例: 陽子の厳密な安定性)。"
+  effect: "「無矛盾に符号化できるものだけが存在する」系のテーゼ (QRN-META-003 以降の無矛盾性原理) の一角が崩れる。"
+
+- id: FAL-AREALAW
+  source: "v1.0 §4-6"
+  status: open
+  condition: "アナログ系 (冷却原子等) で面積則・エンタングルメント第一法則の系統的破れが観測される。"
+  effect: "面積=エントロピーの普遍性 (QRN-ENT-001/QRN-GRAV-001 の外挿) が降格。"
+
+# ---------- 素粒子・宇宙論の観測 ----------
+
+- id: FAL-EXOTIC-CHIRAL
+  source: "v3.1 / v4.3"
+  status: open
+  condition: "SM 1 世代の外のカイラル物質 (第 4 世代・分数電荷ハドロン・エキゾチック表現) が発見される。"
+  effect: "最小性原理 (QRN-META-003) と孤立性の物理的解釈 (QRN-GAUGE-003/006 の「自然界は最小解」読み) が棄却。窓内定理そのものは残る。"
+
+- id: FAL-SUSY
+  source: "v3.1 / v4.0"
+  status: open
+  condition: "超対称粒子の排除限界が MSSM 統一に必要なスケールを完全に排除する。"
+  effect: "結合統一の間接証拠 QRN-GAUGE-005 を降格 (v4.0 が LHC との張力を明記済み)。"
+
+- id: FAL-NEUTRINO
+  source: "v4.2"
+  status: open
+  condition: "ニュートリノが Dirac と確定する (0νββ の排除)、または質量順序・δ_CP がシーソー+FN の帯を外れる。"
+  effect: "シーソー機構の現象論 QRN-NU-001 を降格。"
+
+- id: FAL-CKM-OOS
+  source: "v6.5 / v7.2"
+  status: open
+  condition: "out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。"
+  effect: "幾何拘束付き湯川 (M2 級) の系列 QRN-YUK-002/003 以降を M1 級以下へ降格。"
+
+- id: FAL-COSMO
+  source: "v1.5"
+  status: open
+  condition: "w(z) の精密観測が常在 Λ 型の揺らぎを排除する。"
+  effect: "常在 Λ toy (QRN-COSMO-003) を棄却。Λ~1/√V₄ の桁の一致 (QRN-COSMO-002) は説明を要する事実として残る。"
+
+# ---------- 理論・計算 (機械的に検査可能) ----------
+
+- id: FAL-SUITE
+  source: "v6.0 / CI"
+  status: open
+  condition: "再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。"
+  effect: "該当主張を撤回し正誤表を残す (CI が常時監視。v9.2 のラベル綱渡りはこの型の発見だった)。"
+
+- id: FAL-CEX-WINDOW
+  source: "v6.2 / v6.8"
+  status: open
+  condition: "明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。"
+  effect: "該当する C2 の窓付き定理は即棄却 (三重独立実装 + SHA-256 証明書 + Lean 定理が防御線)。"
+
+- id: FAL-QNEC
+  source: "v4.1 / v6.3"
+  status: open
+  condition: "QNEC 型不等式の真の破れ (誤差予算を超える負ギャップが N を上げても縮まない) が数値または理論で確立する。"
+  effect: "QRN-QNEC-001/002 と単調性原理 (QRN-META-003 の M) を棄却。"
+
+- id: FAL-CONTINUUM
+  source: "v15.1 (pre-registered — 第十六期の的)"
+  status: open
+  condition: "readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。"
+  effect: "該当 readout の機構主張 (C3) を「格子アーティファクト」へ降格。第十六期の連続極限監査で各 readout に適用予定。"

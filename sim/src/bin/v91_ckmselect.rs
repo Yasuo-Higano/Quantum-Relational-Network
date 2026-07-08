@@ -433,7 +433,14 @@ fn main() {
     let sigma = (2.0f64).ln();
     let sig_grid = [1.0f64, 1.5, 2.0, 2.5];
     let names = [
-        "m_u/m_t", "m_c/m_t", "m_d/m_b", "m_s/m_b", "m_e/m_τ", "m_μ/m_τ", "|V_us|", "|V_cb|",
+        "m_u/m_t",
+        "m_c/m_t",
+        "m_d/m_b",
+        "m_s/m_b",
+        "m_e/m_τ",
+        "m_μ/m_τ",
+        "|V_us|",
+        "|V_cb|",
         "|V_ub|",
     ];
     println!("[1] 世代モード (Z₁₂, 対角化 12 回)");
@@ -447,7 +454,11 @@ fn main() {
         }
         locs.push(localize(&modes));
     }
-    println!("    縮退・ギャップ不変  {}  ({} ms)", pass(ok_engine), t0.elapsed().as_millis());
+    println!(
+        "    縮退・ギャップ不変  {}  ({} ms)",
+        pass(ok_engine),
+        t0.elapsed().as_millis()
+    );
 
     let z6: Vec<usize> = (0..NK12).step_by(2).collect();
     let z12: Vec<usize> = (0..NK12).collect();
@@ -466,7 +477,13 @@ fn main() {
         if !ok {
             ok_degen = false;
         }
-        println!("    {}: {:7.2} vs v8.1 {:7.2}  {}", label, o.lnz, expect, pass(ok));
+        println!(
+            "    {}: {:7.2} vs v8.1 {:7.2}  {}",
+            label,
+            o.lnz,
+            expect,
+            pass(ok)
+        );
     }
 
     // ---- [3] 全 9 量の証拠 ----
@@ -495,10 +512,16 @@ fn main() {
         .max_by(|a, b| a.1 .1.lnz.partial_cmp(&b.1 .1.lnz).unwrap())
         .unwrap()
         .0;
-    println!("    => 全 9 量の勝者: {} (lnZ₉ = {:.2})", rows[winner].0, rows[winner].1.lnz);
+    println!(
+        "    => 全 9 量の勝者: {} (lnZ₉ = {:.2})",
+        rows[winner].0, rows[winner].1.lnz
+    );
 
     // ---- [4] 勝者の MAP ----
-    println!("\n[4] 勝者 ({}) の MAP 予測 (全 9 量学習 — out-of-sample ではない点に注意)", rows[winner].0);
+    println!(
+        "\n[4] 勝者 ({}) の MAP 予測 (全 9 量学習 — out-of-sample ではない点に注意)",
+        rows[winner].0
+    );
     let mut ok9 = 0;
     for k in 0..9 {
         let ratio = rows[winner].1.preds[k] / EPS_OBS[k];
@@ -541,7 +564,10 @@ fn main() {
     ]);
     let p = write_artifact("results/v91_ckmselect.json", &j.render());
     println!("\n  機械可読な結果: {}", p);
-    println!("\n総合判定: {} (幾何選択の結果は [3] の表が本体)", pass(all_ok));
+    println!(
+        "\n総合判定: {} (幾何選択の結果は [3] の表が本体)",
+        pass(all_ok)
+    );
     if !all_ok {
         std::process::exit(1);
     }

@@ -422,7 +422,11 @@ fn main() {
     for s_ in 0..6usize {
         let counts: Vec<usize> = (0..6).map(|kb| matches[kb + s_ * 6].len()).collect();
         let ex: String = (0..6)
-            .flat_map(|kb| matches[kb + s_ * 6].iter().map(move |&(ci, kp)| format!("kb{}:{}k{}", kb, ["N", "R", "C"][ci], kp)))
+            .flat_map(|kb| {
+                matches[kb + s_ * 6]
+                    .iter()
+                    .map(move |&(ci, kp)| format!("kb{}:{}k{}", kb, ["N", "R", "C"][ci], kp))
+            })
             .collect::<Vec<_>>()
             .join(" ");
         println!("      σ={:5}: counts={:?}  {}", SIG_NAMES[s_], counts, ex);
@@ -434,7 +438,10 @@ fn main() {
         let m = &matches[kb]; // s=0
         ok_e &= m.len() == 1 && m[0] == (0, kb);
     }
-    println!("\n    [自明性の確認] σ=e は k\'=kb の通常候補にのみ一致  {}", pass(ok_e));
+    println!(
+        "\n    [自明性の確認] σ=e は k\'=kb の通常候補にのみ一致  {}",
+        pass(ok_e)
+    );
     let mut ok_irr = true;
     for s_ in 1..6usize {
         for kb in 0..6usize {
@@ -445,7 +452,9 @@ fn main() {
         "    [既約性] 非自明な対 35 状態 (5σ × 6kb + kb≠k\' は自明側で除外) は\n              Wilson 細分化 (Z₁₈)・鏡映・共役のどれにも一致しない  {}",
         pass(ok_irr)
     );
-    println!("\n    物理的理由: ゼロモードの y 運動量 (Landau タワー番号) は世代ラベルに固定されて");
+    println!(
+        "\n    物理的理由: ゼロモードの y 運動量 (Landau タワー番号) は世代ラベルに固定されて"
+    );
     println!("    おり、Wilson 線は位置を平行移動してもこの (位置↔タワー) の結びつきを保つ。");
     println!("    対の置換は「どのタワー同士が束ねられるか」を変える — Higgs の有限幅が y 構造を");
     println!("    感じるため、同じ位置でもタワーが違えば湯川は別物になる。");
@@ -495,7 +504,10 @@ fn main() {
     ]);
     let p = write_artifact("results/v103_pairgeom.json", &j.render());
     println!("\n  機械可読な結果: {}", p);
-    println!("\n総合判定: {} (PASS = 装置 + 自明性 + 既約性 — 分類の中身は [1]-[3] が本体)", pass(all_ok));
+    println!(
+        "\n総合判定: {} (PASS = 装置 + 自明性 + 既約性 — 分類の中身は [1]-[3] が本体)",
+        pass(all_ok)
+    );
     if !all_ok {
         std::process::exit(1);
     }

@@ -1,0 +1,310 @@
+# =====================================================================
+# QRN 仮定台帳 (Assumption Ledger) — v15.1 で導入
+# =====================================================================
+# claims.graph.yml から参照される「外すと結論が落ちる仮定」の登録簿。
+# 目的: 「どの仮定を抜くとどの結論が落ちるか」を機械可読にする。
+# 各仮定の影響範囲 (直接参照 + 依存閉包) は v151_audit が導出する。
+#
+# 書式 (制限 YAML — sim/src/bin/v151_audit.rs が機械検証する):
+#   - id: ASM-<大文字英数とハイフン>   一意
+#     type: framework | window | model | design | data | observational |
+#           convention | definition | trust | ontology
+#     scope: global | local            global は全主張が暗黙に依存 (graph に書かない)
+#     introduced: "vX.Y"
+#     status: active | falsified | superseded
+#     statement: "……"                  1 行 (日本語)
+#     note: "……"                       (任意) 正当化・棄却の経緯など
+#     falsified_by: "QRN-…"            (status: falsified のとき必須) 棄却した主張
+# =====================================================================
+
+# ---------- 枠組み (framework) ----------
+
+- id: ASM-QM
+  type: framework
+  scope: global
+  introduced: "v0.1"
+  status: active
+  statement: "量子力学の枠組み (複素 Hilbert 空間・ユニタリー発展・テンソル積構造) を前提とする。"
+  note: "全主張が暗黙に依存する唯一の global 仮定。Born 則の機構は QRN-BORN-002 が別途扱う。"
+
+- id: ASM-LATTICE
+  type: framework
+  scope: local
+  introduced: "v0.1"
+  status: active
+  statement: "格子正則化: 有限自由度の格子系が対象の連続物理を代表する (連続極限は別途検証が要る)。"
+  note: "N 依存の検査は v6.3 が QNEC で実施。全 readout の系統的な連続極限監査は第十六期の的 (FAL-CONTINUUM を pre-register)。"
+
+- id: ASM-GAUSS
+  type: framework
+  scope: local
+  introduced: "v0.5"
+  status: active
+  statement: "ガウス (自由) フェルミオン近似: 状態は相関行列で閉じ、エントロピー・MI は一体スペクトルから厳密に計算できる。"
+  note: "core (v6.7–v11.4) の全 readout がこの枠内。相互作用・ゲージ制約つき Hilbert 空間への拡張は QrnCoreV2 (第十六期) の的。"
+
+- id: ASM-LOWDIM
+  type: framework
+  scope: local
+  introduced: "v0.1"
+  status: active
+  statement: "1+1 次元 (または最小の低次元) の toy model が機構を代表する。次元固有の効果は主張しない。"
+
+- id: ASM-WICK
+  type: framework
+  scope: local
+  introduced: "v0.2"
+  status: active
+  statement: "Wick 回転恒等式: 量子力学の経路積分は虚時間の統計力学と同値である。"
+
+- id: ASM-ENVARIANCE
+  type: framework
+  scope: local
+  introduced: "v1.6"
+  status: active
+  statement: "Zurek のエンバリアンス導出の前提 (確率の局所性・分岐の微細化可能性) を認める。"
+  note: "文献上論争が残ることは QRN-BORN-002 の limitations に明記。"
+
+# ---------- 模型仮定 (model) ----------
+
+- id: ASM-INIT
+  type: model
+  scope: local
+  introduced: "v1.1"
+  status: active
+  statement: "時間の矢の議論では低エントロピーの初期状態を仮定する (その起源自体は残高 1)。"
+  note: "v5.1 が「自由度が少ない過去」(ASM-DOF-GROWTH) として機構候補を与えたが、起源は未解決のまま。"
+
+- id: ASM-DOF-GROWTH
+  type: model
+  scope: local
+  introduced: "v5.1"
+  status: active
+  statement: "自由度は増加し、新モードは断熱的に真空で到着する (成長鎖模型の設計)。増加の起源は仮定の外 (残高 1)。"
+
+- id: ASM-SIGMA-DATA
+  type: model
+  scope: local
+  introduced: "v10.1"
+  status: active
+  statement: "世代対 σ は S₃ 値の離散データとして扱う (marginalize または MAP)。幾何からの導出は未達。"
+  note: "位置 (Wilson)・向き (鏡映/共役)・傾き (T⁴) への還元は v10.3/v13.2 が棄却 — σ はコンパクト化の既約な離散データ。上位選択原理は残高 2/9。"
+
+- id: ASM-ORBIFOLD
+  type: model
+  scope: local
+  introduced: "v11.2"
+  status: active
+  statement: "Z₃ シフト・オービフォールド族 (y 方向並進の固有値射影) を世代対の候補機構として使う。"
+
+- id: ASM-KTM
+  type: model
+  scope: local
+  introduced: "v7.3"
+  status: active
+  statement: "古典重力の対抗模型は KTM 型 (局所測定+古典通信+フィードバック) のチャネル族とする。"
+  note: "あらゆる古典重力の一般定理ではない (Aziz–Howl 型の古典重力+QFT 効果は別枠 — v6.6)。"
+
+- id: ASM-DIAGPAIR
+  type: model
+  scope: local
+  introduced: "v7.2"
+  status: falsified
+  falsified_by: "QRN-YUK-007"
+  statement: "[棄却済] 積模型の世代対はトーラス間で対角 (ゼロモード i と i の組) である。"
+  note: "v10.1 が Occam 罰 7.17 を払ってなお M_perm が勝つことで棄却。v7.2–v9.x の結果はこの仮定に条件付きで、v10.2 が対 marginalize 込みで主結論 (T³ 勝利) の頑健性を回復した。棄却済み仮定も削除せず記録する (知的誠実性)。"
+
+# ---------- 物理仮定 (physics) ----------
+
+- id: ASM-GAUGE-GROUP
+  type: model
+  scope: local
+  introduced: "v3.1"
+  status: active
+  statement: "ゲージ群 SU(3)×SU(2)×U(1)^k を仮定する (群自体は導出しない)。探索するのは物質内容と U(1) の本数 k。"
+
+- id: ASM-CHIRALITY
+  type: model
+  scope: local
+  introduced: "v3.1"
+  status: active
+  statement: "低エネルギーに残る物質はカイラル (ゲージ不変な質量項を許す対を含まない — vectorlike 対は重くなって消える)。"
+
+- id: ASM-ALL-CHARGED
+  type: definition
+  scope: local
+  introduced: "v3.1"
+  status: active
+  statement: "「その理論の物質」の定義: 全ゲージ因子に帯電する (v3.1 系) / 色・弱に帯電する (v7.1 系)。"
+  note: "外すと 5 成分の純 U(1) カイラル解などが混入する (対照地図 QRN-GAUGE-010 が定量化)。"
+
+- id: ASM-EFT-VALIDITY
+  type: model
+  scope: local
+  introduced: "v4.3"
+  status: active
+  statement: "EFT 論理: 重い場は低エネルギー相関から冪的に退場するため、低エネルギー理論空間は小さい表現・小さい電荷の有限窓で代表される。"
+  note: "QRN-EFT-001 (脱結合 M^-1.91 の toy 検証) が数値的に支持する。"
+
+- id: ASM-SMCONTENT
+  type: data
+  scope: local
+  introduced: "v2.3"
+  status: active
+  statement: "SM の場の内容 (Q,u,d,L,e の表現の組) を入力として与える (超電荷の逆問題・第 2 電荷の走査で使用)。"
+  note: "内容自体の探索は QRN-GAUGE-003/006 が担う。"
+
+- id: ASM-TORUS
+  type: model
+  scope: local
+  introduced: "v2.2"
+  status: active
+  statement: "余剰次元は磁束つき平坦トーラス (T²)ⁿ または傾き T⁴ の族とする (曲がった内部空間・CY は範囲外)。"
+
+- id: ASM-OVERLAP
+  type: model
+  scope: local
+  introduced: "v7.2"
+  status: active
+  statement: "湯川結合はゼロモード波動関数の重なり積分 × ガウス型 Higgs プロファイルで与えられる (乱雑 O(1) 係数なし)。"
+
+- id: ASM-WILSON-GRID
+  type: design
+  scope: local
+  introduced: "v7.2"
+  status: active
+  statement: "Wilson 線は離散格子 (Z₆/Z₁₂/Z₁₈) 上の値のみを走査する (連続 Wilson 線は範囲外)。"
+  note: "格子の細分化は常に Occam 罰に見合わない (QRN-YUK-004) — 粗い格子で十分という証拠つき設計。"
+
+# ---------- 探索窓 (window) — C2 定理の「制限付き」の中身 ----------
+
+- id: ASM-WINDOW-V31
+  type: window
+  scope: local
+  introduced: "v3.1"
+  status: active
+  statement: "v3.1 窓: 表現 SU(3)∈{1,3,3̄}×SU(2)∈{1,2}、|6Y|≤9、≤5 多重項、≤15 成分、5 アノマリー+Witten+カイラル+全因子帯電。"
+
+- id: ASM-WINDOW-V43
+  type: window
+  scope: local
+  introduced: "v4.3"
+  status: active
+  statement: "v4.3 窓: v3.1 の表現・電荷のまま ≤6 多重項・≤24 成分に拡張。"
+
+- id: ASM-WINDOW-EXT
+  type: window
+  scope: local
+  introduced: "v5.2"
+  status: active
+  statement: "拡張窓: 大表現 (6,6̄,8 / 3) 込み 10 型 — v5.2 (≤5 多重項 ≤16 成分) と E1–E4 軸 (≤6 多重項 ≤24 成分 / |Y|≤2 / |Y|≤3 / ≤8 多重項)。certificates/v62_domains.json に機械可読で固定。"
+
+- id: ASM-WINDOW-U1SQ
+  type: window
+  scope: local
+  introduced: "v6.2"
+  status: active
+  statement: "U(1)² 窓: 第 2 電荷 |6Y'|≤12 (SM 内容上) / rank-2 一般走査 (≤4 多重項 |6Y|≤9、≤5 |6Y|≤6、≤6 |6Y|≤4、≤18 成分)。"
+
+- id: ASM-WINDOW-U1CUBE
+  type: window
+  scope: local
+  introduced: "v8.2"
+  status: active
+  statement: "rank-3 窓: ≤5 多重項、|6Y_a|≤3/≤2、19 アノマリー条件+階数 3。"
+
+- id: ASM-WINDOW-EXC
+  type: window
+  scope: local
+  introduced: "v11.1"
+  status: active
+  statement: "例外群の検査窓: G₂/F₄/E₇/E₈ の最低次+随伴の代表 7 表現 (全既約表現の自己共役性は教科書事実の引用)。"
+
+- id: ASM-WINDOW-PAIR
+  type: window
+  scope: local
+  introduced: "v10.3"
+  status: active
+  statement: "世代対の幾何候補窓: Wilson 線 k'∈Z₁₈ × {通常, 鏡映 x→−x, 共役 (磁束 −Q)} の 54 状態 (傾き磁束は v13.2 が別途処理)。"
+
+# ---------- データ・観測入力 (data / observational) ----------
+
+- id: ASM-ANOMALY-COEFS
+  type: data
+  scope: local
+  introduced: "v3.1"
+  status: active
+  statement: "アノマリー係数・群論係数 (A(3)=1, A(6)=7, T(r), Witten 対象の判定など) は教科書値の整数データとして仮定する (群論からの導出は未形式化)。"
+
+- id: ASM-PDG
+  type: data
+  scope: local
+  introduced: "v3.2"
+  status: active
+  statement: "実測入力: フェルミオン質量比 6 種・CKM 3 種・PMNS・宇宙論パラメータは PDG/Planck の観測値を使う。"
+
+- id: ASM-OBS-FRACTIONAL
+  type: observational
+  scope: local
+  introduced: "v4.3"
+  status: active
+  statement: "分数電荷ハドロンは観測されていない — 16 成分の隣人 8 解の排除はこの観測事実に依る (計算のみでは排除されない)。"
+
+# ---------- 設計・規約 (design / convention) ----------
+
+- id: ASM-SEED
+  type: design
+  scope: local
+  introduced: "v0.2"
+  status: active
+  statement: "固定シードの xorshift64* 擬似乱数の実現が典型例を代表する (再現性のための設計)。"
+
+- id: ASM-PRIOR
+  type: design
+  scope: local
+  introduced: "v3.2"
+  status: active
+  statement: "統計的 fit・模型比較の分布選択 (O(1) 係数の分布・電荷一様事前・σ=ln2・Wilson/幾何一様・σ_H グリッド等) は設計選択である。"
+
+- id: ASM-STABLE-LABEL
+  type: convention
+  scope: local
+  introduced: "v9.2"
+  status: active
+  statement: "世代ラベルは安定規約 (ゼロモード中心を 0.5 サイト格子にスナップしてから昇順ソート) で付ける。"
+  note: "wrap 境界の ±ε 綱渡り (v9.2 発見) の回避。主結論 (T³ 勝利・順位) は両規約で不変であることを検証済み。"
+
+- id: ASM-MODK
+  type: definition
+  scope: local
+  introduced: "v0.7"
+  status: active
+  statement: "モジュラー読み出しの定義一式: 区間モジュラーハミルトニアン K、ヌル規格化 T_kk=4T₋₋、第一法則の検証は無限小のハミルトニアン摂動で行う。"
+  note: "有限の 1 量子励起では等式でなく不等式 S_rel≥0 になる (v0.7 の設計ミスとして記録済み)。"
+
+- id: ASM-EDGE-SEMANTICS
+  type: design
+  scope: local
+  introduced: "v15.1"
+  status: active
+  statement: "依存グラフの辺は「それが落ちればこの主張も落ちる」関係として人手で判定して張る — 辺の判定は形式化されていない設計判断である (動機・歴史の辺は張らない)。"
+  note: "等級の強さ順位は C0 < C1 < C2 < {C3,C4} < C5 とする (C3 機構と C4 現象論は横並び)。単調性検査はこの順位に基づく。"
+
+# ---------- 信頼基盤 (trust) ----------
+
+- id: ASM-LEAN-TRUST
+  type: trust
+  scope: local
+  introduced: "v6.8"
+  status: active
+  statement: "native_decide による全列挙定理は Lean 核に加えてコンパイラを信頼基盤に含む (SM 充足性・破れは核のみの decide)。"
+
+# ---------- 存在論 (ontology) — C5 の前提 ----------
+
+- id: ASM-NET-REAL
+  type: ontology
+  scope: local
+  introduced: "v1.0"
+  status: active
+  statement: "「現実の基本的実在は単一の量子相関網である」という存在論的作業仮説 (C5 の解釈が立つ土台)。"
+  note: "toy で「同じ core から出せる」こと (CORE 系) は、この仮説の証明ではない (QRN-CORE-001 の limitations に明記)。"

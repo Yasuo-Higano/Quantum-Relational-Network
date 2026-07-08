@@ -468,13 +468,7 @@ fn eval_mass(nt: usize, locs: &[Vec<C3v>], sig_grid: &[f64], sigma: f64, perm: b
 /// 全 9 量の証拠。perm=true では (ku,σu)×(kd,σd) を質量尤度で降順に並べ、
 /// llu+lld ≥ max−Δ の対だけ CKM を計算。残差は e^{3norm1}·(SuSd−計算済み質量重み)
 /// で厳密に抑え、lnZ の区間 (下端, 上端) を返す。
-fn eval9(
-    nt: usize,
-    locs: &[Vec<C3v>],
-    sig_grid: &[f64],
-    sigma: f64,
-    perm: bool,
-) -> (f64, f64) {
+fn eval9(nt: usize, locs: &[Vec<C3v>], sig_grid: &[f64], sigma: f64, perm: bool) -> (f64, f64) {
     let nc = 6usize.pow(nt as u32);
     let np = if perm { 6usize.pow(nt as u32 - 1) } else { 1 };
     let norm1 = -(sigma * (2.0 * std::f64::consts::PI).sqrt()).ln();
@@ -626,10 +620,17 @@ fn main() {
     );
 
     // ---- [2] 本番: T³ 自由対 ----
-    println!("\n[2] T³ 自由対 (対空間 (S₃×S₃)⁴ = 1.68e6, Occam 罰 4ln36 = {:.2})", 4.0 * (36.0f64).ln());
+    println!(
+        "\n[2] T³ 自由対 (対空間 (S₃×S₃)⁴ = 1.68e6, Occam 罰 4ln36 = {:.2})",
+        4.0 * (36.0f64).ln()
+    );
     let t2 = std::time::Instant::now();
     let m_t3p = eval_mass(3, &locs, &sig_grid, sigma, true);
-    println!("    質量のみ lnZ(T³ perm) = {:.4}  ({} ms)", m_t3p, t2.elapsed().as_millis());
+    println!(
+        "    質量のみ lnZ(T³ perm) = {:.4}  ({} ms)",
+        m_t3p,
+        t2.elapsed().as_millis()
+    );
     let t3 = std::time::Instant::now();
     let (n_t3p_lo, n_t3p_hi) = eval9(3, &locs, &sig_grid, sigma, true);
     let width = n_t3p_hi - n_t3p_lo;
@@ -647,21 +648,35 @@ fn main() {
     println!("\n[3] 対込みの幾何選択 (全て安定ラベル)");
     println!("    幾何        質量のみ      全 9 量");
     println!("    T¹          {:+.2}        {:+.2}", m_t1, n_t1_lo);
-    println!("    T² 対角     {:+.2}        {:+.2}", m_t2d, REF_T2_NINE_DIAG_PRINT);
+    println!(
+        "    T² 対角     {:+.2}        {:+.2}",
+        m_t2d, REF_T2_NINE_DIAG_PRINT
+    );
     println!("    T² 自由対   {:+.2}        {:+.2}", m_t2p, n_t2p_lo);
     println!("    T³ 対角     {:+.2}        {:+.2}", m_t3d, n_t3d_lo);
-    println!("    T³ 自由対   {:+.2}        [{:.2}, {:.2}]", m_t3p, n_t3p_lo, n_t3p_hi);
+    println!(
+        "    T³ 自由対   {:+.2}        [{:.2}, {:.2}]",
+        m_t3p, n_t3p_lo, n_t3p_hi
+    );
     let t3_wins_mass = m_t3p > m_t2p;
     let t3_wins_nine = n_t3p_lo > n_t2p_lo; // 区間下端で比較 (上端でも同じ側なら確定)
     let nine_decided = (n_t3p_lo > n_t2p_lo + 0.02) || (n_t3p_hi < n_t2p_lo - 0.02);
     println!(
         "\n    質量のみ: {} (T³−T² = {:+.2})",
-        if t3_wins_mass { "T³ が勝つ" } else { "T² が勝つ" },
+        if t3_wins_mass {
+            "T³ が勝つ"
+        } else {
+            "T² が勝つ"
+        },
         m_t3p - m_t2p
     );
     println!(
         "    全 9 量:  {} (T³−T² = {:+.2}, 区間で{}確定)",
-        if t3_wins_nine { "T³ が勝つ" } else { "T² が勝つ" },
+        if t3_wins_nine {
+            "T³ が勝つ"
+        } else {
+            "T² が勝つ"
+        },
         n_t3p_lo - n_t2p_lo,
         if nine_decided { "" } else { "未" }
     );
@@ -670,20 +685,26 @@ fn main() {
     let j = Json::Obj(vec![
         ("claim_id".into(), Json::Str("QRN-YUK-008".into())),
         ("delta_cut_nats".into(), Json::Num(DELTA_CUT)),
-        ("lnZ_mass".into(), Json::Obj(vec![
-            ("T1".into(), Json::Num(m_t1)),
-            ("T2_diag".into(), Json::Num(m_t2d)),
-            ("T2_perm".into(), Json::Num(m_t2p)),
-            ("T3_diag".into(), Json::Num(m_t3d)),
-            ("T3_perm".into(), Json::Num(m_t3p)),
-        ])),
-        ("lnZ_nine".into(), Json::Obj(vec![
-            ("T1".into(), Json::Num(n_t1_lo)),
-            ("T2_perm".into(), Json::Num(n_t2p_lo)),
-            ("T3_diag".into(), Json::Num(n_t3d_lo)),
-            ("T3_perm_lo".into(), Json::Num(n_t3p_lo)),
-            ("T3_perm_hi".into(), Json::Num(n_t3p_hi)),
-        ])),
+        (
+            "lnZ_mass".into(),
+            Json::Obj(vec![
+                ("T1".into(), Json::Num(m_t1)),
+                ("T2_diag".into(), Json::Num(m_t2d)),
+                ("T2_perm".into(), Json::Num(m_t2p)),
+                ("T3_diag".into(), Json::Num(m_t3d)),
+                ("T3_perm".into(), Json::Num(m_t3p)),
+            ]),
+        ),
+        (
+            "lnZ_nine".into(),
+            Json::Obj(vec![
+                ("T1".into(), Json::Num(n_t1_lo)),
+                ("T2_perm".into(), Json::Num(n_t2p_lo)),
+                ("T3_diag".into(), Json::Num(n_t3d_lo)),
+                ("T3_perm_lo".into(), Json::Num(n_t3p_lo)),
+                ("T3_perm_hi".into(), Json::Num(n_t3p_hi)),
+            ]),
+        ),
         ("t3_wins_mass".into(), Json::Bool(t3_wins_mass)),
         ("t3_wins_nine".into(), Json::Bool(t3_wins_nine)),
         ("nine_decided".into(), Json::Bool(nine_decided)),
@@ -691,7 +712,10 @@ fn main() {
     ]);
     let p = write_artifact("results/v102_geopair.json", &j.render());
     println!("\n  機械可読な結果: {}", p);
-    println!("\n総合判定: {} (PASS = 装置検証と区間幅 — 選択の答えは [3] の表が本体)", pass(all_ok));
+    println!(
+        "\n総合判定: {} (PASS = 装置検証と区間幅 — 選択の答えは [3] の表が本体)",
+        pass(all_ok)
+    );
     if !all_ok {
         std::process::exit(1);
     }

@@ -139,10 +139,26 @@ fn t4_modes(f: &Flux, nb: usize) -> (Vec<Vec<(f64, f64)>>, Vec<f64>) {
             for x2 in 0..N {
                 for y2 in 0..N {
                     let i = idx(x1, y1, x2, y2);
-                    addhop(i, idx((x1 + 1) % N, y1, x2, y2), link_phase(f, x1, y1, x2, y2, 0));
-                    addhop(i, idx(x1, (y1 + 1) % N, x2, y2), link_phase(f, x1, y1, x2, y2, 1));
-                    addhop(i, idx(x1, y1, (x2 + 1) % N, y2), link_phase(f, x1, y1, x2, y2, 2));
-                    addhop(i, idx(x1, y1, x2, (y2 + 1) % N), link_phase(f, x1, y1, x2, y2, 3));
+                    addhop(
+                        i,
+                        idx((x1 + 1) % N, y1, x2, y2),
+                        link_phase(f, x1, y1, x2, y2, 0),
+                    );
+                    addhop(
+                        i,
+                        idx(x1, (y1 + 1) % N, x2, y2),
+                        link_phase(f, x1, y1, x2, y2, 1),
+                    );
+                    addhop(
+                        i,
+                        idx(x1, y1, (x2 + 1) % N, y2),
+                        link_phase(f, x1, y1, x2, y2, 2),
+                    );
+                    addhop(
+                        i,
+                        idx(x1, y1, x2, (y2 + 1) % N),
+                        link_phase(f, x1, y1, x2, y2, 3),
+                    );
                 }
             }
         }
@@ -232,7 +248,10 @@ fn main() {
     println!("=== v12.1 傾き磁束 T⁴: 指数 = Q₁Q₂ + ts の第一原理 3 世代 (構造編) ===\n");
     let f_tilt: Flux = [2, 2, 1, -1];
     let f_ctrl: Flux = [2, 2, 0, 0];
-    println!("格子 N={} (site {}), 傾き (2,2,1,−1) vs 対照 (2,2,0,0)", N, NS4);
+    println!(
+        "格子 N={} (site {}), 傾き (2,2,1,−1) vs 対照 (2,2,0,0)",
+        N, NS4
+    );
 
     // ---- [1] 磁束の実装検査 ----
     println!("\n[1] プラケット検査 (全 site × 全 6 平面)");
