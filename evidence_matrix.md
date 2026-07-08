@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 101 件 / 依存辺 116 本 / 仮定 38 件 / 反証条件 15 件。
+主張 102 件 / 依存辺 118 本 / 仮定 38 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -16,8 +16,8 @@
 | QRN-C0-002 | C0 | v4.1 | D | 0 | 0 | 0 | 8 |
 | QRN-C0-003 | C0 | v0.8 | D | 0 | 0 | 0 | 1 |
 | QRN-C0-004 | C0 | v3.4 | D | 0 | 0 | 0 | 3 |
-| QRN-C0-005 | C0 | v2.3 | D | 0 | 0 | 0 | 39 |
-| QRN-C0-006 | C0 | v3.2 | D | 0 | 0 | 0 | 23 |
+| QRN-C0-005 | C0 | v2.3 | D | 0 | 0 | 0 | 40 |
+| QRN-C0-006 | C0 | v3.2 | D | 0 | 0 | 0 | 24 |
 | QRN-QM-001 | C1 | v0.1 | CR | 0 | 2 | 1 | 0 |
 | QRN-GR-001 | C1 | v0.1 | CR | 0 | 0 | 1 | 0 |
 | QRN-STAT-001 | C1 | v0.2 | CR | 0 | 3 | 1 | 0 |
@@ -42,14 +42,14 @@
 | QRN-BORN-002 | C1 | v1.6 | CR | 0 | 1 | 1 | 0 |
 | QRN-GRAV-003 | C1 | v2.1 | CR | 0 | 3 | 1 | 3 |
 | QRN-KK-001 | C1 | v2.2 | CR | 0 | 2 | 1 | 0 |
-| QRN-MATTER-001 | C1 | v2.3 | CR | 1 | 2 | 1 | 21 |
+| QRN-MATTER-001 | C1 | v2.3 | CR | 1 | 2 | 1 | 22 |
 | QRN-MATTER-002 | C2 | v2.3 | CR | 1 | 3 | 2 | 0 |
 | QRN-COSMO-004 | C1 | v2.4 | CR | 0 | 0 | 1 | 0 |
-| QRN-EXP-001 | C4 | v2.5 | CR | 0 | 0 | 2 | 3 |
+| QRN-EXP-001 | C4 | v2.5 | CR | 0 | 0 | 2 | 4 |
 | QRN-GAUGE-003 | C2 | v3.1 | CR | 1 | 6 | 3 | 15 |
 | QRN-GAUGE-004 | C1 | v3.1 | CR | 0 | 1 | 1 | 0 |
 | QRN-GAUGE-005 | C4 | v3.1 | CR | 0 | 1 | 2 | 0 |
-| QRN-YUK-001 | C4 | v3.2 | CR | 1 | 3 | 2 | 21 |
+| QRN-YUK-001 | C4 | v3.2 | CR | 1 | 3 | 2 | 22 |
 | QRN-RG-001 | C1 | v3.3 | CR | 0 | 3 | 1 | 3 |
 | QRN-UNRUH-001 | C1 | v3.4 | CR | 1 | 1 | 1 | 0 |
 | QRN-QNEC-001 | C1 | v4.1 | CR | 1 | 4 | 2 | 7 |
@@ -65,16 +65,16 @@
 | QRN-GAUGE-010 | C2 | v6.2 | CR | 2 | 5 | 2 | 0 |
 | QRN-QNEC-002 | C1 | v6.3 | CR | 2 | 4 | 3 | 3 |
 | QRN-GEOM-004 | C3 | v6.4 | CR | 1 | 3 | 1 | 1 |
-| QRN-YUK-002 | C4 | v6.5 | CR | 2 | 3 | 2 | 20 |
+| QRN-YUK-002 | C4 | v6.5 | CR | 2 | 3 | 2 | 21 |
 | QRN-EXP-002 | C5 | v6.6 | D | 1 | 0 | 1 | 0 |
 | QRN-CORE-001 | C3 | v6.7 | CR | 2 | 3 | 2 | 4 |
 | QRN-GAUGE-011 | C2 | v6.8 | LR | 1 | 6 | 1 | 1 |
 | QRN-GAUGE-012 | C2 | v7.1 | CR | 0 | 5 | 2 | 1 |
-| QRN-YUK-003 | C4 | v7.2 | CR | 3 | 7 | 2 | 18 |
-| QRN-EXP-003 | C4 | v7.3 | CR | 1 | 1 | 2 | 1 |
+| QRN-YUK-003 | C4 | v7.2 | CR | 3 | 7 | 2 | 19 |
+| QRN-EXP-003 | C4 | v7.3 | CR | 1 | 1 | 2 | 2 |
 | QRN-CORE-002 | C3 | v7.4 | CR | 3 | 3 | 1 | 3 |
 | QRN-GAUGE-013 | C2 | v7.5 | LR | 1 | 6 | 1 | 1 |
-| QRN-YUK-004 | C4 | v8.1 | CR | 1 | 7 | 2 | 16 |
+| QRN-YUK-004 | C4 | v8.1 | CR | 1 | 7 | 2 | 17 |
 | QRN-GAUGE-014 | C2 | v8.2 | CR | 0 | 5 | 2 | 3 |
 | QRN-META-001 | C5 | v1.0 | D | 5 | 1 | 6 | 2 |
 | QRN-META-002 | C5 | v2.0 | D | 3 | 1 | 1 | 2 |
@@ -84,11 +84,11 @@
 | QRN-META-006 | C5 | v7.0 | D | 5 | 0 | 1 | 0 |
 | QRN-META-007 | C5 | v8.0 | D | 5 | 1 | 1 | 0 |
 | QRN-META-008 | C5 | v9.0 | D | 2 | 1 | 1 | 0 |
-| QRN-YUK-005 | C4 | v9.1 | CR | 1 | 7 | 2 | 14 |
-| QRN-YUK-006 | C4 | v9.2 | CR | 3 | 6 | 1 | 13 |
+| QRN-YUK-005 | C4 | v9.1 | CR | 1 | 7 | 2 | 15 |
+| QRN-YUK-006 | C4 | v9.2 | CR | 3 | 6 | 1 | 14 |
 | QRN-CORE-003 | C1 | v9.4 | CR | 1 | 4 | 1 | 1 |
 | QRN-META-009 | C5 | v10.0 | DR | 3 | 0 | 1 | 0 |
-| QRN-YUK-007 | C4 | v10.1 | CR | 1 | 7 | 2 | 11 |
+| QRN-YUK-007 | C4 | v10.1 | CR | 1 | 7 | 2 | 12 |
 | QRN-YUK-008 | C4 | v10.2 | CR | 1 | 7 | 2 | 1 |
 | QRN-YUK-009 | C2 | v10.3 | CR | 1 | 4 | 2 | 3 |
 | QRN-META-010 | C5 | v11.0 | DR | 3 | 0 | 1 | 0 |
@@ -113,6 +113,7 @@
 | QRN-CONT-001 | C1 | v15.4 | CDR | 1 | 4 | 2 | 0 |
 | QRN-SEL-001 | C4 | v15.5 | CDR | 1 | 7 | 1 | 0 |
 | QRN-GRAV-004 | C1 | v15.6 | CDR | 1 | 4 | 2 | 0 |
+| QRN-PRED-001 | C4 | v15.7 | CDR | 2 | 8 | 3 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -120,25 +121,25 @@
 
 | 仮定 | type | status | 直接 | 閉包 | 閉包に含まれる主張 (抜粋) |
 |---|---|---|---|---|---|
-| ASM-LATTICE | framework | active | 24 | 55 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
-| ASM-SEED | design | active | 13 | 36 | QRN-BH-001, QRN-BORN-001, QRN-COSMO-003, QRN-FIELD-001, … |
+| ASM-LATTICE | framework | active | 24 | 56 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
+| ASM-SEED | design | active | 13 | 37 | QRN-BH-001, QRN-BORN-001, QRN-COSMO-003, QRN-FIELD-001, … |
 | ASM-LOWDIM | framework | active | 23 | 33 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
 | ASM-GAUSS | framework | active | 20 | 30 | QRN-ARROW-001, QRN-CAUSAL-001, QRN-CAUSAL-002, QRN-CONT-001, … |
-| ASM-PDG | data | active | 19 | 28 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
+| ASM-PDG | data | active | 20 | 29 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
+| ASM-TORUS | model | active | 17 | 24 | QRN-KK-001, QRN-MATTER-001, QRN-META-007, QRN-META-008, … |
+| ASM-PRIOR | design | active | 16 | 24 | QRN-META-006, QRN-META-007, QRN-META-008, QRN-META-009, … |
 | ASM-GAUGE-GROUP | model | active | 14 | 23 | QRN-GAUGE-003, QRN-GAUGE-004, QRN-GAUGE-006, QRN-GAUGE-007, … |
-| ASM-TORUS | model | active | 16 | 23 | QRN-KK-001, QRN-MATTER-001, QRN-META-007, QRN-META-008, … |
-| ASM-PRIOR | design | active | 15 | 23 | QRN-META-006, QRN-META-007, QRN-META-008, QRN-META-009, … |
 | ASM-ANOMALY-COEFS | data | active | 14 | 22 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
 | ASM-CHIRALITY | model | active | 11 | 21 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
 | ASM-ALL-CHARGED | definition | active | 11 | 21 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
-| ASM-OVERLAP | model | active | 13 | 20 | QRN-META-007, QRN-META-008, QRN-META-009, QRN-META-010, … |
-| ASM-WILSON-GRID | design | active | 13 | 20 | QRN-META-007, QRN-META-008, QRN-META-009, QRN-META-010, … |
-| ASM-DIAGPAIR | model | falsified | 4 | 19 | QRN-META-007, QRN-META-008, QRN-META-009, QRN-META-010, … |
-| ASM-STABLE-LABEL | convention | active | 8 | 19 | QRN-META-007, QRN-META-008, QRN-META-009, QRN-META-010, … |
+| ASM-OVERLAP | model | active | 14 | 21 | QRN-META-007, QRN-META-008, QRN-META-009, QRN-META-010, … |
+| ASM-WILSON-GRID | design | active | 14 | 21 | QRN-META-007, QRN-META-008, QRN-META-009, QRN-META-010, … |
+| ASM-DIAGPAIR | model | falsified | 4 | 20 | QRN-META-007, QRN-META-008, QRN-META-009, QRN-META-010, … |
+| ASM-STABLE-LABEL | convention | active | 9 | 20 | QRN-META-007, QRN-META-008, QRN-META-009, QRN-META-010, … |
 | ASM-EFT-VALIDITY | model | active | 3 | 16 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
 | ASM-WINDOW-V31 | window | active | 3 | 16 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
+| ASM-SIGMA-DATA | model | active | 5 | 13 | QRN-META-010, QRN-META-011, QRN-META-012, QRN-META-013, … |
 | ASM-MODK | definition | active | 7 | 13 | QRN-CORE-003, QRN-GRAV-001, QRN-GRAV-002, QRN-GRAV-003, … |
-| ASM-SIGMA-DATA | model | active | 4 | 12 | QRN-META-010, QRN-META-011, QRN-META-012, QRN-META-013, … |
 | ASM-INIT | model | active | 1 | 9 | QRN-ARROW-001, QRN-CAUSAL-002, QRN-CORE-002, QRN-CORE-004, … |
 | ASM-WINDOW-EXT | window | active | 4 | 8 | QRN-GAUGE-007, QRN-GAUGE-008, QRN-GAUGE-010, QRN-GAUGE-013, … |
 | ASM-DOF-GROWTH | model | active | 2 | 7 | QRN-ARROW-001, QRN-CORE-002, QRN-CORE-004, QRN-META-004, … |
@@ -149,8 +150,8 @@
 | ASM-WINDOW-U1CUBE | window | active | 1 | 4 | QRN-GAUGE-014, QRN-GAUGE-015, QRN-META-008, QRN-META-011 |
 | ASM-WINDOW-PAIR | window | active | 1 | 4 | QRN-META-010, QRN-META-013, QRN-YUK-009, QRN-YUK-015 |
 | ASM-ORBIFOLD | model | active | 2 | 3 | QRN-META-011, QRN-YUK-010, QRN-YUK-011 |
+| ASM-KTM | model | active | 2 | 3 | QRN-EXP-003, QRN-META-007, QRN-PRED-001 |
 | ASM-WINDOW-U1SQ | window | active | 2 | 3 | QRN-GAUGE-009, QRN-GAUGE-012, QRN-META-007 |
-| ASM-KTM | model | active | 1 | 2 | QRN-EXP-003, QRN-META-007 |
 | ASM-SMCONTENT | data | active | 2 | 2 | QRN-GAUGE-009, QRN-MATTER-002 |
 | ASM-WINDOW-EXC | window | active | 1 | 2 | QRN-GAUGE-015, QRN-META-011 |
 | ASM-Z2-MINIMAL | model | active | 2 | 2 | QRN-CONT-001, QRN-CORE-005 |
@@ -163,13 +164,13 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 85 | 95 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 86 | 96 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CEX-WINDOW | open | 15 | 26 | 明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。 |
-| FAL-CKM-OOS | open | 8 | 22 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
+| FAL-CKM-OOS | open | 9 | 23 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-CONTINUUM | open | 7 | 20 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-EXOTIC-CHIRAL | open | 4 | 16 | SM 1 世代の外のカイラル物質 (第 4 世代・分数電荷ハドロン・エキゾチック表現) が発見される。 |
+| FAL-BMV | open | 7 | 8 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
 | FAL-QNEC | open | 5 | 8 | QNEC 型不等式の真の破れ (誤差予算を超える負ギャップが N を上げても縮まない) が数値または理論で確立する。 |
-| FAL-BMV | open | 6 | 7 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
 | FAL-AREALAW | open | 4 | 7 | アナログ系 (冷却原子等) で面積則・エンタングルメント第一法則の系統的破れが観測される。 |
 | FAL-PAGE | open | 4 | 5 | ブラックホール蒸発で情報喪失が確立する (Page 曲線からの系統的逸脱)。 |
 | FAL-LORENTZ | open | 2 | 4 | プランクスケールのローレンツ不変性の破れが主要次数で確立する (GRB 光子のエネルギー依存遅延など)。 |

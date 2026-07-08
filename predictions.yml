@@ -1,0 +1,72 @@
+# =====================================================================
+# QRN 予言台帳 (Prediction Ledger) — v15.7 で導入
+# =====================================================================
+# 「当たるかもしれない言葉」を禁じ、予言を固定形式に登録する (PROMPT/2 柱 6):
+#   observable / qrn_value / competing / data_not_used / falsifier / status
+# 数値は sim/src/bin/v157_predict.rs が凍結済み機構から決定論的に導出する
+# (一次ソース: results/v157_predict.txt)。採点結果 (成否) も削除せず記録する。
+#
+#   status: registered (未採点) | scored-hit | scored-miss | window-refuted
+# =====================================================================
+
+- id: PRED-001
+  title: "BMV 型実験の (C, V) — 相補性円周と位相スケーリング"
+  observable: "重力相互作用のみで結合した 2 質量の干渉実験のもつれ C と可視度 V (パラメータ 4 点を登録: m∈{1e-14,1e-15}kg, d∈{200,250}μm, Δx∈{50,100}μm, τ∈{2.5,5}s)"
+  qrn_value: "C=|sin Δφ/2|, V=|cos Δφ/2| (C²+V²=1 の円周上)。Δφ=(Gm²τ/ħ)·2Δx²/(d(d²−Δx²)) — 例: (1e-14kg, 200μm, 100μm, 5s) → Δφ=1.055, C=0.503, V=0.864"
+  competing: "KTM 型古典チャネル: C=0 かつ V≤e^(−Δφ/2) (同点で 0.590)。古典重力+QFT (Aziz–Howl 2025) はもつれを作りうるため、判別は C>0 の有無でなく (C,V) 平面の位置とスケーリング"
+  data_not_used: "実験は未実施 — 全データが holdout"
+  falsifier: "予測位相で C≡0 かつ V が古典包絡内 → A2/A3 棄却 (FAL-BMV)"
+  source: "v2.5 / v7.3 / v15.7 (再導出回帰つき)"
+  status: registered
+
+- id: PRED-002
+  title: "|V_td| — 凍結済み幾何湯川模型の holdout 予言"
+  observable: "CKM 行列要素 |V_td|"
+  qrn_value: "事後帯 (T²×T² M_perm, 9 量学習): 中央値 0.0022, 68% [0.0009, 0.0036], 95% [0.0002, 0.0070]"
+  competing: "アナーキー (幅広・無予言), SM (fit であり予言しない)"
+  data_not_used: "|V_td| と CP 位相は v7.2 以来一度も尤度に入れていない (v9.1 §限界に明記)"
+  falsifier: "測定が 95% 帯の外 → M2 級模型の限界として記録し、幾何拡張の必要条件に変換"
+  source: "v15.7 (機構は v10.1 で凍結)"
+  status: scored-miss
+  score: "測定 0.0086 は帯上端 0.0070 の 1.23 倍外 — 外れ。模型は |V_td| を系統的に小さく出す (CP 位相の欠如と同根の可能性 — PRED-003 参照)"
+
+- id: PRED-003
+  title: "Jarlskog 不変量 J — 構造零の発見と窓の反証"
+  observable: "CKM の CP 破れ不変量 J = Im(V_us V_cb V*_ub V*_cs)"
+  qrn_value: "J = 0 (厳密)。長方形 T²×T² + 実 Wilson 格子の湯川位相は行×列に因子化し、CKM は再位相化で実になる — MAP で |J|=8e-17 (機械零)、事後質量の P(|J|>1e-6)=0"
+  competing: "測定 J = 3.08e-5 ≠ 0 (5σ 以上で確立)"
+  data_not_used: "J は一度も尤度に入れていない"
+  falsifier: "J≠0 の測定は確立済み — この予言は登録と同時に棄却される"
+  source: "v15.7"
+  status: window-refuted
+  score: "決定的乖離 — 「この幾何窓は CP を作れない」が定理的に確定。含意: 傾き磁束/複素構造 (v12.1–v13.2 の非因子化方向) は美的選択ではなく CP 破れの要求である。窓の拡張先が holdout によって指定された"
+
+- id: PRED-004
+  title: "SM の次のカイラル層は分数電荷を伴う"
+  observable: "SM を超える新しいカイラルフェルミオン (コライダー/宇宙論)"
+  qrn_value: "窓 (E1: ≤24 成分) 内で SM に最も近いカイラル拡張 (16 成分の 8 解) は全て分数電荷ハドロンを要求する。分数電荷なしの最小カイラル拡張は ≥17 成分 (17: 1 解, 18: 18 解)"
+  competing: "一般の BSM (この制約なし)"
+  data_not_used: "コライダーの将来データ"
+  falsifier: "分数電荷ハドロンなしに 16 成分相当の新カイラル物質が発見される → 窓構造 (E1 地形) の物理的解釈が棄却 (FAL-EXOTIC-CHIRAL)"
+  source: "v4.3 / v6.2 / v14.5 (Lean 定理化済みの地形)"
+  status: registered
+
+- id: PRED-005
+  title: "線形ローレンツ違反の消失"
+  observable: "GRB 光子のエネルギー依存遅延 (E/E_Pl の一次)"
+  qrn_value: "0 — QRN の離散性はポアソン撒布型 (v0.6: ブースト不変) であり、優先系格子と違い一次の分散を作らない"
+  competing: "素朴な規則格子時空 (一次の LV を予言)"
+  data_not_used: "将来の GRB 時間分解観測"
+  falsifier: "一次 LV の確立 → 離散化の形が棄却 (FAL-LORENTZ)"
+  source: "v0.6 / v1.0 §4-3"
+  status: registered
+
+- id: PRED-006
+  title: "ニュートリノは Majorana"
+  observable: "ニュートリノを伴わない二重ベータ崩壊 (0νββ)"
+  qrn_value: "存在する (ν は Majorana)。第 2 の U(1) の最小無矛盾解が B−L + ν_R (v7.1 の一意性) で、シーソー (v4.2: M_R~6e14 GeV) が軽い Majorana 質量を与える"
+  competing: "Dirac ニュートリノ (B−L が大域対称のまま残る場合)"
+  data_not_used: "0νββ 実験の将来データ"
+  falsifier: "ν が Dirac と確定 → シーソー現象論と B−L ゲージ化の物理的解釈を降格 (FAL-NEUTRINO)"
+  source: "v4.2 / v7.1"
+  status: registered

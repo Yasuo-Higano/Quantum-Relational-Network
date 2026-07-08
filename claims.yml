@@ -1238,3 +1238,17 @@
     - "非線形性の検定は AdS₃/CFT₂ 辞書経由 (2D では Einstein テンソルが恒等的に零のため)。3+1 次元の非線形 Einstein 導出ではない — 「QNEC → Einstein 全次数」の一般定理は残高のまま (三次係数 c₃ はその的の大きさ)。"
     - "自由場・平衡熱状態のみ。相互作用系 (QrnCoreV2) の BTZ 検定・非平衡は未実施。"
     - "開発記録: ボンド摂動は粒子正孔対称性で一次が消える縮退方向 (→ 二次の精密測定に転用)。波束回転の転写ミスは射影子検査 C'²=C' が捕捉。初版の a₄ fit は展開適用域 (x≤1.6) を破っており 3 項 fit で修正。"
+
+- id: QRN-PRED-001
+  version: "v15.7"
+  level: C4
+  claim: "予言台帳 predictions.yml の導入 (6 件, 形式: observable/qrn_value/competing/data_not_used/falsifier/status) と holdout 採点: 凍結済み幾何湯川模型 (v10.1 エンジン, 回帰 lnZ=−19.863・MAP lnL=−5.874 一致) の下で、一度も尤度に入れていない |V_td| と Jarlskog J を計算。|V_td| は事後 95% 帯 [0.0002, 0.0070] に対し測定 0.0086 で外れ (scored-miss)。J は構造的に厳密零 (長方形 T²×T²+実 Wilson の因子化位相 — MAP |J|=8e-17, P(|J|>1e-6)=0) で、測定 3.08e-5 と決定的乖離 (window-refuted)。含意: 傾き磁束/複素構造 (v12–v13 の非因子化方向) は CP 破れが要求する拡張である — 外れの内容が窓の拡張先を指定した。BMV (C,V) 表 (v7.3 回帰)・分数電荷・LV 消失・Majorana も登録。"
+  status: "現象論的予言の登録と採点 (外れも status として削除せず記録 — 予言は外れて地図を描く)"
+  evidence:
+    code: "sim/src/bin/v157_predict.rs"
+    result: "results/v157_predict.txt"
+    doc: "docs/uft-v15.7.md"
+  limitations:
+    - "holdout 採点の統計解釈は事後帯 (68/95%) に依る — 帯は模型空間の離散性でギザつく (bin 幅 ~2.5%)。"
+    - "J=0 は長方形+実 Wilson 窓の性質であり QRN 全体の予言ではない — 非因子化窓での J 計算 (N=18 傾き T⁴ の 3 世代版) は次期の的。"
+    - "PRED-004〜006 は既存証拠に基づく登録で新計算なし。predictions.yml の書式は v151_audit 未検査 (将来の監査拡張)。"
