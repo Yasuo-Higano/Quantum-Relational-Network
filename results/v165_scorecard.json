@@ -1,0 +1,82 @@
+{
+  "version": "v16.5",
+  "lnz10": -24.29302644889941,
+  "scorecard": [
+    {
+      "name": "m_u/m_t",
+      "pred": 0.00003320745285866415,
+      "obs": 0.000013,
+      "in_likelihood": true
+    },
+    {
+      "name": "m_c/m_t",
+      "pred": 0.001999201834892274,
+      "obs": 0.0037,
+      "in_likelihood": true
+    },
+    {
+      "name": "m_d/m_b",
+      "pred": 0.0006613376776304075,
+      "obs": 0.0011,
+      "in_likelihood": true
+    },
+    {
+      "name": "m_s/m_b",
+      "pred": 0.06410065874174646,
+      "obs": 0.022,
+      "in_likelihood": true
+    },
+    {
+      "name": "m_e/m_τ",
+      "pred": 0.000292744578309038,
+      "obs": 0.00029,
+      "in_likelihood": true
+    },
+    {
+      "name": "m_μ/m_τ",
+      "pred": 0.0585681777824265,
+      "obs": 0.059,
+      "in_likelihood": true
+    },
+    {
+      "name": "|V_us|",
+      "pred": 0.5641262597705802,
+      "obs": 0.225,
+      "in_likelihood": true
+    },
+    {
+      "name": "|V_cb|",
+      "pred": 0.019039180493983218,
+      "obs": 0.041,
+      "in_likelihood": true
+    },
+    {
+      "name": "|V_ub|",
+      "pred": 0.0038028730068115375,
+      "obs": 0.0037,
+      "in_likelihood": true
+    },
+    {
+      "name": "|J|",
+      "pred": 0.000016761292761504727,
+      "obs": 0.0000308,
+      "in_likelihood": true
+    },
+    {
+      "name": "|V_td|",
+      "pred": 0.008167078627266887,
+      "obs": 0.0086,
+      "in_likelihood": false
+    },
+    {
+      "name": "|V_ts|",
+      "pred": 0.01761394514821137,
+      "obs": 0.0405,
+      "in_likelihood": false
+    }
+  ],
+  "hits_in_likelihood": 10,
+  "hits_holdout": 2,
+  "gamma_deg": 29.804646008644763,
+  "beta_deg": 11.018862034908222
+}
