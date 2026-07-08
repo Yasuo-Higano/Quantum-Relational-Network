@@ -18,10 +18,10 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v15.7** — Rust 65 本 (物理 314 PASS / 0 FAIL + 監査・QrnCoreV2・連続極限・選択原理戦・Einstein 梯子・予言台帳) +
-Lean 4 定理 10 本 (4 ファイル) + 主張依存グラフの機械監査
-([evidence_matrix.md](evidence_matrix.md)) と Prolog 独立推論 ([dag/report.md](dag/report.md))。
-最新統合は [docs/uft-v15.0.md](docs/uft-v15.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
+**現在の到達点: v16.0** — Rust 65 本 + Lean 4 定理 10 本 (4 ファイル) +
+主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
+([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
+最新統合は [docs/uft-v16.0.md](docs/uft-v16.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
 
 ## 実行方法
 
@@ -128,6 +128,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v15.5 | [uft-v15.5.md](docs/uft-v15.5.md) | `v155_selection` | **選択原理の有限候補戦**: σ・Wilson 線を選ぶデータ非参照の原理 5 候補を、v10.1 エンジン (回帰 ±0.003) 上で一様事前と対戦 (事前登録 ±1 nat)。**階層最大化 −494 nats・自己安定 −3.9 nats で棄却** (宇宙は最深でなく特定の深さを選ぶ / 答えは崖に住む)、MDL −0.33・熱力学 +0.32 は未決、計算可能性は空。**既約性が選択原理のクラスにも拡張** — 生存 0 |
 | v15.6 | [uft-v15.6.md](docs/uft-v15.6.md) | `v156_einstein` | **非線形 Einstein への梯子**: [一次] 第一法則が厳密 K + 奇部 Richardson で **1.00000** / [二次] Fisher=7.55, 冪 2.0006, 三次係数 c₃=−3.095 を測定 / [全次数] 熱状態の S(ℓ,β) が **BTZ (非線形 Einstein の厳密解) に自由パラメータ 0 で残差 <0.01 nats** (x≈7.9 まで; 線形化は 32 倍外れる)、計量二次応答 a₄ も一致。β=8 で創発幾何の UV カットオフが残差に見える |
 | v15.7 | [uft-v15.7.md](docs/uft-v15.7.md) | `v157_predict` | **予言の pre-register**: 予言台帳 predictions.yml (6 件・5 項目形式)。凍結済み幾何模型の holdout 採点 — \|V_td\| は 95% 帯外 (miss)、**J は構造零 (因子化位相) で測定 3.08e-5 と決定的乖離** → 「長方形 T²×T²+実 Wilson は CP を作れない」が確定し、**傾き幾何 (v12–v13) が CP 破れの要求**であることを holdout が指定。BMV (C,V) 表・分数電荷・LV 消失・Majorana も登録 |
+| **v16.0** | [**uft-v16.0.md**](docs/uft-v16.0.md) | (統合+全スイート) | **第十六期統合。次の方針の 6 本柱が一期で完走** — 依存 DAG の二重監査・QrnCoreV2 (ガウスの外)・連続極限監査・選択原理戦 (生存 0)・Einstein 梯子 (BTZ 全次数)・予言台帳 (外れが地図を描いた)。テーゼ「監査は理論を殺さず、予言の外れが理論を導く」。次期の本丸: **CP を作る非因子化窓** |
 
 ## リポジトリ構成
 
