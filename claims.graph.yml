@@ -567,3 +567,10 @@
   deps: [QRN-META-015, QRN-TOOL-002, QRN-CORE-005, QRN-CONT-001, QRN-SEL-001, QRN-GRAV-004, QRN-PRED-001]
   asm: []
   fal: [FAL-SUITE]
+
+# ---------- 第十七期 (v16.1–) ----------
+
+- id: QRN-YUK-016
+  deps: [QRN-YUK-015]
+  asm: [ASM-TORUS, ASM-OVERLAP, ASM-WILSON-GRID, ASM-PRIOR, ASM-PDG]
+  fal: [FAL-SUITE]
