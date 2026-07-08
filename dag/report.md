@@ -3,31 +3,31 @@
 **このファイルは `sh dag/run.sh` が生成する。手で編集しない。**
 Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導出値と全数照合済み。
 
-主張 102 / 依存辺 118 / 仮定 38 / 反証条件 15 / 最大深さ 11
+主張 103 / 依存辺 125 / 仮定 38 / 反証条件 15 / 最大深さ 11
 
 ## 仮定の影響範囲 (抜くと落ちる主張の閉包 — 降順)
 
 | 仮定 | type | 閉包 |
 |---|---|---|
-| ASM-LATTICE | framework | 56 |
-| ASM-SEED | design | 37 |
-| ASM-LOWDIM | framework | 33 |
-| ASM-GAUSS | framework | 30 |
-| ASM-PDG | data | 29 |
-| ASM-TORUS | model | 24 |
-| ASM-PRIOR | design | 24 |
+| ASM-LATTICE | framework | 57 |
+| ASM-SEED | design | 38 |
+| ASM-LOWDIM | framework | 34 |
+| ASM-GAUSS | framework | 31 |
+| ASM-PDG | data | 30 |
+| ASM-TORUS | model | 25 |
+| ASM-PRIOR | design | 25 |
 | ASM-GAUGE-GROUP | model | 23 |
+| ASM-WILSON-GRID | design | 22 |
+| ASM-OVERLAP | model | 22 |
 | ASM-ANOMALY-COEFS | data | 22 |
-| ASM-WILSON-GRID | design | 21 |
-| ASM-OVERLAP | model | 21 |
+| ASM-STABLE-LABEL | convention | 21 |
+| ASM-DIAGPAIR | model | 21 |
 | ASM-CHIRALITY | model | 21 |
 | ASM-ALL-CHARGED | definition | 21 |
-| ASM-STABLE-LABEL | convention | 20 |
-| ASM-DIAGPAIR | model | 20 |
 | ASM-WINDOW-V31 | window | 16 |
 | ASM-EFT-VALIDITY | model | 16 |
-| ASM-SIGMA-DATA | model | 13 |
-| ASM-MODK | definition | 13 |
+| ASM-SIGMA-DATA | model | 14 |
+| ASM-MODK | definition | 14 |
 | ASM-INIT | model | 9 |
 | ASM-WINDOW-EXT | window | 8 |
 | ASM-WINDOW-V43 | window | 7 |
@@ -37,13 +37,13 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-DOF-GROWTH | model | 7 |
 | ASM-WINDOW-U1CUBE | window | 4 |
 | ASM-WINDOW-PAIR | window | 4 |
+| ASM-KTM | model | 4 |
+| ASM-Z2-MINIMAL | model | 3 |
 | ASM-WINDOW-U1SQ | window | 3 |
 | ASM-ORBIFOLD | model | 3 |
-| ASM-KTM | model | 3 |
-| ASM-Z2-MINIMAL | model | 2 |
+| ASM-EDGE-SEMANTICS | design | 3 |
 | ASM-WINDOW-EXC | window | 2 |
 | ASM-SMCONTENT | data | 2 |
-| ASM-EDGE-SEMANTICS | design | 2 |
 | ASM-WICK | framework | 1 |
 | ASM-ENVARIANCE | framework | 1 |
 | ASM-QM | framework | 0 |
@@ -52,14 +52,14 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 
 | 反証条件 | status | 閉包 |
 |---|---|---|
-| FAL-SUITE | open | 96 |
+| FAL-SUITE | open | 97 |
 | FAL-CEX-WINDOW | open | 26 |
-| FAL-CKM-OOS | open | 23 |
-| FAL-CONTINUUM | open | 20 |
+| FAL-CKM-OOS | open | 24 |
+| FAL-CONTINUUM | open | 21 |
 | FAL-EXOTIC-CHIRAL | open | 16 |
+| FAL-BMV | open | 9 |
 | FAL-QNEC | open | 8 |
-| FAL-BMV | open | 8 |
-| FAL-AREALAW | open | 7 |
+| FAL-AREALAW | open | 8 |
 | FAL-PAGE | open | 5 |
 | FAL-LORENTZ | open | 4 |
 | FAL-DIMFLOW | open | 4 |
@@ -81,6 +81,6 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | 6 | 1 |
 | 7 | 2 |
 | 8 | 5 |
-| 9 | 3 |
+| 9 | 4 |
 | 10 | 3 |
 | 11 | 1 |
