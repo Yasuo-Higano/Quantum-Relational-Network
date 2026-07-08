@@ -159,7 +159,7 @@
   scope: local
   introduced: "v2.2"
   status: active
-  statement: "余剰次元は磁束つき平坦トーラス (T²)ⁿ または傾き T⁴ の族とする (曲がった内部空間・CY は範囲外)。"
+  statement: "余剰次元は磁束つき平坦トーラス (T²)ⁿ・傾き T⁴・シアー (複素構造 τ) T² の族とする (曲がった内部空間・CY は範囲外)。"
 
 - id: ASM-OVERLAP
   type: model
