@@ -69,6 +69,17 @@ jobs:
             results/*.json
             certificates/
 
+  dag-prolog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: SWI-Prolog の導入
+        run: sudo apt-get update && sudo apt-get install -y swi-prolog
+      - name: 依存グラフの Prolog 推論 (Rust 監査との全数照合)
+        run: sh dag/run.sh
+      - name: 生成物の同一性 (facts / DOT / Mermaid / MD / JSON)
+        run: git diff --exit-code dag/
+
   lean-proofs:
     runs-on: ubuntu-latest
     steps:

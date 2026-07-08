@@ -532,3 +532,8 @@
   deps: []
   asm: [ASM-EDGE-SEMANTICS]
   fal: [FAL-SUITE]
+
+- id: QRN-TOOL-002
+  deps: [QRN-META-015]
+  asm: [ASM-EDGE-SEMANTICS]
+  fal: [FAL-SUITE]

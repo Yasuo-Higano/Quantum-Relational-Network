@@ -18,9 +18,10 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v15.1** — Rust 59 本 314 PASS / 0 FAIL + Lean 4 定理 10 本 (4 ファイル) +
-主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))。最新統合は
-[docs/uft-v15.0.md](docs/uft-v15.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
+**現在の到達点: v15.2** — Rust 59 本 314 PASS / 0 FAIL + Lean 4 定理 10 本 (4 ファイル) +
+主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md)) と Prolog 独立推論
+([dag/report.md](dag/report.md))。最新統合は [docs/uft-v15.0.md](docs/uft-v15.0.md)。
+この行の正しさ自体を `v151_audit` が CI で検査する。
 
 ## 実行方法
 
@@ -121,6 +122,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v14.5 | [uft-v14.5.md](docs/uft-v14.5.md) | `proofs/AnomalyArrayBig.lean` | **E1 域の Lean 化 (14 秒・一発通過)**: 大表現込み ≤24 成分の孤立地形の完全形 {15:1, 16:8, 17:1, 18:18, 22:2, 24:459} が定理に — AnomalyBig (162 分・狭い域) の ~700 分の 1。「列挙系の Lean 化は再帰を配列に」が確立 |
 | **v15.0** | [**uft-v15.0.md**](docs/uft-v15.0.md) | (統合) | **第十五期統合。Rust 314 PASS / 0 FAIL (sim 変更なし — v14.0 が git 検証つきで有効) + Lean 定理 10 本 (初版の「9 本」は v15.1 の正誤で修正)。執筆の弧 (完全原稿 2 本 + 書誌) と形式化の弧 (孤立地形の完全定理化) が閉じた — 改良方針の計算項目は全て返済・定理化・論文化** |
 | v15.1 | [uft-v15.1.md](docs/uft-v15.1.md) | `v151_audit` | **監査版 (依存の台帳化)**: 全 96 主張の依存 DAG (claims.graph.yml) + 仮定 37 件 (assumptions.yml) + 反証条件 15 件 (falsifiers.yml) を機械検証 — 非循環 (深さ 11)・等級単調 (C2 定理は現象論に依存しない)・孤児なし。影響範囲を機械導出 (最大: 格子正則化 51 主張)。Lean 定理数 9→10 の誤記を検出・修正し再発防止を CI 化 |
+| v15.2 | [uft-v15.2.md](docs/uft-v15.2.md) | `dag/` | **DAG の Prolog 独立推論**: claims.graph.json → Python 正規化 → facts.pl → swipl 推論 → DOT/Mermaid/MD/JSON レポート。深さ・被支持閉包・仮定影響範囲・反証射程を Rust 監査と独立に導出し**全数一致** (97 主張・112 辺) — 監査自体に v6.2 流の独立実装照合を適用 |
 
 ## リポジトリ構成
 
@@ -133,6 +135,8 @@ assumptions.yml      仮定台帳 (外すと結論が落ちる仮定の登録簿
 falsifiers.yml       反証条件台帳 (何が出たらどの主張を降格するか)
 claims.graph.json    依存グラフの機械可読エクスポート (v151_audit --write が生成)
 evidence_matrix.md   証拠マトリクスと影響範囲の一覧 (同上)
+dag/                 依存グラフの Prolog パイプライン (facts.pl 生成 → swipl 推論 →
+                     DOT/Mermaid/MD/JSON。sh dag/run.sh — Rust 監査との全数照合つき)
 docs/                バージョン付き理論文書
 sim/                 Rust ワークスペース (src/lib.rs: 乱数/複素数/Jacobi固有値/Bessel/SHA-256 等を自作)
   src/bin/           各バージョンのシミュレーション

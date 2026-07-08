@@ -1,0 +1,14 @@
+[facts] claims 97 / deps 112 / assumptions 37 / falsifiers 15 → dag/facts.pl
+=== v15.2 依存グラフの Prolog 推論 (dag/report.pl) ===
+
+  [PASS] 非循環性 (depends_tc に自己到達なし)
+  [PASS] 等級単調性 rank(dep) =< rank(claim)
+  [PASS] 孤児なし (局所仮定・反証条件は全て参照される)
+  [PASS] 深さ: Prolog = Rust (全主張)
+  [PASS] 被支持閉包: Prolog = Rust (全主張)
+  [PASS] 仮定の影響範囲: Prolog = Rust (全仮定)
+  [PASS] 反証条件の射程: Prolog = Rust (全反証条件)
+
+  出力: dag/qrn_dag.dot, dag/qrn_dag.mmd, dag/report.md, dag/report.json
+
+総合判定: [PASS] Prolog 独立推論は Rust 監査と全数一致

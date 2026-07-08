@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 96 件 / 依存辺 111 本 / 仮定 37 件 / 反証条件 15 件。
+主張 97 件 / 依存辺 112 本 / 仮定 37 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -107,7 +107,8 @@
 | QRN-GAUGE-016 | C2 | v14.4 | LR | 1 | 6 | 1 | 1 |
 | QRN-GAUGE-017 | C2 | v14.5 | LR | 1 | 6 | 1 | 1 |
 | QRN-META-014 | C5 | v15.0 | DR | 2 | 0 | 1 | 0 |
-| QRN-META-015 | C2 | v15.1 | CDR | 0 | 1 | 1 | 0 |
+| QRN-META-015 | C2 | v15.1 | CDR | 0 | 1 | 1 | 1 |
+| QRN-TOOL-002 | C2 | v15.2 | CDR | 1 | 1 | 1 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -148,16 +149,16 @@
 | ASM-KTM | model | active | 1 | 2 | QRN-EXP-003, QRN-META-007 |
 | ASM-SMCONTENT | data | active | 2 | 2 | QRN-GAUGE-009, QRN-MATTER-002 |
 | ASM-WINDOW-EXC | window | active | 1 | 2 | QRN-GAUGE-015, QRN-META-011 |
+| ASM-EDGE-SEMANTICS | design | active | 2 | 2 | QRN-META-015, QRN-TOOL-002 |
 | ASM-WICK | framework | active | 1 | 1 | QRN-STAT-001 |
 | ASM-ENVARIANCE | framework | active | 1 | 1 | QRN-BORN-002 |
-| ASM-EDGE-SEMANTICS | design | active | 1 | 1 | QRN-META-015 |
 | ASM-QM | framework | active | 0 | 0 |  |
 
 ## 反証条件の射程 — これが発火すると何が落ちるか
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 80 | 90 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 81 | 91 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CEX-WINDOW | open | 15 | 26 | 明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。 |
 | FAL-CKM-OOS | open | 8 | 21 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-CONTINUUM | open | 5 | 18 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
