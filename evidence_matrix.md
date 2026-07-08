@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 100 件 / 依存辺 115 本 / 仮定 38 件 / 反証条件 15 件。
+主張 101 件 / 依存辺 116 本 / 仮定 38 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -12,7 +12,7 @@
 
 | ID | 等級 | 版 | 証拠 | deps | asm | fal | 被支持 |
 |---|---|---|---|---|---|---|---|
-| QRN-C0-001 | C0 | v0.7 | D | 0 | 0 | 0 | 4 |
+| QRN-C0-001 | C0 | v0.7 | D | 0 | 0 | 0 | 5 |
 | QRN-C0-002 | C0 | v4.1 | D | 0 | 0 | 0 | 8 |
 | QRN-C0-003 | C0 | v0.8 | D | 0 | 0 | 0 | 1 |
 | QRN-C0-004 | C0 | v3.4 | D | 0 | 0 | 0 | 3 |
@@ -112,6 +112,7 @@
 | QRN-CORE-005 | C3 | v15.3 | CDR | 1 | 3 | 2 | 0 |
 | QRN-CONT-001 | C1 | v15.4 | CDR | 1 | 4 | 2 | 0 |
 | QRN-SEL-001 | C4 | v15.5 | CDR | 1 | 7 | 1 | 0 |
+| QRN-GRAV-004 | C1 | v15.6 | CDR | 1 | 4 | 2 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -119,10 +120,10 @@
 
 | 仮定 | type | status | 直接 | 閉包 | 閉包に含まれる主張 (抜粋) |
 |---|---|---|---|---|---|
-| ASM-LATTICE | framework | active | 23 | 54 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
+| ASM-LATTICE | framework | active | 24 | 55 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
 | ASM-SEED | design | active | 13 | 36 | QRN-BH-001, QRN-BORN-001, QRN-COSMO-003, QRN-FIELD-001, … |
-| ASM-LOWDIM | framework | active | 22 | 32 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
-| ASM-GAUSS | framework | active | 19 | 29 | QRN-ARROW-001, QRN-CAUSAL-001, QRN-CAUSAL-002, QRN-CONT-001, … |
+| ASM-LOWDIM | framework | active | 23 | 33 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
+| ASM-GAUSS | framework | active | 20 | 30 | QRN-ARROW-001, QRN-CAUSAL-001, QRN-CAUSAL-002, QRN-CONT-001, … |
 | ASM-PDG | data | active | 19 | 28 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
 | ASM-GAUGE-GROUP | model | active | 14 | 23 | QRN-GAUGE-003, QRN-GAUGE-004, QRN-GAUGE-006, QRN-GAUGE-007, … |
 | ASM-TORUS | model | active | 16 | 23 | QRN-KK-001, QRN-MATTER-001, QRN-META-007, QRN-META-008, … |
@@ -136,8 +137,8 @@
 | ASM-STABLE-LABEL | convention | active | 8 | 19 | QRN-META-007, QRN-META-008, QRN-META-009, QRN-META-010, … |
 | ASM-EFT-VALIDITY | model | active | 3 | 16 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
 | ASM-WINDOW-V31 | window | active | 3 | 16 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
+| ASM-MODK | definition | active | 7 | 13 | QRN-CORE-003, QRN-GRAV-001, QRN-GRAV-002, QRN-GRAV-003, … |
 | ASM-SIGMA-DATA | model | active | 4 | 12 | QRN-META-010, QRN-META-011, QRN-META-012, QRN-META-013, … |
-| ASM-MODK | definition | active | 6 | 12 | QRN-CORE-003, QRN-GRAV-001, QRN-GRAV-002, QRN-GRAV-003, … |
 | ASM-INIT | model | active | 1 | 9 | QRN-ARROW-001, QRN-CAUSAL-002, QRN-CORE-002, QRN-CORE-004, … |
 | ASM-WINDOW-EXT | window | active | 4 | 8 | QRN-GAUGE-007, QRN-GAUGE-008, QRN-GAUGE-010, QRN-GAUGE-013, … |
 | ASM-DOF-GROWTH | model | active | 2 | 7 | QRN-ARROW-001, QRN-CORE-002, QRN-CORE-004, QRN-META-004, … |
@@ -162,14 +163,14 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 84 | 94 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 85 | 95 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CEX-WINDOW | open | 15 | 26 | 明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。 |
 | FAL-CKM-OOS | open | 8 | 22 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-CONTINUUM | open | 7 | 20 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-EXOTIC-CHIRAL | open | 4 | 16 | SM 1 世代の外のカイラル物質 (第 4 世代・分数電荷ハドロン・エキゾチック表現) が発見される。 |
 | FAL-QNEC | open | 5 | 8 | QNEC 型不等式の真の破れ (誤差予算を超える負ギャップが N を上げても縮まない) が数値または理論で確立する。 |
 | FAL-BMV | open | 6 | 7 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
-| FAL-AREALAW | open | 3 | 6 | アナログ系 (冷却原子等) で面積則・エンタングルメント第一法則の系統的破れが観測される。 |
+| FAL-AREALAW | open | 4 | 7 | アナログ系 (冷却原子等) で面積則・エンタングルメント第一法則の系統的破れが観測される。 |
 | FAL-PAGE | open | 4 | 5 | ブラックホール蒸発で情報喪失が確立する (Page 曲線からの系統的逸脱)。 |
 | FAL-LORENTZ | open | 2 | 4 | プランクスケールのローレンツ不変性の破れが主要次数で確立する (GRB 光子のエネルギー依存遅延など)。 |
 | FAL-DIMFLOW | open | 2 | 4 | 超高エネルギーで実効スペクトル次元が 2 へ低下しないことが確立する。 |

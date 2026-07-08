@@ -1,4 +1,4 @@
-[facts] claims 100 / deps 115 / assumptions 38 / falsifiers 15 → dag/facts.pl
+[facts] claims 101 / deps 116 / assumptions 38 / falsifiers 15 → dag/facts.pl
 === v15.2 依存グラフの Prolog 推論 (dag/report.pl) ===
 
   [PASS] 非循環性 (depends_tc に自己到達なし)
