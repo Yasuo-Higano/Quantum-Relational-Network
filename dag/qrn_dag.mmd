@@ -121,6 +121,7 @@ graph BT
   QRN_YUK_027["QRN-YUK-027 (c4)"]:::c4
   QRN_MSR_001["QRN-MSR-001 (c4)"]:::c4
   QRN_MSR_002["QRN-MSR-002 (c4)"]:::c4
+  QRN_MSR_003["QRN-MSR-003 (c4)"]:::c4
   QRN_GRAV_001 --> QRN_C0_001
   QRN_BH_001 --> QRN_C0_003
   QRN_CAUSAL_002 --> QRN_CAUSAL_001
@@ -288,6 +289,10 @@ graph BT
   QRN_MSR_001 --> QRN_YUK_027
   QRN_MSR_002 --> QRN_SEL_004
   QRN_MSR_002 --> QRN_MSR_001
+  QRN_MSR_003 --> QRN_MSR_001
+  QRN_MSR_003 --> QRN_MSR_002
+  QRN_MSR_003 --> QRN_SEL_004
+  QRN_MSR_003 --> QRN_YUK_027
   classDef c0 fill:#bdbdbd
   classDef c1 fill:#7cb342
   classDef c2 fill:#1e88e5

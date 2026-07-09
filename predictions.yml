@@ -70,3 +70,23 @@
   falsifier: "ν が Dirac と確定 → シーソー現象論と B−L ゲージ化の物理的解釈を降格 (FAL-NEUTRINO)"
   source: "v4.2 / v7.1"
   status: registered
+
+- id: PRED-007
+  title: "ユニタリティ三角形の角 γ — 測度判定の S3 用 holdout"
+  observable: "UT 角 γ = arg(−V_ud V*_ub / (V_cd V*_cb))"
+  qrn_value: "一様測度の 10 量 MAP から導出 (v17.9 実行冒頭で窓ごとに凍結・印字 — S3 採点より前に固定される機械的順序)。参考: v16.5 の N=18 検査では「形が合い大きさ半分」"
+  competing: "測定 γ = 65.9° ± 3.5° (PDG 2024 級)。SM global fit は予言でなく fit"
+  data_not_used: "γ (および全 CP 角) は一度も尤度に入れていない (J のみ v16.4 で昇格済み)"
+  falsifier: "測度判定 (v17.9) で生存した測度の MAP γ が一様基線より測定から系統的に遠ざかる → 当該測度は S3 違反で棄却"
+  source: "v17.9 (登録)"
+  status: registered
+
+- id: PRED-008
+  title: "ユニタリティ三角形の角 β — 測度判定の S3 用 holdout"
+  observable: "UT 角 β = arg(−V_cd V*_cb / (V_td V*_tb))"
+  qrn_value: "一様測度の 10 量 MAP から導出 (v17.9 実行冒頭で窓ごとに凍結・印字)"
+  competing: "測定 β = 22.2° ± 0.7° (sin2β = 0.699)"
+  data_not_used: "β は一度も尤度に入れていない"
+  falsifier: "PRED-007 と同一 (生存測度が holdout を悪化させたら S3 違反)"
+  source: "v17.9 (登録)"
+  status: registered
