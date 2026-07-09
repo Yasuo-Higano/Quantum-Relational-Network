@@ -500,6 +500,106 @@ pub fn write_artifact(rel: &str, content: &str) -> String {
     path
 }
 
+// ---------------- モード表 disk キャッシュ (v16.11) ----------------
+// 磁束トーラスの縮退帯モード (2N² 稠密 jacobi、1 本 ~14 分 @ N=36) は決定的計算
+// なので、(n, q, s, k, 構成タグ) をキーに sim/cache/ へ保存して使い回す。
+// キャッシュは加速器であり一次ソースではない: 削除すれば同一値が再計算される。
+// 構成タグ tag は模型の構成 (ホッピング・磁束規約) が変わったら上げること —
+// 加えて各バイナリの回帰ゲート (lnZ アンカー) が物理レベルの不一致を検出する。
+
+/// モード表をキャッシュへ保存 (形式: ヘッダ u64×6 + gap,spread f64 + 実部虚部交互 f64)
+pub fn cache_save_modes(
+    tag: u64,
+    n: usize,
+    q: usize,
+    s: usize,
+    k: usize,
+    modes: &[Vec<(f64, f64)>],
+    gap: f64,
+    spread: f64,
+) {
+    let root = if std::path::Path::new("cache").is_dir() || std::path::Path::new("src").is_dir() {
+        "cache"
+    } else {
+        "sim/cache"
+    };
+    let _ = std::fs::create_dir_all(root);
+    let path = format!("{}/modes_t{}_n{}_q{}_s{}_k{}.bin", root, tag, n, q, s, k);
+    let ns = n * n;
+    let mut buf: Vec<u8> = Vec::with_capacity(8 * (6 + 2 + q * ns * 2));
+    for v in [
+        0x51524e4d4f444531u64,
+        tag,
+        n as u64,
+        q as u64,
+        s as u64,
+        k as u64,
+    ] {
+        buf.extend_from_slice(&v.to_le_bytes());
+    }
+    buf.extend_from_slice(&gap.to_le_bytes());
+    buf.extend_from_slice(&spread.to_le_bytes());
+    for m in modes {
+        assert_eq!(m.len(), ns);
+        for &(re, im) in m {
+            buf.extend_from_slice(&re.to_le_bytes());
+            buf.extend_from_slice(&im.to_le_bytes());
+        }
+    }
+    let tmp = format!("{}.tmp", path);
+    std::fs::write(&tmp, &buf).unwrap_or_else(|e| panic!("キャッシュ書き出し失敗: {}", e));
+    let _ = std::fs::rename(&tmp, &path);
+}
+
+/// モード表をキャッシュから読む。無ければ None (呼び出し側が計算して保存する)。
+pub fn cache_load_modes(
+    tag: u64,
+    n: usize,
+    q: usize,
+    s: usize,
+    k: usize,
+) -> Option<(Vec<Vec<(f64, f64)>>, f64, f64)> {
+    let root = if std::path::Path::new("cache").is_dir() || std::path::Path::new("src").is_dir() {
+        "cache"
+    } else {
+        "sim/cache"
+    };
+    let path = format!("{}/modes_t{}_n{}_q{}_s{}_k{}.bin", root, tag, n, q, s, k);
+    let buf = std::fs::read(&path).ok()?;
+    let ns = n * n;
+    if buf.len() != 8 * (6 + 2 + q * ns * 2) {
+        return None;
+    }
+    let rd_u64 = |i: usize| u64::from_le_bytes(buf[8 * i..8 * i + 8].try_into().unwrap());
+    let hdr = [
+        0x51524e4d4f444531u64,
+        tag,
+        n as u64,
+        q as u64,
+        s as u64,
+        k as u64,
+    ];
+    for (i, &h) in hdr.iter().enumerate() {
+        if rd_u64(i) != h {
+            return None;
+        }
+    }
+    let rd_f64 = |i: usize| f64::from_le_bytes(buf[8 * i..8 * i + 8].try_into().unwrap());
+    let gap = rd_f64(6);
+    let spread = rd_f64(7);
+    let mut modes = Vec::with_capacity(q);
+    let mut off = 8;
+    for _ in 0..q {
+        let mut m = Vec::with_capacity(ns);
+        for _ in 0..ns {
+            m.push((rd_f64(off), rd_f64(off + 1)));
+            off += 2;
+        }
+        modes.push(m);
+    }
+    Some((modes, gap, spread))
+}
+
 // ---------------- QRN core (v6.7) ----------------
 // 統一理論としての説得力は「新しいシミュレーションを増やすこと」ではなく
 // 「既存のシミュレーションを同じ core から出すこと」で上がる (改良方針 §7)。

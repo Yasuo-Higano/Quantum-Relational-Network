@@ -1,3 +1,4 @@
 sim/target/
 *.tmp
 __pycache__
+sim/cache/
