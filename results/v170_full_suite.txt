@@ -1,0 +1,105 @@
+=== v17.0 全スイート自己検証 (2026-07-09) ===
+
+集計規則 (v7.0 で固定、v11.0 でグロブ改訂): 各バイナリの stdout に現れる [PASS] / [FAIL] の出現数。
+再現方法: cd sim && cargo build --release && for b in target/release/v*_* (実行可能のみ、.d 除外); do $b; done
+本統合の実行区分:
+  - T⁴ 系 4 本 (v121/v122/v123/v132, 計 ~2.5 時間) は v14.0 の全数実行 (results/v140_full_suite.txt)
+    を引用する。第十六期以降のソース差分は無し (v16.0 時点の検証: fmt 整形のみ)。
+  - モード表 disk キャッシュ (v16.11 導入, sim/cache/) は v1611/v1612/v1613 で使用される。
+    キャッシュは加速器であり一次ソースではない (削除すれば同一値が再計算される)。
+
+Rust シミュレーション: 78 本 (実行 74 + 引用 4)
+
+v01_gr PASS=2 FAIL=0
+v01_qm PASS=3 FAIL=0
+v02_pimc PASS=10 FAIL=0
+v03_phi4 PASS=0 FAIL=0
+v04_u1 PASS=11 FAIL=0
+v05_entangle PASS=3 FAIL=0
+v06_causet PASS=0 FAIL=0
+v06_dt PASS=0 FAIL=0
+v07_infogeom PASS=1 FAIL=0
+v08_page PASS=1 FAIL=0
+v101_pairing PASS=5 FAIL=0
+v102_geopair PASS=10 FAIL=0
+v103_pairgeom PASS=4 FAIL=0
+v11_quench PASS=2 FAIL=0
+v111_exceptional PASS=17 FAIL=0
+v112_orbifold PASS=5 FAIL=0
+v113_orient PASS=4 FAIL=0
+v114_tensorcore PASS=6 FAIL=0
+v12_erepr PASS=1 FAIL=0
+v13_qec PASS=10 FAIL=0
+v131_lanczos PASS=5 FAIL=0
+v14_z2gauge PASS=0 FAIL=0
+v15_lambda PASS=3 FAIL=0
+v151_audit PASS=11 FAIL=0   (in-suite は 9/2 — スイート走行中に統合文書が作成され README 更新前だったための一時的 FAIL。README/台帳整合後の単独再実行値を採用。台帳検査が「証拠なきコミットを許さない」ことの実演として記録)
+v153_corev2 PASS=25 FAIL=0
+v154_continuum PASS=15 FAIL=0
+v155_selection PASS=5 FAIL=0
+v156_einstein PASS=11 FAIL=0
+v157_predict PASS=6 FAIL=0
+v16_born PASS=3 FAIL=0
+v161_tiltcp PASS=4 FAIL=0
+v1610_sigsens PASS=8 FAIL=0
+v1611_selection2 PASS=9 FAIL=0
+v1612_depthscan PASS=10 FAIL=0
+v1613_jeffreys PASS=9 FAIL=0
+v162_shearcp PASS=3 FAIL=0
+v163_sheartriple PASS=3 FAIL=0
+v164_tenquantity PASS=5 FAIL=0
+v165_scorecard PASS=4 FAIL=0
+v166_wilson12 PASS=3 FAIL=0
+v167_nscaling PASS=4 FAIL=0
+v168_taure PASS=7 FAIL=0
+v169_asymshear PASS=13 FAIL=0
+v21_relent PASS=7 FAIL=0
+v22_kk PASS=4 FAIL=0
+v23_matter PASS=6 FAIL=0
+v24_inflation PASS=3 FAIL=0
+v25_bmv PASS=0 FAIL=0
+v31_gauge PASS=2 FAIL=0
+v32_yukawa PASS=0 FAIL=0
+v33_ctheorem PASS=3 FAIL=0
+v34_unruh PASS=2 FAIL=0
+v41_qnec PASS=3 FAIL=0
+v42_neutrino PASS=0 FAIL=0
+v43_landscape PASS=0 FAIL=0
+v44_desitter PASS=2 FAIL=0
+v51_arrow PASS=2 FAIL=0
+v52_bigreps PASS=1 FAIL=0
+v53_decoupling PASS=1 FAIL=0
+v61_ledger PASS=7 FAIL=0
+v62_atlas PASS=39 FAIL=0
+v63_qnec_budget PASS=8 FAIL=0
+v64_controls PASS=3 FAIL=0
+v65_bayes PASS=8 FAIL=0
+v67_core PASS=7 FAIL=0
+v71_twou1 PASS=9 FAIL=0
+v72_geomfn PASS=2 FAIL=0
+v73_bmv2 PASS=9 FAIL=0
+v74_core2 PASS=11 FAIL=0
+v81_geoselect PASS=4 FAIL=0
+v82_threeu1 PASS=11 FAIL=0
+v91_ckmselect PASS=5 FAIL=0
+v92_labelstab PASS=18 FAIL=0
+v94_qneccore PASS=10 FAIL=0
+実行小計 binaries=74 PASS=448 FAIL=0
+
+--- 引用ブロック (T⁴ 系 4 本 — v14.0 実行, results/v140_full_suite.txt) ---
+v121_tiltflux PASS=5 FAIL=0
+v122_tiltwilson PASS=3 FAIL=0
+v123_fluxscan PASS=9 FAIL=0
+v132_deeptilt PASS=4 FAIL=0
+引用小計 binaries=4 PASS=21 FAIL=0
+
+Lean 4 機械検証 (本統合では再実行せず — 一次ソース: results/v68_lean.txt, v75_lean.txt, v144_lean.txt, v145_lean.txt):
+  proofs/Anomaly.lean         定理 3 本 (v3.1 域: SM 充足・破れ・全列挙一意性)      991 s
+  proofs/AnomalyBig.lean      定理 3 本 (v5.2 域: 大表現込み孤立性)               9734 s
+  proofs/AnomalyArray.lean    定理 2 本 (v4.3 域: 配列ベース {15:1,16:8,24:459})    3.3 s
+  proofs/AnomalyArrayBig.lean 定理 2 本 (E1 域: 完全地形 {15:1,16:8,17:1,18:18,22:2,24:459}) 13.8 s
+  計 10 本 (定理宣言の機械計数は v151_audit が CI で照合)
+
+TOTAL binaries=78 PASS=469 FAIL=0 (実行 74: 448/0 + 引用 4: 21/0)
+
+総計: Rust 469 PASS / 0 FAIL + Lean 定理 10 本 (4 ファイル)
