@@ -92,3 +92,47 @@
   source: "v17.9 (登録)"
   status: scored-miss
   score: "orientation 固定後 (v17.13): β = +15.2° vs 測定 22.2°±0.7° — factor 1.46 (誤差帯外・factor 5 内)。登録時に数値的採点基準を固定しなかった registration の限界も記録 — 保守的に miss と採点"
+
+- id: PRED-009
+  title: "PMNS sin²θ12 — 最小幾何シーソーの prior-predictive"
+  observable: "レプトン混合角 sin²θ12"
+  qrn_value: "帯 (収束点 τ=1/12+i/2, M_R=M₀·I, ν 一様): 16/50/84% = [0.003, 0.013, 0.297]"
+  competing: "測定 0.307 (global fit)"
+  data_not_used: "レプトン混合は一切尤度に入れていない (ν セクターは 10 量に無拘束 — 構成上データ盲目)"
+  falsifier: "68% 帯が測定を外せば最小設計 (M_R∝I) は棄却級"
+  source: "v18.3"
+  status: scored-miss
+  score: "0.307 は 84% 端 0.297 の 3% 外 — 惜敗の miss。外れの住所は M_R 構造 (docs/uft-v18.3.md §2)"
+
+- id: PRED-010
+  title: "PMNS sin²θ23 — 同上"
+  observable: "レプトン混合角 sin²θ23"
+  qrn_value: "帯: [0.003, 0.003, 0.242]"
+  competing: "測定 0.55 (ほぼ最大混合)"
+  data_not_used: "同上"
+  falsifier: "同上"
+  source: "v18.3"
+  status: scored-miss
+  score: "決定的 miss — 最小幾何シーソーは小混合を予言し、θ23 の大混合に敗れる (M_R 幾何化の要求)"
+
+- id: PRED-011
+  title: "PMNS sin²θ13 — 同上"
+  observable: "レプトン混合角 sin²θ13"
+  qrn_value: "帯: [0.001, 0.036, 0.306]"
+  competing: "測定 0.022"
+  data_not_used: "同上"
+  falsifier: "同上"
+  source: "v18.3"
+  status: scored-hit
+  score: "hit (中央値 0.036 は測定の 1.6 倍) — ただし帯が広く弱い hit と明記"
+
+- id: PRED-012
+  title: "ニュートリノ質量² 比 r = Δm²21/Δm²31 — 同上"
+  observable: "r = Δm²21/|Δm²31|"
+  qrn_value: "帯: [~0, ~0, 0.0023]"
+  competing: "測定 0.030"
+  data_not_used: "同上"
+  falsifier: "同上"
+  source: "v18.3"
+  status: scored-miss
+  score: "13 倍外の miss — シーソー (M∝I) は観測より遥かに強い ν 階層を予言 (Dirac 階層の二乗が素通し)"

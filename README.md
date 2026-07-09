@@ -18,7 +18,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v18.2** — Rust 78 本 + Lean 4 定理 10 本 (4 ファイル) +
+**現在の到達点: v18.3** — Rust 78 本 + Lean 4 定理 10 本 (4 ファイル) +
 主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
 ([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
 最新統合は [docs/uft-v16.0.md](docs/uft-v16.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -159,6 +159,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | **v18.0** | [**uft-v18.0.md**](docs/uft-v18.0.md) | (全スイート) | **第十八期統合**: 13 版・PROMPT/3 の v18 系 6 項目完了 + τ アーク + orientation。**測度問題は溶解** (幾何を正せば一様測度が最良 — 残るのは THERMO の 4 窓世代不動 +0.5 と τ 分布の上位問題)。**τ = 1/12 + i/2 が測定された数に**、orientation は測定 1 ビット。CP は大きさ・位相角・符号の三層で完結 (γ 誤差内 hit)。paper 4 本。テーゼ: **問いを一段上げるたびに、答えは幾何に返ってきた** |
 | v18.1 | [uft-v18.1.md](docs/uft-v18.1.md) | (出版整形) | **4 論文の LaTeX 化** (`paper/tex/`, revtex4-2 PRD preprint — tectonic でコンパイル検証・紙面検収済み)。コピーエディット: anomaly の日本語混入 2 箇所修正・cp/measure に v17.12/13 の後日譚 Addendum。開発記録: v153/v154 JSON の末桁はスレッド順序依存 (~1e-13) — 一次ソースは初出値保持。**残: 著者確定・投稿先決定・図の PDF 化** |
 | v18.2 | [uft-v18.2.md](docs/uft-v18.2.md) | `v182_apexcont` | **収束点の連続極限検証** (τ=1/12+i/2 厳密固定で 72×36 へ倍化, 5184² 稠密): 事前登録 (b) — **12/12 維持 (7 幾何連続)・縮退保持 (有理点は倍格子でも指数保護)・大半 factor ±20% (3 つ改善)**、だが lnZ −0.75 低下・**m_c/m_t 1.90→3.22 = 歴史的弱点が格子依存と判明** (粗格子の m_c 成功は一部離散化)。−18.43 は格子条件付きで読む (scoping 修正 — 質的主張は不変)。m_c の住所は幾何外+格子敏感 → 別の物理の示唆 |
+| v18.3 | [uft-v18.3.md](docs/uft-v18.3.md) | `v183_pmns` | **レプトン混合の holdout** (最小幾何シーソー M_R∝I・データ盲目 prior-predictive): **被覆 1/4 で棄却級** — sin²θ23 (測定 0.55 vs 帯上端 0.24) が決定的 miss・sin²θ12 惜敗・r は 13 倍外・θ13 のみ hit。**情報量のある外れ: 住所は Dirac 側でなく Majorana 側 (M_R = B−L 破れの幾何)** — anomaly-search の「B−L は ν_R を強制」と符合。PRED-009〜012 採点。次: M_R の幾何化 |
 
 ## リポジトリ構成
 
