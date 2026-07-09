@@ -1,6 +1,6 @@
 # CP Violation Requires Complex Structure: From a Structural Zero to the Measure Problem in Magnetized-Torus Yukawa Textures
 
-**Draft v1 (v17.1).** 対象誌: JHEP / PRD。companion: [geometric-yukawa-full.md](geometric-yukawa-full.md)。全数値の一次ソースは `results/` (本文に結果ファイル名を併記できるよう claims.yml の id を引く)。書誌は未照合 (照合は別版で行う — v14.3 の慣例)。
+**Draft v2 (v17.1 執筆, v17.2 書誌照合済み).** 対象誌: JHEP / PRD。companion: [geometric-yukawa-full.md](geometric-yukawa-full.md)。全数値の一次ソースは `results/` (本文に結果ファイル名を併記できるよう claims.yml の id を引く)。
 
 ---
 
@@ -36,7 +36,7 @@ What tilting the *flux* cannot do, tilting the *torus* does. A shear identificat
 - **the exact three-fold degeneracy survives every shear** (spread ≤ 10⁻¹², gap unchanged) — unlike flux tilts, complex structure deforms the torus without touching the index;
 - the CP-generating phase is geometric: it lives in the boundary identification, exactly where continuum intuition puts the complex-structure modulus.
 
-Charging the evidence for this new discrete freedom is the subject of the next two sections; the qualitative point stands alone: **in this program, CP violation is not a property of flux data at all — it is a property of the shape of the torus.**
+Charging the evidence for this new discrete freedom is the subject of the next two sections; the qualitative point stands alone: **in this program, CP violation is not a property of flux data at all — it is a property of the shape of the torus.** The continuum literature anticipated the direction: in magnetized toroidal orbifolds the CP phase is known to require a non-vanishing real part of the complex-structure modulus τ [5]. What the present construction adds is the lattice-exact realization (index protected at every shear), the falsification route by which the requirement was *forced* rather than assumed — and, next, the Bayesian price tag.
 
 ## 5. The price, and the +306-nat reversal (QRN-YUK-018/019)
 
@@ -102,13 +102,13 @@ Everything is deterministic and dependency-free (Rust, single shared numerical l
 
 ## References
 
-*(未照合 — 書誌の Web 照合は別版で行う。[1] と [8] は本計画の内部参照)*
+*(書誌は 2026-07-09 に Web 照合済み — [3][4][5] は本版で新規照合、[2][6][7] は companion の v14.3 照合を引き継ぐ。[1][8] は本計画の内部参照)*
 
 [1] This program, companion paper: "Yukawa Hierarchies from Magnetized Tori without Order-One Coefficients," paper/geometric-yukawa-full.md (v14.1–v14.3).
 [2] D. Cremades, L. E. Ibáñez and F. Marchesano, "Computing Yukawa couplings from magnetized extra dimensions," JHEP 05 (2004) 079, arXiv:hep-th/0404229.
-[3] C. Jarlskog, "Commutator of the quark mass matrices in the standard electroweak model and a measure of maximal CP nonconservation," Phys. Rev. Lett. 55 (1985) 1039.
-[4] Particle Data Group, "Review of Particle Physics" (CKM magnitudes, J = 3.08×10⁻⁵).
-[5] T. Kobayashi et al., on CP violation and complex-structure / modular moduli in magnetized torus models (系列 — 照合時に確定).
+[3] C. Jarlskog, "Commutator of the Quark Mass Matrices in the Standard Electroweak Model and a Measure of Maximal CP Nonconservation," Phys. Rev. Lett. 55 (1985) 1039.
+[4] S. Navas et al. (Particle Data Group), "Review of Particle Physics," Phys. Rev. D 110, 030001 (2024). — The numerical target J = 3.08×10⁻⁵ used throughout the program was fixed at pre-registration time from the then-current PDG global fit; the 2024 fit (J ≈ 3.12×10⁻⁵) differs by 1.3%, negligible against the lognormal likelihood width σ = ln 2.
+[5] T. Kobayashi, K. Nishiwaki and Y. Tatsuta, "CP-violating phase on magnetized toroidal orbifolds," JHEP 04 (2017) 080, arXiv:1609.08608.
 [6] R. Blumenhagen, B. Körs, D. Lüst and S. Stieberger, "Four-dimensional string compactifications with D-branes, orientifolds and fluxes," Phys. Rept. 445 (2007) 1–193.
 [7] R. Trotta, "Bayes in the sky: Bayesian inference and model selection in cosmology," Contemp. Phys. 49 (2008) 71–104.
 [8] 本計画のリポジトリ: Quantum Relational Network (claims.yml, results/, docs/) — 全数値の一次ソース。
