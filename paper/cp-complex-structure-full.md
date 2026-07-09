@@ -1,0 +1,114 @@
+# CP Violation Requires Complex Structure: From a Structural Zero to the Measure Problem in Magnetized-Torus Yukawa Textures
+
+**Draft v1 (v17.1).** 対象誌: JHEP / PRD。companion: [geometric-yukawa-full.md](geometric-yukawa-full.md)。全数値の一次ソースは `results/` (本文に結果ファイル名を併記できるよう claims.yml の id を引く)。書誌は未照合 (照合は別版で行う — v14.3 の慣例)。
+
+---
+
+## Abstract
+
+The companion paper established that fermion mass hierarchies and CKM magnitudes arise from magnetized tori with no order-one coefficients, and that the discrete data of the compactification — fluxes, Wilson lines, generation pairing — are irreducible. It left CP phases unused, and its rectangular geometry carried an unnoticed prediction: the Jarlskog invariant vanishes identically. We report a falsification-driven arc that turns this defect into structure. First, the vanishing is *structural*: with real Wilson lines on factorizable T²×T², every zero-mode overlap phase cancels in the rephasing-invariant combination, so J = 0 exactly — the model was refuted by a held-out observable before any fit. Tilted (non-factorizable) fluxes do not repair it: their J is structurally suppressed four orders below the lattice scale. What generates CP is *complex structure*: a shear identification (x, N−1) → (x+s, 0), giving τ = (s+iN)/N, raises J by eleven orders of magnitude while preserving the exact three-fold zero-mode degeneracy, and the minimal shear lands on the measured magnitude. Admitting J as a tenth observable flips the Bayesian contest by +306 nats — geometries that cannot make CP are not models of a CP-violating world — and the same complex structure repairs, out of sample, the third-generation mixing that the rectangular model systematically underpredicted (|V_td|: MAP 0.0082 vs measured 0.0086). The maximum-a-posteriori shear model places all twelve observables (ten fitted, two held out) within a factor of five. The residual weak spot, a two-fold overprediction of the Cabibbo mixing, is acquitted lever by lever — Wilson coarseness, lattice spacing, and the real part of τ leave it invariant on the symmetric section — and is finally diagnosed by a 21-geometry map as a disease of *equal shear on the two tori*: asymmetric complex structures place |V_us| at percent accuracy, while CP prefers symmetry, exposing an evidence-degenerate valley whose only grid-robust survivor is the physical Higgs width (1/18 of the torus, invariant across geometry, lattice, and prior grid). A selection-principle rematch on this valley produces the program's first surviving data-blind principle — a hierarchy-tilted prior at +2.3 nats — whose anatomy (survival window β ∈ [0.25, 1.7], collapse of hard selection at −8386 nats) and identity (histogram-flattening priors reproduce it within 0.05 nats, while the config-density slope −0.19 refutes the naive cancellation mechanism) reduce it to a *measure correction*: the configuration measure of the shear family over-represents shallow mass ratios, and any data-blind correction of this over-representation survives at +3 nats. The arc thus ends one level up from where it began: the discrete-data ledger acquires complex structure, and the measure on the ledger becomes an empirical question.
+
+---
+
+## 1. Introduction
+
+The companion paper [1] closed with two admissions: CP phases were unused, and the upstream discrete data awaited a selection principle. Both are resolved here, in a direction we did not choose — the observables chose it.
+
+The instrument is unchanged: generations are exact zero modes of a lattice Dirac operator on magnetized tori (flux Q = 3, degeneracy exact to 10⁻¹²), sectors are addressed by discrete Wilson lines, Yukawa matrices are overlap integrals with *no random coefficients*, and hypotheses are weighed by Bayesian evidence on lognormal likelihoods (σ = ln 2) over the six mass ratios, three CKM magnitudes, and — from §4 on — the Jarlskog invariant J = Im(V_us V_cb V*_ub V*_cs). Held-out observables (|V_td|, |V_ts|) are never fitted and are scored out of sample. Every claim carries a machine-validated ledger entry (id quoted in text); the full suite reports 469 PASS / 0 FAIL across 78 programs.
+
+The narrative discipline is the companion's: negative results are computed and reported with the same machinery as positive ones. This paper contains, in order: one structural zero, one failed repair, one discovery, one reversal, three acquittals, one diagnosis, one degeneracy, and one surviving principle that dissolves — on inspection — into a statement about measure. Each step was pre-registered with explicit falsifiers before the run.
+
+## 2. The structural zero (QRN-YUK-016 lineage; PRED-002/003)
+
+The rectangular T²×T² of the companion, with real Wilson lines, predicts **J = 0 exactly**. The mechanism is elementary once seen: factorizable geometry makes every Yukawa entry a product of per-torus overlaps whose phases are separately rephasable away; no closed rephasing-invariant phase survives. The prediction was found not by inspection but by falsification: |J| was scored as a held-out observable and the posterior window (numeric floor ~10⁻⁸) excluded the measurement J = 3.08×10⁻⁵ at more than 5σ — recorded as a window refutation in the prediction ledger (PRED-003), alongside a correlated miss: the rectangular posterior placed |V_td| at median 0.0022 with 95% upper bound 0.0070, below the measured 0.0086 (PRED-002). The companion's successful model had been refuted by the observables it was not fitting — which is precisely what holdouts are for.
+
+## 3. Tilted flux is not the repair (development record)
+
+The obvious candidate for CP is non-factorizability. Tilted four-torus fluxes (the index-3 family of the companion's §5c, generalized to index 9 with per-sector Wilson lines) produce genuinely non-factorized zero modes, yet their Jarlskog invariant is *structurally suppressed*: the maximum over a 36-Wilson-configuration scan is |J| ≤ 2.6×10⁻⁸, four orders of magnitude below the lattice scale of the same quantity (1.6×10⁻⁴, measured by a positive control). Non-factorized magnitudes do not imply non-factorizable *phases*.
+
+The run also exposed three instrument traps, which we report because each could silently fabricate or destroy CP in related programs: (i) a Krylov eigensolver's residual certifies the vectors it found, *not* the exhaustion of a degenerate subspace — our first control "detected" a spurious degeneracy splitting of 4×10⁻² that an exact product construction refuted; (ii) Wilson steps of 2πk/N on a flux-N² lattice are gauge-trivial (N·w ∈ 2πZ) — flux-quantum steps w = 2πQk/N² are the physical refinement; (iii) CKM matrices built from up- and down-sectors with *different* left-handed Wilson lines are unphysical and can show fake J at the 10⁻¹ level — the shared left-handed address is not a convention but a requirement. A fourth trap is subtler: phase diagnostics on individual Yukawa entries (e.g. plaquette phases) are basis-dependent inside a degenerate band and were discarded; J is the basis-safe invariant.
+
+## 4. Complex structure generates CP (QRN-YUK-017)
+
+What tilting the *flux* cannot do, tilting the *torus* does. A shear identification (x, N−1) → (x+s, 0) endows the lattice torus with complex structure τ = (s + iN)/N. Under the same flux and Wilson data:
+
+- **J rises by eleven orders of magnitude** (10⁻¹⁶ → 10⁻⁵ at s = 1), with max|J| = 2.9×10⁻⁵ against the measured 3.08×10⁻⁵ — the *minimal* lattice shear lands on the observed magnitude;
+- **the exact three-fold degeneracy survives every shear** (spread ≤ 10⁻¹², gap unchanged) — unlike flux tilts, complex structure deforms the torus without touching the index;
+- the CP-generating phase is geometric: it lives in the boundary identification, exactly where continuum intuition puts the complex-structure modulus.
+
+Charging the evidence for this new discrete freedom is the subject of the next two sections; the qualitative point stands alone: **in this program, CP violation is not a property of flux data at all — it is a property of the shape of the torus.**
+
+## 5. The price, and the +306-nat reversal (QRN-YUK-018/019)
+
+On the nine phase-blind observables, shear costs evidence: the 16-geometry contest (s₁, s₂ ∈ {0..3}², with the exchange symmetry (a,b) ≡ (b,a) verified exactly) gives rect −19.86 (the companion's regression anchor, reproduced to ±0.003) versus −21.13 for minimal one-sided shear: **the price of CP is 1.27 nats** on a scale that does not know CP exists, and it grows monotonically with shear depth (s = 3 pairs pay −11.2).
+
+Admitting J as the tenth observable — the same holdout-to-likelihood promotion the companion performed for CKM, with the exchange condition pre-registered — reverses the contest: the rectangular model's J = 0 is a structural zero, so its ten-observable evidence is −∞ (floor value −328.5 at the numeric floor, quoted as an upper bound), while the minimal symmetric shear (1,1) reaches −24.29. **The flip is +306 nats — a geometry that cannot make CP is not a model of a CP-violating world.** The winner is *minimal* shear: J demands complex structure to exist but not to be large, while hierarchy punishes depth — a tug-of-war that §8 will resolve into a two-dimensional map.
+
+Out of sample, the same complex structure repairs the correlated miss of §2: the (1,1) posterior for the never-fitted |V_td| moves its MAP to 0.0082 against the measured 0.0086 (5%), with the 68% band [0.0031, 0.0106] containing the measurement. The rectangular miss and the shear hit are both kept in the prediction ledger; the pair is the cleanest out-of-sample evidence in the program that the complex-structure hypothesis is physics rather than fit.
+
+## 6. The full scorecard (QRN-YUK-020)
+
+The ten-observable MAP at (1,1) places **all twelve observables — ten fitted, |V_td| and |V_ts| held out — within a factor of five**, four of them at percent level; the unitarity-triangle angles come out with the right shape at half magnitude. This is the program's first all-observable success. Its weak spots are honest and specific: |V_us| overpredicted by 2.51, |V_cb| and |V_ts| underpredicted by ~2, |J| under by 1.8. The rest of the paper is the story of the first of these numbers.
+
+## 7. Three acquittals (QRN-YUK-021/022/023)
+
+Three levers could plausibly own a factor-2.5 Cabibbo excess; each was tested and acquitted, and each acquittal carried a bonus finding.
+
+**Wilson coarseness (v16.6).** Refining Z₆ → Z₁₂ for all five sectors is *evidence-neutral* (−0.04 nats): coarseness is not hiding the answer, and — consistent with the companion's finding that data never pays for finer Wilson lattices — |V_us| does not move.
+
+**Lattice spacing (v16.7).** Doubling the lattice at fixed complex structure ((N, s) = (18,1) → (36,2), Higgs width scaled physically, flux-quantum fraction fixed) leaves |V_us| invariant (factor 2.51 → 2.57) while the *evidence improves* by +2.03 nats and the exact degeneracy persists at N = 36 (7.9×10⁻¹³). The overprediction is structure, not discretization — and the model gets stronger, not weaker, toward the continuum.
+
+**The real part of τ (v16.8).** N = 36 permits a τ_re scan in steps of 1/36 (s ∈ {1..5}). Pre-registered outcome (c): *no* τ_re places |V_us| within factor 1.8 (the best, 1.90 at τ_re = 5/36, pays −4.7 nats). Two structures surfaced en route: the evidence valley sits at **τ_re = 1/12** — a point unreachable on the N = 18 lattice, +0.51 nats above the old winner, with the held-out |V_td|, |V_ts| improving in the same direction — and the landscape is non-monotonic (τ_re = 1/9 is a ridge where m_u/m_t breaks factor 5, consistently across two lattice spacings). The refinement of τ resolution with N is the first place this program has seen a modulus *emerge* toward a continuum: the lattice does not merely approximate τ, it quantizes its scan.
+
+## 8. Cabibbo is a disease of the symmetric section (QRN-YUK-024)
+
+The three acquittals shared an assumption: equal shear on both tori. The full asymmetric map — all 21 geometries (s₁ ≤ s₂ ∈ {0..5}²) at N = 36, computed by diagonalizing each single-torus shear once and pairing mode tables (the dominant cost is paid per *shear*, not per *pair*) — dissolves the puzzle:
+
+- **|V_us| tracks the shear asymmetry |s₁ − s₂|**: the diagonal is uniformly worst (factor 1.90–3.04), |Δs| ≥ 2 is almost uniformly better than 1.8, and (2,5) reaches 1.03. Rectangular geometry also sits at 1.17 — what breaks the Cabibbo angle is not shear but *equal* shear.
+- **J prefers symmetry** (diagonal s ≥ 2: factor 1.06–1.17; asymmetric: 1.3–2.4; one-sided: up to 5.5): the tug-of-war of §5 is between two different symmetry demands, and the compromise geometries (1,3) and (2,3) hold all twelve observables within factor 5 while sitting 0.23 and 0.50 nats from the evidence best.
+- One-sided shear suffices for CP only if deep enough (s₂ ≥ 2); the rectangular structural zero reappears at N = 36 as a floor 247 nats down.
+
+The formally pre-registered verdict is that the diagonal (3,3) remains evidence-best; the physically important content is the two structures above, plus a warning the next section makes precise.
+
+## 9. Evidence hits its resolution; one structure survives (QRN-YUK-025)
+
+The valley floor — (2,2), (2,3), (1,3), (3,3) within 0.5 nats — was probed for prior-grid sensitivity: four Higgs-width grids (the anchor {2,3,4,5}, a 10-point refinement, and two shifted grids). **The leader flips with the grid** (refined: (3,3) by +0.18; shifted: (2,2) or (1,3) by up to 3.2), and refining shrinks the gap. The 0.23-nat preference was the shadow of the grid: *the symmetric-versus-asymmetric choice is not decided by current evidence.* The σ-profile explains the shadow — every geometry concentrates its evidence at Higgs width 2.0 lattice units, and the profiles differ only in their tails — and yields the one robust structure of the whole map: **the preferred Higgs width is the physical width σ_H/N = 1/18, invariant across geometry (diagonal or not), lattice spacing (18 or 36), and grid** — it equals the companion's N = 18 MAP. In a program where every other continuous parameter has been eliminated, the sole survivor is a physical length.
+
+## 10. A principle finally works — and it is a measure (QRN-SEL-002/003/004)
+
+The companion ended by deferring the discrete data to "a common selection principle beyond present methods." The program's first attempt (v15.5, rectangular window, nine observables) rejected or left undecided every candidate: minimum description length, self-stability, hierarchy maximization (catastrophically, −494 nats), thermodynamic condensation (+0.32, the only positive sign). The CP-era rematch runs the same four principles as *two-level data-blind priors* — over the 21 geometries and over each geometry's configurations — against the ten-observable evidence, with the CP constraint entering through the likelihood (the rectangular geometry dies of its structural zero, not by fiat).
+
+**Result: the program's first survivor.** The hierarchy-tilted prior ("Depth", weight e^{β·depth}) survives at **+2.31 nats** — the same principle that was the *worst* candidate on the rectangular window. Its per-geometry anatomy explains the reversal: on symmetric geometries its deep tail overshoots the observed hierarchy exactly as on the rectangle (−514.9, reproducing v15.5's −514.4), while on asymmetric geometries the tilt gains +1.9 nats over the uniform prior. The rejected principles are instructive in defeat: MDL now *inherits the CP penalty* through its preference for the rectangular geometry (−2.16, rejected), and self-stability is rejected again (the answer persists in living on cliffs, not plateaus). The thermodynamic candidate repeats its weak positive sign (+0.41 vs +0.32) across two windows — rectangular nine-observable and shear ten-observable — undecided, but stubbornly positive. As the sole survivor, Depth also breaks the evidence-degenerate valley of §9 — toward (1,3), which we adopt as a *working hypothesis conditional on the surviving principle* (the tie-break authority of a surviving principle was not itself pre-registered, and we flag that reading as post hoc).
+
+Two dissections then reduce the survivor to its actual content:
+
+**It is not "maximize depth."** The survival curve peaks at β = 1.0 (Δ = +3.34), collapses below the survival line at β* = 2.0, and the analytic β → ∞ endpoint (hard selection of each geometry's deepest configuration) is a catastrophe at −8386 nats: the deepest configurations of the shear family do *not* sit at the observation — asymmetric tails are two orders of magnitude shallower than symmetric ones (10⁴ vs 1.4×10⁶ nats of overshoot) but both overshoot. "The universe does not select the deepest" survives the change of family; what lives is a *tilt of order one*.
+
+**It is a measure correction.** Since e^{β·depth} = Π rᵢ^{−β}, the β = 1 tilt reads as a conversion to a log-uniform (scale-invariant) measure on mass ratios. The direct test builds data-blind histogram-flattening priors from the configuration population itself (1D in depth; 2D in the two log-ratios; three bin widths): flattening reproduces the peak within **0.05 nats** (+3.29 vs +3.34, all variants in a +2.9…+3.3 band), while the naive mechanism is refuted — the configuration density is *not* exponential in depth (measured slope −0.19, not −1). The conjunction pins down the operative content: **the configuration measure of magnetized-torus models over-represents shallow mass ratios, and removing this over-representation — by tilt, by flattening, in one or two dimensions — is worth +3 nats, data-blind.** The bounded flattening weights also un-condemn the symmetric diagonal (which the unbounded tilt had executed), yet (1,3) tops the valley under all eight variants of the class.
+
+The arc therefore ends one level of abstraction up from where it began. The question "which geometry?" produced, under falsification pressure, the answer "the one that can make CP" — and then the question "which prior on geometries?" produced its first empirical answer: not a principle in the grand sense, but a *measure*, constructible without data, testable in nats.
+
+## 11. Limitations and outlook
+
+- All principle-contest and valley statements are conditioned on the anchor Higgs-width grid; §9 quantifies exactly how much leaks through this conditioning (grid-flips of up to 3 nats on the valley floor). The σ-continuum marginalization is the obvious next instrument.
+- The symmetric-vs-asymmetric geometry choice remains evidence-undecided; (1,3) is a working hypothesis under the surviving measure class, not a selection. Posterior bands for its distinctive successes (|V_cb| 1.03, |V_ts| 1.01) are pending.
+- The imaginary part of τ (aspect ratio) is unscanned; the τ_re landscape's ridge at 1/9 and the arithmetic of which shears protect exact lattice degeneracy join the companion's open number theory.
+- The configuration-density anatomy (a shallow bulk with a thin deep tail, slope −0.19) lacks an analytic form; "why this measure" is now a sharp question — possibly the same question as the thermodynamic candidate's stubborn +0.4 nats.
+- Lattice sizes beyond N = 36 require sparse/MPS-class tools (dense diagonalization scales as the sixth power of N).
+
+## 12. Reproducibility
+
+Everything is deterministic and dependency-free (Rust, single shared numerical library, built-in PASS/FAIL gates; 469 PASS / 0 FAIL at the time of writing, 74 programs executed in full and 4 long-running ones cited from their archived runs). Load-bearing practices beyond the companion's three: (i) *pre-registered branch verdicts* — every contest in this arc fixed its decision branches (survive/reject/undecided; valley-broken/not) in the program header before running; (ii) *regression anchors as gates* — each new engine reproduces its predecessor's published numbers to stated tolerance inside its own PASS/FAIL battery (the 21-geometry map reproduces all of its predecessor's values to 4.8×10⁻⁷; the exchange symmetry (2,3) ≡ (3,2) holds to 4.5×10⁻¹²); (iii) *a mode-table disk cache with an explicit non-primary status* — the dominant diagonalization cost (101 minutes at N = 36) is paid once, cutting hypothesis tests to ~20 seconds, while deleting the cache provably reproduces identical values; (iv) *holdout bookkeeping* — observables promoted into the likelihood (J here, CKM in the companion) lose holdout status explicitly and permanently, and both the misses and the hits of the pre-promotion era stay in the prediction ledger.
+
+## References
+
+*(未照合 — 書誌の Web 照合は別版で行う。[1] と [8] は本計画の内部参照)*
+
+[1] This program, companion paper: "Yukawa Hierarchies from Magnetized Tori without Order-One Coefficients," paper/geometric-yukawa-full.md (v14.1–v14.3).
+[2] D. Cremades, L. E. Ibáñez and F. Marchesano, "Computing Yukawa couplings from magnetized extra dimensions," JHEP 05 (2004) 079, arXiv:hep-th/0404229.
+[3] C. Jarlskog, "Commutator of the quark mass matrices in the standard electroweak model and a measure of maximal CP nonconservation," Phys. Rev. Lett. 55 (1985) 1039.
+[4] Particle Data Group, "Review of Particle Physics" (CKM magnitudes, J = 3.08×10⁻⁵).
+[5] T. Kobayashi et al., on CP violation and complex-structure / modular moduli in magnetized torus models (系列 — 照合時に確定).
+[6] R. Blumenhagen, B. Körs, D. Lüst and S. Stieberger, "Four-dimensional string compactifications with D-branes, orientifolds and fluxes," Phys. Rept. 445 (2007) 1–193.
+[7] R. Trotta, "Bayes in the sky: Bayesian inference and model selection in cosmology," Contemp. Phys. 49 (2008) 71–104.
+[8] 本計画のリポジトリ: Quantum Relational Network (claims.yml, results/, docs/) — 全数値の一次ソース。
