@@ -1,21 +1,22 @@
-//! v17.7 σ_H の連続周辺化 — グリッドの影を消す (PROMPT/3 v18.1)
+//! v17.8 config-density の解析形 — bin 規約を消す (PROMPT/3 v18.2)
 //!
-//! v16.10 は「谷底の順位は σ グリッドの置き方で反転する」ことを示した。測度判定
-//! (v18.4) の前提として、σ_H を離散グリッドでなく**連続一様事前で周辺化**し、
-//!   ・数値積分が収束するか (格子密度 2 倍で Δ < 0.05 nats)
-//!   ・谷底 4 幾何の順位 (v16.10 で縮退) と τ_im 行 (v17.5 で +2.12) が
-//!     連続化後も保たれるか
-//! を測る。範囲は σ ∈ [1.2, 8.0] (v16.10 の σ プロファイルが両端で −20 nats 級に
-//! 沈むことを確認済みの範囲 — 端の寄与は無視可能)。矩形格子は面積スケール
-//! σ → σ·√(n_y/36) の同一物理範囲。
+//! v16.13 で生存した「測度補正クラス」の弱点は、ヒストグラム平坦化の bin 規約
+//! (S1 の残留自由度) だった。本バイナリは配位密度 n(x₁,x₂) (x = 質量対数比) に
+//! **モーメント構成の解析形**を試す: 2D Gaussian (パラメータ = 標本平均と共分散 —
+//! フィット自由度ゼロ、データ非参照)。これが立てば平坦化は
+//!     w(c) = +½ (x−μ)ᵀ Σ⁻¹ (x−μ)   (二次傾き)
+//! という bin なしの閉形式になる。
 //!
-//! 事前登録 2 分岐:
-//!   (a) 谷底の縮退は連続化後も縮退 (順位差 <1 nat) かつ τ_im の順位は不変
-//!       → v16.10/v17.5 の結論はグリッドの影の除去後も立つ
-//!   (b) どれかの順位が ≥1 nat で入れ替わる → 当該結論はグリッド人工物と記録
-//! 装置: 台形則、密度 2 段 (Δσ=0.4 / 0.2 — 粗い方は細かい方の部分集合なので
-//! 一度の評価で両方出る)。回帰: G0 4 点の v16.9/v17.5 アンカー。
-//! 矩形モード表は本版で cache_*_rect に格納する (以後の測度判定が分単位になる)。
+//! 検査 2 段 (事前登録):
+//!   [分布] 深さ周辺分布の QQ-RMS < 0.6 で「Gauss 近似は分布レベルでも良い」
+//!     (裾は非 Gauss でも測度としては使える — 分布と測度の判定を分ける)
+//!   [測度] 3 窓 ((36;1,3), (36;3,3), (24;3,3)) × 二次傾き測度の Δ が、同窓の
+//!     binned flat2D (bw=0.5) の Δ と ±0.3 nats で一致 → bin 規約は消去可能
+//! 分岐: (a) 分布も測度も合う = 解析形確定 / (b) 分布は外れるが測度は合う =
+//! 「二次傾きで十分」(実用的解析形) / (c) 測度が合わない = 解析形未達 (binned 継続)。
+//!
+//! 装置: 全窓キャッシュ命中前提 (分単位)。一様の lnZ 回帰 (G0, v16.9/v17.5)。
+//! 副検査: v16.13 の局所勾配 −0.19 が Gauss 形の予言 −(d−μ_d)/σ_d² と整合するか。
 
 use uft_sim::*;
 
@@ -24,14 +25,11 @@ const NK12: usize = 12;
 const EPS_OBS: [f64; 9] = [
     1.3e-5, 3.7e-3, 1.1e-3, 2.2e-2, 2.9e-4, 5.9e-2, 0.225, 0.041, 0.0037,
 ];
-/// G0 回帰アンカー: v16.9 の谷底 4 幾何 + v17.5 の矩形 2 行
-const REF_G0: [(usize, usize, usize, f64); 6] = [
-    (36, 2, 2, -22.263460),
-    (36, 2, 3, -22.256569),
+/// G0 回帰アンカー (v16.9 / v17.5)
+const REF_G0: [(usize, usize, usize, f64); 3] = [
     (36, 1, 3, -21.982785),
     (36, 3, 3, -21.756581),
     (24, 3, 3, -19.641),
-    (30, 3, 3, -20.683),
 ];
 const MODE_TAG: u64 = 1; // flux_modes_shear_n の構成タグ (v16.2 系ホッピング)
 
@@ -330,10 +328,144 @@ fn yukawa_rect(nx: usize, ny: usize, la: &[Mode], lb: &[Mode], sig_h: f64) -> M3
     y_out
 }
 
+/// 流し込み log-sum-exp 蓄積器
+#[derive(Clone, Copy)]
+struct Acc {
+    m: f64,
+    s: f64,
+}
+impl Acc {
+    fn new() -> Self {
+        Acc {
+            m: f64::NEG_INFINITY,
+            s: 0.0,
+        }
+    }
+    fn add(&mut self, x: f64) {
+        if x > self.m {
+            self.s = self.s * (self.m - x).exp() + 1.0;
+            self.m = x;
+        } else {
+            self.s += (x - self.m).exp();
+        }
+    }
+    fn val(&self) -> f64 {
+        self.m + self.s.ln()
+    }
+}
+
+/// 2D ヒストグラム平坦化重み (v16.13 から移植, bw 固定 0.5)
+fn flatten_weights_2d(rs: &[[f64; 2]], bw: f64) -> Vec<f64> {
+    let xmin = rs.iter().map(|r| r[0]).fold(f64::INFINITY, f64::min);
+    let ymin = rs.iter().map(|r| r[1]).fold(f64::INFINITY, f64::min);
+    let bx = |r: &[f64; 2]| ((r[0] - xmin) / bw).floor() as usize;
+    let by = |r: &[f64; 2]| ((r[1] - ymin) / bw).floor() as usize;
+    let nx = rs.iter().map(|r| bx(r)).max().unwrap() + 1;
+    let ny = rs.iter().map(|r| by(r)).max().unwrap() + 1;
+    let mut cnt = vec![0usize; nx * ny];
+    for r in rs {
+        cnt[bx(r) + by(r) * nx] += 1;
+    }
+    rs.iter()
+        .map(|r| -((cnt[bx(r) + by(r) * nx] as f64).ln()))
+        .collect()
+}
+
+/// 標本モーメント (μ, Σ) と、二次傾き重み w = +½ (x−μ)ᵀ Σ⁻¹ (x−μ)
+fn gauss_weights(rs: &[[f64; 2]]) -> (f64, f64, [f64; 3], Vec<f64>) {
+    let n = rs.len() as f64;
+    let mu0: f64 = rs.iter().map(|r| r[0]).sum::<f64>() / n;
+    let mu1: f64 = rs.iter().map(|r| r[1]).sum::<f64>() / n;
+    let (mut s00, mut s11, mut s01) = (0.0f64, 0.0, 0.0);
+    for r in rs {
+        let (a, b) = (r[0] - mu0, r[1] - mu1);
+        s00 += a * a;
+        s11 += b * b;
+        s01 += a * b;
+    }
+    s00 /= n;
+    s11 /= n;
+    s01 /= n;
+    let det = s00 * s11 - s01 * s01;
+    let (i00, i11, i01) = (s11 / det, s00 / det, -s01 / det);
+    let ws = rs
+        .iter()
+        .map(|r| {
+            let (a, b) = (r[0] - mu0, r[1] - mu1);
+            0.5 * (i00 * a * a + i11 * b * b + 2.0 * i01 * a * b)
+        })
+        .collect();
+    (mu0 + mu1, s00 + s11 + 2.0 * s01, [s00, s11, s01], ws)
+    // 戻り: (μ_d, σ_d² [深さ方向], Σ 成分, 重み)
+}
+
+/// 深さ周辺分布の QQ-RMS (99 分位, Gauss(μ_d, σ_d) 対比 — bin なし)
+fn qq_rms_depth(depths: &mut [f64], mu_d: f64, var_d: f64) -> f64 {
+    depths.sort_by(|a, b| a.partial_cmp(b).unwrap());
+    let n = depths.len();
+    let sd = var_d.sqrt();
+    // 標準正規分位の近似 (Acklam 型の簡易有理近似)
+    let inv_norm = |p: f64| -> f64 {
+        // Beasley-Springer-Moro
+        let a = [
+            2.50662823884f64,
+            -18.61500062529,
+            41.39119773534,
+            -25.44106049637,
+        ];
+        let b = [
+            -8.47351093090f64,
+            23.08336743743,
+            -21.06224101826,
+            3.13082909833,
+        ];
+        let c = [
+            0.3374754822726147f64,
+            0.9761690190917186,
+            0.1607979714918209,
+            0.0276438810333863,
+            0.0038405729373609,
+            0.0003951896511919,
+            0.0000321767881768,
+            0.0000002888167364,
+            0.0000003960315187,
+        ];
+        let y = p - 0.5;
+        if y.abs() < 0.42 {
+            let r = y * y;
+            y * (((a[3] * r + a[2]) * r + a[1]) * r + a[0])
+                / ((((b[3] * r + b[2]) * r + b[1]) * r + b[0]) * r + 1.0)
+        } else {
+            let mut r = if y > 0.0 { 1.0 - p } else { p };
+            r = (-(r.ln())).ln();
+            let mut x = c[0];
+            let mut rp = 1.0;
+            for ci in c.iter().skip(1) {
+                rp *= r;
+                x += ci * rp;
+            }
+            if y < 0.0 {
+                -x
+            } else {
+                x
+            }
+        }
+    };
+    let mut acc = 0.0;
+    for q in 1..100 {
+        let p = q as f64 / 100.0;
+        let emp = depths[((p * n as f64) as usize).min(n - 1)];
+        let thr = mu_d + sd * inv_norm(p);
+        acc += (emp - thr) * (emp - thr);
+    }
+    (acc / 99.0).sqrt()
+}
+
 fn main() {
     self_test();
-    println!("=== v17.7 σ_H の連続周辺化: 谷底 4 幾何 + 矩形 2 行 (σ ∈ [1.2, 8.0] 一様) ===\n");
-    println!("事前登録: (a) 谷底縮退は連続化後も縮退 (<1 nat) かつ τ_im 順位不変 / (b) ≥1 nat の順位交代 = グリッド人工物の記録\n");
+    println!("=== v17.8 config-density の解析形: モーメント Gauss / 二次傾き測度 (3 窓) ===\n");
+    println!("事前登録: [分布] 深さ QQ-RMS < 0.6 / [測度] 二次傾き Δ が binned flat2D Δ と ±0.3");
+    println!("分岐: (a) 両方合う = 解析形確定 / (b) 測度だけ合う = 二次傾きで十分 / (c) 測度不一致 = 未達\n");
     let mut nfail = 0usize;
     let mut check = |name: &str, ok: bool, detail: String| {
         println!(
@@ -352,7 +484,6 @@ fn main() {
         .map(|x| x.get())
         .unwrap_or(12);
     let j_obs: f64 = 3.08e-5;
-
     let sigma = (2.0f64).ln();
     let norm1 = -(sigma * (2.0 * std::f64::consts::PI).sqrt()).ln();
     let tgt: Vec<f64> = EPS_OBS.iter().map(|x| x.ln()).collect();
@@ -360,28 +491,11 @@ fn main() {
         -((r[0] - t0).powi(2) + (r[1] - t1).powi(2)) / (2.0 * sigma * sigma) + 2.0 * norm1
     };
     let nc = 36usize;
+    let geoms: [(usize, usize, usize); 3] = [(36, 1, 3), (36, 3, 3), (24, 3, 3)];
 
-    // 幾何: (ny, s1, s2) — 正方 4 (谷底) + 矩形 2 (τ_im 行)
-    let geoms: [(usize, usize, usize); 6] = [
-        (36, 2, 2),
-        (36, 2, 3),
-        (36, 1, 3),
-        (36, 3, 3),
-        (24, 3, 3),
-        (30, 3, 3),
-    ];
-    // 密グリッド: σ ∈ [1.2, 8.0], Δ=0.1 → 69 点 (D1 = 偶数番目 35 点 Δ=0.2)
-    // 初走 (Δ=0.2/0.4) は収束ゲート 0.05 を 0.090 で外した — 基準は緩めず倍密で再走 (開発記録)
-    let nsig = 69usize;
-    let (s_lo, s_hi) = (1.2f64, 8.0f64);
-    let sig_pts: Vec<f64> = (0..nsig)
-        .map(|i| s_lo + (s_hi - s_lo) * i as f64 / (nsig - 1) as f64)
-        .collect();
-
-    let t0 = std::time::Instant::now();
-    // モード表 (正方はキャッシュ、矩形は rect キャッシュ or 計算+保存)
+    // モード表 (全キャッシュ命中前提)
     let mut locs_map: std::collections::BTreeMap<(usize, usize), Vec<Vec<Mode>>> =
-        std::collections::BTreeMap::new(); // (ny, s) → 12 Wilson の局在モード
+        std::collections::BTreeMap::new();
     let mut need: Vec<(usize, usize)> = Vec::new();
     for &(ny, s1, s2) in &geoms {
         for s in [s1, s2] {
@@ -390,6 +504,7 @@ fn main() {
             }
         }
     }
+    let mut hits = 0;
     for &(ny, s) in &need {
         let mut modes_k: Vec<(Vec<Mode>, f64, f64)> = Vec::new();
         let mut all_hit = true;
@@ -409,9 +524,9 @@ fn main() {
         }
         if !all_hit {
             modes_k.clear();
+            let jobs: Vec<usize> = (0..NK12).collect();
             let mut got: std::collections::BTreeMap<usize, (Vec<Mode>, f64, f64)> =
                 std::collections::BTreeMap::new();
-            let jobs: Vec<usize> = (0..NK12).collect();
             for chunk in jobs.chunks(par) {
                 let hs: Vec<_> = chunk
                     .iter()
@@ -428,13 +543,9 @@ fn main() {
                 }
             }
             modes_k = (0..NK12).map(|k| got.remove(&k).unwrap()).collect();
+        } else {
+            hits += 1;
         }
-        let spread = modes_k.iter().map(|r| r.2).fold(0.0f64, f64::max);
-        check(
-            &format!("(ny={}, s={}) の厳密 3 重縮退", ny, s),
-            spread < 1e-8,
-            format!("幅 {:.1e} ({} s)", spread, t0.elapsed().as_secs()),
-        );
         locs_map.insert(
             (ny, s),
             modes_k
@@ -443,17 +554,24 @@ fn main() {
                 .collect(),
         );
     }
+    println!(
+        "[0] モード表: キャッシュ命中 {}/{} 系列\n",
+        hits,
+        need.len()
+    );
 
-    // ---- 幾何ごとの σ プロファイルと連続周辺化 ----
-    println!("\n[1] σ プロファイル terms10(σ) と連続周辺化:");
-    let mut rows: Vec<(usize, usize, usize, f64, f64, f64, f64, f64)> = Vec::new();
-    // (ny,s1,s2, lnz_cont(D2), lnz_cont(D1), lnz_g0, σ_map, σ_med)
+    // ---- 窓ごとの密度解析と 3 測度評価 ----
+    println!("[1] 窓ごとの密度モーメント・QQ・3 測度 (一様 / binned flat2D / 二次傾き):");
+    let g0 = [2.0f64, 3.0, 4.0, 5.0];
+    let mut rows = Vec::new();
     for &(ny, s1, s2) in &geoms {
         let scale = ((ny as f64) / (nx as f64)).sqrt();
         let locs1 = &locs_map[&(ny, s1)];
         let locs2 = &locs_map[&(ny, s2)];
-        let mut terms = vec![0.0f64; nsig];
-        for (isg, &s0) in sig_pts.iter().enumerate() {
+        let mut trow: Vec<[f64; 3]> = Vec::new();
+        let mut qq_all: Vec<f64> = Vec::new();
+        let mut slope_pred = 0.0f64;
+        for &s0 in &g0 {
             let sh = s0 * scale;
             let ytab1: Vec<M3> = (0..NK12 * NK12)
                 .map(|ab| yukawa_rect(nx, ny, &locs1[ab % NK12], &locs1[ab / NK12], sh))
@@ -466,32 +584,59 @@ fn main() {
                 let (b1, b2) = (2 * (b % 6), 2 * (b / 6));
                 had_prod_perm(&ytab1[a1 + b1 * NK12], &ytab2[a2 + b2 * NK12], sf, sg)
             };
-            let pair: Vec<([f64; 2], M3)> = (0..nc * nc * 6)
-                .map(|m| mass_and_vecs(&pair_y(m % nc, (m / nc) % nc, 0, m / (nc * nc))))
-                .collect();
-            let mut le = Vec::with_capacity(nc * nc * 36);
+            let mut pair_r: Vec<[f64; 2]> = Vec::with_capacity(nc * nc * 6);
+            let mut pair_v: Vec<M3> = Vec::with_capacity(nc * nc * 6);
+            for m in 0..nc * nc * 6 {
+                let y = pair_y(m % nc, (m / nc) % nc, 0, m / (nc * nc));
+                let (r, v) = mass_and_vecs(&y);
+                pair_r.push(r);
+                pair_v.push(v);
+            }
+            // 密度解析 (クォーク対集団)
+            let (mu_d, var_d, _cov, wq_gauss) = gauss_weights(&pair_r);
+            let mut depths: Vec<f64> = pair_r.iter().map(|r| -(r[0] + r[1])).collect();
+            let qq = qq_rms_depth(&mut depths, -mu_d, var_d);
+            qq_all.push(qq);
+            // v16.13 の勾配整合の予言: 局所勾配 at 中心+1σ ≈ −1σ_d/σ_d² = −1/σ_d
+            slope_pred = -1.0 / var_d.sqrt();
+            let wq_bin = flatten_weights_2d(&pair_r, 0.5);
+            // e セクター
+            let mut er: Vec<[f64; 2]> = Vec::with_capacity(nc * nc * 36);
             for sl in 0..6 {
                 for se_ in 0..6 {
                     for ab in 0..nc * nc {
-                        let r = mass_ratios(&pair_y(ab % nc, ab / nc, sl, se_));
-                        le.push(ll2(&r, tgt[4], tgt[5]));
+                        er.push(mass_ratios(&pair_y(ab % nc, ab / nc, sl, se_)));
                     }
                 }
             }
-            let lnze = lse(&le);
-            let mut acc10 = (f64::NEG_INFINITY, 0.0f64);
+            let (_, _, _, we_gauss) = gauss_weights(&er);
+            let we_bin = flatten_weights_2d(&er, 0.5);
+            let mut ze = [Acc::new(); 3];
+            let mut ne = [Acc::new(); 3];
+            for (i, r) in er.iter().enumerate() {
+                let l = ll2(r, tgt[4], tgt[5]);
+                let sps = [0.0, we_bin[i], we_gauss[i]];
+                for v in 0..3 {
+                    ze[v].add(sps[v] + l);
+                    ne[v].add(sps[v]);
+                }
+            }
+            // クォーク五重和
+            let mut zq = [Acc::new(); 3];
+            let mut nq = [Acc::new(); 3];
             for kq in 0..nc {
                 for su in 0..6 {
                     for ku in 0..nc {
                         let mu = kq + ku * nc + su * nc * nc;
-                        let (ru, vu) = &pair[mu];
+                        let ru = &pair_r[mu];
+                        let vu = &pair_v[mu];
                         let llu = ll2(ru, tgt[0], tgt[1]);
                         for sd in 0..6 {
                             for kd in 0..nc {
                                 let md = kq + kd * nc + sd * nc * nc;
-                                let (rd, vd) = &pair[md];
+                                let rd = &pair_r[md];
                                 let lld = ll2(rd, tgt[2], tgt[3]);
-                                let v = ckm_full(vu, vd);
+                                let v = ckm_full(vu, &pair_v[md]);
                                 let c = [cab(&v, 0, 1), cab(&v, 1, 2), cab(&v, 0, 2)];
                                 let mut ll = llu + lld;
                                 for m in 0..3 {
@@ -501,200 +646,113 @@ fn main() {
                                 let jv = jarlskog(&v);
                                 let dj = jv.abs().max(1e-300).ln() - j_obs.ln();
                                 let ll10 = ll + (-dj * dj / (2.0 * sigma * sigma) + norm1);
-                                if ll10 > acc10.0 {
-                                    acc10.1 = acc10.1 * (acc10.0 - ll10).exp() + 1.0;
-                                    acc10.0 = ll10;
-                                } else {
-                                    acc10.1 += (ll10 - acc10.0).exp();
+                                let sps =
+                                    [0.0, wq_bin[mu] + wq_bin[md], wq_gauss[mu] + wq_gauss[md]];
+                                for vv in 0..3 {
+                                    zq[vv].add(sps[vv] + ll10);
+                                    nq[vv].add(sps[vv]);
                                 }
                             }
                         }
                     }
                 }
             }
-            terms[isg] = acc10.0 + acc10.1.ln() + lnze;
-        }
-        // config 空間の規格化 (σ には連続一様密度)
-        let prior_c = 5.0 * (nc as f64).ln() + 4.0 * (6.0f64).ln();
-        // D2: 台形則 ln∫ = lse(ln terms + ln w) — w_i = Δ (端は Δ/2)
-        let d2 = {
-            let dx = (s_hi - s_lo) / (nsig - 1) as f64;
-            let lw: Vec<f64> = (0..nsig)
-                .map(|i| {
-                    let w = if i == 0 || i == nsig - 1 {
-                        dx / 2.0
-                    } else {
-                        dx
-                    };
-                    terms[i] + w.ln()
-                })
-                .collect();
-            lse(&lw) - (s_hi - s_lo).ln() - prior_c
-        };
-        // D1: 偶数番目 (Δ=0.4)
-        let d1 = {
-            let pts: Vec<usize> = (0..nsig).step_by(2).collect();
-            let dx = 2.0 * (s_hi - s_lo) / (nsig - 1) as f64;
-            let lw: Vec<f64> = pts
-                .iter()
-                .enumerate()
-                .map(|(ii, &i)| {
-                    let w = if ii == 0 || ii == pts.len() - 1 {
-                        dx / 2.0
-                    } else {
-                        dx
-                    };
-                    terms[i] + w.ln()
-                })
-                .collect();
-            lse(&lw) - (s_hi - s_lo).ln() - prior_c
-        };
-        // G0 回帰 (4 点一様 — 従来定義)
-        let g0 = {
-            let g0pts = [2.0f64, 3.0, 4.0, 5.0];
-            let lw: Vec<f64> = g0pts
-                .iter()
-                .map(|&s0| {
-                    let i = ((s0 - s_lo) / ((s_hi - s_lo) / (nsig - 1) as f64)).round() as usize;
-                    terms[i]
-                })
-                .collect();
-            lse(&lw) - (4.0f64).ln() - prior_c
-        };
-        // σ 事後 (D2 重み)
-        let (mut best_i, mut best_t) = (0usize, f64::NEG_INFINITY);
-        for (i, &t) in terms.iter().enumerate() {
-            if t > best_t {
-                best_t = t;
-                best_i = i;
+            let mut row = [0.0f64; 3];
+            for v in 0..3 {
+                row[v] = (zq[v].val() - nq[v].val()) + (ze[v].val() - ne[v].val());
             }
+            trow.push(row);
         }
-        let sig_map = sig_pts[best_i];
-        let sig_med = {
-            let mx = best_t;
-            let ws: Vec<f64> = terms.iter().map(|&t| (t - mx).exp()).collect();
-            let tot: f64 = ws.iter().sum();
-            let mut acc = 0.0;
-            let mut med = sig_pts[nsig - 1];
-            for i in 0..nsig {
-                acc += ws[i];
-                if acc >= 0.5 * tot {
-                    med = sig_pts[i];
-                    break;
-                }
-            }
-            med
-        };
+        let mut z = [0.0f64; 3];
+        for v in 0..3 {
+            let col: Vec<f64> = trow.iter().map(|r| r[v]).collect();
+            z[v] = lse(&col) - (g0.len() as f64).ln();
+        }
+        let qq_max = qq_all.iter().cloned().fold(0.0f64, f64::max);
         println!(
-            "    ({:2},{},{})  cont(D2) {:8.3}  cont(D1) {:8.3}  G0 {:8.3}  σ* = {:.1} (中央値 {:.1}, 物理幅 {:.4}) ({} s)",
-            ny,
-            s1,
-            s2,
-            d2,
-            d1,
-            g0,
-            sig_map,
-            sig_med,
-            sig_map * ((ny as f64) / (nx as f64)).sqrt() / (nx as f64 * ny as f64).sqrt(),
-            t0.elapsed().as_secs()
+            "    ({:2};{},{})  一様 {:8.3}  flat2D {:8.3} (Δ{:+.2})  gauss {:8.3} (Δ{:+.2})  QQ最大 {:.2}  局所勾配予言 {:+.2}",
+            ny, s1, s2, z[0], z[1], z[1] - z[0], z[2], z[2] - z[0], qq_max, slope_pred
         );
-        rows.push((ny, s1, s2, d2, d1, g0, sig_map, sig_med));
+        rows.push((ny, s1, s2, z[0], z[1], z[2], qq_max));
     }
 
     // ---- ゲート ----
     println!("\n[ゲート]");
-    for (ri, &(ny, s1, s2, _, _, g0, _, _)) in rows.iter().enumerate() {
+    for (ri, &(ny, s1, s2, u, _, _, _)) in rows.iter().enumerate() {
         let (rny, rs1, rs2, refv) = REF_G0[ri];
         assert_eq!((rny, rs1, rs2), (ny, s1, s2));
         check(
-            &format!("({},{},{}) の G0 回帰 (±0.05)", ny, s1, s2),
-            (g0 - refv).abs() < 0.05,
-            format!("{:.3} vs {:.3}", g0, refv),
+            &format!("({};{},{}) 一様 G0 回帰 (±0.05)", ny, s1, s2),
+            (u - refv).abs() < 0.05,
+            format!("{:.3} vs {:.3}", u, refv),
         );
     }
-    let max_conv = rows
-        .iter()
-        .map(|r| (r.3 - r.4).abs())
-        .fold(0.0f64, f64::max);
-    check(
-        "台形則の収束 (D2 vs D1, 全幾何 <0.05 nats)",
-        max_conv < 0.05,
-        format!("最大 |Δ| = {:.3}", max_conv),
-    );
 
-    // ---- [2] 判定 ----
-    println!("\n[2] 連続周辺化後の順位:");
-    let mut sq: Vec<_> = rows.iter().filter(|r| r.0 == 36).collect();
-    sq.sort_by(|a, b| b.3.partial_cmp(&a.3).unwrap());
-    println!(
-        "    正方谷底: {}",
-        sq.iter()
-            .map(|r| format!("({},{}) {:.2}", r.1, r.2, r.3))
-            .collect::<Vec<_>>()
-            .join(" > ")
-    );
-    let spread_sq = sq[0].3 - sq[sq.len() - 1].3;
-    let r24 = rows.iter().find(|r| r.0 == 24).unwrap();
-    let r30 = rows.iter().find(|r| r.0 == 30).unwrap();
-    let r36 = rows
-        .iter()
-        .find(|r| r.0 == 36 && r.1 == 3 && r.2 == 3)
-        .unwrap();
-    println!(
-        "    τ_im 行 (3,3): ny=24 {:.2} / ny=30 {:.2} / ny=36 {:.2}",
-        r24.3, r30.3, r36.3
-    );
-    let tauim_ok = r24.3 > r30.3 && r30.3 > r36.3;
-    println!("\n[3] 事前登録判定:");
-    println!(
-        "    谷底 4 幾何の全幅 = {:.2} nats ({})",
-        spread_sq,
-        if spread_sq < 1.0 {
-            "縮退のまま"
-        } else {
-            "縮退が破れた"
-        }
-    );
-    println!(
-        "    τ_im 順位 (24 > 30 > 36): {}",
-        if tauim_ok { "保存" } else { "交代" }
-    );
-    if spread_sq < 1.0 && tauim_ok {
-        println!("    => (a) v16.10 の縮退と v17.5 の τ_im 単調性は、グリッドの影を除いても立つ。");
+    // ---- 判定 ----
+    println!("\n[2] 事前登録判定:");
+    let mut meas_ok = true;
+    let mut dist_ok = true;
+    for &(ny, s1, s2, u, fb, fg, qq) in &rows {
+        let (db, dg) = (fb - u, fg - u);
+        let m_ok = (dg - db).abs() <= 0.3;
+        let d_ok = qq < 0.6;
+        println!(
+            "    ({:2};{},{}): |Δ_gauss − Δ_binned| = {:.2} ({}), QQ = {:.2} ({})",
+            ny,
+            s1,
+            s2,
+            (dg - db).abs(),
+            if m_ok {
+                "測度一致"
+            } else {
+                "測度不一致"
+            },
+            qq,
+            if d_ok { "分布良" } else { "分布外れ" }
+        );
+        meas_ok &= m_ok;
+        dist_ok &= d_ok;
+    }
+    if meas_ok && dist_ok {
+        println!(
+            "    => (a) 解析形確定: モーメント Gauss — 平坦化測度は bin なしの二次傾きに置換可能。"
+        );
+    } else if meas_ok {
+        println!("    => (b) 分布は非 Gauss だが測度としては二次傾きで十分 — MSR-FLATTEN の bin 規約は消去可能");
+        println!("       (measures.yml に MSR-GAUSSFLAT を実用的解析形として追記する資格)。");
     } else {
-        println!("    => (b) グリッド人工物の記録: 連続化で結論が動いた項目を上記のとおり記す。");
+        println!("    => (c) 解析形未達 — 二次傾きは binned 平坦化を再現しない。密度の高次構造が測度に効く。");
     }
 
     // ---- artifact ----
     let j = Json::Obj(vec![
-        ("version".into(), Json::Str("v17.7".into())),
+        ("version".into(), Json::Str("v17.8".into())),
         (
             "rows".into(),
             Json::Arr(
                 rows.iter()
-                    .map(|&(ny, s1, s2, d2, d1, g0, smap, smed)| {
+                    .map(|&(ny, s1, s2, u, fb, fg, qq)| {
                         Json::Obj(vec![
                             ("ny".into(), Json::Int(ny as i64)),
                             ("s1".into(), Json::Int(s1 as i64)),
                             ("s2".into(), Json::Int(s2 as i64)),
-                            ("lnz_cont".into(), Json::Num(d2)),
-                            ("lnz_cont_coarse".into(), Json::Num(d1)),
-                            ("lnz_g0".into(), Json::Num(g0)),
-                            ("sigma_map".into(), Json::Num(smap)),
-                            ("sigma_med".into(), Json::Num(smed)),
+                            ("lnz_uniform".into(), Json::Num(u)),
+                            ("lnz_flat2d_binned".into(), Json::Num(fb)),
+                            ("lnz_gauss_quad".into(), Json::Num(fg)),
+                            ("qq_rms_max".into(), Json::Num(qq)),
                         ])
                     })
                     .collect(),
             ),
         ),
     ]);
-    let p = write_artifact("results/v177_sigmacont.json", &j.render());
+    let p = write_artifact("results/v178_densform.json", &j.render());
     println!("\n[artifact] {}", p);
 
     println!(
         "\n総合判定: {}",
         if nfail == 0 {
-            "[PASS] 装置は較正済み — 判別は [2][3] が一次ソース"
+            "[PASS] 装置は較正済み — 判別は [2] が一次ソース"
         } else {
             "[FAIL]"
         }
