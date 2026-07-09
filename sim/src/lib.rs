@@ -600,6 +600,109 @@ pub fn cache_load_modes(
     Some((modes, gap, spread))
 }
 
+/// 矩形格子版のモード表キャッシュ保存 (v17.7 — 正方版と別ファイル名空間)
+pub fn cache_save_modes_rect(
+    tag: u64,
+    nx: usize,
+    ny: usize,
+    q: usize,
+    s: usize,
+    k: usize,
+    modes: &[Vec<(f64, f64)>],
+    gap: f64,
+    spread: f64,
+) {
+    let root = if std::path::Path::new("cache").is_dir() || std::path::Path::new("src").is_dir() {
+        "cache"
+    } else {
+        "sim/cache"
+    };
+    let _ = std::fs::create_dir_all(root);
+    let path = format!(
+        "{}/modes_t{}_nx{}_ny{}_q{}_s{}_k{}.bin",
+        root, tag, nx, ny, q, s, k
+    );
+    let ns = nx * ny;
+    let mut buf: Vec<u8> = Vec::with_capacity(8 * (7 + 2 + q * ns * 2));
+    for v in [
+        0x51524e4d4f444532u64,
+        tag,
+        nx as u64,
+        ny as u64,
+        q as u64,
+        s as u64,
+        k as u64,
+    ] {
+        buf.extend_from_slice(&v.to_le_bytes());
+    }
+    buf.extend_from_slice(&gap.to_le_bytes());
+    buf.extend_from_slice(&spread.to_le_bytes());
+    for m in modes {
+        assert_eq!(m.len(), ns);
+        for &(re, im) in m {
+            buf.extend_from_slice(&re.to_le_bytes());
+            buf.extend_from_slice(&im.to_le_bytes());
+        }
+    }
+    let tmp = format!("{}.tmp", path);
+    std::fs::write(&tmp, &buf).unwrap_or_else(|e| panic!("キャッシュ書き出し失敗: {}", e));
+    let _ = std::fs::rename(&tmp, &path);
+}
+
+/// 矩形格子版のモード表キャッシュ読み込み
+pub fn cache_load_modes_rect(
+    tag: u64,
+    nx: usize,
+    ny: usize,
+    q: usize,
+    s: usize,
+    k: usize,
+) -> Option<(Vec<Vec<(f64, f64)>>, f64, f64)> {
+    let root = if std::path::Path::new("cache").is_dir() || std::path::Path::new("src").is_dir() {
+        "cache"
+    } else {
+        "sim/cache"
+    };
+    let path = format!(
+        "{}/modes_t{}_nx{}_ny{}_q{}_s{}_k{}.bin",
+        root, tag, nx, ny, q, s, k
+    );
+    let buf = std::fs::read(&path).ok()?;
+    let ns = nx * ny;
+    if buf.len() != 8 * (7 + 2 + q * ns * 2) {
+        return None;
+    }
+    let rd_u64 = |i: usize| u64::from_le_bytes(buf[8 * i..8 * i + 8].try_into().unwrap());
+    let hdr = [
+        0x51524e4d4f444532u64,
+        tag,
+        nx as u64,
+        ny as u64,
+        q as u64,
+        s as u64,
+        k as u64,
+    ];
+    for (i, &h) in hdr.iter().enumerate() {
+        if rd_u64(i) != h {
+            return None;
+        }
+    }
+    let rd_f64 = |i: usize| f64::from_le_bytes(buf[8 * i..8 * i + 8].try_into().unwrap());
+    let gap = rd_f64(7);
+    let spread = rd_f64(8);
+    let mut modes = Vec::with_capacity(q);
+    let mut off = 9;
+    for _ in 0..q {
+        let mut m = Vec::with_capacity(ns);
+        for _ in 0..ns {
+            m.push((rd_f64(off), rd_f64(off + 1)));
+            off += 2;
+        }
+        modes.push(m);
+    }
+    Some((modes, gap, spread))
+}
+
 // ---------------- QRN core (v6.7) ----------------
 // 統一理論としての説得力は「新しいシミュレーションを増やすこと」ではなく
 // 「既存のシミュレーションを同じ core から出すこと」で上がる (改良方針 §7)。
