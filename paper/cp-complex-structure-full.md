@@ -100,6 +100,10 @@ The arc therefore ends one level of abstraction up from where it began. The ques
 
 Everything is deterministic and dependency-free (Rust, single shared numerical library, built-in PASS/FAIL gates; 469 PASS / 0 FAIL at the time of writing, 74 programs executed in full and 4 long-running ones cited from their archived runs). Load-bearing practices beyond the companion's three: (i) *pre-registered branch verdicts* — every contest in this arc fixed its decision branches (survive/reject/undecided; valley-broken/not) in the program header before running; (ii) *regression anchors as gates* — each new engine reproduces its predecessor's published numbers to stated tolerance inside its own PASS/FAIL battery (the 21-geometry map reproduces all of its predecessor's values to 4.8×10⁻⁷; the exchange symmetry (2,3) ≡ (3,2) holds to 4.5×10⁻¹²); (iii) *a mode-table disk cache with an explicit non-primary status* — the dominant diagonalization cost (101 minutes at N = 36) is paid once, cutting hypothesis tests to ~20 seconds, while deleting the cache provably reproduces identical values; (iv) *holdout bookkeeping* — observables promoted into the likelihood (J here, CKM in the companion) lose holdout status explicitly and permanently, and both the misses and the hits of the pre-promotion era stay in the prediction ledger.
 
+## Figures
+
+Fig. 1 (`figures/fig_cp_asym_map.svg`, §8): the 21-geometry map — evidence prefers the diagonal, Cabibbo prefers asymmetry. Fig. 2 (`figures/fig_cp_taure.svg`, §7): the τ_re scan with the 1/12 valley and 1/9 ridge. Fig. 3 (`figures/fig_cp_depth_curve.svg`, §10): the survival curve of the depth-tilted prior. All figure values are read from the machine-readable primary sources in `results/` and cross-checked against published anchors at build time (`figures/make_figures_cp.py`; mismatch aborts the build). The mode tables underlying §§8–10 are independently verified against a complex-Hermitian numpy reimplementation (`figures/verify_cache_modes.py`; basis-independent projector agreement ~10⁻¹¹).
+
 ## References
 
 *(書誌は 2026-07-09 に Web 照合済み — [3][4][5] は本版で新規照合、[2][6][7] は companion の v14.3 照合を引き継ぐ。[1][8] は本計画の内部参照)*
