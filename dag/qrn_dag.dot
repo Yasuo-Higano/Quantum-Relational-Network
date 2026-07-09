@@ -127,6 +127,7 @@ digraph qrn {
   "QRN-YUK-028" [fillcolor="#fdd835", label="QRN-YUK-028\nC4 v17.10"];
   "QRN-YUK-029" [fillcolor="#fdd835", label="QRN-YUK-029\nC4 v17.11"];
   "QRN-YUK-030" [fillcolor="#fdd835", label="QRN-YUK-030\nC4 v17.13"];
+  "QRN-META-018" [fillcolor="#e53935", label="QRN-META-018\nC5 v18.0"];
   "QRN-GRAV-001" -> "QRN-C0-001";
   "QRN-BH-001" -> "QRN-C0-003";
   "QRN-CAUSAL-002" -> "QRN-CAUSAL-001";
@@ -304,4 +305,9 @@ digraph qrn {
   "QRN-YUK-029" -> "QRN-MSR-003";
   "QRN-YUK-030" -> "QRN-YUK-028";
   "QRN-YUK-030" -> "QRN-YUK-029";
+  "QRN-META-018" -> "QRN-META-017";
+  "QRN-META-018" -> "QRN-MSR-003";
+  "QRN-META-018" -> "QRN-YUK-028";
+  "QRN-META-018" -> "QRN-YUK-029";
+  "QRN-META-018" -> "QRN-YUK-030";
 }
