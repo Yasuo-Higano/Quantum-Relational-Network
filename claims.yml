@@ -1561,3 +1561,17 @@
     - "事後帯は一様事後・G0 系連続化の設計内。|V_cb|/|V_ts| の帯高めの起源は未解明。"
     - "orientation (CP 角の符号) は未検査 — J の符号込み 11 量化の判断も未実施。"
     - "m_c/m_t 2.04 の住所は開いたまま (M2 級からの持ち越し)。"
+
+- id: QRN-YUK-030
+  version: "v17.13"
+  level: C4
+  claim: "orientation の検査 (収束点 36×18; (3,3) の共役分枝 ψ→ψ*): 事前登録 (a) 成立 — 反ユニタリ対称が機械精度で検証された (lnZ₁₀ 分枝不変 3.3e-10・J 厳密反転 ±3.2634e-5・UT 角の和 ~1e-13)。orientation は Z₂ の離散データ (共役分枝の対) であり 10 量尤度 (|J|) はこれに盲目 — 測定された sign(J)>0 が分枝を一意に固定する (J の符号込み 11 量化は不要、分枝選択として台帳化)。測定分枝の holdout: γ = +66.8° vs 測定 65.9°±3.5° — 測定誤差内 (factor 1.01, PRED-007 scored-hit)・β = +15.2° vs 22.2°±0.7° (factor 1.46 — 誤差帯外・factor 5 内, PRED-008 保守的に scored-miss)。符号込みで 12 量 + UT 2 角 = 14/14 級 — CP の物語は大きさ (|J| 6%) と位相角 (γ 1.4%) の両方で閉じた。"
+  status: "CP アークの最終ピース (orientation 固定 — 残る CKM 系弱点は β の 32% と m_c/m_t のみ)"
+  evidence:
+    code: "sim/src/bin/v1713_orientation.rs"
+    result: "results/v1713_orientation.txt"
+    doc: "docs/uft-v17.13.md"
+  limitations:
+    - "MAP は G0 4 点 (v17.11 の連続 σ MAP とは角の値が少し違う — MAP 点の σ 依存)。"
+    - "β の 32% 過小は未解明 (m_c/m_t と並ぶ残存弱点)。"
+    - "PRED-007/008 は数値採点基準を登録していなかった (γ は誤差内で無条件 hit、β は保守的に miss)。"

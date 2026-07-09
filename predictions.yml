@@ -79,7 +79,8 @@
   data_not_used: "γ (および全 CP 角) は一度も尤度に入れていない (J のみ v16.4 で昇格済み)"
   falsifier: "測度判定 (v17.9) で生存した測度の MAP γ が一様基線より測定から系統的に遠ざかる → 当該測度は S3 違反で棄却"
   source: "v17.9 (登録)"
-  status: registered
+  status: scored-hit
+  score: "orientation 固定後 (v17.13 — 測定 sign(J)>0 が Z₂ 分枝を選ぶ): γ = +66.8° vs 測定 65.9°±3.5° — 測定誤差内 (factor 1.01)。S3 用途 (v17.9) でも生存測度の悪化検出に使用済み"
 
 - id: PRED-008
   title: "ユニタリティ三角形の角 β — 測度判定の S3 用 holdout"
@@ -89,4 +90,5 @@
   data_not_used: "β は一度も尤度に入れていない"
   falsifier: "PRED-007 と同一 (生存測度が holdout を悪化させたら S3 違反)"
   source: "v17.9 (登録)"
-  status: registered
+  status: scored-miss
+  score: "orientation 固定後 (v17.13): β = +15.2° vs 測定 22.2°±0.7° — factor 1.46 (誤差帯外・factor 5 内)。登録時に数値的採点基準を固定しなかった registration の限界も記録 — 保守的に miss と採点"
