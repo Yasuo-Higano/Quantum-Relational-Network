@@ -1,0 +1,278 @@
+% measure-dissolution.tex — paper/measure-dissolution-full.md の LaTeX 化 (v18.x 出版作業)
+% 対象誌: JHEP / PRD (letter 級)。数値の一次ソースは results/ — 本文数値は .md 原稿から転記
+% TODO(著者確認): 著者名・所属は仮置き。投稿前に確定すること。
+\documentclass[aps,prd,preprint,nofootinbib]{revtex4-2}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\begin{document}
+
+\title{The Measure Problem That Dissolved:\\
+A Pre-Registered Contest of Data-Blind Priors over Magnetized-Torus Yukawa Models}
+
+\author{Yasuo Higano}
+\affiliation{Independent researcher; Quantum Relational Network program}
+
+\date{\today}
+
+\begin{abstract}
+If the discrete data of a compactification --- fluxes, Wilson lines, generation
+pairing, complex structure --- are irreducible, the residual scientific
+question is the \emph{measure}: which data-blind prior should weigh the model
+space? We report a complete, pre-registered arc on this question, run over the
+magnetized-torus Yukawa program of the companion papers. A hierarchy-tilted
+prior, catastrophically rejected on the rectangular geometry, becomes the
+program's first surviving selection principle on the CP-capable shear family
+($+2.3$ nats); its anatomy (survival window $\beta\in[0.25,1.7]$, collapse of
+hard selection at $-8386$ nats) and identity (bin-free and binned
+density-flattening priors reproduce its peak within 0.05 nats) reduce it to a
+\emph{measure correction}: the configuration population over-represents shallow
+mass ratios. We then registered six candidate measures with three success
+criteria fixed in advance --- data-blind construction, convention invariance,
+and non-degradation of never-fitted holdouts --- together with a continuum
+marginalization of the Higgs width (removing the last prior-grid convention)
+and a moment-based analytic form (which succeeds exactly on the geometry family
+whose configuration density is moment-compatible, and fails on the heavy-tailed
+diagonal family). The judgment kills the entire correction class: the only
+candidate to pass the evidence and stability criteria degrades the
+unitarity-triangle holdout and is rejected by the third criterion, whose first
+live use this is. The cause is a lever the corrections had been compensating
+for: scanning the \emph{imaginary} part of the complex structure finds an
+interior evidence valley at $\tau=1/12+i/2$, where the ten-observable evidence
+reaches the program's best value, the two chronic tensions (a two-fold Cabibbo
+excess and a low Jarlskog invariant) resolve simultaneously at MAP (factors
+1.01 and 1.24) and at the posterior-band level, all twelve observables sit
+within a factor of five with six at the ten-percent level --- \textbf{and every
+measure correction is now strictly harmful}. The measure problem, posed
+properly, dissolved into geometry: the uniform counting measure is correct once
+$\tau$ is right, and what remains is a thermodynamic prior's stubborn,
+sub-threshold positive signal ($+0.3$ to $+0.6$ nats, sign-stable across four
+generations of windows) --- the sharpest surviving hint of a dynamical
+selection principle.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The companion papers~\cite{Companion,CPpaper} closed with a deferral: the
+discrete data of the compactification ``await a common selection principle.''
+The first attempt (nine observables, rectangular geometry) rejected or left
+undecided every candidate --- minimum description length, self-stability,
+hierarchy maximization (at $-494$ nats), thermodynamic condensation ($+0.32$,
+the lone positive sign). This paper reports what happened when the question was
+asked again, properly: on the CP-capable geometry family of~\cite{CPpaper},
+with the Jarlskog invariant in the likelihood, with candidates and success
+criteria registered before the runs, and with every instrument convention
+(prior grids, histogram bins) either eliminated or promoted to a tested
+hypothesis.
+
+The arc has a beginning (a principle survives for the first time), a middle
+(its identity is found, its class is registered and judged), and an end we did
+not anticipate: the measure problem dissolves. The discipline that carried the
+companion papers --- pre-registered branch verdicts, regression anchors as
+gates, negative results reported with the same machinery as positive ones ---
+is what made the dissolution \emph{visible}: had we tuned candidates
+window-by-window, the compensation structure described in \S\ref{sec:dissolve}
+would have read as success.
+
+\section{A principle survives, and is dissected}
+
+On the 21-geometry shear family (both tori sheared by $s_1,s_2\in\{0..5\}$ at
+lattice size $N=36$), with the ten-observable evidence of~\cite{CPpaper}, the
+four principles of the first contest were re-run as two-level data-blind
+priors. Three verdicts repeated (MDL now \emph{inherits the CP penalty} through
+its preference for the rectangular geometry, $-2.16$; self-stability rejected
+again; thermodynamic again positive, $+0.41$). One reversed spectacularly: the
+hierarchy-tilted prior $e^{\beta\cdot\mathrm{depth}}$, worst of the first
+contest, \textbf{survives at $+2.31$ nats} --- the program's first surviving
+selection principle. Its per-geometry anatomy explains the reversal: on
+symmetric (equal-shear) geometries its deep tail overshoots the observed
+hierarchy exactly as on the rectangle ($-514.9$, reproducing the first
+contest's $-514.4$), while on asymmetric geometries the tilt concentrates prior
+mass where the likelihood lives.
+
+Dissection followed. The survival curve over $\beta$ peaks at $\beta=1.0$
+($\Delta=+3.34$), collapses below the survival threshold at $\beta^*=2.0$, and
+the analytic $\beta\to\infty$ endpoint --- hard selection of each geometry's
+deepest configuration --- is a catastrophe at $-8386$ nats. Asymmetric tails
+are two orders of magnitude shallower than symmetric ones, but both overshoot
+the observation. ``The universe does not select the deepest'' survives the
+change of family; \textbf{what survives is a tilt of order one.}
+
+\section{The survivor is a measure correction}
+
+Since $e^{\beta\cdot\mathrm{depth}}=\prod_i r_i^{-\beta}$, the surviving tilt
+reads as a conversion toward a scale-invariant (log-uniform,
+Jeffreys-type~\cite{Jeffreys}) measure on mass ratios. The direct test builds
+data-blind histogram-flattening priors from the configuration population itself
+(1D in depth; 2D in the two log-ratios; three bin widths): flattening
+reproduces the peak within \textbf{0.05 nats}, all variants landing in a
+$+2.9\ldots+3.3$ band, while the naive mechanism is refuted --- the
+configuration density is \emph{not} exponential in depth (measured slope
+$-0.19$, not $-1$). The operative content is a \textbf{measure correction}: the
+configuration measure of the shear family over-represents shallow mass ratios,
+and removing this over-representation --- by tilt, by flattening, in one or two
+dimensions --- is worth $+3$ nats, with no observation consulted.
+
+\section{Registration and instruments}
+
+At this point the program registered the question properly. Six candidate
+measures (uniform baseline; Jeffreys/Fisher; MDL; thermodynamic; depth tilt,
+$\beta$ marginalized; histogram flattening) were entered in a ledger with three
+success criteria fixed before any judgment run:
+\begin{itemize}
+\item \textbf{S1 (data-blind)}: constructible without observations, \emph{with
+      every convention --- bins, grids --- counted as part of the
+      construction};
+\item \textbf{S2 (convention invariance)}: candidate rankings survive changes
+      of bin width, prior grid, lattice size, and geometry window;
+\item \textbf{S3 (holdout non-degradation)}: a surviving measure must not
+      worsen never-fitted observables, registered in the prediction ledger
+      before the run (the unitarity-triangle angles $\beta$ and $\gamma$ here).
+\end{itemize}
+
+Two instruments were built to make the criteria testable. First, the
+Higgs-width prior grid --- the one convention shown earlier to flip sub-nat
+rankings --- was replaced by a continuum marginalization (trapezoid over
+$\sigma\in[1.2,8.0]$; the convergence gate failed at the first grid density and
+was passed by doubling it, with the failure recorded). The marginalization
+confirmed that two earlier conclusions were not grid artifacts, and
+re-confirmed the program's most robust continuous structure: the evidence
+concentrates at physical Higgs width $\sigma/\sqrt{\mathrm{area}}=1/18$ across
+every geometry, lattice, and grid tested. Second, a \emph{bin-free} analytic
+form for the flattening measure was constructed from sample moments (a
+quadratic tilt $w=\tfrac12(x-\mu)^{\!\top}\Sigma^{-1}(x-\mu)$, zero fitting
+freedom). It succeeds exactly where moments exist: on the asymmetric family the
+depth marginal is near-Gaussian (quantile-quantile RMS 0.25) and the quadratic
+tilt reproduces binned flattening to 0.10 nats --- S1 fully satisfied, bins
+eliminated. On the diagonal family the sample variance is dominated by the
+anomalous deep tail (QQ $\approx 52$) and the quadratic tilt destroys itself
+($-350$ nats) --- the same tail that killed hard selection, now killing moment
+estimation. \emph{Whether the measure correction has an analytic form is itself
+a property of the geometry family.}
+
+\section{The judgment}
+
+All candidates were then judged simultaneously, on three windows (asymmetric,
+diagonal, and the best-evidence rectangular-lattice geometry then known), under
+the continuum $\sigma$ marginalization, against the pre-registered criteria.
+\textbf{Survivors: none.}
+\begin{itemize}
+\item MDL: rejected a third time ($-1.64$, sign-stable).
+\item Depth: rejected --- the diagonal windows' tails collapse it (S2
+      sign-unstable: $+2.84$ vs $-494$).
+\item Flattening (1D and 2D): rejected --- \textbf{the best-geometry window
+      reverses its advantage} ($-2.15$ and $-0.38$), breaking S2.
+\item The bin-free quadratic tilt: passes evidence ($+1.93$) and S2 on its
+      qualified window, and is \textbf{rejected by S3} --- it degrades the
+      unitarity-triangle holdout from 1.96 to 4.53 rad. This is S3's first live
+      kill, and the sharpest lesson of the arc: \emph{a measure that raises the
+      evidence and a measure that improves predictions are different objects.}
+\item Thermodynamic: undecided at $+0.49$ --- but sign-positive in \emph{every}
+      window, as it has been in every era ($+0.32$, $+0.41$, $+0.49$).
+\end{itemize}
+
+\section{The dissolution: geometry was the missing variable}
+\label{sec:dissolve}
+
+The window that broke the flattening class was the clue. The aspect ratio of
+the torus --- the \emph{imaginary} part of the complex structure, fixed at 1 in
+every previous version --- turned out to be a live lever: scanning it found
+monotone improvement toward wider tori and then an interior valley bottom at
+$\boldsymbol{\tau=1/12+i/2}$ (lattice $36\times 18$, diagonal shear $(3,3)$,
+physical Higgs width $1/18$). At this point the ten-observable evidence reaches
+the program's best value ($-18.43$, beating the rectangular nine-observable
+champion by 1.4 nats on the harder scale); the two chronic tensions resolve
+\emph{simultaneously} --- the Cabibbo element, once overpredicted by 2.5, sits
+at factor 1.01, and the Jarlskog invariant at 1.24, with both 68\% posterior
+bands covering the measurements for the first time; the full scorecard holds
+all twelve observables within a factor of five, six of them at the ten-percent
+level.
+
+And at this point, \textbf{every measure correction is strictly harmful} (1D
+flattening $-3.73$; 2D $-1.23$; the quadratic tilt disqualified and
+self-destructive; the depth tilt $-1004$). Re-examined across the
+$\tau_{\rm im}$ scan, the pattern is monotone: the better the geometry, the
+less the correction helps, until it hurts. The $+3$ nats that the correction
+class earned in \S3 was \emph{compensation for a mis-set modulus} --- the
+configuration measure of the $\tau_{\rm im}=1$ section over-represents shallow
+ratios precisely because that section's geometry cannot reach the observed
+hierarchy pattern efficiently. Fix $\tau$, and the uniform counting measure is
+not merely adequate; it is preferred.
+
+We record the arc's conclusion in the form the ledger demands: \textbf{the
+measure problem, as posed, dissolved into geometry.} The surviving question is
+no longer ``which prior on configurations'' but ``which prior on $\tau$'' ---
+one level up, where the program's evidence now concentrates on a specific
+rational point ($\tau_{\rm re}=1/12$ from one scan, $\tau_{\rm im}=1/2$ from
+another) whose arithmetic ($n_x=2n_y$; exact three-fold degeneracy at every
+aspect ratio tested, to $10^{-13}$) belongs to the same open lattice number
+theory as the companion's index conditions.
+
+\section{What survives: the thermodynamic whisper}
+
+One signal refused to die at any stage: the thermodynamic prior (weight
+$\propto e^{\gamma\ln\|Y\|_F}$, a minimal proxy for condensation energy) is
+positive in every window of every era --- $+0.32$ (rectangular, nine
+observables), $+0.41$ (shear family, ten), $+0.44/+0.40/+0.63$ (the three
+judgment windows), $+0.51$ (the $\tau$ valley bottom) --- and never reaches the
+$+1$ survival line. Four generations of windows, one sign, no verdict. It is
+the only candidate whose content is \emph{dynamical} rather than statistical
+(it rewards strong coupling, not deep hierarchy), and its registered upgrade
+--- replacing the Frobenius proxy by a one-loop vacuum energy with the
+Kaluza--Klein tower --- is now the sharpest open item on the
+selection-principle ledger.
+
+\section{Limitations}
+
+\begin{itemize}
+\item All judgments are conditioned on the likelihood conventions of the
+      companion program (lognormal, $\sigma=\ln 2$; ten observables) and on the
+      shear-family model space; ``dissolved'' means \emph{within this program's
+      model space and observables}, not as a theorem.
+\item The $\tau$ valley was located by two one-dimensional scans
+      ($\tau_{\rm re}$, then $\tau_{\rm im}$); the two-dimensional landscape
+      and the arithmetic of its rational points are unexplored.
+\item The residual weak spots at the valley bottom are $m_c/m_t$ (factor 2.04
+      --- the companion's historic weak spot, untouched by the $\tau$ lever), a
+      mild high bias of the $|V_{cb}|/|V_{ts}|$ posterior bands, and a global
+      sign: all CP-odd angles come out with magnitudes near measurement but
+      negative sign, suggesting an orientation ($\tau\to-\tau$) test that the
+      $|J|$-based likelihood cannot see. [The orientation test was subsequently
+      performed: the anti-unitary branch pair is exact to machine precision,
+      the measured $\mathrm{sign}(J)>0$ fixes the branch, and the never-fitted
+      $\gamma=+66.8^\circ$ then falls within the experimental uncertainty of
+      $65.9^\circ\pm 3.5^\circ$.]
+\item The thermodynamic candidate's proxy is not yet a one-loop energy; its
+      persistence could still be an artifact of the proxy's correlation with
+      overlap magnitudes.
+\end{itemize}
+
+\section{Reproducibility}
+
+Deterministic and dependency-free as in the companions (Rust std-only; built-in
+PASS/FAIL gates; machine-validated claim ledger; 469 PASS / 0 FAIL at the
+period-17 integration preceding this arc). Practices specific to this arc: (i)
+a \emph{measure ledger} (measures.yml) registering candidates, conventions, and
+success criteria before judgment; (ii) \emph{holdout-based rejection} (S3)
+wired into the same run that freezes the holdout baseline before scoring ---
+the ordering is machine-enforced in the program's stdout; (iii) a
+\emph{mode-table disk cache} with explicitly non-primary status, which cut the
+marginal cost of a full judgment (fifteen prior variants $\times$ three windows
+$\times$ 69 Higgs widths $\times$ 1.7M-configuration sums) to about one minute;
+(iv) convergence gates on numerical integration, with a recorded instance of
+the gate failing and being passed by refinement rather than relaxation.
+
+\begin{thebibliography}{9}
+\bibitem{Companion} This program: ``Yukawa Hierarchies from Magnetized Tori without Order-One Coefficients,'' paper/geometric-yukawa-full.md (LaTeX version: paper/tex/geometric-yukawa.tex).
+\bibitem{CPpaper} This program: ``CP Violation Requires Complex Structure,'' paper/cp-complex-structure-full.md (LaTeX version: paper/tex/cp-complex-structure.tex).
+\bibitem{Jeffreys} H.~Jeffreys, ``An invariant form for the prior probability in estimation problems,'' Proc.\ R.\ Soc.\ Lond.\ A \textbf{186} (1946) 453--461.
+\bibitem{Trotta} R.~Trotta, ``Bayes in the sky: Bayesian inference and model selection in cosmology,'' Contemp.\ Phys.\ \textbf{49} (2008) 71--104.
+\bibitem{Repo} This program's repository: Quantum Relational Network (\texttt{claims.yml}, \texttt{measures.yml}, \texttt{predictions.yml}, \texttt{results/}) --- primary source for all numbers.
+\end{thebibliography}
+
+\end{document}

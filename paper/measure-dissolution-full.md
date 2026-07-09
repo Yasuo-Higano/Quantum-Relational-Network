@@ -62,7 +62,7 @@ One signal refused to die at any stage: the thermodynamic prior (weight ∝ e^{�
 
 - All judgments are conditioned on the likelihood conventions of the companion program (lognormal, σ = ln 2; ten observables) and on the shear-family model space; "dissolved" means *within this program's model space and observables*, not as a theorem.
 - The τ valley was located by two one-dimensional scans (τ_re, then τ_im); the two-dimensional landscape and the arithmetic of its rational points are unexplored.
-- The residual weak spots at the valley bottom are m_c/m_t (factor 2.04 — the companion's historic weak spot, untouched by the τ lever), a mild high bias of the |V_cb|/|V_ts| posterior bands, and a global sign: all CP-odd angles come out with magnitudes near measurement but negative sign, suggesting an orientation (τ → −τ) test that the |J|-based likelihood cannot see.
+- The residual weak spots at the valley bottom are m_c/m_t (factor 2.04 — the companion's historic weak spot, untouched by the τ lever), a mild high bias of the |V_cb|/|V_ts| posterior bands, and a global sign: all CP-odd angles come out with magnitudes near measurement but negative sign, suggesting an orientation (τ → −τ) test that the |J|-based likelihood cannot see. [The orientation test was subsequently performed: the anti-unitary branch pair is exact to machine precision, the measured sign(J) > 0 fixes the branch, and the never-fitted γ = +66.8° then falls within the experimental uncertainty of 65.9° ± 3.5°.]
 - The thermodynamic candidate's proxy is not yet a one-loop energy; its persistence could still be an artifact of the proxy's correlation with overlap magnitudes.
 
 ## 9. Reproducibility

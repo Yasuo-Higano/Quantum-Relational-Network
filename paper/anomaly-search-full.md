@@ -71,7 +71,7 @@ The linear anomaly conditions, so prominent in textbook derivations, are *implie
 
 ## 6. Limitations
 
-The windows are finite and stated: large-|Y| rank-3 territory, larger multiplet counts, and huge representations remain open; the 16-component neighbors are excluded by observational inputs, not consistency; the exceptional-group statement verifies representative low-dimensional representations and cites the standard self-conjugacy theorems for the全称 part; the v4.3-domain Lean formalization at ~10¹¹ calls awaits an array-based enumeration design. None of these limitations, if lifted, can *remove* solutions — every extension so far has only confirmed the gap around the SM.
+The windows are finite and stated: large-|Y| rank-3 territory, larger multiplet counts, and huge representations remain open; the 16-component neighbors are excluded by observational inputs, not consistency; the exceptional-group statement verifies representative low-dimensional representations and cites the standard self-conjugacy theorems for the universal part; the v4.3-domain Lean formalization at ~10¹¹ calls awaits an array-based enumeration design. None of these limitations, if lifted, can *remove* solutions — every extension so far has only confirmed the gap around the SM.
 
 ## 7. Reproducibility
 
@@ -87,5 +87,5 @@ Dependency-free Rust (std only), fixed seeds, exact integer arithmetic in all se
 [4] R. Foot, G. C. Joshi, H. Lew and R. R. Volkas, "Charge quantization in the standard model and some of its extensions," Mod. Phys. Lett. A 5 (1990) 2721.
 [5] B. C. Allanach, B. Gripaios and J. Tooby-Smith, "Anomaly cancellation with an extra gauge boson," Phys. Rev. Lett. 125 (2020) 161601.
 [6] D. B. Costa, B. A. Dobrescu and P. J. Fox, "General solution to the U(1) anomaly equations," Phys. Rev. Lett. 123 (2019) 151601, arXiv:1905.13729.
-[7] The Lean 4 theorem prover (native_decide の信頼基盤は本文 §4 に明示).
+[7] The Lean 4 theorem prover (the trust base of native_decide is stated explicitly in §4).
 [8] 本計画のリポジトリ: Quantum Relational Network (claims.yml, results/, certificates/, proofs/) — 全数値・全証明書の一次ソース。

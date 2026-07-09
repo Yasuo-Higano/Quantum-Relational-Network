@@ -1,0 +1,358 @@
+% geometric-yukawa.tex — paper/geometric-yukawa-full.md の LaTeX 化 (v18.x 出版作業)
+% 対象誌: JHEP / PRD。数値の一次ソースは results/ — 本文数値は .md 原稿から転記
+% TODO(著者確認): 著者名・所属は仮置き。投稿前に確定すること。
+\documentclass[aps,prd,preprint,nofootinbib]{revtex4-2}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\begin{document}
+
+\title{Yukawa Hierarchies from Magnetized Tori without Order-One Coefficients:\\
+Bayesian Selection of the Number of Extra Dimensions}
+
+\author{Yasuo Higano}
+\affiliation{Independent researcher; Quantum Relational Network program}
+
+\date{\today}
+
+\begin{abstract}
+Froggatt--Nielsen fits of fermion mass hierarchies involve chosen integer
+charges and marginalized order-one coefficients. We replace both by geometry:
+generations are the exact zero modes of a lattice Dirac operator on a
+magnetized torus (degeneracy $=$ flux $=3$), sectors are distinguished by
+discrete Wilson lines, and Yukawa matrices are computed as overlap integrals
+with no random coefficients. A single torus is shown to be intrinsically too
+shallow --- its hierarchy depth is set by the flux alone --- failing the
+up-quark hierarchy by two orders of magnitude. The factorizable product
+$T^2\times T^2$ squares the suppression and reproduces five of six mass ratios
+and two of three out-of-sample CKM elements within a factor of five, with
+Bayesian evidence exceeding the anarchic bound by 15 nats. Treating the
+geometry itself as a hypothesis space, evidence from mass ratios alone selects
+three tori over two, while coarse Wilson-line lattices are always preferred;
+including the CKM elements in the evidence --- computed exactly by a triple sum
+over the shared Wilson line --- resolves the apparent mass--mixing tension in
+favor of three tori on all nine observables. The diagonal generation-pairing
+ansatz is itself testable: marginalizing over all inter-torus pairings beats it
+by 3.7 nats even after the Occam penalty, and the pairing proves irreducible to
+any Wilson-line refinement, mirror, or flux-orientation flip --- it aligns
+Landau towers, not positions. The alternative in which a tilted four-torus
+Dirac index counts three generations directly, with no pairing at all, is
+excluded structurally: index 3, being prime, forces one magnetic eigenplane to
+flatten, capping the attainable hierarchy at the single-tower floor. The
+pairing is thus established as irreducible discrete data of the
+compactification, on a par with discrete torsion. All results are reproducible
+from a dependency-free Rust repository with a machine-validated claim ledger.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The fermion mass hierarchy spans five orders of magnitude in the mass ratios
+and a further structured pattern in the CKM matrix. The Froggatt--Nielsen (FN)
+mechanism~\cite{FN} organizes this by integer charges and powers of a small
+parameter $\epsilon$, but every FN fit carries two kinds of hidden freedom: the
+\emph{choice} of integer charges, and the \emph{marginalization} over order-one
+coefficients. A Bayesian model comparison performed within this program (claim
+QRN-YUK-002) found that a free-charge FN model beats structureless anarchy by
+$\ln B\ge 23$ even after paying the Occam penalty for $\sim 7.5\times 10^5$
+charge assignments --- but the charges themselves remain a selection, and the
+$O(1)$ coefficients remain a prior.
+
+This paper asks the sharper question: \textbf{can both freedoms be replaced by
+geometry?} The setting is the standard magnetized-compactification
+picture~\cite{Bachas,Cremades}: chiral generations arise as degenerate zero
+modes of the Dirac operator on a torus threaded by $Q$ units of magnetic flux;
+their number is fixed by the index theorem, their wavefunction profiles by the
+geometry, and their Yukawa couplings by overlap integrals --- with \emph{no
+random coefficients anywhere}. Our contribution is to make this picture fully
+computational and fully Bayesian on a lattice, so that:
+\begin{enumerate}
+\item every Yukawa matrix is a deterministic function of a small set of
+      \emph{discrete} geometric data (fluxes, Wilson lines, generation
+      pairing);
+\item the geometric hypotheses themselves --- how many tori, how fine a
+      Wilson-line lattice, how the generations pair across tori --- are placed
+      in the model space and weighed by evidence;
+\item negative results (constructions that exist but cannot fit the data) are
+      computed and reported with the same machinery as positive ones.
+\end{enumerate}
+
+Point 3 turned out to be the scientific core of the paper. Over the course of
+the analysis, three ``innocent'' assumptions were successively promoted to
+hypotheses and tested: the sorting convention that labels generations
+(\S\ref{sec:label}), the diagonal pairing of generations across tori
+(\S\ref{sec:pairing}), and the very idea that pairing is a shadow of the
+factorized approximation, removable by an honest index-3 geometry
+(\S\ref{sec:honest}). The first was stabilized after an independent
+reimplementation exposed a machine-epsilon knife edge in the published numbers;
+the second was \emph{rejected by the data} at 3.7 nats; the third was excluded
+by a structural argument in which the primality of 3 plays the decisive role.
+What survives is a sharp statement: \textbf{the generation pairing is
+irreducible discrete data of the compactification.}
+
+All numbers in this paper are generated by a dependency-free Rust code base
+(single shared numerical library, fixed seeds, built-in PASS/FAIL verification
+against exact results), and every claim is tracked in a machine-validated
+ledger with explicit evidence files and limitations. The full suite currently
+reports 314 PASS / 0 FAIL across 59 programs.
+
+\section{Construction}
+
+\subsection{Zero modes on the lattice}
+
+We work on an $N\times N$ lattice torus ($N=18$ throughout the two-dimensional
+analysis) with a $U(1)$ hopping Hamiltonian in the Landau gauge, $A_y=\phi x$
+with $\phi=2\pi Q/N^2$. The $Q=3$ lowest states form an exactly degenerate band
+(spread $\sim 10^{-13}$) separated by a finite gap ($0.115$ at $N=18$) --- the
+lattice avatar of the index theorem's $Q$ zero modes (claim QRN-MATTER-001).
+These three states are the three generations.
+
+\subsection{Localization and Wilson lines}
+
+Within the degenerate band we diagonalize the position operator
+$\hat X=e^{2\pi i x/N}$; a generic phase ($\phi_0=0.83$) avoids the accidental
+cosine degeneracy of the symmetric choice. The resulting generation
+wavefunctions are Gaussians of width $\approx 2.9$ sites centered 6 sites
+apart. A discrete Wilson line shifts all centers rigidly --- one lattice site
+per unit --- giving each matter sector ($Q$, $u$, $d$, $L$, $e$) an
+\emph{address}: its Wilson-line integer $k\in\mathbb{Z}_6$ (or half-integers
+for the $\mathbb{Z}_{12}$ refinement).
+
+\emph{Development record.} Our first implementation attempted lattice magnetic
+translations to realize sector shifts; these close only when $N\,|\,2Q$, which
+fails at $(N,Q)=(18,3)$. Wilson lines implement the same physics exactly and
+are the construction we retain. We report this dead end because the obstruction
+(a lattice-specific number-theoretic condition) recurs in \S\ref{sec:honest} in
+a stronger form.
+
+\subsection{Yukawa couplings}
+
+The Higgs is a periodic Gaussian of width $\sigma_H$ centered at the origin;
+Yukawa matrices are the overlap integrals
+$Y_{ij}=\sum_x \bar\psi_i^{(a)}\psi_j^{(b)}\phi_H$. Given the fluxes, the
+Wilson lines, and $\sigma_H$, \emph{every entry of every Yukawa matrix is
+determined}. The likelihood on the six mass ratios ($m_u/m_t$, $m_c/m_t$,
+$m_d/m_b$, $m_s/m_b$, $m_e/m_\tau$, $m_\mu/m_\tau$) and, where stated, the
+three CKM magnitudes ($|V_{us}|$, $|V_{cb}|$, $|V_{ub}|$), is lognormal with
+$\sigma=\ln 2$ --- identical to the FN baseline of QRN-YUK-002, so evidence
+values are directly comparable across the paper.
+
+\subsection{A reproducibility lesson: label stability}
+\label{sec:label}
+
+The localized modes are sorted by center to align generation labels across
+sectors. One mode sits \emph{exactly} on the wrap boundary of the coordinate
+(computed center $\sim 10^{-12}$ from $0\equiv N$), so the sort is a
+machine-epsilon knife edge: the published product-model evidences are
+conditioned on which side of the rounding the implementation happens to fall.
+An independent numpy reimplementation (built to validate the figures)
+reproduced the single-torus numbers exactly and \emph{disagreed} on the product
+model by 1.65 nats, which is how the knife edge was found (claim QRN-YUK-006).
+The fix --- snap centers to the half-site lattice before sorting --- makes
+labels convention-stable; the geometry-selection winner and complete ranking
+are unchanged on both sides of the edge. We adopt the stable convention
+throughout and quote published-convention values where they are the historical
+reference. \emph{Fixed seeds do not imply convention-independent
+reproducibility; degenerate-band sort orders can become physics downstream.}
+
+\section{The single-torus no-go}
+
+The depth of the single-torus Yukawa hierarchy is set by the flux alone: the
+attainable minimum of $\sigma_1/\sigma_3$ at $\sigma_H=1$ is $\approx 3\times
+10^{-3}$ (floor at $2.98\times 10^{-3}$, lattice-size invariant), two orders of
+magnitude short of $m_u/m_t=1.3\times 10^{-5}$. Its full evidence is $\ln
+Z=-53.8$, \emph{below} the rigorous anarchic upper bound of $-35.4$ --- a
+structureless model with 18 random coefficients explains the data better than a
+single magnetized torus with zero random coefficients (claim QRN-YUK-003). This
+is a principled negative result: geometry with too little structure is worse
+than no structure.
+
+\section{The factorizable product $T^2\times T^2$}
+
+Two tori square the suppression: with per-sector Wilson lines on each factor
+($6^{10}$ configurations) and the diagonal generation pairing (each generation
+is the product of same-label modes), the attainable set reaches the up-quark
+ratio. The maximum-a-posteriori (MAP) geometry reproduces five of six mass
+ratios within a factor of five (the exception is $m_c/m_t$, ratio 14 --- a
+persistent weak spot we report rather than repair) and, \emph{out of sample},
+two of three CKM magnitudes ($|V_{cb}|$ within 3\%). The evidence is $\ln
+Z=-20.4$ (published convention; $-18.8$ stable): \textbf{15 nats above the
+anarchic bound with zero random coefficients} (QRN-YUK-003). Against the
+free-charge FN model ($\ln Z=-12.2$) the residual is $-8.2$ nats, which we
+attribute to the coarseness of the Wilson lattice and the pairing ansatz ---
+quantified next.
+
+\begin{table}[t]
+\caption{\label{tab:models}Model comparison on the six mass ratios.}
+\begin{ruledtabular}
+\begin{tabular}{lll}
+model & free parameters & $\ln Z$ (6 ratios) \\
+\colrule
+M0 anarchy & 18 $O(1)$ coefficients & $\le -35.4$ (bound) \\
+M1 FN free charges & 10 integers $+$ 18 $O(1)$ & $-12.2$ \\
+M2 FN literature charges & 18 $O(1)$ & $-7.6$ \\
+M2geo single $T^2$ & 5 Wilson $+\ \sigma_H$ & $-53.8$ \\
+\textbf{M2geo$^2$ $T^2\times T^2$} & 10 Wilson $+\ \sigma_H$ & $\mathbf{-20.4}$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\section{Selecting the geometry itself}
+
+Treating $\{$number of tori$\}\times\{$Wilson lattice$\}$ as a hypothesis space
+with uniform priors: evidence from the six mass ratios selects \textbf{$T^3$
+over $T^2$ by $+3.0$ nats}, and every lattice refinement
+($\mathbb{Z}_6\to\mathbb{Z}_{12}$) \emph{loses} --- the data pays for more
+dimensions but never for finer Wilson lattices (QRN-YUK-004). The $T^3$
+mass-only MAP, however, loses the CKM structure badly, while a 9-observable
+point evaluation prefers $T^2$: an apparent mass--mixing tension.
+
+The tension is an artifact of point estimation. Computing the \emph{evidence}
+on all nine observables --- exact despite the broken factorization, via a
+triple sum over the shared left-handed Wilson line with the lepton sector
+factorized --- $T^3$ wins again ($-25.56$ vs $-27.13$ published; $-21.84$ vs
+$-23.61$ stable; QRN-YUK-005). The joint MAP places eight of nine observables
+within a factor of five. Evidence integrates over the attainable set; a bad
+point does not condemn a good model. This is the third instance in this program
+(after the anarchic-evidence and calibration episodes) where the
+\emph{measurement method}, not the model, generated the apparent physics.
+
+\subsection{The generation pairing is a physical degree of freedom}
+\label{sec:pairing}
+
+The product construction silently assumed \emph{diagonal pairing}: generation
+$i$ on torus 1 pairs with generation $i$ on torus 2. Since the $(3,3)$-flux
+$T^4$ actually has nine zero modes, choosing three diagonal products is a
+projection ansatz. We promote the pairing to a hypothesis: $\sigma_F\in S_3$
+per matter field (gauge-fixing the global relabeling), with uniform prior ---
+an Occam penalty of $4\ln 6=7.17$ nats.
+
+\textbf{The data rejects the diagonal ansatz.} Marginalizing the pairings
+\emph{gains} 3.7 nats net of the penalty, on masses alone and on all nine
+observables (QRN-YUK-007). The MAP pairing is non-diagonal. The geometry
+selection survives: with pairings marginalized on both sides --- the $T^3$ case
+requiring a certified-truncation evidence sum over $\sim 10^{13}$ terms, with a
+rigorous remainder bound of width $\sim 10^{-10}$ nats --- three tori still
+beat two ($-17.89$ vs $-19.86$; QRN-YUK-008).
+
+What \emph{is} the pairing, geometrically? An exhaustive classification against
+54 candidate realizations (all $\mathbb{Z}_{18}$ Wilson refinements, mirror
+reflection, complex conjugation $=$ flux-orientation flip) matches none of the
+30 non-trivial pairing states (QRN-YUK-009): the pairing permutes \emph{which
+Landau towers are bundled into one four-dimensional field}, an internal
+alignment invisible to position or orientation. A uniform $\mathbb{Z}_3$
+shift-orbifold does derive the $9\to 3$ projection --- the projector's
+eigenspaces are exactly anti-diagonal pairing families --- but its
+gauge-invariant prediction (all sectors in the same family) loses to the
+mixed-parity data by 2.0 nats (QRN-YUK-010); a field-dependent
+magnetization-orientation model narrows the gap but stops 1.0 nat short of the
+abstract $S_3$ pairing at identical prior volume (QRN-YUK-011). The mechanism
+ladder --- diagonal ($-23.6$) $<$ uniform orbifold ($-21.8$) $<$ orientation
+($-20.9$) $<$ $S_3$ pairing ($-19.9$) --- measures in nats how far each
+physical dressing falls short.
+
+\subsection{The honest-index alternative, and why the prime 3 kills it}
+\label{sec:honest}
+
+One alternative would dissolve the pairing entirely: tilt the four-torus flux
+so that the Dirac index itself equals three. With flux data $(Q_1,Q_2,t,s)$ on
+the coordinate 2-planes, the index is $\mathrm{Pf}(F)=Q_1Q_2+ts$;
+$(2,2,1,-1)$ gives $4-1=3$, realized on the lattice as an exactly three-fold
+degenerate lowest band (spread $10^{-13}$, verified against a $t=0$ control
+with degeneracy 4). Its zero modes are non-factorized across the tori
+(inter-torus mutual information $>0$): the geometry itself bundles the towers.
+If this construction fit the data, $\sigma$ would be exposed as a shadow of the
+factorized approximation.
+
+It does not fit, for two instructive reasons.
+
+\textbf{Lattice index arithmetic.} Exact lattice degeneracy is \emph{not}
+implied by the continuum index: of seven index-3 flux matrices scanned, only
+three retain an exact triple at $N=18$, and the flux $(2,2,1,-1)$ that is exact
+at $N=6$ \emph{splits} at $N=18$ by $4\times 10^{-2}$. Which (flux, $N$) pairs
+protect the degeneracy is a number-theoretic question we leave open
+(QRN-YUK-015, finding 1).
+
+\textbf{The prime-3 flattening.} The flux two-form decomposes into two magnetic
+eigenplanes with skew-eigenvalues $f_+$, $f_-$, and the index constraint
+$f_+f_-=3$ with 3 prime forces extreme asymmetry: strengthening the fluxes
+flattens the second eigenplane ($f_-=3/f_+\to 0$), so suppression only ever
+acts once. Every exactly-degenerate member of the family sits at the
+\emph{single-tower} depth floor ($\ln r_1\in[-5.8,-5.2]$, versus the $-11.3$
+required), and the best evidence achieved --- with a purpose-built sparse
+Lanczos eigensolver scaling the computation to $2\times 10^5$ dimensions at
+$6{,}700\times$ the dense-Jacobi speed --- is $\ln Z_9=-34.9$, fifteen nats
+short of the $S_3$-pairing model (QRN-YUK-012--015). The $T^2\times T^2$ ansatz
+achieves its depth precisely by \emph{multiplying} two tower suppressions,
+which an honest index-3 geometry cannot do \textbf{because 3 is prime}.
+
+\textbf{Conclusion of the arc.} The pairing survives every attempted reduction
+--- translation, reflection, conjugation, orbifold projection, orientation,
+tilt --- with the last alternative excluded structurally rather than
+numerically. We conclude that the generation pairing is \textbf{irreducible
+discrete data of the compactification}, of the same standing as discrete
+torsion or Wilson-line moduli: ``why this pairing'' is henceforth the same kind
+of question as ``why this flux.''
+
+\section{Limitations and outlook}
+
+\begin{itemize}
+\item $m_c/m_t$ remains the single factor-5 outlier of the MAP throughout
+      (ratio 6--14 depending on the model) --- the known weak spot of the M2
+      class.
+\item The scan window is $\{T^1,T^2,T^3\}\times\{\mathbb{Z}_6,
+      \mathbb{Z}_{12}\}$, identical tori ($N=18$, $Q=3$), a single Gaussian
+      Higgs profile, and CP phases unused. The full-9 evidence excludes
+      $T^3\times\mathbb{Z}_{12}$ (a $5\times 10^9$-term triple sum) explicitly.
+\item The prime-3 argument is a structural statement about magnetic
+      eigenplanes, not a lattice theorem; the number theory of exact lattice
+      degeneracy (which (flux, $N$) protect the index) is open and, we believe,
+      interesting in its own right.
+\item The upstream discrete data --- fluxes, Wilson lines, and now the pairing
+      --- await a common selection principle (moduli stabilization / vacuum
+      selection), which lies beyond the present methods.
+\end{itemize}
+
+\emph{Addendum (v17.1).} Both deferred questions --- the unused CP phases and
+the selection principle --- are taken up in the companion
+paper~\cite{CPpaper}: CP violation proves to \emph{require complex structure}
+(the rectangular geometry's $J=0$ is a structural zero, reversed by $+306$ nats
+once $J$ is admitted as an observable, with the $|V_{td}|$ holdout miss of this
+paper's model turning into a 5\% hit), and the first surviving data-blind
+selection principle reduces, on dissection, to a measure correction on the
+configuration space.
+
+\section{Reproducibility}
+
+Everything is deterministic: no random Yukawa coefficients anywhere, fixed
+seeds where sampling occurs (Bayesian baselines), a dependency-free Rust
+implementation with a single shared numerical library, and built-in
+[PASS]/[FAIL] verification in every program (314 PASS / 0 FAIL at the time of
+writing). Three practices proved load-bearing and we commend them: (i)
+\emph{claim ledgers} --- every statement carries a grade (C0 premise \dots\ C5
+interpretation), evidence files, and explicit limitations, machine-validated in
+CI; (ii) \emph{independent reimplementation} --- a figure-generation
+cross-check in a different language found the label knife edge of
+\S\ref{sec:label}; (iii) \emph{certified truncation} --- evidence sums too
+large to enumerate are bounded rigorously, with the remainder interval reported
+(widths $\sim 10^{-10}$ nats here). Errata are appended, never overwritten: two
+of our own intermediate claims (a Wilson-refinement equivalence conjecture and
+an early tolerance choice) were corrected in the record by later versions.
+
+\begin{thebibliography}{9}
+\bibitem{FN} C.~D.~Froggatt and H.~B.~Nielsen, ``Hierarchy of quark masses, Cabibbo angles and CP violation,'' Nucl.\ Phys.\ B \textbf{147} (1979) 277.
+\bibitem{Bachas} C.~Bachas, ``A way to break supersymmetry,'' arXiv:hep-th/9503030.
+\bibitem{Cremades} D.~Cremades, L.~E.~Ib\'a\~nez and F.~Marchesano, ``Computing Yukawa couplings from magnetized extra dimensions,'' JHEP \textbf{05} (2004) 079, arXiv:hep-th/0404229.
+\bibitem{Blumenhagen} R.~Blumenhagen, B.~K\"ors, D.~L\"ust and S.~Stieberger, ``Four-dimensional string compactifications with D-branes, orientifolds and fluxes,'' Phys.\ Rept.\ \textbf{445} (2007) 1--193.
+\bibitem{IbanezUranga} L.~E.~Ib\'a\~nez and A.~M.~Uranga, \emph{String Theory and Particle Physics: An Introduction to String Phenomenology}, Cambridge University Press (2012).
+\bibitem{Trotta} R.~Trotta, ``Bayes in the sky: Bayesian inference and model selection in cosmology,'' Contemp.\ Phys.\ \textbf{49} (2008) 71--104.
+\bibitem{HabaMurayama} N.~Haba and H.~Murayama, ``Anarchy and hierarchy: An approach to study models of fermion masses and mixings,'' Phys.\ Rev.\ D \textbf{63} (2001) 053010, arXiv:hep-ph/0009174.
+\bibitem{CPpaper} This program, companion paper: ``CP Violation Requires Complex Structure,'' paper/cp-complex-structure-full.md (LaTeX version in preparation).
+\bibitem{Repo} This program's repository: Quantum Relational Network (\texttt{claims.yml}, \texttt{results/}, \texttt{figures/}) --- primary source for all numbers.
+\end{thebibliography}
+
+\end{document}

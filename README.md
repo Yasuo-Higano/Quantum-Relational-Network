@@ -18,7 +18,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v18.0** — Rust 78 本 + Lean 4 定理 10 本 (4 ファイル) +
+**現在の到達点: v18.1** — Rust 78 本 + Lean 4 定理 10 本 (4 ファイル) +
 主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
 ([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
 最新統合は [docs/uft-v16.0.md](docs/uft-v16.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -157,6 +157,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v17.12 | [uft-v17.12.md](docs/uft-v17.12.md) | (執筆) | **論文本文 4 (英語完全原稿)**: `paper/measure-dissolution-full.md` — 測度アーク (初の生存原理 → 解剖 → 正体は測度補正 → S1–S3 登録 → 判定生存 0 → **τ=1/12+i/2 で幾何に溶解** → 熱力学の残響) の独立短報。方法論の輸出: *evidence を上げる測度と予言を良くする測度は別物* (S3 の初仕事)。書誌照合済み (Jeffreys 1946 は本版で Web 照合)。PROMPT/3 v18.5 完了 — **v18 系 6 項目が全て完了** |
 | v17.13 | [uft-v17.13.md](docs/uft-v17.13.md) | `v1713_orientation` | **orientation**: 共役分枝の反ユニタリ対称を機械精度で検証 (lnZ 不変 3e-10・J 厳密反転・角の和 1e-13) — **orientation は Z₂ 離散データ、測定 sign(J)>0 が分枝を固定** (\|J\| 尤度は盲目 — 11 量化不要)。**測定分枝: γ = +66.8° は測定 65.9°±3.5° の誤差内 (PRED-007 hit)**、β = +15.2° (factor 1.46 — PRED-008 保守的 miss)。**符号込み 14/14 級 — CP は大きさと位相角の両方で閉じた**。2 秒 |
 | **v18.0** | [**uft-v18.0.md**](docs/uft-v18.0.md) | (全スイート) | **第十八期統合**: 13 版・PROMPT/3 の v18 系 6 項目完了 + τ アーク + orientation。**測度問題は溶解** (幾何を正せば一様測度が最良 — 残るのは THERMO の 4 窓世代不動 +0.5 と τ 分布の上位問題)。**τ = 1/12 + i/2 が測定された数に**、orientation は測定 1 ビット。CP は大きさ・位相角・符号の三層で完結 (γ 誤差内 hit)。paper 4 本。テーゼ: **問いを一段上げるたびに、答えは幾何に返ってきた** |
+| v18.1 | [uft-v18.1.md](docs/uft-v18.1.md) | (出版整形) | **4 論文の LaTeX 化** (`paper/tex/`, revtex4-2 PRD preprint — tectonic でコンパイル検証・紙面検収済み)。コピーエディット: anomaly の日本語混入 2 箇所修正・cp/measure に v17.12/13 の後日譚 Addendum。開発記録: v153/v154 JSON の末桁はスレッド順序依存 (~1e-13) — 一次ソースは初出値保持。**残: 著者確定・投稿先決定・図の PDF 化** |
 
 ## リポジトリ構成
 
