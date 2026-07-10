@@ -1,0 +1,121 @@
+=== v20.0 全スイート自己検証 (2026-07-11) ===
+
+集計規則 (v7.0 で固定、v11.0 でグロブ改訂): 各バイナリの stdout に現れる [PASS] / [FAIL] の出現数。
+再現方法: cd sim && cargo build --release && for b in target/release/v*_* (実行可能のみ、.d 除外); do $b; done
+本統合の実行区分:
+  - T⁴ 系 4 本 (v121/v122/v123/v132, 計 ~2.5 時間) は v14.0 の全数実行 (results/v140_full_suite.txt)
+    を引用する。ソース不変は git で検証可 (v19.0 以降の sim/src 差分は v191〜v197 の新規 7 本のみ)。
+  - N=36 系重量級 4 本 (v168/v169/v1610/v175) は v18.0 の全数実行 (results/v180_full_suite.txt) を引用。
+  - 3+1D 重量級 3 本 (v192 [6.0 h]/v195 [43 m]/v196 [83 m]) は本統合と同一ツリーでの当日単独実行
+    (results/v192_boost3d.txt, v195_qnec3d.txt, v196_boostdeep.txt — コミット済み) を引用。
+  - モード表 disk キャッシュ (sim/cache/) は加速器であり一次ソースではない。
+
+Rust シミュレーション: 98 本 (実行 87 + 引用 11)
+
+v01_gr PASS=2 FAIL=0
+v01_qm PASS=3 FAIL=0
+v02_pimc PASS=10 FAIL=0
+v03_phi4 PASS=0 FAIL=0
+v04_u1 PASS=11 FAIL=0
+v05_entangle PASS=3 FAIL=0
+v06_causet PASS=0 FAIL=0
+v06_dt PASS=0 FAIL=0
+v07_infogeom PASS=1 FAIL=0
+v08_page PASS=1 FAIL=0
+v101_pairing PASS=5 FAIL=0
+v102_geopair PASS=10 FAIL=0
+v103_pairgeom PASS=4 FAIL=0
+v11_quench PASS=2 FAIL=0
+v111_exceptional PASS=17 FAIL=0
+v112_orbifold PASS=5 FAIL=0
+v113_orient PASS=4 FAIL=0
+v114_tensorcore PASS=6 FAIL=0
+v12_erepr PASS=1 FAIL=0
+v13_qec PASS=10 FAIL=0
+v131_lanczos PASS=5 FAIL=0
+v14_z2gauge PASS=0 FAIL=0
+v15_lambda PASS=3 FAIL=0
+v151_audit PASS=11 FAIL=0
+v153_corev2 PASS=25 FAIL=0
+v154_continuum PASS=15 FAIL=0
+v155_selection PASS=5 FAIL=0
+v156_einstein PASS=11 FAIL=0
+v157_predict PASS=6 FAIL=0
+v16_born PASS=3 FAIL=0
+v161_tiltcp PASS=4 FAIL=0
+v1611_selection2 PASS=9 FAIL=0
+v1612_depthscan PASS=10 FAIL=0
+v1613_jeffreys PASS=9 FAIL=0
+v162_shearcp PASS=3 FAIL=0
+v163_sheartriple PASS=3 FAIL=0
+v164_tenquantity PASS=5 FAIL=0
+v165_scorecard PASS=4 FAIL=0
+v166_wilson12 PASS=3 FAIL=0
+v167_nscaling PASS=4 FAIL=0
+v1710_tauimdeep PASS=2 FAIL=0
+v1711_apexchar PASS=3 FAIL=0
+v1713_orientation PASS=4 FAIL=0
+v174_postbands PASS=5 FAIL=0
+v177_sigmacont PASS=13 FAIL=0
+v178_densform PASS=4 FAIL=0
+v179_measurejudge PASS=4 FAIL=0
+v182_apexcont PASS=4 FAIL=0
+v183_pmns PASS=2 FAIL=0
+v184_mrgeom PASS=3 FAIL=0
+v185_fluxphib PASS=3 FAIL=0
+v186_tailanat PASS=3 FAIL=0
+v187_needle PASS=2 FAIL=0
+v191_first3d PASS=6 FAIL=0
+v193_fisher3d PASS=11 FAIL=0
+v194_boostdist PASS=4 FAIL=0
+v197_nonlinear PASS=7 FAIL=0
+v21_relent PASS=7 FAIL=0
+v22_kk PASS=4 FAIL=0
+v23_matter PASS=6 FAIL=0
+v24_inflation PASS=3 FAIL=0
+v25_bmv PASS=0 FAIL=0
+v31_gauge PASS=2 FAIL=0
+v32_yukawa PASS=0 FAIL=0
+v33_ctheorem PASS=3 FAIL=0
+v34_unruh PASS=2 FAIL=0
+v41_qnec PASS=3 FAIL=0
+v42_neutrino PASS=0 FAIL=0
+v43_landscape PASS=0 FAIL=0
+v44_desitter PASS=2 FAIL=0
+v51_arrow PASS=2 FAIL=0
+v52_bigreps PASS=1 FAIL=0
+v53_decoupling PASS=1 FAIL=0
+v61_ledger PASS=7 FAIL=0
+v62_atlas PASS=39 FAIL=0
+v63_qnec_budget PASS=8 FAIL=0
+v64_controls PASS=3 FAIL=0
+v65_bayes PASS=8 FAIL=0
+v67_core PASS=7 FAIL=0
+v71_twou1 PASS=9 FAIL=0
+v72_geomfn PASS=2 FAIL=0
+v73_bmv2 PASS=9 FAIL=0
+v74_core2 PASS=11 FAIL=0
+v81_geoselect PASS=4 FAIL=0
+v82_threeu1 PASS=11 FAIL=0
+v91_ckmselect PASS=5 FAIL=0
+v92_labelstab PASS=18 FAIL=0
+v94_qneccore PASS=10 FAIL=0
+
+実行小計 binaries=88 PASS=500 FAIL=0
+
+--- 引用ブロック (T⁴ 系 4 本 = v14.0 実行 / N=36 系 4 本 = v18.0 実行 / 3+1D 系 3 本 = 当日単独実行, いずれもソース不変は git で検証可) ---
+v121_tiltflux PASS=5 FAIL=0
+v122_tiltwilson PASS=3 FAIL=0
+v123_fluxscan PASS=9 FAIL=0
+v132_deeptilt PASS=4 FAIL=0
+v168_taure PASS=7 FAIL=0
+v169_asymshear PASS=13 FAIL=0
+v1610_sigsens PASS=8 FAIL=0
+v175_tauim PASS=2 FAIL=0
+v192_boost3d PASS=11 FAIL=0
+v195_qnec3d PASS=29 FAIL=0
+v196_boostdeep PASS=9 FAIL=0
+
+引用小計 binaries=11 PASS=100 FAIL=0
+
+総計 binaries=99 PASS=600 FAIL=0
