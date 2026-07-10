@@ -136,6 +136,12 @@ digraph qrn {
   "QRN-LEP-005" [fillcolor="#fdd835", label="QRN-LEP-005\nC4 v18.7"];
   "QRN-META-019" [fillcolor="#e53935", label="QRN-META-019\nC5 v19.0"];
   "QRN-GRAV-005" [fillcolor="#1e88e5", label="QRN-GRAV-005\nC2 v19.1"];
+  "QRN-GRAV-006" [fillcolor="#fdd835", label="QRN-GRAV-006\nC4 v19.2"];
+  "QRN-GRAV-007" [fillcolor="#1e88e5", label="QRN-GRAV-007\nC2 v19.3"];
+  "QRN-GRAV-008" [fillcolor="#fdd835", label="QRN-GRAV-008\nC4 v19.4"];
+  "QRN-GRAV-009" [fillcolor="#1e88e5", label="QRN-GRAV-009\nC2 v19.5"];
+  "QRN-GRAV-010" [fillcolor="#fdd835", label="QRN-GRAV-010\nC4 v19.6"];
+  "QRN-GRAV-011" [fillcolor="#1e88e5", label="QRN-GRAV-011\nC2 v19.7"];
   "QRN-GRAV-001" -> "QRN-C0-001";
   "QRN-BH-001" -> "QRN-C0-003";
   "QRN-CAUSAL-002" -> "QRN-CAUSAL-001";
@@ -335,4 +341,12 @@ digraph qrn {
   "QRN-META-019" -> "QRN-LEP-005";
   "QRN-GRAV-005" -> "QRN-C0-002";
   "QRN-GRAV-005" -> "QRN-GRAV-001";
+  "QRN-GRAV-006" -> "QRN-GRAV-005";
+  "QRN-GRAV-007" -> "QRN-GRAV-005";
+  "QRN-GRAV-008" -> "QRN-GRAV-006";
+  "QRN-GRAV-009" -> "QRN-GRAV-005";
+  "QRN-GRAV-009" -> "QRN-QNEC-001";
+  "QRN-GRAV-010" -> "QRN-GRAV-006";
+  "QRN-GRAV-010" -> "QRN-GRAV-008";
+  "QRN-GRAV-011" -> "QRN-GRAV-007";
 }
