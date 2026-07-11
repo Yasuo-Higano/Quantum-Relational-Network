@@ -1918,3 +1918,15 @@
   limitations:
     - "基底状態のみ (励起・動力学は未実装)。開鎖 Schwinger のみ (SU(N) MPO 化は同構成で可能・未実装)。"
     - "探索層は numpy 依存 — 監査層が照合できる範囲が一次ソース (二層規約)。"
+
+- id: QRN-GRAV-012
+  version: "v21.4"
+  level: C2
+  claim: "Einstein 橋の残項目監査 (PROMPT/3 §2R): 事前登録 (a) — [測定 1] ローレンツ主要次数保護: staggered 分散の方向異方性 (軸 vs 対角) は log-log 勾配 p = 2.0032 (登録 2±0.1) で O(k²a²) 消失、|k|=0.1 の値は解析式 k²/9 と 0.1% 一致。[測定 2] ∇T=0 の格子形はエネルギー保存 (~1e-15)・粒子連続の式 (Simpson 5 桁) として v19.5 で実測済み (照合)。[限界 3-7] Newton 1/r・重力波 2 偏極・S_eff (G,Λ,α,β)・R² 上界は G の読み出し (第二段, 窓 d≲2 の外) への依存連鎖として限界化、QNEC 連続極限は N≥24 系列 (要疎化)。§2 の 7 項目 = 測定可能 2 (閉) + 完了済 1 (v19.5) + G 窓依存 4 (連鎖明示) に分解。"
+  status: "§2R 完了 (測定可能分は成立・残は G 窓の依存連鎖として FAL-LORENTZ/FAL-CONTINUUM に接続)"
+  evidence:
+    code: "sim/src/bin/v214_bridgeaudit.rs"
+    result: "results/v214_bridgeaudit.txt"
+    doc: "docs/uft-v21.4.md"
+  limitations:
+    - "自由場の運動学 — 相互作用系・創発計量のローレンツ保護は G 窓の先。"

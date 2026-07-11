@@ -809,3 +809,8 @@
   deps: [QRN-CORE-006]
   asm: [ASM-LATTICE]
   fal: [FAL-SUITE]
+
+- id: QRN-GRAV-012
+  deps: [QRN-GRAV-005]
+  asm: [ASM-LATTICE]
+  fal: [FAL-SUITE, FAL-LORENTZ, FAL-CONTINUUM]
