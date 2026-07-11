@@ -1954,3 +1954,15 @@
     doc: "docs/uft-v21.6.md"
   limitations:
     - "native_decide はコンパイラを信頼基盤に含む。一般 N・J=0・index-3・Plücker は未形式化。"
+
+- id: QRN-META-022
+  version: "v21.7"
+  level: C5
+  claim: "PROMPT/3 §9 の最小 5 条件監査: 事前登録 (a) — 機械検査 9 本全 PASS (等級分布 C2:29 C3:13 / 鍵主張 7 本 [GRAV-005, GRAV-009, CORE-011, GAUGE-003, YUK-032, MSR 系, GAUGE-018] / 予言台帳 12 件)。採点 = [成立 3: データ非参照測度・holdout 採点・C5 降格実績 / 部分 2: 単一力学同時読み出し (欠落 = SM 直積 core + 重力の単一状態実演)・連続極限 GR+SM (欠落 = G 係数窓・カイラル格子化・ν 混合)]。到達していない、が『何が足りないか』は機械監査可能な形で列挙された — §9 はこの形で閉じる。"
+  status: "PROMPT/3 §9 完了 (到達自体は次期以降の v22 級課題として名指し)"
+  evidence:
+    code: "sim/src/bin/v217_fiveconditions.rs"
+    result: "results/v217_fiveconditions.txt"
+    doc: "docs/uft-v21.7.md"
+  limitations:
+    - "条件 1, 2 の判定は文書監査 (機械化は主張 id 存在まで)。"

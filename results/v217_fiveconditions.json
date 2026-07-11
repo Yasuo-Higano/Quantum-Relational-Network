@@ -1,0 +1,14 @@
+{
+  "version": "v21.7",
+  "levels": [
+    7,
+    32,
+    29,
+    13,
+    53,
+    21
+  ],
+  "conditions_met": 3,
+  "conditions_partial": 2,
+  "branch_a": true
+}

@@ -824,3 +824,8 @@
   deps: []
   asm: [ASM-LEAN-TRUST]
   fal: [FAL-SUITE]
+
+- id: QRN-META-022
+  deps: [QRN-META-021]
+  asm: []
+  fal: [FAL-SUITE]
