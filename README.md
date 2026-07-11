@@ -18,7 +18,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v20.5** — Rust 104 本 + Lean 4 定理 10 本 (4 ファイル) +
+**現在の到達点: v20.6** — Rust 105 本 + Lean 4 定理 10 本 (4 ファイル) +
 主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
 ([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
 最新統合は [docs/uft-v20.0.md](docs/uft-v20.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -178,6 +178,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v20.3 | [uft-v20.3.md](docs/uft-v20.3.md) | `v203_staircase` | **θ 階段成立 (判定 a)**: ρ(1)=0.062 < ρ(¾)=0.893 < ρ(½)=0.983 — **整数電荷の弦切れを現行犯で捕捉** (E 飽和 4.5 = 2m_meson, クロスオーバー算術と一致)・½ 弦は持続 (分数閉じ込め)。Coleman の compact U(1) 描像が拘束 core で立った。順序命題の設計手順が初走 (a) を生んだ |
 | v20.4 | [uft-v20.4.md](docs/uft-v20.4.md) | `v204_anomaly` | **Schwinger アノマリーの実時間検定 (判定 b)**: 磁束挿入クエンチ + Krylov 発展 (保存則 1e-12)。**示量性は 0.02% で厳密** (勾配比 = 14/12)、係数は 0.85-0.87 (素朴軸性カレントの格子繰り込み — x=4 が帯 15% を 0.1% 超過)。点毎法則は非線形周期で非一定 (Z=0.65±0.19 — improvement の要る領域を特定)。プラズマ振動は非調和軟化 (機構特定)。**U(1) の章はここで閉じる** (確立 2 + 記録 2) |
 | v20.5 | [uft-v20.5.md](docs/uft-v20.5.md) | `v205_su2core` | **SU(2) 拘束 core 成立 (判定 a)**: 開鎖のゲージ消去で電場 = 蓄積色電荷の Casimir (長距離非可換 Coulomb・Clebsch 不要・切断誤差ゼロ)。x=0 短弦 1.500000 厳密・σ₁/σ_½ = 1.836 (Casimir 域)・⟨S²⟩ ≤ 1e-13。run1 の教訓 2 つ (x=0 のセクター弦切れは物理・罰則幅と再開始 Lanczos) をゲートが捕捉。**Z₂ → U(1) → SU(2) の階段が通った** |
+| v20.6 | [uft-v20.6.md](docs/uft-v20.6.md) | `v206_su3core` | **SU(3) color toy 成立 (判定 a)**: Fierz 交換形で Clebsch 不要のまま SU(3) — メソン 8/3 (差 9e-15)・**バリオン Y 弦 16/3 厳密** (N-ality junction = SU(3) 固有)・x=1 で閉じ込め方向 + Y 劣加法性 (junction 束縛)。run1 の教訓: 端プローブは電場から切断される (遮蔽は幾何に依る)。**SU core の階段 4 段 (Z₂→U(1)→SU(2)→SU(3)) が一つの語彙で完了** |
 
 ## リポジトリ構成
 
