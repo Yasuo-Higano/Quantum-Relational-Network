@@ -162,6 +162,8 @@ claim('QRN-CORE-009', 'v20.4', c4).
 claim('QRN-CORE-010', 'v20.5', c2).
 claim('QRN-CORE-011', 'v20.6', c2).
 claim('QRN-META-021', 'v21.0', c5).
+claim('QRN-CORE-012', 'v21.1', c4).
+claim('QRN-EXP-004', 'v21.2', c4).
 
 % dep(X, Y) — X は Y に依存する (Y が落ちれば X も落ちる)。
 dep('QRN-GRAV-001', 'QRN-C0-001').
@@ -391,6 +393,7 @@ dep('QRN-META-021', 'QRN-CORE-008').
 dep('QRN-META-021', 'QRN-CORE-009').
 dep('QRN-META-021', 'QRN-CORE-010').
 dep('QRN-META-021', 'QRN-CORE-011').
+dep('QRN-CORE-012', 'QRN-CORE-006').
 
 % asm_of(Claim, Assumption) / fal_of(Claim, Falsifier)。
 asm_of('QRN-QM-001', 'ASM-LATTICE').
@@ -1138,6 +1141,10 @@ asm_of('QRN-CORE-011', 'ASM-LATTICE').
 fal_of('QRN-CORE-011', 'FAL-SUITE').
 fal_of('QRN-CORE-011', 'FAL-CONTINUUM').
 fal_of('QRN-META-021', 'FAL-SUITE').
+asm_of('QRN-CORE-012', 'ASM-LATTICE').
+fal_of('QRN-CORE-012', 'FAL-SUITE').
+fal_of('QRN-CORE-012', 'FAL-CONTINUUM').
+fal_of('QRN-EXP-004', 'FAL-BMV').
 
 % assumption(Id, Type, Scope, Status) / falsifier(Id, Status)。
 assumption('ASM-QM', framework, global, active).
@@ -1478,7 +1485,7 @@ rust_closure('QRN-GRAV-011', 2).
 rust_depth('QRN-META-020', 27).
 rust_closure('QRN-META-020', 1).
 rust_depth('QRN-CORE-006', 0).
-rust_closure('QRN-CORE-006', 6).
+rust_closure('QRN-CORE-006', 7).
 rust_depth('QRN-CORE-007', 1).
 rust_closure('QRN-CORE-007', 1).
 rust_depth('QRN-CORE-008', 1).
@@ -1491,8 +1498,12 @@ rust_depth('QRN-CORE-011', 2).
 rust_closure('QRN-CORE-011', 1).
 rust_depth('QRN-META-021', 28).
 rust_closure('QRN-META-021', 0).
+rust_depth('QRN-CORE-012', 1).
+rust_closure('QRN-CORE-012', 0).
+rust_depth('QRN-EXP-004', 0).
+rust_closure('QRN-EXP-004', 0).
 rust_blast_asm('ASM-QM', 0).
-rust_blast_asm('ASM-LATTICE', 102).
+rust_blast_asm('ASM-LATTICE', 103).
 rust_blast_asm('ASM-GAUSS', 43).
 rust_blast_asm('ASM-LOWDIM', 46).
 rust_blast_asm('ASM-WICK', 1).
@@ -1529,7 +1540,7 @@ rust_blast_asm('ASM-Z2-MINIMAL', 8).
 rust_blast_asm('ASM-EDGE-SEMANTICS', 8).
 rust_blast_asm('ASM-LEAN-TRUST', 7).
 rust_blast_asm('ASM-NET-REAL', 7).
-rust_blast_fal('FAL-BMV', 40).
+rust_blast_fal('FAL-BMV', 41).
 rust_blast_fal('FAL-PAGE', 5).
 rust_blast_fal('FAL-LORENTZ', 4).
 rust_blast_fal('FAL-DIMFLOW', 4).
@@ -1540,8 +1551,8 @@ rust_blast_fal('FAL-SUSY', 1).
 rust_blast_fal('FAL-NEUTRINO', 9).
 rust_blast_fal('FAL-CKM-OOS', 56).
 rust_blast_fal('FAL-COSMO', 2).
-rust_blast_fal('FAL-SUITE', 142).
+rust_blast_fal('FAL-SUITE', 143).
 rust_blast_fal('FAL-CEX-WINDOW', 35).
 rust_blast_fal('FAL-QNEC', 11).
-rust_blast_fal('FAL-CONTINUUM', 60).
+rust_blast_fal('FAL-CONTINUUM', 61).
 

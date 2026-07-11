@@ -794,3 +794,13 @@
   deps: [QRN-META-020, QRN-CORE-006, QRN-CORE-007, QRN-CORE-008, QRN-CORE-009, QRN-CORE-010, QRN-CORE-011]
   asm: []
   fal: [FAL-SUITE]
+
+- id: QRN-CORE-012
+  deps: [QRN-CORE-006]
+  asm: [ASM-LATTICE]
+  fal: [FAL-SUITE, FAL-CONTINUUM]
+
+- id: QRN-EXP-004
+  deps: []
+  asm: []
+  fal: [FAL-BMV]
