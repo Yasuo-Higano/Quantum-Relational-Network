@@ -804,3 +804,8 @@
   deps: []
   asm: []
   fal: [FAL-BMV]
+
+- id: QRN-CORE-013
+  deps: [QRN-CORE-006]
+  asm: [ASM-LATTICE]
+  fal: [FAL-SUITE]

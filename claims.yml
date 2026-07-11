@@ -1905,3 +1905,16 @@
     doc: "docs/uft-v21.2.md"
   limitations:
     - "モデル族は最簡形 (CQ の O(1) 係数は指数のみで吸収)。Γ の時間依存模型は別途。ノイズは一様 δ 近似。"
+
+- id: QRN-CORE-013
+  version: "v21.3"
+  level: C2
+  claim: "二層構造 (PROMPT/3 §7) の初適用: 事前登録 (a) 成立 — 探索層 (python/numpy 2 サイト DMRG, 電場 MPO は走和構成 D=5, 自己検定内蔵: MPO 縮約 = 独立構成 H の偏差 0.0・DMRG = ED @N=8 1.8e-14) + 監査層 (Rust std: 開鎖はε なしで ED 厳密 — 同一幾何アンカー N=16 で DMRG と ≤2e-14 一致 = χ=96 は実質厳密)。v20.2 で『ED 窓の外』と定量化した遮蔽判別が完成: N=48・中点距離 12 で E_mid 比 = 0.0173/0.4022 = 0.043 (登録 <0.25 の 6 倍マージン) — m=0 の磁束は融解し μ=1 の弦は運ぶ (Coleman 描像の量的判別が閉じた)。減衰 0.52→0.043 は遮蔽長 ℓ≈2.4 の指数と整合。探索層にも PASS/FAIL 文化を適用した初例 (規約: 監査層アンカーの範囲が一次ソース)。"
+  status: "§7R 確立 + v20.2 の窓を閉じた。次の適用先: v21.1 の重電荷/共鳴窓 (励起状態 DMRG)・N=72 幾何スキャン"
+  evidence:
+    code: "sim/src/bin/v213_dmrgaudit.rs"
+    result: "results/v213_dmrgaudit.txt"
+    doc: "docs/uft-v21.3.md"
+  limitations:
+    - "基底状態のみ (励起・動力学は未実装)。開鎖 Schwinger のみ (SU(N) MPO 化は同構成で可能・未実装)。"
+    - "探索層は numpy 依存 — 監査層が照合できる範囲が一次ソース (二層規約)。"
