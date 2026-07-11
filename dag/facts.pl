@@ -159,6 +159,7 @@ claim('QRN-CORE-006', 'v20.1', c2).
 claim('QRN-CORE-007', 'v20.2', c4).
 claim('QRN-CORE-008', 'v20.3', c2).
 claim('QRN-CORE-009', 'v20.4', c4).
+claim('QRN-CORE-010', 'v20.5', c2).
 
 % dep(X, Y) — X は Y に依存する (Y が落ちれば X も落ちる)。
 dep('QRN-GRAV-001', 'QRN-C0-001').
@@ -379,6 +380,7 @@ dep('QRN-META-020', 'QRN-GRAV-011').
 dep('QRN-CORE-007', 'QRN-CORE-006').
 dep('QRN-CORE-008', 'QRN-CORE-006').
 dep('QRN-CORE-009', 'QRN-CORE-006').
+dep('QRN-CORE-010', 'QRN-CORE-006').
 
 % asm_of(Claim, Assumption) / fal_of(Claim, Falsifier)。
 asm_of('QRN-QM-001', 'ASM-LATTICE').
@@ -1119,6 +1121,9 @@ fal_of('QRN-CORE-008', 'FAL-CONTINUUM').
 asm_of('QRN-CORE-009', 'ASM-LATTICE').
 fal_of('QRN-CORE-009', 'FAL-SUITE').
 fal_of('QRN-CORE-009', 'FAL-CONTINUUM').
+asm_of('QRN-CORE-010', 'ASM-LATTICE').
+fal_of('QRN-CORE-010', 'FAL-SUITE').
+fal_of('QRN-CORE-010', 'FAL-CONTINUUM').
 
 % assumption(Id, Type, Scope, Status) / falsifier(Id, Status)。
 assumption('ASM-QM', framework, global, active).
@@ -1459,15 +1464,17 @@ rust_closure('QRN-GRAV-011', 1).
 rust_depth('QRN-META-020', 27).
 rust_closure('QRN-META-020', 0).
 rust_depth('QRN-CORE-006', 0).
-rust_closure('QRN-CORE-006', 3).
+rust_closure('QRN-CORE-006', 4).
 rust_depth('QRN-CORE-007', 1).
 rust_closure('QRN-CORE-007', 0).
 rust_depth('QRN-CORE-008', 1).
 rust_closure('QRN-CORE-008', 0).
 rust_depth('QRN-CORE-009', 1).
 rust_closure('QRN-CORE-009', 0).
+rust_depth('QRN-CORE-010', 1).
+rust_closure('QRN-CORE-010', 0).
 rust_blast_asm('ASM-QM', 0).
-rust_blast_asm('ASM-LATTICE', 99).
+rust_blast_asm('ASM-LATTICE', 100).
 rust_blast_asm('ASM-GAUSS', 42).
 rust_blast_asm('ASM-LOWDIM', 45).
 rust_blast_asm('ASM-WICK', 1).
@@ -1515,8 +1522,8 @@ rust_blast_fal('FAL-SUSY', 1).
 rust_blast_fal('FAL-NEUTRINO', 8).
 rust_blast_fal('FAL-CKM-OOS', 55).
 rust_blast_fal('FAL-COSMO', 2).
-rust_blast_fal('FAL-SUITE', 139).
+rust_blast_fal('FAL-SUITE', 140).
 rust_blast_fal('FAL-CEX-WINDOW', 34).
 rust_blast_fal('FAL-QNEC', 10).
-rust_blast_fal('FAL-CONTINUUM', 57).
+rust_blast_fal('FAL-CONTINUUM', 58).
 
