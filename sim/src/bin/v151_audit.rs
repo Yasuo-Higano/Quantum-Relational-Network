@@ -626,11 +626,12 @@ fn main() {
     }
 
     // [8] Lean 定理数の照合
-    let lean_expected: [(&str, usize); 4] = [
+    let lean_expected: [(&str, usize); 5] = [
         ("Anomaly.lean", 3),
         ("AnomalyArray.lean", 2),
         ("AnomalyArrayBig.lean", 2),
         ("AnomalyBig.lean", 3),
+        ("AnomalyUpstream.lean", 13),
     ];
     let lean_total_expected: usize = lean_expected.iter().map(|(_, n)| n).sum();
     {
@@ -669,10 +670,12 @@ fn main() {
         let v150 = rd("docs/uft-v15.0.md").unwrap_or_default();
         let want = format!("Lean 定理 {} 本", lean_total_expected);
         let wrong = "Lean 定理 9 本";
+        // 現在値の照合は README のみ (v21.6 で改訂: uft-v15.0.md は当時の統合アンカーで
+        // 歴史文書 — 定理数が成長する現在は照合先にしない。誤記検査は両方に残す)
+        if !readme.contains(&want) {
+            bad.push(format!("README.md: 「{}」の記述がない", want));
+        }
         for (name, text) in [("README.md", &readme), ("docs/uft-v15.0.md", &v150)] {
-            if !text.contains(&want) {
-                bad.push(format!("{}: 「{}」の記述がない", name, want));
-            }
             if text.contains(wrong) {
                 bad.push(format!("{}: 誤記「{}」が残存", name, wrong));
             }

@@ -1942,3 +1942,15 @@
     doc: "docs/uft-v21.5.md"
   limitations:
     - "収束点 1 幾何に条件付き (幾何周辺化未実施)。lognormal σ=ln2 規約依存。"
+
+- id: QRN-GAUGE-018
+  version: "v21.6"
+  level: C2
+  claim: "アノマリー探索の上流形式化 (PROMPT/3 §6): 探索表にハードコードされていた係数が表現論の閉形式からの Lean 定理になった (13 本, 検証 0.25 s, exit 0)。SU(3): 2T = dim·C₂/8 と A = (p−q)(p+2q+3)(q+2p+3)·dim/60 (整数化) から表の {1,3,3̄} の値が decide で出る + 教科書アンカー 5 本 (A(6)=7, A(10)=27, A(8)=0, 2T(6)=5, 2T(8)=6) + 窓 p,q≤12 全対 (169) の共役反対称・自己共役ゼロ・dim 正値 (native_decide) — 同値類規約 (共役軌道で数える) の上流正当化。SU(2): doublet 2T=1 が weight 列から。信頼基盤の連鎖: 表現論閉形式 (定理) → 係数表 → 方程式 → 全列挙完全性 (既存 10 本) — Lean 計 23 本。未形式化 (限界): 一般 N の方程式導出・J=0 代数証明 (mathlib 級)・index-3 no-go・Plücker 分類。"
+  status: "PROMPT/3 §6 = 有限窓の上流化まで完了 (一般化は mathlib 級の限界として明示)"
+  evidence:
+    code: "proofs/AnomalyUpstream.lean"
+    result: "results/v216_lean.txt"
+    doc: "docs/uft-v21.6.md"
+  limitations:
+    - "native_decide はコンパイラを信頼基盤に含む。一般 N・J=0・index-3・Plücker は未形式化。"

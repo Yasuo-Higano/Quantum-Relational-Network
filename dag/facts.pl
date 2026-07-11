@@ -167,6 +167,7 @@ claim('QRN-EXP-004', 'v21.2', c4).
 claim('QRN-CORE-013', 'v21.3', c2).
 claim('QRN-GRAV-012', 'v21.4', c2).
 claim('QRN-YUK-032', 'v21.5', c2).
+claim('QRN-GAUGE-018', 'v21.6', c2).
 
 % dep(X, Y) — X は Y に依存する (Y が落ちれば X も落ちる)。
 dep('QRN-GRAV-001', 'QRN-C0-001').
@@ -1166,6 +1167,8 @@ asm_of('QRN-YUK-032', 'ASM-STABLE-LABEL').
 asm_of('QRN-YUK-032', 'ASM-LATTICE').
 fal_of('QRN-YUK-032', 'FAL-SUITE').
 fal_of('QRN-YUK-032', 'FAL-CONTINUUM').
+asm_of('QRN-GAUGE-018', 'ASM-LEAN-TRUST').
+fal_of('QRN-GAUGE-018', 'FAL-SUITE').
 
 % assumption(Id, Type, Scope, Status) / falsifier(Id, Status)。
 assumption('ASM-QM', framework, global, active).
@@ -1529,6 +1532,8 @@ rust_depth('QRN-GRAV-012', 3).
 rust_closure('QRN-GRAV-012', 0).
 rust_depth('QRN-YUK-032', 0).
 rust_closure('QRN-YUK-032', 0).
+rust_depth('QRN-GAUGE-018', 0).
+rust_closure('QRN-GAUGE-018', 0).
 rust_blast_asm('ASM-QM', 0).
 rust_blast_asm('ASM-LATTICE', 106).
 rust_blast_asm('ASM-GAUSS', 44).
@@ -1565,7 +1570,7 @@ rust_blast_asm('ASM-STABLE-LABEL', 54).
 rust_blast_asm('ASM-MODK', 27).
 rust_blast_asm('ASM-Z2-MINIMAL', 8).
 rust_blast_asm('ASM-EDGE-SEMANTICS', 8).
-rust_blast_asm('ASM-LEAN-TRUST', 7).
+rust_blast_asm('ASM-LEAN-TRUST', 8).
 rust_blast_asm('ASM-NET-REAL', 7).
 rust_blast_fal('FAL-BMV', 41).
 rust_blast_fal('FAL-PAGE', 5).
@@ -1578,7 +1583,7 @@ rust_blast_fal('FAL-SUSY', 1).
 rust_blast_fal('FAL-NEUTRINO', 9).
 rust_blast_fal('FAL-CKM-OOS', 56).
 rust_blast_fal('FAL-COSMO', 2).
-rust_blast_fal('FAL-SUITE', 146).
+rust_blast_fal('FAL-SUITE', 147).
 rust_blast_fal('FAL-CEX-WINDOW', 35).
 rust_blast_fal('FAL-QNEC', 11).
 rust_blast_fal('FAL-CONTINUUM', 64).

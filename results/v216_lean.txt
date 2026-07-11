@@ -1,0 +1,18 @@
+=== v21.6 アノマリー探索の上流形式化 (PROMPT/3 §6) 2026-07-12 ===
+
+実行: ~/.elan/bin/lean proofs/AnomalyUpstream.lean   (終了コード 0 = 全定理検証, 0.25 s)
+
+定理 13 本:
+  t48_normalization, table_singlet, table_fund, table_antifund   — 探索表 {1,3,3̄} の
+    (2T, A) が閉形式 T = dim·C₂/8, A = (p−q)(p+2q+3)(q+2p+3)·dim/60 から出る (decide)
+  anchor_sextet (A(6)=7, 2T=5), anchor_decuplet (A(10)=27), anchor_adjoint (A(8)=0, 2T=6)
+    — 教科書値による公式の外部検証 (decide)
+  su2_doublet_index — SU(2) doublet の 2T=1 が weight 列から (decide)
+  a_conj_antisym_window, t_conj_sym_window, dim_conj_sym_window, a_real_zero_window,
+  dim_pos_window — 窓 p,q ≤ 12 全対の構造定理 (native_decide):
+    共役反対称 (同値類規約の上流正当化)・自己共役はアノマリー・フリー
+
+これで探索の信頼基盤が「係数表を与えれば列挙は完全」(Anomaly*.lean) から
+「係数表そのものが表現論の閉形式の定理」へ一段上流に移った。
+未形式化 (限界): 一般 N のアノマリー方程式導出・J=0 代数証明 (mathlib 級)・
+index-3 数論 no-go・B−L Plücker 分類。

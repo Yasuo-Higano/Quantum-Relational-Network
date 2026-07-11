@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 153 件 / 依存辺 230 本 / 仮定 38 件 / 反証条件 15 件。
+主張 154 件 / 依存辺 230 本 / 仮定 38 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -165,6 +165,7 @@
 | QRN-CORE-013 | C2 | v21.3 | CDR | 1 | 1 | 1 | 0 |
 | QRN-GRAV-012 | C2 | v21.4 | CDR | 1 | 1 | 3 | 0 |
 | QRN-YUK-032 | C2 | v21.5 | CDR | 0 | 8 | 2 | 0 |
+| QRN-GAUGE-018 | C2 | v21.6 | DLR | 0 | 1 | 1 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -198,10 +199,10 @@
 | ASM-WINDOW-EXT | window | active | 4 | 8 | QRN-GAUGE-007, QRN-GAUGE-008, QRN-GAUGE-010, QRN-GAUGE-013, … |
 | ASM-Z2-MINIMAL | model | active | 2 | 8 | QRN-CONT-001, QRN-CORE-005, QRN-META-016, QRN-META-017, … |
 | ASM-EDGE-SEMANTICS | design | active | 2 | 8 | QRN-META-015, QRN-META-016, QRN-META-017, QRN-META-018, … |
+| ASM-LEAN-TRUST | trust | active | 5 | 8 | QRN-GAUGE-011, QRN-GAUGE-013, QRN-GAUGE-016, QRN-GAUGE-017, … |
 | ASM-DOF-GROWTH | model | active | 2 | 7 | QRN-ARROW-001, QRN-CORE-002, QRN-CORE-004, QRN-META-004, … |
 | ASM-WINDOW-V43 | window | active | 4 | 7 | QRN-GAUGE-006, QRN-GAUGE-008, QRN-GAUGE-010, QRN-GAUGE-016, … |
 | ASM-OBS-FRACTIONAL | observational | active | 1 | 7 | QRN-GAUGE-006, QRN-GAUGE-008, QRN-GAUGE-010, QRN-GAUGE-016, … |
-| ASM-LEAN-TRUST | trust | active | 4 | 7 | QRN-GAUGE-011, QRN-GAUGE-013, QRN-GAUGE-016, QRN-GAUGE-017, … |
 | ASM-NET-REAL | ontology | active | 7 | 7 | QRN-META-001, QRN-META-002, QRN-META-003, QRN-META-004, … |
 | ASM-WINDOW-PAIR | window | active | 1 | 5 | QRN-META-010, QRN-META-013, QRN-YUK-009, QRN-YUK-015, … |
 | ASM-WINDOW-U1CUBE | window | active | 1 | 4 | QRN-GAUGE-014, QRN-GAUGE-015, QRN-META-008, QRN-META-011 |
@@ -215,7 +216,7 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 136 | 146 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 137 | 147 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CONTINUUM | open | 38 | 64 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-CKM-OOS | open | 12 | 56 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-BMV | open | 8 | 41 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
