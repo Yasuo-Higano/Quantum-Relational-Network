@@ -1930,3 +1930,15 @@
     doc: "docs/uft-v21.4.md"
   limitations:
     - "自由場の運動学 — 相互作用系・創発計量のローレンツ保護は G 窓の先。"
+
+- id: QRN-YUK-032
+  version: "v21.5"
+  level: C2
+  claim: "収束点 (36×18; 3,3; τ=1/12+i/2) の posterior predictive 表 (PROMPT/3 §4 の完成形): 12 観測量 × 5 分位 (2.5/16/50/84/97.5%) × fitted/holdout。事前登録 (a) 成立 — holdout |V_td| は 68% 被覆維持 ([5.2e-3, 1.7e-2] ∋ 8.6e-3)、v17.11 で 68% を外した |V_cb|・|V_ts| は 95% で被覆。総被覆: 68% 帯 8/12・95% 帯 12/12 — 収束点の予言分布と測定の張力は全量 2σ 内。68% を外す 4 量 (m_u/m_t, m_c/m_t, |V_cb|, |V_ts|) は既知弱点の分布レベル確認。測度は一様 (v17.9-18 の確立事項)。ゲート: G0 回帰 −18.429 厳密一致・v17.11 の 5 量帯再現・[C] 測度再検再現 (3 重回帰アンカー)。"
+  status: "PROMPT/3 §4 の表が完成 (PMNS/0νββ はレプトン no-go [v18.7] により対象外と明示)"
+  evidence:
+    code: "sim/src/bin/v215_predictive.rs"
+    result: "results/v215_predictive.txt"
+    doc: "docs/uft-v21.5.md"
+  limitations:
+    - "収束点 1 幾何に条件付き (幾何周辺化未実施)。lognormal σ=ln2 規約依存。"

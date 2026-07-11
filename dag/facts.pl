@@ -166,6 +166,7 @@ claim('QRN-CORE-012', 'v21.1', c4).
 claim('QRN-EXP-004', 'v21.2', c4).
 claim('QRN-CORE-013', 'v21.3', c2).
 claim('QRN-GRAV-012', 'v21.4', c2).
+claim('QRN-YUK-032', 'v21.5', c2).
 
 % dep(X, Y) — X は Y に依存する (Y が落ちれば X も落ちる)。
 dep('QRN-GRAV-001', 'QRN-C0-001').
@@ -1155,6 +1156,16 @@ asm_of('QRN-GRAV-012', 'ASM-LATTICE').
 fal_of('QRN-GRAV-012', 'FAL-SUITE').
 fal_of('QRN-GRAV-012', 'FAL-LORENTZ').
 fal_of('QRN-GRAV-012', 'FAL-CONTINUUM').
+asm_of('QRN-YUK-032', 'ASM-TORUS').
+asm_of('QRN-YUK-032', 'ASM-OVERLAP').
+asm_of('QRN-YUK-032', 'ASM-WILSON-GRID').
+asm_of('QRN-YUK-032', 'ASM-SIGMA-DATA').
+asm_of('QRN-YUK-032', 'ASM-PRIOR').
+asm_of('QRN-YUK-032', 'ASM-PDG').
+asm_of('QRN-YUK-032', 'ASM-STABLE-LABEL').
+asm_of('QRN-YUK-032', 'ASM-LATTICE').
+fal_of('QRN-YUK-032', 'FAL-SUITE').
+fal_of('QRN-YUK-032', 'FAL-CONTINUUM').
 
 % assumption(Id, Type, Scope, Status) / falsifier(Id, Status)。
 assumption('ASM-QM', framework, global, active).
@@ -1516,15 +1527,17 @@ rust_depth('QRN-CORE-013', 1).
 rust_closure('QRN-CORE-013', 0).
 rust_depth('QRN-GRAV-012', 3).
 rust_closure('QRN-GRAV-012', 0).
+rust_depth('QRN-YUK-032', 0).
+rust_closure('QRN-YUK-032', 0).
 rust_blast_asm('ASM-QM', 0).
-rust_blast_asm('ASM-LATTICE', 105).
+rust_blast_asm('ASM-LATTICE', 106).
 rust_blast_asm('ASM-GAUSS', 44).
 rust_blast_asm('ASM-LOWDIM', 47).
 rust_blast_asm('ASM-WICK', 1).
 rust_blast_asm('ASM-ENVARIANCE', 1).
 rust_blast_asm('ASM-INIT', 9).
 rust_blast_asm('ASM-DOF-GROWTH', 7).
-rust_blast_asm('ASM-SIGMA-DATA', 46).
+rust_blast_asm('ASM-SIGMA-DATA', 47).
 rust_blast_asm('ASM-ORBIFOLD', 3).
 rust_blast_asm('ASM-KTM', 35).
 rust_blast_asm('ASM-DIAGPAIR', 53).
@@ -1533,9 +1546,9 @@ rust_blast_asm('ASM-CHIRALITY', 29).
 rust_blast_asm('ASM-ALL-CHARGED', 29).
 rust_blast_asm('ASM-EFT-VALIDITY', 24).
 rust_blast_asm('ASM-SMCONTENT', 10).
-rust_blast_asm('ASM-TORUS', 57).
-rust_blast_asm('ASM-OVERLAP', 54).
-rust_blast_asm('ASM-WILSON-GRID', 54).
+rust_blast_asm('ASM-TORUS', 58).
+rust_blast_asm('ASM-OVERLAP', 55).
+rust_blast_asm('ASM-WILSON-GRID', 55).
 rust_blast_asm('ASM-WINDOW-V31', 24).
 rust_blast_asm('ASM-WINDOW-V43', 7).
 rust_blast_asm('ASM-WINDOW-EXT', 8).
@@ -1544,11 +1557,11 @@ rust_blast_asm('ASM-WINDOW-U1CUBE', 4).
 rust_blast_asm('ASM-WINDOW-EXC', 2).
 rust_blast_asm('ASM-WINDOW-PAIR', 5).
 rust_blast_asm('ASM-ANOMALY-COEFS', 30).
-rust_blast_asm('ASM-PDG', 62).
+rust_blast_asm('ASM-PDG', 63).
 rust_blast_asm('ASM-OBS-FRACTIONAL', 7).
 rust_blast_asm('ASM-SEED', 70).
-rust_blast_asm('ASM-PRIOR', 57).
-rust_blast_asm('ASM-STABLE-LABEL', 53).
+rust_blast_asm('ASM-PRIOR', 58).
+rust_blast_asm('ASM-STABLE-LABEL', 54).
 rust_blast_asm('ASM-MODK', 27).
 rust_blast_asm('ASM-Z2-MINIMAL', 8).
 rust_blast_asm('ASM-EDGE-SEMANTICS', 8).
@@ -1565,8 +1578,8 @@ rust_blast_fal('FAL-SUSY', 1).
 rust_blast_fal('FAL-NEUTRINO', 9).
 rust_blast_fal('FAL-CKM-OOS', 56).
 rust_blast_fal('FAL-COSMO', 2).
-rust_blast_fal('FAL-SUITE', 145).
+rust_blast_fal('FAL-SUITE', 146).
 rust_blast_fal('FAL-CEX-WINDOW', 35).
 rust_blast_fal('FAL-QNEC', 11).
-rust_blast_fal('FAL-CONTINUUM', 63).
+rust_blast_fal('FAL-CONTINUUM', 64).
 

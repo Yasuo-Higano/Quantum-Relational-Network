@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 152 件 / 依存辺 230 本 / 仮定 38 件 / 反証条件 15 件。
+主張 153 件 / 依存辺 230 本 / 仮定 38 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -164,6 +164,7 @@
 | QRN-EXP-004 | C4 | v21.2 | CDR | 0 | 0 | 1 | 0 |
 | QRN-CORE-013 | C2 | v21.3 | CDR | 1 | 1 | 1 | 0 |
 | QRN-GRAV-012 | C2 | v21.4 | CDR | 1 | 1 | 3 | 0 |
+| QRN-YUK-032 | C2 | v21.5 | CDR | 0 | 8 | 2 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -171,17 +172,17 @@
 
 | 仮定 | type | status | 直接 | 閉包 | 閉包に含まれる主張 (抜粋) |
 |---|---|---|---|---|---|
-| ASM-LATTICE | framework | active | 61 | 105 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
+| ASM-LATTICE | framework | active | 62 | 106 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
 | ASM-SEED | design | active | 13 | 70 | QRN-BH-001, QRN-BORN-001, QRN-COSMO-003, QRN-FIELD-001, … |
-| ASM-PDG | data | active | 46 | 62 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
-| ASM-TORUS | model | active | 44 | 57 | QRN-KK-001, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
-| ASM-PRIOR | design | active | 42 | 57 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
-| ASM-OVERLAP | model | active | 41 | 54 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
-| ASM-WILSON-GRID | design | active | 41 | 54 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-PDG | data | active | 47 | 63 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
+| ASM-TORUS | model | active | 45 | 58 | QRN-KK-001, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
+| ASM-PRIOR | design | active | 43 | 58 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-OVERLAP | model | active | 42 | 55 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-WILSON-GRID | design | active | 42 | 55 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-STABLE-LABEL | convention | active | 36 | 54 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-DIAGPAIR | model | falsified | 4 | 53 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
-| ASM-STABLE-LABEL | convention | active | 35 | 53 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-LOWDIM | framework | active | 23 | 47 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
-| ASM-SIGMA-DATA | model | active | 30 | 46 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-SIGMA-DATA | model | active | 31 | 47 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-GAUSS | framework | active | 27 | 44 | QRN-ARROW-001, QRN-CAUSAL-001, QRN-CAUSAL-002, QRN-CONT-001, … |
 | ASM-KTM | model | active | 2 | 35 | QRN-EXP-003, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
 | ASM-GAUGE-GROUP | model | active | 14 | 31 | QRN-GAUGE-003, QRN-GAUGE-004, QRN-GAUGE-006, QRN-GAUGE-007, … |
@@ -214,8 +215,8 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 135 | 145 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
-| FAL-CONTINUUM | open | 37 | 63 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
+| FAL-SUITE | open | 136 | 146 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-CONTINUUM | open | 38 | 64 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-CKM-OOS | open | 12 | 56 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-BMV | open | 8 | 41 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
 | FAL-CEX-WINDOW | open | 15 | 35 | 明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。 |

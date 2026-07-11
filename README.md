@@ -18,7 +18,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v21.4** — Rust 109 本 + 探索層 python 1 本 + Lean 4 定理 10 本 (4 ファイル) +
+**現在の到達点: v21.5** — Rust 110 本 + 探索層 python 1 本 + Lean 4 定理 10 本 (4 ファイル) +
 主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
 ([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
 最新統合は [docs/uft-v21.0.md](docs/uft-v21.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -184,6 +184,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v21.2 | [uft-v21.2.md](docs/uft-v21.2.md) | `v212_bmvmap` | **BMV 判別マップ (判定 a)**: 5 モデル族 (QRN/古典チャネル/NS/古典重力+QFT/デコヒーレンス) の 4 択全分離窓が標準帯に 89/625 点 (代表: m≈1e-14 kg, τ≥0.93 s, δ=0.02)。判別子 4 本 (C 検出・一次 vs 二次・τ 2 点比・NS の位相付き C=0) — BMV を一発判定から判別問題へ整形 (PROMPT/3 §5) |
 | v21.3 | [uft-v21.3.md](docs/uft-v21.3.md) | `v213_dmrgaudit` + `explore/dmrg_schwinger.py` | **二層構造の初適用 (判定 a)**: 探索層 = numpy DMRG (自己検定内蔵: MPO 偏差 0.0・ED 一致 1.8e-14) / 監査層 = Rust ED アンカー (≤2e-14 一致)。**v20.2 の遮蔽窓が開いた**: N=48・距離 12 で E_mid 比 0.043 — m=0 の磁束融解 vs μ=1 の弦 (Coleman 判別の量的完成)。減衰は ℓ≈2.4 指数と整合 |
 | v21.4 | [uft-v21.4.md](docs/uft-v21.4.md) | `v214_bridgeaudit` | **橋の残項目監査 (判定 a)**: ローレンツ主要次数保護 — 分散異方性の勾配 p = 2.0032 (O(k²a²) 消失・解析式 k²/9 と 0.1% 一致)。∇T=0 は v19.5 実測の照合。**§2 の 7 項目 = 測定可能 2 (閉) + 完了 1 + G 窓依存 4 (依存連鎖の明示)** |
+| v21.5 | [uft-v21.5.md](docs/uft-v21.5.md) | `v215_predictive` | **posterior predictive 表の完成 (判定 a, PROMPT/3 §4)**: 12 観測量 × 5 分位 × fitted/holdout — **95% 帯 12/12 被覆** (張力は全量 2σ 内)・holdout \|V_td\| は 68% ✓・\|V_cb\|/\|V_ts\| の既知張力は 2σ 内と定量化。G0 回帰 −18.429 厳密一致 + v17.11 帯再現 (3 重アンカー) |
 
 ## リポジトリ構成
 
