@@ -834,3 +834,8 @@
   deps: [QRN-META-022]
   asm: []
   fal: [FAL-SUITE]
+
+- id: QRN-CORE-014
+  deps: [QRN-CORE-011, QRN-GRAV-005]
+  asm: [ASM-LATTICE]
+  fal: [FAL-SUITE]

@@ -18,7 +18,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v22.0** — Rust 111 本 (実行 99 + 引用 12) + 探索層 python 1 本 + Lean 定理 23 本 (5 ファイル) +
+**現在の到達点: v22.3** — Rust 112 本 (実行 100 + 引用 12) + 探索層 python 1 本 + Lean 定理 23 本 (5 ファイル) +
 主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
 ([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
 最新統合は [docs/uft-v22.0.md](docs/uft-v22.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -188,6 +188,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v21.6 | [uft-v21.6.md](docs/uft-v21.6.md) | `proofs/AnomalyUpstream.lean` | **Lean 上流化 (PROMPT/3 §6)**: 係数表そのものが定理に — 2T = dim·C₂/8, A = (p−q)(p+2q+3)(q+2p+3)·dim/60 から表の値が出る (decide) + 教科書アンカー 5 本 + 窓 169 対の共役反対称 (native_decide)。**Lean 定理 10 → 23 本**。一般化 (J=0 代数証明等) は mathlib 級の限界として明示 |
 | v21.7 | [uft-v21.7.md](docs/uft-v21.7.md) | `v217_fiveconditions` | **最小 5 条件の監査 (PROMPT/3 §9, 判定 a)**: 成立 3 (測度・holdout・降格実績) / 部分 2 (同時読み出し・連続極限 — 欠落を具体名で登録)。台帳 155 主張の機械検査 9 本全 PASS。「到達に何が足りないかが機械監査可能」の形で §9 が閉じた |
 | **v22.0** | [uft-v22.0.md](docs/uft-v22.0.md) | 全スイート | **第二十二期統合「宿題は全て、成立か名前のついた限界になった」**: PROMPT/3 残余 7 項目 (§2R/§3R/§4R/§5R/§6R/§7R/§9R) を完遂 — 二層構造・スペクトル関数法・predictive 表 12/12@95%・Lean 23 本。全スイート 111 本 696 PASS / 0 FAIL。次期の本丸 = SM 直積 core + 重力の単一状態実演と G の窓 |
+| v22.3 | [uft-v22.3.md](docs/uft-v22.3.md) | `v223_smcore` | **SM 直積 core の同時読み出し (判定 a, §9 条件 1)**: 単一の (3,2,1/6) 拘束 core 基底状態から [A] 代数 (偏差 0.0)・[G] 3 因子弦の増加・[g] 第一法則 R = 1.00000・[M] 相関減衰が同時成立。開発記録: 多体第一法則の構造ゼロ分類学 (転置マスターゼロ + PH ゼロ → PH-偶 H 摂動が正解) |
 
 ## リポジトリ構成
 
