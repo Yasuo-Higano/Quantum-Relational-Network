@@ -22,14 +22,18 @@ def site_ops():
     c = cdag.T
     return n_op, cdag, c
 
-def mpo(N, x, mu, probes):
+def mpo(N, x, mu, probes, qf=1.0, qpen=0.0):
+    """qf = フレーバー電荷 (v22.1)。qpen = 全電荷罰則 λ_Q (Σq)² — ペア重み
+    w(k,l) = N−1−max(k,l) + λ_Q に等価 (中性セクターのスペクトルは厳密に不変)。
+    v22.1 run1 の教訓: 開鎖の端の電荷はどのリンクにも寄与せず自由 — 荷電端状態が
+    E₁ を偽装する (環の磁束状態の開鎖版)。λ_Q > 0 で荷電セクターごと持ち上げる。"""
     n_op, cdag, c = site_ops()
     I = np.eye(2)
     Ws = []
     for l in range(N):
         bg = 1.0 if l % 2 == 1 else 0.0
-        q = n_op - (bg - probes.get(l, 0.0)) * I
-        cl = float(max(N - 1 - l, 0))
+        q = qf * (n_op - bg * I) + probes.get(l, 0.0) * I
+        cl = float(max(N - 1 - l, 0)) + qpen
         mass = mu * (1.0 if l % 2 == 0 else -1.0) * n_op
         D = 5
         W = np.zeros((D, D, 2, 2))
@@ -112,8 +116,10 @@ def lanczos_min(hmul, v0, m=25):
     gv = sum(evec[j, 0] * Vs[j] for j in range(len(Vs)))
     return float(ev[0]), gv / np.linalg.norm(gv)
 
-def dmrg(Ws, chi, sweeps, seed=7):
+def dmrg(Ws, chi, sweeps, seed=7, ortho=None, lam_o=30.0):
+    """ortho: 直交罰則をかける既収束 MPS のリスト (励起状態用)"""
     N = len(Ws)
+    ortho = ortho or []
     rng = np.random.default_rng(seed)
     # 右正準ランダム MPS — ボンド b_l (site l の左) = min(χ, 2^l, 2^{N−l})
     bond = [int(min(chi, 2 ** min(l, 24), 2 ** min(N - l, 24))) for l in range(N + 1)]
@@ -135,6 +141,16 @@ def dmrg(Ws, chi, sweeps, seed=7):
         Rc[l] = np.einsum('bqd,asb,pqst,ctd->apc', Rc[l + 1], A[l], Ws[l], A[l], optimize=True)
     for l in reversed(range(1, N)):
         upd_R(l)
+    # 直交罰則の重なり環境: oL[s][l], oR[s][l] (φ-bra × 現 MPS-ket)
+    def ov_L(phi, l, prev):
+        return np.einsum('ac,asb,csd->bd', prev, A[l], phi[l], optimize=True)
+    def ov_R(phi, l, prev):
+        return np.einsum('bd,asb,csd->ac', prev, A[l], phi[l], optimize=True)
+    oL = [[np.ones((1, 1))] * (N + 1) for _ in ortho]
+    oR = [[np.ones((1, 1))] * (N + 1) for _ in ortho]
+    for si, phi in enumerate(ortho):
+        for l in reversed(range(1, N)):
+            oR[si][l] = ov_R(phi, l, oR[si][l + 1])
     energy = None
     for _sw in range(sweeps):
         for direction in (0, 1):
@@ -144,14 +160,24 @@ def dmrg(Ws, chi, sweeps, seed=7):
                 th0 = np.einsum('asb,btc->astc', A[l], A[l + 1])
                 sh = th0.shape
                 W1, W2 = Ws[l], Ws[l + 1]
+                # 直交射影ベクトル (各 ortho 状態の 2 サイト表現)
+                pvecs = []
+                for si, phi in enumerate(ortho):
+                    pv = np.einsum('ac,csd,dte,be->astb', oL[si][l], phi[l], phi[l + 1],
+                                   oR[si][l + 2], optimize=True).reshape(-1)
+                    nn = np.linalg.norm(pv)
+                    if nn > 1e-12:
+                        pvecs.append(pv / nn)
                 def hmul(v):
                     # 規約: Lc[a_ket, p, a_bra] / W[p, q, s_ket, s_bra] / Rc[b_ket, r, b_bra]
                     th = v.reshape(sh)  # (a_ket, u, v, b_ket)
                     t = np.einsum('apc,auvb->pcuvb', Le, th, optimize=True)
                     t = np.einsum('pcuvb,pqus->qcsvb', t, W1, optimize=True)
                     t = np.einsum('qcsvb,qrvt->rcstb', t, W2, optimize=True)
-                    out = np.einsum('rcstb,brd->cstd', t, Re, optimize=True)
-                    return out.reshape(-1)
+                    out = np.einsum('rcstb,brd->cstd', t, Re, optimize=True).reshape(-1)
+                    for pv in pvecs:
+                        out += lam_o * np.dot(pv, v) * pv
+                    return out
                 e0, gv = lanczos_min(hmul, th0.reshape(-1))
                 energy = e0
                 th = gv.reshape(sh[0] * 2, 2 * sh[3])
@@ -163,10 +189,14 @@ def dmrg(Ws, chi, sweeps, seed=7):
                     A[l] = U.reshape(sh[0], 2, k)
                     A[l + 1] = (np.diag(S) @ Vt).reshape(k, 2, sh[3])
                     upd_L(l)
+                    for si, phi in enumerate(ortho):
+                        oL[si][l + 1] = ov_L(phi, l, oL[si][l])
                 else:
                     A[l + 1] = Vt.reshape(k, 2, sh[3])
                     A[l] = (U @ np.diag(S)).reshape(sh[0], 2, k)
                     upd_R(l + 1)
+                    for si, phi in enumerate(ortho):
+                        oR[si][l + 1] = ov_R(phi, l + 1, oR[si][l + 2])
     # 密度 ⟨n_l⟩ (恒等環境, O(N²χ³))
     dens = []
     n_op = np.diag([0.0, 1.0])
@@ -180,7 +210,7 @@ def dmrg(Ws, chi, sweeps, seed=7):
         val = np.einsum('ac,asb,st,ctd,bd->', Lb, A[l], n_op, A[l], Rb, optimize=True)
         nrm = np.einsum('ac,asb,csd,bd->', Lb, A[l], A[l], Rb, optimize=True)
         dens.append(float(val / nrm))
-    return energy, dens
+    return energy, dens, A
 
 def e_field(dens, N, probes):
     e, p = [], 0.0
@@ -201,7 +231,7 @@ def main():
     dev = float(np.max(np.abs(Hm - Hd)))
     out["selftest_mpo_dev"] = dev
     ev = np.linalg.eigvalsh(Hd)
-    e_dmrg, _ = dmrg(Ws, chi=64, sweeps=8)
+    e_dmrg, _, _A = dmrg(Ws, chi=64, sweeps=8)
     out["selftest_ed_e0"] = float(ev[0])
     out["selftest_dmrg_e0"] = e_dmrg
     print(f"[selftest] MPO dev = {dev:.2e}, ED = {ev[0]:.10f}, DMRG = {e_dmrg:.10f}", file=sys.stderr)
@@ -210,9 +240,9 @@ def main():
     probes = {0: 0.5, 6: -0.5}
     for mu in (0.0, 1.0):
         Wp = mpo(N, x, mu, probes)
-        _e, densp = dmrg(Wp, chi=96, sweeps=8)
+        _e, densp, _A1 = dmrg(Wp, chi=96, sweeps=8)
         W0 = mpo(N, x, mu, {})
-        _e0, dens0 = dmrg(W0, chi=96, sweeps=8)
+        _e0, dens0, _A2 = dmrg(W0, chi=96, sweeps=8)
         emid = 0.5 * ((e_field(densp, N, probes)[2] - e_field(dens0, N, {})[2])
                       + (e_field(densp, N, probes)[3] - e_field(dens0, N, {})[3]))
         out[f"anchor_n16_emid_mu{int(mu)}"] = float(emid)
@@ -222,9 +252,9 @@ def main():
     probes = {4: 0.5, 28: -0.5}
     for mu in (0.0, 1.0):
         Wp = mpo(N, x, mu, probes)
-        _e, densp = dmrg(Wp, chi=128, sweeps=10)
+        _e, densp, _A3 = dmrg(Wp, chi=128, sweeps=10)
         W0 = mpo(N, x, mu, {})
-        _e0, dens0 = dmrg(W0, chi=128, sweeps=10)
+        _e0, dens0, _A4 = dmrg(W0, chi=128, sweeps=10)
         efp, ef0 = e_field(densp, N, probes), e_field(dens0, N, {})
         emid = 0.5 * ((efp[15] - ef0[15]) + (efp[16] - ef0[16]))
         out[f"n48_emid_mu{int(mu)}"] = float(emid)

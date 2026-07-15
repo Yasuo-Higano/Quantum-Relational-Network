@@ -1,0 +1,5 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v22.1 計算層: 重電荷 Schwinger DMRG (Rust, 決定的 6 スレッド) ===
+
+  [PASS] [G1] N=8 DMRG E₀ = ED ± 1e-8  DMRG -7.7342161040 vs ED -7.7342161040 (Δ 1.3e-13)
+  [PASS] [G2] N=8 罰則法 E₁ = ED ± 1e-6  DMRG -5.3418381682 vs ED -5.3418381682 (Δ 5.8e-14, 0 s)

@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 162 件 / 依存辺 245 本 / 仮定 38 件 / 反証条件 15 件。
+主張 163 件 / 依存辺 247 本 / 仮定 38 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -153,7 +153,7 @@
 | QRN-GRAV-010 | C4 | v19.6 | CDR | 2 | 2 | 2 | 9 |
 | QRN-GRAV-011 | C2 | v19.7 | CDR | 1 | 3 | 1 | 4 |
 | QRN-META-020 | C5 | v20.0 | DR | 8 | 0 | 1 | 3 |
-| QRN-CORE-006 | C2 | v20.1 | CDR | 0 | 1 | 2 | 11 |
+| QRN-CORE-006 | C2 | v20.1 | CDR | 0 | 1 | 2 | 12 |
 | QRN-CORE-007 | C4 | v20.2 | CDR | 1 | 1 | 2 | 3 |
 | QRN-CORE-008 | C2 | v20.3 | CDR | 1 | 1 | 2 | 3 |
 | QRN-CORE-009 | C4 | v20.4 | CDR | 1 | 1 | 2 | 3 |
@@ -162,7 +162,7 @@
 | QRN-META-021 | C5 | v21.0 | DR | 7 | 0 | 1 | 2 |
 | QRN-CORE-012 | C4 | v21.1 | CDR | 1 | 1 | 2 | 0 |
 | QRN-EXP-004 | C4 | v21.2 | CDR | 0 | 0 | 1 | 0 |
-| QRN-CORE-013 | C2 | v21.3 | CDR | 1 | 1 | 1 | 0 |
+| QRN-CORE-013 | C2 | v21.3 | CDR | 1 | 1 | 1 | 1 |
 | QRN-GRAV-012 | C2 | v21.4 | CDR | 1 | 1 | 3 | 0 |
 | QRN-YUK-032 | C2 | v21.5 | CDR | 0 | 8 | 2 | 0 |
 | QRN-GAUGE-018 | C2 | v21.6 | DLR | 0 | 1 | 1 | 0 |
@@ -174,6 +174,7 @@
 | QRN-GRAV-015 | C4 | v22.5 | CDR | 2 | 2 | 2 | 2 |
 | QRN-GRAV-016 | C4 | v22.6 | CDR | 2 | 2 | 2 | 1 |
 | QRN-GRAV-017 | C4 | v22.7 | CDR | 3 | 2 | 2 | 0 |
+| QRN-GAUGE-019 | C2 | v22.1 | CDR | 2 | 1 | 2 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -181,7 +182,7 @@
 
 | 仮定 | type | status | 直接 | 閉包 | 閉包に含まれる主張 (抜粋) |
 |---|---|---|---|---|---|
-| ASM-LATTICE | framework | active | 68 | 114 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
+| ASM-LATTICE | framework | active | 69 | 115 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
 | ASM-SEED | design | active | 13 | 72 | QRN-BH-001, QRN-BORN-001, QRN-COSMO-003, QRN-FIELD-001, … |
 | ASM-PDG | data | active | 47 | 65 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
 | ASM-TORUS | model | active | 45 | 60 | QRN-KK-001, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
@@ -224,8 +225,8 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 145 | 155 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
-| FAL-CONTINUUM | open | 43 | 72 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
+| FAL-SUITE | open | 146 | 156 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-CONTINUUM | open | 44 | 73 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-CKM-OOS | open | 12 | 58 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-BMV | open | 8 | 43 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
 | FAL-CEX-WINDOW | open | 15 | 37 | 明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。 |

@@ -2050,3 +2050,17 @@
   limitations:
     - "N=12 のみ (DD jacobi 864² × 12 回で ~35 分 — N=16 は ~8 倍)。d=3.5 の信号消失は物理で器械では超えられない。"
     - "DD 演算は本バイナリ内に自作 (lib.rs 未昇格) — 再利用時に昇格を検討。"
+
+- id: QRN-GAUGE-019
+  version: "v22.1"
+  level: C2
+  claim: "重電荷窓の開通 (事前登録 a, 第二十三期 課題 3): 電荷 q の massless Schwinger (開鎖 N=64 + 全電荷罰則 λ_Q(Σq)² — 開鎖端の自由電荷が E₁ を偽装する寄生状態 [環の磁束状態の開鎖版] を除去、中性スペクトル厳密不変を監査ゲート化) で、ボソン質量比 M(2)/M(1) = 2.1001 (x=16, gap 法) が登録窓 2±7% に着地 — ボソン化の教科書線 M(q)/g = q/√π の比が格子第一原理から出た。相関質量法 (E₁ 不要・r=20 深プラトー・[G8] で gap 法と ±20% 整合) が 2.0634 で独立支持。二層 × 三推定器: E₀ は Rust/python 両エンジンで厳密一致 (Δ≤1e-12)、q=2 gap は両エンジン 0.1% 一致、q=1 gap は python 31h 収束 + [I4] 交差検証。監査層 (sim/src/bin/v221_dmrgex.rs) は N=10 全空間 ED (セクター仮定なし) と Δ~1e-13。計器開発の完全記録 (Rust 10 走: Gram σ除算の正準性破壊 → Hestenes SVD、局所 Ritz の偽低値 → 大域 Rayleigh 商誠実化、ほか) を保存。"
+  status: "重電荷窓開通。残: q≥3・共鳴窓 (named limit)。Rust DMRG は再利用可能な計算層に"
+  evidence:
+    code: "sim/src/bin/v221_dmrg.rs"
+    code: "sim/src/bin/v221_dmrgex.rs"
+    result: "results/v221_dmrgex.txt"
+    doc: "docs/uft-v22.1.md"
+  limitations:
+    - "絶対質量は格子系統 +15% — 主張は同一 x での比のみ (a 系統が相殺)。"
+    - "罰則法 E₁ は q=1 の密多ボソン梯子で降下せず (python 31h を要した) — 相関法が正道。"
