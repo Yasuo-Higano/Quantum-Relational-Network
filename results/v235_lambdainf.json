@@ -1,0 +1,9 @@
+{
+  "version": "v23.5",
+  "lam_inf": 1.1851172787751896,
+  "lam_inf_mod0": 1.1855157787928774,
+  "lam_inf_mod2": 1.184718778757502,
+  "ratio_32_27": 0.9999427039665663,
+  "branch_a_naive": false,
+  "branch_ap_renorm": true
+}
