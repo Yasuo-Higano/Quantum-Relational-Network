@@ -2136,3 +2136,16 @@
     doc: "docs/uft-v23.5.md"
   limitations:
     - "N ≤ 16 の 1/N⁴ 外挿 (族間系統 ±0.001)。32/27 は 0.006% の数値照合であって導出ではない。"
+
+- id: QRN-GRAV-023
+  version: "v23.6"
+  level: C4
+  claim: "G_lattice の条件付き初読み出し (事前登録 a′ — G 窓開通): 温度 T = 2π/λ∞ (λ∞ = 32/27, v23.5) を Jacobson 鎖に通した G = a²/(4·λ∞·s_area) で、s_area(N) = S(C_A)/N² の N 系列 (8..16) は定数則 (対数係数 −0.0045 は負・微小 — 閉殻ギャップが IR を正則化し Gioev–Klich 対数は切れる): s∞ ≈ 0.198 ± 0.004 (shell ±2%) → **G∞ ≈ (1.06 ± 0.02)·a²** — Planck 長 ≈ 格子間隔、G ∝ a² は誘導重力 (Sakharov) の予想形で「重力結合は cutoff の物性」が数値として閉じた。G 窓の弧 (v19.6 保留 → 幾何仮説全滅 → κ 床突破 → BW 直測 → λ 発見 → 32/27 確定 → 本読み出し) が完結 — 障害は『2π を素朴に信じた温度規格化』だった。"
+  status: "条件付き (自由フェルミオン toy)。次: 32/27 の理論導出 (Lean 化候補)・massless 極限の対数走行・実物質内容への拡張"
+  evidence:
+    code: "sim/src/bin/v236_gread.rs"
+    result: "results/v236_gread.txt"
+    doc: "docs/uft-v23.6.md"
+  limitations:
+    - "自由 staggered フェルミオン 1 種の toy — 実重力定数の主張ではない。λ∞ = 32/27 は 0.006% の数値確定であって導出ではない。"
+    - "定数面積則はギャップ付き真空の性質 — massless 連続極限では対数が復活し得る (その場合 G は走行結合)。"
