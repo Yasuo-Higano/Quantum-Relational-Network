@@ -184,7 +184,12 @@ fn main() {
         check(
             &format!("[I4] x={} q=1 E₀ 交差エンジン ± 1e-6", x),
             (e0_rs - e0_py).abs() < 1e-6,
-            format!("rust {:.9} vs python {:.9} (Δ {:.1e})", e0_rs, e0_py, (e0_rs - e0_py).abs()),
+            format!(
+                "rust {:.9} vs python {:.9} (Δ {:.1e})",
+                e0_rs,
+                e0_py,
+                (e0_rs - e0_py).abs()
+            ),
         );
     }
     println!();
@@ -231,7 +236,10 @@ fn main() {
         ("version".into(), Json::Str("v22.1".into())),
         ("ratio_x9".into(), Json::Num(ratios[0])),
         ("ratio_x16".into(), Json::Num(ratios[1])),
-        ("gap_q1_x16_py".into(), Json::Num(json_num(&jpy, "n64_x16_q1_gap"))),
+        (
+            "gap_q1_x16_py".into(),
+            Json::Num(json_num(&jpy, "n64_x16_q1_gap")),
+        ),
         ("branch_a".into(), Json::Bool(ok)),
     ]);
     let p = write_artifact("results/v221_dmrgex.json", &j.render());
