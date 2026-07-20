@@ -1,0 +1,57 @@
+# Lean 4 定理検証 — ci.yml から分離 (PROMPT/5)
+# AnomalyBig の全列挙は ~3 時間かかるため、proofs/ が変わったときだけ走らせる。
+# docs/results/sim の変更では定理は動かない (定理の数と内容は v151_audit が
+# CI の verify ジョブで毎回テキスト照合している)。
+name: Lean proofs
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'proofs/**'
+      - '.github/workflows/lean.yml'
+  pull_request:
+    paths:
+      - 'proofs/**'
+      - '.github/workflows/lean.yml'
+
+jobs:
+  lean-proofs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: elan / Lean toolchain キャッシュ
+        uses: actions/cache@v4
+        with:
+          path: ~/.elan
+          key: elan-${{ runner.os }}-${{ hashFiles('proofs/lean-toolchain') }}
+
+      - name: elan (Lean 4)
+        run: |
+          if [ ! -x "$HOME/.elan/bin/elan" ]; then
+            curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          fi
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
+
+      - name: 機械検証済み定理 (proofs/Anomaly.lean)
+        # native_decide の全列挙のため ~15-40 分かかる (並列ジョブなので許容)
+        working-directory: proofs
+        run: lean Anomaly.lean
+
+      - name: 機械検証済み定理・大表現域 (proofs/AnomalyBig.lean)
+        # 原子数 190 の全列挙 (全呼び出し 1.7e10) — 約 3 時間かかる。孤立性の定理級保証と引き換えの計算コスト
+        working-directory: proofs
+        run: lean AnomalyBig.lean
+
+      - name: 機械検証済み定理・v4.3 域 (proofs/AnomalyArray.lean, 配列ベース ~3 秒)
+        working-directory: proofs
+        run: lean AnomalyArray.lean
+
+      - name: 機械検証済み定理・E1 域 (proofs/AnomalyArrayBig.lean, 配列ベース ~14 秒)
+        working-directory: proofs
+        run: lean AnomalyArrayBig.lean
+
+      - name: 機械検証済み定理・上流形式化 (proofs/AnomalyUpstream.lean, 窓 p,q≤12 ~2 秒)
+        # ci.yml 時代は未登録だった (v21.6 で追加されたが CI に載っていなかった) — 分離を機に登録
+        working-directory: proofs
+        run: lean AnomalyUpstream.lean

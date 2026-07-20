@@ -14,10 +14,19 @@
 
 ```bash
 cd sim
-cargo build --release                    # 全 37 バイナリ
+cargo build --release                    # 全バイナリ (外部依存なし)
 ./target/release/v62_atlas               # 単一実験の実行
-for b in target/release/v*; do $b; done  # 全スイート
+cd ..
+make suite                               # 全スイート増分 (ソース不変のバイナリは前回結果を引用)
+make suite-full OUT=results/vXX0_full_suite.txt  # 完全再計算 (数期に一度の決定性・ドリフト検査)
 ```
+
+増分実行の判定は台帳 `results/suite_manifest.tsv` (bin ソースと lib.rs / Cargo.toml の
+SHA-256・前回の PASS/FAIL・実行日・結果ファイル) で行う。lib.rs が変わると全数再実行、
+リポジトリ状態 (claims.yml, docs/, results/*.json) を入力に読む監査層は常時再実行される。
+詳細は `tools/suite.sh` 冒頭のコメントを参照。
+(旧来の `for b in target/release/v*; do $b; done` は .d 依存ファイルを拾って exit=126 を
+混入させるため廃止 — v23.0 §5 の記録参照。)
 
 ## 決定性
 

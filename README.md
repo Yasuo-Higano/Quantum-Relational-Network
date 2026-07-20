@@ -34,6 +34,12 @@ cargo build --release          # 外部依存なし (std のみ)
 全シミュレーションの出力は `results/` に保存済み。各実験には厳密解・観測値との比較
 ([PASS]/[FAIL] 判定) が組み込まれている。
 
+全スイートはルートの `make suite` で増分実行できる — ソースが不変のバイナリは
+台帳 [results/suite_manifest.tsv](results/suite_manifest.tsv) (src と lib.rs の SHA-256)
+により前回結果を「引用」し、変更されたバイナリと監査層だけを再計算する。
+数期に一度の完全再計算 (固定シード決定性・末桁ドリフトの儀式) は
+`make suite-full OUT=results/vXX0_full_suite.txt` で行う。
+
 ## バージョン一覧
 
 | Ver | 文書 | シミュレーション | 主結果 |

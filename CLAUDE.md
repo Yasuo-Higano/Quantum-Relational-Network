@@ -17,8 +17,14 @@ cd sim
 cargo build --release                      # 全バイナリをビルド (外部依存なし、std のみ)
 ./target/release/v01_qm                    # 単一シミュレーションの実行
 cargo run --release --bin v34_unruh        # 同上 (ビルド込み)
-for b in target/release/v*_*; do $b; done  # 全スイート実行 (v??_* は 3 桁版名を漏らすので不可)
 ./target/release/v34_unruh > ../results/v34_unruh.txt   # 結果の保存 (stdout をリダイレクト)
+
+# 全スイートはルートの Makefile から (PROMPT/5)。台帳 results/suite_manifest.tsv が
+# ソース不変のバイナリを判定し、前回結果を「引用」する。
+cd ..
+make suite-status                          # 実行/引用の判定だけ表示
+make suite                                 # 増分 (変更分 + 監査層のみ実行。統合時は OUT= で保存先指定)
+make suite-full OUT=results/vXX0_full_suite.txt JOBS=8  # 完全再計算 (数期に一度の儀式)
 ```
 
 `cargo test` は無い。検証は各バイナリに内蔵された厳密解・観測値との `[PASS]`/`[FAIL]` 比較で行う。`lib.rs` の `self_test()`(ヤコビ法・ベッセル等の自己検証)を主要バイナリが起動時に呼ぶ。

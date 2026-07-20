@@ -1,10 +1,27 @@
 # CI: ビルド + 主張台帳 + 監査スイート + 代表シミュレーション
 # 外部クレート依存がないため、キャッシュなしでも高速にビルドできる。
+# 省力化 (PROMPT/5):
+#   - docs/results 等の記録のみの変更ではスキップ (README・claims.yml 等の
+#     ルート台帳が動く統合コミットでは従来どおり走る)
+#   - cargo target をキャッシュし、ソース不変ならビルドを即完了させる
+#   - Lean 証明 (~3h) は proofs/ 変更時のみ別ワークフロー (lean.yml) で走る
 name: CI
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - 'results/**'
+      - 'paper/**'
+      - 'figures/**'
+      - 'PROMPT/**'
   pull_request:
+    paths-ignore:
+      - 'docs/**'
+      - 'results/**'
+      - 'paper/**'
+      - 'figures/**'
+      - 'PROMPT/**'
 
 jobs:
   verify:
@@ -16,6 +33,14 @@ jobs:
         run: |
           rustup toolchain install stable --profile minimal --component rustfmt --component clippy
           rustup default stable
+
+      - name: cargo target キャッシュ (ソース不変ならビルド即完了)
+        uses: actions/cache@v4
+        with:
+          path: sim/target
+          key: cargo-target-${{ runner.os }}-${{ hashFiles('sim/Cargo.lock', 'sim/Cargo.toml', 'sim/src/**') }}
+          restore-keys: |
+            cargo-target-${{ runner.os }}-
 
       - name: フォーマット検査
         working-directory: sim
@@ -79,26 +104,3 @@ jobs:
         run: sh dag/run.sh
       - name: 生成物の同一性 (facts / DOT / Mermaid / MD / JSON)
         run: git diff --exit-code dag/
-
-  lean-proofs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: elan (Lean 4)
-        run: |
-          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/bin" >> $GITHUB_PATH
-      - name: 機械検証済み定理 (proofs/Anomaly.lean)
-        # native_decide の全列挙のため ~15-40 分かかる (並列ジョブなので許容)
-        working-directory: proofs
-        run: lean Anomaly.lean
-      - name: 機械検証済み定理・大表現域 (proofs/AnomalyBig.lean)
-        # 原子数 190 の全列挙 (全呼び出し 1.7e10) — 約 3 時間かかる。孤立性の定理級保証と引き換えの計算コスト
-        working-directory: proofs
-        run: lean AnomalyBig.lean
-      - name: 機械検証済み定理・v4.3 域 (proofs/AnomalyArray.lean, 配列ベース ~3 秒)
-        working-directory: proofs
-        run: lean AnomalyArray.lean
-      - name: 機械検証済み定理・E1 域 (proofs/AnomalyArrayBig.lean, 配列ベース ~14 秒)
-        working-directory: proofs
-        run: lean AnomalyArrayBig.lean
