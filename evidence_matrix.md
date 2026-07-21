@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 173 件 / 依存辺 273 本 / 仮定 38 件 / 反証条件 15 件。
+主張 174 件 / 依存辺 274 本 / 仮定 38 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -183,8 +183,9 @@
 | QRN-GRAV-022 | C4 | v23.5 | CDR | 1 | 2 | 2 | 2 |
 | QRN-GRAV-023 | C4 | v23.6 | CDR | 2 | 2 | 2 | 1 |
 | QRN-META-025 | C5 | v24.0 | DR | 7 | 0 | 1 | 0 |
-| QRN-GRAV-024 | C2 | v24.1 | CDR | 0 | 1 | 1 | 1 |
-| QRN-GRAV-025 | C2 | v24.2 | CDR | 1 | 1 | 1 | 0 |
+| QRN-GRAV-024 | C2 | v24.1 | CDR | 0 | 1 | 1 | 2 |
+| QRN-GRAV-025 | C2 | v24.2 | CDR | 1 | 1 | 1 | 1 |
+| QRN-GRAV-026 | C4 | v24.3 | CDR | 1 | 1 | 2 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -192,7 +193,7 @@
 
 | 仮定 | type | status | 直接 | 閉包 | 閉包に含まれる主張 (抜粋) |
 |---|---|---|---|---|---|
-| ASM-LATTICE | framework | active | 77 | 125 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
+| ASM-LATTICE | framework | active | 78 | 126 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
 | ASM-SEED | design | active | 13 | 74 | QRN-BH-001, QRN-BORN-001, QRN-COSMO-003, QRN-FIELD-001, … |
 | ASM-PDG | data | active | 47 | 67 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
 | ASM-LOWDIM | framework | active | 23 | 63 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
@@ -235,8 +236,8 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 156 | 166 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
-| FAL-CONTINUUM | open | 50 | 81 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
+| FAL-SUITE | open | 157 | 167 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-CONTINUUM | open | 51 | 82 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-CKM-OOS | open | 12 | 60 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-BMV | open | 8 | 45 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
 | FAL-CEX-WINDOW | open | 15 | 39 | 明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。 |
