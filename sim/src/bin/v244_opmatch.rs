@@ -86,7 +86,12 @@ fn main() {
     println!("          (a′) Z 等方 & 1/Z = 32/27±1% → 繰り込み生存 / (b) Z 方向依存 / (c) 保留\n");
     let mut nfail = 0usize;
     let mut check = |name: &str, ok: bool, detail: String| {
-        println!("  [{}] {}  {}", if ok { "PASS" } else { "FAIL" }, name, detail);
+        println!(
+            "  [{}] {}  {}",
+            if ok { "PASS" } else { "FAIL" },
+            name,
+            detail
+        );
         if !ok {
             nfail += 1;
         }
@@ -246,9 +251,15 @@ fn main() {
                 lam_r
             )
         } else if branch_ap {
-            format!("事前登録 (a′): 整合後も λ_R = {:.5} ≈ 32/27 — 繰り込み生存 (重大)", lam_r)
+            format!(
+                "事前登録 (a′): 整合後も λ_R = {:.5} ≈ 32/27 — 繰り込み生存 (重大)",
+                lam_r
+            )
         } else if branch_b {
-            format!("事前登録 (b): Z の方向依存 {:.3} — 等方性の破れ候補", iso_dev)
+            format!(
+                "事前登録 (b): Z の方向依存 {:.3} — 等方性の破れ候補",
+                iso_dev
+            )
         } else {
             format!("事前登録 (c): 保留 — λ_R = {:.5}, 全表を一次記録", lam_r)
         }

@@ -421,7 +421,7 @@ fn lanczos_restart(
         ev0 = evs[0];
         let mut nv = vec![(0.0f64, 0.0f64); n];
         for a in 0..k {
-            let c = vv[a + 0 * k];
+            let c = vv[a]; // 第 0 固有ベクトル (a + 0·k)
             for i in 0..n {
                 nv[i].0 += c * basis[a][i].0;
                 nv[i].1 += c * basis[a][i].1;

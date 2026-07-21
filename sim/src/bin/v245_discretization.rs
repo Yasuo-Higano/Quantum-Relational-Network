@@ -166,7 +166,12 @@ fn main() {
     println!("          (b) 両者同一の非 1 プラトー → BW 格子破れ候補 / (a′/c) 混在 = 記録\n");
     let mut nfail = 0usize;
     let mut check = |name: &str, ok: bool, detail: String| {
-        println!("  [{}] {}  {}", if ok { "PASS" } else { "FAIL" }, name, detail);
+        println!(
+            "  [{}] {}  {}",
+            if ok { "PASS" } else { "FAIL" },
+            name,
+            detail
+        );
         if !ok {
             nfail += 1;
         }
@@ -229,7 +234,12 @@ fn main() {
         check(
             "[D2b] Wilson 開放 N=64: カイラル ± 対称 & gap > 0",
             sym < 1e-10 && gap > 1e-3,
-            format!("± 対称 {:.1e}, gap = {:.4} (≈ {:.2}/N)", sym, gap, gap * n2 as f64),
+            format!(
+                "± 対称 {:.1e}, gap = {:.4} (≈ {:.2}/N)",
+                sym,
+                gap,
+                gap * n2 as f64
+            ),
         );
     }
 

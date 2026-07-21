@@ -164,7 +164,12 @@ fn main() {
     println!("          (c) B5 破れ = v23.4 系列との不整合\n");
     let mut nfail = 0usize;
     let mut check = |name: &str, ok: bool, detail: String| {
-        println!("  [{}] {}  {}", if ok { "PASS" } else { "FAIL" }, name, detail);
+        println!(
+            "  [{}] {}  {}",
+            if ok { "PASS" } else { "FAIL" },
+            name,
+            detail
+        );
         if !ok {
             nfail += 1;
         }
@@ -173,7 +178,10 @@ fn main() {
     let nthreads = std::thread::available_parallelism()
         .map(|x| x.get())
         .unwrap_or(1);
-    println!("    スレッド数 = {} (ブロック単位の分割 — 結果はスレッド数に依らない)\n", nthreads);
+    println!(
+        "    スレッド数 = {} (ブロック単位の分割 — 結果はスレッド数に依らない)\n",
+        nthreads
+    );
 
     check("[B0a] dd 自己検証", dd_self_test(), String::new());
     check("[B0b] stag 自己検証", stag_self_test(), String::new());
@@ -201,13 +209,18 @@ fn main() {
         let dky = vec_maxdiff(&b.ky, &d.ky);
         let daz = vec_maxdiff(&b.az, &d.az);
         let dbz = vec_maxdiff(&b.bz, &d.bz);
-        let dmax = [dax, dbx, dky, daz, dbz].iter().fold(0.0f64, |a, &x| a.max(x));
+        let dmax = [dax, dbx, dky, daz, dbz]
+            .iter()
+            .fold(0.0f64, |a, &x| a.max(x));
         // 照合床は f64 集約丸め (ブロック和は f64 累積, ~1e-15·√ブロック数)。
         // 実装誤り (位相・規約) なら O(1)〜1e-3 で出るので 1e-12 は判別十分。
         check(
             &format!("[B1b] N={} S: dense vs ブロック", n),
             ds < 1e-12,
-            format!("|ΔS| = {:.1e} (S = {:.8}, 床 = f64 集約丸め)", ds, b.s_total),
+            format!(
+                "|ΔS| = {:.1e} (S = {:.8}, 床 = f64 集約丸め)",
+                ds, b.s_total
+            ),
         );
         check(
             &format!("[B1c] N={} ボンド全成分: dense vs ブロック", n),
@@ -236,7 +249,10 @@ fn main() {
         t0.elapsed().as_secs()
     );
     let scan_f = half_space_scan::<f64>(n16, 1e-14, nthreads);
-    println!("    N=16 f64 走査完了 (S = {:.6}, κ_max = {:.2}, クランプ {} 本)", scan_f.s_total, scan_f.kappa_max, scan_f.n_clamped);
+    println!(
+        "    N=16 f64 走査完了 (S = {:.6}, κ_max = {:.2}, クランプ {} 本)",
+        scan_f.s_total, scan_f.kappa_max, scan_f.n_clamped
+    );
     println!("\n    [較正表] ξ | A_x(DD) | A_x(f64) 相対差 | λ_A = πξ/A_x | B_x/A_x | λ_abs");
     let mut xi_star_f64 = 0usize;
     let mut rel_prev_ok = true;
@@ -266,7 +282,10 @@ fn main() {
     check(
         "[B2] f64 経路の信頼域確定: ξ*(f64) ≥ 2 (ξ プロファイル測定は DD 必須)",
         xi_star_f64 >= 2,
-        format!("ξ*(f64, relΔ<1e-3) = {} — 深 ξ の f64 は κ 床で系統的に崩れる", xi_star_f64),
+        format!(
+            "ξ*(f64, relΔ<1e-3) = {} — 深 ξ の f64 は κ 床で系統的に崩れる",
+            xi_star_f64
+        ),
     );
 
     // ---- [B3] DD 床感度 (clamp 1e-26 vs 1e-30, N=16) ----
@@ -282,7 +301,11 @@ fn main() {
             "max relΔ = {:.1e} (κ_max = {:.2} — N=16 のスペクトルは κ 床以下: {})",
             rel_max,
             scan_dd.kappa_max,
-            if scan_dd.n_clamped == 0 { "はい" } else { "いいえ" }
+            if scan_dd.n_clamped == 0 {
+                "はい"
+            } else {
+                "いいえ"
+            }
         ),
     );
 
@@ -359,7 +382,10 @@ fn main() {
             .map(|&(xi, k)| k / xi as f64)
             .sum::<f64>()
             / kappa99.iter().filter(|&&(xi, _)| xi >= 2).count() as f64;
-        println!("      κ99/ξ の平均 (ξ≥2) = {:.2} — 精度床 κ_max との比が信頼 ξ 域を決める", slope);
+        println!(
+            "      κ99/ξ の平均 (ξ≥2) = {:.2} — 精度床 κ_max との比が信頼 ξ 域を決める",
+            slope
+        );
     }
 
     // ---- [B5] 歴史照合 (v23.4 公表値) ----

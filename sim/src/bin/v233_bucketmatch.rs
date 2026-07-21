@@ -92,7 +92,7 @@ fn dd_sqrt(a: Dd) -> Dd {
 // DD exp: 範囲縮約 z = k·ln2 + f, |f| ≤ ln2/2, Taylor 26 項
 fn dd_exp(z: Dd) -> Dd {
     let ln2 = Dd {
-        hi: 0.6931471805599453,
+        hi: std::f64::consts::LN_2,
         lo: 2.3190468138462996e-17,
     };
     if z.hi < -745.0 {

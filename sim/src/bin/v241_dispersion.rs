@@ -31,7 +31,12 @@ fn main() {
     println!("事前登録: (a) 全恒等式が dense と一致 → ブロック理論解禁 / (b) 破れ = 記録\n");
     let mut nfail = 0usize;
     let mut check = |name: &str, ok: bool, detail: String| {
-        println!("  [{}] {}  {}", if ok { "PASS" } else { "FAIL" }, name, detail);
+        println!(
+            "  [{}] {}  {}",
+            if ok { "PASS" } else { "FAIL" },
+            name,
+            detail
+        );
         if !ok {
             nfail += 1;
         }
@@ -39,7 +44,11 @@ fn main() {
     let t0 = std::time::Instant::now();
 
     // [A0] 共有モジュールの自己検証
-    check("[A0a] dd 自己検証 (EFT/sqrt/ln/exp/有理角)", dd_self_test(), String::new());
+    check(
+        "[A0a] dd 自己検証 (EFT/sqrt/ln/exp/有理角)",
+        dd_self_test(),
+        String::new(),
+    );
     check(
         "[A0b] stag 自己検証 (ペア恒等式 DD < 1e-30, ブロック直交規格)",
         stag_self_test(),
@@ -105,7 +114,11 @@ fn main() {
         check(
             "[A3a] H スペクトルの ± 対称 (全周期 N=8)",
             dev_sym < 1e-10,
-            format!("max |E_i + E_(rev)| = {:.1e} ({} s)", dev_sym, t0.elapsed().as_secs()),
+            format!(
+                "max |E_i + E_(rev)| = {:.1e} ({} s)",
+                dev_sym,
+                t0.elapsed().as_secs()
+            ),
         );
         let analytic = h2_spectrum_periodic(n);
         let mut e2: Vec<f64> = ev.iter().map(|e| e * e).collect();
@@ -143,7 +156,11 @@ fn main() {
         check(
             &format!("[A5] x開放 N={} スペクトル = 解析閉形式", n),
             dev < 1e-10,
-            format!("多重集合 max Δ = {:.1e} ({} s)", dev, t0.elapsed().as_secs()),
+            format!(
+                "多重集合 max Δ = {:.1e} ({} s)",
+                dev,
+                t0.elapsed().as_secs()
+            ),
         );
         // [A8] gap の照合
         let nocc = ns / 2;
@@ -199,11 +216,10 @@ fn main() {
         for ix in 0..m {
             let kx = -std::f64::consts::PI + 2.0 * std::f64::consts::PI * ix as f64 / m as f64;
             for iy in 0..m {
-                let ky =
-                    -std::f64::consts::PI + 2.0 * std::f64::consts::PI * iy as f64 / m as f64;
+                let ky = -std::f64::consts::PI + 2.0 * std::f64::consts::PI * iy as f64 / m as f64;
                 for iz in 0..m {
-                    let kz = -std::f64::consts::PI
-                        + 2.0 * std::f64::consts::PI * iz as f64 / m as f64;
+                    let kz =
+                        -std::f64::consts::PI + 2.0 * std::f64::consts::PI * iz as f64 / m as f64;
                     let e = (kx.cos().powi(2) + ky.cos().powi(2) + kz.cos().powi(2)).sqrt();
                     if e < 1e-12 {
                         nzero += 1;
@@ -232,7 +248,10 @@ fn main() {
         check(
             "[A7] 零集合 = 孤立 8 点 (余次元 3) — Fermi 面ではない",
             nzero == 8 && emin_far > 0.15,
-            format!("BZ 格子の零点 {} 個, ノード球外の min E = {:.4}", nzero, emin_far),
+            format!(
+                "BZ 格子の零点 {} 個, ノード球外の min E = {:.4}",
+                nzero, emin_far
+            ),
         );
     }
 
@@ -248,7 +267,11 @@ fn main() {
             n % 4,
             g,
             g * n as f64,
-            if n % 4 == 0 { " — 横 μ=0 系列" } else { " — 横ギャップ系列" }
+            if n % 4 == 0 {
+                " — 横 μ=0 系列"
+            } else {
+                " — 横ギャップ系列"
+            }
         );
     }
 
@@ -259,7 +282,9 @@ fn main() {
     println!("  2. x 開放スペクトルは閉形式 E = ±√(cos²(πn/(N+1)) + cos²ky + cos²kz) —");
     println!("     半空間 C_A は (ky ペア, kz) の N²/2 個の N×N 実対称ブロックに厳密分解。");
     println!("     dense N³ 対角化 (v23.4 の限界 N=16) → ブロック経路で N=128 級へ (v24.2)。");
-    println!("  3. シェル構造 (N mod 4) の起源 = 横運動量 π/2 の有無 (μ=0 系列) — gap 公式で閉じた。");
+    println!(
+        "  3. シェル構造 (N mod 4) の起源 = 横運動量 π/2 の有無 (μ=0 系列) — gap 公式で閉じた。"
+    );
     println!("  4. 離散化間比較 (v24.5) の種数規格化: staggered = 2 Dirac / Wilson = 1 Dirac。");
 
     let j = Json::Obj(vec![

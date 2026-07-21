@@ -40,14 +40,14 @@ const PI: f64 = std::f64::consts::PI;
 
 struct NResult {
     n: usize,
-    lam_a: Vec<f64>,     // λ_A(ξ), ξ = 1..half-1
-    ladder: Vec<f64>,    // クランプ梯子の相対差 |A30−A26|/|A30|
-    xi_trust: usize,     // 信頼域の最大 ξ (連続 prefix, 梯子 < 1e-4)
-    lam_y: Vec<f64>,     // λ_y(ξ_s), ξ_s = 0.5, 1.5, ...
-    lam_z: Vec<f64>,     // λ_z(ξ_s)
-    lam_bulk: f64,       // 固定 ξ≤3 の abs 推定器 (v23.4/23.5 互換)
-    bx_rel: f64,         // max|B_x|/max|A_x| (器械不変量)
-    az_rel: f64,         // max|A_z|/max|B_z|
+    lam_a: Vec<f64>,  // λ_A(ξ), ξ = 1..half-1
+    ladder: Vec<f64>, // クランプ梯子の相対差 |A30−A26|/|A30|
+    xi_trust: usize,  // 信頼域の最大 ξ (連続 prefix, 梯子 < 1e-4)
+    lam_y: Vec<f64>,  // λ_y(ξ_s), ξ_s = 0.5, 1.5, ...
+    lam_z: Vec<f64>,  // λ_z(ξ_s)
+    lam_bulk: f64,    // 固定 ξ≤3 の abs 推定器 (v23.4/23.5 互換)
+    bx_rel: f64,      // max|B_x|/max|A_x| (器械不変量)
+    az_rel: f64,      // max|A_z|/max|B_z|
     kappa_max: f64,
     n_clamped: usize,
     s_total: f64,
@@ -173,7 +173,12 @@ fn main() {
     println!("          (a′) 窓 λ∞ = 32/27±1% → BW 破れ候補の重大登録 / (b) 保留\n");
     let mut nfail = 0usize;
     let mut check = |name: &str, ok: bool, detail: String| {
-        println!("  [{}] {}  {}", if ok { "PASS" } else { "FAIL" }, name, detail);
+        println!(
+            "  [{}] {}  {}",
+            if ok { "PASS" } else { "FAIL" },
+            name,
+            detail
+        );
         if !ok {
             nfail += 1;
         }
@@ -182,7 +187,10 @@ fn main() {
     let nthreads = std::thread::available_parallelism()
         .map(|x| x.get())
         .unwrap_or(1);
-    println!("    スレッド数 = {} (結果はスレッド数に依らない)\n", nthreads);
+    println!(
+        "    スレッド数 = {} (結果はスレッド数に依らない)\n",
+        nthreads
+    );
     check("[W0a] dd 自己検証", dd_self_test(), String::new());
     check("[W0b] stag 自己検証", stag_self_test(), String::new());
 
@@ -237,7 +245,10 @@ fn main() {
         if r.n < 32 {
             continue;
         }
-        println!("\n    [N={} プロファイル] ξ | λ_A | 梯子Δ | λ_y(ξ−0.5) | λ_z(ξ−0.5)", r.n);
+        println!(
+            "\n    [N={} プロファイル] ξ | λ_A | 梯子Δ | λ_y(ξ−0.5) | λ_z(ξ−0.5)",
+            r.n
+        );
         let show = r.lam_a.len().min(r.xi_trust + 3);
         for xi in 1..=show {
             let mark = if xi <= r.xi_trust { " " } else { "!" };
@@ -291,7 +302,11 @@ fn main() {
     );
 
     // ---- 窓判定 (最大 N の信頼域 ξ ∈ [3, ξ*]) ----
-    let rmax = results.iter().filter(|r| r.n % 4 == 0).max_by_key(|r| r.n).unwrap();
+    let rmax = results
+        .iter()
+        .filter(|r| r.n % 4 == 0)
+        .max_by_key(|r| r.n)
+        .unwrap();
     let xi_lo = 3usize;
     let xi_hi = rmax.xi_trust;
     let xs: Vec<f64> = (xi_lo..=xi_hi).map(|x| x as f64).collect();

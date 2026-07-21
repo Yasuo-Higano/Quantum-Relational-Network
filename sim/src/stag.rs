@@ -200,9 +200,8 @@ pub fn block_f<T: Real>(n: usize, q: usize, p: usize) -> Vec<T> {
             for x in 0..n {
                 let m1 = (np as i64) * (x as i64 + 1);
                 let m2 = (ni + 1 - np as i64) * (x as i64 + 1);
-                let fx = (alpha * T::sinpi_frac(m1, ni + 1)
-                    + beta * T::sinpi_frac(m2, ni + 1))
-                    * norm_x;
+                let fx =
+                    (alpha * T::sinpi_frac(m1, ni + 1) + beta * T::sinpi_frac(m2, ni + 1)) * norm_x;
                 f[2 * x + col * 2 * n] = fx * u;
                 f[2 * x + 1 + col * 2 * n] = fx * w;
             }
@@ -218,10 +217,7 @@ pub fn block_f<T: Real>(n: usize, q: usize, p: usize) -> Vec<T> {
 pub fn c_from_f<T: Real>(f: &[T], n: usize, xsel: &[usize]) -> Vec<T> {
     let dim = 2 * xsel.len();
     let nfill = n;
-    let rows: Vec<usize> = xsel
-        .iter()
-        .flat_map(|&x| [2 * x, 2 * x + 1])
-        .collect();
+    let rows: Vec<usize> = xsel.iter().flat_map(|&x| [2 * x, 2 * x + 1]).collect();
     let mut c = vec![T::R0; dim * dim];
     for k in 0..nfill {
         let fk = &f[k * 2 * n..(k + 1) * 2 * n];
@@ -424,6 +420,35 @@ pub fn half_space_scan<T: Real>(n: usize, clamp: f64, nthreads: usize) -> HalfSc
     out
 }
 
+/// 任意の x 部分領域のエンタングルメントエントロピー (K 構成なし — 固有値のみ)。
+/// S はクランプに鈍感 (κe^{−κ} 抑制) なので f64 で十分 (v23.6 と同じ根拠)。
+/// ブロックごとの結果を保存してからブロック順に縮約 — スレッド数に依らず決定的。
+pub fn region_entropy<T: Real>(n: usize, xsel: &[usize], nthreads: usize) -> f64 {
+    let bl = blocks(n);
+    let dim = 2 * xsel.len();
+    let mut per: Vec<f64> = vec![0.0; bl.len()];
+    let nt = nthreads.max(1);
+    let chunk = (bl.len() + nt - 1) / nt;
+    std::thread::scope(|sc| {
+        for (t, sl) in per.chunks_mut(chunk).enumerate() {
+            let bl = &bl;
+            sc.spawn(move || {
+                for (j, slot) in sl.iter_mut().enumerate() {
+                    let (q, p) = bl[t * chunk + j];
+                    let f = block_f::<T>(n, q, p);
+                    let c = c_from_f(&f, n, xsel);
+                    let (cw, _) = crate::dd::jacobi_real(&c, dim, 60);
+                    *slot = cw
+                        .iter()
+                        .map(|&cv| crate::h2_entropy(cv.hi().clamp(0.0, 1.0)))
+                        .sum();
+                }
+            });
+        }
+    });
+    per.iter().sum()
+}
+
 /// stag ブロック理論の内部自己検証 (軽量): ペア恒等式と充填数。
 pub fn stag_self_test() -> bool {
     let mut ok = true;
@@ -431,8 +456,11 @@ pub fn stag_self_test() -> bool {
     let n = 8i64;
     for nn in 1..=n {
         for x in 0..n {
-            let lhs = crate::dd::dd_sinpi_frac(nn * (x + 1), n + 1)
-                .mul_f(if x % 2 == 0 { 1.0 } else { -1.0 });
+            let lhs = crate::dd::dd_sinpi_frac(nn * (x + 1), n + 1).mul_f(if x % 2 == 0 {
+                1.0
+            } else {
+                -1.0
+            });
             let rhs = crate::dd::dd_sinpi_frac((n + 1 - nn) * (x + 1), n + 1);
             ok &= (lhs - rhs).hi.abs() < 1e-30;
         }

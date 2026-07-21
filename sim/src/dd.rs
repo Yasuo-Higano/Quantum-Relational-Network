@@ -83,7 +83,7 @@ impl Dd {
     /// DD exp: 範囲縮約 z = k·ln2 + f, Taylor 26 項 (v23.4 実証)
     pub fn exp(self) -> Dd {
         let ln2 = Dd {
-            hi: 0.6931471805599453,
+            hi: std::f64::consts::LN_2,
             lo: 2.3190468138462996e-17,
         };
         if self.hi < -745.0 {
@@ -376,10 +376,8 @@ pub fn jacobi_real<T: Real>(a_in: &[T], n: usize, sweeps_max: usize) -> (Vec<T>,
                 let aqq = a[q + q * n];
                 let theta = (aqq - app).divr(apq * T::from_f64(2.0));
                 let t = {
-                    let tt = T::R1.divr(
-                        T::from_f64(theta.hi().abs())
-                            + (theta * theta + T::R1).sqrtr(),
-                    );
+                    let tt =
+                        T::R1.divr(T::from_f64(theta.hi().abs()) + (theta * theta + T::R1).sqrtr());
                     if theta.hi() < 0.0 {
                         -tt
                     } else {
