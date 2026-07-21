@@ -2232,3 +2232,16 @@
   limitations:
     - "1+1D 対照は次元と離散化を同時に変えている — 3+1D Wilson (同次元・別離散化) の直接対照は未実施 (次期課題)。ただし『推定器普遍の非 1 値』仮説は 1+1D で既に棄却されている。"
     - "Wilson の DD 信頼域は ξ ≤ 3 (2 成分・領域 128 の κ 床)。開発記録: 初版ゲート ξ≥4 は 3D 較正の流用で誤発報 — 実測に較正し直した。"
+
+- id: QRN-GRAV-029
+  version: "v24.6"
+  level: C4
+  claim: "点ノード面積則の有限サイズ形 (事前登録 b — holdout は βlnN/N² を選好): 事前登録 5 族を N≤64 でフィットし N=96/128/192 を holdout 予測 — F5 (Gioev–Klich, S~N²lnN) が最悪 1.3e-3 (点ノード理論の予告どおり v23.6 の二択の対照は誤形)、定数面積則 (leading) は生存、F3 (α+(βlnN+γ)/N²) が最良 1.1e-5 (F2 の 4.3 倍)。s∞ = 0.196639 (シェル系統 1.8e-4)。UV 有限量 (相互情報 I(s), N=64) を離散化間比較の基準として登録。G^bare の再分類: G = a²/(4λs∞) は λ の方向依存 (v24.4) を継承し x スキーム 1.0725 / y,z スキーム 1.0341 — **正名 G_entropy^bare(a; regulator, 方向スキーム)、物理的 Newton 定数ではない** (v23.6 の 1.06a² は棄却済み λ=32/27・x スキームの一点、G∝a² は定義式の代数的必然)。独立バックエンド照合 (numpy/LAPACK): S は 3e-12、λ(ξ≤2) は f64 床内で一次ソースと一致 (PROMPT/6 PR9)。"
+  status: "副次項 βlnN/N² の物理的解釈 (シェル走行/ギャップ対数化) は未確定 — 記録"
+  evidence:
+    code: "sim/src/bin/v246_entropyscale.rs"
+    result: "results/v246_entropyscale.txt"
+    doc: "docs/uft-v24.6.md"
+  limitations:
+    - "lnN/N² の選好は holdout 3 点でのモデル選択 — 普遍対数項の発見の主張ではない (係数の起源はシェル構造・有限ギャップの可能性)。"
+    - "s∞ は自由 staggered 1 種・平面切断・この regulator の bare 値 — 種数・離散化・切断形状に依存する (3+1D Wilson 対照 = 次期課題)。"
