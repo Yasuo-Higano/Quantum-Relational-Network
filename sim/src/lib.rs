@@ -1,5 +1,8 @@
 //! 統一場理論プロジェクト共通数値ライブラリ(外部依存なし)
 
+pub mod dd; // double-double 演算 (v22.7/v23.4 の実証経路を v24.1 で昇格)
+pub mod stag; // 3+1D staggered 半空間の厳密ブロック理論 (v24.1)
+
 use std::ops::{Add, Div, Mul, Neg, Sub};
 
 // ---------------- 乱数 (xorshift64*) ----------------

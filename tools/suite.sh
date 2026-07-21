@@ -81,7 +81,13 @@ tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
 # ---- 現在のハッシュ ----
-lib_sha=$(sha sim/src/lib.rs)
+# 共有部 = sim/src/*.rs (lib.rs + dd.rs/stag.rs 等の共有モジュール, bin/ 以外)。
+# どれかの変更は全バイナリに波及し得るため結合ハッシュで全再実行を判定する (v24.1)。
+sha_cat() {
+    if command -v sha256sum >/dev/null 2>&1; then cat "$@" | sha256sum | awk '{print $1}'
+    else cat "$@" | shasum -a 256 | awk '{print $1}'; fi
+}
+lib_sha=$(sha_cat sim/src/*.rs)
 cargo_sha=$(sha sim/Cargo.toml)
 rustc_ver=$(rustc -V 2>/dev/null || echo "rustc 不明")
 
@@ -144,7 +150,7 @@ if [ -f "$MANIFEST" ]; then
     old_lib=$(printf '%s\n' "$g" | cut -f2)
     old_cargo=$(printf '%s\n' "$g" | cut -f3)
     old_rustc=$(printf '%s\n' "$g" | cut -f4-)
-    [ "$old_lib" = "$lib_sha" ] || global_changed="lib.rs 変更"
+    [ "$old_lib" = "$lib_sha" ] || global_changed="sim/src 共有部変更"
     [ "$old_cargo" = "$cargo_sha" ] || global_changed="${global_changed:+$global_changed, }Cargo.toml 変更"
     if [ "$old_rustc" != "$rustc_ver" ]; then
         rustc_note="警告: rustc が台帳と違う (台帳: $old_rustc / 現在: $rustc_ver) — 末桁ドリフト検査には make suite-full を推奨"
