@@ -429,15 +429,24 @@ pub fn modular_k<T: Real>(c_mat: &[T], n: usize, sweeps: usize, clamp: f64) -> (
     let kappa: Vec<T> = cw
         .iter()
         .map(|&c| {
-            let ch = c.hi();
-            let cc = if ch < clamp {
+            // クランプは両側とも T 精度の距離で判定する。開発記録 (v25.1):
+            // 初版は 1 側を f64 の `ch > 1.0 − clamp` で判定しており、1.0 − 1e-30 が
+            // 1.0 に丸まるため**永遠に発火しない**片側クランプだった — 深く占有された
+            // モード (1−c < DD 床) の κ が雑音/−∞ 化し、切断から遠い深部ボンドを
+            // O(1) 汚染していた (窓 ξ≤6 には指数的に届かず v24.x の判定は不変 —
+            // v25.1 [S5] が再検証)。
+            let dist0 = c.hi();
+            let dist1 = (T::R1 - c).hi();
+            let cc = if dist0 < clamp {
                 T::from_f64(clamp)
-            } else if ch > 1.0 - clamp {
+            } else if dist1 < clamp {
                 T::R1 - T::from_f64(clamp)
             } else {
                 c
             };
-            ((T::R1 - cc).divr(cc)).lnr()
+            let kap = ((T::R1 - cc).divr(cc)).lnr();
+            debug_assert!(kap.hi().is_finite());
+            kap
         })
         .collect();
     let mut k = vec![T::R0; n * n];
