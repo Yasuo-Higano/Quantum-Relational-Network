@@ -12,7 +12,7 @@
 
   => 正例のみ円環と判定される (対照 4 種は全て失敗する)  [PASS]
   => 正例の MI 減衰べき -2±0.3  [PASS]
-  機械可読な結果: ../results/v64_controls.json
+  機械可読な結果: ./results/v64_controls.json
 
 総合判定: [PASS]
 

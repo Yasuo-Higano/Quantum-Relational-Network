@@ -16,7 +16,7 @@
 [4] 健全性 (core の共通検査)
     purity_defect 最大 1.33e-15 (< 1e-9)  [PASS]
 
-  機械可読な結果: ../results/v114_tensorcore.json
+  機械可読な結果: ./results/v114_tensorcore.json
 
 総合判定: [PASS]
 

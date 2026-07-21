@@ -34,6 +34,6 @@
   v8.2 (E₆ の 27 のカイラル芯 = SM 1 世代) と合わせて:
   *** 例外群の走査は閉じた — カイラル物質の入口は E₆ の 27、その芯は SM 1 世代 ***
 
-  機械可読な結果: ../results/v111_exceptional.json
+  機械可読な結果: ./results/v111_exceptional.json
 
 総合判定: [PASS]

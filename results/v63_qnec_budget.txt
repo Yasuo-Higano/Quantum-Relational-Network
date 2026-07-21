@@ -28,7 +28,7 @@
   => 共動凍結はカイラル状態だけの性質 (対照で >20 倍壊れる)  [PASS]
   => 定在波でも QNEC 自体は成立 (min gap +6.59e-5) — 定理どおり  [PASS]
 
-  機械可読な結果: ../results/v63_qnec_budget.json
+  機械可読な結果: ./results/v63_qnec_budget.json
 
 総合判定: [PASS]
 
