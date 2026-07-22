@@ -482,3 +482,50 @@ pub fn stag_self_test() -> bool {
     }
     ok
 }
+
+// ---------------- 1D staggered 鎖 (v25.1/v25.2 — 横ブロックの厳密還元先) ----------------
+use crate::dd::{dd, dd_cospi_frac, dd_sinpi_frac, modular_k, Dd, DD0};
+
+/// 1D staggered-mass 鎖 (H = Σ(1/2)(c†c+h.c.) + μ(−1)^x n) の占有モード行列
+/// F (N 行 × N/2 列)。x 鎖 2×2 と同一代数 (μ を独立パラメタ化)。v251 から昇格。
+pub fn chain_f(n: usize, mu: Dd) -> Vec<Dd> {
+    let ni = n as i64;
+    let norm = (dd(2.0) / dd(n as f64 + 1.0)).sqrt();
+    let mut f = vec![DD0; n * (n / 2)];
+    for np in 1..=n / 2 {
+        let c1 = dd_cospi_frac(np as i64, ni + 1);
+        let r = (c1 * c1 + mu * mu).sqrt();
+        let a0 = mu;
+        let b0 = -(r + c1);
+        let nrm = (a0 * a0 + b0 * b0).sqrt();
+        let (al, be) = (a0 / nrm, b0 / nrm);
+        for x in 0..n {
+            let s1 = dd_sinpi_frac(np as i64 * (x as i64 + 1), ni + 1);
+            let s2 = dd_sinpi_frac((ni + 1 - np as i64) * (x as i64 + 1), ni + 1);
+            f[x + (np - 1) * n] = (al * s1 + be * s2) * norm;
+        }
+    }
+    f
+}
+
+/// 鎖の半分 (x < N/2) のモジュラー核 K (次元 N/2, クランプ指定)。v251 から昇格。
+pub fn chain_k(n: usize, mu: Dd, clamp: f64) -> Vec<Dd> {
+    let f = chain_f(n, mu);
+    let half = n / 2;
+    let mut c = vec![DD0; half * half];
+    for k in 0..n / 2 {
+        for a in 0..half {
+            let va = f[a + k * n];
+            for b in a..half {
+                c[a + b * half] = c[a + b * half] + va * f[b + k * n];
+            }
+        }
+    }
+    for a in 0..half {
+        for b in 0..a {
+            c[a + b * half] = c[b + a * half];
+        }
+    }
+    let (kmat, _) = modular_k(&c, half, 60, clamp);
+    kmat
+}

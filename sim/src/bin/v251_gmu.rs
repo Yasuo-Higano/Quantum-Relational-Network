@@ -26,6 +26,15 @@
 //!   BZ 平均と確定** (導出の器械的前半が完了 — 残るは g, g_m の解析形 = v25.2) /
 //!   (b) S3 成立・S4 不一致 = 求積/有限 N の見落とし (記録) /
 //!   (c) S3 不成立 = バンド分解代数の誤り (ブロック器械の再監査へ)。
+//!
+//! v25.2-III 開発記録 (遡及修正 — PROMPT/7 の指摘):
+//!   (1) 旧 `xi_hi = xi_trust.max(4)` は信頼域不成立でも ξ≤4 を強制フィット (fail-open)
+//!       → 窓 [3, ξ*] に最低 3 点 (ξ* ≥ 5) を要求し、不成立は None (除外) に変更。
+//!   (2) 旧判定 `s3_ok = nfail == 0` は全検査後に評価されるため分岐 (b) が到達不能
+//!       → 段階別 (S0–S4) の失敗計数に分離し、(a)/(b)/(c) を正しく表現。
+//!   (3) 局所 linfit2 を lib の linfit_checked (点数・非有限値・分散ゼロを拒否) 経由に。
+//!   健全な N=256 の全 78 点で ξ* ≥ 5 のため、**公表数値は再走で不変** (chain_f/chain_k
+//!   は stag.rs へ昇格 — アルゴリズム同一)。
 
 use uft_sim::dd::*;
 use uft_sim::stag::*;
@@ -33,59 +42,10 @@ use uft_sim::*;
 
 const PI: f64 = std::f64::consts::PI;
 
-/// 1D staggered-mass 鎖 (H = Σ(1/2)(c†c+h.c.) + μ(−1)^x n) の占有モード行列
-/// F (N 行 × N/2 列)。stag.rs の x 鎖 2×2 と同一代数 (μ を独立パラメタ化)。
-fn chain_f(n: usize, mu: Dd) -> Vec<Dd> {
-    let ni = n as i64;
-    let norm = (dd(2.0) / dd(n as f64 + 1.0)).sqrt();
-    let mut f = vec![DD0; n * (n / 2)];
-    for np in 1..=n / 2 {
-        let c1 = dd_cospi_frac(np as i64, ni + 1);
-        let r = (c1 * c1 + mu * mu).sqrt();
-        let a0 = mu;
-        let b0 = -(r + c1);
-        let nrm = (a0 * a0 + b0 * b0).sqrt();
-        let (al, be) = (a0 / nrm, b0 / nrm);
-        for x in 0..n {
-            let s1 = dd_sinpi_frac(np as i64 * (x as i64 + 1), ni + 1);
-            let s2 = dd_sinpi_frac((ni + 1 - np as i64) * (x as i64 + 1), ni + 1);
-            f[x + (np - 1) * n] = (al * s1 + be * s2) * norm;
-        }
-    }
-    f
-}
-
-/// 鎖の半分 (x < N/2) のモジュラー核 K (次元 N/2, クランプ指定)
-fn chain_k(n: usize, mu: Dd, clamp: f64) -> Vec<Dd> {
-    let f = chain_f(n, mu);
-    let half = n / 2;
-    let mut c = vec![DD0; half * half];
-    for k in 0..n / 2 {
-        for a in 0..half {
-            let va = f[a + k * n];
-            for b in a..half {
-                c[a + b * half] = c[a + b * half] + va * f[b + k * n];
-            }
-        }
-    }
-    for a in 0..half {
-        for b in 0..a {
-            c[a + b * half] = c[b + a * half];
-        }
-    }
-    let (kmat, _) = modular_k(&c, half, 60, clamp);
-    kmat
-}
-
-/// 最小二乗 y = s·x + b
-fn linfit2(xs: &[f64], ys: &[f64]) -> (f64, f64) {
-    let n = xs.len() as f64;
-    let mx = xs.iter().sum::<f64>() / n;
-    let my = ys.iter().sum::<f64>() / n;
-    let sxy: f64 = xs.iter().zip(ys).map(|(x, y)| (x - mx) * (y - my)).sum();
-    let sxx: f64 = xs.iter().map(|x| (x - mx) * (x - mx)).sum();
-    let s = sxy / sxx;
-    (s, my - s * mx)
+/// 最小二乗 y = s·x + b — v25.2-III: lib の linfit_checked (点数不足・非有限値・
+/// 分散ゼロを型で拒否) を経由する fail-closed 版。戻り値 (傾き, 切片)。
+fn linfit2(xs: &[f64], ys: &[f64]) -> Option<(f64, f64)> {
+    linfit_checked(xs, ys).ok().map(|(a, b)| (b, a))
 }
 
 /// 1 本の鎖から (g, b, 線形性残差, g_m, 梯子相対差) を測る
@@ -97,7 +57,7 @@ struct ChainMeas {
     ladder: f64,
 }
 
-fn measure_chain(n: usize, mu: f64) -> ChainMeas {
+fn measure_chain(n: usize, mu: f64) -> Option<ChainMeas> {
     let k30 = chain_k(n, dd(mu), 1e-30);
     let k26 = chain_k(n, dd(mu), 1e-26);
     let half = n / 2;
@@ -113,7 +73,13 @@ fn measure_chain(n: usize, mu: f64) -> ChainMeas {
             break;
         }
     }
-    let xi_hi = xi_trust.max(4);
+    // v25.2-III fail-closed 化: 旧 `xi_trust.max(4)` は信頼域不成立でも ξ≤4 を
+    // 強制フィットしていた。窓 [3, ξ*] に最低 3 点 (ξ* ≥ 5) を要求し、不成立は
+    // None (測定不能として除外 — 黙って値を返さない)。
+    if xi_trust < 5 {
+        return None;
+    }
+    let xi_hi = xi_trust;
     // g: ボンド勾配 (窓 ξ ∈ [3, ξ*])
     let mut xs = Vec::new();
     let mut ys = Vec::new();
@@ -122,7 +88,7 @@ fn measure_chain(n: usize, mu: f64) -> ChainMeas {
         xs.push(PI * xi as f64);
         ys.push(bond(&k30, i));
     }
-    let (g, b) = linfit2(&xs, &ys);
+    let (g, b) = linfit2(&xs, &ys)?;
     let mut resid = 0.0f64;
     for (x, y) in xs.iter().zip(&ys) {
         resid = resid.max(((g * x + b - y) / y).abs());
@@ -142,20 +108,20 @@ fn measure_chain(n: usize, mu: f64) -> ChainMeas {
             xs2.push(2.0 * PI * xis * mu);
             ys2.push(sign * k30[i + i * half].hi);
         }
-        let (s2, _b2) = linfit2(&xs2, &ys2);
+        let (s2, _b2) = linfit2(&xs2, &ys2)?;
         g_m = s2;
     }
     let lad = {
         let i = half - 1 - 3;
         ((bond(&k30, i) - bond(&k26, i)) / bond(&k30, i)).abs()
     };
-    ChainMeas {
+    Some(ChainMeas {
         g,
         b,
         resid,
         g_m,
         ladder: lad,
-    }
+    })
 }
 
 fn main() {
@@ -163,7 +129,8 @@ fn main() {
     println!("=== v25.1 λ の起源 — 1D 質量関数 g(μ) への厳密還元と和則 (第二十六期) ===\n");
     println!("事前登録: (a) 和則成立 + 連続再構成 ≤0.1% → λ の起源確定 (導出前半完了) /");
     println!("          (b) 和則成立・再構成不一致 = 記録 / (c) 和則不成立 = 器械再監査\n");
-    let mut nfail = 0usize;
+    // v25.2-III: 段階別の失敗計数 (旧 `nfail` 単一計数では分岐 (b) が到達不能だった)
+    let mut stage_fail = std::collections::BTreeMap::<String, usize>::new();
     let mut check = |name: &str, ok: bool, detail: String| {
         println!(
             "  [{}] {}  {}",
@@ -172,7 +139,12 @@ fn main() {
             detail
         );
         if !ok {
-            nfail += 1;
+            let stage: String = name
+                .trim_start_matches('[')
+                .chars()
+                .take_while(|c| c.is_ascii_uppercase() || c.is_ascii_digit())
+                .collect();
+            *stage_fail.entry(stage).or_insert(0) += 1;
         }
     };
     let t0 = std::time::Instant::now();
@@ -200,19 +172,36 @@ fn main() {
             sc.spawn(move || {
                 for (j, slot) in sl.iter_mut().enumerate() {
                     let mu = mus[t * chunk + j];
-                    *slot = Some(measure_chain(nchain, mu));
+                    *slot = measure_chain(nchain, mu);
                 }
             });
         }
     });
-    let meas: Vec<ChainMeas> = meas.into_iter().map(|o| o.unwrap()).collect();
-    let g0 = meas[0].g;
+    // v25.2-III fail-closed: 信頼窓 ξ* < 5 の点は None (除外)。健全な N=256 では
+    // 除外ゼロが期待値 — それ自体を装置検査 [S0c] として登録する。
+    let n_excl = meas.iter().filter(|m| m.is_none()).count();
+    check(
+        "[S0c] fail-closed 窓 (ξ* ≥ 5): 除外ゼロ",
+        n_excl == 0,
+        format!("除外 {} / {} 点", n_excl, mus.len()),
+    );
+    let (vmus, vmeas): (Vec<f64>, Vec<ChainMeas>) = mus
+        .iter()
+        .zip(meas)
+        .filter_map(|(&mu, m)| m.map(|r| (mu, r)))
+        .unzip();
+    let i0 = vmus.iter().position(|&m| m == 0.0);
+    let g0 = i0.map(|i| vmeas[i].g).unwrap_or(f64::NAN);
     check(
         "[S1] g(0) = 1 (v24.5 XX の再現)",
         (g0 - 1.0).abs() < 1e-3,
-        format!("g(0) = {:.6} (b = {:+.5})", g0, meas[0].b),
+        format!(
+            "g(0) = {:.6} (b = {:+.5})",
+            g0,
+            i0.map(|i| vmeas[i].b).unwrap_or(f64::NAN)
+        ),
     );
-    let resid_max = meas.iter().map(|m| m.resid).fold(0.0f64, f64::max);
+    let resid_max = vmeas.iter().map(|m| m.resid).fold(0.0f64, f64::max);
     check(
         "[S2] 全 μ でボンド線形性 (窓内残差 < 1e-2)",
         resid_max < 1e-2,
@@ -223,11 +212,11 @@ fn main() {
         ),
     );
     println!("\n    [g(μ) 抜粋] μ | g | b | g_m | 梯子Δ(ξ=3)");
-    for (i, &mu) in mus.iter().enumerate() {
+    for (i, &mu) in vmus.iter().enumerate() {
         if i % 8 == 0 || mu == 0.0 || (mu - 2.0f64.sqrt()).abs() < 1e-9 {
             println!(
                 "      μ={:6.3}: g = {:.6}  b = {:+.5}  g_m = {:.6}  Δ = {:.1e}",
-                mu, meas[i].g, meas[i].b, meas[i].g_m, meas[i].ladder
+                mu, vmeas[i].g, vmeas[i].b, vmeas[i].g_m, vmeas[i].ladder
             );
         }
     }
@@ -381,11 +370,11 @@ fn main() {
                 let kz = 2.0 * PI * iz as f64 / mq as f64;
                 let cz2 = kz.cos() * kz.cos();
                 let mu = (cy2 + cz2).sqrt();
-                sum_g += interp(&mus, &|i| meas[i].g, mu);
+                sum_g += interp(&vmus, &|i| vmeas[i].g, mu);
                 if mu > 1e-12 {
                     // K_y = (−1)^x πξ·⟨2cos²ky·g_m⟩ (run1 の開発記録: 当初 4cos² は
                     // ペア {ky, ky+π} の二重数え — 全 BZ 平均では 2cos² が正しい)
-                    sum_t += 2.0 * cy2 * interp(&mus, &|i| meas[i].g_m, mu);
+                    sum_t += 2.0 * cy2 * interp(&vmus, &|i| vmeas[i].g_m, mu);
                 }
             }
         }
@@ -429,10 +418,10 @@ fn main() {
     {
         let g_at = |target: f64| -> f64 {
             let mut best = (f64::MAX, 0.0);
-            for (i, &mu) in mus.iter().enumerate() {
+            for (i, &mu) in vmus.iter().enumerate() {
                 let d = (mu - target).abs();
                 if d < best.0 {
-                    best = (d, meas[i].g);
+                    best = (d, vmeas[i].g);
                 }
             }
             best.1
@@ -447,8 +436,11 @@ fn main() {
         println!("    小 μ: g(μ)−1 ∝ μ²lnμ 型か / 大 μ: 1/μ² 型かは v25.2 のフィット対象");
     }
 
-    // ---- 判定 ----
-    let s3_ok = nfail == 0; // S3 までに FAIL がなければ (check は逐次カウント)
+    // ---- 判定 (v25.2-III: 段階別 — 旧 `s3_ok = nfail == 0` は全検査後の評価で
+    //      分岐 (b) が到達不能だった。S4 のみの失敗を (b) として正しく表現する) ----
+    let nfail: usize = stage_fail.values().sum();
+    let s4_only = nfail > 0 && stage_fail.keys().all(|k| k == "S4");
+    let s3_broke = stage_fail.contains_key("S3");
     println!(
         "\n[判定] {}",
         if nfail == 0 {
@@ -457,10 +449,15 @@ fn main() {
                 1.0 / rx,
                 1.0 / rt
             )
-        } else if s3_ok {
+        } else if s4_only {
             "事前登録 (b): 和則成立・再構成不一致 — 求積/有限 N の見落としを記録".to_string()
-        } else {
+        } else if s3_broke {
             "事前登録 (c): 和則不成立 — バンド分解代数の再監査へ".to_string()
+        } else {
+            format!(
+                "装置検査 FAIL {:?} — 分岐 (a)/(b)/(c) 以前の器械故障",
+                stage_fail
+            )
         }
     );
 
@@ -470,8 +467,8 @@ fn main() {
         (
             "table".into(),
             Json::Arr(
-                mus.iter()
-                    .zip(&meas)
+                vmus.iter()
+                    .zip(&vmeas)
                     .map(|(&mu, m)| {
                         Json::Obj(vec![
                             ("mu".into(), Json::Num(mu)),
