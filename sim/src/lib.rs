@@ -304,6 +304,67 @@ pub fn linfit(x: &[f64], y: &[f64]) -> (f64, f64) {
     (a, b)
 }
 
+/// 検証つき最小二乗直線フィット (v25.2 fail-closed 化)。
+/// 点数 < 2・非有限値・x の分散ゼロを型で拒否する — 旧 linfit はこれらで
+/// NaN/∞ を黙って返し、下流ゲートの意味を破壊する (PROMPT/7 の指摘)。
+pub fn linfit_checked(x: &[f64], y: &[f64]) -> Result<(f64, f64), &'static str> {
+    if x.len() != y.len() {
+        return Err("x/y の長さ不一致");
+    }
+    if x.len() < 2 {
+        return Err("点数不足 (< 2)");
+    }
+    if x.iter().chain(y.iter()).any(|v| !v.is_finite()) {
+        return Err("非有限値を含む");
+    }
+    let n = x.len() as f64;
+    let mx = x.iter().sum::<f64>() / n;
+    if x.iter().map(|v| (v - mx) * (v - mx)).sum::<f64>() <= 0.0 {
+        return Err("x の分散ゼロ");
+    }
+    Ok(linfit(x, y))
+}
+
+// ---------------- 算術幾何平均と完全楕円積分 (v25.2) ----------------
+/// 算術幾何平均 AGM(a, b)。定義域 a, b > 0 (有限) 以外は None (fail-closed)。
+/// 2 次収束: 倍精度では ≤ 10 回で終端。終端条件は相対 4ε。
+pub fn agm(mut a: f64, mut b: f64) -> Option<f64> {
+    if !a.is_finite() || !b.is_finite() || a <= 0.0 || b <= 0.0 {
+        return None;
+    }
+    for _ in 0..64 {
+        let na = 0.5 * (a + b);
+        let nb = (a * b).sqrt();
+        if (na - nb).abs() <= 4.0 * f64::EPSILON * na.abs() {
+            return Some(0.5 * (na + nb));
+        }
+        a = na;
+        b = nb;
+    }
+    None
+}
+
+/// 第一種完全楕円積分 K(k) (モジュラス規約, 0 ≤ k < 1):
+/// K(k) = ∫₀^{π/2} dθ/√(1−k²sin²θ) = π / (2 AGM(1, √(1−k²)))
+pub fn ellip_k(k: f64) -> Option<f64> {
+    if !k.is_finite() || !(0.0..1.0).contains(&k) {
+        return None;
+    }
+    let kp = ((1.0 - k) * (1.0 + k)).sqrt(); // 1−k² の桁落ち回避
+    agm(1.0, kp).map(|m| std::f64::consts::PI / (2.0 * m))
+}
+
+/// v25.2: 半無限 staggered 鎖の BW prefactor g(μ) の厳密閉形式 (AGM 表示)。
+/// Eisler [arXiv:2410.16433, J.Stat.Mech.(2025)013101] の厳密 EH = 4κK(κ′)T を
+/// QRN 規格化 (K_NN = g·πξ) に写した g(μ) = (2/π)κK(κ′), κ=1/√(1+μ²) は
+/// AGM 同次性により g(μ) = 1/AGM(1, √(1+μ²)) と等価。偶関数・g(0)=1・単調減少。
+pub fn g_exact(mu: f64) -> Option<f64> {
+    if !mu.is_finite() {
+        return None;
+    }
+    agm(1.0, (1.0 + mu * mu).sqrt()).map(|m| 1.0 / m)
+}
+
 // ---------------- SHA-256 (証明書用, FIPS 180-4) ----------------
 /// SHA-256 ハッシュ。探索の解集合など「証明書」の同一性検証に使う。
 pub fn sha256(data: &[u8]) -> [u8; 32] {

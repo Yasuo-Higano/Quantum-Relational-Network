@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 179 件 / 依存辺 291 本 / 仮定 38 件 / 反証条件 15 件。
+主張 181 件 / 依存辺 292 本 / 仮定 38 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -191,6 +191,8 @@
 | QRN-GRAV-029 | C4 | v24.6 | CDR | 4 | 1 | 2 | 1 |
 | QRN-META-026 | C5 | v25.0 | DR | 7 | 0 | 1 | 0 |
 | QRN-GRAV-030 | C4 | v25.1 | CDR | 3 | 1 | 2 | 0 |
+| QRN-C0-007 | C0 | v25.2 | D | 0 | 0 | 0 | 1 |
+| QRN-GRAV-031 | C1 | v25.2 | CDR | 1 | 1 | 1 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -210,7 +212,7 @@
 | ASM-STABLE-LABEL | convention | active | 36 | 59 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-DIAGPAIR | model | falsified | 4 | 58 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-SIGMA-DATA | model | active | 31 | 52 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
-| ASM-MODK | definition | active | 12 | 44 | QRN-CORE-003, QRN-CORE-014, QRN-GRAV-001, QRN-GRAV-002, … |
+| ASM-MODK | definition | active | 13 | 45 | QRN-CORE-003, QRN-CORE-014, QRN-GRAV-001, QRN-GRAV-002, … |
 | ASM-KTM | model | active | 2 | 40 | QRN-EXP-003, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
 | ASM-GAUGE-GROUP | model | active | 14 | 36 | QRN-GAUGE-003, QRN-GAUGE-004, QRN-GAUGE-006, QRN-GAUGE-007, … |
 | ASM-ANOMALY-COEFS | data | active | 14 | 35 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
@@ -241,7 +243,7 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 162 | 172 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 163 | 173 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CONTINUUM | open | 54 | 86 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-CKM-OOS | open | 12 | 61 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-BMV | open | 8 | 46 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
