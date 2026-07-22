@@ -315,3 +315,11 @@
   status: active
   statement: "「現実の基本的実在は単一の量子相関網である」という存在論的作業仮説 (C5 の解釈が立つ土台)。"
   note: "toy で「同じ core から出せる」こと (CORE 系) は、この仮説の証明ではない (QRN-CORE-001 の limitations に明記)。"
+
+- id: ASM-IEEE754
+  type: trust
+  scope: local
+  introduced: "v25.2"
+  status: active
+  statement: "IEEE-754 (binary64) 準拠: 基本 4 演算と sqrt は正しく丸められる。区間演算 (iv.rs) の外向き 1 ulp ナッジは、この仮定の下で真値の厳密な包含を与える。"
+  note: "π と cos は libm を信頼しない (区間 π 定数・剰余項パディングつき Taylor)。ハードウェア/コンパイラが IEEE-754 の正しい丸めを破る場合、QRN-GRAV-032 の『証明付き区間』が落ちる。iv_self_test が数学定数 (π, cos(π/3)=1/2, AGM(1,√2)) の包含を毎走行検査する。"

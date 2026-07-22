@@ -958,3 +958,13 @@
   deps: [QRN-C0-007]
   asm: [ASM-MODK]
   fal: [FAL-SUITE]
+
+- id: QRN-GRAV-032
+  deps: [QRN-C0-007, QRN-GRAV-031]
+  asm: [ASM-IEEE754]
+  fal: [FAL-SUITE]
+
+- id: QRN-GRAV-033
+  deps: [QRN-GRAV-030, QRN-GRAV-031, QRN-GRAV-032]
+  asm: [ASM-LATTICE]
+  fal: [FAL-SUITE, FAL-CONTINUUM]
