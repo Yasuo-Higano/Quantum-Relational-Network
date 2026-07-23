@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 185 件 / 依存辺 306 本 / 仮定 39 件 / 反証条件 15 件。
+主張 186 件 / 依存辺 310 本 / 仮定 39 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -16,8 +16,8 @@
 | QRN-C0-002 | C0 | v4.1 | D | 0 | 0 | 0 | 36 |
 | QRN-C0-003 | C0 | v0.8 | D | 0 | 0 | 0 | 1 |
 | QRN-C0-004 | C0 | v3.4 | D | 0 | 0 | 0 | 3 |
-| QRN-C0-005 | C0 | v2.3 | D | 0 | 0 | 0 | 79 |
-| QRN-C0-006 | C0 | v3.2 | D | 0 | 0 | 0 | 63 |
+| QRN-C0-005 | C0 | v2.3 | D | 0 | 0 | 0 | 80 |
+| QRN-C0-006 | C0 | v3.2 | D | 0 | 0 | 0 | 64 |
 | QRN-QM-001 | C1 | v0.1 | CR | 0 | 2 | 1 | 0 |
 | QRN-GR-001 | C1 | v0.1 | CR | 0 | 0 | 1 | 0 |
 | QRN-STAT-001 | C1 | v0.2 | CR | 0 | 3 | 1 | 0 |
@@ -42,14 +42,14 @@
 | QRN-BORN-002 | C1 | v1.6 | CR | 0 | 1 | 1 | 0 |
 | QRN-GRAV-003 | C1 | v2.1 | CR | 0 | 3 | 1 | 3 |
 | QRN-KK-001 | C1 | v2.2 | CR | 0 | 2 | 1 | 0 |
-| QRN-MATTER-001 | C1 | v2.3 | CR | 1 | 2 | 1 | 61 |
+| QRN-MATTER-001 | C1 | v2.3 | CR | 1 | 2 | 1 | 62 |
 | QRN-MATTER-002 | C2 | v2.3 | CR | 1 | 3 | 2 | 0 |
 | QRN-COSMO-004 | C1 | v2.4 | CR | 0 | 0 | 1 | 0 |
-| QRN-EXP-001 | C4 | v2.5 | CR | 0 | 0 | 2 | 42 |
+| QRN-EXP-001 | C4 | v2.5 | CR | 0 | 0 | 2 | 43 |
 | QRN-GAUGE-003 | C2 | v3.1 | CR | 1 | 6 | 3 | 29 |
 | QRN-GAUGE-004 | C1 | v3.1 | CR | 0 | 1 | 1 | 0 |
 | QRN-GAUGE-005 | C4 | v3.1 | CR | 0 | 1 | 2 | 0 |
-| QRN-YUK-001 | C4 | v3.2 | CR | 1 | 3 | 2 | 61 |
+| QRN-YUK-001 | C4 | v3.2 | CR | 1 | 3 | 2 | 62 |
 | QRN-RG-001 | C1 | v3.3 | CR | 0 | 3 | 1 | 3 |
 | QRN-UNRUH-001 | C1 | v3.4 | CR | 1 | 1 | 1 | 0 |
 | QRN-QNEC-001 | C1 | v4.1 | CR | 1 | 4 | 2 | 16 |
@@ -65,16 +65,16 @@
 | QRN-GAUGE-010 | C2 | v6.2 | CR | 2 | 5 | 2 | 0 |
 | QRN-QNEC-002 | C1 | v6.3 | CR | 2 | 4 | 3 | 3 |
 | QRN-GEOM-004 | C3 | v6.4 | CR | 1 | 3 | 1 | 1 |
-| QRN-YUK-002 | C4 | v6.5 | CR | 2 | 3 | 2 | 60 |
+| QRN-YUK-002 | C4 | v6.5 | CR | 2 | 3 | 2 | 61 |
 | QRN-EXP-002 | C5 | v6.6 | D | 1 | 0 | 1 | 0 |
 | QRN-CORE-001 | C3 | v6.7 | CR | 2 | 3 | 2 | 4 |
 | QRN-GAUGE-011 | C2 | v6.8 | LR | 1 | 6 | 1 | 1 |
 | QRN-GAUGE-012 | C2 | v7.1 | CR | 0 | 5 | 2 | 1 |
-| QRN-YUK-003 | C4 | v7.2 | CR | 3 | 7 | 2 | 58 |
-| QRN-EXP-003 | C4 | v7.3 | CR | 1 | 1 | 2 | 40 |
+| QRN-YUK-003 | C4 | v7.2 | CR | 3 | 7 | 2 | 59 |
+| QRN-EXP-003 | C4 | v7.3 | CR | 1 | 1 | 2 | 41 |
 | QRN-CORE-002 | C3 | v7.4 | CR | 3 | 3 | 1 | 3 |
 | QRN-GAUGE-013 | C2 | v7.5 | LR | 1 | 6 | 1 | 1 |
-| QRN-YUK-004 | C4 | v8.1 | CR | 1 | 7 | 2 | 56 |
+| QRN-YUK-004 | C4 | v8.1 | CR | 1 | 7 | 2 | 57 |
 | QRN-GAUGE-014 | C2 | v8.2 | CR | 0 | 5 | 2 | 3 |
 | QRN-META-001 | C5 | v1.0 | D | 5 | 1 | 6 | 2 |
 | QRN-META-002 | C5 | v2.0 | D | 3 | 1 | 1 | 2 |
@@ -84,11 +84,11 @@
 | QRN-META-006 | C5 | v7.0 | D | 5 | 0 | 1 | 0 |
 | QRN-META-007 | C5 | v8.0 | D | 5 | 1 | 1 | 0 |
 | QRN-META-008 | C5 | v9.0 | D | 2 | 1 | 1 | 0 |
-| QRN-YUK-005 | C4 | v9.1 | CR | 1 | 7 | 2 | 54 |
-| QRN-YUK-006 | C4 | v9.2 | CR | 3 | 6 | 1 | 53 |
+| QRN-YUK-005 | C4 | v9.1 | CR | 1 | 7 | 2 | 55 |
+| QRN-YUK-006 | C4 | v9.2 | CR | 3 | 6 | 1 | 54 |
 | QRN-CORE-003 | C1 | v9.4 | CR | 1 | 4 | 1 | 1 |
 | QRN-META-009 | C5 | v10.0 | DR | 3 | 0 | 1 | 0 |
-| QRN-YUK-007 | C4 | v10.1 | CR | 1 | 7 | 2 | 51 |
+| QRN-YUK-007 | C4 | v10.1 | CR | 1 | 7 | 2 | 52 |
 | QRN-YUK-008 | C4 | v10.2 | CR | 1 | 7 | 2 | 1 |
 | QRN-YUK-009 | C2 | v10.3 | CR | 1 | 4 | 2 | 4 |
 | QRN-META-010 | C5 | v11.0 | DR | 3 | 0 | 1 | 0 |
@@ -113,13 +113,13 @@
 | QRN-CONT-001 | C1 | v15.4 | CDR | 1 | 4 | 2 | 12 |
 | QRN-SEL-001 | C4 | v15.5 | CDR | 1 | 7 | 1 | 12 |
 | QRN-GRAV-004 | C1 | v15.6 | CDR | 1 | 4 | 2 | 12 |
-| QRN-PRED-001 | C4 | v15.7 | CDR | 2 | 8 | 3 | 38 |
+| QRN-PRED-001 | C4 | v15.7 | CDR | 2 | 8 | 3 | 39 |
 | QRN-META-016 | C5 | v16.0 | DR | 7 | 0 | 1 | 11 |
 | QRN-YUK-016 | C4 | v16.1 | CDR | 1 | 5 | 1 | 0 |
-| QRN-YUK-017 | C3 | v16.2 | CDR | 2 | 4 | 1 | 36 |
-| QRN-YUK-018 | C4 | v16.3 | CDR | 2 | 7 | 2 | 35 |
-| QRN-YUK-019 | C4 | v16.4 | CDR | 1 | 7 | 2 | 34 |
-| QRN-YUK-020 | C4 | v16.5 | CDR | 1 | 7 | 2 | 0 |
+| QRN-YUK-017 | C3 | v16.2 | CDR | 2 | 4 | 1 | 37 |
+| QRN-YUK-018 | C4 | v16.3 | CDR | 2 | 7 | 2 | 36 |
+| QRN-YUK-019 | C4 | v16.4 | CDR | 1 | 7 | 2 | 35 |
+| QRN-YUK-020 | C4 | v16.5 | CDR | 1 | 7 | 2 | 1 |
 | QRN-YUK-021 | C4 | v16.6 | CDR | 1 | 7 | 1 | 0 |
 | QRN-YUK-022 | C4 | v16.7 | CDR | 1 | 8 | 2 | 31 |
 | QRN-YUK-023 | C4 | v16.8 | CDR | 2 | 8 | 2 | 30 |
@@ -197,6 +197,7 @@
 | QRN-GRAV-033 | C4 | v25.2 | CDR | 3 | 1 | 2 | 1 |
 | QRN-GRAV-034 | C1 | v25.2 | CDR | 2 | 1 | 1 | 1 |
 | QRN-META-027 | C5 | v25.2 | CDR | 7 | 0 | 2 | 0 |
+| QRN-YUK-033 | C4 | v26.1 | CDR | 4 | 1 | 1 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -204,20 +205,20 @@
 
 | 仮定 | type | status | 直接 | 閉包 | 閉包に含まれる主張 (抜粋) |
 |---|---|---|---|---|---|
-| ASM-LATTICE | framework | active | 83 | 133 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
-| ASM-SEED | design | active | 13 | 76 | QRN-BH-001, QRN-BORN-001, QRN-COSMO-003, QRN-FIELD-001, … |
-| ASM-PDG | data | active | 47 | 69 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
+| ASM-LATTICE | framework | active | 83 | 134 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
+| ASM-SEED | design | active | 13 | 77 | QRN-BH-001, QRN-BORN-001, QRN-COSMO-003, QRN-FIELD-001, … |
+| ASM-PDG | data | active | 47 | 70 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
 | ASM-LOWDIM | framework | active | 23 | 65 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
-| ASM-TORUS | model | active | 45 | 64 | QRN-KK-001, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
-| ASM-PRIOR | design | active | 43 | 64 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-TORUS | model | active | 45 | 65 | QRN-KK-001, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
+| ASM-PRIOR | design | active | 44 | 65 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-GAUSS | framework | active | 38 | 62 | QRN-ARROW-001, QRN-CAUSAL-001, QRN-CAUSAL-002, QRN-CONT-001, … |
-| ASM-OVERLAP | model | active | 42 | 61 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
-| ASM-WILSON-GRID | design | active | 42 | 61 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
-| ASM-STABLE-LABEL | convention | active | 36 | 60 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
-| ASM-DIAGPAIR | model | falsified | 4 | 59 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
-| ASM-SIGMA-DATA | model | active | 31 | 53 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-OVERLAP | model | active | 42 | 62 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-WILSON-GRID | design | active | 42 | 62 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-STABLE-LABEL | convention | active | 36 | 61 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-DIAGPAIR | model | falsified | 4 | 60 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
+| ASM-SIGMA-DATA | model | active | 31 | 54 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-MODK | definition | active | 14 | 49 | QRN-CORE-003, QRN-CORE-014, QRN-GRAV-001, QRN-GRAV-002, … |
-| ASM-KTM | model | active | 2 | 41 | QRN-EXP-003, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
+| ASM-KTM | model | active | 2 | 42 | QRN-EXP-003, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
 | ASM-GAUGE-GROUP | model | active | 14 | 37 | QRN-GAUGE-003, QRN-GAUGE-004, QRN-GAUGE-006, QRN-GAUGE-007, … |
 | ASM-ANOMALY-COEFS | data | active | 14 | 36 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
 | ASM-CHIRALITY | model | active | 11 | 35 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
@@ -248,10 +249,10 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 167 | 177 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 168 | 178 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CONTINUUM | open | 56 | 88 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
-| FAL-CKM-OOS | open | 12 | 62 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
-| FAL-BMV | open | 8 | 47 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
+| FAL-CKM-OOS | open | 12 | 63 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
+| FAL-BMV | open | 8 | 48 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
 | FAL-CEX-WINDOW | open | 15 | 41 | 明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。 |
 | FAL-AREALAW | open | 4 | 39 | アナログ系 (冷却原子等) で面積則・エンタングルメント第一法則の系統的破れが観測される。 |
 | FAL-EXOTIC-CHIRAL | open | 4 | 30 | SM 1 世代の外のカイラル物質 (第 4 世代・分数電荷ハドロン・エキゾチック表現) が発見される。 |
