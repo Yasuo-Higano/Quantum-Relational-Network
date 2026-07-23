@@ -1,0 +1,165 @@
+# =====================================================================
+# prequential_ledger.yml — flavor 統合監査の時系列台帳 (P1 成果物)
+# =====================================================================
+# 登録: 2026-07-23。規則は paper/flavor-unification-plan.md (aa66a3e) で凍結済み。
+# 本台帳のコミットをもって P1 (時系列の再構成) を凍結する。数値 (prequential score)
+# は本台帳の凍結後に v26x_prequential が計算する — 本ファイルには一切含まれない。
+#
+# 一次ソース: git log (版→コミット)・claims.yml (QRN-YUK-001..032)・
+#   results/{v32_yukawa, v65_bayes, v91_ckmselect, v164_tenquantity, v165_scorecard}.txt
+# 保守規則 (計画 §2): 「見られた」観測量はその版以降 D ブロックとして使えない。
+# 過小計上規則 (計画 §3): 痕跡なき試行は数えない。
+# =====================================================================
+
+meta:
+  registered: "2026-07-23"
+  protocol: "paper/flavor-unification-plan.md"
+  window:
+    from: "v3.2"   # FN 機構の最初の 9 量照合
+    to: "v17.13"   # orientation Z₂ (三部作弧の最終版)
+  post_window_verification:   # 選択を伴わない検証イベント (credit 対象外・被覆確認のみ)
+    - { version: "v18.2", what: "連続極限 (72×36) で 12/12 維持", claim: "QRN-YUK-031" }
+    - { version: "v21.5", what: "posterior predictive 表 — holdout |V_td| 68% 被覆維持", claim: "QRN-YUK-032" }
+  conventions:
+    - "D1 (開始資本 = MR6 + CKM3) は全系列共通の訓練データ — 段階増分は定義により 0
+       (モデル系列とベースライン系列が同条件で受け取る)"
+    - "credit_target = 当該ブロック初見より前に凍結されていた模型のみが予測点を得る"
+    - "尤度幅は当時の登録値 (lognormal σ=ln2 等) を当時の results から復元する"
+
+# ---------------------------------------------------------------------
+# 観測量台帳: 12 量 + UT 角 2 (導出量)。first_seen が prequential の分水嶺。
+# ---------------------------------------------------------------------
+observables:
+  - id: MR6
+    def: "質量比 6: m_u/m_t, m_c/m_t, m_d/m_b, m_s/m_b, m_e/m_τ, m_μ/m_τ"
+    first_seen: { version: "v3.2", commit: "e33ebc4", evidence: ["QRN-YUK-001", "results/v32_yukawa.txt"] }
+    first_likelihood: { version: "v6.5", commit: "693f3f4", evidence: ["QRN-YUK-002"] }
+    role: "開始資本 (D1)"
+  - id: CKM3
+    def: "|V_us|, |V_cb|, |V_ub| (results/v65_bayes.txt / v91_ckmselect.txt で確認 — |V_td| は含まない)"
+    first_seen: { version: "v3.2", commit: "e33ebc4", evidence: ["QRN-YUK-001 (質量比 6 種+CKM 3 種の全 9 量)"] }
+    first_likelihood: { version: "v9.1", commit: "584ef82", evidence: ["QRN-YUK-005"] }
+    role: "開始資本 (D1) — 保守規則により v6.5/v14.1 の『out-of-sample 予測』は
+           prequential credit にならない (v3.2 で既見)。段階内 holdout 証拠としてのみ保持"
+  - id: J
+    def: "|J| (Jarlskog 不変量; 大きさのみ — 符号は共役対称で予言されない)"
+    first_seen: { version: "v15.7", commit: "35b73af",
+      note: "予言の事前登録版 PRED-003: rect の凍結予言 J = 0 (厳密 — 因子化位相の構造零) が
+             測定 3.08e-5 に window-refuted。data_not_used: 『J は一度も尤度に入れていない』",
+      evidence: ["predictions.yml PRED-003", "docs/uft-v15.7.md", "QRN-YUK-017 (床の回帰記述)"] }
+    first_likelihood: { version: "v16.4", commit: "70ffb31", evidence: ["QRN-YUK-019"] }
+    credit_target: "v15.7 以前に凍結された模型 = M1 勝者 (v10.2 の T³ M_perm / 併走の T²×T² M_perm)
+                    および当時のベースライン。shear 族 (v16.2+) は J に prequential credit を持たない
+                    (J を見て導入された族であるため — これが監査の中心的なコスト勘定)"
+    expected_feature: "rect 系の p(J_obs|M) は構造零により極小 — 段階増分が大きく負になり得る。
+                       これは監査の想定内であり、規則 (P4) により符号ごと公表する"
+  - id: VTD
+    def: "|V_td|"
+    first_seen: { version: "v15.7", commit: "35b73af",
+      note: "予言の事前登録版 PRED-002: rect の凍結予言帯の上端 0.0070 に対し測定 0.0086 は
+             1.23 倍外 = miss (『v7.2 以来一度も尤度に入れていない』と登録)。よって初見は
+             v16.4 の holdout 表ではなく v15.7 の採点である",
+      evidence: ["predictions.yml PRED-002", "docs/uft-v15.7.md", "results/v164_tenquantity.txt:33"] }
+    credit_target: "v15.7 以前に凍結された模型 = M1 勝者 (採点済み: miss) とベースラインのみ。
+                    **shear (1,1) の v16.4 holdout hit (factor 1.05) は v15.7 で既見のため
+                    prequential credit にならない** — 段階内証拠として保持 (保守規則の最重要適用例)"
+  - id: VTS
+    def: "|V_ts|"
+    first_seen: { version: "v16.5", commit: "2dd705c", evidence: ["results/v165_scorecard.txt", "QRN-YUK-020"] }
+    credit_target: "v16.4 (70ffb31) 凍結の shear (1,1) (v16.5 の MAP は v16.4 と同一構成)"
+  - id: UT2
+    def: "ユニタリティ三角形の角 β, γ (導出量)"
+    first_seen: { version: "v16.5", commit: "2dd705c",
+      note: "参考表示 (ゲートなし) — 保守規則によりここで既見となる", evidence: ["results/v165_scorecard.txt"] }
+    first_gated: { version: "v17.9", commit: "b5a303c", note: "測度判定の S3 規準として初の実戦使用",
+      evidence: ["QRN-MEAS 系 claim (v17.9)", "results/v179_measurejudge.txt"] }
+    credit_target: "v16.4 凍結の shear (1,1) のみ。τ_re/τ_im/非対称 shear 族 (v16.8+) は
+                    UT2 の prequential credit を持たない (既見後の選択)"
+
+# ---------------------------------------------------------------------
+# 段階台帳: M 系列 (幾何族) の凍結点と、各段階で試された離散選択肢 (一様事前の対象)
+# ---------------------------------------------------------------------
+stages:
+  - id: M0
+    until: { version: "v6.5", commit: "693f3f4" }
+    model: "幾何模型なし — アナーキー / 自由電荷 FN (15^5 一様) / 文献電荷 FN"
+    tried: { fn_charge_space: 759375, evidence: ["QRN-YUK-002"] }
+  - id: M1
+    from: { version: "v7.2", commit: "ad2b73d" }
+    to: { version: "v13.2", commit: "d2ad46a" }
+    model: "矩形磁束トーラス族。v10.2 勝者 = T³ (対 marginalize)、併走 T²×T² M_perm"
+    tried:
+      - { what: "単一 T² (原理的に浅い — 陰性)", version: "v7.2", evidence: ["QRN-YUK-003"] }
+      - { what: "トーラス数 {1,2,3} × Wilson 格子 {Z6,Z12} の 6 幾何", version: "v8.1", evidence: ["QRN-YUK-004"] }
+      - { what: "世代ラベル規約 (仮説へ昇格)", version: "v9.2", evidence: ["QRN-YUK-006"] }
+      - { what: "対角対 vs S3^4 marginalize (対角は棄却)", version: "v10.1", evidence: ["QRN-YUK-007"] }
+      - { what: "対の既約性: 幾何候補 54 状態との総当たり", version: "v10.3", evidence: ["QRN-YUK-009"] }
+      - { what: "Z₃ シフト・オービフォールド (一様では不足)", version: "v11.2", evidence: ["QRN-YUK-010"] }
+      - { what: "磁化の向き模型 M_orient (1 nat 届かず)", version: "v11.3", evidence: ["QRN-YUK-011"] }
+      - { what: "傾き T⁴: 磁束 6 種走査 (陰性・境界確定)", version: "v12.1-12.3", evidence: ["QRN-YUK-012..014"] }
+      - { what: "傾き T⁴ N=18: 7 磁束中 3 生存も単一タワー帯 (陰性)", version: "v13.2", evidence: ["QRN-YUK-015"] }
+  - id: M2
+    from: { version: "v16.1", commit: "a57986f" }
+    to: { version: "v16.5", commit: "2dd705c" }
+    model: "shear T²×T² — 勝者 = 最小対称シアー (1,1)"
+    trigger: "J の構造零 (v15.7 で言い当てられた急所) — 本段階の存在自体が J のコスト"
+    tried:
+      - { what: "傾き T⁴ の CP 検定 (~19 万点窓, 陰性)", version: "v16.1", evidence: ["QRN-YUK-016"] }
+      - { what: "shear 1 次元 s∈{1,2,3,6,9}", version: "v16.2", evidence: ["QRN-YUK-017"] }
+      - { what: "shear 2 次元 (s₁,s₂)∈{0..3}² の 16 幾何", version: "v16.3", evidence: ["QRN-YUK-018"] }
+  - id: M3
+    from: { version: "v16.6", commit: "1774e49" }
+    to: { version: "v17.11", commit: "98dfe2f" }
+    model: "レバー解剖と測度戦を経て τ = 1/12 + i/2 (36×18, 対角 (3,3)) に収束"
+    fresh_blocks: "なし — 本段階で新規に入った観測量はない (探索は既見 12 量の内部)"
+    tried:
+      - { what: "Wilson 細分 Z6→Z12 (中立)", version: "v16.6", evidence: ["QRN-YUK-021"] }
+      - { what: "N スケーリング 18→36", version: "v16.7", evidence: ["QRN-YUK-022"] }
+      - { what: "τ_re 走査 s∈{1..5} (陰性 c)", version: "v16.8", evidence: ["QRN-YUK-023"] }
+      - { what: "非対称 shear 21 幾何", version: "v16.9", evidence: ["QRN-YUK-024"] }
+      - { what: "σ_H グリッド 4 種 (首位はグリッド依存)", version: "v16.10", evidence: ["QRN-YUK-025"] }
+      - { what: "選択原理: 階層傾斜 / β 走査 / Jeffreys", version: "v16.11-16.13", evidence: ["QRN-YUK 系 + QRN-MEAS 系"] }
+      - { what: "τ_im 走査 5+5 点", version: "v17.5, v17.10", evidence: ["QRN-YUK-027", "QRN-YUK-028"] }
+      - { what: "測度候補 6 種の事前登録戦 (全滅 — S3 初実戦)", version: "v17.6-17.9", evidence: ["claims v17.9 (測度判定)"] }
+      - { what: "σ_H 連続周辺化 69 点", version: "v17.7", evidence: ["v17.7 claim"] }
+  - id: M4
+    at: { version: "v17.13", commit: "a0e78f3" }
+    model: "orientation Z₂ (共役分枝の対)"
+    note: "γ の符号整合は既見 UT2 の post-hoc — credit なし (記録のみ)"
+
+# ---------------------------------------------------------------------
+# 曖昧例の保守解決 (計画 §2 の規則の適用記録)
+# ---------------------------------------------------------------------
+ambiguities:
+  - q: "CKM3 は v6.5 (FN) と v14.1 (rect) で out-of-sample と主張された"
+    resolution: "v3.2 で既見 → D 資本 (D1) に編入。out-of-sample 主張は段階内証拠として保持されるが
+                 プログラム横断の prequential credit にはならない"
+  - q: "v8.1→v9.1 の『質量と混合の緊張』の語りは CKM の事前認知を示す"
+    resolution: "上と同じ帰結 (CKM は v3.2 既見) のため独立の問題にならない"
+  - q: "J はいつから選択に影響したか (v15.7 の床測定 vs v16.1 の CP 検定)"
+    resolution: "v15.7 (保守側) — credit target は v15.7 以前の凍結模型のみ"
+  - q: "VTD の初見: v16.4 の holdout 表か v15.7 の PRED-002 採点か"
+    resolution: "v15.7 (保守側 — PRED-002 が凍結予言として採点済み)。帰結: shear の v16.4
+                 holdout hit は prequential credit にならない。緩和側 (v16.4 初見・v16.3 凍結
+                 集合に credit) の値も v26x_prequential で並記するが、主結果は保守側"
+  - q: "UT2 の初見: v16.5 の参考表示か v17.9 のゲート使用か"
+    resolution: "v16.5 (保守側)"
+  - q: "v10.2 の証拠勝者 T³ が v16 系で shear へ拡張されず T²×T² に回帰した"
+    resolution: "試行されなかった T³+shear は数えない (過小計上規則) — ただしこの不連続は
+                 統合論文の本文で明示する (registered caveat)"
+
+# ---------------------------------------------------------------------
+# 実装への引き渡し (P5)
+# ---------------------------------------------------------------------
+precedent:
+  note: "predictions.yml (v15.7 導入) は部分的な prequential 台帳の先行例である —
+         PRED-002 (|V_td| miss)・PRED-003 (J window-refuted) を凍結時点で正直に採点済み。
+         本監査はこの機構をプログラム全体 (v3.2–v17.13) に遡及拡張するものと位置づける"
+
+handoff:
+  next: "v26x_prequential (第二十七期第 1 版) — 本台帳を入力に S = Σ_k ln p(D_k | M_{k−1}) を計算。
+         ブロック列: D1 (資本, Δ≡0) → D_J + D_VTD (v15.7 採点; target: M1 勝者とベースライン)
+         → D_VTS (v16.5; target: shear (1,1)) → D_UT2 (v16.5; target: shear (1,1))"
+  baselines: ["アナーキー (v14.1 論文の登録定義)", "自由電荷 FN (QRN-YUK-002)"]
+  report: "段階別増分の全表 (符号を問わず) + S_model − S_baseline 総額 + 探索コスト内訳 +
+           保守/緩和の両定義の並記 (主結果は保守側)"
