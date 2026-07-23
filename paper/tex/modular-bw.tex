@@ -1,0 +1,312 @@
+% modular-bw.tex — paper/modular-bw-full.md の LaTeX 化 (v25.2 凍結版から生成)
+% 対象誌: J. Stat. Mech. / PRB (revtex4-2, preprint)
+% 数値の一次ソースは results/ (証明書 results/v252_bz_certificate.json、凍結台帳
+% results/v252_manifest.json) — 本文数値は凍結 .md 原稿から転記。主張の拡張はしない。
+% TODO(著者確認): 著者名・所属は仮置き (リポジトリ所有者)。投稿前に確定すること。
+\documentclass[aps,prb,preprint,nofootinbib]{revtex4-2}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\title{Exact Brillouin-Zone Moment Formulas for the Lattice Bisognano--Wichmann\\
+Normalization of Three-Dimensional Staggered Fermions}
+
+\author{Yasuo Higano}
+\affiliation{Independent researcher; Quantum Relational Network program}
+
+\date{\today}
+
+\begin{abstract}
+The ground-state entanglement Hamiltonian (EH) of free staggered lattice
+fermions in $3+1$ dimensions, for a half-space cut, is known numerically to
+take the Bisognano--Wichmann (BW) linear form with a direction-dependent
+normalization: the nearest-neighbour bond coefficients grow as $\pi\xi/\lambda$
+with $\lambda_x \neq \lambda_\perp$, a lattice (regulator) property rather than
+a physical temperature. We close the analytic problem of this normalization.
+First, an exact block reduction maps the half-space problem, transverse
+momentum by transverse momentum, onto semi-infinite one-dimensional staggered
+chains with mass $\mu(k_y,k_z) = \sqrt{\cos^2 k_y + \cos^2 k_z}$, verified by
+an operator-level sum rule to $4.5\times 10^{-7}$. Second, the EH of the
+semi-infinite staggered chain is exactly known [Eisler, J.~Stat.~Mech.\ (2025)
+013101]: $H_{\mathrm{EH}} = 4\kappa K(\kappa')\,T$ with
+$\kappa = 1/\sqrt{1+\mu^2}$. Translating to bond-gradient normalization gives a
+single prefactor function for both the hopping and the mass channel,
+$g(\mu) = g_m(\mu) = (2/\pi)\kappa K(\kappa') = 1/\mathrm{AGM}(1,\sqrt{1+\mu^2})$.
+The direction-dependent normalizations are then exact Brillouin-zone moments,
+$1/\lambda_x = \langle g(\mu)\rangle_{\mathrm{BZ}}$ and
+$1/\lambda_\perp = \langle 2\cos^2 k_y \cdot g(\mu)\rangle_{\mathrm{BZ}}$,
+giving $\lambda_x = 1.185467287349258\ldots$ and
+$\lambda_\perp = 1.229428764341310\ldots$, in agreement with direct 3D lattice
+measurements to $6\times 10^{-7}$ and $1\times 10^{-6}$. Third, we prove the
+sign of the anisotropy: since $g$ is strictly decreasing and
+$\mathbb{E}[\cos^2 k_y] = 1/2$, the difference
+$r_\perp - r_x = 2\,\mathrm{Cov}(\cos^2 k_y, g)$ is negative by the Chebyshev
+correlation inequality, so $\lambda_\perp > \lambda_x$ is forced by the
+geometry of the channel weights; interval arithmetic with outward rounding
+certifies $\lambda_\perp - \lambda_x \ge 0.04391$. We delimit the claims
+explicitly: the 1D closed form is prior work; the contributions here are the
+exact 3D reduction, the BZ moment formulas with certified enclosures, the
+anisotropy theorem, and a machine-validated boundary between the two. The
+normalization $\lambda$ is not an entanglement temperature (in $1+1$D the same
+estimator gives $\lambda = 1$ from the first lattice layer) and its
+area-entropy analogue is not a Newton constant.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+For a relativistic QFT and a half-space (Rindler wedge), the
+Bisognano--Wichmann theorem \cite{BW} states that the modular (entanglement)
+Hamiltonian is the boost generator, $H = 2\pi\int x\,T_{00}\,\mathrm{d}x$: a
+linear deformation of the physical Hamiltonian. On a lattice, the discretized
+version of this form is known to describe integrable chains in their gapped
+phase through the corner transfer matrix (CTM) correspondence \cite{Baxter,
+PeschelKaulkeLegeza}, and, for free-fermion chains, exactly solvable
+commuting-operator structures exist for several geometries
+\cite{EislerPeschel2017}. For \emph{gapped} chains the BW form holds up to a
+\emph{nonuniversal, dispersion-dependent prefactor} \cite{Eisler2024}.
+
+In a numerical program on $3+1$D staggered fermions (quantum relational
+network repository, v22--v25 \cite{Repo}), the half-space EH was computed
+directly from lattice correlation matrices with double-double precision and
+clamp-calibrated modular kernels. Three facts emerged: (i)~the BW linear
+\emph{form} survives to five digits near the cut; (ii)~the normalization is
+direction dependent, $\lambda_x = 1.185468$ vs $\lambda_\perp = 1.229430$
+(transverse), stable across scaling windows; (iii)~the same estimator applied
+to two $1+1$D discretizations (XX and Wilson) gives $\lambda = 1.0000$--$1.0002$
+from the first layer, identifying $\lambda$ as a property of the $3+1$D
+staggered regulator, not a continuum temperature. An earlier numerological
+reading $\lambda = 32/27$ was rejected by direct large-$N$ computation
+(deviation $187\times$ the convergence residual), and the associated ``lattice
+entanglement temperature'' and ``bare Newton constant'' interpretations were
+retired. This paper reports the analytic closure of what remains: the exact
+origin of $\lambda_x, \lambda_\perp$.
+
+\section{Exact reduction to one-dimensional staggered chains}
+
+The Hamiltonian is the standard staggered discretization on an $L^3$ lattice
+(open in $x$, periodic in $y,z$; hopping $\pm 1/2$; $\eta$-phases
+$\eta_y = (-1)^x$, $\eta_z = (-1)^{x+y}$). Because the transverse part is
+$x$-independent, a transverse Fourier--taste rotation block-diagonalizes the
+problem: for each transverse momentum pair $(k_y,k_z)$ in the halved Brillouin
+zone, the two taste bands reduce exactly to two decoupled 1D staggered chains
+with masses $\pm\mu$,
+\begin{equation}
+\mu(k_y,k_z) = \sqrt{\cos^2 k_y + \cos^2 k_z},\qquad
+H_{\mathrm{chain}} = \sum_x \tfrac12 (c^\dagger_x c_{x+1} + \mathrm{h.c.})
++ \mu \sum_x (-1)^x c^\dagger_x c_x,
+\end{equation}
+and charge conjugation $c \to (-1)^x c^\dagger$ maps
+$K(-\mu) = -\Sigma K(\mu)\Sigma$ ($\Sigma = \mathrm{diag}\,(-1)^x$). The
+half-space EH bond profile is therefore an exact BZ average of chain EH
+profiles:
+\begin{equation}
+A_x(\xi) = \langle K^{\mathrm{1D}}_\mu(\xi,\xi+1)\rangle_{\mathrm{BZ}}
+\ \ \text{(uniform)},\qquad
+K_y(\xi) = \big\langle (2\cos^2 k_y/\mu)\, K^{\mathrm{1D}}_\mu(\xi,\xi)
+\big\rangle_{\mathrm{BZ}}\ \ \text{(mass channel)}.
+\end{equation}
+This reduction is verified as an operator-level \textbf{sum rule} at $N=32$:
+the direct 3D half-space scan equals the 1D chain sum with
+$\max|\Delta| = 4.5\times10^{-7} / 1.1\times10^{-7} / 1.2\times10^{-7}$
+($A_x/K_y/B_z$) inside the certified window $\xi \le 5$ (the floor is the
+clamp-boundary resolution of the double-double kernel, not the algebra)
+[claim QRN-GRAV-030 \cite{Repo}].
+
+Defining the normalizations by $K_{\mathrm{NN}} = g(\mu)\,\pi\xi + b$ and
+$(-1)^x K_{xx} = g_m(\mu)\,2\pi\xi_s\,\mu + b_m$ ($\xi_s = \xi - 1/2$ the
+half-site coordinate), the 3D normalizations become
+\begin{equation}
+\boxed{\ \frac{1}{\lambda_x} = \langle g(\mu)\rangle_{\mathrm{BZ}},\qquad
+\frac{1}{\lambda_\perp} = \langle 2\cos^2 k_y\cdot g_m(\mu)\rangle_{\mathrm{BZ}}.\ }
+\end{equation}
+
+\section{The chain prefactor is exactly known}
+
+The EH of the semi-infinite staggered chain was solved exactly by Eisler
+\cite{Eisler2024} [eqs.~(64), (67), (72) there]: the correlation matrix
+commutes with the tridiagonal matrix $T$ ($t_m = -m/2$,
+$d_m = (-1)^m \mu(m-\tfrac12)$) and
+\begin{equation}
+H_{\mathrm{EH}} = 4\kappa K(\kappa')\, T,\qquad
+\kappa = \frac{1}{\sqrt{1+\mu^2}},\qquad
+\kappa' = \frac{|\mu|}{\sqrt{1+\mu^2}},
+\end{equation}
+$K$ being the complete elliptic integral of the first kind. Our chain differs
+by the local unitary $c_n \to (-1)^n c_n$ (hopping sign), which leaves the
+staggered term and the bond-gradient magnitudes invariant. Matching
+normalizations gives a single function for both channels:
+\begin{equation}
+\boxed{\ g(\mu) = g_m(\mu) = \frac{2}{\pi}\,\kappa K(\kappa')
+= \frac{2}{\pi}\,\frac{K(\kappa')}{\sqrt{1+\mu^2}}
+= \frac{1}{\mathrm{AGM}(1,\sqrt{1+\mu^2})}
+= \frac{2}{\pi}\int_0^{\pi/2}\!\frac{\mathrm{d}\theta}{\sqrt{1+\mu^2\cos^2\theta}}.\ }
+\end{equation}
+The equality $g_m \equiv g$ --- observed numerically at the $10^{-5}$ level
+before the identification --- is thus a theorem: both channels carry the same
+nonuniversal prefactor. Notably $g(1) = 1/\mathrm{AGM}(1,\sqrt 2)$ is Gauss's
+constant. Small-$\mu$ expansion:
+$g = 1 - \mu^2/4 + 9\mu^4/64 - 25\mu^6/256 + \cdots$ (an analytic series in
+$\mu^2$; earlier conjectured $\mu^2\ln\mu$ terms do not exist). Large-$\mu$:
+$g = (2/\pi|\mu|)\ln(4|\mu|)\,(1+O(1/\mu^2))$. A pre-registered screening had
+rejected the spacing-type candidate $\pi/(2K(\kappa'))$ (drift
+$0.16\% \to 3.8\%$ over $\mu \in [0.5,\sqrt 2]$); the exact solution explains
+why: the EH level spacing factorizes as
+$[\text{prefactor } 4\kappa K(\kappa')] \times [T\text{-spacing } \pi/(2\kappa K(\kappa))]$,
+and the screening candidate was the spacing function, not the operator
+prefactor. Verification battery (21 PASS): three-representation agreement to
+$3.4\times10^{-14}$, Gauss-constant anchor to 1~ulp, match to the lattice
+extraction $\max|\hat g/g - 1| = 1.18\times10^{-5}$ over the pre-registered
+window $\mu \ge 0.5$ (mass channel: $4.4\times10^{-7}$), and a mutation layer
+(five deliberate errors, all detected) [QRN-C0-007, QRN-GRAV-031 \cite{Repo}].
+
+\section{Brillouin-zone moments: certified values}
+
+With $g$ known, $r_x = 1/\lambda_x$ and $r_\perp = 1/\lambda_\perp$ are
+parameter-free numbers. Three implementations sharing no discretization or
+interpolation: \textbf{A} (no AGM): 3D torus midpoint rule of the single
+integrand $[1+(\cos^2 k_y + \cos^2 k_z)\cos^2\theta]^{-1/2}$; \textbf{B}: 2D BZ
+midpoint rule with f64 AGM; \textbf{R}: interval Riemann sum with outward
+rounding ($n = 2^{15}$ cells on $[0,\pi/2]^2$; interval $\pi$; cosine via
+remainder-padded Taylor series --- no libm trust; interval AGM; hierarchical
+summation; exact power-of-two division). A and B agree to
+$3.9\times10^{-16}$ and both lie inside the rigorous enclosures of R:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+quantity & floating (A${}={}$B) & certified enclosure (R)\\
+\midrule
+$r_x$ & 0.843549215293854 & $[0.843545503984956,\ 0.843552926638375]$\\
+$r_\perp$ & 0.813385882130202 & $[0.813356957837832,\ 0.813414806840221]$\\
+$\lambda_x$ & \textbf{1.185467287349258} & $[1.185462071698428,\ 1.185472502995920]$\\
+$\lambda_\perp$ & \textbf{1.229428764341310} & $[1.229385046338885,\ 1.229472484821826]$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The direct 3D lattice measurements ($\lambda_x = 1.185468$,
+$\lambda_\perp = 1.229430$, $N \le 192$ block method) agree to
+$6.0\times10^{-7}$ and $1.0\times10^{-6}$. The division of labour is explicit:
+\emph{proof-grade} digits come from the interval enclosure (width $O(h)$:
+$7.4\times10^{-6} / 5.8\times10^{-5}$), \emph{reference} digits from two
+independent double-precision routes. The certificate JSON records formulas,
+domain, normalization, methods, enclosures, and SHA-256 hashes
+[QRN-GRAV-032, QRN-GRAV-033 \cite{Repo}].
+
+\section{The anisotropy is a theorem}
+
+\begin{theorem}
+$r_\perp < r_x$, i.e.\ $\lambda_\perp > \lambda_x$.
+\end{theorem}
+
+\begin{proof}
+Under the uniform BZ measure, $Y = \cos^2 k_y$ and $Z = \cos^2 k_z$ are
+independent with $\mathbb{E}[Y] = 1/2$, and $h(s) = g(\sqrt s)$ is strictly
+decreasing ($g'(\mu) = -\mu\,\langle \cos^2\theta\,(1+\mu^2\cos^2\theta)^{-3/2}
+\rangle < 0$). Then
+$r_\perp - r_x = \langle 2Y h(Y{+}Z)\rangle - \langle h(Y{+}Z)\rangle
+= 2\,\mathrm{Cov}(Y, h(Y{+}Z))$. Conditioning on $Z$
+($\mathbb{E}[Y|Z] = \mathbb{E}[Y]$ by independence),
+$\mathrm{Cov}(Y, h(Y{+}Z)) = \mathbb{E}_Z[\mathrm{Cov}(Y, h(Y{+}Z)\,|\,Z)]$,
+and for each $z$ the function $h(Y{+}z)$ is strictly decreasing in $Y$, so each
+conditional covariance is negative by the Chebyshev correlation inequality.
+\end{proof}
+
+Interval arithmetic seals the inequality numerically:
+$r_x - r_\perp \ge 0.0301307 > 0$, hence
+$\boxed{\lambda_\perp - \lambda_x \ge 0.04391}$ (certified). Physically: the
+transverse channel weights $2\cos^2 k_y$ are largest exactly where the
+effective mass $\mu$ is largest and the prefactor $g$ smallest --- a negative
+covariance between channel weight and mass-dependent prefactor. The direction
+of the anisotropy is thus geometric necessity, not a Lorentz-breaking surprise.
+
+\section{Finite-size behaviour and instrument floor}
+
+Redefining the finite-chain numerics as a \emph{convergence test toward the
+exact $g$} (rather than a discovery tool) separates physics from instrument.
+Measured at $\mu \in \{0.5, 1, \sqrt 2\}$, $N = 64\ldots512$: the residual
+$\hat g_N/g - 1$ is \textbf{$N$-independent} (fitted exponent $p \approx 0$),
+of size $\le 8.1\times10^{-6}$ --- an instrument floor set by the fit window
+($\xi^* = 5$--$6$, the $\kappa$-budget edge of the clamped double-double
+kernel), not a finite-size effect; the mass channel reads the exact value to
+$5.3\times10^{-7}$. The gapped/critical crossover is organized by the single
+variable $x = N\,\mathrm{arsinh}(\mu)$
+($\xi_{\mathrm{corr}} = 1/\mathrm{arsinh}\,\mu$): for $x \ge 25$ the extraction
+is converged ($|d| \le 6\times10^{-6}$ observed), while for $x \le 2$ the chain
+is effectively massless and the extraction reads the massless value ---
+quantifying why small-$\mu$ points must be excluded from prefactor fits at
+fixed $N$. Gates are fail-closed: an insufficient trust window returns ``no
+measurement'' rather than a silently extrapolated fit, and a deliberately
+degraded kernel (coarse clamp pair) is verified to trigger exclusion
+[QRN-GRAV-034 \cite{Repo}].
+
+\section{Scope, prior art, and negative statements}
+
+\textbf{Prior art.} The 1D closed form $g(\mu)$ --- the exact EH of the
+semi-infinite staggered chain --- is Eisler's result \cite{Eisler2024}, not
+ours. We claim: (i)~the exact 3D$\to$1D reduction with its operator-level sum
+rule; (ii)~the BZ moment formulas
+$1/\lambda_x = \langle g\rangle$, $1/\lambda_\perp = \langle 2\cos^2 k_y\, g\rangle$
+and their certified evaluations; (iii)~the anisotropy theorem; (iv)~the
+identification $g_m \equiv g$ as the two-channel consequence of the single
+prefactor.
+
+\textbf{Negative statements} (established in the same program, kept as
+constraints). $\lambda$ is a regulator normalization: direction-,
+discretization- and operator-normalization-dependent. It is not an
+entanglement temperature (the same estimator yields $\lambda = 1$ in two
+$1+1$D discretizations from the first layer \cite{Repo}); $\lambda = 32/27$ is
+excluded ($N = 96$ direct reading, deviation $187\times$ the residual); the
+associated area-coefficient combination
+$G^{\mathrm{bare}}_{\mathrm{entropy}}(a;\text{regulator, direction scheme})$
+varies by 3.7\% between direction schemes and is not a Newton constant.
+Nothing in this paper depends on, or supports, an induced-gravity
+interpretation.
+
+\textbf{Verification taxonomy.} Of the 42 PASS gates behind this paper:
+mathematical identities (three-representation agreement, sum rule), known-value
+benchmarks (Gauss constant, Eisler prefactor), internal consistency
+(independent implementations, interval containment), negative controls
+(mutation layers, degraded-kernel exclusion, weight/measure mutants), and
+convergence/floor measurements. \textbf{None are frozen novel predictions} ---
+this paper closes a normalization analytically; it does not predict new data.
+
+\section{Reproducibility}
+
+All computations run from a dependency-free Rust repository (fixed seeds,
+built-in PASS/FAIL against exact values, machine-validated claim ledger with
+explicit assumptions and falsifiers; interval arithmetic implemented from
+scratch with outward rounding and libm-independent $\pi$/cos). The frozen
+artifact set and its SHA-256 manifest are produced by \texttt{v252\_manifest};
+the certificate is \texttt{results/v252\_bz\_certificate.json} \cite{Repo}.
+
+\begin{thebibliography}{9}
+\bibitem{BW} J.~J.~Bisognano and E.~H.~Wichmann, J.\ Math.\ Phys.\ \textbf{16},
+985 (1975); \textbf{17}, 303 (1976).
+\bibitem{Eisler2024} V.~Eisler, ``On the Bisognano-Wichmann entanglement
+Hamiltonian of nonrelativistic fermions,'' J.\ Stat.\ Mech.\ (2025) 013101,
+arXiv:2410.16433.
+\bibitem{Peschel2003} I.~Peschel, J.\ Phys.\ A \textbf{36}, L205 (2003).
+\bibitem{Baxter} R.~J.~Baxter, \emph{Exactly Solved Models in Statistical
+Mechanics} (Academic Press, London, 1982).
+\bibitem{PeschelKaulkeLegeza} I.~Peschel, M.~Kaulke and \"O.~Legeza, Ann.\
+Phys.\ (Leipzig) \textbf{8}, 153 (1999).
+\bibitem{EislerPeschel2017} V.~Eisler and I.~Peschel, J.\ Phys.\ A \textbf{50},
+284003 (2017).
+\bibitem{Wong} G.~Wong, I.~Klich, L.~A.~Pando Zayas and D.~Vaman, JHEP
+\textbf{2013}(12), 20.
+\bibitem{Repo} This program's repository: Quantum Relational Network
+(\texttt{docs/uft-v22.2}\ldots\texttt{v25.2}; \texttt{claims.yml};
+\texttt{results/v252\_bz\_certificate.json}) --- primary source for all numbers
+and certificates.
+\end{thebibliography}
+
+\end{document}

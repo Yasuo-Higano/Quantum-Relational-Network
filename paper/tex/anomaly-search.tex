@@ -11,8 +11,10 @@
 
 \begin{document}
 
-\title{The Standard Model as the Unique Minimal Anomaly-Free Chiral Spectrum:\\
-An Exhaustive, Independently Cross-Checked, and Machine-Verified Search}
+% v25.2 改題 (PROMPT/7): 旧題は無条件の一意性を示唆 — 一般 U(1) anomaly 方程式には
+% 無限の解族が知られており (Costa–Dobrescu–Fox)、定理の資格をタイトルで限定する。
+\title{A Machine-Certified Exhaustive Classification of Minimal Anomaly-Free\\
+Chiral Spectra in Bounded $SU(3)\times SU(2)\times U(1)$ Domains}
 
 \author{Yasuo Higano}
 \affiliation{Independent researcher; Quantum Relational Network program}
@@ -31,8 +33,10 @@ negative-control map identifies which conditions carry which conclusion:
 minimality is enforced by chirality, all-factor charge, the Witten anomaly, and
 the cubic $SU(3)$ anomaly, while uniqueness is enforced by the cubic $U(1)$
 anomaly --- the three linear anomaly conditions are redundant within the domain,
-itself a finding. The search is implemented three times independently
-(depth-first, linear-elimination grid, meet-in-the-middle), certified by SHA-256
+itself a finding. The search is implemented three times with disjoint
+algorithms (depth-first, linear-elimination grid, meet-in-the-middle ---
+algorithmic diversity, not independent replication; see the Methods section),
+certified by SHA-256
 canonical-form certificates, and the two core domains are verified as theorems
 in Lean~4 via \texttt{native\_decide} with a poisoned-fuel design that makes
 completeness of the enumeration part of the theorem statement. Extending the
@@ -47,6 +51,42 @@ machine-validated claim ledger.
 \end{abstract}
 
 \maketitle
+
+\section{Scope and standing assumptions (theorem preconditions)}
+\label{sec:scope}
+
+Every ``minimality'', ``uniqueness'', and ``isolation'' statement in this paper
+is a theorem \emph{under the following explicitly stated hypotheses}, and
+nothing beyond them is claimed. (1)~\textbf{Bounded search domain}: color
+representations in $\{1,3,\bar 3,6,\bar 6,8\}$, weak representations in
+$\{1,2,3\}$, hypercharges $|y|=|6Y|\le 18$, at most 8 multiplets; each domain's
+exact bounds are machine-readable in \texttt{certificates/v62\_domains.json}.
+The EFT reading (heavy vectorlike matter decouples) is an assumption, not a
+result of the scan. (2)~\textbf{Charge quantization}: hypercharges are integers
+in units of $Y/6$ after gcd rescaling; the classification concerns
+\emph{rational} charge assignments up to normalization. Consequently the known
+infinite families of anomaly-free $U(1)$ charge assignments --- the general
+solution of the $U(1)^3$ + gravitational system \cite{Costa} and subsequent
+classification studies --- coexist with our results: they live outside the
+bounded, all-factor-charged, chiral window classified here. Our uniqueness
+claims are \textbf{classifications within bounds}, not global uniqueness
+theorems. (3)~\textbf{Multiplicity bounds and multiset semantics}: spectra are
+multisets of at most $k$ multiplets; uniqueness is stated up to permutation,
+global conjugation, $U(1)$ sign, and gcd rescaling.
+(4)~\textbf{Vectorlike pairs}: the chirality condition excludes multiplets
+appearing with their conjugates; all statements concern \emph{chiral content},
+and the negative control with chirality removed quantifies how minimality and
+uniqueness collapse when vectorlike pairs are admitted.
+(5)~\textbf{Sterile states}: states neutral under all three factors are
+excluded from the baseline and reintroduced explicitly on the $\nu_R$
+robustness axis. (6)~\textbf{Observational vs.\ mathematical exclusion}: the
+eight 16-component neighbours of the SM are excluded by observation, not group
+theory; every such exclusion is marked as observational and kept out of the
+theorem statements. (7)~\textbf{Trust base}: exact-integer Rust enumeration
+certified by SHA-256 canonical-form certificates; two core domains re-proved in
+Lean~4 (\texttt{native\_decide}; kernel + native evaluator trusted). The three
+Rust implementations are algorithmically diverse but not independently
+replicated --- see Sec.~\ref{sec:methods}.
 
 \section{Introduction}
 
@@ -166,6 +206,18 @@ conditions split additively). All arithmetic is exact
 conjugation, $U(1)$ flips, and gcd rescaling. The three solution sets agree
 exactly in every domain; their canonicalized listings are certified by SHA-256
 (\texttt{certificates/}), and CI recomputes and compares the hashes.
+
+\emph{Honesty note on independence.} These three implementations are
+\textbf{algorithmically diverse, not independently replicated}: they were
+produced within a single research program, by the same author/toolchain
+lineage, and a shared conceptual misunderstanding could in principle propagate
+into all three (and into the Lean encoding of the domain). What the triple
+agreement rules out is implementation-level error, not specification-level
+error. The domain specification and certificates exist precisely to make
+third-party replication cheap: reimplementing any domain from
+\texttt{certificates/v62\_domains.json} alone and comparing SHA-256 canonical
+listings is an afternoon's work, and we solicit exactly that as the missing
+verification layer.
 
 \textbf{Machine verification in Lean 4.} The core domains are re-proved as
 theorems of the form $\texttt{scanResult}=4$ (the number of canonical-orbit
