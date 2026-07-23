@@ -1,0 +1,62 @@
+{
+  "version": "v25.2",
+  "kind": "freeze_manifest",
+  "policy": "v25 系列は v25.2 で凍結 — v25.3 は開始しない。再開条件は FAL 台帳の発火または本台帳の照合破れのみ (PROMPT/7)",
+  "frozen_at_parent_commit": "c13625d13a2ffdb123315679b32416bb35471817",
+  "novelty_boundary": "1D closed form g(mu) = Eisler (J.Stat.Mech.(2025)013101) = prior art; this repo contributes: exact 3D->1D reduction + BZ moment formulas + interval certificates + anisotropy theorem + machine-validated claim boundary",
+  "frozen_values": {
+    "lambda_x": 1.185467287349258,
+    "lambda_perp": 1.2294287643413095,
+    "lambda_x_lo": 1.185462071698428,
+    "lambda_x_hi": 1.18547250299592,
+    "lambda_perp_lo": 1.2293850463388851,
+    "lambda_perp_hi": 1.2294724848218264,
+    "anisotropy_lower_bound_min": 0.0439
+  },
+  "files": [
+    {
+      "path": "docs/uft-v25.2.md",
+      "sha256": "8a76128f4adc2d57b9617fc22cd37d2b16054f3a19fc88808b2425f5551703b5"
+    },
+    {
+      "path": "paper/modular-bw-full.md",
+      "sha256": "23eb60cc6d752a30ee1d62801d6cf73fb977f6b0be3dde82bdd5d423cfeb00d9"
+    },
+    {
+      "path": "sim/src/iv.rs",
+      "sha256": "c8a9db609f19b0afdc59d84de1f13d56b7e23aa03969056879c95a1095007bda"
+    },
+    {
+      "path": "sim/src/bin/v251_gmu.rs",
+      "sha256": "8b17e47eb12ae8b8f5b7ef47f536615cfd2f72d7e191988da338f159d759b2fe"
+    },
+    {
+      "path": "sim/src/bin/v252_exact_g.rs",
+      "sha256": "61e83b011bbdbf1fc81c7c05d9e9a7337ed46bf9524f07dd150a494b0a19c0f7"
+    },
+    {
+      "path": "sim/src/bin/v252_bz_certificate.rs",
+      "sha256": "e1e07c8efe602ae7aeaadba36d6598684a63720f6859930556b039e5ffd8d713"
+    },
+    {
+      "path": "sim/src/bin/v252_finite_size.rs",
+      "sha256": "9df5e131b6a377c1c5c69da4add44126a8d30a7fc3a159a41c19d3d36e5636c8"
+    },
+    {
+      "path": "sim/src/bin/v252_manifest.rs",
+      "sha256": "ce23e79f42be65fc88e9cda9e35a3abc075d35fe8c23342531448ba1668b9c4e"
+    },
+    {
+      "path": "results/v251_gmu.json",
+      "sha256": "a50020fe5a942994ff6170dbf19d97c485e44fd9c13b438a605fad7ede70f79b"
+    },
+    {
+      "path": "results/v252_exact_g.txt",
+      "sha256": "49219f05a06d942c7abd75150bcd49f1f31a17704f9b5422b7b70909b2c556d0"
+    },
+    {
+      "path": "results/v252_bz_certificate.json",
+      "sha256": "d384fbcd5b3f54ce13223f4d6a25ed07750be84f2c2601f02252ca7d82ef9918"
+    }
+  ]
+}

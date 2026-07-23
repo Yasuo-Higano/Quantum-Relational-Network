@@ -1,12 +1,12 @@
 {
   "version": "v21.7",
   "levels": [
-    7,
-    32,
-    33,
+    8,
+    34,
+    34,
     13,
-    68,
-    25
+    70,
+    27
   ],
   "conditions_met": 3,
   "conditions_partial": 2,

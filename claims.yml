@@ -2337,3 +2337,16 @@
     - "床 ~8e-6 の微視的同定 (クランプ境界モードの寄与分解) は未実施 — 床を下げるには N 増でなく qd (四倍精度, κ 床 147 → ξ* ≲ 15) が要る。"
     - "crossover 則の較正は 4μ × 4N の 16 点 — 中間域 (2 < x < 25) の接近形 (指数の係数) は記録のみ。"
     - "遡及修正後の v251 再走は linfit の正規方程式化により最終桁 1 ulp の差を JSON に残す (物理数値は 15 桁不変)。"
+
+- id: QRN-META-027
+  version: "v25.2"
+  level: C5
+  claim: "v25 系列の凍結テーゼ: λ 問題は「発見」ではなく「同定と証明」で閉じた — 1D 閉形式は既知 (Eisler = QRN-C0-007)、本系列の寄与は厳密還元 (v25.1)・同定と旧仮説棄却 (QRN-GRAV-031)・BZ moment の区間証明と異方性定理 (032/033)・器械の fail-closed 化と床の同定 (034)。凍結は宣言でなく機械検査 (v252_manifest が SHA-256 台帳との照合を常設 — 破れはスイート FAIL)。PASS 分類 (45 検査) で『凍結新規予言 0・独立外部再現 0』を明示 — 既知結果の再現と予言の的中を同じ 1 PASS と数えない。論文原稿 (paper/modular-bw-full.md) はタイトルから QRN・量子重力を外し、結果単体 (staggered 格子 BW 規格化の BZ moment 公式) で査読に耐える形に限定。v25.3 は開始しない — moving target では外部再現の途中で主張が動く。再開条件は FAL-SUITE/FAL-CONTINUUM の発火または凍結台帳の照合破れのみ。"
+  status: "凍結 (2026-07-22)。次期は PROMPT/7 の残り順序: anomaly-search 主張域限定 → flavor 三部作統合 → 誘導重力は Γ[g] 経路 B → QRN-Core v1 まで広域モジュール追加停止"
+  evidence:
+    code: "sim/src/bin/v252_manifest.rs"
+    result: "results/v252_manifest.txt"
+    doc: "docs/uft-v25.2.md"
+  limitations:
+    - "凍結対象は決定的ファイルのみ — タイミング行を含む結果 txt は台帳外 (数値内容は JSON と文書が固定)。"
+    - "独立外部再現 (仕様書ベースの第三者再実装) は未実施 — 公募事項として登録。DOI 発行はリポジトリ外の作業。"

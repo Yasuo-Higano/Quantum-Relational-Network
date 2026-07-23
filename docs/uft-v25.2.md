@@ -190,7 +190,7 @@ PROMPT/7 が指摘した 3 つのゲート欠陥を修正した (v25.1 の modul
 副産物の記載訂正: v25.1 文書の「μ 格子 78 点」は実際には **75 点** (計数ミス — 数値
 には無関係)。chain_f/chain_k は stag.rs へ昇格 (v251/v252 で共有)。
 
-### 3.2 役割の再定義 — 収束試験としての有限鎖 (v252_finite_size, 6 検査 PASS)
+### 3.2 役割の再定義 — 収束試験としての有限鎖 (v252_finite_size, 5 検査 PASS)
 
 「フィットから g の形を発見する」から「**厳密な g(μ) への収束を測定する**」への
 再定義。これでフィット不一致が (i) 物理式の反証か (ii) 有限サイズ/器械の限界かを
@@ -216,10 +216,77 @@ PROMPT/7 が指摘した 3 つのゲート欠陥を修正した (v25.1 の modul
   収束の形は事前登録分岐 (a-i)/(a-ii) の記録に変更 (v24.3 W1/W2 の教訓と同型)。
   run1/run2 で測定値は同一 (失敗走行も results に保存)。
 
-## 4. 凍結 (コミット IV — 未着手)
+## 4. 凍結 (コミット IV)
 
-## 5. 成果物 (コミット I 時点)
+### 4.1 凍結宣言
 
-`sim/src/lib.rs` (agm / ellip_k / g_exact / linfit_checked を追加) /
-`sim/src/bin/v252_exact_g.rs` / `results/v252_exact_g.txt` (21 PASS / 0 FAIL) /
-claims: QRN-C0-007 (Eisler 厳密解), QRN-GRAV-031 (同定・判定 a)
+**v25 系列は本版で停止する。v25.3 は開始しない。** moving target のままでは外部再現の
+途中で主張が更新され続ける — 本版は「外部査読可能な固定物」を目的とする (PROMPT/7)。
+再開条件は反証条件台帳の発火のみ: FAL-SUITE (スイート赤)・FAL-CONTINUUM (連続極限で
+の破れ)・または凍結マニフェストの不変性違反。λ 系列の物理的拡張 (長距離チャネル和則・
+3+1D Wilson 対照・qd による床下げ) は将来の**新系列**として、凍結物を入力に行う。
+
+### 4.2 凍結マニフェスト (v252_manifest — 常設の不変性監査)
+
+凍結成果物 (文書・論文原稿・4 バイナリのソース・iv.rs・決定的な結果成果物) の
+SHA-256 台帳を `results/v252_manifest.json` に固定し、`v252_manifest` が**再走のたびに
+照合**する — 凍結の破れはスイートの FAIL として現れる。**タイミング行を含む結果 txt
+(v252_bz_certificate.txt / v252_finite_size.txt / v251_gmu.txt) は台帳の対象外**
+(スイート再走の byte 決定性がないため) — それらの数値内容は決定的な JSON
+(v251_gmu.json / v252_bz_certificate.json) と本文書が固定する。凍結値
+(λ の 15 桁・区間・異方性下界) は台帳自身にも埋め込み、証明書 JSON と毎走行照合する。
+
+### 4.3 PASS の分類 (852 個の PASS は等価ではない)
+
+v25.2 の 45 検査 (v252_exact_g 21 / v252_bz_certificate 11 / v252_finite_size 5 /
+v251_gmu 改 8) の認識論的内訳:
+
+| 分類 | 個数 | 例 |
+|---|---|---|
+| 数学的恒等式・厳密値照合 | 14 | 三表示一致、ガウス定数 1 ulp、級数/漸近、g′<0 |
+| 既知データとの照合 (内部) | 8 | v25.1 一次データ、v24.3 直接測定、アーカイブ同一性 |
+| 内部整合 (独立実装・区間包含・収束) | 8 | A=B (3.9e-16)、R∋A,B、倍増収束、和則 |
+| **負制御 (変異・劣化・除外)** | 10 | 式変異 5 種、測度変異 3 種、粗クランプ→None |
+| 器械自己検証 | 5 | iv/dd/stag self-test、crossover 較正 |
+| **凍結新規予言** | **0** | — 本版は規格化の解析的完結であり新データを予言しない |
+| **独立外部再現** | **0** | — 第三者による仕様書ベースの再実装は未実施 (公募事項) |
+
+最後の 2 行が 0 であることを明示するのが本分類の目的である: 既知結果の再現 100 個と
+凍結予言の的中 1 個は認識論的に同じ「1 PASS」ではない (PROMPT/7 §8)。
+
+### 4.4 論文切り出しと新規性境界 (再掲)
+
+`paper/modular-bw-full.md` (英語原稿, 対象誌 J. Stat. Mech. / PRB):
+**"Exact Brillouin-Zone Moment Formulas for the Lattice Bisognano–Wichmann
+Normalization of Three-Dimensional Staggered Fermions"** — タイトルに QRN・量子重力を
+入れない (結果単体で査読に耐えさせる)。主張してよいこと / いけないことの境界は
+論文 §7 に明文化 (1D 閉形式は Eisler の既知結果、寄与は還元・moment 公式・異方性定理・
+境界の機械検証)。「新しい温度の発見」「32/27」「Newton 定数の導出」は**全て否定側の
+言明として**論文に含める。
+
+### 4.5 外部手順 (リポジトリ外の作業)
+
+- git tag `v25.2-freeze` を起点に GitHub Release → Zenodo で DOI 発行 (要ウェブ操作 —
+  ユーザー作業)。CITATION.cff は既存。
+- 独立第三者再現の公募: 仕様 (§1 の式・certificate JSON) だけを渡した再実装。
+
+### 4.6 次期の地図 (凍結後 — PROMPT/7 の残り順序)
+
+1. anomaly-search 論文の主張域限定 (タイトル・定理仮定の明示) — 最初の外部査読単位
+2. flavor 三部作 (geometric-yukawa / cp-complex-structure / measure-dissolution) を
+   「falsification-driven development」1 本に統合 (prequential 評価)
+3. 誘導重力は経路 B (背景計量 → Γ[g], stress tensor 2 点関数) — 面積則係数の再解釈は
+   しない (v24.6 の正名を維持)
+4. **QRN-Core v1 (単一作用・明示 Hilbert 空間・同一極限から物質と幾何) が定義される
+   まで、新しい広域 QRN モジュールの追加は停止**
+
+## 5. 成果物 (凍結版)
+
+- コード: `sim/src/lib.rs` (agm/ellip_k/g_exact/linfit_checked), `sim/src/iv.rs` (区間演算),
+  `sim/src/stag.rs` (chain_f/chain_k 昇格), `sim/src/bin/v252_exact_g.rs`,
+  `v252_bz_certificate.rs`, `v252_finite_size.rs`, `v252_manifest.rs`, `v251_gmu.rs` (遡及修正)
+- 結果: `results/v252_exact_g.txt` (21 PASS), `v252_bz_certificate.txt` (11 PASS) +
+  `v252_bz_certificate.json` (証明書), `v252_finite_size.txt` (5 PASS),
+  `v251_gmu.txt/json` (8 PASS, 再走不変), `v252_manifest.txt/json` (凍結台帳)
+- 文書・論文: 本文書 / `paper/modular-bw-full.md`
+- 台帳: QRN-C0-007, QRN-GRAV-031..034, QRN-META-027 / ASM-IEEE754 (新規仮定)
