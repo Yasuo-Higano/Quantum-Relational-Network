@@ -18,7 +18,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v26.5** (v25 系列は凍結済み — `v252_manifest` が常設監査) — Rust 141 本 + 探索層 python 5 本 + Lean 定理 23 本 (5 ファイル) +
+**現在の到達点: v26.5** (v25 系列は凍結済み — `v252_manifest` が常設監査) — Rust 141 本 + 探索層 python 5 本 + Lean 定理 36 本 (6 ファイル) +
 主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
 ([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
 最新統合は [docs/uft-v25.0.md](docs/uft-v25.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -223,6 +223,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v26.2 | [uft-v26.2.md](docs/uft-v26.2.md) | `v262_stress_ward` | **格子 stress 器械の較正 — 誘導重力 経路 B の第一歩 (判定 a, 20 検査 PASS)**: PROMPT/7 の 10 要件の 1–3 を staggered 格子で厳密化 — T_00 分解が bit 厳密・保存 C(q)=i[H,T_00(q)] の q 線形消滅 (Ward 時間成分)・**vierbein 結合の Feynman–Hellmann 9 桁一致 + q≠0 二次応答が Lehmann 和と独立照合 3e-5**。y↔z の W 対称性が応答関数で機械精度 (1e-15)、x/y 非対称は N とともに減少する有限サイズ量と測定。entanglement entropy は使わない (v24.6 の正名を維持)。c₁ (Sakharov 項)・spin-2 分解・連続極限対照は v26.3+ に登録 |
 | v26.3 | [uft-v26.3.md](docs/uft-v26.3.md) | `v263_c1_response` | **c₁ の抽出 — Sakharov 係数は bare 量 (判定 a, 8 検査 PASS)**: ブロック分解エンジン (dense 20 値を 5e-7 で再現) で N=64・q_min ≈ 0.1 へ。**c₁^xx = 0.01826 → 0.01595 (m: 0→0.5) — 質量走行 12.6% は系統 0.3% の 42 倍 (branch A)**: 誘導重力運動項に繰り込み条件なしの普遍値は無い — v24.6 の G^bare 正名を**エンタングルメント非依存の器械で独立確認**。**c₁^00 = 0 vs c₁^xx ≠ 0 (branch A′)** = チャネル依存最大。**発見: χ_00 ∝ q⁴** (予言 q² は外れ) — 機構特定: 自由場では J^E_tot が保存量 → 双極子行列要素が消える。反証可能な登録予言: 相互作用系では q² に戻る |
 | v26.4 | [uft-v26.4.md](docs/uft-v26.4.md) | `v264_c1_anisotropy` | **c₁ は等方 — λ の異方性はバルク応答の性質ではない (判定 a・branch B, 8 検査 PASS)**: ブロック対エンジン (q∥ŷ, dense と 5e-14) で c₁ 行列を測定 — 縦組 c₁[xx](x̂) = c₁[yy](ŷ) = **+0.01595 (5 桁一致)**、横組 = **−0.01264 (完全一致)**。バルク応答テンソルは立方対称 (η 位相の座標交換ゲージ同値と整合) — **λ_x ≠ λ_⊥ は切断面に相対的なモジュラー規格化の性質**と確定 (部門の境界: 応答=等方 / モジュラー=異方)。縦正・横負の弾性 2 係数構造。開発記録: chi_pair の転置縮約バグを numpy 三者裁定で特定 — **単片は転置で ±不変なので単片照合は通過する** (保存キャンセルを含む合成量で照合せよ) |
+| — | [grav-vacuum-polarization-spec.md](paper/grav-vacuum-polarization-spec.md) | `proofs/Projector.lean` | **v26.6–v26.8 の事前登録 (2026-07-24, 実装前凍結)**: PROMPT/8 を受けて誘導重力経路 B を「full gravitational vacuum polarization の構成・Ward 認証・spectral 分解・continuum universality audit」として仕様凍結 — (i) **格子の存在論を regulator に固定** (bare c₁ は scheme 量、比較対象は繰り込み後 form factor / spectral density / q⁴ln q² 係数)、(ii) 結合則 scheme BOND-A: ボンド (1+h)^{−1/2}・接触項 (3/4)・counterterm Λ√g・完全核 k̂ = (3/4)e δ − ¼χ − (Λ/4)(J−2I)、(iii) 要件 0 (背景停留) 新設と要件 10 の書き換え (bare 一致は要求しない)、(iv) **禁止暗黙変換 6 種** (bond modulation ≠ vierbein / plus ≠ spin-2 / 質量依存 ≠ regulator 依存 / 1/χ ≠ propagator / q² 係数 ≠ Newton 定数 / T00 保存 ≠ 保存 Tμν)、(v) v26.7 spectral measure・副実験 q⁴ 破れ (モデル交換禁止)・v26.8 連続極限 falsifier・v26.9 分岐の登録。**Lean 定理 13 本** (`Projector.lean`): Barnes–Rivers 射影の完全性・冪等・直交・対称・trace=rank・Ward 収縮・ゲージ消去/再現 ({0..8}³ 格子 + 次数勘定) と ŷ 方向チャネル辞書 (D/X = spin-2, S = P0s, **L = yy = 純ゲージ**) — 数値器械はこの証明済み規格に従う |
 | v26.5 | [uft-v26.5.md](docs/uft-v26.5.md) | `v265_spin2` | **spin-2 分解 — graviton チャネルの c₁ も bare 量 (判定 a, 6 検査 PASS)**: q∥ŷ の横指数 {x,z} で plus 偏極 D = (T_xx−T_zz)/√2 を認証済み演算子のみで構成 (taste 絡みの point-split を回避)。交差相関 χ_xz(0) = −0.052 (dense と 4e-14)。**c₁^(2) = −0.01935 → −0.01444 (m: 0→0.5) — 質量走行 25.4% は系統の 36 倍**。応答関数三部作が完結: 縦 +0.016 / 横 −0.013 / spin-2 −0.014 / spin-0 −0.011 — **全チャネルの運動項係数が regulator 依存で、重力を作るはずの spin-2 で非普遍性が最強**。ghost 読みは保留 (接触項・ω 分解が要る — 登録済み) |
 
 ## リポジトリ構成
@@ -243,7 +244,7 @@ docs/                バージョン付き理論文書
 sim/                 Rust ワークスペース (src/lib.rs: 乱数/複素数/Jacobi固有値/Bessel/SHA-256 等を自作)
   src/bin/           各バージョンのシミュレーション
 results/             実行出力 (文書中の数値の一次ソース)
-proofs/              Lean 4 機械検証 (定理 10 本 / 4 ファイル)
+proofs/              Lean 4 機械検証 (定理 36 本 / 6 ファイル)
 ```
 
 ## 研究ソフトウェアとしての体裁

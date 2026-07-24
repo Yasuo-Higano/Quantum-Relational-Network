@@ -51,6 +51,10 @@ jobs:
         working-directory: proofs
         run: lean AnomalyArrayBig.lean
 
+      - name: 機械検証済み定理・BR projector 代数 (proofs/Projector.lean, 格子 {0..8}³ ~数秒)
+        working-directory: proofs
+        run: lean Projector.lean
+
       - name: 機械検証済み定理・上流形式化 (proofs/AnomalyUpstream.lean, 窓 p,q≤12 ~2 秒)
         # ci.yml 時代は未登録だった (v21.6 で追加されたが CI に載っていなかった) — 分離を機に登録
         working-directory: proofs
