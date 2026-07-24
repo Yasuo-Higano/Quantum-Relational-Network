@@ -18,7 +18,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v26.2** (v25 系列は凍結済み — `v252_manifest` が常設監査) — Rust 138 本 + 探索層 python 5 本 + Lean 定理 23 本 (5 ファイル) +
+**現在の到達点: v26.3** (v25 系列は凍結済み — `v252_manifest` が常設監査) — Rust 139 本 + 探索層 python 5 本 + Lean 定理 23 本 (5 ファイル) +
 主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
 ([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
 最新統合は [docs/uft-v25.0.md](docs/uft-v25.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -221,6 +221,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | — | [flavor-unification-plan.md](paper/flavor-unification-plan.md) | — | **第二十七期の事前登録 (2026-07-23, 規則凍結・計算未実施)**: flavor 三部作を「falsification-driven development」1 本に統合する prequential 監査プロトコル — 評価式 S = Σ ln p(D_k\|M_{k−1})・時系列台帳の再構成手続き・探索コスト会計 (試行された幾何族/測度候補の一様事前)・成功規準・覗き見なし宣言。**P1 完了: [prequential_ledger.yml](paper/prequential_ledger.yml)** — 観測量 12+2 の初見表 (CKM 三つ組 = \|V_us\|,\|V_cb\|,\|V_ub\| は v3.2 既見 / \|V_td\| と J は v15.7 の PRED-002/003 で凍結採点済み — **shear の v16.4 holdout hit は保守規則により prequential credit にならない**)・段階 M0–M4 の凍結コミット・試行選択肢の全台帳・曖昧例 6 件の保守解決。**監査は v26.1 で実行済み** — 統合論文 [flavor-unification-full.md](paper/flavor-unification-full.md) が三部作を companion 化 |
 | v26.1 | [uft-v26.1.md](docs/uft-v26.1.md) | `v261_prequential` | **prequential 監査 — プログラムは自分の学習に値段をつけた (判定 a)**: 当時機構を逐語再現 (回帰 8/8 PASS: lnZ₉ = −19.863 / lnZ₁₀ = −24.293 / MAP 構成・値が v10.1/v16.5 の記録と一致) した上で、凍結台帳の分水嶺により時系列採点。**S_program − S_FN = −55.9 (bracket) / −∞ (strict)、対アナーキー −41.8** — 支配項は D_J (CP を作れない族で 12 版探索した代金; FN は \|J\| をほぼ的中 +8.53/最大 +9.83)。**J を除いても対 FN は −1.96** (γ と \|V_td\| で負け)。段階内証拠 (+306 nats・12/12) は有効なまま「予測の台帳は赤字」を確定 — 規約 P4 どおり負のまま公表。生存 = τ=1/12+i/2 (未試験の前方予言)・係数ゼロの質・予言登録機構。統合論文 [flavor-unification-full.md](paper/flavor-unification-full.md) の主結果 |
 | v26.2 | [uft-v26.2.md](docs/uft-v26.2.md) | `v262_stress_ward` | **格子 stress 器械の較正 — 誘導重力 経路 B の第一歩 (判定 a, 20 検査 PASS)**: PROMPT/7 の 10 要件の 1–3 を staggered 格子で厳密化 — T_00 分解が bit 厳密・保存 C(q)=i[H,T_00(q)] の q 線形消滅 (Ward 時間成分)・**vierbein 結合の Feynman–Hellmann 9 桁一致 + q≠0 二次応答が Lehmann 和と独立照合 3e-5**。y↔z の W 対称性が応答関数で機械精度 (1e-15)、x/y 非対称は N とともに減少する有限サイズ量と測定。entanglement entropy は使わない (v24.6 の正名を維持)。c₁ (Sakharov 項)・spin-2 分解・連続極限対照は v26.3+ に登録 |
+| v26.3 | [uft-v26.3.md](docs/uft-v26.3.md) | `v263_c1_response` | **c₁ の抽出 — Sakharov 係数は bare 量 (判定 a, 8 検査 PASS)**: ブロック分解エンジン (dense 20 値を 5e-7 で再現) で N=64・q_min ≈ 0.1 へ。**c₁^xx = 0.01826 → 0.01595 (m: 0→0.5) — 質量走行 12.6% は系統 0.3% の 42 倍 (branch A)**: 誘導重力運動項に繰り込み条件なしの普遍値は無い — v24.6 の G^bare 正名を**エンタングルメント非依存の器械で独立確認**。**c₁^00 = 0 vs c₁^xx ≠ 0 (branch A′)** = チャネル依存最大。**発見: χ_00 ∝ q⁴** (予言 q² は外れ) — 機構特定: 自由場では J^E_tot が保存量 → 双極子行列要素が消える。反証可能な登録予言: 相互作用系では q² に戻る |
 
 ## リポジトリ構成
 

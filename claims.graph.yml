@@ -988,3 +988,8 @@
   deps: []
   asm: [ASM-LATTICE]
   fal: [FAL-SUITE]
+
+- id: QRN-GRAV-036
+  deps: [QRN-GRAV-035]
+  asm: [ASM-LATTICE]
+  fal: [FAL-SUITE]
