@@ -3,13 +3,13 @@
 **このファイルは `sh dag/run.sh` が生成する。手で編集しない。**
 Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導出値と全数照合済み。
 
-主張 194 / 依存辺 322 / 仮定 39 / 反証条件 15 / 最大深さ 34
+主張 195 / 依存辺 323 / 仮定 39 / 反証条件 15 / 最大深さ 34
 
 ## 仮定の影響範囲 (抜くと落ちる主張の閉包 — 降順)
 
 | 仮定 | type | 閉包 |
 |---|---|---|
-| ASM-LATTICE | framework | 142 |
+| ASM-LATTICE | framework | 143 |
 | ASM-SEED | design | 77 |
 | ASM-PDG | data | 70 |
 | ASM-TORUS | model | 65 |
@@ -53,7 +53,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 
 | 反証条件 | status | 閉包 |
 |---|---|---|
-| FAL-SUITE | open | 186 |
+| FAL-SUITE | open | 187 |
 | FAL-CONTINUUM | open | 88 |
 | FAL-CKM-OOS | open | 63 |
 | FAL-BMV | open | 48 |
@@ -74,7 +74,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | 深さ | 主張数 |
 |---|---|
 | 0 | 42 |
-| 1 | 31 |
+| 1 | 32 |
 | 2 | 22 |
 | 3 | 14 |
 | 4 | 12 |

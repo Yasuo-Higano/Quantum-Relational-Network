@@ -1,0 +1,30 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.8-0b (Gate 1) — BOND-A 頂点の spin⊗taste matching (PRED-015) ===
+
+事前登録: spec §12.2-3 (bc644d4)。D 失敗 = 経路 B の gravitational 解釈終了 /
+X のみ失敗 = 素朴転写の棄却 + 再設計 (X は未認証 — 非対称判定は凍結済み)。
+
+  [PASS] [S0] Γ 代数 {Γa,Γb} = 2δ·I (厳密) + H(k)² = (Σcos²+m²)·I (1e-14)  max|Δ| = 0.0e0 / 0.0e0
+  [PASS] [S1] Clifford 単項 16 個の直交性 (厳密) + taste 可換子環 dim = 4 (M₂ = 2 tastes)  直交 max|Δ| = 0.0e0 / twirl 像 rank = 4
+  [PASS] [S2] 解析 8×8 頂点 = N=8 周期格子の平面波 sandwich (全 5 頂点, 1e-12)  max|Δ| = 5.1e-15 (0 s)
+
+    [matching ladder] ε | r_D | m_D | Z_D | r_Xnaive | r_Xsplit | m_Xsplit | Z_X
+      ε=0.40: 5.14e-16 | 2.4854e-3 | 0.9828 | 1.000 | 6.45e-16 | 4.8025e-3 | 1.8459
+      ε=0.20: 1.20e-15 | 6.2295e-4 | 0.9957 | 1.000 | 1.70e-15 | 1.2353e-3 | 1.9607
+      ε=0.10: 2.85e-15 | 1.5584e-4 | 0.9989 | 1.000 | 3.42e-15 | 3.1101e-4 | 1.9901
+      ε=0.05: 3.97e-15 | 3.8966e-5 | 0.9997 | 1.000 | 5.23e-15 | 7.7890e-5 | 1.9975
+  [PASS] [S3] D matching: r_D < 1e-12 (taste-singlet 構成的) ∧ m_D(ε) 単調減少 ∧ 最細 < 5e-3  max r_D = 4.0e-15, m_D 最細 = 3.9e-5
+    [S4 branch] r_Xnaive(ε): 1.000 (ε=0.4) → 1.000 (ε=0.05) — O(1) で残存 ⇒ **棄却** (素朴 off-diagonal 転写は taste-nonsinglet)
+  [PASS] [S4] X naive: r が O(1) で残存 (> 0.5 — 素朴転写の棄却が分解能をもって確定)  r_Xnaive(最細) = 1.000
+  [PASS] [S5] X split: r < 1e-12 (厳密 singlet) ∧ m(ε) 単調減少 ∧ 最細 < 5e-3  max r = 5.2e-15, m 最細 = 7.8e-5
+    [S6 記録] Z_D(最細) = 0.999729 / Z_X(最細) = 1.997525 — D と X は別の正規化 (立方分裂, spec §12.2-4)
+  [PASS] [S6] Z_D, Z_X が有限・非零 (別々の Z の記録)  Z_D = 0.9997, Z_X = 1.9975
+    [S7 採点] PRED-015: D 通過 / X (修正転写) 通過 / naive 転写は棄却 ⇒ **hit — BOND-A (対角) + point-split X は TreeLevelMatchedTTSource**
+  [PASS] [S7] PRED-015 採点確定 (D ∧ 認証済み X 転写の存在)  D = true, X_split = true
+  [PASS] [S8] 変異: X_split piece2 の η parity 破り (ε 3→2) → taste 残差 O(1) (> 0.1)  r = 0.707
+
+[artifact] ./results/v268z_source_matching.json
+
+[判定] 事前登録 (a): **Gate 1 開通 — D は TreeLevelMatchedTTSource、素朴 off-diagonal 転写は棄却、point-split X が認証** — v26.8-A (解析 oracle) へ進む資格が生じた
+
+総合判定: [PASS] (0 s)

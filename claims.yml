@@ -2476,3 +2476,17 @@
   limitations:
     - "q = 2π/16 の 1 点固定 (体積列の設計は v26.7-II と同一)。ε → 0 と L → ∞ の順序交換は ladder の有限段 (3 段) までの検査。"
     - "T_yy の正しい dynamic Ward 診断 (temporal block T_00, T_0i 込みの 4D 収縮) は v26.9 (4D covariance closure) の登録課題。"
+
+- id: QRN-GRAV-043
+  version: "v26.8-0"
+  level: C2
+  claim: "BOND-A source matching certificate — Gate 1 開通 (判定 a: 0a Lean 14 定理 + 0b 8 検査 PASS, PRED-015 hit): (0a) ProjectorND.lean が公理 θ²=θ, ω²=ω, θω=0, θ+ω=I, trθ=τ, trω=1 から Barnes–Rivers 代数を任意次元の形式代数 (乗積表, 係数 ℤ[τ]) として機械検証 — 結合律・冪等・直交・完全性・matrix units・rank 公式 (d=4: (5,3,1,1))・**S₃ = (E_xx+E_zz)/√2 の 4D 分解 3S₃ = 2u0 + u20 (spin-0 と spin-2 の混合 — S₃ を 4D spin-0 と呼ぶことを禁止)**・D/X が 4D P₂ 固有 (真の TT)。表は d=3/d=4 具体行列で全数認証 (係数アフィン ⇒ 2 点で確定)。(0b) 8 成分折込み基底 (H = Σcos k_i Γ_i + mΓ_m, Γ 反交換厳密, taste 可換子環 = M₂ [twirl rank 4], 頂点公式を N=8 格子 sandwich と 5.1e-15 で照合) の matching ladder ε ∈ {0.4..0.05}: **[D] r_D ~ 4e-15 — 対角頂点は Γ の多項式で taste-singlet 性が構成的定理。m_D = O(ε²) → 3.9e-5, Z_D → 0.9997 ⇒ D は TreeLevelMatchedTTSource (Gate 1 開通 — 経路 B は strain response ではない)**。[X naive] 素朴 BOND-A off-diagonal 転写は r = 1.000 (Λ_z = I⊗I⊗σ₃ が Clifford 像に直交 — 100% taste-nonsinglet) で**棄却**。[X split] 4 隅 point-split (σρ 符号交代 = sin·sin 積選択) を構成し認証: r ~ 5e-15 (厳密 singlet), m → 7.8e-5, Z_X → 1.9975 (D と別の Z — 立方分裂どおり)。"
+  status: "判定 a — PRED-015 scored-hit。Gate 1 開通により v26.8-A (解析 oracle 二重導出 — Gate 2) へ進む資格。開発記録: X_split run1 の相対符号ミスは shape ゲート (m ≈ 2.0, 反対称結合 = 回転生成子) が検出 — r だけでは不十分で m と Z が別の目。corner 符号変異は r に不感 (全項 Γx 構造) → 変異は η parity 破りに再設計 (r = 0.707)"
+  evidence:
+    code: "sim/src/bin/v268z_source_matching.rs"
+    result: "results/v268z_source_matching.txt"
+    doc: "docs/uft-v26.8.md"
+  limitations:
+    - "tree-level (一次頂点) の matching — one-loop の taste 分離・q⁴ln q² 係数は v26.8-A/B の登録課題。接触項 (二次) の taste 構造は未検査。"
+    - "ノード近傍の連続 (p, q) での解析形 ladder — 有限格子の可換運動量点では S2 が照合するが、ladder 自体は無限体積の解析計算。"
+    - "X split の Z_X ≈ 2 は本版の規格化選択 — 個別繰り込み条件 (spec §12.2-4) の適用は v26.8-B。Lean 側 (ProjectorND) の乗積表の任意 d 一般性は「係数が τ にアフィン」という縮約次数勘定 + 2 点認証による (次数勘定自体は未形式化 — Projector.lean と同じ限界規約)。"

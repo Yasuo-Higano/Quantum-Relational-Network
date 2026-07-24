@@ -208,6 +208,7 @@ claim('QRN-GRAV-039', 'v26.6', c4).
 claim('QRN-GRAV-040', 'v26.7', c3).
 claim('QRN-GRAV-041', 'v26.7', c4).
 claim('QRN-GRAV-042', 'v26.7.1', c4).
+claim('QRN-GRAV-043', 'v26.8-0', c2).
 
 % dep(X, Y) — X は Y に依存する (Y が落ちれば X も落ちる)。
 dep('QRN-GRAV-001', 'QRN-C0-001').
@@ -532,6 +533,7 @@ dep('QRN-GRAV-040', 'QRN-GRAV-036').
 dep('QRN-GRAV-041', 'QRN-GRAV-038').
 dep('QRN-GRAV-041', 'QRN-GRAV-039').
 dep('QRN-GRAV-042', 'QRN-GRAV-041').
+dep('QRN-GRAV-043', 'QRN-GRAV-035').
 
 % asm_of(Claim, Assumption) / fal_of(Claim, Falsifier)。
 asm_of('QRN-QM-001', 'ASM-LATTICE').
@@ -1402,6 +1404,8 @@ asm_of('QRN-GRAV-041', 'ASM-LATTICE').
 fal_of('QRN-GRAV-041', 'FAL-SUITE').
 asm_of('QRN-GRAV-042', 'ASM-LATTICE').
 fal_of('QRN-GRAV-042', 'FAL-SUITE').
+asm_of('QRN-GRAV-043', 'ASM-LATTICE').
+fal_of('QRN-GRAV-043', 'FAL-SUITE').
 
 % assumption(Id, Type, Scope, Status) / falsifier(Id, Status)。
 assumption('ASM-QM', framework, global, active).
@@ -1833,7 +1837,7 @@ rust_closure('QRN-META-027', 0).
 rust_depth('QRN-YUK-033', 13).
 rust_closure('QRN-YUK-033', 0).
 rust_depth('QRN-GRAV-035', 0).
-rust_closure('QRN-GRAV-035', 7).
+rust_closure('QRN-GRAV-035', 8).
 rust_depth('QRN-GRAV-036', 1).
 rust_closure('QRN-GRAV-036', 6).
 rust_depth('QRN-GRAV-037', 2).
@@ -1848,8 +1852,10 @@ rust_depth('QRN-GRAV-041', 5).
 rust_closure('QRN-GRAV-041', 1).
 rust_depth('QRN-GRAV-042', 6).
 rust_closure('QRN-GRAV-042', 0).
+rust_depth('QRN-GRAV-043', 1).
+rust_closure('QRN-GRAV-043', 0).
 rust_blast_asm('ASM-QM', 0).
-rust_blast_asm('ASM-LATTICE', 142).
+rust_blast_asm('ASM-LATTICE', 143).
 rust_blast_asm('ASM-GAUSS', 62).
 rust_blast_asm('ASM-LOWDIM', 65).
 rust_blast_asm('ASM-WICK', 1).
@@ -1898,7 +1904,7 @@ rust_blast_fal('FAL-SUSY', 1).
 rust_blast_fal('FAL-NEUTRINO', 15).
 rust_blast_fal('FAL-CKM-OOS', 63).
 rust_blast_fal('FAL-COSMO', 2).
-rust_blast_fal('FAL-SUITE', 186).
+rust_blast_fal('FAL-SUITE', 187).
 rust_blast_fal('FAL-CEX-WINDOW', 41).
 rust_blast_fal('FAL-QNEC', 17).
 rust_blast_fal('FAL-CONTINUUM', 88).

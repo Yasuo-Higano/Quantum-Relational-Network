@@ -167,7 +167,8 @@
   data_not_used: "matching 計算は未実施 (器械は v26.6 で認証済みの頂点行列 — 新規はノード基底構成のみ)"
   falsifier: "D の失敗 = 経路 B の gravitational interpretation 終了 (one-loop へ進まない) / X のみの失敗 = 素朴 off-diagonal 転写の棄却 + 再設計 (X は未認証器械 — spec §12.2-3 の非対称判定)"
   source: "spec §12.2 (Gate 1, 2026-07-25 凍結)。実行バイナリ v268z_source_matching"
-  status: registered
+  status: scored-hit
+  score: "hit (2026-07-25, v26.8-0b): **D は r_D ~ 4e-15 で厳密 taste-singlet (構成的 — 対角頂点は Γ の多項式) + shape m_D(ε) = O(ε²) → 3.9e-5, Z_D → 0.9997**。**素朴 BOND-A off-diagonal 転写は r = 1.000 (100% taste-nonsinglet, Λ_z ⊥ Clifford 像) で棄却** (登録済みの棄却分岐)。**修正 point-split X (4 隅 σρ 符号交代 — sin·sin 積選択で厳密 singlet) が認証**: r ~ 5e-15, m = O(ε²) → 7.8e-5, Z_X → 1.9975 (D と別の Z ✓)。Gate 1 開通 — v26.8-A へ進む資格。開発記録: X_split run1 は 2 片の相対符号ミス (反対称結合 = 回転生成子) を shape ゲート m ≈ 2.0 が検出、corner 符号変異は r に不感 (全項 Γx 構造) と判明し η parity 変異に再設計"
 
 - id: PRED-016
   title: "TT universality — 二離散化の繰り込み後 form factor 一致"
