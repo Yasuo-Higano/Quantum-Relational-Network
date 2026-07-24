@@ -4,8 +4,16 @@ title: "Quantum Relational Network (QRN): 量子情報網理論の実行可能�
 authors:
   - family-names: "Higano"
     given-names: "Yasuo"
-date-released: "2026-07-04"
-version: "7.0-dev"
+date-released: "2026-07-25"
+version: "v25.2-freeze"
+doi: "10.5281/zenodo.21541850"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21541850"
+    description: "Concept DOI (常に最新リリースを指す)"
+  - type: doi
+    value: "10.5281/zenodo.21541851"
+    description: "v25.2-freeze (v25 系列凍結点 — λ 問題の解析的完結) の版 DOI"
 repository-code: "https://github.com/Yasuo-Higano/Quantum-Relational-Network"
 license: MIT
 abstract: >-

@@ -1,5 +1,7 @@
 # 量子情報網理論 (Quantum Relational Network, QRN)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21541850.svg)](https://doi.org/10.5281/zenodo.21541850)
+
 **本リポジトリは完成した万物理論を主張しない。** 量子情報・創発時空・ゲージ制約・
 標準模型的スペクトルに関する既存理論・toy model・制限付き全数探索を、
 **再現可能な計算体系 (executable atlas)** として整理した研究プログラムである。
@@ -253,6 +255,9 @@ proofs/              Lean 4 機械検証 (定理 50 本 / 7 ファイル)
 ## 研究ソフトウェアとしての体裁
 
 - 再現手順と決定性の保証: [REPRODUCIBILITY.md](REPRODUCIBILITY.md)
+- **DOI**: concept [10.5281/zenodo.21541850](https://doi.org/10.5281/zenodo.21541850) /
+  v25.2-freeze 版 [10.5281/zenodo.21541851](https://doi.org/10.5281/zenodo.21541851)
+  ([GitHub Release](https://github.com/Yasuo-Higano/Quantum-Relational-Network/releases/tag/v25.2-freeze) を Zenodo がアーカイブ — 外部に固定された再現単位)
 - 引用: [CITATION.cff](CITATION.cff) / ライセンス: MIT ([LICENSE](LICENSE))
 - 貢献規約 (外部クレート禁止・PASS/FAIL 内蔵・台帳追記): [CONTRIBUTING.md](CONTRIBUTING.md)
 - CI: ビルド + 主張台帳 + 監査スイート + 探索証明書の同一性 ([.github/workflows/ci.yml](.github/workflows/ci.yml))
