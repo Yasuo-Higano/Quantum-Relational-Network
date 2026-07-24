@@ -2453,7 +2453,7 @@
 - id: QRN-GRAV-041
   version: "v26.7"
   level: C4
-  claim: "有限サイズ spectral measure と massless pole の不在 (判定 a — 7 検査 PASS): ρ_A^(N)(s) = Σ_n Z_n δ(s−s_n) (s = ΔE², 粒子–正孔対, チャネルは Projector.lean の ŷ 辞書 D/S/L) を q = 2π/16 固定の体積列 N ∈ {16,32,64}, m ∈ {0,0.5} で構成した。器械認証: (i) **f-sum rule Σ 2ΔE Z_A = ⟨0|[T_A†,[H,T_A]]|0⟩ — 二重交換子 (1 体演算子の相関行列 trace) との独立モーメント照合が dense 6.4e-13 / block 4.4e-16**、(ii) 対和 Σ2Z/ΔE = χ 器械の内部恒等 (0.0)、(iii) Z ≥ 0 構成的、(iv) threshold: m=0.5 で s_min ≥ 4m² (厳密) かつ 2 粒子 threshold 4m²+q² = 1.1542 へ上から収束 (1.430→1.191→1.162)、massless の端は光円錐 s_min/q² = 2.53→1.24→1.05。**主結果 [S5 branch α]: 自由場に massless spin-2 pole なし** — pole の凍結判定 (s_n→0 かつ Z_n→Z_*>0) の第二条件が両質量で否定される: W₁(N) = 最低クラスタ ΣZ/V は m=0.5 で 5.9e-5→9.9e-7→3.2e-8 (~N⁻⁵·⁴)、m=0 で最低対の行列要素が選択則的に機械零 (~1e-37) — 重みは体積とともに消え、連続体のみ (v26.5 の登録予想の確認)。副産物: 縦 (純ゲージ) チャネルのスペクトル重み χ_L = 0.107 / f-sum 0.738 は spin-2 (0.154/1.078) と同規模 — v26.6 の静的汚染所見の動的対応物。"
+  claim: "有限サイズ spectral measure と massless pole の不在 (判定 a — 7 検査 PASS): ρ_A^(N)(s) = Σ_n Z_n δ(s−s_n) (s = ΔE², 粒子–正孔対, チャネルは Projector.lean の ŷ 辞書 D/S/L) を q = 2π/16 固定の体積列 N ∈ {16,32,64}, m ∈ {0,0.5} で構成した。器械認証: (i) **f-sum rule Σ 2ΔE Z_A = ⟨0|[T_A†,[H,T_A]]|0⟩ — 二重交換子 (1 体演算子の相関行列 trace) との独立モーメント照合が dense 6.4e-13 / block 4.4e-16**、(ii) 対和 Σ2Z/ΔE = χ 器械の内部恒等 (0.0)、(iii) Z ≥ 0 構成的、(iv) threshold: m=0.5 で s_min ≥ 4m² (厳密) かつ 2 粒子 threshold 4m²+q² = 1.1542 へ上から収束 (1.430→1.191→1.162)、massless の端は光円錐 s_min/q² = 2.53→1.24→1.05。**主結果 [S5 branch α]: 自由場に massless spin-2 pole なし** — pole の凍結判定の residue 条件 Z_n→Z_*>0 が両質量で否定される: W₁(N) = 最低クラスタ ΣZ/V は m=0.5 で 5.9e-5→9.9e-7→3.2e-8 (~N⁻⁵·⁴)、m=0 で最低対の行列要素が選択則的に機械零 (~1e-37) — 重みは体積とともに消え、連続体のみ (v26.5 の登録予想の確認)。[v26.7.1 訂正 — QRN-GRAV-042]: (α) 判定変数「s → 0」は固定 q ≠ 0 で ill-posed — 不変量 M² = ΔE² − q² で再採点し結論維持 (PRED-014 hit)。(β) 縦チャネルのスペクトル重み (χ_L = 0.107 は spin-2 0.154 と同規模) を「静的汚染の動的対応物」と読んだのは過大 — 4D Ward relation により T_yy 単独の重みは保存則違反を意味せず、temporal block 実装まで dynamic Ward 診断には使えない。"
   status: "判定 a。「分母が零に近い」だけでは pole の証拠にならない、という spec §7 の凍結判定基準がそのまま器械になった。誘導重力の pole は (あるなら) 1/Π の構造から来るべきもの — 動的 metric の反転核は v26.8 (連続極限) の後"
   evidence:
     code: "sim/src/bin/v267_spectral.rs"
@@ -2463,3 +2463,16 @@
     - "plus 偏極 D のみ (cross X = T_xz は point-split 器械が要る — 登録課題)。plus/cross の連続極限縮退 (spec §7 benchmark v) は cross 認証後。"
     - "q = 2π/16 の 1 点固定 (体積列の設計)。ω 実軸の retarded 応答は spectral 表現から従うが、第一モーメント (f-sum) までの認証 — 高次は将来。"
     - "自由場のみ — 相互作用系の spectral measure (q⁴ 破れの動的対応) は many-body 器械の拡張後。"
+
+- id: QRN-GRAV-042
+  version: "v26.7.1"
+  level: C4
+  claim: "不変量 M² = ΔE² − q² での pole 再採点 — PRED-014 hit (判定 a, 6 検査 PASS): PROMPT/9 の指摘 (固定 q ≠ 0 で「s → 0」は ill-posed — massless は光円錐 ΔE² = q² に住む) を spec §12.1 として凍結してから、v26.7-II の spectral データを不変量 M² (と tree-level improved q̂ = 2sin(q/2) の M̂²) で再採点した。**ε-ladder {0.5, 0.25, 0.125}q² の半減比 = 0.132 / 0.048 (N=64, 両変数で同値) — 孤立 pole (比 → 1) と正反対の急峻な連続体端 (W_ε ~ ε³ 級)**。M²_min/q² = 1.53 → 0.24 → 0.0497 (単調 → 0)・最低クラスタ residue W₁/V → 2e-38・窓 [0, 0.5q²] 内の状態数 0 → 64 → 1216 (成長 = 連続体)。massive 対照は M²_min = 1.0077 × 4m² (threshold, ΔE² ≥ 4m² は厳密)。**v26.7-II の no-pole 結論は不変量でも維持 — 判定規則の修正であり結論の反転ではない**。同時に T_yy スペクトル重みの解釈を降格: 4D Ward relation ΔE_n⟨0|T_0ν|n⟩ = q_i⟨0|T_iν|n⟩ により T_yy 単独の大きな重みは保存則違反を意味しない — temporal 成分 (T_00, T_0i) 実装まで dynamic Ward 診断には使えない (QRN-GRAV-041 の該当解釈を訂正)。"
+  status: "判定 a — PRED-014 scored-hit。開発記録: run1 は近傍対 cutoff 1.7q² が N=16 の最低対 (2.53q²) を覆えず空リスト panic — 4q² に拡幅 (ゲート発火前の被覆バグ; S0 回帰 4.0e-7 が v26.7-II との物理同一性を担保)"
+  evidence:
+    code: "sim/src/bin/v2671_pole_semantics.rs"
+    result: "results/v2671_pole_semantics.txt"
+    doc: "docs/uft-v26.7.md"
+  limitations:
+    - "q = 2π/16 の 1 点固定 (体積列の設計は v26.7-II と同一)。ε → 0 と L → ∞ の順序交換は ladder の有限段 (3 段) までの検査。"
+    - "T_yy の正しい dynamic Ward 診断 (temporal block T_00, T_0i 込みの 4D 収縮) は v26.9 (4D covariance closure) の登録課題。"

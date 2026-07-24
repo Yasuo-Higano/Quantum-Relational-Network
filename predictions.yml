@@ -156,7 +156,8 @@
   data_not_used: "M² 変数での採点は未実施 (v26.7-II は s = ΔE² で採点した — 固定 q ≠ 0 では ill-posed だったことが PROMPT/9 で指摘された)"
   falsifier: "ε 半減比 ≥ 0.75 または孤立 residue 検出 → v26.7 no-pole 結論の再検討"
   source: "spec §12.1 (Gate 0, 2026-07-25 凍結)。実行バイナリ v2671_pole_semantics"
-  status: registered
+  status: scored-hit
+  score: "hit (2026-07-25, v26.7.1): ε 半減比 = 0.132/0.048 (N=64, M²・M̂² 両変数で同値 ≪ 0.75) — 連続体の端は急峻 (W_ε ~ ε³ 級)。M²_min/q² = 1.53 → 0.24 → 0.0497 (単調 → 0)・W₁/V → 2e-38・窓内状態数 0 → 64 → 1216 (成長 = 連続体)。massive 対照は M²_min = 1.0077·4m² (threshold)。**v26.7-II の no-pole 結論は不変量でも維持 — 判定規則の修正であり結論の反転ではない**。開発記録: run1 は cutoff 1.7q² が N=16 の最低対 (2.53q²) を覆えず空リスト panic — 4q² に拡幅 (S0 回帰 4.0e-7 が物理同一性を担保)"
 
 - id: PRED-015
   title: "BOND-A source matching — taste-nonsinglet residual の消滅"

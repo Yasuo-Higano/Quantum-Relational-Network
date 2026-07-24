@@ -85,9 +85,11 @@ broadened plot ではなく離散 measure そのもの (spec §7 の凍結どお
   第二条件が両質量で否定される** — 「分母が零に近い」状態はあるが重みが体積と
   ともに消える = 連続体のみ。誘導重力の pole は (もしあるなら) raw χ ではなく
   1/Π の構造から来るべきもの、という v26.5 の登録予想が定量的に立った。
-- **縦 (ゲージ) チャネルの動的な姿**: χ_L = 0.107, f-sum 0.738 (N=64, m=0) —
-  純ゲージチャネルのスペクトル重みは spin-2 (0.154 / 1.078) と同規模。v26.6 の
-  「汚染は縦列に局在し c₁ 級」という静的所見の動的対応物。
+- **縦 (ゲージ) チャネルのスペクトル重み**: χ_L = 0.107, f-sum 0.738 (N=64, m=0) —
+  spin-2 (0.154 / 1.078) と同規模。**[v26.7.1 で解釈を降格 — §7 参照]**: 初版の
+  「静的非共変汚染の動的対応物」という読みは過大 — 4D Ward relation
+  ΔE_n⟨0|T_0ν|n⟩ = q_i⟨0|T_iν|n⟩ により T_yy 単独の大きな重みは保存則違反を
+  意味しない。temporal 成分 (T_00, T_0i) 実装まで dynamic Ward 診断には使えない。
 
 ## 5. 登録課題 (残り)
 
@@ -98,10 +100,37 @@ broadened plot ではなく離散 measure そのもの (spec §7 の凍結どお
 - v26.8: 連続極限 universality (a→0, 2-taste Dirac 解析 form factor, q⁴ln q²,
   Wilson 独立離散化) — **経路 B の最重要 falsifier** (spec §8)。
 
-## 6. 成果物
+## 6. v26.7.1 (Gate 0) — spectral 意味論の修正と不変量での再採点 (PROMPT/9)
+
+PROMPT/9 の指摘 2 件を spec §12.1 として凍結してから実行した (`v2671_pole_semantics`,
+6 検査 PASS):
+
+1. **pole 判定変数の修正**: §4 の判定は「s = ΔE² → 0」と書いたが、固定 q ≠ 0 では
+   massless 状態は光円錐 ΔE² = q² に住む — s → 0 は ill-posed だった (実測
+   s_min/q² → 1.05 自体が光円錐収束を示していた)。不変量 **M² = ΔE² − q²**
+   (tree-level improved q̂ = 2sin(q/2) の変種も) で再採点した結果:
+   - ε-ladder {0.5, 0.25, 0.125}q² の**半減比 = 0.132 / 0.048** (N=64, 両変数) —
+     pole (比 → 1) と正反対の急峻な連続体端 (W_ε ~ ε³ 級)
+   - M²_min/q² = 1.53 → 0.24 → **0.0497**、W₁/V → 2e-38、窓 [0, 0.5q²] 内の
+     状態数 0 → 64 → 1216 (成長 = 連続体; pole は 1 個が残存するはず)
+   - massive 対照: M²_min = 1.0077 × 4m² (threshold ✓、ΔE² ≥ 4m² は厳密)
+   **PRED-014 hit — no-pole 結論は不変量でも維持** (判定規則の修正であり結論の
+   反転ではない)。
+2. **T_yy スペクトル重みの解釈の降格** (§4 に訂正済み): h_yy の純ゲージ性は
+   静的外場の性質。spectral 行列要素には 4D Ward relation があり、T_yy 単独の
+   重みは保存則違反を意味しない。「汚染の動的対応物」→「temporal block
+   (T_00, T_0i) 未実装のため dynamic Ward 診断には未使用可」へ。
+3. 開発記録: run1 は近傍対の収集 cutoff 1.7q² が N=16 の最低対 (2.53q²) を
+   覆えず空リストで panic — 4q² に拡幅 (ゲート発火前の被覆バグ; S0 回帰
+   4.0e-7 が v26.7-II との物理同一性を担保)。
+
+## 7. 成果物
 
 I: `sim/src/bin/v267b_q4break.rs` / `results/v267b_q4break.txt` (8 検査 PASS) /
 `results/v267b_q4break.json` / predictions.yml PRED-013 (**scored-hit**) /
 claims QRN-GRAV-040。
 II: `sim/src/bin/v267_spectral.rs` / `results/v267_spectral.txt` (7 検査 PASS) /
 `results/v267_spectral.json` / claims QRN-GRAV-041。
+v26.7.1: `sim/src/bin/v2671_pole_semantics.rs` / `results/v2671_pole_semantics.txt`
+(6 検査 PASS) / `results/v2671_pole_semantics.json` / PRED-014 (**scored-hit**) /
+claims QRN-GRAV-042。
