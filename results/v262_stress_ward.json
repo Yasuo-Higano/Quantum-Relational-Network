@@ -1,0 +1,11 @@
+{
+  "version": "v26.2",
+  "kind": "stress_instrument_calibration",
+  "chi00_q_quarter_pi_over_2": {
+    "n8_m0": 0.023547890802363188,
+    "n12_m0": 0.02389509172799585,
+    "n8_m05": 0.020067735989670404,
+    "n12_m05": 0.02016387366601979
+  },
+  "next_registered": "v26.3+: 小 q 系統走査による c₁ (Sakharov 項) の抽出と regulator 依存性・spin-2/spin-0 分解・連続極限 (2 taste Dirac) 対照"
+}

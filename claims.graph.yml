@@ -983,3 +983,8 @@
   deps: [QRN-YUK-002, QRN-YUK-007, QRN-YUK-019, QRN-YUK-020]
   asm: [ASM-PRIOR]
   fal: [FAL-SUITE]
+
+- id: QRN-GRAV-035
+  deps: []
+  asm: [ASM-LATTICE]
+  fal: [FAL-SUITE]

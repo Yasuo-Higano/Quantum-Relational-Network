@@ -2366,3 +2366,17 @@
     - "核規約は当時尤度の一律拡張 (lognormal σ=ln2、UT 角も度の正量として同規約) — 絶対密度は核幅で動くが、差分は感度域 [ln1.5, ln3] で符号不変。"
     - "D_J の bracket は試行集合の最良メンバー (傾き T⁴, |J|≤2.6e-8) への一様混合上界 — メンバーごとの真の |J| 事後積分ではない (strict は −∞)。"
     - "FN の文献電荷は当時の観測を知る文献の選択 — FN 側の選択コストは未計上 (対アナーキー列が寛大側の下限)。保守初見規則の緩和 (shear の v16.4 hit に credit) でも総額の符号は不変。"
+
+- id: QRN-GRAV-035
+  version: "v26.2"
+  level: C1
+  claim: "格子 stress 器械の較正 (誘導重力 経路 B の要件 1–3, 20 検査 PASS): 3+1D staggered (x のみ反周期 twist — E_min = sin(π/N), 解析分散と dense jacobi が 4 系で ~1e-12 一致) 上で、(i) 局所エネルギー密度 T_00(x) の分解 Σ_x T_00 = H が bit 厳密、(ii) 保存: C(q) = i[H, T_00(q)] が C(0) = 0 厳密 + ‖C(q)‖/q 有界安定 (線形消滅 = 流れ J^E の存在 — Ward 恒等式の時間成分)、(iii) vierbein 結合: x ボンド変調の Feynman–Hellmann dE₀/dε = ⟨T_xx⟩ が 9 桁一致、q≠0 の一次応答は運動量保存で零 (5e-11)、二次応答 d²E₀/dε² = −χ_O(q) が Lehmann 和と独立照合 3e-5 で一致。応答の厳密対称 y↔z (W 対称性) が ~1e-15 — v24.x の λ_y = λ_z の応答関数版。x/y 非対称 (twist 境界 + η 構造) は N=8→12 で 0.446→0.344 (m=0) / 0.179→0.037 (m=0.5) と減少。ギャップ対照 (χ_00 抑制 0.884) と変異検出 2 種 (η_z 落とし・質量二重計上)。"
+  status: "判定 a — 器械較正済み。c₁ (Sakharov 項) 抽出・spin-2/spin-0 分解・連続極限対照・動的 Ward・massless spin-2 pole は v26.3+ の登録課題。開発記録: run1 ゲート 2 件は前提誤り (x↔y 立方対称は twist と η 構造で破れる — 厳密なのは y↔z / ‖C‖/q は成長し得る) — 較正して再走、物理数値は不変"
+  evidence:
+    code: "sim/src/bin/v262_stress_ward.rs"
+    result: "results/v262_stress_ward.txt"
+    doc: "docs/uft-v26.2.md"
+  limitations:
+    - "静的 (ω = 0) 応答のみ — 動的 Ward 恒等式と spin-2 pole は未着手。T_xy (せん断) チャネル未実装 = graviton 分解はまだできない。"
+    - "N ≤ 12 の dense 対角化 — 小 q 系統走査 (c₁ 抽出) には N スケーリングかブロック法の移植が要る。"
+    - "誘導重力の主張はまだ何もしていない — 本版は器械の較正のみ (PROMPT/7 の 10 要件の 1–3)。"
