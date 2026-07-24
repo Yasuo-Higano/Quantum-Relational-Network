@@ -147,3 +147,53 @@
   source: "v26.3 (機構) / spec §7 (プロトコル凍結)。実行バイナリ名 v267b_q4break も凍結済み"
   status: scored-hit
   score: "hit (2026-07-24, v26.7-I): p(V=1.0, m=0.5, N=16) = 1.804 < 3.0 — V 系列で p = 3.795 (V=0) → 1.942 (V=0.5) → 1.804 (V=1.0) と q⁴ から q² へ急落。実行前凍結の補足宣言 (m=0.5 採点・可積分線は対照) と較正イベント (S0b/S2 ゲートの前提誤り — 物理値は run1/run2 で bit 同一を diff 証明) は results/v267b_q4break.txt と docs/uft-v26.7.md §3 に記録。**注意: 計算実験内の機構予言の的中であり、自然の観測量の予言ではない** (README の PASS 分類で別枠計上)"
+
+- id: PRED-014
+  title: "invariant pole audit — M² = ΔE² − q² での再採点"
+  observable: "自由 staggered 場の TT (D) チャネル spectral measure の threshold weight W_ε = Σ_{0≤M²<ε} Z/V (M² = ΔE²−q², q̂ = 2sin(q/2) 変種も記録)"
+  qrn_value: "連続体のみ: N 収束後の W_ε の ε 半減比 < 0.75 (ε ∈ {0.5,0.25,0.125}·q²) かつ孤立 residue なし (M²_min → 0 と最低クラスタ Z/V → 0 の両立)。v26.7-II の s 変数の結論 (branch α) は変数修正後も維持される見込み"
+  competing: "isolated massless pole: W_ε が ε に依存せず Z_* > 0 へ収束"
+  data_not_used: "M² 変数での採点は未実施 (v26.7-II は s = ΔE² で採点した — 固定 q ≠ 0 では ill-posed だったことが PROMPT/9 で指摘された)"
+  falsifier: "ε 半減比 ≥ 0.75 または孤立 residue 検出 → v26.7 no-pole 結論の再検討"
+  source: "spec §12.1 (Gate 0, 2026-07-25 凍結)。実行バイナリ v2671_pole_semantics"
+  status: registered
+
+- id: PRED-015
+  title: "BOND-A source matching — taste-nonsinglet residual の消滅"
+  observable: "D/X 頂点の spin⊗taste 基底での taste-nonsinglet residual r_A(ε) = ‖V^lat − I_taste⊗(tr_taste V^lat)/2‖/‖V^lat‖ (ノード近傍, ε = |ap|,|aq| ladder)"
+  qrn_value: "r_A(ε→0) → 0 (単調減少) かつ最細スケールで r_A < 10⁻³ — BOND-A が連続極限で 2-taste Dirac の Belinfante TT vertex に流れる"
+  competing: "r_A が O(1) に留まる → その頂点は taste-nonsinglet 演算子 (strain source)"
+  data_not_used: "matching 計算は未実施 (器械は v26.6 で認証済みの頂点行列 — 新規はノード基底構成のみ)"
+  falsifier: "D の失敗 = 経路 B の gravitational interpretation 終了 (one-loop へ進まない) / X のみの失敗 = 素朴 off-diagonal 転写の棄却 + 再設計 (X は未認証器械 — spec §12.2-3 の非対称判定)"
+  source: "spec §12.2 (Gate 1, 2026-07-25 凍結)。実行バイナリ v268z_source_matching"
+  status: registered
+
+- id: PRED-016
+  title: "TT universality — 二離散化の繰り込み後 form factor 一致"
+  observable: "A_D^stag/A_oracle, A_X^stag/A_oracle, A_D^Wilson/A_oracle, A_X^Wilson/A_oracle の continuum limit (A = q⁴ln q² の null-combination 係数)"
+  qrn_value: "全て 1 (1% 以内, continuum 系統 0.5% 以下)。bare 値の一致は要求しない (D/X は別の立方既約表現 — 個別 Z)"
+  competing: "不一致 → source・taste 規格化・renormalization・continuum scaling のいずれかの誤り (spec §12.8 の分岐表で切り分け)"
+  data_not_used: "v26.8-B/C は未実施。oracle (v26.8-A) は二重導出一致 (Gate 2) 後に凍結"
+  falsifier: "両離散化が互いに一致し oracle と不一致 → 共通の規約誤り / 片方のみ不一致 → その離散化の source/fit 誤り"
+  source: "spec §12.3–12.5 (2026-07-25 凍結)"
+  status: registered
+
+- id: PRED-017
+  title: "Dirac spin-0 spectral sum rule (2 tastes)"
+  observable: "taste-singlet scalar 演算子の spectral function の積分 ∫σ ds (continuum 外挿)"
+  qrn_value: "1/(120π²) — 1 Dirac の ∫σ_f = 1/(240π²) (σ_f = m²/(24π²s²)·(1−4m²/s)^{3/2}) の 2 taste 倍。UV finite・counterterm 非依存・質量非依存"
+  competing: "外れ → scalar 規格化または taste count (2 vs 4) の誤り"
+  data_not_used: "未実施。4D source 取得までは gravitational response ではなく operator benchmark と分類 (spec §12.7)。文献値 (arXiv:2607.18180) は独立再導出してから使う"
+  falsifier: "1% 超の不一致 → taste 規格化の監査 (v26.8-C の taste trap と同根の可能性)"
+  source: "spec §12.7 (2026-07-25 凍結)"
+  status: registered
+
+- id: PRED-018
+  title: "massive decoupling — q² ≪ m² の nonlocal running"
+  observable: "massive 系列 (q²/m² 走査) の TT form factor の nonlocal 部分"
+  qrn_value: "q² ≪ m² で nonlocal running ∝ q²/m² (decoupling 展開) — q⁴ln q² fit をこの領域に適用しない"
+  competing: "比例しない → full form factor または continuum trajectory (am = a·m_phys) の誤り"
+  data_not_used: "未実施 (v26.8-B massive 系列)"
+  falsifier: "decoupling の破れ → trajectory 設計 (lattice-unit m 固定の混入) を疑う"
+  source: "spec §12.4 (2026-07-25 凍結)"
+  status: registered

@@ -233,3 +233,146 @@ AtlasResult → ExternalMetricResponse → CovariantRenormalizedKernel
    再現 0)。
 4. v26 誘導重力論文は **v26.8 の後** (それまでは「格子 stress-response
    instrumentation」の技術報告に留まる)。
+
+---
+
+## 12. 改訂 2 (PROMPT/9, 2026-07-25 — 実装前凍結)
+
+本節は PROMPT/9 のアドバイスによる改訂であり、以降の実装より先にコミットされる。
+§4–§9 のうち本節と矛盾する箇所は本節が優先する (原文は履歴として保持)。
+
+### 12.0 経路 B の中心命題の再定義
+
+次の中心課題は q⁴ln q² の測定ではない:
+
+> **BOND-A の格子 source が、連続極限で 2-taste Dirac の保存された
+> Hilbert/Belinfante stress tensor に流れるかを証明する。**
+
+これに失敗した場合、経路 B は「重力真空偏極」ではなく**格子フェルミオンの
+弾性・strain response** であり、その時点で gravitational interpretation を
+終了する (Gate 1)。
+
+### 12.1 v26.7.1 (Gate 0) — spectral 意味論の修正
+
+1. **pole 判定変数の再登録**: §7 の「s_n → 0」は固定非零運動量では ill-posed
+   (massless 状態は ΔE² = q² に住む — 実測 s_min/q² → 1.05 が既に光円錐収束を
+   示している)。不変量 **M²_n := ΔE²_n − q²** に変更し、pole residue を
+   Z_pole = lim_{ε→0} lim_{L→∞} Σ_{0≤M²<ε} Z_n/V で定義する。有限 a では
+   通常の q と tree-level improved **q̂ = 2 sin(q/2)** の両方を記録する。
+   判定 (凍結): (i) ε-ladder {0.5, 0.25, 0.125}·q² で N 収束後の W_ε の
+   ε 半減比 < 0.75 (連続体; pole なら → 1)、(ii) 孤立状態なし (M²_min → 0
+   かつ最低クラスタ residue → 0 [v26.7-II 済])。→ **PRED-014**。
+2. **T_yy spectral weight の降格**: 静的外場での h_yy 純ゲージ性は正しいが、
+   spectral 行列要素には 4D Ward relation ΔE_n⟨0|T_0ν|n⟩ = q_i⟨0|T_iν|n⟩ が
+   あり、**T_yy 単独の大きな重みは保存則違反を意味しない**。v26.7-II の
+   「静的非共変汚染の動的対応物」という解釈は「T_yy spectrum は大きいが、
+   temporal 成分 (T_00, T_0i) 未実装のため dynamic Ward 診断にはまだ使えない」
+   へ降格する (docs/claims/README を訂正)。
+
+### 12.2 v26.8-0 (Gate 1) — source matching と定義閉包 (物理 run なし)
+
+1. **ProjectorND.lean**: 有限格子 {0..8}³ の certificate ではなく、公理
+   θ² = θ, ω² = ω, θω = ωθ = 0, θ + ω = I, tr ω = 1 (対称) から
+   Barnes–Rivers 代数を抽象的に証明する。成果物: 任意次元 (τ = tr θ = d−1 の
+   多項式恒等式) の乗積表代数・d=3/d=4 インスタンス・rank 公式
+   (d=4: P₂=5, P₁=3, P₀s=1, P₀w=1)・scalar block の matrix units
+   (P₀sw, P₀ws)・**S₃ = √(2/3)e₀ + e₂₀/√3 の 4D 分解定理**
+   (e₀ = (E_ττ+E_xx+E_zz)/√3, e₂₀ = (−2E_ττ+E_xx+E_zz)/√6)・
+   **D = E_xx−E_zz と X = E_xz+E_zx が 4D P₂ 固有ベクトル** (q₀=0, q∥ŷ)。
+   q² ≠ 0 は公理系が構造的に担う。既存 Projector.lean は「具体 θ(q) が公理を
+   満たすこと」の certificate として保持 (合成で全運動量の定理)。
+2. **語法の凍結**: S₃ = (E_xx+E_zz)/√2 を **4D spin-0 と呼ぶことを禁止**
+   (S₃ は 4D では spin-0 と spin-2 の混合)。完全共変核の取得後にのみ
+   K_{S₃S₃} = (2/3)F₀ + (1/3)F₂ で復元する。
+   「full gravitational polarization」は h_00, h_0i 実装後にのみ使用可。
+3. **BOND-A continuum vertex matching (Gate 1 本体)**: 各 Dirac node 近傍で
+   spin⊗taste 基底へ変換した格子頂点 V_A^lat (A ∈ {D, X}) について
+   Z_A(a)V_A^lat = I_taste ⊗ V_A^Dirac + O(a^r) を検査する。許される差は
+   EOM operator / total derivative / improvement term / local contact term のみ。
+   taste-nonsinglet residual r_A := ‖V^lat − I_taste⊗(tr_taste V^lat)/2‖/‖V^lat‖
+   について **r_A(a→0) → 0、最細格子で < 10⁻³** を事前登録 (**PRED-015**)。
+   **判定の非対称 (凍結)**: D は認証済み器械 — **D の matching 失敗 = 経路 B の
+   gravitational interpretation 終了** (one-loop へ進まない)。X は §2 で
+   「taste 認証前に物理を主張しない」とした未認証の転写 — X のみの失敗は
+   「素朴な off-diagonal 転写の棄却 + 再設計課題」であり、D の資格は保持する
+   (最小 TT universality test は D で実施可能)。再設計後の X は同じ判定を受ける。
+4. **D と X に別々の Z を許す**: 有限格子では diagonal-traceless と
+   off-diagonal は異なる立方既約表現 (4D hypercubic EMT の sextet/triplet
+   分裂と同型)。**有限 a で bare D = X を要求しない** — 個別に正規化した後の
+   F_D^ren − F_X^ren → 0 が universality test。
+
+### 12.3 v26.8-A — 解析 one-loop oracle (二重導出)
+
+数値実装の前に規約を凍結する: Euclid/Minkowski 符号・Γ = −log Z と E₀ の対応・
+δS = ½∫h_{μν}T^{μν}・D/X の Frobenius 規格化・1 Dirac flavor と 2 tastes の係数・
+Fourier/体積規格化・Γ^(2) = ½hKh の 2 倍系数。oracle は (i) Dirac stress vertex の
+直接 Feynman-parameter 積分と (ii) 曲率 form factor / Weyl-anomaly 係数からの導出の
+**二経路で導出し完全一致を要求** (Gate 2 — 不一致なら数値実装禁止)。文献値
+(Weyl² sector の 1/20 等) は規約写像を凍結する前に転記してはならない。
+登録する主張は数値でなく **A_oracle^(2taste)/(2A_oracle^(1Dirac)) = 1** と二経路一致。
+
+### 12.4 v26.8-B — staggered TT continuum limit
+
+1. **q⁴ln q² を多項式 fit で取らない**: 4 点以上の q_i に重み w_i を
+   Σw_i = Σw_i q_i² = Σw_i q_i⁴ = 0, Σw_i q_i⁴ ln q_i² = 1 と組む
+   **null-combination 推定器 A_null(a) = Σ w_i K_T(q_i, a)** を使う
+   (全 local counterterm q⁰/q²/q⁴ と μ 依存を代数的に消す)。
+2. **三者一致**: (i) lattice spectral density、(ii) subtracted dispersion から
+   再構成した Euclidean form factor、(iii) 直接 Euclidean form factor の
+   null projection — absorptive part は renormalization で不変。
+3. **continuum trajectory**: lattice-unit m 固定の a→0 は禁止。
+   am(a) = a·m_phys, aq(a) = a·q_phys, N(a) = L_phys/a。二系列を分離:
+   massless/UV 系列 (q² ≫ m² — q⁴ln q² 係数) と massive 系列 (q²/m² 走査 —
+   full form factor と IR decoupling)。q ≪ m を q⁴ln q² で fit するのは誤り
+   (そこは decoupling 展開)。主計算は**無限体積 BZ 積分**、有限体積 engine は
+   独立照合。
+
+### 12.5 v26.8-C — Wilson 独立離散化
+
+時間連続・空間格子 Hamiltonian として実装 (temporal regulator を混ぜない)。
+**taste trap**: 3+1D Hamiltonian staggered = 2 flavor / 4D Euclidean staggered
+action = 4 tastes — 時間離散化した標準 staggered に置き換えて「2 tastes」は
+維持できない。continuum 外挿は A(a) = A₀ + c₁a + c₂a² と A₀ + c₂a² + c₄a⁴ の
+両モデルを事前登録し、fit-window variation を系統誤差に含める
+(データを見て次数を選ばない)。
+
+### 12.6 v26.9 の再定義と型名
+
+v26.9 の dynamic metric fork は **v27.0 へ延期**。v26.9 = **4D covariance
+closure**: h_00・h_0i・q₀ ≠ 0・10×10 symmetric-tensor kernel・4D Ward
+q_μΠ^{μν,ρσ} = 0・contact/tadpole 込み second metric variation・spin-0/spin-2
+form factor の完全分離。**Gate 5 を通るまで 1/Π・graviton propagator・
+dynamic metric へ進まない**。それまで発行できる型名は:
+`StaticSpatialStressResponse` / `TreeLevelMatchedTTSource` /
+`RenormalizedTTFormFactor` / `RegulatorUniversalTT` のみ
+(`FullGravitationalVacuumPolarization` は Gate 5 後)。
+
+### 12.7 追加 falsifier — Dirac spin-0 spectral sum rule
+
+1 Dirac fermion の spin-0 spectral function
+σ_f(s) = (m²/24π²s²)(1 − 4m²/s)^{3/2}Θ(s−4m²) は ∫σ_f ds = 1/(240π²)
+(UV finite・counterterm 非依存・質量非依存の積分値)。2 tastes では
+**∫σ_2t ds = 1/(120π²)** が regulator-independent target (**PRED-017**)。
+文献 (arXiv:2607.18180) は独立再導出すべき oracle として扱う。m ψ̄ψ の
+taste-singlet scalar operator による実装は 4D source 取得までは
+**operator benchmark と分類** (gravitational response と呼ばない)。
+m→0 で σ → const·δ(s) となっても「4D 二点関数に massless pole」とは
+表現しない (完全な anomaly pole は三点関数の性質)。
+
+### 12.8 Gate 台帳 (凍結)
+
+- **Gate 0**: v26.7 意味論修正 (M² 再採点 + T_yy 降格) — PRED-014
+- **Gate 1**: tree-level source matching — 失敗 (D) = 経路 B 終了 — PRED-015
+- **Gate 2**: continuum oracle の二重導出一致 — 不一致なら数値実装禁止
+- **Gate 3**: staggered TT — D/X 個別正規化後に同一 continuum form factor
+- **Gate 4**: Wilson universality — PRED-016 (bare 一致でなく
+  A^stag_D/A_or, A^stag_X/A_or, A^Wil_D/A_or, A^Wil_X/A_or → 全て 1)
+- **Gate 5**: full 4D Ward (h_00, h_0i 込み) — ここまで 1/Π 禁止
+- 結果の意味 (凍結): 両離散化が oracle と一致 → **測定器が正しい (QRN・創発
+  重力の証拠ではない)** / 互いに一致し oracle と不一致 → 共通の
+  source/規約/taste 誤り / staggered のみ一致 → Wilson 側の誤り /
+  TT 一致で full Ward 失敗 → BOND-A は TT operator として正しいが metric
+  source として不完全 / 全通過 → 初めて「matter loop による covariant metric
+  kinetic term」の研究資格。
+- 論文単位の正名: 「誘導重力の発見」ではなく**機械証明・source matching・
+  二離散化を備えた Dirac stress-tensor vacuum-polarization audit**。
