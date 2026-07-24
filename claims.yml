@@ -2421,3 +2421,17 @@
     - "plus 偏極のみ (cross 偏極 T_xy は point-split 構成が要る — 将来課題)。縦・trace との混合を含む完全なテンソル射影は未実施。"
     - "静的 (ω=0) — massless spin-2 pole の判定と符号の物理は ω 分解 (登録済み) が要る。"
     - "χ(0) の接触項 (regulator 部分) は未分離 — c₁ は χ(q)−χ(0) の q² 係数として定義された量。"
+
+- id: QRN-GRAV-039
+  version: "v26.6"
+  level: C4
+  claim: "重力真空偏極の監査 I — 接触項込み完全核と縦 Ward 汚染 (判定 a — 17 検査 PASS): 事前登録 spec (paper/grav-vacuum-polarization-spec.md, 実装前コミット 157ca53) どおり、scheme BOND-A (ボンド (1+h_ii)^{−1/2}・接触項 (3/4)δ_dir・counterterm Λ√g [Λ=−e_y]) の完全静的核 k̂ = (3/4)eδ − ¼χ − (Λ/4)(J−2I) を構成し器械認証した — dense FD Hessian 完全性 (d²E/dh² = ⟨S⟩−χ_V, 相対 ~5e-8)・block 3×3 χ = dense 5.1e-14・tadpole 解析照合 6.5e-14・背景停留 |dΓ/dε| = 7.4e-10 (要件 0)・y 並進 1.8e-16 (接触項の q 非依存性 ⇒ c₁ は接触完備化で不変, v26.5 回帰 4.1e-6)・uniform 連続性 4.5e-8。射影代数は proofs/Projector.lean (定理 13 本: BR 完全性・冪等・直交・trace=rank・Ward 収縮・ゲージ消去/再現 + ŷ チャネル辞書 D/X = spin-2, S = P0s, **L = yy = 純ゲージ**)。**主結果 [S6 branch a]: R(m) = |c₁^χ[L]|/|c₁^χ[D]| = 0.947 (m=0) / 1.105 (m=0.5)** — 純ゲージの縦チャネル (連続極限で恒等消滅すべき) の q² 係数 +0.01833/+0.01595 が spin-2 の −0.01935/−0.01444 と同桁で走る = **bare c₁ は非共変 regulator 汚染に支配される** (v26.3–26.5 の『c₁ は bare 量』に汚染の物差しがついた)。q⁰ 側も k̂_LL(0) = −0.1256 ≠ 0。新測定: スカラー混合 c₁^χ[SL] = +0.00187→+0.00234 (走行 25.2%)、K_DS/K_DL は m=0.5 で機械零 (~1e-16) — 汚染は縦列に局在。帰結: 連続比較には少なくとも 3 種の繰り込み条件 (Λ / q⁰ 縦核 / q² 縦核) が前提 — 要件 10 の書き換え (bare 一致は要求しない) の実測的裏づけ。"
+  status: "判定 a。開発記録: S2a の解析参照 (k 和) に band-pairing ×2 の二重計上 — 走行前の独立 python 照合が検出しゲート発火前に修正 (器械側は無変更)。run1 は S0 逐次走行中に打ち切り (検査出力なし)、FD を 118 点並列バッチ化した run2 が公表 run"
+  evidence:
+    code: "sim/src/bin/v266_vacuum_pol.rs"
+    result: "results/v266_vacuum_pol.txt"
+    doc: "docs/uft-v26.6.md"
+  limitations:
+    - "対角ソース (h_xx, h_yy, h_zz) の 3×3 核のみ — off-diagonal (cross 偏極 X = T_xz) は spec §2 で定義済みだが器械化は v26.7 登録 (taste 認証込み)。"
+    - "静的 (ω=0)。動的 spectral measure と pole 判定 (residue の体積 scaling) は v26.7、連続極限 universality (q⁴ln q² 係数・独立離散化) は v26.8 の登録課題。"
+    - "縦 Ward 汚染の消滅は a→0 で期待される連続極限の性質であり、本版は固定 a での汚染の定量化まで — a→0 の実測は v26.8。"

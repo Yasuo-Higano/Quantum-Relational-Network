@@ -136,3 +136,13 @@
   source: "v18.3"
   status: scored-miss
   score: "13 倍外の miss — シーソー (M∝I) は観測より遥かに強い ν 階層を予言 (Dirac 階層の二乗が素通し)"
+
+- id: PRED-013
+  title: "相互作用による χ_00 の q⁴ 保護の破れ (q² への回帰)"
+  observable: "1+1D staggered 鎖 (twist 境界, 半充填) + 最近接密度相互作用 V Σ n_i n_j の静的応答 χ_00(q) の小 q 冪 p (最小 2 運動量点の log–log 傾き)"
+  qrn_value: "自由場 (V=0) では全エネルギー流 J^E_tot が保存量 → χ_00 ∝ q⁴ (p≈4, v26.3 §3 の機構)。相互作用 (V>0) で J^E_tot の保存が壊れ、p は 2 に向かって下がる — 判定: p(V=1.0, 最大 N) < 3.0 で的中"
+  competing: "保存則によらない見方 (相互作用を入れても p≈4 のまま) — その場合 v26.3 の機構同定が誤り"
+  data_not_used: "相互作用系の計算は未実施 — プロトコル (V∈{0,0.5,1.0} 斥力固定・N∈{10,12,14[,16]}・CG/厳密対角化・fit 規則) は paper/grav-vacuum-polarization-spec.md §7 で 2026-07-24 に凍結。外れてもモデル・V・fit 規則を交換しない"
+  falsifier: "p(V=1.0) ≥ 3.0 → v26.3 の保存則機構の同定を降格し、q⁴ 保護の別起源を残高に登録"
+  source: "v26.3 (機構) / spec §7 (プロトコル凍結)。実行バイナリ名 v267b_q4break も凍結済み"
+  status: registered
