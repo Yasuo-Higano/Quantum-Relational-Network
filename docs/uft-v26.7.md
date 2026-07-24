@@ -1,10 +1,11 @@
-# 量子情報網理論 v26.7 — 動的分解と副実験 (I/II: q⁴ 保護の破れ — PRED-013 的中)
+# 量子情報網理論 v26.7 — 動的分解と副実験 (I: q⁴ 破れの的中 / II: spectral measure と pole なし)
 
-**第二十七期第 7 版 (I/II)。判定 (a) — 8 検査 PASS (25 s)。**
-**プログラム初の「凍結新規予言の的中」: PRED-013 (相互作用による χ_00 の q⁴→q²) が
-p = 1.804 < 3.0 で hit。** ただしこれは**計算実験内の機構予言**の的中であり、自然の
-観測量の予言ではない — README の PASS 分類では従来どおり別枠で数える。
-(II/II の動的 spectral measure ρ_AB(s) と cross 偏極器械は本版の残り登録課題。)
+**第二十七期第 7 版。判定 (a) — I: 8 検査 + II: 7 検査 PASS。**
+二つの主結果: (I) **プログラム初の「凍結新規予言の的中」— PRED-013 (相互作用による
+χ_00 の q⁴→q²) が p = 1.804 < 3.0 で hit** (計算実験内の機構予言であり自然の観測量
+ではない — PASS 分類の別枠計上は維持)。(II) **有限サイズ spectral measure の器械化 —
+f-sum rule 4.4e-16 で認証し、自由場に massless spin-2 pole なし (branch α, 登録予想の
+確認)**。cross 偏極器械 (T_xz point-split) は残る登録課題。
 
 ## 1. 何が凍結されていたか (覗き見なしの証明線)
 
@@ -63,16 +64,44 @@ V=0 の E₀ と χ_00(q₁,q₂) が 1 粒子 Dirac 海の厳密 Lehmann と一
 2. 走行前較正 (§1-4) は全て自由場の厳密参照で行い、相互作用系の数値は採点走行まで
    一度も計算していない。
 
-## 4. 登録課題 (II/II — 本版の残り)
+## 4. (II) 有限サイズ spectral measure — 自由場に pole なし
 
-- 動的 spectral measure ρ_AB^(N)(s) = Σ Z_n δ(s−s_n) (pole 判定 = residue の
-  体積 scaling s_n → 0 ∧ Z_n → Z_* > 0)・f-sum rule (二重交換子の期待値との
-  独立照合)・自由場 benchmark (massless spin-2 の δ(s=0) 不在ほか spec §7 の 5 項)。
-- cross 偏極 X = T_xz の point-split 器械と taste 認証 (plus/cross 縮退の判定)。
-- 1+1D 相互作用系の c₁^00 の定量 (本版は冪 p のみ — 係数の外挿は器械の拡張後)。
+`v267_spectral`: ρ_A^(N)(s) = Σ_n Z_n δ(s − s_n) (s = ΔE², 粒子–正孔対の離散和) を
+q = 2π/16 固定の体積列 N ∈ {16, 32, 64} で構成 (チャネルは Lean 辞書の D/S/L)。
+broadened plot ではなく離散 measure そのもの (spec §7 の凍結どおり)。
 
-## 5. 成果物
+- **[S1] f-sum rule (独立モーメント照合)**: Σ 2ΔE Z_A = ⟨0|[T_A†,[H,T_A]]|0⟩
+  (二重交換子 = 1 体演算子の相関行列 trace — 対和と完全に独立な経路) が
+  **dense 6.4e-13 / block 4.4e-16**。対分解のエネルギーと重みが正しいことの
+  端から端の証明。[S0] 対和 Σ2Z/ΔE = χ 器械の恒等 (0.0)。[S2] Z ≥ 0 (構成的)。
+- **[S3] threshold (m=0.5, 厳密)**: s_min = 1.1619 ≥ 4m² = 1 — さらに N とともに
+  2 粒子 threshold s_th = 4m² + q² = 1.1542 へ上から収束 (1.430 → 1.191 → 1.162)。
+  **[S4] massless の端は光円錐**: s_min/q² = 2.53 → 1.24 → **1.05** (N=16→64)。
+  連続体の運動学が教科書どおりに現れる — 器械は spectral 構造を正しく見ている。
+- **[S5 branch α — 主結果] 自由場に massless spin-2 pole なし (登録予想の確認)**:
+  最低クラスタの residue W₁(N) = ΣZ/V は
+  m=0.5: 5.9e-5 → 9.9e-7 → 3.2e-8 (**~N⁻⁵·⁴**) / m=0: 2.0e-5 → 5e-37 (最低対の
+  行列要素が選択則的に機械零へ)。**pole の定義 (s_n → 0 かつ Z_n → Z_* > 0) の
+  第二条件が両質量で否定される** — 「分母が零に近い」状態はあるが重みが体積と
+  ともに消える = 連続体のみ。誘導重力の pole は (もしあるなら) raw χ ではなく
+  1/Π の構造から来るべきもの、という v26.5 の登録予想が定量的に立った。
+- **縦 (ゲージ) チャネルの動的な姿**: χ_L = 0.107, f-sum 0.738 (N=64, m=0) —
+  純ゲージチャネルのスペクトル重みは spin-2 (0.154 / 1.078) と同規模。v26.6 の
+  「汚染は縦列に局在し c₁ 級」という静的所見の動的対応物。
 
-`sim/src/bin/v267b_q4break.rs` / `results/v267b_q4break.txt` (8 検査 PASS) /
-`results/v267b_q4break.json` / predictions.yml PRED-013 (**scored-hit**)。
-claims: QRN-GRAV-040。
+## 5. 登録課題 (残り)
+
+- cross 偏極 X = T_xz の point-split 器械と taste 認証 (plus/cross 縮退 —
+  spec §7 benchmark (v))。ω 実軸の retarded 応答と Euclidean の spectral 表現整合は
+  f-sum で第一モーメントまで認証済み — 高次モーメントは cross 器械と同時に。
+- 1+1D 相互作用系の c₁^00 の定量 (I は冪 p のみ)。
+- v26.8: 連続極限 universality (a→0, 2-taste Dirac 解析 form factor, q⁴ln q²,
+  Wilson 独立離散化) — **経路 B の最重要 falsifier** (spec §8)。
+
+## 6. 成果物
+
+I: `sim/src/bin/v267b_q4break.rs` / `results/v267b_q4break.txt` (8 検査 PASS) /
+`results/v267b_q4break.json` / predictions.yml PRED-013 (**scored-hit**) /
+claims QRN-GRAV-040。
+II: `sim/src/bin/v267_spectral.rs` / `results/v267_spectral.txt` (7 検査 PASS) /
+`results/v267_spectral.json` / claims QRN-GRAV-041。

@@ -2449,3 +2449,17 @@
     - "1+1D の 1 模型・1 相互作用形 (凍結プロトコルの意図的な狭さ)。冪 p の 2 点 fit — c₁^00 の係数の定量・外挿は将来の器械拡張。"
     - "m=0 可積分対照は本サイズでは漸近域外 (自由場ですら選択則零/p≈1.1) — 可積分線の q⁴ 判定は保留 (記録のみ)。"
     - "3+1D の相互作用系への外挿は未実施 — 機構 (保存 ⟺ q⁴) の次元非依存性は理論的期待に留まる。"
+
+- id: QRN-GRAV-041
+  version: "v26.7"
+  level: C4
+  claim: "有限サイズ spectral measure と massless pole の不在 (判定 a — 7 検査 PASS): ρ_A^(N)(s) = Σ_n Z_n δ(s−s_n) (s = ΔE², 粒子–正孔対, チャネルは Projector.lean の ŷ 辞書 D/S/L) を q = 2π/16 固定の体積列 N ∈ {16,32,64}, m ∈ {0,0.5} で構成した。器械認証: (i) **f-sum rule Σ 2ΔE Z_A = ⟨0|[T_A†,[H,T_A]]|0⟩ — 二重交換子 (1 体演算子の相関行列 trace) との独立モーメント照合が dense 6.4e-13 / block 4.4e-16**、(ii) 対和 Σ2Z/ΔE = χ 器械の内部恒等 (0.0)、(iii) Z ≥ 0 構成的、(iv) threshold: m=0.5 で s_min ≥ 4m² (厳密) かつ 2 粒子 threshold 4m²+q² = 1.1542 へ上から収束 (1.430→1.191→1.162)、massless の端は光円錐 s_min/q² = 2.53→1.24→1.05。**主結果 [S5 branch α]: 自由場に massless spin-2 pole なし** — pole の凍結判定 (s_n→0 かつ Z_n→Z_*>0) の第二条件が両質量で否定される: W₁(N) = 最低クラスタ ΣZ/V は m=0.5 で 5.9e-5→9.9e-7→3.2e-8 (~N⁻⁵·⁴)、m=0 で最低対の行列要素が選択則的に機械零 (~1e-37) — 重みは体積とともに消え、連続体のみ (v26.5 の登録予想の確認)。副産物: 縦 (純ゲージ) チャネルのスペクトル重み χ_L = 0.107 / f-sum 0.738 は spin-2 (0.154/1.078) と同規模 — v26.6 の静的汚染所見の動的対応物。"
+  status: "判定 a。「分母が零に近い」だけでは pole の証拠にならない、という spec §7 の凍結判定基準がそのまま器械になった。誘導重力の pole は (あるなら) 1/Π の構造から来るべきもの — 動的 metric の反転核は v26.8 (連続極限) の後"
+  evidence:
+    code: "sim/src/bin/v267_spectral.rs"
+    result: "results/v267_spectral.txt"
+    doc: "docs/uft-v26.7.md"
+  limitations:
+    - "plus 偏極 D のみ (cross X = T_xz は point-split 器械が要る — 登録課題)。plus/cross の連続極限縮退 (spec §7 benchmark v) は cross 認証後。"
+    - "q = 2π/16 の 1 点固定 (体積列の設計)。ω 実軸の retarded 応答は spectral 表現から従うが、第一モーメント (f-sum) までの認証 — 高次は将来。"
+    - "自由場のみ — 相互作用系の spectral measure (q⁴ 破れの動的対応) は many-body 器械の拡張後。"
