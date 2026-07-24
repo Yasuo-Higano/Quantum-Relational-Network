@@ -18,7 +18,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v26.7** (v25 系列は凍結済み — `v252_manifest` が常設監査) — Rust 145 本 + 探索層 python 5 本 + Lean 定理 36 本 (6 ファイル) +
+**現在の到達点: v26.7** (v25 系列は凍結済み — `v252_manifest` が常設監査) — Rust 145 本 + 探索層 python 5 本 + Lean 定理 50 本 (7 ファイル) +
 主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
 ([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
 最新統合は [docs/uft-v25.0.md](docs/uft-v25.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -246,7 +246,7 @@ docs/                バージョン付き理論文書
 sim/                 Rust ワークスペース (src/lib.rs: 乱数/複素数/Jacobi固有値/Bessel/SHA-256 等を自作)
   src/bin/           各バージョンのシミュレーション
 results/             実行出力 (文書中の数値の一次ソース)
-proofs/              Lean 4 機械検証 (定理 36 本 / 6 ファイル)
+proofs/              Lean 4 機械検証 (定理 50 本 / 7 ファイル)
 ```
 
 ## 研究ソフトウェアとしての体裁
