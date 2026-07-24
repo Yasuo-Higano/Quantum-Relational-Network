@@ -145,4 +145,5 @@
   data_not_used: "相互作用系の計算は未実施 — プロトコル (V∈{0,0.5,1.0} 斥力固定・N∈{10,12,14[,16]}・CG/厳密対角化・fit 規則) は paper/grav-vacuum-polarization-spec.md §7 で 2026-07-24 に凍結。外れてもモデル・V・fit 規則を交換しない"
   falsifier: "p(V=1.0) ≥ 3.0 → v26.3 の保存則機構の同定を降格し、q⁴ 保護の別起源を残高に登録"
   source: "v26.3 (機構) / spec §7 (プロトコル凍結)。実行バイナリ名 v267b_q4break も凍結済み"
-  status: registered
+  status: scored-hit
+  score: "hit (2026-07-24, v26.7-I): p(V=1.0, m=0.5, N=16) = 1.804 < 3.0 — V 系列で p = 3.795 (V=0) → 1.942 (V=0.5) → 1.804 (V=1.0) と q⁴ から q² へ急落。実行前凍結の補足宣言 (m=0.5 採点・可積分線は対照) と較正イベント (S0b/S2 ゲートの前提誤り — 物理値は run1/run2 で bit 同一を diff 証明) は results/v267b_q4break.txt と docs/uft-v26.7.md §3 に記録。**注意: 計算実験内の機構予言の的中であり、自然の観測量の予言ではない** (README の PASS 分類で別枠計上)"
