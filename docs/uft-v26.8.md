@@ -1,6 +1,6 @@
-# 量子情報網理論 v26.8 — 連続極限 universality 監査 (0: source matching / A: oracle / B: staggered / C: Wilson)
+# 量子情報網理論 v26.8 — 連続極限 universality 監査 (0/A/B/C/X — 4 比完成)
 
-**第二十七期第 8 版 (進行中)。判定 (a) — 0a: Lean 14 定理 / 0b: 8 検査 / A: 13 検査 / B: 6 検査 / C: 7 検査 PASS。**
+**第二十七期第 8 版。判定 (a) — 0a: Lean 14 定理 / 0b: 8 / A: 13 / B: 6 / C: 7 / X: 6 検査 PASS。**
 PROMPT/9 (spec §12) の中心命題の再定義に従う:
 
 > 次の中心課題は q⁴ln q² の測定ではない。**BOND-A の格子 source が、連続極限で
@@ -156,12 +156,37 @@ h 非結合; **D チャネルの β 汚染は差で O(p²) の improvement 級**
 - Wilson の格子 artifact は staggered より大きい (a=0.5 で +34% vs +17%) が
   a+a² モデルがよく効く — O(a) 項の存在と凍結 2 モデルの設計意図どおり。
 
-## 1. 登録済みの残り (PRED-016 の完成に必要)
+## X. v268x_completion — X チャネル 2 比 (4 比の universality 完成)
 
-- **X チャネルの one-loop 連続極限** (staggered: v268z 認証済み point-split /
-  Wilson: 混合ボンド転写) — PRED-016 の残り 2 比。
+staggered は v268z 認証済みの point-split (**全 k で厳密 taste-singlet** — S0 で
+閉形式構造を 1.1e-16 照合) を BZ 積分へ; Wilson は混合ボンド転写
+V = ½(αx sin kz + αz sin kx)。的は tree 正規化込みで staggered = 4·A_oracle
+(Z = 2)、Wilson = A_oracle/2。
+
+| 比 (2 モデル) | 値 |
+|---|---|
+| A_D^stag / 2A_or | 1.0102 / 0.9908 (v26.8-B) |
+| A_D^Wil / A_or | 0.9872 / 1.0058 (v26.8-C) |
+| **A_X^stag / 4A_or** | **0.9972 / 1.0026** (spread 0.5%) |
+| **A_X^Wil / (A_or/2)** | **0.9932 / 1.0032** (spread 1.0%) |
+
+**4/4 比が 1 ± 1.3% — spin-2 の両偏極 (D, X)・二離散化 (staggered/Wilson)・
+taste 数 (2 vs 1)・頂点正規化 (Z = 1, √2 系) の全てが同一の解析 oracle
+−1/(160π²) に交差整合した。** spec §12.8 の分岐表で最良の帰結:
+「**測定器が正しい。QRN や創発重力の証拠ではない**」— これで初めて
+`RenormalizedTTFormFactor` / `RegulatorUniversalTT` 型が (2% 精度で) 発行できる。
+
+**正直な線引き**: PRED-016 の登録バーは「1% 以内・系統 0.5%」— 現到達は
+max 偏差 1.3% (D チャネルの外挿 spread が支配) で**未達 → PRED-016 は interim**。
+精緻化 (a²ln a 級モデルの正当化・より小さい a・高次 fit) が残作業。
+
+## 1. 登録済みの残り
+
+- PRED-016 の 1% バーへの精緻化 (外挿系統の縮小)。
 - 三者一致の残り (lattice spectral density / dispersion 再構成)。
 - spin-0 sum rule (PRED-017) の格子側 (operator benchmark)。
+- **v26.9: 4D covariance closure** (h₀₀, h₀ᵢ, q₀, 10×10 kernel, 4D Ward —
+  Gate 5。ここまで 1/Π・graviton propagator・dynamic metric へ進まない)。
 
 ## 2. 成果物
 
@@ -178,3 +203,6 @@ claims: QRN-GRAV-045。
 C: `sim/src/bin/v268c_wilson.rs` / `results/v268c_wilson.txt` (7 検査 PASS) /
 `results/v268c_wilson.json` — **A₀/A_oracle = 1 ± 2%・r 普遍性 0.1%**。
 claims: QRN-GRAV-046。
+X: `sim/src/bin/v268x_completion.rs` / `results/v268x_completion.txt` (6 検査 PASS) /
+`results/v268x_completion.json` — **4/4 比 = 1 ± 1.3% (PRED-016 interim)**。
+claims: QRN-GRAV-047。

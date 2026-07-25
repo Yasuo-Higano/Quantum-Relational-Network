@@ -2532,3 +2532,17 @@
     - "D チャネルのみ (X = 混合ボンドの Wilson 転写は未構成)。massless 系列のみ (massive decoupling は staggered + oracle で両側成立済み — Wilson 側は未実施)。"
     - "Wilson の O(a) artifact は staggered (O(a²)) より大きく、a = 0.5 の格子 artifact +34% — 凍結 2 モデルの spread 1.9% が系統の主要部。"
     - "BOND-A の Wilson 転写 (on-site Wilson 片の h 非結合) は scheme 選択 — 別選択 (Wilson 片も scale) との差は O(a) 級で連続極限に影響しないが未検証。"
+
+- id: QRN-GRAV-047
+  version: "v26.8-X"
+  level: C2
+  claim: "X チャネル 2 比の連続極限 — 4 比の二離散化 universality 完成 (判定 a, 6 検査 PASS): staggered は v268z 認証済み point-split X (全 k で厳密 taste-singlet — 閉形式構造を 1.1e-16 で回帰) を BZ 積分へ、Wilson は混合ボンド転写 V = ½(αx sin kz + αz sin kx) (Z = 1)。的は tree 正規化込みで staggered = 4·A_oracle (Z = 2 の凍結構成)、Wilson = A_oracle/2。**結果: A_X^stag/4A_or = 0.9972/1.0026 (spread 0.5%)、A_X^Wil/(A_or/2) = 0.9932/1.0032 (spread 1.0%) — D の 2 比 (QRN-GRAV-045/046) と合わせ 4/4 比が 1 ± 1.3%**。spin-2 の両偏極 (D, X)・二離散化 (staggered/Wilson)・taste 数 (2 vs 1)・頂点正規化 (Z 系) の全てが同一の解析 oracle −1/(160π²) に交差整合 — spec §12.8 の分岐表で最良の帰結 (「測定器が正しい。QRN や創発重力の証拠ではない」)。RenormalizedTTFormFactor / RegulatorUniversalTT 型が 2% 精度で初めて発行可能。"
+  status: "判定 a — **PRED-016 は interim (正直判定): 登録バー『1% 以内・系統 0.5%』に対し現到達 max 1.3% (D の外挿 spread が支配) で未達**。精緻化 (外挿モデルの正当化・小 a・高次 fit) が残作業。開発記録: S0 検査コードの piece2 期待符号の転記ミス (Δ=0.94 がちょうど 2 倍項 — 頂点構成は v268z 認証のまま無変更)"
+  evidence:
+    code: "sim/src/bin/v268x_completion.rs"
+    result: "results/v268x_completion.txt"
+    doc: "docs/uft-v26.8.md"
+  limitations:
+    - "PRED-016 の登録精度 (1%/0.5%) 未達 — interim。X の Z = 2 / Z = 1 は tree 正規化 (凍結構成から厳密) であり、非摂動的 Z の測定ではない (自由場では tree が厳密なので十分)。"
+    - "Wilson X の h_xz への Wilson-β 結合を 0 に取る scheme 選択 (O(a) 自由度) — 別選択との比較は未実施。"
+    - "massless 系列のみ (X チャネルの massive decoupling は未実施 — D で両側成立済み)。"
