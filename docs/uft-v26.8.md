@@ -1,6 +1,6 @@
-# 量子情報網理論 v26.8 — 連続極限 universality 監査 (0: source matching / A: 解析 oracle / B: staggered 連続極限)
+# 量子情報網理論 v26.8 — 連続極限 universality 監査 (0: source matching / A: oracle / B: staggered / C: Wilson)
 
-**第二十七期第 8 版 (進行中)。判定 (a) — 0a: Lean 14 定理 / 0b: 8 検査 / A: 13 検査 / B: 6 検査 PASS。**
+**第二十七期第 8 版 (進行中)。判定 (a) — 0a: Lean 14 定理 / 0b: 8 検査 / A: 13 検査 / B: 6 検査 / C: 7 検査 PASS。**
 PROMPT/9 (spec §12) の中心命題の再定義に従う:
 
 > 次の中心課題は q⁴ln q² の測定ではない。**BOND-A の格子 source が、連続極限で
@@ -136,14 +136,32 @@ null 結合は k 点ごとに直接累積 (相殺深さ (aQ)⁴ ≫ f64 床 — 
   (iii) oracle 比較値を placeholder 定数で置いた不備 → 閉形式 ρ_D(s;m) から
   binary 内で計算する形に修正 (「出所不明の定数は禁じ手」)。
 
-## 1. 登録済みの残り (spec §12.5 — 本版の C)
+## C. v268c_wilson — Wilson 独立離散化 (二離散化 universality の D チャネル成立)
 
-- **v26.8-C**: Wilson 独立離散化 (時間連続・空間格子 Hamiltonian — taste trap
-  回避、1 flavor なので的は 1×A_oracle)・外挿 2 モデル事前登録 — **PRED-016 の
-  完成** (A^stag_D/A_or = 1 は達成済み; A^Wil_D, X チャネル 2 種が残り)。
-  spin-0 sum rule (PRED-017) は operator benchmark として並走。
-- 三者一致の残り (lattice spectral density / dispersion 再構成の 2 経路 —
-  本版 B は直接 null projection のみ)。
+空間 Wilson Hamiltonian H_W(k) = Σαᵢ sin kᵢ + β·M(k), M(k) = m + rΣ(1−cos kᵢ)
+(時間連続 — taste trap 回避、単一ノード k=0 の **1 Dirac flavor**)。**H_W は厳密に
+Dirac 型 (H² = E²·1 — 機械精度で検査)** なので射影子が閉形式 — 対角化不要の
+BZ 積分。BOND-A 頂点 V_ii = −½[αᵢ sin kᵢ − rβ cos kᵢ] (on-site の m, 3rβ は
+h 非結合; **D チャネルの β 汚染は差で O(p²) の improvement 級**に落ちる)。
+
+- **A(a)/A_oracle = 1.3371 (a=0.5) → 1.0042 (a=0.032)**、凍結 2 モデル外挿
+  (a+a² / a²+a⁴ — spec §12.5) = **0.9872 / 1.0058 (spread 1.9%) = 1 ± 2%** —
+  **Wilson-D は 1×A_oracle に収束。staggered の 2× と合わせ、taste 数 (2 vs 1)
+  まで交差検証された二離散化 universality (D チャネル) が成立**。
+- **regulator 内普遍性 (新ゲート)**: r = 1.0 と r = 0.7 (irrelevant 結合の変更 —
+  a = 0.5 では 1.337 vs 1.387 と有意に違う) の外挿 A₀ が **0.1% で一致** —
+  「同じ連続極限」の直接実演。
+- q̂ 変種 1.0% 一致。変異 (V_zz の rβ 片符号反転 = 頂点 ≠ ∂H/∂h) は D の β 汚染が
+  O(1) に暴れて 2467× の逸脱 — BOND-A 整合性の感度証明。
+- Wilson の格子 artifact は staggered より大きい (a=0.5 で +34% vs +17%) が
+  a+a² モデルがよく効く — O(a) 項の存在と凍結 2 モデルの設計意図どおり。
+
+## 1. 登録済みの残り (PRED-016 の完成に必要)
+
+- **X チャネルの one-loop 連続極限** (staggered: v268z 認証済み point-split /
+  Wilson: 混合ボンド転写) — PRED-016 の残り 2 比。
+- 三者一致の残り (lattice spectral density / dispersion 再構成)。
+- spin-0 sum rule (PRED-017) の格子側 (operator benchmark)。
 
 ## 2. 成果物
 
@@ -157,3 +175,6 @@ claims: QRN-GRAV-044。
 B: `sim/src/bin/v268b_continuum.rs` / `results/v268b_continuum.txt` (6 検査 PASS) /
 `results/v268b_continuum.json` — **A₀/(2A_oracle) = 1 ± 2% (PRED-016 前半 hit)**。
 claims: QRN-GRAV-045。
+C: `sim/src/bin/v268c_wilson.rs` / `results/v268c_wilson.txt` (7 検査 PASS) /
+`results/v268c_wilson.json` — **A₀/A_oracle = 1 ± 2%・r 普遍性 0.1%**。
+claims: QRN-GRAV-046。

@@ -2518,3 +2518,17 @@
     - "D チャネルのみ (X = point-split は v268z で tree-level 認証済みだが one-loop 連続極限は未実施)。三者一致のうち直接 null projection のみ (spectral density / dispersion 再構成は登録課題)。"
     - "外挿 spread 1.9% は 2 モデル (a²/a+a²) の差 — a²ln a 級の混在を示唆。PRED-016 の最終目標 (1%・系統 0.5%) には Wilson 側と外挿モデルの拡充が要る。"
     - "無限体積 BZ 積分 (有限体積器械との差は S0 の 4.1e-7 が N=64 で十分小さいことを示す)。"
+
+- id: QRN-GRAV-046
+  version: "v26.8-C"
+  level: C2
+  claim: "Wilson 独立離散化の連続極限 — 二離散化 universality (D チャネル) 成立 (判定 a, 7 検査 PASS): 空間 Wilson Hamiltonian H_W(k) = Σαᵢsin kᵢ + β(m + rΣ(1−cos kᵢ)) (時間連続 — taste trap 回避, 単一ノード = 1 Dirac flavor) は厳密に Dirac 型 (H² = E²·1 機械精度) — 射影子閉形式の BZ 積分で continuum trajectory を走らせた。BOND-A 頂点 V_ii = −½[αᵢsin kᵢ − rβcos kᵢ] (on-site m, 3rβ は h 非結合; 頂点 = ∂H/∂h を行列 FD で認証 3.9e-11)。D チャネルの β 汚染は差で O(p²) improvement 級。**主結果: A(a)/A_oracle = 1.3371 (a=0.5) → 1.0042 (a=0.032)、凍結 2 モデル外挿 (a+a²/a²+a⁴ — spec §12.5) = 0.9872/1.0058 (spread 1.9%) = 1 ± 2% — Wilson-D は 1×A_oracle = −1/(160π²) に収束。staggered の 2× (QRN-GRAV-045) と合わせ taste 数 (2 vs 1) まで交差検証された二離散化 universality が D チャネルで成立**。regulator 内普遍性 (新ゲート): r = 1.0 と 0.7 (a=0.5 で 1.337 vs 1.387) の外挿 A₀ が 0.1% で一致 — 同一連続極限の直接実演。q̂ 変種 1.0%。変異 (rβ 片符号反転 = 頂点 ≠ ∂H/∂h) は 2467× の逸脱で検出。"
+  status: "判定 a — PRED-016 の D チャネル 2 比 (stag/Wil) 完了。残りは X チャネル 2 比 (staggered point-split の one-loop / Wilson 混合ボンド転写) で PRED-016 の完全採点"
+  evidence:
+    code: "sim/src/bin/v268c_wilson.rs"
+    result: "results/v268c_wilson.txt"
+    doc: "docs/uft-v26.8.md"
+  limitations:
+    - "D チャネルのみ (X = 混合ボンドの Wilson 転写は未構成)。massless 系列のみ (massive decoupling は staggered + oracle で両側成立済み — Wilson 側は未実施)。"
+    - "Wilson の O(a) artifact は staggered (O(a²)) より大きく、a = 0.5 の格子 artifact +34% — 凍結 2 モデルの spread 1.9% が系統の主要部。"
+    - "BOND-A の Wilson 転写 (on-site Wilson 片の h 非結合) は scheme 選択 — 別選択 (Wilson 片も scale) との差は O(a) 級で連続極限に影響しないが未検証。"
