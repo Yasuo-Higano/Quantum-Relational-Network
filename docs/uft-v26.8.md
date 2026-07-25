@@ -1,6 +1,6 @@
-# 量子情報網理論 v26.8 — 連続極限 universality 監査 (0: source matching と定義閉包 — Gate 1 開通)
+# 量子情報網理論 v26.8 — 連続極限 universality 監査 (0: source matching / A: 解析 oracle — Gate 1・2 開通)
 
-**第二十七期第 8 版 (進行中 — 本節は v26.8-0)。判定 (a) — 0a: Lean 14 定理 / 0b: 8 検査 PASS。**
+**第二十七期第 8 版 (進行中)。判定 (a) — 0a: Lean 14 定理 / 0b: 8 検査 / A: 13 検査 PASS。**
 PROMPT/9 (spec §12) の中心命題の再定義に従う:
 
 > 次の中心課題は q⁴ln q² の測定ではない。**BOND-A の格子 source が、連続極限で
@@ -66,16 +66,50 @@ N=8 周期格子の位置空間演算子の平面波 sandwich と **5.1e-15** �
    Γx⊗I 構造 (1-link x 変位は常に (−1)^{sx} 重み) で singlet のまま。taste 構造を
    守るのは **η parity** — 変異は parity 破りに再設計 (r = 0.707 で検出)。
 
-## 1. 登録済みの残り (spec §12.3–12.5 — 本版の A/B/C)
+## A. v268a_oracle — 解析 one-loop oracle の三重経路一致 (Gate 2 開通)
 
-- **v26.8-A**: 解析 one-loop oracle の二重導出 (直接 Feynman 積分 vs 曲率 form
-  factor/Weyl anomaly) — Gate 2: 一致まで数値実装禁止。規約凍結リストは spec §12.3。
-- **v26.8-B**: staggered TT continuum limit — null-combination 推定器 (q⁰/q²/q⁴
-  counterterm を代数的に消す)・三者一致 (spectral/dispersion/直接)・continuum
-  trajectory (am = a·m_phys)。massless/massive 二系列。
+規約を凍結 (Belinfante 頂点 Γ_ij = ¼[α_i(2p+q)_j + (i↔j)]、u†u = 1、
+χ = ∫dE 2σ/E、null-combination Σw = Σwq² = Σwq⁴ = 0, Σwq⁴ln q² = 1 —
+v268z の matching certificate と同一規約チェーン) した上で、1 Dirac flavor の
+TT (D) チャネル oracle を**三重経路**で導出した (13 検査 PASS):
+
+- **閉形式の導出と認証**: スピン和 tr[P₊(a·α)P₋(a·α)] =
+  (1/E₁E₂)[(E₁E₂+k₁·p+m²)a² − 2(p·a)²] が明示 4×4 行列トレースと 8.9e-16。
+  φ 平均で **D と X̂ = (T_xz+T_zx)/√2 の被積分が恒等に一致** (spin-2 の 2 偏極が
+  同一 form factor — σ_X̂ = σ_D を独立実装で 6.7e-16)。
+- **Lorentz 不変性の器械証明**: σ_D(E;q) が s = E²−q² のみに依存 (異 q 同 s で
+  1.6e-15) ⇒ KL 表示 χ(q) = ∫ds ρ(s)/(s+q²) が厳密に従う。massless の
+  **ρ_D(s) = s²/(160π²) (閉形式・厳密)**、massive も閉形式
+  (pE_p/4π²)[(2/3)p² − (4/15)p⁴/E_p²] を導出・認証 (5.6e-16 / 1e-8 級)。
+- **三重経路の一致 (Gate 2)**: Route I (直接ループの球座標求積) = Route II
+  (吸収部→分散, 安定通分形 K(s) = n₀/Π(s+qᵢ²)) = Route III (解析):
+  **A = −1/(160π²) = −6.33257e-4、すなわち 16π²A = −1/10 (厳密)** —
+  I/II 相対差 4.6e-8、II/III 3.1e-9。**A(2 taste) = −1/(80π²) が v26.8-B の
+  格子比較の分母 (PRED-016)**。
+- **λ スケール不変 1.8e-15 (branch α)**: 非局所形は純 q⁴ln q² — v26.7.1 の
+  M² 修正と同様、q³ 型の可能性は KL 表示 + ρ の解析性が排除。
+- **massive decoupling (PRED-018 の oracle 側)**: A(m)/A(0) = 0.61 → 0.023
+  (m/q̄ = 0.5 → 4)、大質量冪 **m⁻¹·⁹⁰ ≈ (q/m)²** — 教科書どおりの decoupling。
+- **スカラー和則 (自前規約)**: ∫ρ_θ(s)/s³ ds = **1/(80π²)** (3.5e-12,
+  m ∈ {0.5,1,2} で不変)。文献規約 σ_f = ρ_θ/(3s³) では 1/(240π²)、2 taste で
+  1/(120π²) — PRED-017 の的の oracle 側。
+- 開発記録 (run1→run3): (i) 素朴な Σwᵢσ(E;qᵢ) は大 E 域の **f64 桁落ち**
+  (E⁴ 項の解析的相殺が数値では 1e-16×|w|×積分域で崩壊) で O(10⁷) 倍の誤差 —
+  **通分形 K(s) = n₀/Π(s+qᵢ²) (n₃ = n₂ = n₁ = 0 が Σw 拘束で恒等)** に書き換えて
+  桁落ちゼロ。(ii) Route I は円錐折れ目と遠方 Jacobian で発散級 — 球座標 +
+  閾値パネル + 冪外挿 tail に再設計。(iii) スカラー照合の引数ミス (q=0 の対は
+  k₁ = p であって −p でない)。「解析的に消える項は数値でも消してから積分せよ」。
+
+## 1. 登録済みの残り (spec §12.4–12.5 — 本版の B/C)
+
+- **v26.8-B**: staggered TT continuum limit — 格子側の null-combination A_null(a)
+  (同じ推定器) を continuum trajectory (am = a·m_phys, aq = a·q_phys) で a→0 外挿し、
+  **A_oracle(2 taste) = −1/(80π²) と比較** (PRED-016 の半分)。三者一致
+  (lattice spectral / dispersion 再構成 / 直接 null projection)。
+  massless/massive 二系列 (massive は PRED-018 の decoupling 照合)。
 - **v26.8-C**: Wilson 独立離散化 (時間連続 Hamiltonian — taste trap 回避)・
-  外挿 2 モデル事前登録 — PRED-016。spin-0 sum rule (PRED-017) は operator
-  benchmark として並走。
+  外挿 2 モデル事前登録 — PRED-016 の完成。spin-0 sum rule (PRED-017) は
+  operator benchmark として並走。
 
 ## 2. 成果物
 
@@ -83,3 +117,6 @@ N=8 周期格子の位置空間演算子の平面波 sandwich と **5.1e-15** �
 0b: `sim/src/bin/v268z_source_matching.rs` / `results/v268z_source_matching.txt`
 (8 検査 PASS) / `results/v268z_source_matching.json` / PRED-015 (**scored-hit**)。
 claims: QRN-GRAV-043。
+A: `sim/src/bin/v268a_oracle.rs` / `results/v268a_oracle.txt` (13 検査 PASS) /
+`results/v268a_oracle.json` — **A_oracle(1 Dirac) = −1/(160π²) 凍結**。
+claims: QRN-GRAV-044。

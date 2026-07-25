@@ -2490,3 +2490,17 @@
     - "tree-level (一次頂点) の matching — one-loop の taste 分離・q⁴ln q² 係数は v26.8-A/B の登録課題。接触項 (二次) の taste 構造は未検査。"
     - "ノード近傍の連続 (p, q) での解析形 ladder — 有限格子の可換運動量点では S2 が照合するが、ladder 自体は無限体積の解析計算。"
     - "X split の Z_X ≈ 2 は本版の規格化選択 — 個別繰り込み条件 (spec §12.2-4) の適用は v26.8-B。Lean 側 (ProjectorND) の乗積表の任意 d 一般性は「係数が τ にアフィン」という縮約次数勘定 + 2 点認証による (次数勘定自体は未形式化 — Projector.lean と同じ限界規約)。"
+
+- id: QRN-GRAV-044
+  version: "v26.8-A"
+  level: C2
+  claim: "解析 one-loop oracle の三重経路一致 — Gate 2 開通 (判定 a, 13 検査 PASS): 連続 3+1D 自由 Dirac 場 (1 flavor) の TT (D) チャネル静的感受率の null-combination 係数を、凍結規約 (Belinfante 頂点 = v268z の matching と同一チェーン・χ = ∫dE 2σ/E・Σw = Σwq² = Σwq⁴ = 0, Σwq⁴ln q² = 1) の下で三重に導出した。(i) スピン和閉形式 tr[P₊(a·α)P₋(a·α)] = (1/E₁E₂)[(E₁E₂+k₁·p+m²)a² − 2(p·a)²] が明示行列トレースと 8.9e-16、(ii) **Lorentz 不変性の器械証明**: σ_D(E;q) = ρ(E²−q²) (異 q 同 s で 1.6e-15) ⇒ KL 表示が厳密、massless の **ρ_D(s) = s²/(160π²) (閉形式)** と massive 閉形式を認証、(iii) **Route I (直接ループ) = Route II (分散・安定通分形) = Route III (解析): A = −1/(160π²)、16π²A = −1/10 厳密** (I/II 4.6e-8, II/III 3.1e-9)。λ スケール不変 1.8e-15 (branch α = 純 q⁴ln q²)。σ_X̂ = σ_D 6.7e-16 (spin-2 の 2 偏極の縮退)。massive decoupling A(m)/A(0) → m⁻¹·⁹⁰ ≈ (q/m)² (PRED-018 の oracle 側)。スカラー和則 ∫ρ_θ/s³ = 1/(80π²) (3.5e-12, 質量不変 — 2 taste で PRED-017 の的 1/(120π²) に対応)。**A_oracle(2 taste) = −1/(80π²) を v26.8-B の格子比較の分母として凍結** (PRED-016)。"
+  status: "判定 a — Gate 2 開通、v26.8-B (staggered TT continuum limit) へ進む資格。開発記録 (run1→run3): 素朴な Σwσ は大 E 域の f64 桁落ち (解析的相殺の数値崩壊) で O(10⁷) 倍の誤差 — 通分形 K(s) = n₀/Π(s+qᵢ²) (n₃=n₂=n₁=0 が Σw 拘束で恒等) で桁落ちゼロに。Route I は球座標 + 閾値パネル + 冪外挿 tail に再設計。教訓:「解析的に消える項は数値でも消してから積分せよ」"
+  evidence:
+    code: "sim/src/bin/v268a_oracle.rs"
+    result: "results/v268a_oracle.txt"
+    doc: "docs/uft-v26.8.md"
+  limitations:
+    - "D (spin-2) チャネルと θ (スカラー和則) のみ — full form factor 分解 (spin-0 の q⁴ln 係数等) は v26.9 の 4D covariance closure と共に。"
+    - "文献の Weyl-anomaly 係数との写像は未転記 (規約辞書の詳細照合は文献比較が実際に必要になる時点で — Gate 2 は自前三重導出で立つ)。"
+    - "oracle は連続・無限体積の量 — 格子側 (taste 2 倍・a→0 外挿・個別 Z) との比較は v26.8-B/C (PRED-016) の課題。"
