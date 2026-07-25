@@ -177,7 +177,7 @@
   competing: "不一致 → source・taste 規格化・renormalization・continuum scaling のいずれかの誤り (spec §12.8 の分岐表で切り分け)"
   data_not_used: "v26.8-B/C は未実施。oracle (v26.8-A) は二重導出一致 (Gate 2) 後に凍結"
   falsifier: "両離散化が互いに一致し oracle と不一致 → 共通の規約誤り / 片方のみ不一致 → その離散化の source/fit 誤り"
-  source: "spec §12.3–12.5 (2026-07-25 凍結)"
+  source: "spec §12.3–12.5 (2026-07-25 凍結)。中間記録 (2026-07-25, v26.8-B): A_D^stag/A_oracle = 1.0102/0.9908 (2 モデル, spread 1.9%) — 前半 hit。残り = A^Wilson (v26.8-C) と X チャネル 2 種"
   status: registered
 
 - id: PRED-017
@@ -198,4 +198,6 @@
   data_not_used: "未実施 (v26.8-B massive 系列)"
   falsifier: "decoupling の破れ → trajectory 設計 (lattice-unit m 固定の混入) を疑う"
   source: "spec §12.4 (2026-07-25 凍結)"
-  status: registered
+  status: scored-hit
+  score: "hit (2026-07-25, v26.8-A/B の両側): oracle 側 — A(m)/A(0) の大質量冪 m⁻¹·⁹⁰ ≈ (q/m)² (v268a S8, 閉形式 ρ_D(s;m) 認証済み)。格子側 — continuum trajectory (m^lat = a·m_phys) の外挿比 A₀(m_phys=1)/A₀(0) = 0.1793 が oracle 比 0.1741 と 3.0% で一致 (v268b S4)。スコープ注: q̄/m ~ 0.75 の中間領域での検証 — 深い q ≪ m 領域は oracle 冪で確認"
+

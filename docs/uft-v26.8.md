@@ -1,6 +1,6 @@
-# 量子情報網理論 v26.8 — 連続極限 universality 監査 (0: source matching / A: 解析 oracle — Gate 1・2 開通)
+# 量子情報網理論 v26.8 — 連続極限 universality 監査 (0: source matching / A: 解析 oracle / B: staggered 連続極限)
 
-**第二十七期第 8 版 (進行中)。判定 (a) — 0a: Lean 14 定理 / 0b: 8 検査 / A: 13 検査 PASS。**
+**第二十七期第 8 版 (進行中)。判定 (a) — 0a: Lean 14 定理 / 0b: 8 検査 / A: 13 検査 / B: 6 検査 PASS。**
 PROMPT/9 (spec §12) の中心命題の再定義に従う:
 
 > 次の中心課題は q⁴ln q² の測定ではない。**BOND-A の格子 source が、連続極限で
@@ -100,16 +100,50 @@ TT (D) チャネル oracle を**三重経路**で導出した (13 検査 PASS):
   閾値パネル + 冪外挿 tail に再設計。(iii) スカラー照合の引数ミス (q=0 の対は
   k₁ = p であって −p でない)。「解析的に消える項は数値でも消してから積分せよ」。
 
-## 1. 登録済みの残り (spec §12.4–12.5 — 本版の B/C)
+## B. v268b_continuum — staggered TT の連続極限 (PRED-016 前半 hit)
 
-- **v26.8-B**: staggered TT continuum limit — 格子側の null-combination A_null(a)
-  (同じ推定器) を continuum trajectory (am = a·m_phys, aq = a·q_phys) で a→0 外挿し、
-  **A_oracle(2 taste) = −1/(80π²) と比較** (PRED-016 の半分)。三者一致
-  (lattice spectral / dispersion 再構成 / 直接 null projection)。
-  massless/massive 二系列 (massive は PRED-018 の decoupling 照合)。
-- **v26.8-C**: Wilson 独立離散化 (時間連続 Hamiltonian — taste trap 回避)・
-  外挿 2 モデル事前登録 — PRED-016 の完成。spin-0 sum rule (PRED-017) は
-  operator benchmark として並走。
+**経路 B の最重要 falsifier の前半が通った。** 8 成分折込み基底の H(k) を無限体積
+格子の厳密な 1 粒子 Hamiltonian として、χ_D の BZ 積分 (ノード中心セル [0,π)³,
+3 段入れ子箱 + ノード点分割の GL 求積) を continuum trajectory
+(q^lat = a·Q, m^lat = a·m_phys — lattice-unit m 固定の a→0 は禁止) で測った。
+null 結合は k 点ごとに直接累積 (相殺深さ (aQ)⁴ ≫ f64 床 — v26.8-A の教訓の適用)。
+
+- **[S0] 器械回帰が決定的**: BZ 積分の χ_D(2π/16) が v26.7-II の有限体積公表値と
+  **4.1e-7** で一致 (0.154068 = 0.154068) — 新エンジンの規格化・頂点・占有の全てが
+  認証済み器械系と接続された。
+- **[S2] 主結果 — PRED-016 前半 hit**:
+
+  | a | A(a)/2A_oracle |
+  |---|---|
+  | 0.50 | 1.1653 |
+  | 0.25 | 1.0660 |
+  | 0.125 | 1.0222 |
+  | 0.0625 | 1.0065 |
+  | **0.032** | **1.0014** |
+
+  単調な O(a²) 級の収束。2 モデル外挿 (a² / a+a²) = 1.0102 / 0.9908 —
+  **A₀/(2A_oracle) = 1 ± 0.02 (spread 1.9%)**。**staggered の繰り込み後 TT form
+  factor は連続 2-taste Dirac に収束する** (taste 数 2 も同時に測定されたことになる
+  — 1 taste なら比は 0.5 に収束したはず)。
+- **[S3] q̂ = (2/a)sin(aq/2) 変種**: 外挿一致 1.1% (spec §12.1 の二重運動量規則)。
+- **[S4] massive decoupling (PRED-018 の格子側)**: A₀(m_phys=1)/A₀(0) = 0.1793 vs
+  oracle 比 0.1741 (閉形式 ρ から計算) — **3.0% 一致**。oracle 側の冪 (q/m)²
+  (v26.8-A S8) と合わせ PRED-018 は両側から立った。
+- [S1] 求積自己整合 4.1e-4 / [S5] 変異 (η parity 破り) 検出。
+- 開発記録 (run1→run5): (i) ノード構造 (スケール aQ_min) を解像しない箱設計を
+  S1 が 35% で検出 → 3 段入れ子 + ノード点分割へ。(ii) massive 対照の初版は
+  m_phys = 2.0 で am = 0.7 の artifact 支配 → m_phys = 1.0 + 細 a 系列に変更。
+  (iii) oracle 比較値を placeholder 定数で置いた不備 → 閉形式 ρ_D(s;m) から
+  binary 内で計算する形に修正 (「出所不明の定数は禁じ手」)。
+
+## 1. 登録済みの残り (spec §12.5 — 本版の C)
+
+- **v26.8-C**: Wilson 独立離散化 (時間連続・空間格子 Hamiltonian — taste trap
+  回避、1 flavor なので的は 1×A_oracle)・外挿 2 モデル事前登録 — **PRED-016 の
+  完成** (A^stag_D/A_or = 1 は達成済み; A^Wil_D, X チャネル 2 種が残り)。
+  spin-0 sum rule (PRED-017) は operator benchmark として並走。
+- 三者一致の残り (lattice spectral density / dispersion 再構成の 2 経路 —
+  本版 B は直接 null projection のみ)。
 
 ## 2. 成果物
 
@@ -120,3 +154,6 @@ claims: QRN-GRAV-043。
 A: `sim/src/bin/v268a_oracle.rs` / `results/v268a_oracle.txt` (13 検査 PASS) /
 `results/v268a_oracle.json` — **A_oracle(1 Dirac) = −1/(160π²) 凍結**。
 claims: QRN-GRAV-044。
+B: `sim/src/bin/v268b_continuum.rs` / `results/v268b_continuum.txt` (6 検査 PASS) /
+`results/v268b_continuum.json` — **A₀/(2A_oracle) = 1 ± 2% (PRED-016 前半 hit)**。
+claims: QRN-GRAV-045。
