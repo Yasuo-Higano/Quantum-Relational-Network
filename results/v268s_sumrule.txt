@@ -27,4 +27,4 @@
 
 [判定] 事前登録 (a): **PRED-017 scored-hit — 両離散化のスカラー和則が taste 数どおり連続値に収束** (operator benchmark — gravitational response とは呼ばない)
 
-総合判定: [PASS] (1 s)
+総合判定: [PASS] (6 s)

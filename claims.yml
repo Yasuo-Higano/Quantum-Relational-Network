@@ -2714,3 +2714,16 @@
     - "自由場の判定 — 相互作用系で普遍 q² 項が生成される可能性は封印条件付きで開いている (v26.7 の q⁴ 破れ PRED-013 が相互作用の入口)。"
     - "staggered・D チャネル・q ∈ [0.15, 0.9] 窓。開発記録: F2 run1 のバー 0.2 は log 増強落ちの誤較正 → 導出値 0.232 照合に強化。"
     - "凍結解釈: 分岐 (b) は『予言どおり』であり発見ではない — pole の不在は v26.7-II/v26.7.1 の有限サイズ判定とも整合。"
+
+- id: QRN-META-028
+  version: "v27.0-D"
+  level: C5
+  claim: "第二十七期 完結 (期統合, 2026-07-28): v26.1 (flavor prequential — 台帳赤字のまま公表) → v26.2–26.7 (BOND-A 静的監査・完全核・PRED-013 的中・no-pole) → v26.8 (連続極限 universality: 4 比 0.14%・和則・三者一致 — PRED-013〜018 全て scored) → v26.9 (4D covariance closure: 動的 Ward 144 恒等式・Belinfante 完成 λ = −1/8・σ = ρ₂P₂ 崩壊・負の結果 1 件凍結) → v27.0 (厳密 4D kernel・温度 universality・**dynamic metric fork = 分岐 (b) external metric 確定**)。スイート: 実行 33 本 PASS 268 + 引用 129 本 PASS 856 = **総計 PASS 1124 / FAIL 0**。正直な残高: 的中は全て計算実験内の機構予言 — **自然の観測量の的中 0・独立外部再現 0**。経路 B は vacuum-polarization audit として完結 (凍結解釈: 測定器の証明であり QRN・創発重力の証拠ではない)。第二十八期 = QRN-Core v1 の定義 (uft-v27.0.md §D.3 の要件 4 項 — 定義完了まで広域モジュール追加停止維持)。"
+  status: "期統合 — テーゼ「予言の台帳は赤字でも、測定器は黒字にできる」"
+  evidence:
+    code: "sim/src/bin/v270c_fork.rs"
+    result: "results/v270_suite.txt"
+    doc: "docs/uft-v27.0.md"
+  limitations:
+    - "スイートは増分 (完全再計算の儀式は v25.2 の 905 PASS が直近 — 次回儀式は第二十八期の節目で)。"
+    - "外部作業が未消化: anomaly-search/modular-BW 投稿・第三者再実装公募 (最優先マイルストーン)。"

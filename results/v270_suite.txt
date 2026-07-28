@@ -1,0 +1,1532 @@
+===== sim/target/release/v01_gr ===== [引用]
+[引用] ソース不変 (src sha256 cfd0b9fd2a6d…) — 2026-07-22 の実行結果 results/v01_gr.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v01_qm ===== [引用]
+[引用] ソース不変 (src sha256 a41ee0bf08d8…) — 2026-07-22 の実行結果 results/v01_qm.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v02_pimc ===== [引用]
+[引用] ソース不変 (src sha256 79dc749c991c…) — 2026-07-22 の実行結果 results/v02_pimc.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v03_phi4 ===== [引用]
+[引用] ソース不変 (src sha256 6489fc7ac703…) — 2026-07-22 の実行結果 results/v03_phi4.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v04_u1 ===== [引用]
+[引用] ソース不変 (src sha256 9eb5ad3b11b8…) — 2026-07-22 の実行結果 results/v04_u1.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v05_entangle ===== [引用]
+[引用] ソース不変 (src sha256 3a3e1d3a6a6c…) — 2026-07-22 の実行結果 results/v05_entangle.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v06_causet ===== [引用]
+[引用] ソース不変 (src sha256 2daaf36259a6…) — 2026-07-22 の実行結果 results/v06_causet.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v06_dt ===== [引用]
+[引用] ソース不変 (src sha256 de333d3186b8…) — 2026-07-22 の実行結果 results/v06_dt.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v07_infogeom ===== [引用]
+[引用] ソース不変 (src sha256 889ba7b2e8ae…) — 2026-07-22 の実行結果 results/v07_infogeom.txt を引用 (PASS 1 / FAIL 0)
+----- cite -----
+===== sim/target/release/v08_page ===== [引用]
+[引用] ソース不変 (src sha256 8f85b9a3cd13…) — 2026-07-22 の実行結果 results/v08_page.txt を引用 (PASS 1 / FAIL 0)
+----- cite -----
+===== sim/target/release/v101_pairing ===== [引用]
+[引用] ソース不変 (src sha256 16ec1c67d98f…) — 2026-07-22 の実行結果 results/v101_pairing.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v102_geopair ===== [引用]
+[引用] ソース不変 (src sha256 a7788f7b9bf5…) — 2026-07-22 の実行結果 results/v102_geopair.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v103_pairgeom ===== [引用]
+[引用] ソース不変 (src sha256 85b98ef9d576…) — 2026-07-22 の実行結果 results/v103_pairgeom.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v11_quench ===== [引用]
+[引用] ソース不変 (src sha256 bb3c875fa0c9…) — 2026-07-22 の実行結果 results/v11_quench.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v111_exceptional ===== [引用]
+[引用] ソース不変 (src sha256 b5b3e0dd6787…) — 2026-07-22 の実行結果 results/v111_exceptional.txt を引用 (PASS 17 / FAIL 0)
+----- cite -----
+===== sim/target/release/v112_orbifold ===== [引用]
+[引用] ソース不変 (src sha256 e2a37e97a140…) — 2026-07-22 の実行結果 results/v112_orbifold.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v113_orient ===== [引用]
+[引用] ソース不変 (src sha256 3a0dfba333d5…) — 2026-07-22 の実行結果 results/v113_orient.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v114_tensorcore ===== [引用]
+[引用] ソース不変 (src sha256 64d3222bebad…) — 2026-07-22 の実行結果 results/v114_tensorcore.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v12_erepr ===== [引用]
+[引用] ソース不変 (src sha256 9b08e37428bf…) — 2026-07-22 の実行結果 results/v12_erepr.txt を引用 (PASS 1 / FAIL 0)
+----- cite -----
+===== sim/target/release/v121_tiltflux ===== [引用]
+[引用] ソース不変 (src sha256 6fe94289624c…) — 2026-07-23 の実行結果 results/v121_tiltflux.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v122_tiltwilson ===== [引用]
+[引用] ソース不変 (src sha256 9ba9114be705…) — 2026-07-23 の実行結果 results/v122_tiltwilson.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v123_fluxscan ===== [引用]
+[引用] ソース不変 (src sha256 e95ddaf31ec5…) — 2026-07-23 の実行結果 results/v123_fluxscan.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v13_qec ===== [引用]
+[引用] ソース不変 (src sha256 b328bc4f549c…) — 2026-07-22 の実行結果 results/v13_qec.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v131_lanczos ===== [引用]
+[引用] ソース不変 (src sha256 0f68e9dda4ad…) — 2026-07-22 の実行結果 results/v131_lanczos.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v132_deeptilt ===== [引用]
+[引用] ソース不変 (src sha256 cf158a9cab3e…) — 2026-07-22 の実行結果 results/v132_deeptilt.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v14_z2gauge ===== [引用]
+[引用] ソース不変 (src sha256 d7858ddef50d…) — 2026-07-22 の実行結果 results/v14_z2gauge.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v15_lambda ===== [引用]
+[引用] ソース不変 (src sha256 61fdfcd55b61…) — 2026-07-22 の実行結果 results/v15_lambda.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v151_audit =====
+=== v15.1 監査版: 主張依存グラフの機械検証 ===
+
+[1] 書式解析: 主張 211 / グラフ 211 / 仮定 39 / 反証条件 15  [PASS]
+[2] id 一意性・命名・語彙: OK  [PASS]
+[3] graph ↔ claims 1:1 対応: 全 211 主張  [PASS]
+[4] 参照の実在: 依存辺 362 本ほか全て OK  [PASS]
+[5] DAG 非循環性: OK (最大深さ 34 — 例 QRN-META-027)  [PASS]
+[6] 等級単調性 (C0<C1<C2<{C3,C4}<C5): 全依存辺 OK  [PASS]
+[7] 被覆 (C1+ に fal / C2 に asm / 孤児なし): OK  [PASS]
+[8] Lean 定理数: 7 ファイル計 50 本 = 期待値、文書記述とも一致  [PASS]
+[9] README 網羅性: 全文書・全バイナリ言及、到達点 v27.0 明示  [PASS]
+[10] 生成物の同一性: committed 内容 = 再生成内容  [PASS]
+
+---- 依存グラフの概観 ----
+  節点 211 / 辺 362 / 根 (deps なし) 42 / 最大深さ 34
+  被支持数の上位 (この主張が落ちると連鎖する数):
+    QRN-C0-005             80 主張
+    QRN-C0-006             64 主張
+    QRN-MATTER-001         62 主張
+    QRN-YUK-001            62 主張
+    QRN-YUK-002            61 主張
+  仮定の影響範囲の上位 (抜くと落ちる主張の閉包):
+    ASM-LATTICE            159 主張
+    ASM-SEED               77 主張
+    ASM-PDG                70 主張
+    ASM-LOWDIM             65 主張
+    ASM-PRIOR              65 主張
+
+総合判定: [PASS] 依存グラフは非循環・等級単調・完全被覆 (辺の意味論は ASM-EDGE-SEMANTICS)
+----- exit=0 -----
+===== sim/target/release/v153_corev2 ===== [引用]
+[引用] ソース不変 (src sha256 7ca528e53b2e…) — 2026-07-22 の実行結果 results/v153_corev2.txt を引用 (PASS 25 / FAIL 0)
+----- cite -----
+===== sim/target/release/v154_continuum ===== [引用]
+[引用] ソース不変 (src sha256 3318551ee58b…) — 2026-07-22 の実行結果 results/v154_continuum.txt を引用 (PASS 15 / FAIL 0)
+----- cite -----
+===== sim/target/release/v155_selection ===== [引用]
+[引用] ソース不変 (src sha256 cd04db101cfd…) — 2026-07-22 の実行結果 results/v155_selection.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v156_einstein ===== [引用]
+[引用] ソース不変 (src sha256 433e9c423064…) — 2026-07-22 の実行結果 results/v156_einstein.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v157_predict ===== [引用]
+[引用] ソース不変 (src sha256 c8ddde9e00f4…) — 2026-07-22 の実行結果 results/v157_predict.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v16_born ===== [引用]
+[引用] ソース不変 (src sha256 a683cb37d0f9…) — 2026-07-22 の実行結果 results/v16_born.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v161_tiltcp ===== [引用]
+[引用] ソース不変 (src sha256 adf96261b296…) — 2026-07-23 の実行結果 results/v161_tiltcp.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1610_sigsens ===== [引用]
+[引用] ソース不変 (src sha256 2dbe3fad2f94…) — 2026-07-23 の実行結果 results/v1610_sigsens.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1611_selection2 ===== [引用]
+[引用] ソース不変 (src sha256 7826a337adc4…) — 2026-07-22 の実行結果 results/v1611_selection2.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1612_depthscan ===== [引用]
+[引用] ソース不変 (src sha256 abc1481c5a45…) — 2026-07-22 の実行結果 results/v1612_depthscan.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1613_jeffreys ===== [引用]
+[引用] ソース不変 (src sha256 1cd450a64b75…) — 2026-07-22 の実行結果 results/v1613_jeffreys.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v162_shearcp ===== [引用]
+[引用] ソース不変 (src sha256 5870e1cb256e…) — 2026-07-22 の実行結果 results/v162_shearcp.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v163_sheartriple ===== [引用]
+[引用] ソース不変 (src sha256 b987e59286d2…) — 2026-07-22 の実行結果 results/v163_sheartriple.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v164_tenquantity ===== [引用]
+[引用] ソース不変 (src sha256 9cf8ad33ce08…) — 2026-07-22 の実行結果 results/v164_tenquantity.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v165_scorecard ===== [引用]
+[引用] ソース不変 (src sha256 d9b3138574a2…) — 2026-07-22 の実行結果 results/v165_scorecard.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v166_wilson12 ===== [引用]
+[引用] ソース不変 (src sha256 5c7cbf1b213d…) — 2026-07-22 の実行結果 results/v166_wilson12.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v167_nscaling ===== [引用]
+[引用] ソース不変 (src sha256 e014fd7bdb2d…) — 2026-07-23 の実行結果 results/v167_nscaling.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v168_taure ===== [引用]
+[引用] ソース不変 (src sha256 c6567965deb4…) — 2026-07-23 の実行結果 results/v168_taure.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v169_asymshear ===== [引用]
+[引用] ソース不変 (src sha256 49b2a24688d1…) — 2026-07-23 の実行結果 results/v169_asymshear.txt を引用 (PASS 13 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1710_tauimdeep ===== [引用]
+[引用] ソース不変 (src sha256 7583a709e478…) — 2026-07-23 の実行結果 results/v1710_tauimdeep.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1711_apexchar ===== [引用]
+[引用] ソース不変 (src sha256 64d157565ce7…) — 2026-07-23 の実行結果 results/v1711_apexchar.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1713_orientation ===== [引用]
+[引用] ソース不変 (src sha256 ab2ef943c8df…) — 2026-07-23 の実行結果 results/v1713_orientation.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v174_postbands ===== [引用]
+[引用] ソース不変 (src sha256 4f95c249f5dc…) — 2026-07-23 の実行結果 results/v174_postbands.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v175_tauim ===== [引用]
+[引用] ソース不変 (src sha256 32b4fb080529…) — 2026-07-23 の実行結果 results/v175_tauim.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v177_sigmacont ===== [引用]
+[引用] ソース不変 (src sha256 2f133ca38ead…) — 2026-07-23 の実行結果 results/v177_sigmacont.txt を引用 (PASS 13 / FAIL 0)
+----- cite -----
+===== sim/target/release/v178_densform ===== [引用]
+[引用] ソース不変 (src sha256 c0b55fa622d0…) — 2026-07-23 の実行結果 results/v178_densform.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v179_measurejudge ===== [引用]
+[引用] ソース不変 (src sha256 5b38e156d6f2…) — 2026-07-23 の実行結果 results/v179_measurejudge.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v182_apexcont ===== [引用]
+[引用] ソース不変 (src sha256 879a30f4756e…) — 2026-07-23 の実行結果 results/v182_apexcont.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v183_pmns ===== [引用]
+[引用] ソース不変 (src sha256 bfb910ff4418…) — 2026-07-23 の実行結果 results/v183_pmns.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v184_mrgeom ===== [引用]
+[引用] ソース不変 (src sha256 24c7931a4b73…) — 2026-07-23 の実行結果 results/v184_mrgeom.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v185_fluxphib ===== [引用]
+[引用] ソース不変 (src sha256 5ff317153ba4…) — 2026-07-23 の実行結果 results/v185_fluxphib.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v186_tailanat ===== [引用]
+[引用] ソース不変 (src sha256 bb70172d5dbb…) — 2026-07-23 の実行結果 results/v186_tailanat.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v187_needle ===== [引用]
+[引用] ソース不変 (src sha256 9fd8e9bd7466…) — 2026-07-23 の実行結果 results/v187_needle.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v191_first3d ===== [引用]
+[引用] ソース不変 (src sha256 683f0798676e…) — 2026-07-23 の実行結果 results/v191_first3d.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v192_boost3d ===== [引用]
+[引用] ソース不変 (src sha256 1a3bb6fac8f0…) — 2026-07-23 の実行結果 results/v192_boost3d.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v193_fisher3d ===== [引用]
+[引用] ソース不変 (src sha256 fb0428d62345…) — 2026-07-23 の実行結果 results/v193_fisher3d.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v194_boostdist ===== [引用]
+[引用] ソース不変 (src sha256 6ce86541faa4…) — 2026-07-23 の実行結果 results/v194_boostdist.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v195_qnec3d ===== [引用]
+[引用] ソース不変 (src sha256 e15e0c20d330…) — 2026-07-23 の実行結果 results/v195_qnec3d.txt を引用 (PASS 29 / FAIL 0)
+----- cite -----
+===== sim/target/release/v196_boostdeep ===== [引用]
+[引用] ソース不変 (src sha256 695457f70613…) — 2026-07-23 の実行結果 results/v196_boostdeep.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v197_nonlinear ===== [引用]
+[引用] ソース不変 (src sha256 0685c13714cb…) — 2026-07-23 の実行結果 results/v197_nonlinear.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v201_u1core ===== [引用]
+[引用] ソース不変 (src sha256 db7367e3942b…) — 2026-07-23 の実行結果 results/v201_u1core.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v202_screen ===== [引用]
+[引用] ソース不変 (src sha256 fa7858d731a7…) — 2026-07-23 の実行結果 results/v202_screen.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v203_staircase ===== [引用]
+[引用] ソース不変 (src sha256 38e6610e53fc…) — 2026-07-23 の実行結果 results/v203_staircase.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v204_anomaly ===== [引用]
+[引用] ソース不変 (src sha256 23152043583a…) — 2026-07-23 の実行結果 results/v204_anomaly.txt を引用 (PASS 16 / FAIL 0)
+----- cite -----
+===== sim/target/release/v205_su2core ===== [引用]
+[引用] ソース不変 (src sha256 ab84b902dae0…) — 2026-07-23 の実行結果 results/v205_su2core.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v206_su3core ===== [引用]
+[引用] ソース不変 (src sha256 57c029107230…) — 2026-07-23 の実行結果 results/v206_su3core.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v21_relent ===== [引用]
+[引用] ソース不変 (src sha256 393140253318…) — 2026-07-23 の実行結果 results/v21_relent.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v211_anomspec ===== [引用]
+[引用] ソース不変 (src sha256 298eceb76676…) — 2026-07-23 の実行結果 results/v211_anomspec.txt を引用 (PASS 18 / FAIL 0)
+----- cite -----
+===== sim/target/release/v212_bmvmap ===== [引用]
+[引用] ソース不変 (src sha256 a3a5266be1b6…) — 2026-07-23 の実行結果 results/v212_bmvmap.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v213_dmrgaudit =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v21.3 監査層: DMRG 探索の ED 照合と遮蔽窓の判定 (二層構造の初適用) ===
+
+事前登録: (a) アンカー全 PASS かつ N=48 の E_mid 比 < 0.25 = 遮蔽判別完成 +
+          二層構造成立 / (b) 外れ。探索層 = explore/dmrg_schwinger.py (numpy)
+
+  [PASS] [A] 探索層自己検定 (MPO 偏差 = 0・DMRG = ED @ N=8)  dev = 0.0e0, |ΔE| = 1.8e-14
+  [PASS] [B] N=16 アンカー μ=0 (ED vs DMRG ± 0.005)  ED = 0.2409, DMRG = 0.2409 (差 1.4e-14) (1 s)
+  [PASS] [B] N=16 アンカー μ=1 (ED vs DMRG ± 0.005)  ED = 0.4214, DMRG = 0.4214 (差 2.0e-15) (10 s)
+
+[判定] 事前登録 (a): 遮蔽判別が DMRG で完成 — m=0 の磁束は融解し (比 0.043)、μ=1 は弦が運ぶ。二層構造 (探索 python / 監査 Rust) の初適用成立
+    N=48 (中点距離 12): E_mid = +0.0173 (μ=0) / +0.4022 (μ=1), 比 = 0.0431 (登録 < 0.25)
+    v20.2 の ED 窓 (距離 3, 比 0.521) が距離 12 で 0.043 — 遮蔽長 ℓ≈2 の算術と整合
+
+[artifact] ./results/v213_dmrgaudit.json
+
+総合判定: [PASS] 装置は較正済み — 分岐 (a)/(b) は [判定] が一次ソース
+----- exit=0 -----
+===== sim/target/release/v214_bridgeaudit =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v21.4 Einstein 橋の残項目監査 — 測れるものと依存連鎖 (PROMPT/3 §2R) ===
+
+事前登録: (a) 分散異方性の log-log 勾配 p = 2 ± 0.1 = ローレンツ主要次数保護 /
+          (b) 外れ。G 依存項目 (1/r・2 偏極・S_eff・R²) は限界の依存連鎖を明示
+
+    |k| = 0.05: E_axis = 0.049979, E_diag = 0.049993, 異方性 = 2.778e-4
+    |k| = 0.10: E_axis = 0.099833, E_diag = 0.099944, 異方性 = 1.112e-3
+    |k| = 0.20: E_axis = 0.198669, E_diag = 0.199556, 異方性 = 4.452e-3
+    |k| = 0.40: E_axis = 0.389418, E_diag = 0.396454, 異方性 = 1.791e-2
+  [PASS] [測定 1] 異方性の勾配 p = 2 ± 0.1 (O(k²a²) 保護)  p = 2.0032
+    [記録] |k|=0.1 の異方性 1.112e-3 vs 解析 k²/9 = 1.111e-3 (小 k 展開)
+  [PASS] [測定 2] ∇T=0 の格子形 (v19.5 の保存則ゲートの存在照合)  エネルギー保存 true, 連続の式 true
+  [PASS] [限界 3-7] G 窓の定量化文書 (v19.6 §2 の三角測量) の存在  docs/uft-v19.6.md
+
+    依存連鎖 (限界の明示):
+      Newton 1/r ← S_eff の EH 項係数 G ← 第二段 (窓 d≲2 の外, v19.2/19.4/19.6)
+      重力波 2 偏極 ← 線形化 S_eff ← 同上 / R² 上界 ← S_eff 次次数 ← 同上
+      QNEC 連続極限 ← N≥24 格子系列 (jacobi 経済則: ~27h/対角化 — 要疎化)
+      脱出路 (登録済): N≥24 疎化・横質量ゼロ構成・多倍長核
+
+[判定] 事前登録 (a): ローレンツ主要次数保護が成立 — §2 の測定可能分は閉じ、残 4 項目は G 窓の依存連鎖として限界化
+
+[artifact] ./results/v214_bridgeaudit.json
+
+総合判定: [PASS] 装置は較正済み — 分岐 (a)/(b) は [判定] が一次ソース
+----- exit=0 -----
+===== sim/target/release/v215_predictive ===== [引用]
+[引用] ソース不変 (src sha256 f23c4254962c…) — 2026-07-23 の実行結果 results/v215_predictive.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v217_fiveconditions =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v21.7 最小 5 条件の監査 (PROMPT/3 §9) ===
+
+事前登録: (a) 機械検査全 PASS + 採点 [成立 3 / 部分 2] / (b) 台帳不整合
+
+  [PASS] 台帳の等級分布 (C2+C3 ≥ 40 = 定理・機構層の厚み)  C0:8 C1:35 C2:51 C3:14 C4:77 C5:27 (計 212)
+  [PASS] 鍵主張の存在: 重力・第一法則 (QRN-GRAV-005)  QRN-GRAV-005
+  [PASS] 鍵主張の存在: QNEC (QRN-GRAV-009)  QRN-GRAV-009
+  [PASS] 鍵主張の存在: SU(3) core (QRN-CORE-011)  QRN-CORE-011
+  [PASS] 鍵主張の存在: アノマリー一意性 (QRN-GAUGE-003)  QRN-GAUGE-003
+  [PASS] 鍵主張の存在: predictive 表 (QRN-YUK-032)  QRN-YUK-032
+  [PASS] 鍵主張の存在: 測度溶解の系譜 (v17.9-18 系)  QRN-MSR-
+  [PASS] 鍵主張の存在: Lean 上流 (QRN-GAUGE-018)  QRN-GAUGE-018
+  [PASS] 予言台帳の登録数 ≥ 8 (holdout 採点可能性)  18 件
+
+[採点] PROMPT/3 §9 の 5 条件:
+  [1] 単一力学からの同時読み出し: 部分 — 語彙は統一 (拘束 core + 関係エントロピー)、
+      同一状態からの同時実演 (v22) が未。欠落 = SM 直積 core + 重力読み出しの単一化
+  [2] 連続極限 GR+SM+物質: 部分 — 橋 3 本柱・SU 階段・アノマリー橋 (軽領域) は成立、
+      G 係数窓 (v19.6)・カイラル格子化 (doubling)・ν 混合 (v18.7 no-go) が未
+  [3] データ非参照測度: 成立 — 一様測度の登録 (補正有害を機械判定 [v17.9-18])、
+      predictive 表 12/12 @95% (v21.5)
+  [4] holdout 事前登録+採点: 成立 — |V_td|/|V_ts|/γ_UT 採点済・BMV 判別子 (v21.2)
+  [5] C5→下位への降格実績: 成立 — 測度問題 (C5 解釈 → 幾何の C2/C3 機構へ溶解)・
+      CP 起源 (τ 幾何の C2)・第一法則/QNEC (C2)
+
+[判定] 事前登録 (a): 台帳整合 — §9 = [成立 3 / 部分 2]。未達 2 条件の欠落は v22 課題として名指し済み
+
+[artifact] ./results/v217_fiveconditions.json
+
+総合判定: [PASS] 装置は較正済み — 分岐 (a)/(b) は [判定] が一次ソース
+----- exit=0 -----
+===== sim/target/release/v22_kk ===== [引用]
+[引用] ソース不変 (src sha256 b2bf2d19d28e…) — 2026-07-23 の実行結果 results/v22_kk.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v221_dmrg ===== [引用]
+[引用] ソース不変 (src sha256 98fc312afe79…) — 2026-07-23 の実行結果 results/v221_dmrg.txt を引用 (PASS 19 / FAIL 0)
+----- cite -----
+===== sim/target/release/v221_dmrgex =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v22.1 重電荷ボソンの DMRG 励起状態 — ED アンカー照合 (第二十三期 課題 3) ===
+
+事前登録: (a) 装置ゲート PASS ∧ x=16 の M/g 比 (q=2)/(q=1) = 2 ± 7% /
+          (b) 外れ = 記録。教科書線: M(q)/g = q/√π (ボソン化)
+
+  [PASS] [I1] q=1 E₀: ED = DMRG ± 1e-4  ED -9.83216275 vs DMRG -9.83216275 (Δ 9.6e-13, 14 s)
+  [PASS] [I2] q=1 E₁: ED = DMRG ± 1e-3 (罰則法許容)  ED -7.54793015 vs DMRG -7.54793015 (Δ 1.1e-13, gap ED 2.284233)
+  [PASS] [I3] q=1 罰則の中性不変性 (厳密恒等式) ∧ E₁ 中性  ΔE₀ 0.0e0, ΔE₁ 0.0e0 (中性 dim 252), ⟨n⟩(E₀/E₁) = 5.000/5.000
+  [PASS] [I1] q=2 E₀: ED = DMRG ± 1e-4  ED -6.19452711 vs DMRG -6.19452711 (Δ 3.9e-13, 40 s)
+  [PASS] [I2] q=2 E₁: ED = DMRG ± 1e-3 (罰則法許容)  ED -1.05963290 vs DMRG -1.05963290 (Δ 5.9e-14, gap ED 5.134894)
+  [PASS] [I3] q=2 罰則の中性不変性 (厳密恒等式) ∧ E₁ 中性  ΔE₀ 0.0e0, ΔE₁ 0.0e0 (中性 dim 252), ⟨n⟩(E₀/E₁) = 5.000/5.000
+
+  [PASS] [I4] x=9 q=1 E₀ 交差エンジン ± 1e-6  rust -345.685059986 vs python -345.685059986 (Δ 9.7e-13)
+  [PASS] [I4] x=16 q=1 E₀ 交差エンジン ± 1e-6  rust -627.210986171 vs python -627.210986171 (Δ 8.0e-13)
+
+    x= 9: M/g(1) = 0.6531 [gap py], M/g(2) = 1.4253 [gap rs], 比 = 2.1822 (相関比 2.1139)
+    x=16: M/g(1) = 0.6482 [gap py], M/g(2) = 1.3612 [gap rs], 比 = 2.1001 (相関比 2.0634)
+    [記録] M/g(q=1, x=16) = 0.6482 vs 1/√π = 0.5642 (偏差 +14.9%; 相関法 0.7198)
+  [PASS] x=16, N=64 の gap 質量比 (q=2)/(q=1) = 2 ± 7% (当初登録の判定量)  比 = 2.1001 (x=9: 2.1822)
+
+[判定] 事前登録 (a): 重電荷窓の開通 — 開鎖 (ε なし) + 直交罰則 DMRG で M(2)/M(1) = 2 を確認
+
+[artifact] ./results/v221_dmrgex.json
+
+総合判定: [PASS]
+----- exit=0 -----
+===== sim/target/release/v222_gwindow ===== [引用]
+[引用] ソース不変 (src sha256 6592ae836ba4…) — 2026-07-23 の実行結果 results/v222_gwindow.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v223_smcore ===== [引用]
+[引用] ソース不変 (src sha256 1e3c1dfa62e5…) — 2026-07-23 の実行結果 results/v223_smcore.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v224_collapse ===== [引用]
+[引用] ソース不変 (src sha256 46a4debef140…) — 2026-07-23 の実行結果 results/v224_collapse.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v225_collapselaw ===== [引用]
+[引用] ソース不変 (src sha256 e5a6af589c2b…) — 2026-07-23 の実行結果 results/v225_collapselaw.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v226_kboost ===== [引用]
+[引用] ソース不変 (src sha256 78173cf9f8d7…) — 2026-07-23 の実行結果 results/v226_kboost.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v227_ddkernel ===== [引用]
+[引用] ソース不変 (src sha256 38c783f59dd0…) — 2026-07-23 の実行結果 results/v227_ddkernel.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v23_matter ===== [引用]
+[引用] ソース不変 (src sha256 31187128011c…) — 2026-07-23 の実行結果 results/v23_matter.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v231_boostform ===== [引用]
+[引用] ソース不変 (src sha256 64fb142bc247…) — 2026-07-23 の実行結果 results/v231_boostform.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v232_kbudget ===== [引用]
+[引用] ソース不変 (src sha256 9082683a5b0d…) — 2026-07-23 の実行結果 results/v232_kbudget.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v233_bucketmatch ===== [引用]
+[引用] ソース不変 (src sha256 77babb2ab693…) — 2026-07-23 の実行結果 results/v233_bucketmatch.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v234_lambda ===== [引用]
+[引用] ソース不変 (src sha256 94af80e9ff69…) — 2026-07-23 の実行結果 results/v234_lambda.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v235_lambdainf =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v23.5 λ∞ の外挿判定 — 有限繰り込みか素朴回復か (第二十四期) ===
+
+事前登録: (a) λ∞ = 1 ± 0.02 = BW 素朴回復 / (a′) 外 = 有限繰り込み 2π/λ∞ /
+          (b) 1/N⁴ 自己整合・族間整合の破れ
+
+    N= 8: λ = 1.19187
+    N=10: λ = 1.19020
+    N=12: λ = 1.18671
+    N=14: λ = 1.18614
+    N=16: λ = 1.18589
+    外挿: mod-0 族 (8,12) → 1.18544 / (12,16) → 1.18552 / mod-2 族 (10,14) → 1.18472
+  [PASS] [J1] 1/N⁴ 自己整合 (mod-0 の 2 外挿が ± 0.002)  Δ = 0.0001
+  [PASS] [J2] 族間整合 |λ∞(mod0) − λ∞(mod2)| < 0.003  mod0 1.18552 vs mod2 1.18472 (Δ 0.0008)
+
+    λ∞ = 1.18512 (族平均) — 32/27 = 1.18519 との比 = 0.99994
+
+[判定] 事前登録 (a′): 有限繰り込みの確定 — 格子エンタングルメント温度は 2π/λ∞。G 読み出し (v23.6) はこの温度で行う
+
+[artifact] ./results/v235_lambdainf.json
+
+総合判定: [PASS] 装置は較正済み — 分岐 (a)/(a′)/(b) は [判定] が一次ソース
+----- exit=0 -----
+===== sim/target/release/v236_gread ===== [引用]
+[引用] ソース不変 (src sha256 49be9d6fc33a…) — 2026-07-23 の実行結果 results/v236_gread.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v24_inflation ===== [引用]
+[引用] ソース不変 (src sha256 611524874259…) — 2026-07-23 の実行結果 results/v24_inflation.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v241_dispersion ===== [引用]
+[引用] ソース不変 (src sha256 c08c99ab1a18…) — 2026-07-23 の実行結果 results/v241_dispersion.txt を引用 (PASS 18 / FAIL 0)
+----- cite -----
+===== sim/target/release/v242_blockdiag ===== [引用]
+[引用] ソース不変 (src sha256 8a1883c31d61…) — 2026-07-23 の実行結果 results/v242_blockdiag.txt を引用 (PASS 14 / FAIL 0)
+----- cite -----
+===== sim/target/release/v243_bwwindow ===== [引用]
+[引用] ソース不変 (src sha256 889a2c516bcc…) — 2026-07-23 の実行結果 results/v243_bwwindow.txt を引用 (PASS 22 / FAIL 0)
+----- cite -----
+===== sim/target/release/v244_opmatch ===== [引用]
+[引用] ソース不変 (src sha256 b9d452cd9bb9…) — 2026-07-23 の実行結果 results/v244_opmatch.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v245_discretization ===== [引用]
+[引用] ソース不変 (src sha256 8061d7b8da21…) — 2026-07-23 の実行結果 results/v245_discretization.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v246_entropyscale ===== [引用]
+[引用] ソース不変 (src sha256 d19b14d38776…) — 2026-07-23 の実行結果 results/v246_entropyscale.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v25_bmv ===== [引用]
+[引用] ソース不変 (src sha256 a8d6f84b266b…) — 2026-07-23 の実行結果 results/v25_bmv.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v251_gmu ===== [引用]
+[引用] ソース不変 (src sha256 8b17e47eb12a…) — 2026-07-23 の実行結果 results/v251_gmu.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v252_bz_certificate ===== [引用]
+[引用] ソース不変 (src sha256 e1e07c8efe60…) — 2026-07-23 の実行結果 results/v252_bz_certificate.txt を引用 (PASS 12 / FAIL 0)
+----- cite -----
+===== sim/target/release/v252_exact_g ===== [引用]
+[引用] ソース不変 (src sha256 61e83b011bbd…) — 2026-07-23 の実行結果 results/v252_exact_g.txt を引用 (PASS 22 / FAIL 0)
+----- cite -----
+===== sim/target/release/v252_finite_size ===== [引用]
+[引用] ソース不変 (src sha256 9df5e131b6a3…) — 2026-07-23 の実行結果 results/v252_finite_size.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v252_manifest ===== [引用]
+[引用] ソース不変 (src sha256 ce23e79f42be…) — 2026-07-23 の実行結果 results/v252_manifest.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v261_prequential =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.1 prequential 監査 — flavor 三部作の時系列採点 (第二十七期第 1 版) ===
+
+事前登録: (a) 器械回帰 (S1–S3) PASS → S 表が主結果 (符号を問わず公表 — 規約 P4) /
+          (b) 回帰 FAIL → 当時機構の再現失敗 (数値は無効・実装監査へ)
+
+  [PASS] [S1a] rect 回帰: lnZ₉(一様) = v10.1 公表値 −19.86 (±0.02)  lnZ₉ = -19.863 (16 s)
+  [PASS] [S1b] rect MAP: 全 9 量+e lnL = −5.87・σ_H = 1.0・(σu,σd) = (1,4)  lnL = -5.874, σ_H = 1, σ = [1, 4]
+  [PASS] [S1c] rect の J 構造零 (MAP |J| < 1e-12)  MAP |J| = 8.4e-17
+  [PASS] [S1d] PRED-002 帯の再現 (|V_td| 分位点 5 点, 登録値の丸め粒度に較正した許容)  max 相対差 = 13.5% (中央値 0.0022 vs 登録 0.0022; 2.5% 分位点は 1 有効桁登録)
+  [PASS] [S2a] shear (1,1) 回帰: lnZ₁₀ = v16.4/v16.5 公表値 −24.293 (±0.02)  lnZ₁₀ = -24.293 (32 s)
+  [PASS] [S2b] shear MAP 構成: σ_H = 1, (kQ,ku,kd) = (7,32,9), (σu,σd) = (5,1) [v16.5]  σ_H = 1, k = [7, 32, 9], σ = [5, 1]
+  [PASS] [S2c] shear MAP 値: |V_td| = 8.1671e-3, |V_ts| = 1.7614e-2 (±1%), β = 11.0°, γ = 29.8° (±0.2°)  |V_td| = 8.1671e-3, |V_ts| = 1.7614e-2, β = 11.0°, γ = 29.8°
+  [PASS] [S3] MC 決定性/誤差: 前半/後半の ln 密度差 < 0.15 nats (2×10⁵ 標本)  max |Δ| = 0.051 nats
+
+[表 1] 事後予測の ln 密度 (核幅 ln2 / [ln1.5, ln3] 感度):
+    ブロック      rect(M1)        shear(1,1)      アナーキー      FN(v3.2)
+    |J|     −∞ (床上界 -57.3)            +9.29 [+9.22,+9.12]  +3.44 [+3.26,+3.82]  +8.53 [+8.53,+8.51]
+    |V_td|  +2.73 [+2.24,+2.95]       +3.92 [+4.23,+3.59]  -2.40 [-3.06,-1.00]  +3.42 [+3.45,+3.31]
+    |V_ts|  +2.18 [+2.30,+1.96]       +2.41 [+2.70,+2.08]  -0.88 [-1.48,+0.09]  +2.13 [+2.25,+1.92]
+    β       -10.02 [-18.25,-7.74]     -4.48 [-4.41,-4.60]  -4.56 [-4.55,-4.62]  -4.49 [-4.44,-4.59]
+    γ       -11.15 [-12.64,-10.98]    -6.85 [-7.33,-6.51]  -5.38 [-5.28,-5.58]  -5.29 [-5.18,-5.51]
+
+    [R3] M1 混合の J 上界: 最良メンバー (傾き T⁴, |J| ≤ 2.6e-8) の核 = -42.29 /
+         一様混合 (|H| = 23) = -45.42 — いずれも rect 単独 (−∞) より上
+
+[表 2] prequential 増分 (credit ブロックのみ — D1 ≡ 0):
+    ブロック   Δ(program − アナーキー)   Δ(program − FN)
+    D_J (bracket)    -48.87                  -53.95
+    D_VTD             +5.14                   -0.68
+    D_VTS             +3.29                   +0.28
+    D_β               +0.08                   +0.00
+    D_γ               -1.47                   -1.56
+
+    S_program (bracket) = -51.61 / (strict) = −∞ — J の構造零が支配
+    S_anarchy = -9.78 / S_FN = +4.30
+    **S_program − S_anarchy = -41.83 (bracket) / −∞ (strict)**
+    **S_program − S_FN      = -55.91 (bracket) / −∞ (strict)**
+
+[artifact] ./results/v261_prequential.json
+
+[判定] 事前登録 (a): 器械回帰 PASS — **S 表が主結果**: S_program − S_anarchy = -41.83 (bracket) / −∞ (strict), S_program − S_FN = -55.91 (bracket)。符号の解釈は docs/uft-v26.1.md へ (規約 P4: 負なら負のまま公表)
+
+総合判定: [PASS] (77 s)
+----- exit=0 -----
+===== sim/target/release/v262_stress_ward =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.2 格子 stress 器械 — 結合・保存・応答の較正 (誘導重力 経路 B, 第二十七期) ===
+
+事前登録: (a) 全 PASS → 器械較正済み (c₁ 抽出・spin-2 分解は v26.3+ に登録) /
+          (b) S2 破れ → T_00 の再設計 / (c) S0 破れ → 模型実装の器械監査
+
+    [対角化] ["N=8 m=0", "N=8 m=0.5", "N=12 m=0", "N=12 m=0.5"] 完了 (1131 s, 14 threads)
+
+  [PASS] [S0] 解析スペクトル一致 (N=8, m=0)  max|Δ| = 5.1e-13 (E_min = 0.3827)
+  [PASS] [S0] 解析スペクトル一致 (N=8, m=0.5)  max|Δ| = 6.2e-13 (E_min = 0.6296)
+  [PASS] [S0] 解析スペクトル一致 (N=12, m=0)  max|Δ| = 2.4e-12 (E_min = 0.2588)
+  [PASS] [S0] 解析スペクトル一致 (N=12, m=0.5)  max|Δ| = 2.2e-12 (E_min = 0.5630)
+  [PASS] [S1] Σ_x T_00(x) = H (q=0 の T_00(q) が H と一致 — 構成的厳密)  max|Δ| = 0.0e0
+  [PASS] [S2a] C(0) = i[H, T_00(0)] = 0 (エネルギー保存 — 厳密)  ‖C(0)‖_F = 0.0e0
+    [S2 プロファイル] r(q_j) = ‖C‖/q = 15.0249, 15.9228, 17.1826 (j = 1..3, q₁ = π/6)
+  [PASS] [S2b] ‖C(q)‖/q の有界安定性 — 保存則の q 線形消滅 (流れ J^E の存在)  r(2q₁)/r(q₁) = 1.0598 (許容 [0.8, 1.25])
+  [PASS] [S3a] 一様 vierbein 歪み: dE₀/dε = ⟨T_xx(0)⟩ (Feynman–Hellmann)  dE₀/dε = -102.71472139, ⟨T_xx⟩ = -102.71472148
+  [PASS] [S3b] q≠0 歪みの二次応答: d²E₀/dε² = −χ_O(q) (Lehmann 和との独立照合)  d²E₀/dε² = -28.823286, −χ_O = -28.822524
+  [PASS] [S3c] q≠0 の一次応答は運動量保存で零  dE₀/dε = 4.7e-11
+
+    [応答表] N | m | q·N/2π | χ_00/N³ | χ_xx/N³
+      N= 8 m=0.0  j=1  χ_00/V = 0.001321  χ_xx/V = 0.112588
+      N= 8 m=0.0  j=2  χ_00/V = 0.023548  χ_xx/V = 0.146865
+  [PASS] [S4a] χ_00 の厳密対称 y↔z (W 対称性; N=8, m=0)  相対差 = 8.4e-15
+      [方向比] χ_00(qx̂)/χ_00(qŷ) − 1 = -0.446 (x twist 境界 + η 構造の有限サイズ非対称)
+      N= 8 m=0.5  j=1  χ_00/V = 0.001315  χ_xx/V = 0.119518
+      N= 8 m=0.5  j=2  χ_00/V = 0.020068  χ_xx/V = 0.148907
+  [PASS] [S4a] χ_00 の厳密対称 y↔z (W 対称性; N=8, m=0.5)  相対差 = 2.0e-15
+      [方向比] χ_00(qx̂)/χ_00(qŷ) − 1 = -0.179 (x twist 境界 + η 構造の有限サイズ非対称)
+      N=12 m=0.0  j=1  χ_00/V = 0.000334  χ_xx/V = 0.109067
+      N=12 m=0.0  j=2  χ_00/V = 0.005566  χ_xx/V = 0.124379
+      N=12 m=0.0  j=3  χ_00/V = 0.023895  χ_xx/V = 0.150448
+  [PASS] [S4a] χ_00 の厳密対称 y↔z (W 対称性; N=12, m=0)  相対差 = 4.8e-15
+      [方向比] χ_00(qx̂)/χ_00(qŷ) − 1 = -0.344 (x twist 境界 + η 構造の有限サイズ非対称)
+      N=12 m=0.5  j=1  χ_00/V = 0.000295  χ_xx/V = 0.114817
+      N=12 m=0.5  j=2  χ_00/V = 0.004400  χ_xx/V = 0.128006
+      N=12 m=0.5  j=3  χ_00/V = 0.020164  χ_xx/V = 0.149765
+  [PASS] [S4a] χ_00 の厳密対称 y↔z (W 対称性; N=12, m=0.5)  相対差 = 8.9e-16
+      [方向比] χ_00(qx̂)/χ_00(qŷ) − 1 = -0.037 (x twist 境界 + η 構造の有限サイズ非対称)
+  [PASS] [S4a'] x/y 非対称は N とともに減少 (m=0)  N=8: 0.446 → N=12: 0.344
+  [PASS] [S4a'] x/y 非対称は N とともに減少 (m=0.5)  N=8: 0.179 → N=12: 0.037
+  [PASS] [S4b] 共通運動量 q = π/2 の χ_00/V: N=8 vs N=12 (m=0, 相対 20%)  N=8: 0.023548 / N=12: 0.023895 (相対差 1.5e-2)
+  [PASS] [S4b] 共通運動量 q = π/2 の χ_00/V: N=8 vs N=12 (m=0.5, 相対 20%)  N=8: 0.020068 / N=12: 0.020164 (相対差 4.8e-3)
+  [PASS] [S5] ギャップ対照: χ_00(q_min) は m=0.5 で massless より抑制  m=0: 0.000334 → m=0.5: 0.000295 (比 0.884)
+  [PASS] [S6-i] 変異検出: η_z 落とし → S0 (解析スペクトル) が検出  逸脱 7.46e-1 > 1e-3
+  [PASS] [S6-ii] 変異検出: T_00 の質量二重計上 → S1 (分解恒等式) が検出  逸脱 0.50 > 0.1
+
+[artifact] ./results/v262_stress_ward.json
+
+[判定] 事前登録 (a): **stress 器械は較正済み** — 結合 (vierbein=FH)・保存 (C(q) 線形消滅)・応答 (Lehmann=d²E/dε² 独立照合) の 3 要件が格子で厳密に成立。c₁ 抽出と spin-2 分解は v26.3+ の登録課題
+
+総合判定: [PASS] (1527 s)
+----- exit=0 -----
+===== sim/target/release/v263_c1_response =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.3 c₁ (Sakharov 項) の抽出 — 小 q 展開と非普遍性 (第二十七期, 経路 B) ===
+
+事前登録: (a) S0–S3 PASS → c₁ 表が主結果 (S4/S5 は branch A/B を記録) /
+          (b) S0 FAIL → ブロック導出の誤り / (c) S3 FAIL → 非解析項 (主張は m≠0 に限定)
+
+  [PASS] [S0] ブロックエンジン認証: v26.2 dense の 20 値を再現 (abs 1e-6)  max|Δ| = 5.0e-7 (0 s)
+    [走査] N=32 m=0.00 完了 (1 s) — χ_xx(0)/V = 0.104594
+    [走査] N=32 m=0.25 完了 (4 s) — χ_xx(0)/V = 0.106781
+    [走査] N=32 m=0.50 完了 (8 s) — χ_xx(0)/V = 0.110477
+    [走査] N=64 m=0.00 完了 (129 s) — χ_xx(0)/V = 0.104596
+    [走査] N=64 m=0.25 完了 (577 s) — χ_xx(0)/V = 0.106780
+    [走査] N=64 m=0.50 完了 (1000 s) — χ_xx(0)/V = 0.110477
+  [PASS] [S1] χ_xx(0)/V の N=32 vs 64 収束 (相対 1e-3)  max 相対差 = 2.0e-5
+    [発見] χ_00(q) の消滅次数 p = 3.990 — q² (保存則の下界) より強い q⁴ 保護。
+           c₁^00 ≈ 0 (下表) と整合: T_00 チャネルは Sakharov 項を持たない
+  [PASS] [S2] χ_00(q) → 0 が保存則の下界 q² 以上 (p > 1.8; m=0.5, N=64)  slope = 3.990 (≈ 4: q⁴ 保護)
+
+    [c₁ 表] N | m | c₁^00 (系統) | c₁^xx (系統)
+      N=32 m=0.00:  c₁^00 = 0.00014 (±0.00047)   c₁^xx = 0.01818 (±0.00023)
+      N=32 m=0.25:  c₁^00 = 0.00020 (±0.00013)   c₁^xx = 0.01770 (±0.00001)
+      N=32 m=0.50:  c₁^00 = 0.00010 (±0.00007)   c₁^xx = 0.01596 (±0.00001)
+      N=64 m=0.00:  c₁^00 = 0.00003 (±0.00011)   c₁^xx = 0.01826 (±0.00006)
+      N=64 m=0.25:  c₁^00 = 0.00002 (±0.00002)   c₁^xx = 0.01770 (±0.00000)
+      N=64 m=0.50:  c₁^00 = 0.00001 (±0.00001)   c₁^xx = 0.01595 (±0.00000)
+  [PASS] [S3] c₁^xx の窓安定性 (< 30%) と N=32→64 収束 (< 20%)  窓広がり max = 0.3% / N 移動 max = 0.4%
+    [S4 branch] c₁^xx(m): 0.01826 (m=0) → 0.01595 (m=0.5) — 変化 12.6% vs 系統 0.3% ⇒ branch A: 質量走行あり (非普遍)
+  [PASS] [S4] 質量走行の判定が分解能を持つ (Δ か系統のどちらかが 1% 超)  Δ = 0.126, 系統 = 0.003
+    [S5 branch] m=0.5: |c₁^00 − c₁^xx|/c₁^xx = 0.999 (系統 0.000) ⇒ branch A': チャネル依存あり (c₁^00 = 0 vs c₁^xx ≠ 0 — 演算子規格化の bare 性)
+  [PASS] [S5] チャネル比の判定が分解能を持つ (差か系統のどちらかが 1% 超)  差 = 0.999, 系統 = 0.000
+  [PASS] [S6] 変異検出: T_00 頂点の η 符号スリップ → S0 照合が検出  逸脱 1.87e-1 > 1e-4
+
+[artifact] ./results/v263_c1_response.json
+
+[判定] 事前登録 (a): **c₁ 表が主結果** — branch は [S4][S5] の欄が一次ソース。解釈は docs/uft-v26.3.md へ
+
+総合判定: [PASS] (1000 s)
+----- exit=0 -----
+===== sim/target/release/v264_c1_anisotropy =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.4 c₁ の方向依存性 — 異方性行列 c₁[T_aa](q∥b̂) (第二十七期, 経路 B) ===
+
+事前登録: (a) S0–S2 PASS → c₁ 行列が主結果 (S3 は branch 記録) /
+          (b) S0a FAIL → ブロック対導出の誤り / (c) S2 FAIL → 窓の再設計
+
+    [S0a piece probe] block: x片 = 0.097061 (numpy 0.097061) / z片 = 0.095269 (numpy 0.095269)
+    [S0a probe] m=0.0 j=1 which=0  block = 0.002385  dense = 0.002385
+    [S0a probe] m=0.0 j=1 which=2  block = 0.117648  dense = 0.117648
+    [S0a probe] m=0.0 j=2 which=0  block = 0.024359  dense = 0.024359
+    [S0a probe] m=0.0 j=2 which=2  block = 0.153299  dense = 0.153299
+    [S0a probe] m=0.5 j=1 which=0  block = 0.001602  dense = 0.001602
+    [S0a probe] m=0.5 j=1 which=2  block = 0.120860  dense = 0.120860
+    [S0a probe] m=0.5 j=2 which=0  block = 0.020323  dense = 0.020323
+    [S0a probe] m=0.5 j=2 which=2  block = 0.150387  dense = 0.150387
+  [PASS] [S0a] q∥ŷ ブロック対エンジン: 内蔵 dense と一致 (abs 1e-9)  max|Δ| = 5.1e-14 (92 s)
+  [PASS] [S0b-1] x 経路: REF262 の 20 値を再現 (abs 1e-6)  max|Δ| = 5.0e-7
+    [走査] N=32 m=0.0 完了 (102 s) — χ_xx(0) = 0.104594, χ_yy(0) = 0.104591
+    [走査] N=32 m=0.5 完了 (122 s) — χ_xx(0) = 0.110477, χ_yy(0) = 0.110477
+    [走査] N=64 m=0.0 完了 (745 s) — χ_xx(0) = 0.104596, χ_yy(0) = 0.104596
+    [走査] N=64 m=0.5 完了 (1529 s) — χ_xx(0) = 0.110477, χ_yy(0) = 0.110477
+  [PASS] [S1] χ_yy(0) の 2 エンジン一致 (同一演算子の恒等検査)  max|Δ| = 2.2e-16
+
+    [c₁ 行列] N | m | c₁[xx](x̂) | c₁[yy](x̂) | c₁[xx](ŷ) | c₁[yy](ŷ)
+      N=32 m=0.0:  0.01818(±0.00023)  -0.01540(±0.00041)  -0.01536(±0.00041)  0.01847(±0.00029)
+      N=32 m=0.5:  0.01596(±0.00001)  -0.01254(±0.00007)  -0.01254(±0.00007)  0.01596(±0.00001)
+      N=64 m=0.0:  0.01826(±0.00006)  -0.01556(±0.00009)  -0.01556(±0.00009)  0.01833(±0.00007)
+      N=64 m=0.5:  0.01595(±0.00000)  -0.01264(±0.00001)  -0.01264(±0.00001)  0.01595(±0.00000)
+  [PASS] [S0b-2] c₁[xx](x̂) が v26.3 公表値と一致 (N=64, ±0.0002)  max|Δ| = 4.9e-6
+  [PASS] [S2] c₁ 行列の窓安定性 (< 30%) と N=32→64 収束 (< 20%)  窓 max = 0.6% / N 移動 max = 1.2%
+    [S3 branch] 縦組 c₁[xx](x̂) vs c₁[yy](ŷ) (m=0.5): 0.01595 vs 0.01595 — 差 0.0% vs 系統 0.0% ⇒ branch B: 等方 (系統内)
+    [S3 branch] 横組 c₁[yy](x̂) vs c₁[xx](ŷ) (m=0.5): -0.01264 vs -0.01264 — 差 0.0% vs 系統 0.1% ⇒ branch B: 等方 (系統内)
+  [PASS] [S3] 異方性判定が分解能を持つ (縦組の差か系統が 1% 超)  
+  [PASS] [S4] 変異検出: 折返しスワップ落とし → S0a 照合が検出  逸脱 2.02e-1 > 1e-4
+
+[artifact] ./results/v264_c1_anisotropy.json
+
+[判定] 事前登録 (a): **c₁ 行列が主結果** — branch は [S3] の欄が一次ソース。解釈は docs/uft-v26.4.md へ
+
+総合判定: [PASS] (1529 s)
+----- exit=0 -----
+===== sim/target/release/v265_spin2 =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.5 spin-2/spin-0 分解 — graviton plus チャネルの c₁ (第二十七期, 経路 B) ===
+
+事前登録: (a) S0–S2 PASS → c₁^(2), c₁^(0) が主結果 (S3 は branch 記録) /
+          (b) S0 FAIL → 交差器械の誤り / (c) S2 FAIL → 窓の再設計
+
+  [PASS] [S0a] 交差相関 (χ_xx, χ_zz, χ_xz)(qŷ): 内蔵 dense と一致 (abs 1e-9)  max|Δ| = 3.6e-14 (93 s)
+    [走査] N=32 m=0.0 完了 (98 s) — χ_xx(0) = 0.104594, χ_xz(0) = -0.052297
+    [走査] N=32 m=0.5 完了 (108 s) — χ_xx(0) = 0.110477, χ_xz(0) = -0.041732
+    [走査] N=64 m=0.0 完了 (392 s) — χ_xx(0) = 0.104596, χ_xz(0) = -0.052298
+    [走査] N=64 m=0.5 完了 (962 s) — χ_xx(0) = 0.110477, χ_xz(0) = -0.041732
+  [PASS] [S1] 正値性: χ_D(q) ≥ 0 かつ χ_S(q) ≥ 0 (交差項の整合)  min = 3.8e-2
+
+    [c₁ 分解表] N | m | c₁[xx](ŷ) | c₁[zz](ŷ) | c₁^(2) (plus) | c₁^(0) (横トレース)
+      N=32 m=0.0:  -0.01536(±0.00041)  -0.01537(±0.00041)  -0.01908(±0.00063)  -0.01166(±0.00019)
+      N=32 m=0.5:  -0.01254(±0.00007)  -0.01254(±0.00007)  -0.01431(±0.00010)  -0.01076(±0.00005)
+      N=64 m=0.0:  -0.01556(±0.00009)  -0.01556(±0.00009)  -0.01935(±0.00014)  -0.01177(±0.00004)
+      N=64 m=0.5:  -0.01264(±0.00001)  -0.01264(±0.00001)  -0.01444(±0.00001)  -0.01083(±0.00000)
+  [PASS] [S0b] x↔z 対称回帰: c₁[xx](ŷ), c₁[zz](ŷ) = v26.4 の横値 (±0.0003)  max|Δ| = 4.1e-6
+  [PASS] [S2] c₁ 分解の窓安定性 (< 30%) と N=32→64 収束 (< 20%)  窓 max = 0.7% / N 移動 max = 1.4%
+    [S3 branch] c₁^(2): -0.01935 (m=0) → -0.01444 (m=0.5) — 質量走行 25.4% (系統 0.7%)
+    [S3 branch] m=0.5: c₁^(2) = -0.01444 / c₁^(0) = -0.01083 — graviton チャネルの符号は 負 (要解釈)
+  [PASS] [S3] spin-2 チャネルの判定が分解能を持つ (|c₁^(2)| が系統の 3 倍超)  |c₁^(2)| = 0.01444, 系統 = 0.00001
+  [PASS] [S4] 変異検出: T_zz 頂点の折返しスワップ落とし → S0a 照合が検出  逸脱 2.45e-2 > 1e-4
+
+[artifact] ./results/v265_spin2.json
+
+[判定] 事前登録 (a): **c₁^(2) (graviton plus), c₁^(0) が主結果** — branch は [S3] の欄が一次ソース。解釈は docs/uft-v26.5.md へ
+
+総合判定: [PASS] (1029 s)
+----- exit=0 -----
+===== sim/target/release/v266_vacuum_pol =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.6 重力真空偏極の監査 I — 接触項・停留背景・縦 Ward・projector 分解 (第二十七期) ===
+
+事前登録: paper/grav-vacuum-polarization-spec.md §4 (コミット 157ca53 で凍結)
+          (a) S0–S5, S8 PASS → 完全核の器械認証、S6 の R が主結果 /
+          (b) S0/S1 FAIL → 接触項・交差器械の誤り / (c) S5/S8 FAIL → 規格化の再設計
+チャネル辞書は proofs/Projector.lean (D/X = spin-2, S = P0s, L = yy = 純ゲージ)
+
+    [dense 基底] N=8 対角化 + 真空相関 完了 (33 s) — e = (-0.200615, -0.198074, -0.198074) [m=0]
+    [dense FD] 118 点の並列バッチ評価 完了 (808 s, 14 threads)
+  [PASS] [S0] dense FD Hessian 完全性: d²E/dh² = ⟨S⟩ − χ_V (8 モード × m 2 種)  worst = 0.005 × 許容 (uni xx-zz m=0.5: FD = 5.34356546, 組立 = 5.34356573)
+  [PASS] [S0c] cos/sin モードの FD Hessian 等値 (y 並進不変性の端から端)  cos = -47.84130898, sin = -47.84130898
+  [PASS] [S1] block 3×3 χ 行列 = dense (N=8, j∈{1,2}, m 2 種, 全 9 成分)  max|Δ| = 5.1e-14 (831 s)
+  [PASS] [S1b] cos モード写像 2χ^TT_cos = χ^complex (対角 + 交差)  max|Δ|/V = 8.0e-16
+  [PASS] [S2a] tadpole e_i: block/dense = 解析 k 和 (N∈{8,32}, m 2 種)  max|Δ| = 6.5e-14
+  [PASS] [S2b] e_y = e_z (W 対称性)  max|e_y/e_z − 1| = 1.6e-15
+  [PASS] [S3a] 背景停留: Λ = −e_y で dΓ_ren/dε = 0 (uni-yy/zz, dense FD 3 段 Richardson)  max = 7.4e-10 (|dΓ/dε|(uni-yy, m=0.5) = 7.4e-10)
+    [S3b 表] Δ_x(N) = |e_x/e_y − 1|: m=0:   1.28e-2 → 6.28e-4 → 3.73e-5 → 2.31e-6 (N=8,16,32,64)
+                                     m=0.5: 4.33e-3 → 1.49e-5 → 1.64e-9 → 1.78e-15
+  [PASS] [S3b] 停留残差 Δ_x(N) が単調減少 (m=0.5; twist 圧力異方性は有限サイズ)  4.33e-3 → 1.49e-5 → 1.64e-9 → 1.78e-15
+  [PASS] [S4] y 並進不変性: |⟨T_i(2qŷ)⟩|/V = 0 (接触項 ⟨S(q)⟩ = (3/8)e_i V の厳密性)  max = 1.8e-16
+    [走査] N=32 m=0.0 完了 (1312 s) — χ_xx(0) = 0.104594, χ_yy(0) = 0.104591, χ_xy(0) = -0.052297
+    [走査] N=32 m=0.5 完了 (1317 s) — χ_xx(0) = 0.110477, χ_yy(0) = 0.110477, χ_xy(0) = -0.041732
+    [走査] N=64 m=0.0 完了 (1449 s) — χ_xx(0) = 0.104596, χ_yy(0) = 0.104596, χ_xy(0) = -0.052298
+    [走査] N=64 m=0.5 完了 (1578 s) — χ_xx(0) = 0.110477, χ_yy(0) = 0.110477, χ_xy(0) = -0.041732
+
+    [完全核 k̂ チャネル表 (N=64)] j | m | K_DD | K_SS | K_LL | K_SL | K_DS | K_DL
+      j=0 m=0.0:  -0.088965  -0.162300  -0.125632  -0.051855  -1.93e-7  +2.96e-8
+      j=1 m=0.0:  -0.088919  -0.162271  -0.125676  -0.051860  -1.99e-7  +8.13e-8
+      j=2 m=0.0:  -0.088781  -0.162187  -0.125809  -0.051874  -1.82e-7  +8.16e-8
+      j=4 m=0.0:  -0.088259  -0.161859  -0.126339  -0.051931  -1.74e-7  +8.28e-8
+      j=6 m=0.0:  -0.087462  -0.161336  -0.127228  -0.052033  -1.73e-7  +8.49e-8
+      j=0 m=0.5:  -0.083851  -0.154583  -0.119217  -0.050015  -2.50e-16  +3.43e-17
+      j=1 m=0.5:  -0.083816  -0.154557  -0.119255  -0.050021  -2.50e-16  +2.94e-17
+      j=2 m=0.5:  -0.083713  -0.154479  -0.119371  -0.050038  -2.22e-16  +3.43e-17
+      j=4 m=0.5:  -0.083312  -0.154175  -0.119832  -0.050107  -2.08e-16  +2.94e-17
+      j=6 m=0.5:  -0.082687  -0.153691  -0.120604  -0.050230  -1.94e-16  +2.94e-17
+    [縦核の解剖 m=0] k̂_LL(0) = ½e_y − ¼χ_yy(0) = -0.125632 (e_y = -0.198967, χ_yy(0) = +0.104596)
+      — 連続極限の diffeo 不変性はこの量の恒等消滅を要求する (q⁰ 繰り込み条件)
+
+    [c₁ 表 (χ 単位)] N | m | D | S | L(yy) | SL
+      N=32 m=0.0:  -0.01908(±0.00063)  -0.01166(±0.00019)  +0.01847(±0.00029)  +0.00183(±0.00015)
+      N=32 m=0.5:  -0.01431(±0.00010)  -0.01076(±0.00005)  +0.01596(±0.00001)  +0.00234(±0.00000)
+      N=64 m=0.0:  -0.01935(±0.00014)  -0.01177(±0.00004)  +0.01833(±0.00007)  +0.00187(±0.00004)
+      N=64 m=0.5:  -0.01444(±0.00001)  -0.01083(±0.00000)  +0.01595(±0.00000)  +0.00234(±0.00000)
+  [PASS] [S5] 完全核成分の回帰: c₁^χ[D] = v26.5 公表値 / c₁^χ[xx,zz](ŷ) = v26.4 横値 (±0.0004)  max|Δ| = 4.1e-6
+    [S6 branch] R(m) = |c₁^χ[L]|/|c₁^χ[D]| = 0.947 (m=0) / 1.105 (m=0.5) ⇒ branch a: 縦汚染は spin-2 と同桁 — bare c₁ は非共変 regulator 汚染に支配される
+      縦チャネル (yy@qŷ) は純ゲージ (Projector.lean: yhat_longitudinal_is_gauge) —
+      連続極限では k̂ の縦列は恒等的に消えるべき量。その q² 係数 c₁^χ[L] = +0.01595 (m=0.5)
+      は繰り込み条件を課すべき純汚染であり、spin-2 の c₁ と同じ桁で走る。
+  [PASS] [S6] 縦 Ward 汚染比 R の分解能 (|c₁^χ[L]| > 3×窓系統) と branch 記録  R = 0.947/1.105, branch 判定は上の欄
+    [S7] c₁^χ[SL] = +0.00187(±0.00004) [m=0] → +0.00234(±0.00000) [m=0.5] — 質量走行 25.2%
+      χ_SL(0) = -0.073960 [m=0] / -0.059018 [m=0.5] (P0s×P0w 遷移核の静的値)
+  [PASS] [S7] スカラー混合 c₁^χ[SL] の測定が分解能を持つ (非零解決 or 上界 30% |c₁[D]|)  |c₁[SL]| = 0.00234, 3σ = 0.00000
+  [PASS] [S8a] uniform 連続性: block 一様変形 FD = V[(3/4)e δ − ¼χ(0)] (N=32, xx/yy/交差)  max 相対 = 4.5e-8 (1599 s)
+    [S8b 表] max|k̂(q₁) − k̂(0)| (N=32): m=0: 1.79e-4 / m=0.5: 1.54e-4 (scale = 0.119)
+  [PASS] [S8b] k̂ の q → 0 連続性 (m=0.5: ≤ 5% scale; m=0 は報告)  1.54e-4 < 5.96e-3
+  [PASS] [S9-i] 変異: 接触項 (3/4)⟨S⟩ 落とし → S0 が検出  逸脱 76.060 > 1e-3
+  [PASS] [S9-ii] 変異: Λ counterterm 落とし → S3a が検出  |dE/dε| = 50.707 > 1e-3 (S3a の減算後値と対照)
+  [PASS] [S9-iii] 変異: T_zz 折返しスワップ落とし → S1 が検出  逸脱 2.45e-2 > 1e-4
+
+[artifact] ./results/v266_vacuum_pol.json
+
+[判定] 事前登録 (a): **完全核の器械認証が成立、縦 Ward 汚染比 R が主結果** — branch は [S6] の欄が一次ソース。解釈は docs/uft-v26.6.md へ
+
+総合判定: [PASS] (1599 s)
+----- exit=0 -----
+===== sim/target/release/v267_spectral =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.7 (II/II) v267_spectral — 有限サイズ spectral measure と pole 判定 (経路 B) ===
+
+事前登録: spec §7 (157ca53)。pole 判定 = residue の体積 scaling (s_n → 0 ∧ Z_n → Z_* > 0)。
+自由場の登録予想 (v26.5): pole なし (連続体のみ)。q = 2π/16 固定, N ∈ {16,32,64}。
+
+  [PASS] [S1a] dense f-sum: Σ 2ΔE Z_D = ⟨[T_D†,[H,T_D]]⟩ (N=8, m 2 種)  max 相対 = 6.4e-13 (115 s)
+    [走査] N=16 m=0.0 (j=1) 完了 (115 s) — s_min = 0.390166, χ_D = 0.154053
+    [走査] N=32 m=0.0 (j=2) 完了 (120 s) — s_min = 0.190670, χ_D = 0.154068
+    [走査] N=64 m=0.0 (j=4) 完了 (411 s) — s_min = 0.161871, χ_D = 0.154068
+    [走査] N=16 m=0.5 (j=1) 完了 (411 s) — s_min = 1.430138, χ_D = 0.150054
+    [走査] N=32 m=0.5 (j=2) 完了 (423 s) — s_min = 1.190670, χ_D = 0.150054
+    [走査] N=64 m=0.5 (j=4) 完了 (988 s) — s_min = 1.161871, χ_D = 0.150054
+  [PASS] [S0] 内部恒等: 対和 Σ 2Z/ΔE = ブロック Lehmann (全 N, m, チャネル)  max|Δ| = 0.0e0
+  [PASS] [S1b] block f-sum: Σ 2ΔE Z = ⟨[T†,[H,T]]⟩ (全 N, m, チャネル)  max 相対 = 4.4e-16
+  [PASS] [S2] 正値性: Z ≥ 0 (構成的) かつ s_min > 0  min Z = 0.0e0, min s = 0.1619
+  [PASS] [S3] threshold: s_min ≥ 4m² = 1.0 (m=0.5 — E(k) ≥ m の厳密帰結)  min s = 1.161871 ≥ 1.0
+    [S4 表] m=0 の端 s_min/q²: 
+      N=16: s_min = 0.390166 (s_min/q² = 2.5301)
+      N=32: s_min = 0.190670 (s_min/q² = 1.2364)
+      N=64: s_min = 0.161871 (s_min/q² = 1.0497)
+      — 連続体の光円錐端は s = q² = 0.154213 (branch 記録)
+    [S5 表] W₁(N) = 最低クラスタ Σ Z / V (チャネル D / L):
+      m=0.0: D: 2.029e-5 → 4.803e-37 → 2.058e-38 / L: 1.081e-4 → 4.577e-36 → 5.721e-37
+        ⇒ branch α (m=0.0): W₁ は体積とともに消える — **pole なし** (残差冪 ~ N^-54.80)
+      m=0.5: D: 5.943e-5 → 9.850e-7 → 3.162e-8 / L: 1.349e-4 → 3.808e-36 → 4.736e-37
+        ⇒ branch α (m=0.5): W₁ は体積とともに消える — **pole なし** (残差冪 ~ N^-5.44)
+  [PASS] [S5] pole 判定の分解能: W₁(N) の順序が単調に確定 (branch α/β の判定可能性)  branch は上の欄が一次ソース
+  [PASS] [S6] 変異: 折返しスワップ落とし → S0/S1 の量が変化 (> 1e-4)  逸脱 7.96e-2
+
+    [spectral 表 (N=64)] チャネル | m | χ (=Σ2Z/ΔE) | f-sum (=Σ2ΔE·Z) | s_min | W₁
+      D (spin-2) m=0.0: 0.154068 | 1.078051 | 0.161871 | 2.058e-38
+      S (P0s) m=0.0: 0.050534 | 0.350115 | 0.161871 | 7.651e-39
+      L (縦=ゲージ) m=0.0: 0.107423 | 0.738400 | 0.161871 | 5.721e-37
+      D (spin-2) m=0.5: 0.150054 | 1.192234 | 1.161871 | 3.162e-8
+      S (P0s) m=0.5: 0.067114 | 0.510898 | 1.161871 | 3.162e-8
+      L (縦=ゲージ) m=0.5: 0.112940 | 0.875140 | 1.161871 | 4.736e-37
+
+[artifact] ./results/v267_spectral.json
+
+[判定] 事前登録 (a): **spectral 器械認証が成立、S5 の branch が主結果** — 解釈は docs/uft-v26.7.md §II へ
+
+総合判定: [PASS] (988 s)
+----- exit=0 -----
+===== sim/target/release/v2671_pole_semantics =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.7.1 (Gate 0) — 不変量 M² = ΔE² − q² での pole 再採点 (PRED-014) ===
+
+事前登録: spec §12.1 (bc644d4 で凍結)。s → 0 は固定 q ≠ 0 で ill-posed —
+massless は光円錐 ΔE² = q² に住む。M² と M̂² (q̂ = 2sin(q/2)) で再採点。
+
+    [走査] N=16 m=0 完了 (0 s) — 光円錐近傍対 128 個, M²_min/q² = 1.5301
+    [走査] N=32 m=0 完了 (2 s) — 光円錐近傍対 2048 個, M²_min/q² = 0.2364
+    [走査] N=64 m=0 完了 (185 s) — 光円錐近傍対 33024 個, M²_min/q² = 0.0497
+    [走査] N=64 m=0.5 完了 (712 s) — 近傍対 1280 個
+  [PASS] [S0] 回帰: χ_D (N=64) = v26.7-II 公表値 (±1e-6)  max|Δ| = 4.0e-7
+  [PASS] [S1] 被覆: 収集対が M²/M̂² 両 ladder の最大窓 (0.5q²) を覆う  max M²/q² = 2.976 (N=64)
+
+    [W_ε 表 (チャネル D, m=0)] 変数 | N | W(0.5q²) | W(0.25q²) | W(0.125q²) | 半減比1 | 半減比2
+      M² (q) N=16: -0.0000e0 | -0.0000e0 | -0.0000e0 | 0.000 | 0.000
+      M² (q) N=32: 4.8034e-37 | 4.8034e-37 | -0.0000e0 | 1.000 | -0.000
+      M² (q) N=64: 2.5529e-7 | 3.3670e-8 | 1.6050e-9 | 0.132 | 0.048
+      M̂² (q̂) N=16: -0.0000e0 | -0.0000e0 | -0.0000e0 | 0.000 | 0.000
+      M̂² (q̂) N=32: 4.8034e-37 | -0.0000e0 | -0.0000e0 | 0.000 | 0.000
+      M̂² (q̂) N=64: 2.5529e-7 | 3.3670e-8 | 1.6050e-9 | 0.132 | 0.048
+  [PASS] [S2] PRED-014(i): ε 半減比 < 0.75 (N=64, q・q̂ 両変数, チャネル D)  M²: 0.132/0.048, M̂²: 0.132/0.048 (max 0.132)
+    [S3 表] M²_min/q²: 1.5301 → 0.2364 → 0.0497 / W₁/V: 2.029e-5 → 4.803e-37 → 2.058e-38
+  [PASS] [S3] PRED-014(ii): M²_min(N) 単調減少 → 0 かつ W₁(N)/V 単調減少 (孤立 residue なし)  M²_min/q² → 0.0497, W₁/V → 2.1e-38
+      [記録] 窓 [0, 0.5q²] 内の状態数: 0 → 64 → 1216 (成長 = 連続体; pole は 1 個が残存)
+    [S4] m=0.5: M²_min = 1.007659 (2 粒子 threshold M² = 4m² = 1.0 の 1.0077 倍; 下界 4m²−q²… ΔE²≥4m² は厳密)
+  [PASS] [S4] massive 対照: ΔE² ≥ 4m² (厳密) — 光円錐でなく threshold に座る  ΔE²_min = 1.161871 ≥ 1.000
+  [PASS] [S5] 変異: 折返しスワップ落とし → S0 (χ_D) が検出 (> 1e-4)  逸脱 9.81e-3
+
+[artifact] ./results/v2671_pole_semantics.json
+
+[判定] 事前登録 (a): **PRED-014 hit — v26.7 の no-pole 結論は不変量 M² でも維持** (判定規則の修正であり結論の反転ではない)
+
+総合判定: [PASS] (712 s)
+----- exit=0 -----
+===== sim/target/release/v267b_q4break =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.7 (I/II) v267b_q4break — 相互作用による χ_00 の q⁴ 保護の破れ (PRED-013) ===
+
+凍結: spec §7 (157ca53) + PRED-013。判定 [S4]: p(V=1.0, m=0.5, N=16) < 3.0 → hit。
+補足宣言 (実行前凍結): 採点対象は m = 0.5 (可積分性破壊)。m = 0 は XXZ 可積分線
+(J^E 厳密保存) の機構対照 [S5] — 予想は q⁴ 残存。走査・交換はしない。
+
+  [PASS] [S1] T_00(0) = H (V 項込み, 決定的ベクトル 3 本)  max‖Δv‖ = 0.0e0
+  [PASS] [S6] 変異: T_00 から V 項を落とす → S1 が検出  min 逸脱 4.000 > 0.01
+    [走査] m | V | N | dim | E₀ | gap | χ(q₁)/N | χ(q₂)/N | p
+      m=0.5 V=0.0 N=10 dim=  252: E₀=-4.192323 gap=1.0000 χ₁=1.948704e-3 χ₂=1.823782e-2 p=3.226
+      m=0.5 V=0.0 N=12 dim=  924: E₀=-5.033411 gap=1.1260 χ₁=6.617607e-4 χ₂=9.425708e-3 p=3.832
+      m=0.5 V=0.0 N=14 dim= 3432: E₀=-5.871432 gap=1.0000 χ₁=4.719879e-4 χ₂=5.616930e-3 p=3.573
+      m=0.5 V=0.0 N=16 dim=12870: E₀=-6.710512 gap=1.0734 χ₁=2.493101e-4 χ₂=3.460703e-3 p=3.795
+      m=0.5 V=0.5 N=10 dim=  252: E₀=-3.852230 gap=1.4195 χ₁=9.382071e-3 χ₂=3.954846e-2 p=2.076
+      m=0.5 V=0.5 N=12 dim=  924: E₀=-4.623420 gap=1.4783 χ₁=6.510703e-3 χ₂=2.607768e-2 p=2.002
+      m=0.5 V=0.5 N=14 dim= 3432: E₀=-5.393806 gap=1.4453 χ₁=4.851212e-3 χ₂=1.886548e-2 p=1.959
+      m=0.5 V=0.5 N=16 dim=12870: E₀=-6.164396 gap=1.4607 χ₁=3.744643e-3 χ₂=1.438850e-2 p=1.942
+      m=0.5 V=1.0 N=10 dim=  252: E₀=-3.605445 gap=1.8195 χ₁=1.883936e-2 χ₂=6.434929e-2 p=1.772
+      m=0.5 V=1.0 N=12 dim=  924: E₀=-4.326768 gap=1.8515 χ₁=1.357049e-2 χ₂=4.609774e-2 p=1.764
+      m=0.5 V=1.0 N=14 dim= 3432: E₀=-5.047851 gap=1.8406 χ₁=1.023064e-2 χ₂=3.515882e-2 p=1.781
+      m=0.5 V=1.0 N=16 dim=12870: E₀=-5.768981 gap=1.8443 χ₁=7.977455e-3 χ₂=2.786001e-2 p=1.804
+
+      m=0.0 V=0.0 N=10 dim=  252: E₀=-3.077684 gap=0.0000 χ₁=3.249197e-2 χ₂=7.265425e-2 p=1.161
+      m=0.0 V=0.0 N=12 dim=  924: E₀=-3.863703 gap=0.5176 χ₁=0.000000e0 χ₂=2.311678e-2 p=991.144
+      m=0.0 V=0.0 N=14 dim= 3432: E₀=-4.381286 gap=0.0000 χ₁=1.630311e-2 χ₂=3.439819e-2 p=1.077
+      m=0.0 V=0.0 N=16 dim=12870: E₀=-5.125831 gap=0.3902 χ₁=0.000000e0 χ₂=1.267558e-2 p=990.277
+      m=0.0 V=0.5 N=10 dim=  252: E₀=-2.414653 gap=0.0000 χ₁=7.600819e-2 χ₂=1.228116e-1 p=0.692
+      m=0.0 V=0.5 N=12 dim=  924: E₀=-3.057272 gap=0.4689 χ₁=4.425682e-2 χ₂=7.142572e-2 p=0.691
+      m=0.0 V=0.5 N=14 dim= 3432: E₀=-3.439163 gap=0.0000 χ₁=6.099311e-2 χ₂=8.204633e-2 p=0.428
+      m=0.0 V=0.5 N=16 dim=12870: E₀=-4.042763 gap=0.3595 χ₁=4.499169e-2 χ₂=5.978887e-2 p=0.410
+      m=0.0 V=1.0 N=10 dim=  252: E₀=-1.875673 gap=0.0000 χ₁=1.323063e-1 χ₂=1.910941e-1 p=0.530
+      m=0.0 V=1.0 N=12 dim=  924: E₀=-2.387391 gap=0.3558 χ₁=1.091653e-1 χ₂=1.436611e-1 p=0.396
+      m=0.0 V=1.0 N=14 dim= 3432: E₀=-2.665089 gap=0.0000 χ₁=1.198307e-1 χ₂=1.492509e-1 p=0.317
+      m=0.0 V=1.0 N=16 dim=12870: E₀=-3.142296 gap=0.2702 χ₁=1.099498e-1 χ₂=1.300124e-1 p=0.242
+
+    (201 s)
+  [PASS] [S0a] V=0 の E₀: many-body Lanczos = 1 粒子 Dirac 海 (abs 1e-9)  max|Δ| = 7.8e-13
+  [PASS] [S0b] V=0 の χ_00(q₁,q₂): many-body CG = 1 粒子 Lehmann (混合許容 max(1e-6 相対, 1e-9))  worst = 0.000 × 許容
+  [PASS] [S2] Lanczos 残差 < 1e-8 / CG 残差 < 1e-10 / 採点線 (m=0.5) の多体ギャップ > 0.1  Lanczos 7.9e-13 / CG 9.9e-14 / 採点線 min gap 1.0000 (対照線 1.4e-14 — 縮退あり・報告のみ)
+    [S3 表] p(V=0, m=0.5) = 3.226 / 3.832 / 3.573 / 3.795 (N=10,12,14,16 — 厳密参照 3.23/3.83/3.57/3.80)
+  [PASS] [S3] 自由対照: p(V=0, m=0.5, N=16) > 3.3 (採点サイズの q⁴ 分解能)  p = 3.795
+    [S4 採点] p(V=1.0, m=0.5, N=16) = 1.804 — 凍結判定 p < 3.0 ⇒ **PRED-013 hit (的中)**
+      V 系列 (m=0.5, N=16): p = 3.795 (V=0) → 1.942 (V=0.5) → 1.804 (V=1.0)
+  [PASS] [S4] PRED-013 の採点が確定 (hit/miss どちらも判定 a — モデル交換なし)  p = 1.804 ⇒ hit
+    [S5 可積分対照] m=0 (XXZ 線): 本サイズでは漸近域外 (自由場で χ(q₁) の厳密零
+      [N≡0 mod 4] / p≈1.1 [N≡2 mod 4] — 走行前の厳密参照で判明)。χ 値の記録:
+      V=0.0: χ(q₁)/N = 1.630e-2 (N=14) / 0.000e0 (N=16), χ(q₂)/N = 1.268e-2 (N=16)
+      V=0.5: χ(q₁)/N = 6.099e-2 (N=14) / 4.499e-2 (N=16), χ(q₂)/N = 5.979e-2 (N=16)
+      V=1.0: χ(q₁)/N = 1.198e-1 (N=14) / 1.099e-1 (N=16), χ(q₂)/N = 1.300e-1 (N=16)
+      — 可積分線の q⁴ 判定は大 N の別器械が要る (記録のみ・採点外)
+
+[artifact] ./results/v267b_q4break.json
+
+[判定] 事前登録 (a): **S4 の採点が PRED-013 の status を確定** (hit/miss どちらも公表 — モデル交換なし)
+
+総合判定: [PASS] (201 s)
+----- exit=0 -----
+===== sim/target/release/v268a_oracle =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.8-A v268a_oracle — 解析 one-loop oracle の二重導出 (Gate 2) ===
+
+事前登録: spec §12.3 (bc644d4)。二経路一致まで格子側の数値実装 (v26.8-B) 禁止。
+文献定数は転記しない — 全て自前導出 + 相互照合。1 Dirac flavor (2 taste は ×2)。
+
+  [PASS] [S0] 閉形式 (†) = 明示 4×4 行列トレース (D/X̂/スカラー × 6 点)  max|Δ| = 8.9e-16
+  [PASS] [S1] φ 平均閉形式 = 数値 φ 求積 (D/X̂ とも — テンソル構造の φ 縮約)  max|Δ| = 1.9e-16
+  [PASS] [S2] σ: 閾値 E_th = 2√(q²/4+m²) (s_th = q²+4m²) の下で 0・上で正  σ(E_th−) = 0.0e0, σ(E_th+0.05) = 4.395e-5, s_th−4m² = -3.3e-16
+  [PASS] [S2b] 解析閉形式: ρ_D(s) = s²/(160π²) [m=0] / (pE_p/4π²)[(2/3)p²−(4/15)p⁴/E_p²] [m>0]  max 相対差 = 5.6e-16 (m=0) / 6.7e-16 (m>0)
+  [PASS] [S5] Lorentz 不変性: σ_D(E;q) は s = E²−q² のみの関数 (異 q 同 s, 相対 1e-8)  max 相対差 = 1.6e-15
+    [Route II] A (分散, m=0) = -6.33257396e-4 (1 s)
+    [Route I]  A (直接, m=0) = -6.33257425e-4 (1 s)
+  [PASS] [S3] Gate 2: Route I (直接ループ) = Route II (分散) — 相対 5e-4  相対差 = 4.63e-8
+  [PASS] [S3b] Gate 2 (第三経路): A = −1/(160π²) (解析 — 自前導出, 相対 1e-4)  A_II/A_ana − 1 = -3.07e-9, A_I/A_ana − 1 = 4.32e-8 (16π²·A_ana = −1/10)
+  [PASS] [S4] テンソル整合: σ_X̂ = σ_D (spin-2 の 2 偏極が同一 form factor, 相対 1e-8)  max 相対差 = 6.7e-16
+    [S6 表] A(λ): -6.332574e-4 (λ=0.5) / -6.332574e-4 (λ=1) / -6.332574e-4 (λ=2) — 変動 1.78e-15
+      ⇒ branch α: スケール不変 — 非局所形は純 q⁴ln q² で A は「the」係数 (凍結値)
+  [PASS] [S6] λ スケール branch: A(λ×q 集合) の変動 < 1% → 純 q⁴ln q² (branch α)  変動 = 1.78e-15
+  [PASS] [S7] スカラー和則: ∫ρ_θ/s³ ds = 1/(80π²) (m ∈ {0.5,1,2} で不変 — 質量非依存)  閉形式照合 7.8e-16 / 和則相対差 3.5e-12
+      (文献規約 σ_f = ρ_θ/(3s³) では ∫σ_f = 1/(240π²)、2 taste で 1/(120π²) — PRED-017 の的)
+    [S8 表] A(m)/A(0): 0.6078 (m/q̄=0.5) → 0.2732 (1) → 0.0856 (2) → 0.0228 (4) — 大質量冪 ~ m^-1.90
+  [PASS] [S8] massive decoupling: |A(m)/A(0)| が m/q̄ とともに単調減少 (冪の記録)  冪 (最終区間) = -1.90
+  [PASS] [S9] 変異: (†) の m² 項符号反転 → σ が有意に変化 (> 1e-3 相対)  相対変化 = 3.87e-1
+
+    [A_oracle 凍結値 (本規約: χ_D null 結合, 1 Dirac flavor)]
+      A(1 Dirac) = -6.33257396e-4 (Route II; Route I と 4.6e-8)
+      A(2 taste) = 2A = -1.26651479e-3 — v26.8-B の格子比較の分母 (PRED-016)
+      16π²·A = -0.100000 (規約写像の議論は docs §A — 文献値の転記はここまで行わない)
+
+[artifact] ./results/v268a_oracle.json
+
+[判定] 事前登録 (a): **Gate 2 開通 — A_oracle 凍結、v26.8-B (staggered TT continuum limit) へ進む資格**
+
+総合判定: [PASS] (12 s)
+----- exit=0 -----
+===== sim/target/release/v268b_continuum =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.8-B v268b_continuum — staggered TT の連続極限 (PRED-016 前半) ===
+
+事前登録: spec §12.4 (bc644d4)。的: A(a→0) = 2A_oracle = −1/(80π²) (16π²·2A = −1/5)。
+continuum trajectory: q^lat = a·Q, m^lat = a·m_phys (lattice-unit m 固定の a→0 は禁止)。
+
+  [PASS] [S0] 器械回帰: BZ 積分の χ_D(2π/16) = v26.7-II 公表値 (±5e-3, 有限サイズ差込み)  max|Δ| = 4.1e-7 — χ(m=0.0) = 0.154068 (公表 0.154068) χ(m=0.5) = 0.150054 (公表 0.150054) (12 s)
+
+    [A(a) 表 (massless 系列)] a | A(a) | A(a)/2A_oracle
+      a = 0.500: -1.475862e-3 | 1.1653 (27 s)
+      a = 0.350: -1.401539e-3 | 1.1066 (42 s)
+      a = 0.250: -1.350150e-3 | 1.0660 (56 s)
+      a = 0.180: -1.317063e-3 | 1.0399 (71 s)
+      a = 0.125: -1.294627e-3 | 1.0222 (84 s)
+      a = 0.090: -1.282264e-3 | 1.0124 (97 s)
+      a = 0.062: -1.274755e-3 | 1.0065 (109 s)
+      a = 0.045: -1.270972e-3 | 1.0035 (123 s)
+      a = 0.032: -1.268296e-3 | 1.0014 (135 s)
+  [PASS] [S1] 求積自己整合: a_min で GL 16 → 20 の変化 < 1e-3 (相対)  相対変化 = 4.1e-4
+    [S2 外挿] A₀ (a²) = -1.279434e-3 → 比 1.0102 / A₀ (a+a²) = -1.254840e-3 → 比 0.9908 (spread 0.019)
+  [PASS] [S2] PRED-016 前半: A₀/(2A_oracle) = 1 ± 0.02 (2 モデル外挿, spread 込み)  比 = 1.0102 (a² モデル), 偏差 max = 0.019
+  [PASS] [S3] q̂ = (2/a)sin(aq/2) 変種: 外挿 A₀ が q 変種と 2% で一致 (spec §12.1)  A₀(q̂)/A₀(q) − 1 = 0.011
+    [S4 表] A₀(m_phys=1)/A₀(0) = 0.1793 vs oracle 比 0.1741 (閉形式 ρ から計算)
+  [PASS] [S4] massive decoupling (PRED-018 格子側): oracle 比と 15% で一致  相対差 = 0.030
+  [PASS] [S5] 変異: V_zz の η parity 破り (ε 3→2) → A が > 10% 変化  相対変化 = 0.503
+
+[artifact] ./results/v268b_continuum.json
+
+[判定] 事前登録 (a): **PRED-016 前半 hit — staggered の繰り込み後 TT form factor は連続 2-taste Dirac に収束** (完成は Wilson 側 v26.8-C)
+
+総合判定: [PASS] (455 s)
+----- exit=0 -----
+===== sim/target/release/v268c_wilson =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.8-C v268c_wilson — Wilson 独立離散化の連続極限 (PRED-016 の D 独立側) ===
+
+事前登録: spec §12.5 (bc644d4)。的: A(a→0) = 1×A_oracle = −1/(160π²) (1 flavor —
+staggered の 2× との対比が taste 数の交差検証)。外挿 2 モデルは凍結済み (a+a²/a²+a⁴)。
+
+  [PASS] [S0] Dirac 型恒等式: H_W(k)² = (Σsin²k + M(k)²)·1 (機械精度)  max|Δ| = 0.0e0
+  [PASS] [S0b] 頂点 = ∂H/∂h (BOND-A): V_xx(q=0) = −½·bond_x (行列 FD 一致)  max|Δ| = 3.9e-11
+    [A(a) 表 (Wilson r=1, massless)] a | A(a) | A(a)/A_oracle
+      a = 0.500: -8.467591e-4 | 1.3371
+      a = 0.350: -7.628406e-4 | 1.2046
+      a = 0.250: -7.109756e-4 | 1.1227
+      a = 0.180: -6.792383e-4 | 1.0726
+      a = 0.125: -6.583345e-4 | 1.0396
+      a = 0.090: -6.476918e-4 | 1.0228
+      a = 0.062: -6.409537e-4 | 1.0122
+      a = 0.045: -6.375898e-4 | 1.0068
+      a = 0.032: -6.359153e-4 | 1.0042
+      (2 s)
+  [PASS] [S1] 求積自己整合: a_min で GL 14 → 18 の変化 < 1e-3 (相対)  相対変化 = 1.3e-4
+    [S2 外挿] A₀ (a+a²) = -6.251574e-4 → 比 0.9872 / A₀ (a²+a⁴) = -6.369382e-4 → 比 1.0058 (spread 0.019)
+  [PASS] [S2] PRED-016 Wilson-D: A₀/A_oracle = 1 ± 0.02 (凍結 2 モデル, spread 込み)  比 = 0.9872/1.0058, 偏差 max = 0.019
+  [PASS] [S3] q̂ = (2/a)sin(aq/2) 変種: 外挿 A₀ が 2% で一致 (spec §12.1)  A₀(q̂)/A₀(q) − 1 = 0.010
+    [S4 表 (r = 0.7)] a 端点: A/A_or = 1.3873 (a=0.5) → 1.0040 (a=0.032)
+  [PASS] [S4] regulator 内普遍性: r = 1.0 と r = 0.7 の外挿 A₀ が 2% で一致  max 相対差 = 0.001 (r=0.7 比: 0.9879/1.0047)
+  [PASS] [S5] 変異: V_zz の rβ 片符号反転 (頂点 ≠ ∂H/∂h) → A が > 2% 変化  相対変化 = 2467.041
+
+[artifact] ./results/v268c_wilson.json
+
+[判定] 事前登録 (a): **Wilson-D も 1×A_oracle に収束 — 二離散化 universality (D チャネル) 成立** (taste 数 2 vs 1 の交差検証込み)。X チャネル完成で PRED-016 採点へ
+
+総合判定: [PASS] (11 s)
+----- exit=0 -----
+===== sim/target/release/v268p_pred016 =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.8-P v268p_pred016 — PRED-016 の 4 比を導出モデルで再採点 (spec §12.9) ===
+
+修正条項 1 (08a1321 で走行前凍結)。的: stagD → 2A_or / stagX → 4A_or /
+wilD → A_or / wilX → A_or/2 (A_or = −1/(160π²))。中心 = 尾部窓 (a ≤ 0.125)、
+系統 = |全域 − 尾部|。バー: |中心 − 1| ≤ 1% かつ spread ≤ 0.5% (4 比すべて)。
+
+    [A(a)/的 表] a | stagD | wilD | stagX | wilX
+      a = 0.3500:  1.1066 | 1.2046 | 0.9131 | 1.1062 | (17 s)
+      a = 0.2500:  1.0661 | 1.1227 | 0.9508 | 1.0675 | (47 s)
+      a = 0.1800:  1.0399 | 1.0726 | 0.9722 | 1.0417 | (74 s)
+      a = 0.1250:  1.0221 | 1.0398 | 0.9855 | 1.0237 | (104 s)
+      a = 0.0900:  1.0128 | 1.0228 | 0.9919 | 1.0139 | (154 s)
+      a = 0.0625:  1.0069 | 1.0122 | 0.9958 | 1.0076 | (205 s)
+      a = 0.0450:  1.0039 | 1.0068 | 0.9977 | 1.0044 | (248 s)
+      a = 0.0320:  1.0021 | 1.0037 | 0.9988 | 1.0024 | (320 s)
+      a = 0.0220:  1.0011 | 1.0019 | 0.9994 | 1.0013 | (387 s)
+  [PASS] [P0] 回帰: a = 0.125 rung が公表 JSON (v268b/c/x) と 2e-3 相対一致  max 相対差 = 1.6e-4 — stagD=1.0221/1.0222 wilD=1.0398/1.0396 stagX=0.9855/0.9853 wilX=1.0237/1.0235
+  [PASS] [P1] 求積自己整合: a_min = 0.022 で GL 14 → 18 < 1e-3 (4 チャネル)  max 相対変化 = 5.7e-6 (500 s)
+    [外挿表 (S₀/的)] ch | 全域 | 尾部 (a ≤ 0.125) | spread | 全域残差
+      stagD: 0.9998 | 1.0000 | 0.0002 | 1.72e-4
+      wilD: 0.9939 | 0.9986 | 0.0047 | 2.42e-3
+      stagX: 1.0001 | 1.0000 | 0.0001 | 1.22e-4
+      wilX: 0.9956 | 0.9990 | 0.0034 | 1.75e-3
+  [PASS] [P2] モデル妥当性: 全域フィットの最大相対残差 < 0.3% (4 チャネル)  max 残差 = 2.42e-3
+  [PASS] [P3] PRED-016 中心: 4 比すべて |尾部窓 S₀/的 − 1| ≤ 1%  max |中心 − 1| = 0.0014
+  [PASS] [P4] PRED-016 系統: 4 比すべて |全域 − 尾部| ≤ 0.5%  max spread = 0.0047
+
+[artifact] ./results/v268p_pred016.json
+
+[判定] 事前登録 (a): **PRED-016 scored-hit — 4 比が登録バー (1%・系統 0.5%) で成立** (operator/regulator universality の完成。gravitational response とは呼ばない)
+
+総合判定: [PASS] (500 s)
+----- exit=0 -----
+===== sim/target/release/v268s_sumrule =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.8-S v268s_sumrule — スカラー spectral 和則の格子側 (PRED-017) ===
+
+事前登録: spec §12.7 (bc644d4)。的 (自前規約): staggered → 2/(80π²) / Wilson →
+1/(80π²)。辞書 (×1/3s³) で文献規約の 1/(120π²) (2t) に対応。UV 有限・m 非依存。
+
+  [PASS] [S0] T の閉形式 (stag: 4Σcos²/E² / Wil: 2Σsin²/E²) = 明示行列トレース  max|Δ| = 9.3e-15
+    [S(a) 表 (m_phys = 1)] a | stag·80π²/2 | Wil·80π²
+      a = 0.350: 1.2459 | 0.4009 (0 s)
+      a = 0.250: 1.1880 | 0.5119 (0 s)
+      a = 0.180: 1.1285 | 0.6137 (0 s)
+      a = 0.125: 1.0779 | 0.7116 (0 s)
+      a = 0.090: 1.0475 | 0.7834 (0 s)
+      a = 0.062: 1.0266 | 0.8452 (0 s)
+      a = 0.045: 1.0155 | 0.8869 (0 s)
+      a = 0.032: 1.0087 | 0.9190 (0 s)
+      a = 0.022: 1.0046 | 0.9441 (0 s)
+  [PASS] [S1] 求積自己整合: a_min で GL 14 → 18 の変化 < 1e-3 (両離散化)  max 相対変化 = 1.6e-15
+    [S2 外挿 stag] S₀·80π²/2 = 0.9991 (全域) / 0.9999 (尾部 a ≤ 0.125), spread 0.0008
+  [PASS] [S2] PRED-017 staggered: S₀·(80π²)/2 = 1 ± 0.02 (導出モデル, 全域/尾部窓)  偏差 max = 0.0009
+    [S3 外挿 Wil] S₀·80π² = 0.9988 (全域) / 1.0022 (尾部 a ≤ 0.125), spread 0.0034
+  [PASS] [S3] PRED-017 Wilson: S₀·80π² = 1 ± 0.02 (導出モデル {1,a,a²} — taste 1 の検証)  偏差 max = 0.0034
+  [PASS] [S4] m_phys 非依存: staggered の外挿 S₀ が m_phys = 0.5 と 1.0 で 1% 一致  相対差 = 0.001
+  [PASS] [S5] 変異: V_θ を Γm → 恒等 (taste-nonsinglet 密度) に置換 → S が > 10% 変化  相対変化 = 1.000
+
+[artifact] ./results/v268s_sumrule.json
+
+[判定] 事前登録 (a): **PRED-017 scored-hit — 両離散化のスカラー和則が taste 数どおり連続値に収束** (operator benchmark — gravitational response とは呼ばない)
+
+総合判定: [PASS] (6 s)
+----- exit=0 -----
+===== sim/target/release/v268t_threeway =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.8-T v268t_threeway — 三者一致の完結: 格子 spectral density と分散再構成 ===
+
+Route I = 直接 null 射影 (v268b/p 認証済み) / Route II = σ^lat 測定 + 安定核
+K(s) = n₀/Π(s+Qᵢ²) 再構成 (本ユニット) / Route III = 解析 ρ_D = s²/(160π²)。
+的: σ_phys → 2ρ_D (2 taste)・A_rec = A_direct。
+
+    [測定] a = 0.090: nbins = 2223 (E_phys ≤ 44), χ(q₄)^lat = 1.566686e-1 (25 s)
+    [測定] a = 0.045: nbins = 4445 (E_phys ≤ 89), χ(q₄)^lat = 1.568372e-1 (47 s)
+  [PASS] [T0] 測度閉環: per-bin χ 寄与の総和 = 直接 χ (全 a, q — 再配列恒等式)  max 相対差 = 2.3e-15
+  [PASS] [T1a] 殻積分の角度自己整合: nθ×nφ = 48×96 → 72×144 で変化 < 0.3%  相対変化 = 3.8e-15 (47 s)
+    [T1 表] a = 0.090: max |σ(√(s*+Q₁²);Q₁)/σ(√(s*+Q₄²);Q₄) − 1| = 0.01247
+    [T1 表] a = 0.045: max |σ(√(s*+Q₁²);Q₁)/σ(√(s*+Q₄²);Q₄) − 1| = 0.00313
+  [PASS] [T1] Lorentz 回復 (殻): a = 0.045 で < 1% かつ dev(0.045) < 0.5·dev(0.09)  dev = 0.01247 (a=0.09) → 0.00313 (a=0.045)
+    [T2 表] max |σ_phys/(2ρ_D) − 1| (E ∈ [1,3], Q = 0.6): 0.00907 (a=0.09) → 0.00225 (a=0.045)
+  [PASS] [T2] 点ごと密度 (殻): a = 0.045 で σ_phys/(2ρ_D) = 1 ± 2% かつ a=0.09 より改善  max 偏差 = 0.00225
+  [PASS] [T4] 変異: 転写不変量 s = E² − 2q² → A_rec が > 5% 逸脱  逸脱 = 18.700
+  [PASS] [T3] 分散再構成: |A_rec/A_direct − 1| < 2% (a=0.09) / < 1% (a=0.045)   a=0.090: A_dir=-1.2827e-3 A_rec=-1.2946e-3 (Δ 0.0093) a=0.045: A_dir=-1.2715e-3 A_rec=-1.2763e-3 (Δ 0.0038)
+
+[artifact] ./results/v268t_threeway.json
+
+[判定] 事前登録 (a): **三者一致完結 — 直接 null 射影・spectral density 分散再構成・解析 oracle が同一の A に一致し、Lorentz 回復と密度の形も点ごとに oracle と一致** (測定器の証明 — QRN・創発重力の証拠ではない)
+
+総合判定: [PASS] (56 s)
+----- exit=0 -----
+===== sim/target/release/v268x_completion =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.8-X v268x_completion — X チャネル 2 比 (PRED-016 の 4 比完成) ===
+
+事前登録: spec §12.2-4/§12.4-5 (bc644d4)。的: staggered X = 4·A_oracle (Z=2 の
+凍結 tree 正規化) / Wilson X = A_oracle/2。登録バー (1%) 未達なら interim (正直判定)。
+
+  [PASS] [S0] staggered X 頂点の閉形式構造 (対角 Γx·sinkx·sin2kz + flip Γz·sinkz·sin2kx)  max|Δ| = 1.1e-16
+    [A(a) 表 — staggered X (的 4A_or)] a | A/4A_or
+      a = 0.350: 0.9131 (7 s)
+      a = 0.250: 0.9508 (16 s)
+      a = 0.180: 0.9722 (24 s)
+      a = 0.125: 0.9853 (32 s)
+      a = 0.090: 0.9919 (40 s)
+      a = 0.062: 0.9958 (47 s)
+      a = 0.045: 0.9977 (54 s)
+    [A(a) 表 — Wilson X (的 A_or/2)] a | A/(A_or/2)
+      a = 0.350: 1.1062 (55 s)
+      a = 0.250: 1.0675 (55 s)
+      a = 0.180: 1.0416 (55 s)
+      a = 0.125: 1.0235 (56 s)
+      a = 0.090: 1.0139 (56 s)
+      a = 0.062: 1.0076 (56 s)
+      a = 0.045: 1.0044 (57 s)
+  [PASS] [S1] 求積自己整合: a_min で GL 14 → 18 の変化 < 1e-3 (両エンジン)  max 相対変化 = 3.7e-4
+    [S2 外挿 stag-X] 比 = 0.9972 (a²) / 1.0026 (a+a²), spread 0.005
+  [PASS] [S2] staggered X: A₀/(4A_oracle) = 1 ± 0.02 (凍結 2 モデル)  偏差 max = 0.005
+    [S3 外挿 Wil-X] 比 = 0.9932 (a+a²) / 1.0032 (a²+a⁴), spread 0.010
+  [PASS] [S3] Wilson X: A₀/(A_oracle/2) = 1 ± 0.02 (凍結 2 モデル)  偏差 max = 0.010
+    [S4 PRED-016 総括 (比, 2 モデル)]
+      A_D^stag/2A_or  = 1.0102/0.9908 (v26.8-B)
+      A_D^Wil/A_or    = 0.9872/1.0058 (v26.8-C)
+      A_X^stag/4A_or  = 0.9972/1.0026 (本版 — Z=2 の tree 正規化込み)
+      A_X^Wil/(A_or/2)= 0.9932/1.0032 (本版)
+      ⇒ 4/4 比が 1 ± 1.3% — **登録バー (1%/系統 0.5%) は未達 → PRED-016 は interim** (正直判定)
+  [PASS] [S4] PRED-016 総括: 4/4 比が 1 ± 2% (登録バー 1% 未達の interim を明記)  max 偏差 = 0.013
+  [PASS] [S5] 変異: staggered X piece2 の η parity 破り (ε 3→2) → A が > 10% 変化  相対変化 = 0.166
+
+[artifact] ./results/v268x_completion.json
+
+[判定] 事前登録 (a): **4/4 比の二離散化 universality が 2% で成立 — PRED-016 は interim (登録バー 1% への精緻化が残作業)**
+
+総合判定: [PASS] (83 s)
+----- exit=0 -----
+===== sim/target/release/v268z_source_matching =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.8-0b (Gate 1) — BOND-A 頂点の spin⊗taste matching (PRED-015) ===
+
+事前登録: spec §12.2-3 (bc644d4)。D 失敗 = 経路 B の gravitational 解釈終了 /
+X のみ失敗 = 素朴転写の棄却 + 再設計 (X は未認証 — 非対称判定は凍結済み)。
+
+  [PASS] [S0] Γ 代数 {Γa,Γb} = 2δ·I (厳密) + H(k)² = (Σcos²+m²)·I (1e-14)  max|Δ| = 0.0e0 / 0.0e0
+  [PASS] [S1] Clifford 単項 16 個の直交性 (厳密) + taste 可換子環 dim = 4 (M₂ = 2 tastes)  直交 max|Δ| = 0.0e0 / twirl 像 rank = 4
+  [PASS] [S2] 解析 8×8 頂点 = N=8 周期格子の平面波 sandwich (全 5 頂点, 1e-12)  max|Δ| = 5.1e-15 (0 s)
+
+    [matching ladder] ε | r_D | m_D | Z_D | r_Xnaive | r_Xsplit | m_Xsplit | Z_X
+      ε=0.40: 5.14e-16 | 2.4854e-3 | 0.9828 | 1.000 | 6.45e-16 | 4.8025e-3 | 1.8459
+      ε=0.20: 1.20e-15 | 6.2295e-4 | 0.9957 | 1.000 | 1.70e-15 | 1.2353e-3 | 1.9607
+      ε=0.10: 2.85e-15 | 1.5584e-4 | 0.9989 | 1.000 | 3.42e-15 | 3.1101e-4 | 1.9901
+      ε=0.05: 3.97e-15 | 3.8966e-5 | 0.9997 | 1.000 | 5.23e-15 | 7.7890e-5 | 1.9975
+  [PASS] [S3] D matching: r_D < 1e-12 (taste-singlet 構成的) ∧ m_D(ε) 単調減少 ∧ 最細 < 5e-3  max r_D = 4.0e-15, m_D 最細 = 3.9e-5
+    [S4 branch] r_Xnaive(ε): 1.000 (ε=0.4) → 1.000 (ε=0.05) — O(1) で残存 ⇒ **棄却** (素朴 off-diagonal 転写は taste-nonsinglet)
+  [PASS] [S4] X naive: r が O(1) で残存 (> 0.5 — 素朴転写の棄却が分解能をもって確定)  r_Xnaive(最細) = 1.000
+  [PASS] [S5] X split: r < 1e-12 (厳密 singlet) ∧ m(ε) 単調減少 ∧ 最細 < 5e-3  max r = 5.2e-15, m 最細 = 7.8e-5
+    [S6 記録] Z_D(最細) = 0.999729 / Z_X(最細) = 1.997525 — D と X は別の正規化 (立方分裂, spec §12.2-4)
+  [PASS] [S6] Z_D, Z_X が有限・非零 (別々の Z の記録)  Z_D = 0.9997, Z_X = 1.9975
+    [S7 採点] PRED-015: D 通過 / X (修正転写) 通過 / naive 転写は棄却 ⇒ **hit — BOND-A (対角) + point-split X は TreeLevelMatchedTTSource**
+  [PASS] [S7] PRED-015 採点確定 (D ∧ 認証済み X 転写の存在)  D = true, X_split = true
+  [PASS] [S8] 変異: X_split piece2 の η parity 破り (ε 3→2) → taste 残差 O(1) (> 0.1)  r = 0.707
+
+[artifact] ./results/v268z_source_matching.json
+
+[判定] 事前登録 (a): **Gate 1 開通 — D は TreeLevelMatchedTTSource、素朴 off-diagonal 転写は棄却、point-split X が認証** — v26.8-A (解析 oracle) へ進む資格が生じた
+
+総合判定: [PASS] (0 s)
+----- exit=0 -----
+===== sim/target/release/v269c_spin4d =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-C v269c_spin4d — 4D spin 分離と Gate 5 総括 ===
+
+置換則で T_xy/T_yz point-split を構成 (全 10 source 完成)。殻積分の 10×10
+スペクトル行列を Lorentz BR 射影子で分解 — σ = ρ₂P₂ + ρ₀P₀s への崩壊を判定。
+
+  [PASS] [C0] 置換則 V(k;q) = V_unmod(k+q/2ŷ): d_y = 1, 2 の明示両向き和と一致  max|Δ| = 1.7e-16
+  [PASS] [C1] 正準フラックス V_Fx = piece2 単独 (厳密恒等 < 1e-12) / Belinfante とは回転流の分 O(1)   [0.4: p2 3.76e-16 / Bel 8.10e-1] [0.2: p2 3.64e-16 / Bel 8.12e-1] [0.1: p2 1.36e-15 / Bel 8.12e-1] [0.05: p2 3.37e-15 / Bel 8.12e-1]
+  [PASS] [C2] full 4D Ward の 10 列拡張: 4 行 × 10 列 × 2 周波数 = 80 恒等式 (2 サンプル k)  max 相対残差 = 4.3e-13
+    [C3 表] a = 0.180: |σ_DD/2σ_XX − 1| = 0.01178, σ_DD/(2ρ_D) = 1.0116, |σ_DX|/√(σσ) = 4.48e-17, 横断性 max = 8.4e-12 (0 s)
+    [C3 表] a = 0.090: |σ_DD/2σ_XX − 1| = 0.00292, σ_DD/(2ρ_D) = 1.0029, |σ_DX|/√(σσ) = 3.20e-17, 横断性 max = 2.5e-11 (0 s)
+    [C3 表] a = 0.045: |σ_DD/2σ_XX − 1| = 0.00073, σ_DD/(2ρ_D) = 1.0007, |σ_DX|/√(σσ) = 1.83e-16, 横断性 max = 1.3e-10 (0 s)
+  [PASS] [C3] 4D spin-2 分離: σ_DD/2σ_XX → 1 (O(a²)) / σ_DX = 0 / 正準横断性 / oracle アンカー 2%  縮退 0.0118 → 0.0029 → 0.0007 (比 4.0, 4.0), 直交 1.8e-16, 横断 1.3e-10, アンカー 1.0007
+  [PASS] [C4] 変異: T_xz の Z 補正 (÷2) を落とす → 2σ_XX/σ_DD = 4 (縮退の 4 倍逸脱)  2σ_XX/σ_DD = 3.997
+
+[Gate 5 総括 (spec §12.6 の項目別)]
+  確立: h₀₀/h₀ᵢ source / q₀ ≠ 0 (Matsubara Ward 64+80 恒等式) / 全 10 source
+        構成 (置換則) / 4D Ward = 局所カレント + 計算可能な接触項 / 正準テンソル
+        の厳密横断性 / spin-2 の 4D 分離 (P₂ 縮退 + 直交) / BOND-A = 保存 stress
+        (tree O(ε²)) / Belinfante 構造の格子分解 (正準 = piece 単独・対称化 = 平均)
+  残り: Belinfante 対称 10×10 の完全崩壊 (T⁰ⁱ の対称化 — 二重変調則で構成可,
+        v26.9-D) / temporal h の二次変分 scheme (v27.0 設計項目)。
+        **FullGravitationalVacuumPolarization 型は保留を維持・1/Π 禁止も維持**
+        (凍結解釈: 測定器の証明であり QRN・創発重力の証拠ではない)
+
+[artifact] ./results/v269c_spin4d.json
+
+[判定] 事前登録 (a): **10 source 完成・full 4D Ward 80 恒等式・正準横断性厳密・spin-2 の 4D 分離成立 + Belinfante 構造の格子分解 — Gate 5 の Ward/分離部門確立** (対称 10×10 完全崩壊 = v26.9-D, temporal 二次変分 = v27.0 設計)
+
+総合判定: [PASS] (0 s)
+----- exit=0 -----
+===== sim/target/release/v269d_belinfante =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-D v269d_belinfante — Belinfante 対称 10×10 の完全崩壊 ===
+
+T⁰ᵢ_Bel = (V₀ᵢ + J^i)/2, J^i = ½{h(mid), ∂ᵢh(mid)} (y は厳密流)。massless の
+conformal 崩壊 σ → ρ₂P₂ のみ (trace セクター消滅) を殻積分 ladder で判定。
+
+  [PASS] [D0] J 構成: J^y_subst − 厳密流 = O(q) 交換子項 (半減比 ~2) かつ J^x の Fourier 台 ≤ 2  q 半減比 = 2.30 (差 1.4e-1 → 6.2e-2), 台残差 = 1.4e-15
+  [PASS] [D1] 負の発見: Φ(T⁰ˣ_naive) は T^{xy}-split に収束しない (定数 1.30 で停留)   rel(0.4) = 1.30e0 rel(0.2) = 1.30e0 rel(0.1) = 1.30e0 rel(0.05) = 1.30e0 (spread 6.2e-4)
+    [D 表] a = 0.180: 横断性 max = 0.67458, trace 比 = 0.26480, アンカー = 1.0116, σ_DD/2σ_XX = 1.0118 (0 s)
+    [D 表] a = 0.090: 横断性 max = 0.67429, trace 比 = 0.26515, アンカー = 1.0029, σ_DD/2σ_XX = 1.0029 (0 s)
+    [D 表] a = 0.045: 横断性 max = 0.67422, trace 比 = 0.26523, アンカー = 1.0007, σ_DD/2σ_XX = 1.0007 (0 s)
+  [PASS] [D2] 負の発見: 対称 10×10 の横断性破れ 0.674 は a 非依存 (素朴平均 ≠ Belinfante 密度)  0.6746 → 0.6743 → 0.6742 (spread 5.3e-4), trace 比も停留 0.265
+  [PASS] [D3] 負の発見: J 片は殻の破れに寄与しない — tv(naive) = tv(正準) < 1%  相対差 = 0.0e0 (naive 0.6742 vs 正準 0.6742)
+  [PASS] [D4] oracle 回帰: σ_DD/(2ρ_D) = 1 ± 2% かつ σ_DD/2σ_XX = 1 ± 2% (P₂ 無傷)  アンカー = 1.0007, 縮退 = 1.0007
+
+[artifact] ./results/v269d_belinfante.json
+
+[判定] 判定 (b) 確定: **負の結果 — 素朴平均 T⁰ᵢ = (密度+流束)/2 は格子 Belinfante 密度ではない** (厳密流束は正準 stress のまま・J 片は殻の破れに寄与しない)。正しい構成 = spin-current 改良頂点の明示転写 — 次ユニットに登録 (P₂ 部門は無傷)
+
+総合判定: [PASS] (0 s)
+----- exit=0 -----
+===== sim/target/release/v269e_energy_ward =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-0 v269e_energy_ward — エネルギーセクターの 4D Ward ===
+
+V₀₀(k;q) = h(k+q/2ŷ) (厳密導出)。連続の式 V_J = iC/(2sin(q/2)) の局所性と
+動的 Ward q₀²χ₀₀ + q̂²χ_JJ = M₁ を機械検査。Gate 5 の energy 行。
+
+  [PASS] [E0] V₀₀(k;0) = h(k) かつ V₀₀(k;q)ᵀ = V₀₀(k+qŷ;−q)  max|Δ| = 0.0e0
+  [PASS] [E1] taste-singlet: V₀₀ の指標純度残差 < 1e-12 (全 eps ブロック)  max 残差 = 1.8e-17
+  [PASS] [E2] tree matching: ‖V₀₀ − h_lin(中点)‖/‖h_lin‖ = O(ε²) (縮小比 ~4)   rel(0.4) = 1.13e-2 rel(0.2) = 2.84e-3 rel(0.1) = 7.10e-4 rel(0.05) = 1.78e-4 — 縮小比 3.99, 4.00
+  [PASS] [E3] 連続の式: V_J = iC/(2sin(q/2)) の Fourier 台 |n| ≤ 2 かつ q → 0 極限存在  台残差 = 8.0e-14, 収束差 (q = 1e-4 vs 2e-4)/ノルム = 2.4e-4
+  [PASS] [E4] 対ごと恒等式: (E_μ−E_ν)·M₀₀ = −i·q̂·M_J (全 64 対, サンプル k)  max|Δ| = 1.6e-14
+  [PASS] [E5] 変異: m 重み ×1.01 → V_J(q→0) 発散 (比 > 10; 正版は < 2)  変異比 = 24.5, 正版比 = 0.81
+  [PASS] [E6] 動的 Ward: q₀²χ₀₀(iq₀,q) + q̂²χ_JJ(iq₀,q) = M₁(q) (q = 0.4, BZ 積分)   q₀=0.3: 残差 0.0e0 q₀=0.9: 残差 4.4e-16 (0 s)
+
+[artifact] ./results/v269e_energy_ward.json
+
+[判定] 事前登録 (a): **h₀₀ source・局所エネルギー流 J_E・動的 (q₀ ≠ 0) Ward が格子上で厳密に確立 — Gate 5 の energy 行開通** (次 = 運動量セクター h₀ᵢ)
+
+総合判定: [PASS] (0 s)
+----- exit=0 -----
+===== sim/target/release/v269i_spin_improve =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-E v269i_spin_improve — spin-current 改良項の明示構成 ===
+
+ΔT⁰ⁱ = q̂·λ·[α̂ᵢ, α̂_y] (on-site 定数行列)。v26.9-D の停留 (流束 1.30 /
+横断性 0.674) が崩れるか — Belinfante 完成と Gate 5 分離部門の完結判定。
+
+  [PASS] [E0] λ の同定: fit が有理値 (±1/8 系) に 1e-2 一致 → 凍結  λ_fit = -0.124638 → 凍結 λ = -0.1250
+  [PASS] [E1] 改良の閉包: Φ(T_B⁰ˣ) → T^{xy}-split (停留 1.30 → 単調減少, 最終 < 5%)   rel(0.4) = 6.28e-2 rel(0.2) = 1.53e-2 rel(0.1) = 3.80e-3 rel(0.05) = 9.49e-4
+    [E 表] a = 0.180: 横断性 max = 0.00633, trace 比 = 0.00114, アンカー = 1.0116, 縮退 = 1.0118 (0 s)
+    [E 表] a = 0.090: 横断性 max = 0.00157, trace 比 = 0.00028, アンカー = 1.0029, 縮退 = 1.0029 (0 s)
+    [E 表] a = 0.045: 横断性 max = 0.00039, trace 比 = 0.00007, アンカー = 1.0007, 縮退 = 1.0007 (0 s)
+  [PASS] [E2] 対称 10×10 の横断性回復: 0.674 (v26.9-D) → O(a²) 級で消える (最終 < 2%)  0.0063 → 0.0016 → 0.0004 (比 4.0, 4.0)
+  [PASS] [E3] conformal 崩壊: trace 比 0.265 (v26.9-D) → 単調減少 (最終 < 2%)  0.0011 → 0.0003 → 0.0001
+  [PASS] [E4] oracle 回帰: σ_DD/(2ρ_D) = 1 ± 2% かつ σ_DD/2σ_XX = 1 ± 2%  アンカー = 1.0007, 縮退 = 1.0007
+  [PASS] [E5] 変異: λ → −λ → 横断性 O(1) 停留 (正版の 10 倍超)  変異 = 0.8771 vs 正版 0.0004
+
+[artifact] ./results/v269i_spin_improve.json
+
+[判定] 事前登録 (a): **spin-current 改良で Belinfante 対称 10×10 が完成 — 横断性回復・conformal 崩壊 σ → ρ₂P₂・Gate 5 の分離部門完結** (型名保留・1/Π 禁止維持 — 凍結解釈: 測定器の証明)
+
+総合判定: [PASS] (0 s)
+----- exit=0 -----
+===== sim/target/release/v269m_momentum_ward =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-A v269m_momentum_ward — 運動量セクターの 4D Ward と Belinfante ===
+
+V₀y = −(1/2)sin(2k_y+q)𝟙 (2 サイト分割 — 自明 taste-singlet)。保存流由来
+stress V_S vs BOND-A の T_yy (Z なし正準照合)、Belinfante T₀y = J_E (on-shell)、
+動的 Ward q₀²χ₀₀ʸ + q̂²χ_SS = M₁ を機械検査。Gate 5 の momentum 行。
+
+  [PASS] [M0] V₀y(k;0) = −(1/2)sin(2k_y)𝟙・[h, V₀y(0)] = 0・転送ブロック整合  max|Δ| = 5.6e-17
+  [PASS] [M1] 連続の式: V_S = C/(2sin(q/2)) の Fourier 台 |n| ≤ 3 かつ q → 0 極限存在  台残差 = 1.2e-15, 収束差/ノルム = 4.8e-4
+  [PASS] [M2] 保存 stress = BOND-A T_yy (tree, Z なし): 射影ブロック差 → 0 (単調)   rel(0.4) = 5.99e-2 rel(0.2) = 1.45e-2 rel(0.1) = 3.61e-3 rel(0.05) = 9.01e-4
+  [PASS] [M3] Belinfante: on-shell で T₀y = J_E^y (射影ブロック差 → 0, 単調)   rel(0.4) = 1.28e-1 rel(0.2) = 3.10e-2 rel(0.1) = 7.70e-3 rel(0.05) = 1.92e-3
+  [PASS] [M4] 動的 Ward (momentum 行): q₀²χ_{0y,0y} + q̂²χ_SS = M₁ (q = 0.4)   q₀=0.3: 残差 1.1e-15 q₀=0.9: 残差 1.7e-15 (0 s)
+  [PASS] [M5] 変異: s_y 依存重み ×1.02 (taste-nonsinglet) → 保存破れで V_S(q→0) 発散 (比 > 10; 正版 < 2)  変異比 = 19.4, 正版比 = 0.66
+
+[artifact] ./results/v269m_momentum_ward.json
+
+[判定] 事前登録 (a): **momentum 行開通 — 保存 stress = BOND-A stress (tree, Z なし)・Belinfante T₀y = J_E 成立・動的 Ward 厳密** (残り = 10×10 kernel と contact 込み full 4D Ward)
+
+総合判定: [PASS] (0 s)
+----- exit=0 -----
+===== sim/target/release/v269w_ward4d =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-B v269w_ward4d — full 4D Ward: 4 行 × 8 列 × 2 周波数 ===
+
+iq₀·C_AB(iq₀) − q̂·C_{J_A B}(iq₀) = −⟨[A(q),B(−q)]⟩ を保存カレント系で
+一括機械検査。接触項は対和/占有トレースの独立 2 実装。Gate 5 の Ward 機構。
+
+  [PASS] [W0] 保存フラックス V_Fν (ν = 0,x,y,z) の Fourier 台 |n| ≤ 3  max 台残差 = 6.3e-14
+  [PASS] [W2a] full 4D Ward (k 点ごと): iq₀C − q̂C_J = −⟨[A,B]⟩ (64 恒等式 × 3 k)  max 相対残差 = 1.5e-12
+  [PASS] [W1] 接触項 2 実装 (BZ 和のみで一致する定理): 対和 = −占有トレース (12³, q 可約)  max 相対差 = 1.3e-13
+  [PASS] [W2b] full 4D Ward (12³ BZ 積分): 64 恒等式すべて  max 相対残差 = 4.8e-14 (1 s)
+  [PASS] [W3] ‖V_Fy − V_yy^A‖_F (off-shell 全行列) の ε-ladder 単調減少 (指数は公表)   rel(0.4) = 5.65e-2 rel(0.2) = 1.43e-2 rel(0.1) = 3.60e-3 rel(0.05) = 9.00e-4 — 実効指数 ~ε^2.0
+  [PASS] [W4] 変異: (i) V₀x taste 破り → V_Fx(q→0) 発散 (比 > 10; 正版 < 2) / (ii) 接触項符号反転 → 破れ  発散比 = 13.6 (正版 0.98), 符号反転残差 = 2.00
+
+[artifact] ./results/v269w_ward4d.json
+
+[判定] 事前登録 (a): **保存カレント系での full 4D Ward (4 行 × 8 列 × 2 周波数 = 64 恒等式) が格子上で厳密に閉じる — Gate 5 の Ward 機構確立** (残り = spin-0/2 の 4D 分離と BOND-A 差の連続極限 [v26.9-C] → Gate 5 総括)
+
+総合判定: [PASS] (1 s)
+----- exit=0 -----
+===== sim/target/release/v270a_kernel4d =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v27.0-A v270a_kernel4d — full 4D kernel の厳密 Ward (spec §13.2) ===
+
+k̂^{0ν} := C_{T⁰ν,B} / k̂^{yν} := C_{J_ν,B} − ⟨[T⁰ν,B]⟩/q̂ (接触完備化)。
+iq₀k̂^{0ν} − q̂k̂^{yν} = 0 の厳密性と、流束行 → Belinfante stress 行の収束。
+
+  [PASS] [A0] 接触完備化 X_ν = −⟨[T⁰ν,B]⟩/q̂ の q → 0 正則性 (q 半減で非成長 < 1.3)  max 成長比 = 1.000 (1 s)
+  [PASS] [A1] 厳密 4D Ward: iq₀k̂^{0ν} − q̂k̂^{yν} = 0 (4 行 × 10 列 × 2 周波数, 12³)  max 相対残差 = 6.8e-14 (4 s)
+  [PASS] [A2] Onsager 対称性: C_{AB}(iq₀) = C_{BA}(iq₀) (反対称改良項の微小破れ込み < 1e-6)  max 相対差 = 7.5e-9
+  [PASS] [A3] 対称テンソル整合性: 流束行 → Belinfante stress 行 (全 4 行, O(ε²) 減少)   ν=0: 3.1e-2→7.7e-3→1.9e-3 ν=1: 1.5e-2→3.8e-3→9.5e-4 ν=2: 1.4e-2→3.6e-3→9.0e-4 ν=3: 3.0e-2→7.4e-3→1.8e-3
+  [PASS] [A4] 変異: λ → 0 (改良なし) → ν = x 行が O(1) 停留 (> 10× 正版)  変異 = 1.301 vs 正版 9.5e-4
+
+[artifact] ./results/v270a_kernel4d.json
+
+[判定] 事前登録 (a): **full 4D kernel の厳密 Ward 充足 (spec §13.2-A) — 接触完備化は正則・流束行は Belinfante stress 行へ O(ε²) 収束** (次 = v27.0-B 連続 universality。1/Π は §13.3 全条件まで禁止)
+
+総合判定: [PASS] (4 s)
+----- exit=0 -----
+===== sim/target/release/v270b_universality =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v27.0-B v270b_universality — 4D kernel の連続 universality (spec §13.2-B) ===
+
+予言 (P₂ 幾何, 静的 θ₀₀ = 1・θ_yy = θ₀y = 0): A_00/A_D = 2/3 厳密 /
+A_0y = A_yy = 0 (縦・時間 = 純ゲージ — Lean 定理の one-loop 版)。
+
+    [A(a) 表] a | D | 00 | 0y | yy
+      a = 0.3500:  -1.4016e-3 | -9.0272e-4 | +5.7225e-6 | -3.3801e-6 | (24 s)
+      a = 0.2500:  -1.3502e-3 | -8.8105e-4 | +4.2089e-6 | -1.6999e-7 | (64 s)
+      a = 0.1800:  -1.3170e-3 | -8.6622e-4 | +3.4462e-6 | +1.4021e-6 | (102 s)
+      a = 0.1250:  -1.2946e-3 | -8.5580e-4 | +3.0202e-6 | +2.2672e-6 | (141 s)
+      a = 0.0900:  -1.2827e-3 | -8.5017e-4 | +2.8289e-6 | +2.6528e-6 | (210 s)
+      a = 0.0625:  -1.2752e-3 | -8.4653e-4 | +2.7222e-6 | +2.8669e-6 | (262 s)
+      a = 0.0450:  -1.2715e-3 | -8.4466e-4 | +2.6744e-6 | +2.9629e-6 | (312 s)
+      a = 0.0320:  -1.2692e-3 | -8.4356e-4 | +2.6489e-6 | +3.0136e-6 | (380 s)
+      a = 0.0220:  -1.2679e-3 | -8.4290e-4 | +2.6351e-6 | +3.0425e-6 | (443 s)
+  [PASS] [B0] 回帰: A_D (a = 0.125) が v268p 公表 JSON と 2e-3 相対一致  比 = 1.022148 vs 1.022197
+    [外挿] ch | 全域 | 尾部 (a ≤ 0.125)
+      D: -1.2663e-3 | -1.2665e-3
+      00: -8.4209e-4 | -8.4218e-4
+      0y: +2.6222e-6 | +2.6228e-6
+      yy: +3.0595e-6 | +3.0665e-6
+  [PASS] [B1] 温度チャネル universality: A_00/(⅔·A_D) = 1 ± 2% (系統 ≤ 1%)  中心 = 0.9974 (全域 0.9975, spread 0.0000)
+  [PASS] [B2] |A_0y/A_D| < 0.05 (時間縦チャネルは純ゲージ)  |比| = 0.0021
+  [PASS] [B3] |A_yy/A_D| < 0.05 (L = yy = 純ゲージ — Lean 定理の one-loop 版)  |比| = 0.0024
+  [PASS] [B4] 変異: V₀₀ ×1.02 → A_00/(⅔A_D) が +4% 逸脱 (> 2% ゲート外)  変異中心 = 1.0377
+
+[artifact] ./results/v270b_universality.json
+
+[判定] 事前登録 (a): **温度セクター universality 成立 — A_00 = (2/3)A_D・縦/時間チャネルは純ゲージ (spec §13.3 条件 (ii) 充足)** — fork 判定 v27.0-C へ
+
+総合判定: [PASS] (508 s)
+----- exit=0 -----
+===== sim/target/release/v270c_fork =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v27.0-C v270c_fork — dynamic metric fork 判定の執行 (spec §13.3) ===
+
+解禁条件 (i)(ii) 充足済み。1/Π をこの監査に限り計算: Π₂^ren = A₂q⁴ln q² に
+q² kinetic 項がないこと (no-pole) と、bare c₂ の a⁻² 走行 (Sakharov =
+regulator 量) を判定 → 分岐執行。
+
+    [χ_D 表] Q | a = 0.045 | a = 0.09
+      Q = 0.15: +3.826073e4 | +2.391255e3 (14 s)
+      Q = 0.20: +3.826056e4 | +2.391213e3 (29 s)
+      Q = 0.30: +3.826008e4 | +2.391093e3 (41 s)
+      Q = 0.40: +3.825941e4 | +2.390925e3 (52 s)
+      Q = 0.50: +3.825854e4 | +2.390710e3 (63 s)
+      Q = 0.60: +3.825749e4 | +2.390447e3 (75 s)
+      Q = 0.75: +3.825555e4 | +2.389963e3 (86 s)
+      Q = 0.90: +3.825318e4 | +2.389373e3 (100 s)
+  [PASS] [F0] A₂ 凍結 {c₀,c₂,c₄} フィット: 最大相対残差 < 1e-3 (a = 0.045)  残差 = 1.7e-12 (c₀ = +3.826e4, c₂ = -9.596e0, c₄ = +1.282e-2)
+  [PASS] [F1] 形状: Π₂^ren/(A₂Q⁴lnQ²) ∈ [0.8, 1.2] 全窓 (零交差なし)  最大逸脱比 = 1.014
+  [PASS] [F2] no-pole: r(Q) = |Π₂^ren/Q²| → 0 が Q²lnQ² 形の導出縮小比 0.232 に 5% 一致  r = 4.66e-4 → 2.74e-4 → 1.10e-4, 比 0.235 (導出 0.232)
+  [PASS] [F3] Sakharov 走行: c₂(0.045)/c₂(0.09) ∈ [3, 5] (a⁻² = 4) — 誘導 Newton 定数候補は regulator 量  比 = 4.000 (c₂ = -9.596e0 vs -2.399e0)
+  [PASS] [F4] 変異: A₂ を 2 倍に凍結 → フィット残差 10 倍超 (物理値の選択性)  変異残差 = 6.5e-10 vs 正 1.7e-12
+
+[fork 執行 (spec §13.3 の凍結プロトコル)]
+  判定: **分岐 (b) external metric を確定** —
+  (1) 自由場 matter loop の普遍部分は A₂q⁴ln q² のみ — 1/Π₂ に有限留数の
+      massless pole なし (graviton は生成されない)。
+  (2) pole を作りうる q² 項 (Sakharov 誘導 Newton 定数) は bare c₂ で、
+      a⁻² で走る regulator 量 — 本プログラムの universality 基準で非普遍。
+  (3) composite graviton 路線 (分岐 a) は「相互作用による普遍 q² 項の生成 +
+      Weinberg–Witten 破れ仮定の明示」を要件とする将来の別プログラムに封印。
+  (4) 1/Π の常用は解禁しない (本監査限り)。metric は外部 regulator のまま —
+      QRN-Core v1 (matter-on-background) へ。
+
+[artifact] ./results/v270c_fork.json
+
+[判定] 事前登録どおり執行: **分岐 (b) external metric 確定 — 自由場 matter loop は graviton を作らず、作りうる q² 項は regulator 量** (composite 路線は要件明示の上で封印。1/Π 常用は解禁せず)
+
+総合判定: [PASS] (100 s)
+----- exit=0 -----
+===== sim/target/release/v31_gauge ===== [引用]
+[引用] ソース不変 (src sha256 3a394e32ee44…) — 2026-07-23 の実行結果 results/v31_gauge.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v32_yukawa ===== [引用]
+[引用] ソース不変 (src sha256 432454c05cc7…) — 2026-07-23 の実行結果 results/v32_yukawa.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v33_ctheorem ===== [引用]
+[引用] ソース不変 (src sha256 074ebbf9e5c6…) — 2026-07-23 の実行結果 results/v33_ctheorem.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v34_unruh ===== [引用]
+[引用] ソース不変 (src sha256 1aa768a3fd68…) — 2026-07-23 の実行結果 results/v34_unruh.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v41_qnec ===== [引用]
+[引用] ソース不変 (src sha256 bcd922aeb4f1…) — 2026-07-23 の実行結果 results/v41_qnec.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v42_neutrino ===== [引用]
+[引用] ソース不変 (src sha256 9688df8acaef…) — 2026-07-23 の実行結果 results/v42_neutrino.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v43_landscape ===== [引用]
+[引用] ソース不変 (src sha256 c8022c2fc15e…) — 2026-07-23 の実行結果 results/v43_landscape.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v44_desitter ===== [引用]
+[引用] ソース不変 (src sha256 063c824935c4…) — 2026-07-23 の実行結果 results/v44_desitter.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v51_arrow ===== [引用]
+[引用] ソース不変 (src sha256 2adaab85c983…) — 2026-07-23 の実行結果 results/v51_arrow.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v52_bigreps ===== [引用]
+[引用] ソース不変 (src sha256 36c88a2e940d…) — 2026-07-23 の実行結果 results/v52_bigreps.txt を引用 (PASS 1 / FAIL 0)
+----- cite -----
+===== sim/target/release/v53_decoupling ===== [引用]
+[引用] ソース不変 (src sha256 ba07704d898b…) — 2026-07-23 の実行結果 results/v53_decoupling.txt を引用 (PASS 1 / FAIL 0)
+----- cite -----
+===== sim/target/release/v61_ledger =====
+=== v6.1 主張台帳 (claims.yml) の機械検証 ===
+
+[1] 書式解析: 211 件の主張を解析  [PASS]
+[2] id 一意性・命名規則: 全 211 件 OK  [PASS]
+[3] 等級・必須フィールド: OK  [PASS]
+[4] 証拠ファイルの実在: 全 527 参照 OK  [PASS]
+[5] 限界の明示 (C0 以外は必須): OK  [PASS]
+[6] バイナリ被覆: 全 161 本が台帳から参照されている  [PASS]
+
+---- 等級別の集計 ----
+  C0 教科書的・既存定理 (前提)                7 件
+  C1 既存結果の再現実装                    35 件
+  C2 制限付き計算定理                     51 件
+  C3 toy model による機構提示            14 件
+  C4 現象論的 fit / オーダー推定            77 件
+  C5 解釈・哲学・スローガン                  27 件
+  計 211 件
+
+---- 期別の主張数 ----
+  v0.x : 14 件
+  v1.x : 11 件
+  v10.x : 4 件
+  v11.x : 5 件
+  v12.x : 4 件
+  v13.x : 3 件
+  v14.x : 3 件
+  v15.x : 8 件
+  v16.x : 14 件
+  v17.x : 9 件
+  v18.x : 7 件
+  v19.x : 8 件
+  v2.x : 8 件
+  v20.x : 7 件
+  v21.x : 8 件
+  v22.x : 8 件
+  v23.x : 7 件
+  v24.x : 7 件
+  v25.x : 8 件
+  v26.x : 23 件
+  v27.x : 3 件
+  v3.x : 8 件
+  v4.x : 7 件
+  v5.x : 4 件
+  v6.x : 10 件
+  v7.x : 6 件
+  v8.x : 3 件
+  v9.x : 4 件
+
+総合判定: [PASS] 台帳は形式的に健全 (内容の正しさは各文書と results/ が担う)
+----- exit=0 -----
+===== sim/target/release/v62_atlas ===== [引用]
+[引用] ソース不変 (src sha256 051d0e468ef4…) — 2026-07-23 の実行結果 results/v62_atlas.txt を引用 (PASS 39 / FAIL 0)
+----- cite -----
+===== sim/target/release/v63_qnec_budget ===== [引用]
+[引用] ソース不変 (src sha256 4c65eca558ae…) — 2026-07-23 の実行結果 results/v63_qnec_budget.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v64_controls ===== [引用]
+[引用] ソース不変 (src sha256 78de19e0ea77…) — 2026-07-23 の実行結果 results/v64_controls.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v65_bayes ===== [引用]
+[引用] ソース不変 (src sha256 daf5eca7d4d0…) — 2026-07-23 の実行結果 results/v65_bayes.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v67_core ===== [引用]
+[引用] ソース不変 (src sha256 d1dabc61ab15…) — 2026-07-23 の実行結果 results/v67_core.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v71_twou1 ===== [引用]
+[引用] ソース不変 (src sha256 0276cb4f7fe2…) — 2026-07-23 の実行結果 results/v71_twou1.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v72_geomfn ===== [引用]
+[引用] ソース不変 (src sha256 5876e07923d3…) — 2026-07-23 の実行結果 results/v72_geomfn.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v73_bmv2 ===== [引用]
+[引用] ソース不変 (src sha256 0dac3cef88e6…) — 2026-07-23 の実行結果 results/v73_bmv2.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v74_core2 ===== [引用]
+[引用] ソース不変 (src sha256 b2ddc870659b…) — 2026-07-23 の実行結果 results/v74_core2.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v81_geoselect ===== [引用]
+[引用] ソース不変 (src sha256 bdd7508b9c1a…) — 2026-07-23 の実行結果 results/v81_geoselect.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v82_threeu1 ===== [引用]
+[引用] ソース不変 (src sha256 c16bc36f4ee3…) — 2026-07-23 の実行結果 results/v82_threeu1.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v91_ckmselect ===== [引用]
+[引用] ソース不変 (src sha256 8f2c600bf791…) — 2026-07-23 の実行結果 results/v91_ckmselect.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v92_labelstab ===== [引用]
+[引用] ソース不変 (src sha256 ae3b2128304e…) — 2026-07-23 の実行結果 results/v92_labelstab.txt を引用 (PASS 18 / FAIL 0)
+----- cite -----
+===== sim/target/release/v94_qneccore ===== [引用]
+[引用] ソース不変 (src sha256 aa0a93f13f64…) — 2026-07-23 の実行結果 results/v94_qneccore.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+
+===== 集計 =====
+実行 33 本: PASS 268 / FAIL 0
+引用 129 本: PASS 856 / FAIL 0 (ソース不変を sha256 で確認 — 台帳 results/suite_manifest.tsv)
+総計: PASS 1124 / FAIL 0
+lib.rs 4fb713c1b05a524e1d57d1ad1a2f37c7bc2b628c8bde990a8c34d381f85e6fee / Cargo.toml fcbdde4968e5a893025368bc1c4e572b4e63849825945841d486814e95e062b2 / rustc 1.94.0 (4a4ef493e 2026-03-02)

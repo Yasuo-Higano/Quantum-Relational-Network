@@ -89,10 +89,69 @@ one-loop 実証 (v26.6 の bare c₁ 汚染 [L チャネル同桁] と対照的 
 開発記録: F2 run1 のバー 0.2 は log 増強を落とした誤較正 — 導出値 0.232 との
 5% 照合に較正 (測定 0.235 は 0.9% 一致 — 判定がむしろ強くなった)。
 
-## 1. 残り (v27.0 arc)
+## D. 期統合 — 第二十七期の総括と QRN-Core v1 の定義要件
 
-- **v27.0-D**: 期統合 (第二十七期統合文書・スイート・QRN-Core v1 着手・
-  CLAUDE.md 到達点更新)。
+### D.1 第二十七期の総括 (v26.1 → v27.0-C)
+
+**期のテーゼ: 「予言の台帳は赤字でも、測定器は黒字にできる」**。
+
+- **v26.1 (flavor prequential)**: 凍結規則の台帳で S_program − S_FN = −55.9
+  — 予測プログラムとしての flavor 統一は**赤字のまま公表** (D_J 支配)。
+- **v26.2–26.5 (静的応答監査)**: BOND-A の 10 要件・c₁ 行列 (縦 +0.016/
+  横 −0.013/spin-2 −0.014)・bare c₁ は非共変 regulator 汚染に支配 (縦 =
+  spin-2 同桁)。
+- **v26.6–26.7 (核・スペクトル)**: 完全静的核 (17 検査)・Lean BR 射影 13+14
+  定理・**PRED-013 的中 (プログラム初の凍結新規予言: 相互作用が q⁴ 保護を
+  破る)**・自由場 no-pole (PRED-014)。
+- **v26.8 (連続極限 universality — 最重要 falsifier)**: 解析 oracle
+  −1/(160π²) 三重導出・**4 比 (D/X × stag/Wil) = 1 ± 0.14% (PRED-016)・
+  スカラー和則 (PRED-017)・三者一致 (spectral 経路, a² Lorentz 回復)** —
+  全て scored-hit。
+- **v26.9 (4D covariance closure)**: 動的 Ward 144 恒等式 (機械精度)・
+  **Belinfante 構造の格子分解** (正準 = piece 単独・改良 λ = −1/8 は su(2)
+  代数の予言どおり)・massless σ = ρ₂P₂ 完全崩壊・負の結果 1 件凍結。
+- **v27.0 (fork)**: 厳密 4D kernel (Ward 6.8e-14)・温度セクター universality
+  (A_00/A_D = 2/3 的中・純ゲージ消滅)・**分岐 (b) external metric 確定** —
+  graviton pole なし・誘導 Newton 定数候補は a⁻² 走行の regulator 量。
+
+**正直な残高 (不変の分類)**: 的中 = 計算実験内の機構予言 (PRED-013–018)。
+**自然の観測量の的中 0・独立外部再現 0**。経路 B の成果は「測定器が正しい」
+ことの証明であり、QRN・創発重力の証拠ではない (spec §12.8/§13.3 凍結解釈)。
+
+### D.2 未解決問題の残高 (第二十八期への持ち越し)
+
+1. **QRN-Core v1 の定義** (モラトリアム解除条件 — D.3 の要件で着手)。
+2. 相互作用系の q² 項生成の有無 (v26.7 PRED-013 の続き — composite 路線の
+   封印解除条件でもある)。
+3. flavor 台帳の赤字 (前方予言 τ = 1/12 + i/2 は登録済み — 待ち)。
+4. massive ρ₀ (trace 復活) の 4D 分解・Wilson 温度チャネル。
+5. 外部: anomaly-search / modular-BW の投稿・第三者再実装の公募 (最優先
+   マイルストーン — PROMPT/9)。
+
+### D.3 QRN-Core v1 の定義要件 (登録 — 定義完了までモラトリアム維持)
+
+QRN-Core v1 = 「この期までに**認証された器械と公理だけ**で書かれた、
+matter-on-background の最小核」。定義完了の要件:
+
+1. **公理系**: 格子 = regulator (存在論)・BOND-A 結合則・置換則 (中点変調)・
+   Belinfante 改良 (λ = −1/8) — 全て機械検査可能な形で 1 文書に凍結。
+2. **器械スイート**: 認証済み測定器の一覧 (null 結合・殻積分・Matsubara
+   Ward・接触項 2 実装・導出モデル外挿) と各々の較正記録 (開発記録の教訓集)。
+3. **主張の等級**: C0–C5 台帳 (claims.yml) の継続 + 「自然の観測量 0」の
+   明示を維持。
+4. **falsifier**: 4 比 universality・和則・Ward 恒等式群を常設回帰化
+   (suite の監査層)。
+
+### D.4 スイート (2026-07-28)
+
+増分スイート (`make suite`, 台帳 = results/suite_manifest.tsv):
+**実行 33 本 PASS 268 / FAIL 0・引用 129 本 PASS 856 / FAIL 0 (ソース不変を
+sha256 確認)・総計 PASS 1124 / FAIL 0** — results/v270_suite.txt。
+rustc 1.94.0。v252_manifest (v25.2 凍結台帳) を含む監査層は全て健全。
+
+## 1. 残り
+
+- なし (v27.0 arc 完結)。第二十八期 = QRN-Core v1 の定義 (D.3 の要件) から。
 
 ## 2. 成果物
 
@@ -102,3 +161,5 @@ B: `sim/src/bin/v270b_universality.rs` / `results/v270b_universality.txt`
 (5 検査 PASS) / `results/v270b_universality.json`。claims: QRN-GRAV-058。
 C: `sim/src/bin/v270c_fork.rs` / `results/v270c_fork.txt`
 (5 検査 PASS) / `results/v270c_fork.json`。claims: QRN-GRAV-059。
+D: `results/v270_suite.txt` (総計 PASS 1124 / FAIL 0)・本文書 §D
+(期統合)・CLAUDE.md 到達点更新。claims: QRN-META-028。

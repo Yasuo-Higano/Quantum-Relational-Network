@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 通常のソフトウェア開発ではなく**物理学の研究プロジェクト**。現代物理の各理論を Rust による第一原理シミュレーションで再現・検証しながら、統一的描像「量子情報網理論 (QRN)」をバージョン付き文書として積み上げている。原点の指示は `PROMPT/0.md`。
 
-現在の到達点は `docs/uft-v26.6.md`(**第二十七期**。Rust 142 本 + Lean 定理 36 本 [6 ファイル]。README の到達点行と Rust 本数・Lean 定理数は v151_audit が機械検査するため、版を進めるたびにバンプする)。**v25 系列は凍結済み** (λ 問題の解析的完結: g = g_m = 1/AGM(1,√(1+μ²))、λ_x = 1.185467287349258 / λ_⊥ = 1.229428764341310、`v252_manifest` が不変性を常設監査。v25.3 は開始しない)。第二十七期は flavor prequential 監査 (v26.1: 台帳は赤字のまま公表) の後、**誘導重力 経路 B** を進行中 — **PROMPT/8 を受けた凍結仕様 `paper/grav-vacuum-polarization-spec.md` が一次ソース** (格子は regulator / 禁止暗黙変換 6 種 / 要件 0 = 背景停留 / bare c₁ の一致は要求しない)。ロードマップ: v26.6 (完全核監査 = 接触項・停留・縦 Ward・projector [Lean 化済み]) → v26.7 (動的 spectral measure + 副実験 q⁴ 破れ) → v26.8 (連続極限 universality = 最重要 falsifier) → v26.9 (動的 metric の分岐判断)。**QRN-Core v1 定義まで広域モジュール追加停止は維持**。旧世代の地図は docs/uft-vX.0.md 系列 (直近統合 v25.0)。
+現在の到達点は `docs/uft-v27.0.md`(**第二十七期 完結**。Rust 162 本 + Lean 定理 50 本 [7 ファイル]。README の到達点行と Rust 本数・Lean 定理数は v151_audit が機械検査するため、版を進めるたびにバンプする)。**v25 系列は凍結済み** (λ 問題の解析的完結、`v252_manifest` が常設監査。v25.3 は開始しない)。**経路 B (誘導重力監査) は完結**: 凍結仕様 `paper/grav-vacuum-polarization-spec.md` (§12 = PROMPT/9 改訂・§12.9 = PRED-016 修正条項・§13 = v27.0 fork プロトコル) が一次ソース。成果 = 連続極限 universality 4 比 0.14% (PRED-016)・スカラー和則 (PRED-017)・三者一致・4D Ward 144 恒等式・Belinfante 完成 (改良 λ = −1/8)・**dynamic metric fork は分岐 (b) external metric で確定** (graviton pole なし・誘導 Newton 定数候補 c₂ は a⁻² 走行の regulator 量。composite 路線は「普遍 q² 項生成 + Weinberg–Witten 破れ仮定明示」要件付きで封印・1/Π 常用は解禁せず)。全て「測定器の証明」であり QRN・創発重力の証拠ではない (凍結解釈)。**第二十八期 = QRN-Core v1 の定義** (uft-v27.0.md §D.3 の要件 — 定義完了まで広域モジュール追加停止は維持)。旧世代の地図は docs/uft-vX.0.md 系列。
 
 **文書・コードコメント・コミットメッセージは全て日本語。**
 
