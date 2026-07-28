@@ -1,0 +1,31 @@
+{
+  "unit": "B",
+  "model": "3+1D staggered free fermion, half-space (x open, single entangling plane)",
+  "chain_reduction": {
+    "hopping": -0.5,
+    "staggered_mass": "±μ, μ(ky,kz) = sqrt(cos²ky + cos²kz)"
+  },
+  "closed_form": "g(μ) = 1/AGM(1, sqrt(1+μ²))",
+  "bz_average": {
+    "lambda_x_inv": "⟨g(μ)⟩_BZ",
+    "lambda_perp_inv": "⟨2·cos²ky·g(μ)⟩_BZ"
+  },
+  "direct_readout_check": {
+    "N_min": 96,
+    "expected_direct": "1.185468(2)",
+    "convergence": "1/N⁴"
+  },
+  "expected": {
+    "lambda_x": 1.185467287349258,
+    "lambda_x_interval": [
+      1.185462071698428,
+      1.18547250299592
+    ],
+    "lambda_perp": 1.2294287643413095,
+    "lambda_perp_interval": [
+      1.2293850463388851,
+      1.2294724848218264
+    ]
+  },
+  "frozen_reference": "paper/modular-bw-full.md (Zenodo 10.5281/zenodo.21541851), results/v252_bz_certificate.json"
+}

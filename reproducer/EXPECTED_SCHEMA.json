@@ -1,0 +1,38 @@
+{
+  "description": "QRN reproducer 報告 JSON の形 (v27.4 凍結)。全フィールド必須 — 実施しない単位は units から省略可、ただし失敗した単位は省略せず failures に記録すること。",
+  "report": {
+    "replication": {
+      "author": "string (本リポジトリの作者・生成 AI と独立であること)",
+      "repository": "string (公開 URL)",
+      "commit": "string (再現実装のコミットハッシュ)",
+      "date": "string (YYYY-MM-DD)",
+      "language": "string",
+      "protocol_frozen_commit": "string (走行前に固定した本リポジトリのコミット)",
+      "shared_numerical_kernel": "bool (false であること)"
+    },
+    "units": {
+      "A": {
+        "n_solutions": "int",
+        "spectrum": "object {components: count}",
+        "canonical_multiplets": "array of string",
+        "sha256_of_full_list": "string (optional)"
+      },
+      "B": {
+        "lambda_x": "number",
+        "lambda_perp": "number",
+        "method": "string (closed_form | direct_readout | both)"
+      },
+      "C": {
+        "oracle_16pi2_A": "number",
+        "ratio_stag_D": "number",
+        "ratio_stag_X": "number",
+        "ratio_wil_D": "number",
+        "ratio_wil_X": "number",
+        "systematic_max": "number",
+        "sumrule_stag": "number (optional)",
+        "sumrule_wil": "number (optional)"
+      }
+    },
+    "failures": "array of {unit, description} — 不一致・再現失敗も必ず記録する"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "unit": "C",
+  "oracle": {
+    "observable": "TT (spin-2, D) channel q⁴ln q² coefficient, 1 massless Dirac",
+    "expected_16pi2_A": -0.1,
+    "rho_D": "s²/(160π²)",
+    "scalar_sum_rule": "1/(80π²) per Dirac"
+  },
+  "lattice": {
+    "source": "bond modulation (1+h)^{-1/2} (scheme BOND-A)",
+    "extraction": "null combination (Σw = ΣwQ² = ΣwQ⁴ = 0)",
+    "extrapolation": {
+      "staggered": [
+        "1",
+        "a²ln(1/a)",
+        "a²"
+      ],
+      "wilson": [
+        "1",
+        "a",
+        "a²"
+      ]
+    },
+    "ladder": {
+      "a_range": [
+        0.5,
+        0.022
+      ],
+      "Q_window": [
+        0.15,
+        0.9
+      ],
+      "m_phys": 0.0
+    },
+    "expected_ratios": {
+      "stag_D": 1.0,
+      "stag_X": 1.0,
+      "wil_D": 1.0,
+      "wil_X": 1.0
+    },
+    "normalization": {
+      "stag_D": "A/2A_oracle (2 tastes)",
+      "stag_X": "A/4A_oracle",
+      "wil_D": "A/A_oracle",
+      "wil_X": "A/(A_oracle/2)"
+    }
+  },
+  "frozen_reference": "paper/grav-vacuum-polarization-spec.md §12, instruments.yml, results/v268p_pred016.txt"
+}

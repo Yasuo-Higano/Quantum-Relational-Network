@@ -3,7 +3,7 @@
 **このファイルは `sh dag/run.sh` が生成する。手で編集しない。**
 Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導出値と全数照合済み。
 
-主張 216 / 依存辺 369 / 仮定 40 / 反証条件 15 / 最大深さ 34
+主張 217 / 依存辺 371 / 仮定 40 / 反証条件 15 / 最大深さ 34
 
 ## 仮定の影響範囲 (抜くと落ちる主張の閉包 — 降順)
 
@@ -30,11 +30,11 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-WINDOW-V31 | window | 30 |
 | ASM-EFT-VALIDITY | model | 30 |
 | ASM-IEEE754 | trust | 21 |
-| ASM-EDGE-SEMANTICS | design | 18 |
+| ASM-EDGE-SEMANTICS | design | 19 |
 | ASM-WINDOW-U1SQ | window | 17 |
 | ASM-SMCONTENT | data | 16 |
 | ASM-Z2-MINIMAL | model | 14 |
-| ASM-LEAN-TRUST | trust | 10 |
+| ASM-LEAN-TRUST | trust | 11 |
 | ASM-INIT | model | 9 |
 | ASM-WINDOW-EXT | window | 8 |
 | ASM-WINDOW-V43 | window | 7 |
@@ -42,8 +42,8 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-NET-REAL | ontology | 7 |
 | ASM-DOF-GROWTH | model | 7 |
 | ASM-WINDOW-PAIR | window | 5 |
+| ASM-LAYER-SEMANTICS | convention | 5 |
 | ASM-WINDOW-U1CUBE | window | 4 |
-| ASM-LAYER-SEMANTICS | convention | 4 |
 | ASM-ORBIFOLD | model | 3 |
 | ASM-WINDOW-EXC | window | 2 |
 | ASM-WICK | framework | 1 |
@@ -54,7 +54,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 
 | 反証条件 | status | 閉包 |
 |---|---|---|
-| FAL-SUITE | open | 208 |
+| FAL-SUITE | open | 209 |
 | FAL-CONTINUUM | open | 88 |
 | FAL-CKM-OOS | open | 63 |
 | FAL-BMV | open | 48 |
@@ -78,7 +78,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | 1 | 33 |
 | 2 | 25 |
 | 3 | 17 |
-| 4 | 15 |
+| 4 | 16 |
 | 5 | 9 |
 | 6 | 5 |
 | 7 | 4 |

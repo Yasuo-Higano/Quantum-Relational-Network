@@ -1,0 +1,26 @@
+{
+  "run": "R1_v31",
+  "label": "v3.1 域: 小表現, |Y|≤3/2, ≤5 多重項, ≤15 成分",
+  "types": [
+    "1,1",
+    "1,2",
+    "3,1",
+    "3b,1",
+    "3,2",
+    "3b,2"
+  ],
+  "hypercharge_6y_max": 9,
+  "max_multiplets": 5,
+  "max_components": 15,
+  "conditions": {
+    "su3cub": true,
+    "su3sq_u1": true,
+    "su2sq_u1": true,
+    "grav_u1": true,
+    "u1_cubed": true,
+    "witten": true,
+    "chiral": true,
+    "charged_under_all_factors": true,
+    "sterile_neutrino_allowed": false
+  }
+}

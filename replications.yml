@@ -1,0 +1,39 @@
+# =====================================================================
+# 独立外部再現の台帳 (Replication Ledger) — v27.4 で導入 (PROMPT/10 §6)
+# =====================================================================
+# reproducer/ (SPEC.md / TOLERANCES.yml / CLAIMS.md / NO_SHARED_CODE.md) の
+# 再現報告をここに登録する。sim/src/bin/v274_reproducer.rs が機械検証:
+#   - criteria の 6 条件が定義されていること
+#   - entries の各報告が 6 条件の真偽と結果を明示していること
+#   - 6 条件を全て満たす entries の数 = external_replications
+#   - external_replications = claims.yml の evidence_kind: external_replication
+#     の件数と一致すること (現在どちらも 0 — 昇格は CLAIMS.md の手続きのみ)
+# 失敗・不一致の報告も status: failed で登録する (削除しない)。
+# =====================================================================
+
+version: "v27.4"
+
+criteria: [different_author, independent_repository, no_shared_numerical_kernel, protocol_frozen_before_run, commit_hash_recorded, result_including_failures_public]
+
+external_replications: 0
+
+algorithmic_diversity_note: "同一作者・同一 AI・同一数値カーネルの別言語実装は algorithmic diversity であり、ここに登録しても external_replications に数えない (NO_SHARED_CODE.md)"
+
+# entries の書式 (登録時に追記):
+# - id: REP-001
+#   unit: "A | B | C"
+#   author: "..."
+#   repository: "..."
+#   commit: "..."
+#   date: "YYYY-MM-DD"
+#   language: "..."
+#   status: "passed | failed"
+#   different_author: true/false
+#   independent_repository: true/false
+#   no_shared_numerical_kernel: true/false
+#   protocol_frozen_before_run: true/false
+#   commit_hash_recorded: true/false
+#   result_including_failures_public: true/false
+#   note: "..."
+
+entries: []

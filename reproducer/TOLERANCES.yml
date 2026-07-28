@@ -1,0 +1,22 @@
+# reproducer 許容誤差 (v27.4 凍結 — 機械可読)。v274_reproducer が凍結一次ソース
+# (certificates/v62_sha256.txt, results/v252_bz_certificate.json) との一致を検査する。
+# 判定規則: pass = 全単位が bar 内 / fail = 1 つでも bar 外 (fail も報告に値する)。
+
+unit_a_n_solutions: 1
+unit_a_components: 15
+unit_a_sha256: "3017f659bf3b5e7b5c42f67099bf56a5915c552e70060468454804bb705c3a5e"
+unit_a_multiplets: "1,1:-6 1,2:3 3,1:-2 3,1:4 3b,2:-1"
+unit_a_note: "整数厳密 — 許容誤差なし。ハッシュは正準化規約が一致する場合のみ要求 (多重項集合の一致が本体)"
+
+unit_b_lambda_x_lo: 1.185462071698428
+unit_b_lambda_x_hi: 1.185472502995920
+unit_b_lambda_perp_lo: 1.2293850463388851
+unit_b_lambda_perp_hi: 1.2294724848218264
+unit_b_note: "証明付き区間への包含が bar (15 桁一致は追加の強い確認)。直読み経路は 1/N⁴ 外挿後に区間と比較"
+
+unit_c_oracle_16pi2_A: -0.1
+unit_c_oracle_abs_tol: 0.000001
+unit_c_ratio_central_tol: 0.01
+unit_c_ratio_systematic_tol: 0.005
+unit_c_sumrule_rel_tol: 0.01
+unit_c_note: "oracle は解析厳密 (数値経路の丸めのみ許容)。4 比は PRED-016 の登録バーそのまま (中心 1% / 系統 0.5%)"
