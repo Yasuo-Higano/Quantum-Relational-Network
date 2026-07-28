@@ -1,0 +1,21 @@
+{
+  "version": "v26.9-B",
+  "kind": "full_4d_ward_conserved",
+  "identity": "iq0·C_AB − qhat·C_JB = −⟨[A(q),B(−q)]⟩ (4 行 × 8 列 × 2 周波数)",
+  "rows": [
+    "ν=0",
+    "ν=x",
+    "ν=y",
+    "ν=z"
+  ],
+  "cols": [
+    "T00",
+    "T0x",
+    "T0y",
+    "T0z",
+    "Axx",
+    "Ayy",
+    "Azz",
+    "Axz"
+  ]
+}

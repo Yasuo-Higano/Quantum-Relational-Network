@@ -1,0 +1,18 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-B v269w_ward4d — full 4D Ward: 4 行 × 8 列 × 2 周波数 ===
+
+iq₀·C_AB(iq₀) − q̂·C_{J_A B}(iq₀) = −⟨[A(q),B(−q)]⟩ を保存カレント系で
+一括機械検査。接触項は対和/占有トレースの独立 2 実装。Gate 5 の Ward 機構。
+
+  [PASS] [W0] 保存フラックス V_Fν (ν = 0,x,y,z) の Fourier 台 |n| ≤ 3  max 台残差 = 6.3e-14
+  [PASS] [W2a] full 4D Ward (k 点ごと): iq₀C − q̂C_J = −⟨[A,B]⟩ (64 恒等式 × 3 k)  max 相対残差 = 1.5e-12
+  [PASS] [W1] 接触項 2 実装 (BZ 和のみで一致する定理): 対和 = −占有トレース (12³, q 可約)  max 相対差 = 1.3e-13
+  [PASS] [W2b] full 4D Ward (12³ BZ 積分): 64 恒等式すべて  max 相対残差 = 4.8e-14 (0 s)
+  [PASS] [W3] ‖V_Fy − V_yy^A‖_F (off-shell 全行列) の ε-ladder 単調減少 (指数は公表)   rel(0.4) = 5.65e-2 rel(0.2) = 1.43e-2 rel(0.1) = 3.60e-3 rel(0.05) = 9.00e-4 — 実効指数 ~ε^2.0
+  [PASS] [W4] 変異: (i) V₀x taste 破り → V_Fx(q→0) 発散 (比 > 10; 正版 < 2) / (ii) 接触項符号反転 → 破れ  発散比 = 13.6 (正版 0.98), 符号反転残差 = 2.00
+
+[artifact] ./results/v269w_ward4d.json
+
+[判定] 事前登録 (a): **保存カレント系での full 4D Ward (4 行 × 8 列 × 2 周波数 = 64 恒等式) が格子上で厳密に閉じる — Gate 5 の Ward 機構確立** (残り = spin-0/2 の 4D 分離と BOND-A 差の連続極限 [v26.9-C] → Gate 5 総括)
+
+総合判定: [PASS] (0 s)

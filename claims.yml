@@ -2616,3 +2616,17 @@
     - "y 方向 (q ∥ 転送) の T₀y のみ — 横方向 T₀x/T₀z の連続の式は X 型 stress を生む (次ユニットの 10×10 kernel で被覆)。"
     - "tree レベルの照合 (one-loop 応答の 4D 分解は残作業)。Euclidean q₀。"
     - "開発記録: run1 の V_S := iC/q̂ は BOND-A との射影ブロック差が rel = √2 で停留 (位相直交の指紋) — 符号解析で実規約に確定。変異 (h.c. ×1.02) は複素スカラー×𝟙 で h と可換のまま不発 → s_y 依存重みに再設計。"
+
+- id: QRN-GRAV-053
+  version: "v26.9-B"
+  level: C2
+  claim: "full 4D Ward — 64 恒等式の一括機械検査 (判定 a, 6 検査 PASS): 密度 4 種 D_ν (V₀₀ = h(k+q/2ŷ), V₀ᵢ = −(1/2)sin(2kᵢ+qδ_iy)𝟙) から保存フラックス V_Fν = [h(k+qŷ)D_ν − D_νh(k)]/(2sin(q/2)) を一様生成 — 全 4 本が局所 (Fourier 台 ≤ 3, 6.3e-14)。Matsubara Ward iq₀C_{AB} − q̂C_{J_AB} = −⟨[A(q),B(−q)]⟩ が **4 行 × 8 列 (密度 4 + BOND-A stress 4) × 2 周波数 = 64 恒等式で k 点ごと 1.5e-12・12³ BZ 積分 4.8e-14** で閉じる。接触項は独立 2 実装照合 1.3e-13 (対和 = −⟨[A,B]⟩ / 占有トレース = +⟨[A,B]⟩ — k 点ごとには不一致で occ-occ 片が BZ 和のみ相殺する副定理; 格子上の厳密相殺には q を格子可約に取る)。**概念的成果: Ward の物理はフラックス局所性 (保存破れ → 1/q̂ 発散 — 変異で比 13.6 実演) + 接触項構造に宿る** (恒等式自体は任意双線形の厳密再配列)。[W3] ‖V_Fy − V_yy^A‖_F は off-shell 全行列でも ε^2.0 — BOND-A と保存 stress の差は off-shell O(ε²)。"
+  status: "判定 a — Gate 5 の Ward 機構確立。残り = spin-0/2 の 4D 分離と BOND-A 差の連続極限 (v26.9-C) → Gate 5 総括"
+  evidence:
+    code: "sim/src/bin/v269w_ward4d.rs"
+    result: "results/v269w_ward4d.txt"
+    doc: "docs/uft-v26.9.md"
+  limitations:
+    - "列は 8 種 (xy/yz の q 方向混合ボンド point-split は未構成 — v26.9-C で 10×10 完成)。保存カレント系での閉包 — BOND-A を流束側に置いた場合の O(a²) 差の連続極限は残作業。"
+    - "Euclidean q₀ (Matsubara)。tadpole/seagull の第二変分は接触項 ⟨[A,B]⟩ として一点関数レベルで入っており、BOND-A の (1+h)^{−1/2} 展開の h² 項は本ユニットの範囲外。"
+    - "開発記録: run1 の接触項 k 点ごと比較 (occ-occ 副定理で解決)・変異ゲートの Ward 残差版は原理的に不発 (任意 A で恒等式成立) → 局所性破れに再設計・対和/トレースの符号は差/和 = 2.0 の指紋で確定。"

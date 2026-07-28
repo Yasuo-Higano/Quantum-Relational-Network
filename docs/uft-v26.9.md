@@ -86,13 +86,42 @@ J = C/(2sin(q/2)) 実行列と確定)。教訓: 「**√2 の停留は大きさ�
 不一致を疑え**」。(ii) run1 の変異 (h.c. 片 ×1.02) は複素スカラー×𝟙 のまま
 h と可換で不発 — s_y 依存重み (taste-nonsinglet) に再設計。
 
+## B. v269w_ward4d — full 4D Ward: 64 恒等式の一括機械検査
+
+energy/momentum 行の器械を全 Ward 行に一般化 (6 検査 PASS)。**一様構成**:
+密度 4 種 D_ν (V₀₀ = h(k+q/2ŷ), V₀ᵢ = −(1/2)sin(2kᵢ+qδ_iy)𝟙) に対し保存
+フラックス **V_Fν := [h(k+qŷ)D_ν − D_νh(k)]/(2sin(q/2))** が自動生成され、
+全 4 本が局所 (Fourier 台 ≤ 3, 6.3e-14)。列 = 密度 4 + BOND-A stress 4
+(V_xx, V_yy [中点変調], V_zz, V_xz [point-split])。
+
+**Matsubara Ward**: iq₀·C_{AB}(iq₀,q) − q̂·C_{J_A B}(iq₀,q) = −⟨[A(q),B(−q)]⟩
+が対ごとの分数分解で厳密 — **4 行 × 8 列 × q₀ ∈ {0.3, 0.9} = 64 恒等式が
+k 点ごと 1.5e-12・12³ BZ 積分 4.8e-14 で閉じる**。接触項は独立 2 実装
+(対和 = −⟨[A,B]⟩ / 占有トレース = +⟨[A,B]⟩) が 1.3e-13 で照合。
+
+**Ward の物理の所在 (本ユニットの概念的成果)**: J_A := [h,A]/q̂ と定義した
+時点で Matsubara 恒等式は任意の双線形に対する厳密再配列 — **物理的内容は
+(i) フラックスの局所性 (保存が破れると q → 0 で 1/q̂ 発散 = W4 変異が実演,
+比 13.6) と (ii) 接触項の構造に宿る** (連続の Ward = 保存則 + カレント局所性
+と同じ分業)。副定理: 接触項の対和とトレース公式は k 点ごとには一致しない —
+差の occ-occ 片は k → k+q ラベル替えで BZ 和のみ相殺 (格子上で厳密にするには
+**q を格子と可約に取る** — q = π/6 = 12³ 格子の 2 刻み)。
+
+さらに [W3]: ‖V_Fy − V_yy^A‖_F (off-shell **全行列** Frobenius) が実効指数
+**ε^2.0** — BOND-A と保存 stress の差は off-shell でも O(ε²) (v26.9-A の
+on-shell 判定より強い)。
+
+開発記録: run1 は (i) 接触項 2 実装を k 点ごとに比較 (occ-occ 片で不一致 —
+上の副定理で解決)、(ii) 変異ゲートを Ward 残差に置いた (恒等式は任意 A で
+成立するため不発 — 局所性破れ = 発散比に再設計)、(iii) 対和とトレースの
+符号 (差/和 = 2.0 の指紋で確定)。
+
 ## 1. 残り (v26.9 arc)
 
-- 10×10 symmetric-tensor kernel (q₀ ≠ 0) の組み立てと 4D 射影子分解
-  (ProjectorND.lean の d = 4 代数を使う)。
-- 4D Ward q_μΠ^{μν,ρσ} = contact 項 (tadpole/seagull 第二変分) の一括検証
-  — **Gate 5 の判定**。
-- spin-0/spin-2 form factor の 4D 分離と連続極限。
+- **v26.9-C**: spin-0/spin-2 form factor の 4D 分離 (10×10 kernel の射影子
+  分解 — ProjectorND.lean の d = 4 代数) と BOND-A 差の連続極限 → **Gate 5
+  総括** (通過後に v27.0 dynamic metric fork の分岐判断)。
+- xy/yz 列 (q 方向混合ボンドの point-split) の追加は spin 分離と同時に。
 
 ## 2. 成果物
 
@@ -100,3 +129,5 @@ h と可換で不発 — s_y 依存重み (taste-nonsinglet) に再設計。
 (7 検査 PASS) / `results/v269e_energy_ward.json`。claims: QRN-GRAV-051。
 A: `sim/src/bin/v269m_momentum_ward.rs` / `results/v269m_momentum_ward.txt`
 (6 検査 PASS) / `results/v269m_momentum_ward.json`。claims: QRN-GRAV-052。
+B: `sim/src/bin/v269w_ward4d.rs` / `results/v269w_ward4d.txt`
+(6 検査 PASS) / `results/v269w_ward4d.json`。claims: QRN-GRAV-053。
