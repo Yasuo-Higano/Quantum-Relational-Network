@@ -1,0 +1,6 @@
+{
+  "version": "v27.0-A",
+  "kind": "full_4d_kernel_exact_ward",
+  "spec": "§13.2 (b46bce3)",
+  "kernel": "k̂^{0ν} = C_{T0ν,B} / k̂^{yν} = C_{Jν,B} − ⟨[T0ν,B]⟩/q̂"
+}

@@ -2672,3 +2672,17 @@
     - "massless・q ∥ ŷ・(E,Q) = (1.5,0.6) の 1 運動学点 (ladder 3 点)。massive の ρ₀ ≠ 0 (trace 復活) は将来拡張。"
     - "λ = −1/8 は tree matching による凍結 — one-loop レベルの λ 繰り込みは未検査 (自由場では tree が厳密)。"
     - "開発記録: run1 の trace 方向ベクトルが η 上げと非対角重み 2 を欠き停留 0.265 (器械) —「不定計量の縮約はベクトル化の重みまで含めて検査せよ」。"
+
+- id: QRN-GRAV-057
+  version: "v27.0-A"
+  level: C2
+  claim: "full 4D kernel の厳密 Ward (spec §13.2, 判定 a, 5 検査 PASS): k̂^{0ν,B} := C_{T⁰ν_Bel,B}(iq₀) / k̂^{yν,B} := C_{J_ν,B}(iq₀) − ⟨[T⁰ν_Bel(q),B(−q)]⟩/q̂ (接触完備化) — v26.9-B の Matsubara 恒等式により **iq₀k̂^{0ν} − q̂k̂^{yν} = 0 がカットオフ有限のまま構成的に厳密 (12³ BZ で 6.8e-14, 4 行 × 10 列 × 2 周波数)** = v26.6 静的核の 4D 拡張。接触完備化は q → 0 で正則 (成長比 1.000 — 交換子が q² 以上で消える対も正則の正しい判定 = 非発散)。**A3 対称テンソル整合性: Ward-厳密な流束行が Belinfante stress 行に全 4 行で O(ε²) 収束** (例 ν=x 1.5e-2 → 9.5e-4) — 核は連続極限で対称・保存・Ward-厳密を同時充足。Onsager 対称性は反対称改良頂点 (λq̂W) の微小破れ込みで 7.5e-9。変異 (λ → 0) は ν=x 行 1.30 停留 (1370 倍)。"
+  status: "判定 a — spec §13.2-A 充足。FullGravitationalVacuumPolarization 型の発行と 1/Π は §13.3 全条件 (v27.0-B universality + fork 予言登録) まで保留"
+  evidence:
+    code: "sim/src/bin/v270a_kernel4d.rs"
+    result: "results/v270a_kernel4d.txt"
+    doc: "docs/uft-v27.0.md"
+  limitations:
+    - "q ∥ ŷ・単一 q 値 (格子可約 π/6) と 2 周波数での認証 — 連続 universality (q⁴ln q² 係数の oracle 照合) は v27.0-B。"
+    - "Onsager の厳密性は反対称改良項により破れる (1e-8 水準の高次微小) — 対称化された核の定義を使う場合は明記が必要。"
+    - "開発記録: A0 run1 の「定数収束」誤要求 (q³ 消滅対で誤 FAIL) を「非発散」判定に較正。"
