@@ -1,0 +1,5 @@
+{
+  "version": "v26.9-C",
+  "kind": "spin4d_separation_gate5",
+  "substitution_rule": "V(k;q) = V_unmod(k + q/2 ŷ) — d_y = 1,2 で独立照合"
+}

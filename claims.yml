@@ -2630,3 +2630,17 @@
     - "列は 8 種 (xy/yz の q 方向混合ボンド point-split は未構成 — v26.9-C で 10×10 完成)。保存カレント系での閉包 — BOND-A を流束側に置いた場合の O(a²) 差の連続極限は残作業。"
     - "Euclidean q₀ (Matsubara)。tadpole/seagull の第二変分は接触項 ⟨[A,B]⟩ として一点関数レベルで入っており、BOND-A の (1+h)^{−1/2} 展開の h² 項は本ユニットの範囲外。"
     - "開発記録: run1 の接触項 k 点ごと比較 (occ-occ 副定理で解決)・変異ゲートの Ward 残差版は原理的に不発 (任意 A で恒等式成立) → 局所性破れに再設計・対和/トレースの符号は差/和 = 2.0 の指紋で確定。"
+
+- id: QRN-GRAV-054
+  version: "v26.9-C"
+  level: C2
+  claim: "4D spin 分離と Gate 5 総括 (判定 a, 6 検査 PASS): 置換則 V(k;q) = V_unmod(k+q/2ŷ) を独立照合 (d_y = 1, 2, 1.7e-16) し T_xy/T_yz point-split を構成 — 全 10 source 完成、full 4D Ward は 80 恒等式 (4.3e-13)。**Belinfante 構造の格子分解 (発見): (i) 厳密恒等式 — 正準フラックス V_Fx = point-split の piece2 単独 (3.8e-16 の演算子恒等)、Belinfante (両 piece 平均) とは回転流の分 O(1) [0.81] で相違。(ii) scheme 混合の定理 — 正準 T⁰ᵢ と Belinfante T_ij を混ぜた 10×10 の横断性破れは a 非依存 (0.616)、格子の厳密横断性は正準 (非対称 16 成分) テンソルが担う**。4D spin-2 分離: D/X は timelike q_L = (E,Qŷ) でも厳密 P₂ — 殻積分で偏極縮退 |σ_DD/2σ_XX − 1| = 0.0118 → 0.0007 (縮小比 4.0/4.0 = O(a²))・直交 1.8e-16・oracle 絶対アンカー σ_DD/(2ρ_D) = 1.0007・変異 (Z 落とし) は縮退比 3.997 = 4 予言どおり。"
+  status: "判定 a — Gate 5: Ward/分離部門は確立。残り = Belinfante 対称 10×10 の完全崩壊 (v26.9-D — 二重変調則 V₀₀(k;px̂+qŷ) = h(k+p/2x̂+q/2ŷ) で T⁰ⁱ 対称化) と temporal 二次変分 (v27.0)。型名 FullGravitationalVacuumPolarization は保留・1/Π 禁止維持"
+  evidence:
+    code: "sim/src/bin/v269c_spin4d.rs"
+    result: "results/v269c_spin4d.txt"
+    doc: "docs/uft-v26.9.md"
+  limitations:
+    - "spin-0 (P₀s) チャネルの spectral 分離は Belinfante 対称化後 (v26.9-D) — 本ユニットは P₂ 2 偏極の縮退・直交・絶対値まで。"
+    - "開発記録: run2 の対角 BOND-A 重み半分ミス (σ_XX = 2σ_DD の因子 4 異常で発覚 —「規約係数は認証済みバイナリの q = 0 極限と突き合わせよ」)・殻積分の (2π)³ 正規化落ち (アンカー 248.2 ≈ (2π)³ の指紋で特定)。"
+    - "凍結解釈: 測定器の証明であり QRN・創発重力の証拠ではない。"

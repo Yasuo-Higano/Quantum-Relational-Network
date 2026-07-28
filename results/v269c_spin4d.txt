@@ -1,0 +1,30 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-C v269c_spin4d — 4D spin 分離と Gate 5 総括 ===
+
+置換則で T_xy/T_yz point-split を構成 (全 10 source 完成)。殻積分の 10×10
+スペクトル行列を Lorentz BR 射影子で分解 — σ = ρ₂P₂ + ρ₀P₀s への崩壊を判定。
+
+  [PASS] [C0] 置換則 V(k;q) = V_unmod(k+q/2ŷ): d_y = 1, 2 の明示両向き和と一致  max|Δ| = 1.7e-16
+  [PASS] [C1] 正準フラックス V_Fx = piece2 単独 (厳密恒等 < 1e-12) / Belinfante とは回転流の分 O(1)   [0.4: p2 3.76e-16 / Bel 8.10e-1] [0.2: p2 3.64e-16 / Bel 8.12e-1] [0.1: p2 1.36e-15 / Bel 8.12e-1] [0.05: p2 3.37e-15 / Bel 8.12e-1]
+  [PASS] [C2] full 4D Ward の 10 列拡張: 4 行 × 10 列 × 2 周波数 = 80 恒等式 (2 サンプル k)  max 相対残差 = 4.3e-13
+    [C3 表] a = 0.180: |σ_DD/2σ_XX − 1| = 0.01178, σ_DD/(2ρ_D) = 1.0116, |σ_DX|/√(σσ) = 4.48e-17, 横断性 max = 8.4e-12 (0 s)
+    [C3 表] a = 0.090: |σ_DD/2σ_XX − 1| = 0.00292, σ_DD/(2ρ_D) = 1.0029, |σ_DX|/√(σσ) = 3.20e-17, 横断性 max = 2.5e-11 (0 s)
+    [C3 表] a = 0.045: |σ_DD/2σ_XX − 1| = 0.00073, σ_DD/(2ρ_D) = 1.0007, |σ_DX|/√(σσ) = 1.83e-16, 横断性 max = 1.3e-10 (0 s)
+  [PASS] [C3] 4D spin-2 分離: σ_DD/2σ_XX → 1 (O(a²)) / σ_DX = 0 / 正準横断性 / oracle アンカー 2%  縮退 0.0118 → 0.0029 → 0.0007 (比 4.0, 4.0), 直交 1.8e-16, 横断 1.3e-10, アンカー 1.0007
+  [PASS] [C4] 変異: T_xz の Z 補正 (÷2) を落とす → 2σ_XX/σ_DD = 4 (縮退の 4 倍逸脱)  2σ_XX/σ_DD = 3.997
+
+[Gate 5 総括 (spec §12.6 の項目別)]
+  確立: h₀₀/h₀ᵢ source / q₀ ≠ 0 (Matsubara Ward 64+80 恒等式) / 全 10 source
+        構成 (置換則) / 4D Ward = 局所カレント + 計算可能な接触項 / 正準テンソル
+        の厳密横断性 / spin-2 の 4D 分離 (P₂ 縮退 + 直交) / BOND-A = 保存 stress
+        (tree O(ε²)) / Belinfante 構造の格子分解 (正準 = piece 単独・対称化 = 平均)
+  残り: Belinfante 対称 10×10 の完全崩壊 (T⁰ⁱ の対称化 — 二重変調則で構成可,
+        v26.9-D) / temporal h の二次変分 scheme (v27.0 設計項目)。
+        **FullGravitationalVacuumPolarization 型は保留を維持・1/Π 禁止も維持**
+        (凍結解釈: 測定器の証明であり QRN・創発重力の証拠ではない)
+
+[artifact] ./results/v269c_spin4d.json
+
+[判定] 事前登録 (a): **10 source 完成・full 4D Ward 80 恒等式・正準横断性厳密・spin-2 の 4D 分離成立 + Belinfante 構造の格子分解 — Gate 5 の Ward/分離部門確立** (対称 10×10 完全崩壊 = v26.9-D, temporal 二次変分 = v27.0 設計)
+
+総合判定: [PASS] (0 s)

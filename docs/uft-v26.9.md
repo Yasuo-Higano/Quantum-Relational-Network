@@ -116,12 +116,59 @@ on-shell 判定より強い)。
 成立するため不発 — 局所性破れ = 発散比に再設計)、(iii) 対和とトレースの
 符号 (差/和 = 2.0 の指紋で確定)。
 
+## C. v269c_spin4d — 4D spin 分離と Gate 5 総括
+
+v26.9 arc の最終ユニット (6 検査 PASS)。**置換則** (v26.9-0/A の 3 独立導出と
+整合、d_y = 1, 2 で明示照合 1.7e-16): 中点変調頂点 V(k;q) = V_unmod(k+q/2ŷ)。
+これで T_xy/T_yz point-split が v268z の X 構成の軸回転で得られ、**全 10
+source が完成**。full 4D Ward は 4 行 × 10 列 × 2 周波数 = **80 恒等式
+(4.3e-13)**。
+
+**Belinfante 構造の格子分解 (発見)**:
+- **厳密恒等式: 正準フラックス V_Fx = point-split の piece2 (Γy 構造 × x 包絡)
+  単独** — 機械精度 3.8e-16 の格子演算子恒等。[h, V₀x]/q̂ は「片脚」。
+- Belinfante (両 piece 平均) とは回転流 (spin current) の分だけ O(1) (0.81) で
+  違う — 差は保存する改良項で、これが格子上で目に見える形で分離した。
+- scheme 混合の定理 (run1): (正準 T⁰ᵢ, Belinfante T_ij) を混ぜた 10×10 の
+  横断性破れは **a 非依存 (0.616)** — 横断性は一貫 scheme でのみ。格子の厳密
+  横断性は**正準 (非対称 16 成分) テンソル**が担う (ΔE·M₀ν = q̂·M_Fν, 殻上
+  1e-10)。
+
+**4D spin-2 分離**: D = (T_xx−T_zz)/√2 と X = T_xz は timelike q_L = (E, Qŷ)
+でも**厳密 P₂** (q·D = 0, tr_θD = 0 が (t,y) 面の任意 q で成立 — ProjectorND
+の ŷ 定理の時間方向拡張)。殻積分 (E, Q) = (1.5, 0.6), a ∈ {0.18, 0.09, 0.045}:
+
+| 検査 | 値 |
+|---|---|
+| 偏極縮退 \|σ_DD/2σ_XX − 1\| (⟨D\|P₂\|D⟩ = 1, ⟨X\|P₂\|X⟩ = ½) | 0.0118 → 0.0029 → **0.0007** (縮小比 4.0, 4.0 = O(a²)) |
+| 直交性 \|σ_DX\|/√(σσ) | **1.8e-16** |
+| oracle 絶対アンカー σ_DD/(2ρ_D(E²−Q²)) | **1.0007** |
+| 変異 (X の Z 補正落とし) | 2σ_XX/σ_DD = 3.997 (= 4 予言どおり) |
+
+開発記録: (i) run1 の混合 scheme 10×10 (上の定理に転化)。(ii) run2 の対角
+BOND-A 重み半分ミス — σ_XX = 2σ_DD の因子 4 異常で発覚 (「規約係数は認証済み
+バイナリの q = 0 極限と突き合わせよ」)。(iii) 殻積分の (2π)³ 正規化落ち —
+アンカー 248.2 ≈ (2π)³ = 248.05 の指紋で即特定。
+
+### Gate 5 総括 (凍結解釈)
+
+**確立**: h₀₀/h₀ᵢ source (厳密構成)・q₀ ≠ 0 (Matsubara Ward 64+80 恒等式)・
+全 10 source (置換則)・full 4D Ward = 局所カレント + 計算可能な接触項・
+正準テンソルの厳密横断性・spin-2 の 4D 分離 (P₂ 縮退 + 直交 + oracle
+アンカー)・BOND-A = 保存 stress (tree, O(ε²))・Belinfante 構造の格子分解。
+
+**残り**: (1) Belinfante 対称 10×10 の完全崩壊 — T⁰ⁱ の対称化 (= エネルギー
+流との平均) が必要で、x/z エネルギー流は**二重変調則
+V₀₀(k; px̂+qŷ) = h(k+(p/2)x̂+(q/2)ŷ)** で構成可能 → **v26.9-D として登録**。
+(2) temporal h の二次変分 scheme (kinetic term 部門) → v27.0 設計項目。
+**型名 FullGravitationalVacuumPolarization は保留を維持・1/Π 禁止も維持**
+(凍結解釈: すべて測定器の証明であり QRN・創発重力の証拠ではない)。
+
 ## 1. 残り (v26.9 arc)
 
-- **v26.9-C**: spin-0/spin-2 form factor の 4D 分離 (10×10 kernel の射影子
-  分解 — ProjectorND.lean の d = 4 代数) と BOND-A 差の連続極限 → **Gate 5
-  総括** (通過後に v27.0 dynamic metric fork の分岐判断)。
-- xy/yz 列 (q 方向混合ボンドの point-split) の追加は spin 分離と同時に。
+- **v26.9-D**: Belinfante 対称 10×10 の完全崩壊 (二重変調則で T⁰ⁱ を対称化 —
+  σ = ρ₂P₂ + ρ₀P₀s への完全崩壊と ρ₀ の oracle 照合)。
+- その後 Gate 5 の最終判定 → v27.0 dynamic metric fork の分岐判断。
 
 ## 2. 成果物
 
@@ -131,3 +178,5 @@ A: `sim/src/bin/v269m_momentum_ward.rs` / `results/v269m_momentum_ward.txt`
 (6 検査 PASS) / `results/v269m_momentum_ward.json`。claims: QRN-GRAV-052。
 B: `sim/src/bin/v269w_ward4d.rs` / `results/v269w_ward4d.txt`
 (6 検査 PASS) / `results/v269w_ward4d.json`。claims: QRN-GRAV-053。
+C: `sim/src/bin/v269c_spin4d.rs` / `results/v269c_spin4d.txt`
+(6 検査 PASS) / `results/v269c_spin4d.json`。claims: QRN-GRAV-054。
