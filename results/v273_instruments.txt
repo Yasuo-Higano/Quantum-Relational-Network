@@ -1,0 +1,15 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v27.3 器械台帳の機械検証 — Adapter v1 / Metrology Suite v1 の凍結 (PROMPT/10 §5) ===
+
+  [PASS] [I0] instruments.yml の解析  器械 22 (adapter 8 + metrology 14) / 常設回帰 5
+  [PASS] [I1] 必須 16 フィールドの完備・family 語彙  22 器械 × 16 フィールド
+  [PASS] [I2] concept ↔ core.schema.yml の層一致 (adapter → adapter / metrology → instrument)  台帳間の分類が単一の層辞書に従う
+  [PASS] [I3] 較正記録・認証ファイルの実在 + certificate SHA-256 の一致  22 器械の認証ハッシュが凍結どおり
+  [PASS] [I4] allowed_claims の id が claims.yml に実在  器械 → 主張の対応が台帳で閉じる
+  [PASS] [I5] forbidden_interpretations が全器械で非空 (凍結解釈の明示)  22/22 器械
+  [PASS] [I6] 常設回帰 (4 比 universality・和則・Ward 64/kernel・fork) の記録照合  5 回帰の凍結判定文と FAIL 不在を確認
+  [PASS] [I7] PROMPT/10 §5 指定の器械 (BOND-A〜staggered/Wilson matching) の全登録  9 + Wilson 対照の 10 概念を被覆
+
+[判定] Adapter v1 / Metrology Suite v1 は凍結された — 器械の変更は認証ハッシュの更新 (意識的な再認証) を要する
+
+総合判定: [PASS]

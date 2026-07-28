@@ -4056,3 +4056,22 @@
     - "型が禁じるのは Rust コード内の暗黙変換 — 文書・論文の言葉づかいの昇格は v271 の文書アンカー検査と R1–R7 が部分的に覆うのみ。"
     - "Lean 証明は昇格グラフ (8 頂点) と状態表示 (10 成分) の鏡像に対する形式的性質であり、鏡像と Rust const の一致は v272 [T5]/v151 [8] のテキスト照合による。"
     - "開発記録: v153_corev2 の 1e-15 級診断 |Δ| と JSON 下位桁に run 間ドリフトを発見 (単スレッド・固定シード・HashMap/時刻非依存で機構未特定 — 判定閾値 1e-9 に対し 6 桁の余裕で PASS 不変)。決定性監査の残高に登録。"
+
+- id: QRN-META-032
+  version: "v27.3"
+  level: C2
+  claim: "器械台帳の凍結 (PROMPT/10 §5, 8 検査 PASS): uft-v27.0.md §D.3 の器械群を instruments.yml で QRN-Matter-on-Background Adapter v1 (8 器械: BOND-A・中点変調・Belinfante λ=−1/8・接触完備化・counterterm・staggered・Wilson・continuum trajectory) と QRN-Metrology Suite v1 (14 器械: null 結合 ladder・殻積分・Matsubara Ward・導出モデル外挿・spectral measure・oracle・f-sum・BR 辞書・ブロック分解・dd・iv・クランプ梯子・universality 監査・fork 監査) に分離し、各器械に入出力型・規格化・regulator・連続極限契約・較正記録・陰性対照・既知の故障モード・許される主張・禁止される解釈・認証ファイル SHA-256 を登録。v273_instruments が機械検証: 必須 16 フィールド完備・concept ↔ core.schema.yml の層一致・認証ハッシュ一致 (器械の無断変更検出)・allowed_claims の実在・常設回帰 5 本 (4 比 universality・和則・Ward 64/kernel・fork) の凍結判定文照合。"
+  status: "制限付き計算定理 (領域 = 器械台帳の完備性と整合。器械の変更は認証ハッシュの意識的更新を要する)"
+  layer: meta
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v273_instruments.rs"
+    result: "results/v273_instruments.txt"
+    doc: "docs/uft-v27.3.md"
+  limitations:
+    - "台帳が保証するのは登録と整合 — 器械自体の較正の正しさは各認証バイナリの検査 (引用元 claims) が担う。"
+    - "認証ハッシュはソース先頭 16 桁 (64 bit) — 意図的衝突には無力だが無断変更・整形事故の検出には十分。"
