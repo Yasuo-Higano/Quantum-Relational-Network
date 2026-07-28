@@ -78,7 +78,7 @@ fn main() {
         frac_g
     );
     // 発展させると到着対の純度が下がり、分解が組み変わる
-    let s2 = gc.evolve_active(&s, 12, 30.0);
+    let s2 = gc.evolve_active(&s, 12, EvolutionParameter(30.0));
     let (pairs_g2, frac_g2) = s2.readout_natural_partition();
     let arrived_after = [(6usize, 7usize), (8, 9), (10, 11)]
         .iter()

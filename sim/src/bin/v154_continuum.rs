@@ -336,7 +336,7 @@ fn main() {
                 let dt = 0.05;
                 let mut dev = vec![vec![0.0f64; l]; nstep];
                 for s in 0..nstep {
-                    st = g.step(&st, dt);
+                    st = g.step(&st, EvolutionParameter(dt));
                     let prof = v2_density_profile(&st);
                     for j in 0..l {
                         dev[s][j] = (prof[j] - d0[j]).abs();

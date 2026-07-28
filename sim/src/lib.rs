@@ -2,7 +2,10 @@
 
 pub mod dd; // double-double 演算 (v22.7/v23.4 の実証経路を v24.1 で昇格)
 pub mod iv; // 区間演算 — 外向き丸めの厳密包含 (v25.2 BZ moment 証明書)
+pub mod qrn_core; // 型付き Core Contract — 型境界と bridge law の門 (v27.2, PROMPT/10 §4)
 pub mod stag; // 3+1D staggered 半空間の厳密ブロック理論 (v24.1)
+
+pub use qrn_core::EvolutionParameter; // 旧 toy API (evolve の t) が使う外部発展パラメータ型
 
 use std::ops::{Add, Div, Mul, Neg, Sub};
 
@@ -768,26 +771,34 @@ pub fn cache_load_modes_rect(
     Some((modes, gap, spread))
 }
 
-// ---------------- QRN core (v6.7) ----------------
+// ---------------- ガウス toy core (v6.7 導入 / v27.2 改名) ----------------
 // 統一理論としての説得力は「新しいシミュレーションを増やすこと」ではなく
 // 「既存のシミュレーションを同じ core から出すこと」で上がる (改良方針 §7)。
 // 共通の状態空間 (ガウスフェルミオン網 = 相関行列) と共通の読み出しをここに置き、
-// 各 vXY バイナリは QrnModel の実装 + 読み出しの組合せとして書けるようにする。
+// 各 vXY バイナリは GaussianToyModel の実装 + 読み出しの組合せとして書けるようにする。
+//
+// 旧名 QrnState / QrnModel は v27.2 で改名 (docs/qrn-terminology.md §3):
+// これは QRN の一般状態空間ではなく**ガウスフェルミオン toy (C3, layer: core の
+// toy 実装 + bridge 読み出し)** である。QRN-Kinematics の一般定義は
+// docs/qrn-core-v1-spec.md §2 — 「同じ toy から読み出せる」ことは「現実が
+// 一つの網である」ことの証明ではない (QRN-CORE-001 の限界)。
 
-/// QRN の共通状態: ガウスフェルミオン状態。全ての物理量が相関行列
+/// ガウスフェルミオン状態 (旧 QrnState — v27.2 改名)。全ての物理量が相関行列
 /// C_ij = ⟨c†_i c_j⟩ (エルミート) から厳密に計算できる。
-pub struct QrnState {
+pub struct GaussianFermionState {
     pub n: usize,
     pub cre: Vec<f64>,
     pub cim: Vec<f64>,
 }
 
 /// QRN 模型: 状態空間の初期化と動力学。仮定と主張 (claims.yml の id) を明示する。
-pub trait QrnModel {
+pub trait GaussianToyModel {
     fn assumptions(&self) -> Vec<&'static str>;
     fn claims(&self) -> Vec<&'static str>;
-    fn init(&self) -> QrnState;
-    fn evolve(&self, s: &QrnState, t: f64) -> QrnState;
+    fn init(&self) -> GaussianFermionState;
+    /// t は EvolutionParameter (外部発展パラメータ) — A1 の創発時間 (ProperTime) ではない
+    /// (docs/qrn-terminology.md §2.3。変換は qrn_core::BridgeLawCertificate の門のみ)。
+    fn evolve(&self, s: &GaussianFermionState, t: EvolutionParameter) -> GaussianFermionState;
 }
 
 /// 二値エントロピー h(z) = −z ln z − (1−z) ln(1−z)
@@ -818,7 +829,7 @@ pub fn entropy_corr_herm(cre: &[f64], cim: &[f64], n: usize) -> f64 {
     0.5 * w.iter().map(|&z| h2_entropy(z)).sum::<f64>()
 }
 
-impl QrnState {
+impl GaussianFermionState {
     /// 読み出し: 区間 [a, a+len) のエンタングルメントエントロピー
     pub fn readout_entropy(&self, a: usize, len: usize) -> f64 {
         let n = self.n;
@@ -1025,7 +1036,7 @@ pub struct TfdPair {
     pub beta: f64,
 }
 
-impl QrnModel for TfdPair {
+impl GaussianToyModel for TfdPair {
     fn assumptions(&self) -> Vec<&'static str> {
         vec![
             "A0: 2 本の鎖 L/R のテンソル積 (接続性は公理に置かない)",
@@ -1036,7 +1047,7 @@ impl QrnModel for TfdPair {
     fn claims(&self) -> Vec<&'static str> {
         vec!["QRN-CORE-002", "QRN-ER-001"]
     }
-    fn init(&self) -> QrnState {
+    fn init(&self) -> GaussianFermionState {
         let n = self.n;
         let two_pi = 2.0 * std::f64::consts::PI;
         // モード和で実空間ブロックを構成 (f_k = f_{-k} なので実対称)
@@ -1067,14 +1078,15 @@ impl QrnModel for TfdPair {
                 cre[(x + n) + y * m] = gg[d];
             }
         }
-        QrnState {
+        GaussianFermionState {
             n: m,
             cre,
             cim: vec![0.0; m * m],
         }
     }
     /// H_L + H_R の発展 (各鎖のリング発展をブロック対角に適用)
-    fn evolve(&self, s: &QrnState, t: f64) -> QrnState {
+    fn evolve(&self, s: &GaussianFermionState, t: EvolutionParameter) -> GaussianFermionState {
+        let t = t.0;
         let n = self.n;
         let two_pi = 2.0 * std::f64::consts::PI;
         let mut ud = vec![(0.0f64, 0.0f64); n];
@@ -1119,7 +1131,7 @@ impl QrnModel for TfdPair {
         let b2 = matmul(&ai, &vi, m);
         let b3 = matmul(&ar, &vi, m);
         let b4 = matmul(&ai, &vr, m);
-        QrnState {
+        GaussianFermionState {
             n: m,
             cre: b1.iter().zip(&b2).map(|(a, b)| a - b).collect(),
             cim: b3.iter().zip(&b4).map(|(a, b)| a + b).collect(),
@@ -1129,7 +1141,7 @@ impl QrnModel for TfdPair {
 
 /// 成長する鎖 (v5.1 の機構を core の語彙で): 固定の n_max サイトのうち active サイト
 /// だけがホッピングで結ばれ、新サイトは真空 (C=0) で到着する。
-/// 成長はテンソル分解自体の変化なので QrnModel::evolve の外に専用メソッドを持つ
+/// 成長はテンソル分解自体の変化なので GaussianToyModel::evolve の外に専用メソッドを持つ
 /// (「A0 のテンソル分解が動く」拡張は core の残高)。
 pub struct GrowingChain {
     pub n_max: usize,
@@ -1137,7 +1149,7 @@ pub struct GrowingChain {
 
 impl GrowingChain {
     /// 最初の n0 サイトの開鎖基底状態 (残りは真空)
-    pub fn init(&self, n0: usize) -> QrnState {
+    pub fn init(&self, n0: usize) -> GaussianFermionState {
         let n = self.n_max;
         let mut cre = vec![0.0; n * n];
         let c0 = Self::open_gs(n0);
@@ -1146,7 +1158,7 @@ impl GrowingChain {
                 cre[i + j * n] = c0[i + j * n0];
             }
         }
-        QrnState {
+        GaussianFermionState {
             n,
             cre,
             cim: vec![0.0; n * n],
@@ -1172,7 +1184,13 @@ impl GrowingChain {
         c
     }
     /// active サイトの開鎖ハミルトニアンで時間 t 発展
-    pub fn evolve_active(&self, s: &QrnState, active: usize, t: f64) -> QrnState {
+    pub fn evolve_active(
+        &self,
+        s: &GaussianFermionState,
+        active: usize,
+        t: EvolutionParameter,
+    ) -> GaussianFermionState {
+        let t = t.0;
         let n = self.n_max;
         let mut h = vec![0.0; active * active];
         for x in 0..active - 1 {
@@ -1220,7 +1238,7 @@ impl GrowingChain {
         let b2 = matmul(&ai, &vi, active);
         let b3 = matmul(&ar, &vi, active);
         let b4 = matmul(&ai, &vr, active);
-        let mut out = QrnState {
+        let mut out = GaussianFermionState {
             n,
             cre: s.cre.clone(),
             cim: s.cim.clone(),
@@ -1235,9 +1253,9 @@ impl GrowingChain {
     }
     /// 新 2 サイトを局所基底状態 (結合軌道に 1 粒子 = 純粋・半充填を保つ「真空」) で
     /// 到着させる: C_new = [[1/2,1/2],[1/2,1/2]] (射影子)。v5.1 と同一のプロトコル。
-    pub fn arrive_pair_vacuum(&self, s: &QrnState, at: usize) -> QrnState {
+    pub fn arrive_pair_vacuum(&self, s: &GaussianFermionState, at: usize) -> GaussianFermionState {
         let n = self.n_max;
-        let mut out = QrnState {
+        let mut out = GaussianFermionState {
             n,
             cre: s.cre.clone(),
             cim: s.cim.clone(),
@@ -1249,9 +1267,9 @@ impl GrowingChain {
         out
     }
     /// 対照シナリオ: 新 2 サイトを熱的 (最大混合 C=1/2·I) に到着させる
-    pub fn arrive_pair_thermal(&self, s: &QrnState, at: usize) -> QrnState {
+    pub fn arrive_pair_thermal(&self, s: &GaussianFermionState, at: usize) -> GaussianFermionState {
         let n = self.n_max;
-        let mut out = QrnState {
+        let mut out = GaussianFermionState {
             n,
             cre: s.cre.clone(),
             cim: s.cim.clone(),
@@ -1348,13 +1366,13 @@ pub fn readout_ring_geometry(mi: &[f64], nb: usize, mi_max: f64) -> RingMetrics 
     }
 }
 
-/// 具体的な QrnModel: 円環自由フェルミオン鎖 (半充填基底状態 + 最近接ホッピング)。
+/// 具体的な GaussianToyModel: 円環自由フェルミオン鎖 (半充填基底状態 + 最近接ホッピング)。
 /// v0.5/v0.7/v1.1/v4.1 などの土台になっている系を core として一箇所に定義する。
 pub struct RingChain {
     pub n: usize, // N ≡ 2 (mod 4) で閉殻・実相関
 }
 
-impl QrnModel for RingChain {
+impl GaussianToyModel for RingChain {
     fn assumptions(&self) -> Vec<&'static str> {
         vec![
             "A0: 有限次元ヒルベルト空間とテンソル分解 (サイト)",
@@ -1371,7 +1389,7 @@ impl QrnModel for RingChain {
             "QRN-CAUSAL-001",
         ]
     }
-    fn init(&self) -> QrnState {
+    fn init(&self) -> GaussianFermionState {
         let n = self.n;
         let nocc = n / 2;
         let c0 = |d: isize| -> f64 {
@@ -1389,14 +1407,15 @@ impl QrnModel for RingChain {
                 cre[x + y * n] = c0(x as isize - y as isize);
             }
         }
-        QrnState {
+        GaussianFermionState {
             n,
             cre,
             cim: vec![0.0; n * n],
         }
     }
     /// U(t) C U† を厳密に計算 (並進不変な自由発展)
-    fn evolve(&self, s: &QrnState, t: f64) -> QrnState {
+    fn evolve(&self, s: &GaussianFermionState, t: EvolutionParameter) -> GaussianFermionState {
+        let t = t.0;
         let n = self.n;
         let two_pi = 2.0 * std::f64::consts::PI;
         let mut ud = vec![(0.0f64, 0.0f64); n];
@@ -1438,7 +1457,7 @@ impl QrnModel for RingChain {
         let b2 = matmul(&ai, &vi, n);
         let b3 = matmul(&ar, &vi, n);
         let b4 = matmul(&ai, &vr, n);
-        QrnState {
+        GaussianFermionState {
             n,
             cre: b1.iter().zip(&b2).map(|(a, b)| a - b).collect(),
             cim: b3.iter().zip(&b4).map(|(a, b)| a + b).collect(),
@@ -1466,7 +1485,7 @@ pub struct PacketRing {
     pub standing: bool,
 }
 
-impl QrnModel for PacketRing {
+impl GaussianToyModel for PacketRing {
     fn assumptions(&self) -> Vec<&'static str> {
         let mut a = self.ring.assumptions();
         a.push("励起: フェルミ面近傍のモード窓を波束に束ねた 1 粒子-1 空孔回転 (ガウス状態を保つ)");
@@ -1475,7 +1494,7 @@ impl QrnModel for PacketRing {
     fn claims(&self) -> Vec<&'static str> {
         vec!["QRN-QNEC-001", "QRN-QNEC-002", "QRN-CORE-003"]
     }
-    fn init(&self) -> QrnState {
+    fn init(&self) -> GaussianFermionState {
         let n = self.ring.n;
         let two_pi = 2.0 * std::f64::consts::PI;
         let mut s0 = self.ring.init();
@@ -1559,7 +1578,7 @@ impl QrnModel for PacketRing {
         }
         s0
     }
-    fn evolve(&self, s: &QrnState, t: f64) -> QrnState {
+    fn evolve(&self, s: &GaussianFermionState, t: EvolutionParameter) -> GaussianFermionState {
         self.ring.evolve(s, t)
     }
 }
@@ -1712,10 +1731,10 @@ pub fn lanczos_lowest_herm(
 }
 
 // ================================================================
-// v15.2: QrnCoreV2 — ゲージ制約つき相互作用 core
+// v15.2: ConstrainedToyCoreV2 — ゲージ制約つき相互作用 core
 // ================================================================
-// v6.7 の core (QrnState = ガウスフェルミオン網) は相関行列で閉じる系のみを
-// 扱えた (ASM-GAUSS)。QrnCoreV2 は「制約を解いた基底上の多体波動関数」を状態とし、
+// v6.7 の core (GaussianFermionState = ガウスフェルミオン網) は相関行列で閉じる系のみを
+// 扱えた (ASM-GAUSS)。ConstrainedToyCoreV2 は「制約を解いた基底上の多体波動関数」を状態とし、
 // 相互作用・ゲージ拘束・非可積分性を同じ語彙 (状態 + 発展 + 読み出し) に載せる。
 // 最初の模型は 1+1 次元 Z2 格子ゲージ + staggered フェルミオン (環):
 //
@@ -1752,9 +1771,9 @@ pub fn entropy_rdm_c(re: &[f64], im: &[f64], n: usize) -> f64 {
         .sum()
 }
 
-/// QrnCoreV2 の状態: 制約を解いた基底上の波動関数と、その上の共通読み出し。
+/// ConstrainedToyCoreV2 の状態: 制約を解いた基底上の波動関数と、その上の共通読み出し。
 /// ゲージ自由度・補助自由度 (ε) は部分トレースで常に環境側に含める。
-pub trait QrnStateV2 {
+pub trait ConstrainedToyStateV2 {
     fn n_sites(&self) -> usize;
     fn dim(&self) -> usize;
     fn amp(&self) -> &[(f64, f64)];
@@ -1764,21 +1783,22 @@ pub trait QrnStateV2 {
     fn density(&self, site: usize) -> f64;
 }
 
-/// QrnCoreV2 の動力学: 状態の時間発展と保存量の読み出し
-pub trait QrnDynamicsV2<S: QrnStateV2> {
-    fn step(&self, s: &S, dt: f64) -> S;
+/// ConstrainedToyCoreV2 の動力学: 状態の時間発展と保存量の読み出し
+pub trait ConstrainedToyDynamicsV2<S: ConstrainedToyStateV2> {
+    /// dt は EvolutionParameter (外部発展パラメータ) — 創発時間ではない (qrn-terminology.md §2.3)
+    fn step(&self, s: &S, dt: EvolutionParameter) -> S;
     fn conserved(&self, s: &S) -> Vec<(String, f64)>;
 }
 
 /// 読み出し (トレイト越し — どの実装にも同じ関数を適用する):
 /// 部分系エントロピー
-pub fn v2_entropy(s: &dyn QrnStateV2, sites: &[usize]) -> f64 {
+pub fn v2_entropy(s: &dyn ConstrainedToyStateV2, sites: &[usize]) -> f64 {
     let (re, im, n) = s.rdm(sites);
     entropy_rdm_c(&re, &im, n)
 }
 
 /// 読み出し: 全サイト対の相互情報量行列 (列優先 L×L) と最大値
-pub fn v2_mi_matrix(s: &dyn QrnStateV2) -> (Vec<f64>, f64) {
+pub fn v2_mi_matrix(s: &dyn ConstrainedToyStateV2) -> (Vec<f64>, f64) {
     let l = s.n_sites();
     let s1: Vec<f64> = (0..l).map(|i| v2_entropy(s, &[i])).collect();
     let mut mi = vec![0.0; l * l];
@@ -1796,7 +1816,7 @@ pub fn v2_mi_matrix(s: &dyn QrnStateV2) -> (Vec<f64>, f64) {
 }
 
 /// 読み出し: 密度プロファイル
-pub fn v2_density_profile(s: &dyn QrnStateV2) -> Vec<f64> {
+pub fn v2_density_profile(s: &dyn ConstrainedToyStateV2) -> Vec<f64> {
     (0..s.n_sites()).map(|x| s.density(x)).collect()
 }
 
@@ -2018,7 +2038,7 @@ pub struct Z2CoreState {
     pub psi: Vec<(f64, f64)>,
 }
 
-impl QrnStateV2 for Z2CoreState {
+impl ConstrainedToyStateV2 for Z2CoreState {
     fn n_sites(&self) -> usize {
         self.l
     }
@@ -2106,9 +2126,10 @@ impl QrnStateV2 for Z2CoreState {
     }
 }
 
-impl QrnDynamicsV2<Z2CoreState> for Z2GaugeRing {
+impl ConstrainedToyDynamicsV2<Z2CoreState> for Z2GaugeRing {
     /// Krylov 部分空間 (次元 ≤ 28) による exp(-iH dt) の作用
-    fn step(&self, s: &Z2CoreState, dt: f64) -> Z2CoreState {
+    fn step(&self, s: &Z2CoreState, dt: EvolutionParameter) -> Z2CoreState {
+        let dt = dt.0;
         let n = s.psi.len();
         let mk = 28usize.min(n);
         let mut basis: Vec<Vec<(f64, f64)>> = vec![s.psi.clone()];
@@ -2187,6 +2208,9 @@ impl QrnDynamicsV2<Z2CoreState> for Z2GaugeRing {
 
 // ---------------- 自己テスト ----------------
 pub fn self_test() {
+    // qrn_core 契約 (v27.2): bridge law 登録簿が空・証明書発行不能・状態表示の
+    // 水増しなし (成功時は無音 — 破れのみ panic。出力の byte 不変性を保つ)
+    qrn_core::qrn_core_self_test().expect("qrn_core 契約の破れ");
     // ヤコビ法: ランダム対称行列で A v = λ v を検証
     let n = 8;
     let mut rng = Rng::new(12345);

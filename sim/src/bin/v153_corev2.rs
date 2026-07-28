@@ -1,4 +1,4 @@
-//! v15.3 QrnCoreV2 — ゲージ制約つき相互作用 core からの複数読み出し
+//! v15.3 ConstrainedToyCoreV2 — ゲージ制約つき相互作用 core からの複数読み出し
 //!
 //! v6.7 の core はガウスフェルミオン網 (自由場) に限られていた (ASM-GAUSS,
 //! 影響範囲 27 主張)。本版はその外へ出る: 1+1 次元 Z2 格子ゲージ + staggered
@@ -170,7 +170,7 @@ fn front_velocity(
     let mut max_edrift: f64 = 0.0;
     let mut max_ndrift: f64 = (n0 - 1.0).abs();
     for s in 0..nstep {
-        st = g.step(&st, dt);
+        st = g.step(&st, EvolutionParameter(dt));
         let prof = v2_density_profile(&st);
         for j in 0..l {
             dev[s][j] = (prof[j] - dens0[j]).abs();
@@ -216,7 +216,7 @@ fn front_velocity(
 
 fn main() {
     self_test();
-    println!("=== v15.3 QrnCoreV2: ゲージ制約つき相互作用 core (Z2 格子ゲージ + staggered フェルミオン) ===\n");
+    println!("=== v15.3 ConstrainedToyCoreV2: ゲージ制約つき相互作用 core (Z2 格子ゲージ + staggered フェルミオン) ===\n");
     let mut nfail = 0;
     let mut check = |name: &str, ok: bool, detail: String| {
         println!("  {} {}  {}", pass(ok), name, detail);
@@ -661,7 +661,7 @@ fn main() {
         let mut s_curve = vec![(0.0, s_init)];
         for k in 0..8 {
             for _ in 0..5 {
-                st = gq.step(&st, 0.05);
+                st = gq.step(&st, EvolutionParameter(0.05));
             }
             let t = 0.25 * (k + 1) as f64;
             s_curve.push((t, v2_entropy(&st, &region)));

@@ -3,8 +3,8 @@
 //! 改良方針 §7 (単一の QRN core) の続き (v6.7 で 1 模型、v7.4 で 3 模型)。v6.3 の
 //! QNEC 誤差予算バイナリは状態構築・エントロピー・T₋₋・カイラル度を全て局所実装して
 //! いた。本バイナリは同じ物理を
-//!   PacketRing (円環 GS + カイラル/定在波束; lib.rs の QrnModel) ×
-//!   QrnState の読み出し (readout_entropy / readout_null_energy / readout_chirality)
+//!   PacketRing (円環 GS + カイラル/定在波束; lib.rs の GaussianToyModel) ×
+//!   GaussianFermionState の読み出し (readout_entropy / readout_null_energy / readout_chirality)
 //! だけで再構成し、v6.3 の一次ソース (results/v63_qnec_budget.json) の数値への
 //! **回帰一致**を [PASS] 条件とする (N=302 のカイラル掃引・定在波対照・共動凍結比)。
 //!
@@ -71,7 +71,7 @@ fn sweep(model: &PacketRing) -> (Vec<f64>, Vec<f64>, f64, f64) {
     let mut chir = 0.0;
     let mut purity_last = 0.0;
     for m in 0..=NSTEPS {
-        let st = model.evolve(&s0, m as f64 / 2.0);
+        let st = model.evolve(&s0, EvolutionParameter(m as f64 / 2.0));
         let a = A0 - m;
         let l = B_END - a + 1;
         svals.push(st.readout_entropy(a, l));
@@ -92,7 +92,7 @@ fn comoving_var(model: &PacketRing) -> f64 {
     let vac = model.ring.init();
     let mut ds = Vec::new();
     for &m in &[0usize, 10, 20, 30] {
-        let st = model.evolve(&s0, m as f64 / 2.0);
+        let st = model.evolve(&s0, EvolutionParameter(m as f64 / 2.0));
         let a = 60 + m;
         let l = B_END - a + 1;
         ds.push(st.readout_entropy(a, l) - vac.readout_entropy(a, l));

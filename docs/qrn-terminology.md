@@ -106,9 +106,12 @@ vierbein / T00 保存 ≠ 保存 Tμν / plus ≠ spin-2 / 質量依存 ≠ regu
 | 「QRN core」(v6.7–v27.0) | `GaussianFermionState` + 読み出し群 | kinematics の toy 実装 + bridge 読み出しの複合体。層を混同した旧称 |
 | 「QRN-Core v1 の公理系」(v27.0 §D.3) | Matter-on-Background Adapter contract | adapter 層の格子契約 (§1 参照) |
 
-コード上の改名は v27.2 で実施する (sim/src 共有部の変更は全スイート再検証の
-儀式を伴うため、型付き契約の導入と同一コミットに束ねる)。それまでの間、
-旧名は本表により**意味論的に限定済み**とみなす。
+コード上の改名は **v27.2 で実施済み** (`sim/src/qrn_core.rs` の導入と同一コミット。
+旧名の残存ゼロは `v272_core_contract` [T2] が常設検査 — コメント内の改名台帳への
+歴史的言及のみ許す)。加えて V2 系も同時に改名した: `QrnStateV2` →
+`ConstrainedToyStateV2` / `QrnDynamicsV2` → `ConstrainedToyDynamicsV2`
+(拘束模型族の toy — QRN の一般動力学ではない)。sim/src 共有部の変更に伴う
+全スイート再検証の儀式は v28.0 で一括実施する。
 
 ## 4. 主張台帳の多軸 (v27.1 で claims.yml 全 214 件に付与)
 

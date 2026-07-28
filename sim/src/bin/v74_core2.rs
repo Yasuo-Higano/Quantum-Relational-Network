@@ -1,8 +1,8 @@
 //! v7.4 core 移行 (2): TFD と成長する鎖を同じ QRN core から読み出す (v7.0 残高 7)
 //!
 //! v6.7 は RingChain 1 模型で「同じ状態から幾何・エントロピー・物質・因果」を実演した。
-//! 本バイナリは v1.2 (ER=EPR) と v5.1 (成長する宇宙) を lib.rs の core (QrnState /
-//! QrnModel / 共有読み出し) の実装として再現する — toy の集まりが一つの語彙に揃っていく。
+//! 本バイナリは v1.2 (ER=EPR) と v5.1 (成長する宇宙) を lib.rs の core (GaussianFermionState /
+//! GaussianToyModel / 共有読み出し) の実装として再現する — toy の集まりが一つの語彙に揃っていく。
 //!
 //! [A] TfdPair (v1.2 の再現):
 //!     - 純粋性 (C²=C) — TFD は「もつれで熱を装う」純粋状態
@@ -81,7 +81,7 @@ fn main() {
     {
         let model = TfdPair { n, beta: 2.0 };
         let st = model.init();
-        let st2 = model.evolve(&st, 7.0);
+        let st2 = model.evolve(&st, EvolutionParameter(7.0));
         let mut dmax: f64 = 0.0;
         for i in 0..st.cre.len() {
             dmax = dmax.max((st.cre[i] - st2.cre[i]).abs());
@@ -106,7 +106,7 @@ fn main() {
     let mut st = gc.init(16);
     let mut s_hist = Vec::new();
     let mut defect_a: f64 = st.purity_defect();
-    let s_of = |st: &QrnState| -> f64 {
+    let s_of = |st: &GaussianFermionState| -> f64 {
         let k = window.len();
         let mut cre = vec![0.0; k * k];
         let mut cim = vec![0.0; k * k];
@@ -123,7 +123,7 @@ fn main() {
     while active < 96 {
         st = gc.arrive_pair_vacuum(&st, active);
         active += 2;
-        st = gc.evolve_active(&st, active, 3.0);
+        st = gc.evolve_active(&st, active, EvolutionParameter(3.0));
         defect_a = defect_a.max(st.purity_defect());
         s_hist.push(s_of(&st));
     }
@@ -146,7 +146,7 @@ fn main() {
     // シナリオ B: 熱的到着 (対照)
     let mut stb = gc.init(16);
     stb = gc.arrive_pair_thermal(&stb, 16);
-    stb = gc.evolve_active(&stb, 18, 3.0);
+    stb = gc.evolve_active(&stb, 18, EvolutionParameter(3.0));
     let defect_b = stb.purity_defect();
     println!(
         "    シナリオ B (熱的到着, 対照): 1 ステップ目で純粋性欠陥 {:.2} (混合状態)",
@@ -204,7 +204,7 @@ fn main() {
     }
     println!("\n総合判定: {}", pass(all_ok));
     println!("\n結論: ER=EPR (v1.2) と成長する宇宙 (v5.1) が、RingChain (v6.7) と同じ");
-    println!("      QrnState・同じ読み出し・同じ健全性検査 (C²=C) の上で動いた。");
+    println!("      GaussianFermionState・同じ読み出し・同じ健全性検査 (C²=C) の上で動いた。");
     println!("      core 移行地図: RingChain ✓ / TfdPair ✓ / GrowingChain ✓ —");
     println!("      「toy の集まり」から「一つの網の異なる模型」への移行が進んでいる。");
     if !all_ok {

@@ -4036,3 +4036,23 @@
   limitations:
     - "「adapter/instrument である」という判定自体が分類規約 (ASM-LAYER-SEMANTICS) に依存する。"
     - "kinematics: defined は「定義が書かれた」ことであり、一般 (非ガウス) 実装・動力学原理・bridge law は全て未完 — 空の部分を Core 完成と呼ばない (spec §7 の完了条件)。"
+
+- id: QRN-META-031
+  version: "v27.2"
+  level: C2
+  claim: "型付き Core Contract (PROMPT/10 §4, 6 検査 PASS + Lean 12 定理): sim/src/qrn_core.rs がノード 3 型 (RelationalNodeId/RegulatorSiteId/ContinuumPoint)・計量 2 型 (ExternalMetricSource/EmergentMetricCandidate)・時間 4 型 (EvolutionParameter/ModularParameter/OperationalClockReading/ProperTime) を別型化し、暗黙変換をコンパイル不能にした。変換の唯一の門 BridgeLawCertificate の登録簿は空 (bridge law 0 件 — register は全 id で None)。禁止昇格の到達先 (QrnEvidence/NaturalObservation/IndependentReplication/UniversalQuantityForBridge) は居住不能型 (空 enum) で値を構成するコード自体が書けない。旧 QrnState/QrnModel は GaussianFermionState/GaussianToyModel に改名 (toy の名から Qrn を外し、evolve/step の t は EvolutionParameter 型)。proofs/QrnPromotion.lean: 昇格グラフの推移閉包で 4 禁止対が到達不能・経路上で証拠の強さ単調非増加・dynamics/bridge 層に defined 不在 (全て decide/rfl — native_decide 不使用)。QRN_CORE_V1 (Rust const 10 成分) と core.schema.yml の状態表示を機械照合。"
+  status: "制限付き計算定理 (領域 = 型系・昇格グラフ・状態表示の形式的性質。物理的正しさの証明ではない — PROMPT/10 §4 の明示要件)"
+  layer: meta
+  evidence_kind: theorem
+  independence: same_author_clean_room
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v272_core_contract.rs"
+    result: "results/v272_core_contract.txt"
+    doc: "docs/uft-v27.2.md"
+  limitations:
+    - "型が禁じるのは Rust コード内の暗黙変換 — 文書・論文の言葉づかいの昇格は v271 の文書アンカー検査と R1–R7 が部分的に覆うのみ。"
+    - "Lean 証明は昇格グラフ (8 頂点) と状態表示 (10 成分) の鏡像に対する形式的性質であり、鏡像と Rust const の一致は v272 [T5]/v151 [8] のテキスト照合による。"
+    - "開発記録: v153_corev2 の 1e-15 級診断 |Δ| と JSON 下位桁に run 間ドリフトを発見 (単スレッド・固定シード・HashMap/時刻非依存で機構未特定 — 判定閾値 1e-9 に対し 6 桁の余裕で PASS 不変)。決定性監査の残高に登録。"

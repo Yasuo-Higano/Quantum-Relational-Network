@@ -2,8 +2,8 @@
 //!
 //! これまでの 32 本は個別の toy model の集まりだった。統一理論としての説得力は
 //! 新しいシミュレーションを増やすことではなく、**既存のシミュレーションを同じ core
-//! から出すこと**で上がる (改良方針 §7)。lib.rs に共通状態 (QrnState = ガウス
-//! フェルミオン網) と模型トレイト (QrnModel) と読み出し群を定義し、本バイナリは
+//! から出すこと**で上がる (改良方針 §7)。lib.rs に共通状態 (GaussianFermionState = ガウス
+//! フェルミオン網) と模型トレイト (GaussianToyModel) と読み出し群を定義し、本バイナリは
 //! 一つの具体模型 RingChain (円環自由フェルミオン・半充填基底状態) の **同一の状態**
 //! から 4 つの読み出しを行う:
 //!   [G] 幾何:      MI ブロック → MDS → 円環 (v0.7 の再現; v6.4 の判定規準)
@@ -31,7 +31,7 @@ fn main() {
     );
     let model = RingChain { n: 202 };
     println!(
-        "[模型] RingChain (N={}) の仮定 (QrnModel::assumptions):",
+        "[模型] RingChain (N={}) の仮定 (GaussianToyModel::assumptions):",
         202
     );
     for a in model.assumptions() {
@@ -118,7 +118,7 @@ fn main() {
                 }
             }
         }
-        QrnState {
+        GaussianFermionState {
             n,
             cre,
             cim: vec![0.0; n * n],
@@ -132,7 +132,7 @@ fn main() {
     println!("[C] 因果: 局所クエンチ (切断点 x=0/N-1) のボンドエネルギー前線");
     println!("    t     前線距離");
     for &t in &[6.0f64, 10.0, 14.0, 18.0, 22.0] {
-        let stt = model.evolve(&st_open, t);
+        let stt = model.evolve(&st_open, EvolutionParameter(t));
         let mut front = 0usize;
         for x in 0..n - 1 {
             let d = (x + 1).min(n - 1 - x);
@@ -191,7 +191,7 @@ fn main() {
     println!("\n結論: 幾何 (円環)・エントロピー (c=1 の対数則)・物質 (k_F)・因果 (光円錐) が、");
     println!("      一つの相関行列と一つのユニタリー発展 — 同じ量子情報網 — の 4 つの読み出し");
     println!("      として得られ、読み出し同士が整合する (前線速度 = 2 sin k_F)。");
-    println!("      既存の各シミュレーションを QrnModel 実装として core に移す道が開いた");
+    println!("      既存の各シミュレーションを GaussianToyModel 実装として core に移す道が開いた");
     println!("      (移行地図は docs/uft-v6.7.md)。");
     if !all_ok {
         std::process::exit(1);

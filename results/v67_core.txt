@@ -1,7 +1,7 @@
 [self_test] OK (jacobi residual 3.11e-15)
 === v6.7 単一 QRN core: 一つの状態から幾何・エントロピー・物質・因果を読み出す ===
 
-[模型] RingChain (N=202) の仮定 (QrnModel::assumptions):
+[模型] RingChain (N=202) の仮定 (GaussianToyModel::assumptions):
    - A0: 有限次元ヒルベルト空間とテンソル分解 (サイト)
    - A1: ユニタリー発展 (二次ハミルトニアン H = -Σ c†_x c_{x+1} + h.c.)
    - 初期状態: 半充填の基底状態 (ガウス状態)
@@ -32,5 +32,5 @@
 結論: 幾何 (円環)・エントロピー (c=1 の対数則)・物質 (k_F)・因果 (光円錐) が、
       一つの相関行列と一つのユニタリー発展 — 同じ量子情報網 — の 4 つの読み出し
       として得られ、読み出し同士が整合する (前線速度 = 2 sin k_F)。
-      既存の各シミュレーションを QrnModel 実装として core に移す道が開いた
+      既存の各シミュレーションを GaussianToyModel 実装として core に移す道が開いた
       (移行地図は docs/uft-v6.7.md)。

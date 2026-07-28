@@ -31,6 +31,6 @@
 総合判定: [PASS]
 
 結論: ER=EPR (v1.2) と成長する宇宙 (v5.1) が、RingChain (v6.7) と同じ
-      QrnState・同じ読み出し・同じ健全性検査 (C²=C) の上で動いた。
+      GaussianFermionState・同じ読み出し・同じ健全性検査 (C²=C) の上で動いた。
       core 移行地図: RingChain ✓ / TfdPair ✓ / GrowingChain ✓ —
       「toy の集まり」から「一つの網の異なる模型」への移行が進んでいる。
