@@ -214,10 +214,37 @@ Wilson は r 項の交差項 2rmp² が O(a) を生み δS = c·a + d·a²。
 「**外挿モデルは観測量ごとに導出する — 転記は凍結ではなく汚染**」。副産物:
 a²ln(1/a) 項の導出は PRED-016 精緻化のモデル正当化にそのまま使える。
 
+## P. v268p_pred016 — PRED-016 の登録バー到達 (修正条項 1, scored-hit)
+
+v26.8-X の interim 判定 (max 1.3%、バー 1%/0.5% 未達) を、**採点器の実装・走行
+より先にコミットした修正条項 1 (spec §12.9, 08a1321)** で再採点。修正は外挿
+プロトコルのみ (的・観測量・バー不変・1 回限り):
+
+- **モデルを観測量の漸近形から導出**: staggered は null 重みが q⁴ln(aQ)² の
+  ln a を殺す (ΣwQ⁴ = 0) が a² 次の a²Q⁶ln(aQ)² は ΣwQ⁶ ≠ 0 で生き残る →
+  {1, a²ln(1/a), a²}。Wilson は r 項の O(a) が先頭 → {1, a, a²}。
+- ladder を a = 0.022 まで延長 (0.5 起点廃止)、v268s の入れ子求積。
+- 中心 = 尾部窓 (a ≤ 0.125) fit、系統 = |全域 − 尾部| spread。
+
+転記なし: 4 チャネルの a = 0.125 rung が公表 JSON (v268b/c/x) と 1.6e-4 で
+一致する再計算 (P0)。結果:
+
+| 比 | 中心 (尾部窓) | spread | 全域残差 |
+|---|---|---|---|
+| A_D^stag/2A_or | **1.0000** | 0.0002 | 1.7e-4 |
+| A_D^Wil/A_or | **0.9986** | 0.0047 | 2.4e-3 |
+| A_X^stag/4A_or | **1.0000** | 0.0001 | 1.2e-4 |
+| A_X^Wil/(A_or/2) | **0.9990** | 0.0034 | 1.8e-3 |
+
+**PRED-016 scored-hit: max |中心 − 1| = 0.14% ≤ 1%、max 系統 0.47% ≤ 0.5%。**
+導出モデルの staggered 2 比は 1.0000 ± 0.0002 — a²ln(1/a) 項が実在し、それを
+入れると外挿が 4 桁で的に着く。正直な記録: wilD の spread 0.47% はバー際
+(Wilson の O(a) 系統が支配的なまま — a²ln 級を足す自由は §12.9 が禁止して
+いるので、これが最終値)。分類は operator/regulator universality —
+**測定器が正しいことの証明であり、QRN・創発重力の証拠ではない** (spec §12.8)。
+
 ## 1. 登録済みの残り
 
-- PRED-016 の 1% バーへの精緻化 (外挿系統の縮小 — §S で導出した a²ln(1/a)
-  級モデルの D/X への適用が第一候補)。
 - 三者一致の残り (lattice spectral density / dispersion 再構成)。
 - **v26.9: 4D covariance closure** (h₀₀, h₀ᵢ, q₀, 10×10 kernel, 4D Ward —
   Gate 5。ここまで 1/Π・graviton propagator・dynamic metric へ進まない)。
@@ -243,3 +270,6 @@ claims: QRN-GRAV-047。
 S: `sim/src/bin/v268s_sumrule.rs` / `results/v268s_sumrule.txt` (6 検査 PASS) /
 `results/v268s_sumrule.json` — **PRED-017 scored-hit (max 偏差 0.34% < バー 1%)**。
 claims: QRN-GRAV-048。
+P: `sim/src/bin/v268p_pred016.rs` / `results/v268p_pred016.txt` (5 検査 PASS) /
+`results/v268p_pred016.json` — **PRED-016 scored-hit (中心 max 0.14%・系統 max
+0.47%)**。claims: QRN-GRAV-049。

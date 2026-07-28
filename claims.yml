@@ -2560,3 +2560,17 @@
     - "operator benchmark — stress tensor ではなくスカラー密度 θ = mψ̄ψ の応答。gravitational 主張には使わない (spec §12.7)。"
     - "自由場 (one-loop)。外挿モデルは導出 + 数値の定数性確認によるが、log 係数 c の解析的閉形式までは未導出。"
     - "開発記録: run1 の測度取り違え (E-Jacobian ×4E 欠落 → 1/m 発散) と run2 のモデル転記汚染 (spread 7–13%) を S4/S2 ゲートが検出 — 修正後に全 PASS。"
+
+- id: QRN-GRAV-049
+  version: "v26.8-P"
+  level: C2
+  claim: "PRED-016 の登録バー到達 — 4 比の二離散化 universality を導出モデルで scored-hit (判定 a, 5 検査 PASS): 修正条項 1 (spec §12.9) を採点器の実装・走行より先にコミット (08a1321) し、外挿プロトコルのみを 1 回限り修正 (的・観測量・バー 1%/0.5% 不変)。モデルは観測量の漸近形から導出 — staggered は null 重みが q⁴ln(aQ)² の ln a を殺す (ΣwQ⁴ = 0) が a² 次の a²Q⁶ln(aQ)² は ΣwQ⁶ ≠ 0 で生存 → {1, a²ln(1/a), a²}、Wilson は r 項の O(a) → {1, a, a²}。ladder を a = 0.022 まで延長し 4 チャネル (D/X × stag/Wil) を転記なしで再計算 — a = 0.125 rung が公表 JSON (v268b/c/x) と 1.6e-4 一致 (P0)、GL 自己整合 5.7e-6 (P1)、fit 残差 ≤ 0.24% (P2)。**結果: 中心 (尾部窓 a ≤ 0.125) stagD 1.0000・wilD 0.9986・stagX 1.0000・wilX 0.9990 — max |中心 − 1| = 0.14% ≤ 1% (P3)、系統 |全域 − 尾部| max 0.47% ≤ 0.5% (P4)**。導出モデルの staggered 2 比は 1.0000 ± 0.0002 — a²ln(1/a) 項の実在の強い証拠。"
+  status: "判定 a — PRED-016 scored-hit (登録バー到達)。wilD の系統 0.47% はバー際 — §12.9 により再修正禁止、これが最終値"
+  evidence:
+    code: "sim/src/bin/v268p_pred016.rs"
+    result: "results/v268p_pred016.txt"
+    doc: "docs/uft-v26.8.md"
+  limitations:
+    - "operator/regulator universality — 測定器が正しいことの証明であり QRN・創発重力の証拠ではない (spec §12.8 の凍結解釈)。"
+    - "Wilson 2 比の系統 (0.34–0.47%) は O(a) 項が支配的なまま — バー内だが staggered (0.02%) より 1 桁大きい。a²ln 級の追加は §12.9 が禁止 (1 回限り条項)。"
+    - "massless 系列のみ。log 係数 c の解析的閉形式は未導出 (fit の定数性と残差 ≤ 0.24% による間接証拠)。"
