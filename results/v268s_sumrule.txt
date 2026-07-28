@@ -1,0 +1,30 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.8-S v268s_sumrule — スカラー spectral 和則の格子側 (PRED-017) ===
+
+事前登録: spec §12.7 (bc644d4)。的 (自前規約): staggered → 2/(80π²) / Wilson →
+1/(80π²)。辞書 (×1/3s³) で文献規約の 1/(120π²) (2t) に対応。UV 有限・m 非依存。
+
+  [PASS] [S0] T の閉形式 (stag: 4Σcos²/E² / Wil: 2Σsin²/E²) = 明示行列トレース  max|Δ| = 9.3e-15
+    [S(a) 表 (m_phys = 1)] a | stag·80π²/2 | Wil·80π²
+      a = 0.350: 1.2459 | 0.4009 (0 s)
+      a = 0.250: 1.1880 | 0.5119 (0 s)
+      a = 0.180: 1.1285 | 0.6137 (0 s)
+      a = 0.125: 1.0779 | 0.7116 (0 s)
+      a = 0.090: 1.0475 | 0.7834 (0 s)
+      a = 0.062: 1.0266 | 0.8452 (0 s)
+      a = 0.045: 1.0155 | 0.8869 (0 s)
+      a = 0.032: 1.0087 | 0.9190 (0 s)
+      a = 0.022: 1.0046 | 0.9441 (0 s)
+  [PASS] [S1] 求積自己整合: a_min で GL 14 → 18 の変化 < 1e-3 (両離散化)  max 相対変化 = 1.6e-15
+    [S2 外挿 stag] S₀·80π²/2 = 0.9991 (全域) / 0.9999 (尾部 a ≤ 0.125), spread 0.0008
+  [PASS] [S2] PRED-017 staggered: S₀·(80π²)/2 = 1 ± 0.02 (導出モデル, 全域/尾部窓)  偏差 max = 0.0009
+    [S3 外挿 Wil] S₀·80π² = 0.9988 (全域) / 1.0022 (尾部 a ≤ 0.125), spread 0.0034
+  [PASS] [S3] PRED-017 Wilson: S₀·80π² = 1 ± 0.02 (導出モデル {1,a,a²} — taste 1 の検証)  偏差 max = 0.0034
+  [PASS] [S4] m_phys 非依存: staggered の外挿 S₀ が m_phys = 0.5 と 1.0 で 1% 一致  相対差 = 0.001
+  [PASS] [S5] 変異: V_θ を Γm → 恒等 (taste-nonsinglet 密度) に置換 → S が > 10% 変化  相対変化 = 1.000
+
+[artifact] ./results/v268s_sumrule.json
+
+[判定] 事前登録 (a): **PRED-017 scored-hit — 両離散化のスカラー和則が taste 数どおり連続値に収束** (operator benchmark — gravitational response とは呼ばない)
+
+総合判定: [PASS] (1 s)

@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 199 件 / 依存辺 331 本 / 仮定 39 件 / 反証条件 15 件。
+主張 200 件 / 依存辺 334 本 / 仮定 39 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -198,7 +198,7 @@
 | QRN-GRAV-034 | C1 | v25.2 | CDR | 2 | 1 | 1 | 1 |
 | QRN-META-027 | C5 | v25.2 | CDR | 7 | 0 | 2 | 0 |
 | QRN-YUK-033 | C4 | v26.1 | CDR | 4 | 1 | 1 | 0 |
-| QRN-GRAV-035 | C1 | v26.2 | CDR | 0 | 1 | 1 | 12 |
+| QRN-GRAV-035 | C1 | v26.2 | CDR | 0 | 1 | 1 | 13 |
 | QRN-GRAV-036 | C4 | v26.3 | CDR | 1 | 1 | 1 | 6 |
 | QRN-GRAV-037 | C4 | v26.4 | CDR | 2 | 1 | 1 | 4 |
 | QRN-GRAV-038 | C4 | v26.5 | CDR | 2 | 1 | 1 | 3 |
@@ -206,11 +206,12 @@
 | QRN-GRAV-040 | C3 | v26.7 | CDR | 1 | 1 | 1 | 0 |
 | QRN-GRAV-041 | C4 | v26.7 | CDR | 2 | 1 | 1 | 1 |
 | QRN-GRAV-042 | C4 | v26.7.1 | CDR | 1 | 1 | 1 | 0 |
-| QRN-GRAV-043 | C2 | v26.8-0 | CDR | 1 | 1 | 1 | 4 |
-| QRN-GRAV-044 | C2 | v26.8-A | CDR | 1 | 1 | 1 | 3 |
-| QRN-GRAV-045 | C2 | v26.8-B | CDR | 2 | 2 | 1 | 2 |
-| QRN-GRAV-046 | C2 | v26.8-C | CDR | 2 | 2 | 1 | 1 |
+| QRN-GRAV-043 | C2 | v26.8-0 | CDR | 1 | 1 | 1 | 5 |
+| QRN-GRAV-044 | C2 | v26.8-A | CDR | 1 | 1 | 1 | 4 |
+| QRN-GRAV-045 | C2 | v26.8-B | CDR | 2 | 2 | 1 | 3 |
+| QRN-GRAV-046 | C2 | v26.8-C | CDR | 2 | 2 | 1 | 2 |
 | QRN-GRAV-047 | C2 | v26.8-X | CDR | 3 | 2 | 1 | 0 |
+| QRN-GRAV-048 | C2 | v26.8-S | CDR | 3 | 2 | 1 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -218,7 +219,7 @@
 
 | 仮定 | type | status | 直接 | 閉包 | 閉包に含まれる主張 (抜粋) |
 |---|---|---|---|---|---|
-| ASM-LATTICE | framework | active | 95 | 147 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
+| ASM-LATTICE | framework | active | 96 | 148 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
 | ASM-SEED | design | active | 13 | 77 | QRN-BH-001, QRN-BORN-001, QRN-COSMO-003, QRN-FIELD-001, … |
 | ASM-PDG | data | active | 47 | 70 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
 | ASM-LOWDIM | framework | active | 23 | 65 | QRN-ARROW-001, QRN-BORN-001, QRN-CAUSAL-001, QRN-CAUSAL-002, … |
@@ -245,11 +246,11 @@
 | ASM-INIT | model | active | 1 | 9 | QRN-ARROW-001, QRN-CAUSAL-002, QRN-CORE-002, QRN-CORE-004, … |
 | ASM-WINDOW-EXT | window | active | 4 | 8 | QRN-GAUGE-007, QRN-GAUGE-008, QRN-GAUGE-010, QRN-GAUGE-013, … |
 | ASM-LEAN-TRUST | trust | active | 5 | 8 | QRN-GAUGE-011, QRN-GAUGE-013, QRN-GAUGE-016, QRN-GAUGE-017, … |
+| ASM-IEEE754 | trust | active | 6 | 8 | QRN-GRAV-032, QRN-GRAV-033, QRN-GRAV-044, QRN-GRAV-045, … |
 | ASM-DOF-GROWTH | model | active | 2 | 7 | QRN-ARROW-001, QRN-CORE-002, QRN-CORE-004, QRN-META-004, … |
 | ASM-WINDOW-V43 | window | active | 4 | 7 | QRN-GAUGE-006, QRN-GAUGE-008, QRN-GAUGE-010, QRN-GAUGE-016, … |
 | ASM-OBS-FRACTIONAL | observational | active | 1 | 7 | QRN-GAUGE-006, QRN-GAUGE-008, QRN-GAUGE-010, QRN-GAUGE-016, … |
 | ASM-NET-REAL | ontology | active | 7 | 7 | QRN-META-001, QRN-META-002, QRN-META-003, QRN-META-004, … |
-| ASM-IEEE754 | trust | active | 5 | 7 | QRN-GRAV-032, QRN-GRAV-033, QRN-GRAV-044, QRN-GRAV-045, … |
 | ASM-WINDOW-PAIR | window | active | 1 | 5 | QRN-META-010, QRN-META-013, QRN-YUK-009, QRN-YUK-015, … |
 | ASM-WINDOW-U1CUBE | window | active | 1 | 4 | QRN-GAUGE-014, QRN-GAUGE-015, QRN-META-008, QRN-META-011 |
 | ASM-ORBIFOLD | model | active | 2 | 3 | QRN-META-011, QRN-YUK-010, QRN-YUK-011 |
@@ -262,7 +263,7 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 181 | 191 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 182 | 192 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CONTINUUM | open | 56 | 88 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-CKM-OOS | open | 12 | 63 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-BMV | open | 8 | 48 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |

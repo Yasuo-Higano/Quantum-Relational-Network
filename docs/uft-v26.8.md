@@ -180,11 +180,45 @@ taste 数 (2 vs 1)・頂点正規化 (Z = 1, √2 系) の全てが同一の解�
 max 偏差 1.3% (D チャネルの外挿 spread が支配) で**未達 → PRED-016 は interim**。
 精緻化 (a²ln a 級モデルの正当化・より小さい a・高次 fit) が残作業。
 
+## S. v268s_sumrule — スカラー和則の格子側 (PRED-017 hit)
+
+v26.8-A で自前規約導出・三重検証したスカラー和則 (凍結不変量
+S = 2∫σ_θ(E)/E⁵ dE = 1/(80π²) per Dirac — 質量不変・UV 有限) の格子側。
+q = 0 では対は ±k で **null 結合すら不要の単一 BZ 積分**:
+S^lat(a) = ∫ d³k/(2π)³ · 2m²T(k)/(2E)⁵。T は射影子トレースの閉形式
+(tr[P₊VP₋V] = (1/4E²)[dim·E² − tr(HVHV)]):
+
+- staggered (8 成分, V_θ = Γm): T = 4Σcos²kᵢ/E² — 明示 8×8 と 9.3e-15 一致
+- Wilson (4 成分, V_θ = β): T = 2Σsin²kᵢ/E² — 明示 4×4 と同精度
+
+**外挿モデルは S 自身の漸近形から導出** (v26.8-B/C の A 観測量とは異なる):
+staggered はノードの sin²p = p²(1−p²/3+…) 補正が ∫m²p⁶/E⁹ ~ m²ln(1/(am))
+を生み δS = c·a²ln(1/a) + d·a² (数値でも Δ/(a²ln(1/a)) = 2.44–2.47 で定数)。
+Wilson は r 項の交差項 2rmp² が O(a) を生み δS = c·a + d·a²。
+
+| 外挿 (全域 / 尾部 a ≤ 0.125) | 値 |
+|---|---|
+| **staggered S₀·(80π²)/2** | **0.9991 / 0.9999** (spread 0.0008) |
+| **Wilson S₀·(80π²)** | **0.9988 / 1.0022** (spread 0.0034) |
+
+**PRED-017 scored-hit**: max 偏差 0.34% < falsifier バー 1%。taste 数 (2 vs 1)
+の対比がスカラーチャネルでも成立 (D・X に続き三たび)。m_phys = 0.5/1.0 の
+外挿一致 0.1%。変異 (V_θ → 恒等 = taste-nonsinglet 密度) は 100% 逸脱で検出。
+分類は spec §12.7 どおり **operator benchmark** — gravitational response とは
+呼ばない。
+
+開発記録 (器械の修正 2 件・物理は不変): (i) run1 は ∫ρ(s)/s³ の s-measure を
+直書きし E-Jacobian (×4E) を落として 1/m 発散 — S4 の m 依存ゲートが正直に
+検出。「**和則は密度と測度の組で一つ**」。(ii) run2 は外挿モデルを A 観測量
+から転記して spread 7–13% — S 自身の導出モデルに置換して 0.1–0.3% に着地。
+「**外挿モデルは観測量ごとに導出する — 転記は凍結ではなく汚染**」。副産物:
+a²ln(1/a) 項の導出は PRED-016 精緻化のモデル正当化にそのまま使える。
+
 ## 1. 登録済みの残り
 
-- PRED-016 の 1% バーへの精緻化 (外挿系統の縮小)。
+- PRED-016 の 1% バーへの精緻化 (外挿系統の縮小 — §S で導出した a²ln(1/a)
+  級モデルの D/X への適用が第一候補)。
 - 三者一致の残り (lattice spectral density / dispersion 再構成)。
-- spin-0 sum rule (PRED-017) の格子側 (operator benchmark)。
 - **v26.9: 4D covariance closure** (h₀₀, h₀ᵢ, q₀, 10×10 kernel, 4D Ward —
   Gate 5。ここまで 1/Π・graviton propagator・dynamic metric へ進まない)。
 
@@ -206,3 +240,6 @@ claims: QRN-GRAV-046。
 X: `sim/src/bin/v268x_completion.rs` / `results/v268x_completion.txt` (6 検査 PASS) /
 `results/v268x_completion.json` — **4/4 比 = 1 ± 1.3% (PRED-016 interim)**。
 claims: QRN-GRAV-047。
+S: `sim/src/bin/v268s_sumrule.rs` / `results/v268s_sumrule.txt` (6 検査 PASS) /
+`results/v268s_sumrule.json` — **PRED-017 scored-hit (max 偏差 0.34% < バー 1%)**。
+claims: QRN-GRAV-048。

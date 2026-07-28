@@ -2546,3 +2546,17 @@
     - "PRED-016 の登録精度 (1%/0.5%) 未達 — interim。X の Z = 2 / Z = 1 は tree 正規化 (凍結構成から厳密) であり、非摂動的 Z の測定ではない (自由場では tree が厳密なので十分)。"
     - "Wilson X の h_xz への Wilson-β 結合を 0 に取る scheme 選択 (O(a) 自由度) — 別選択との比較は未実施。"
     - "massless 系列のみ (X チャネルの massive decoupling は未実施 — D で両側成立済み)。"
+
+- id: QRN-GRAV-048
+  version: "v26.8-S"
+  level: C2
+  claim: "スカラー spectral 和則の格子側 — PRED-017 scored-hit (判定 a, 6 検査 PASS): 凍結不変量 S = 2∫σ_θ(E)/E⁵ dE (v268a で三重検証・1/(80π²)/Dirac・質量不変) を q = 0 の単一 BZ 積分 (null 結合不要・UV 有限) S^lat = ∫d³k/(2π)³·2m²T/(2E)⁵ で測定。T は射影子トレースの閉形式 (stag: 4Σcos²/E² [8 成分, V_θ = Γm] / Wil: 2Σsin²/E² [4 成分, V_θ = β]) — 明示行列トレースと 9.3e-15 一致。外挿モデルは S 自身の漸近形から導出 (stag: ノード sin² 補正 → δS = c·a²ln(1/a) + d·a², 数値で Δ/(a²ln(1/a)) = 2.44–2.47 の定数性を確認 / Wil: r 項交差 2rmp² → δS = c·a + d·a²)。**結果 (全域/尾部窓): staggered S₀·(80π²)/2 = 0.9991/0.9999・Wilson S₀·(80π²) = 0.9988/1.0022 — max 偏差 0.34% < falsifier 1%、taste 数 2 vs 1 がスカラーチャネルでも成立 (D・X に続き三たび)**。m_phys 非依存 0.1%・変異 (taste-nonsinglet 密度) は 100% 逸脱で検出。"
+  status: "判定 a — PRED-017 scored-hit (operator benchmark — spec §12.7 の分類どおり gravitational response とは呼ばない)"
+  evidence:
+    code: "sim/src/bin/v268s_sumrule.rs"
+    result: "results/v268s_sumrule.txt"
+    doc: "docs/uft-v26.8.md"
+  limitations:
+    - "operator benchmark — stress tensor ではなくスカラー密度 θ = mψ̄ψ の応答。gravitational 主張には使わない (spec §12.7)。"
+    - "自由場 (one-loop)。外挿モデルは導出 + 数値の定数性確認によるが、log 係数 c の解析的閉形式までは未導出。"
+    - "開発記録: run1 の測度取り違え (E-Jacobian ×4E 欠落 → 1/m 発散) と run2 のモデル転記汚染 (spread 7–13%) を S4/S2 ゲートが検出 — 修正後に全 PASS。"

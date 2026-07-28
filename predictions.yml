@@ -185,10 +185,11 @@
   observable: "taste-singlet scalar 演算子の spectral function の積分 ∫σ ds (continuum 外挿)"
   qrn_value: "1/(120π²) — 1 Dirac の ∫σ_f = 1/(240π²) (σ_f = m²/(24π²s²)·(1−4m²/s)^{3/2}) の 2 taste 倍。UV finite・counterterm 非依存・質量非依存"
   competing: "外れ → scalar 規格化または taste count (2 vs 4) の誤り"
-  data_not_used: "未実施。4D source 取得までは gravitational response ではなく operator benchmark と分類 (spec §12.7)。文献値 (arXiv:2607.18180) は独立再導出してから使う"
+  data_not_used: "文献値 (arXiv:2607.18180) は的の設定のみに使用 — 採点は v268a の自前導出 oracle (三重検証・辞書 ×3 認証) と v268s の格子側の比較で完結"
   falsifier: "1% 超の不一致 → taste 規格化の監査 (v26.8-C の taste trap と同根の可能性)"
   source: "spec §12.7 (2026-07-25 凍結)"
-  status: registered
+  status: scored-hit
+  score: "hit (2026-07-25, v26.8-S): 凍結不変量 S = 2∫σ_θ(E)/E⁵ dE (q = 0 の単一 BZ 積分 — null 結合不要・UV 有限)。導出モデル外挿 (stag {1, a²ln(1/a), a²} / Wil {1, a, a²}, 全域+尾部窓): staggered S₀·(80π²)/2 = 0.9991/0.9999 (2 taste)・Wilson S₀·(80π²) = 0.9988/1.0022 (1 flavor) — max 偏差 0.34% < falsifier 1%。taste 数 2 vs 1 の対比が三たび成立。m_phys 非依存 0.1%。閉形式 T (stag 4Σcos²/E² / Wil 2Σsin²/E²) は明示トレースと 9.3e-15 一致。分類は operator benchmark (spec §12.7 — gravitational response とは呼ばない)"
 
 - id: PRED-018
   title: "massive decoupling — q² ≪ m² の nonlocal running"
