@@ -164,10 +164,31 @@ V₀₀(k; px̂+qŷ) = h(k+(p/2)x̂+(q/2)ŷ)** で構成可能 → **v26.9-D と
 **型名 FullGravitationalVacuumPolarization は保留を維持・1/Π 禁止も維持**
 (凍結解釈: すべて測定器の証明であり QRN・創発重力の証拠ではない)。
 
+## D. v269d_belinfante — 素朴平均対称化の失敗 (負の結果, 5 検査 PASS)
+
+v26.9-C で登録した「Belinfante 対称 10×10 の完全崩壊」の第一試行 — **結果は
+負** (知的誠実性規約に従い記録・凍結)。試行: エネルギー流の閉形式
+**J^i = ½{h(mid), ∂ᵢh(mid)}** (連続の式の p → 0 極限から導出 — 器械自体は
+正しい: J_subst − J_exact = (q/8)[∂²h, h] + O(q²) の O(q) 交換子項まで機械
+照合) を使い T⁰ᵢ_naive := (V₀ᵢ + J^i)/2。
+
+**負の発見 3 件** (全て ladder で停留 = 収束した非零定数):
+1. T⁰ˣ_naive の**厳密流束は正準 stress のまま** — Φ vs T^{xy}-split の距離
+   1.30 が ε 非依存 (spread 6e-4)。
+2. 対称 10×10 の横断性破れ 0.674 が a 非依存 — v26.9-C run1 の正準混合と
+   同水準。
+3. **J 片は殻上の破れの組合せに寄与しない** — tv(naive) = tv(正準) が 0.0
+   (機械精度) で一致。(E₁−E₂) 型の J 行列要素が対称殻で相殺。
+
+結論: **格子 Belinfante 0i 密度は密度・流束の平均では作れない。spin-current
+改良項 (∂_λK^{λ0i} の格子転写 — σ^{0i} 型 Γ 積の局所頂点) の明示構成が必要**
+→ 次ユニットに登録。P₂ (spin-2) 部門は無傷 (oracle 回帰 1.0007 — v26.9-C の
+縮退・アンカーは D/X のみで閉じる)。
+
 ## 1. 残り (v26.9 arc)
 
-- **v26.9-D**: Belinfante 対称 10×10 の完全崩壊 (二重変調則で T⁰ⁱ を対称化 —
-  σ = ρ₂P₂ + ρ₀P₀s への完全崩壊と ρ₀ の oracle 照合)。
+- **spin-current 改良項の明示構成** (格子 K^{λ0i} → Belinfante 0i 密度 →
+  対称 10×10 の完全崩壊の再判定)。
 - その後 Gate 5 の最終判定 → v27.0 dynamic metric fork の分岐判断。
 
 ## 2. 成果物
@@ -180,3 +201,6 @@ B: `sim/src/bin/v269w_ward4d.rs` / `results/v269w_ward4d.txt`
 (6 検査 PASS) / `results/v269w_ward4d.json`。claims: QRN-GRAV-053。
 C: `sim/src/bin/v269c_spin4d.rs` / `results/v269c_spin4d.txt`
 (6 検査 PASS) / `results/v269c_spin4d.json`。claims: QRN-GRAV-054。
+D: `sim/src/bin/v269d_belinfante.rs` / `results/v269d_belinfante.txt`
+(負の結果の認証 5 検査 PASS) / `results/v269d_belinfante.json`。
+claims: QRN-GRAV-055。

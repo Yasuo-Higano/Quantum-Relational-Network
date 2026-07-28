@@ -1,0 +1,5 @@
+{
+  "version": "v26.9-D",
+  "kind": "belinfante_symmetric_collapse",
+  "construction": "T0i_Bel = (V0i + J^i)/2, J^i = (1/2){h(mid), ∂ᵢh(mid)} (y は厳密流)"
+}

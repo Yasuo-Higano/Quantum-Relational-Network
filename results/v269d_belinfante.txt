@@ -1,0 +1,20 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-D v269d_belinfante — Belinfante 対称 10×10 の完全崩壊 ===
+
+T⁰ᵢ_Bel = (V₀ᵢ + J^i)/2, J^i = ½{h(mid), ∂ᵢh(mid)} (y は厳密流)。massless の
+conformal 崩壊 σ → ρ₂P₂ のみ (trace セクター消滅) を殻積分 ladder で判定。
+
+  [PASS] [D0] J 構成: J^y_subst − 厳密流 = O(q) 交換子項 (半減比 ~2) かつ J^x の Fourier 台 ≤ 2  q 半減比 = 2.30 (差 1.4e-1 → 6.2e-2), 台残差 = 1.4e-15
+  [PASS] [D1] 負の発見: Φ(T⁰ˣ_naive) は T^{xy}-split に収束しない (定数 1.30 で停留)   rel(0.4) = 1.30e0 rel(0.2) = 1.30e0 rel(0.1) = 1.30e0 rel(0.05) = 1.30e0 (spread 6.2e-4)
+    [D 表] a = 0.180: 横断性 max = 0.67458, trace 比 = 0.26480, アンカー = 1.0116, σ_DD/2σ_XX = 1.0118 (0 s)
+    [D 表] a = 0.090: 横断性 max = 0.67429, trace 比 = 0.26515, アンカー = 1.0029, σ_DD/2σ_XX = 1.0029 (0 s)
+    [D 表] a = 0.045: 横断性 max = 0.67422, trace 比 = 0.26523, アンカー = 1.0007, σ_DD/2σ_XX = 1.0007 (0 s)
+  [PASS] [D2] 負の発見: 対称 10×10 の横断性破れ 0.674 は a 非依存 (素朴平均 ≠ Belinfante 密度)  0.6746 → 0.6743 → 0.6742 (spread 5.3e-4), trace 比も停留 0.265
+  [PASS] [D3] 負の発見: J 片は殻の破れに寄与しない — tv(naive) = tv(正準) < 1%  相対差 = 0.0e0 (naive 0.6742 vs 正準 0.6742)
+  [PASS] [D4] oracle 回帰: σ_DD/(2ρ_D) = 1 ± 2% かつ σ_DD/2σ_XX = 1 ± 2% (P₂ 無傷)  アンカー = 1.0007, 縮退 = 1.0007
+
+[artifact] ./results/v269d_belinfante.json
+
+[判定] 判定 (b) 確定: **負の結果 — 素朴平均 T⁰ᵢ = (密度+流束)/2 は格子 Belinfante 密度ではない** (厳密流束は正準 stress のまま・J 片は殻の破れに寄与しない)。正しい構成 = spin-current 改良頂点の明示転写 — 次ユニットに登録 (P₂ 部門は無傷)
+
+総合判定: [PASS] (0 s)

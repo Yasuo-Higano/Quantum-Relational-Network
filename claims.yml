@@ -2644,3 +2644,17 @@
     - "spin-0 (P₀s) チャネルの spectral 分離は Belinfante 対称化後 (v26.9-D) — 本ユニットは P₂ 2 偏極の縮退・直交・絶対値まで。"
     - "開発記録: run2 の対角 BOND-A 重み半分ミス (σ_XX = 2σ_DD の因子 4 異常で発覚 —「規約係数は認証済みバイナリの q = 0 極限と突き合わせよ」)・殻積分の (2π)³ 正規化落ち (アンカー 248.2 ≈ (2π)³ の指紋で特定)。"
     - "凍結解釈: 測定器の証明であり QRN・創発重力の証拠ではない。"
+
+- id: QRN-GRAV-055
+  version: "v26.9-D"
+  level: C2
+  claim: "Belinfante 対称化の素朴平均は失敗する — 負の結果の認証 (判定 b, 5 検査 PASS): エネルギー流の閉形式 J^i = ½{h(mid), ∂ᵢh(mid)} (連続の式の p → 0 極限から導出; J_subst − J_exact = (q/8)[∂²h,h] + O(q²) の O(q) 交換子項まで機械照合) を用いた T⁰ᵢ_naive := (V₀ᵢ + J^i)/2 は格子 Belinfante 密度ではない。**負の発見 3 件 (全て ladder で停留 = 収束した非零定数): (1) T⁰ˣ_naive の厳密流束 Φ = [h, T⁰ˣ]/q̂ は point-split T^{xy} に収束しない — rel 1.30 が ε 非依存 (spread 6e-4)・(2) 対称 10×10 の横断性破れ 0.674 が a 非依存・(3) J 片は殻上の破れに寄与しない — tv(naive) = tv(正準) が機械精度一致** ((E₁−E₂) 型 J 行列要素の対称殻相殺)。P₂ 部門は無傷 (σ_DD/(2ρ_D) = 1.0007 回帰 PASS)。結論: 格子 Belinfante 0i 密度には spin-current 改良項 (∂_λK^{λ0i} の格子転写) の明示構成が必要。"
+  status: "判定 b — 負の結果を凍結 (知的誠実性規約)。次 = spin-current 改良頂点の明示構成 → 対称 10×10 崩壊の再判定"
+  evidence:
+    code: "sim/src/bin/v269d_belinfante.rs"
+    result: "results/v269d_belinfante.txt"
+    doc: "docs/uft-v26.9.md"
+  limitations:
+    - "負の結果 — 「素朴平均では作れない」ことの証明であり、spin-current 改良で作れることの証明ではない (それは次ユニット)。"
+    - "massless 殻 (E, Q) = (1.5, 0.6) の 1 点での認証 (停留の a 依存は 3 点 ladder)。"
+    - "開発記録: D0 の O(q²) 誤想定を展開導出 (O(q) 交換子項) で較正。"
