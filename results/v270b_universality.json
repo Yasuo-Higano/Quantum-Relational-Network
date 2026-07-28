@@ -1,0 +1,8 @@
+{
+  "version": "v27.0-B",
+  "kind": "kernel_4d_universality",
+  "spec": "§13.2-B (b46bce3)",
+  "a00_over_twothirds_ad": 0.9974440372648916,
+  "a0y_over_ad": -0.0020708808111702982,
+  "ayy_over_ad": -0.002421209285522247
+}

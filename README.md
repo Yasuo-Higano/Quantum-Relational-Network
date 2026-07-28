@@ -20,7 +20,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v27.0-A** (spec §13 凍結 + **full 4D kernel の厳密 Ward 構成 [6.8e-14]** — 対称・保存・Ward-厳密を連続極限で同時充足。残り = v27.0-B universality → C fork 判定 → D 期統合。v25 系列は凍結済み — `v252_manifest` が常設監査) — Rust 160 本 + 探索層 python 5 本 + Lean 定理 50 本 (7 ファイル) +
+**現在の到達点: v27.0-B** (温度セクター universality 成立 — **A_00/(⅔A_D) = 0.9974・純ゲージチャネル消滅** = 1/Π 解禁条件 (i)(ii) 充足。残り = C fork 判定 → D 期統合。v25 系列は凍結済み — `v252_manifest` が常設監査) — Rust 161 本 + 探索層 python 5 本 + Lean 定理 50 本 (7 ファイル) +
 主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
 ([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
 最新統合は [docs/uft-v25.0.md](docs/uft-v25.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -244,6 +244,7 @@ cargo build --release          # 外部依存なし (std のみ)
 | v26.9-D | [uft-v26.9.md](docs/uft-v26.9.md) §D | `v269d_belinfante` | **Belinfante 対称化の素朴平均は失敗する — 負の結果の認証 (判定 b, 5 検査 PASS)**: エネルギー流の閉形式 J^i = ½{h(mid), ∂ᵢh(mid)} (連続の式の p → 0 極限 — 器械は正: J_subst − J_exact = (q/8)[∂²h,h] の O(q) 交換子項まで照合) による T⁰ᵢ_naive = (V₀ᵢ+J^i)/2 は**格子 Belinfante 密度ではない**: (1) 厳密流束が正準 stress のまま (rel 1.30 停留)・(2) 対称 10×10 の横断性破れ 0.674 が a 非依存・(3) **J 片は殻の破れに寄与しない (tv(naive) = tv(正準) 機械精度)** — (E₁−E₂) 型行列要素の対称殻相殺。P₂ 部門は無傷 (アンカー 1.0007 回帰)。結論: spin-current 改良項 ∂_λK^{λ0i} の格子転写が必要 (次ユニット登録)。「失敗した検証も記録する」規約の適用 |
 | v26.9-E | [uft-v26.9.md](docs/uft-v26.9.md) §E | `v269i_spin_improve` | **spin-current 改良と Belinfante 完成 — Gate 5 分離部門完結 (判定 a, 6 検査 PASS)**: 改良頂点 **ΔT⁰ⁱ = q̂·λ·[α̂ᵢ, α̂_y]** (on-site 定数行列)。su(2) 代数が回転流構造と **λ = ±1/8 を予言 → fit −0.124638 が −1/8 に的中** (凍結)。**流束閉包 1.30 停留 → 9.5e-4 (O(ε²))・対称 10×10 の横断性 0.674 → 3.9e-4 (縮小比 4.0/4.0)・conformal 崩壊 trace 比 1.0e-4 = massless σ = ρ₂P₂ 完全崩壊**。oracle 無傷 (1.0007)・変異 (λ → −λ) 2000 倍。開発記録: trace 方向の η 上げ/重み 2 落ち (停留 0.265) —「不定計量の縮約はベクトル化の重みまで検査」。**v26.9 arc 完了** — v27.0 = temporal 二次変分 + dynamic metric fork。型名保留・1/Π 禁止維持 |
 | v27.0-A | [uft-v27.0.md](docs/uft-v27.0.md) §A | `v270a_kernel4d` | **full 4D kernel の厳密 Ward (spec §13.2, 判定 a, 5 検査 PASS)**: k̂^{0ν} = C_{T⁰ν_Bel,B} / k̂^{yν} = C_{J_ν,B} − ⟨[T⁰ν,B]⟩/q̂ (接触完備化) — **iq₀k̂^{0ν} − q̂k̂^{yν} = 0 がカットオフ有限で構成的に厳密 (6.8e-14, 4×10×2)** = v26.6 静的核の 4D 拡張。接触完備化は q → 0 非発散 (成長比 1.000)・**流束行 → Belinfante stress 行が全 4 行 O(ε²)** = 核は連続極限で対称・保存・Ward-厳密を同時充足・変異 (λ→0) 1370 倍。spec §13 (b46bce3) を実装前凍結 (13.3: 1/Π 解禁 3 条件・三分岐・W–W 破れ仮定の事前明記義務)。型名発行と 1/Π は §13.3 全条件まで保留 |
+| v27.0-B | [uft-v27.0.md](docs/uft-v27.0.md) §B | `v270b_universality` | **温度セクターの連続 universality (spec §13.2-B, 判定 a, 5 検査 PASS)**: P₂ 幾何 (静的 θ₀₀ = 1・θ_yy = θ₀y = 0) + Lean チャネル辞書の予言 A_00/A_D = **2/3 厳密**・A_0y = A_yy = 0 を null 結合 ladder (§12.9) で判定 — **A_00/(⅔·A_D) = 0.9974 (spread 0.0000)・\|A_0y/A_D\| = 0.0021・\|A_yy/A_D\| = 0.0024 (純ゲージ消滅 = Lean 定理 L = yy の one-loop 版)**。A_D 回帰 5e-5・変異 1.0377 検出。温度セクターの one-loop 応答が空間と同一の繰り込み後 form factor に流れる — **spec §13.3 の 1/Π 解禁条件 (ii) 充足**。v26.6 の bare c₁ 汚染は繰り込みで消える scheme 量だったことの最終確認 |
 
 ## リポジトリ構成
 

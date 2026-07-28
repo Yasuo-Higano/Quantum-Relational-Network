@@ -37,16 +37,38 @@ stress 行に一致 → 核は連続極限で「対称・保存・Ward-厳密」
 `FullGravitationalVacuumPolarization` の発行は §13.3 の全条件 (v27.0-B の
 連続 universality + fork 予言の事前登録) 通過まで保留。**1/Π 禁止維持**。
 
+## B. v270b_universality — 温度セクターの連続 universality (5 検査 PASS)
+
+P₂ 幾何 + Lean 証明済みチャネル辞書から、静的 (q_L = (0, Qŷ)) kernel の
+q⁴ln q² 係数は massless で P₂ form factor A₂ 一つに決まる: θ₀₀ = 1・
+θ_yy = θ₀y = 0 より **A_00/A_D = P₂_{00,00} = 2/3 (厳密)・A_0y = A_yy = 0**。
+null 結合 ladder (§12.9 凍結プロトコル・導出モデル {1, a²ln(1/a), a²}) を
+channels {D, 00, 0y, yy} に適用:
+
+| 検査 | 結果 |
+|---|---|
+| B0 A_D 回帰 (a = 0.125 vs v268p 公表) | 1.022148 vs 1.022197 (5e-5) |
+| **B1 A_00/(⅔·A_D)** | **0.9974** (全域 0.9975, spread 0.0000) |
+| B2 \|A_0y/A_D\| | **0.0021** (時間縦 = 純ゲージ) |
+| B3 \|A_yy/A_D\| | **0.0024** (L = yy = 純ゲージ — Lean 定理の one-loop 版) |
+| B4 変異 (V₀₀ ×1.02) | 1.0377 (ゲート外 ✓) |
+
+**温度セクター (h₀₀/h₀y source) の one-loop 応答が空間セクターと同一の
+繰り込み後 form factor に流れる** — spec §13.3 の 1/Π 解禁条件 (ii) 充足。
+縦・時間チャネルの消滅は「純ゲージチャネルに独立な物理自由度なし」の
+one-loop 実証 (v26.6 の bare c₁ 汚染 [L チャネル同桁] と対照的 — 汚染は
+繰り込みで消える scheme 量だったことの最終確認)。
+
 ## 1. 残り (v27.0 arc)
 
-- **v27.0-B**: k̂ の繰り込み後 form factor の連続極限 — 10×10 全チャネルの
-  2 関数 (ρ₂/ρ₀) 崩壊と q⁴ln q² 係数の oracle 照合 (外挿モデルは §12.9 規律)。
-- **v27.0-C**: fork 判定の執行 (1/k̂ の pole 構造 — 予言: 自由場 = pole なし
-  = 分岐 (b) 既定)。
-- **v27.0-D**: 期統合 (第二十七期統合文書・全スイート儀式・QRN-Core v1 着手・
+- **v27.0-C**: fork 判定の執行 (§13.3 — 予言: 自由場 = pole なし = 分岐 (b)
+  既定。条件 (i)(ii) は充足済み)。
+- **v27.0-D**: 期統合 (第二十七期統合文書・スイート・QRN-Core v1 着手・
   CLAUDE.md 到達点更新)。
 
 ## 2. 成果物
 
 A: `sim/src/bin/v270a_kernel4d.rs` / `results/v270a_kernel4d.txt`
 (5 検査 PASS) / `results/v270a_kernel4d.json`。claims: QRN-GRAV-057。
+B: `sim/src/bin/v270b_universality.rs` / `results/v270b_universality.txt`
+(5 検査 PASS) / `results/v270b_universality.json`。claims: QRN-GRAV-058。
