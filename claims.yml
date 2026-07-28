@@ -2602,3 +2602,17 @@
     - "エネルギーセクターのみ (h₀₀/J_E)。運動量セクター (h₀ᵢ)・10×10 kernel・contact 項込み full 4D Ward は残作業 — Gate 5 判定はそこ。"
     - "動的 Ward は Euclidean q₀ (χ = Σ2|M|²ΔE/(ΔE²+q₀²)) の f-和則型 — 実時間応答への解析接続は未使用。"
     - "開発記録: E2 の run1-2 は縮退部分空間の単一行列要素比で非単調 → Frobenius 基底不変量に置換 (「縮退があるときは基底不変量で測れ」)。E3 の収束判定の O(q²) 誤想定を修正。"
+
+- id: QRN-GRAV-052
+  version: "v26.9-A"
+  level: C2
+  claim: "運動量セクターの 4D Ward と Belinfante 対称性 (判定 a, 6 検査 PASS): taste 安全な 2 サイト分割の運動量密度 V₀y(k;q) = −(1/2)sin(2k_y+q)·𝟙 (自明 taste-singlet, node 極限 = 中点運動量, [h,V₀y(0)] = 0 厳密)。格子連続の式の符号解析 (∂_tρ(q) = +2i sin(q/2)J(q)) から保存流由来 stress V_S = C/(2sin(q/2)) は実行列。**(i) 保存 stress = BOND-A (metric 変分) T_yy が tree レベル・自由パラメータなし (Z = 1) で一致 — 射影ブロック差 rel 6.0e-2 → 9.0e-4, 縮小比 4.1/4.0/4.0 = O(ε²)。(ii) Belinfante 対称性 T₀y = T_y0 (= J_E^y) が on-shell で成立 — rel 1.3e-1 → 1.9e-3, O(ε²)**。V_S の局所性 (Fourier 台 ≤ 3) 1.2e-15・動的 Ward q₀²χ₀y + q̂²χ_SS = M₁ が 1.7e-15・変異 (taste-nonsinglet 密度) 19.4 倍逸脱。Gate 5 の momentum 行開通 — 4D 対称テンソル kernel の対称性の前提 (T₀ᵢ = Tᵢ₀) が正当化された。"
+  status: "判定 a — 残り = 10×10 kernel (q₀ ≠ 0)・contact 項込み full 4D Ward (Gate 5 判定)・spin-0/2 4D 分離"
+  evidence:
+    code: "sim/src/bin/v269m_momentum_ward.rs"
+    result: "results/v269m_momentum_ward.txt"
+    doc: "docs/uft-v26.9.md"
+  limitations:
+    - "y 方向 (q ∥ 転送) の T₀y のみ — 横方向 T₀x/T₀z の連続の式は X 型 stress を生む (次ユニットの 10×10 kernel で被覆)。"
+    - "tree レベルの照合 (one-loop 応答の 4D 分解は残作業)。Euclidean q₀。"
+    - "開発記録: run1 の V_S := iC/q̂ は BOND-A との射影ブロック差が rel = √2 で停留 (位相直交の指紋) — 符号解析で実規約に確定。変異 (h.c. ×1.02) は複素スカラー×𝟙 で h と可換のまま不発 → s_y 依存重みに再設計。"

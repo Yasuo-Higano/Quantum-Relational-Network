@@ -1,0 +1,19 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-A v269m_momentum_ward — 運動量セクターの 4D Ward と Belinfante ===
+
+V₀y = −(1/2)sin(2k_y+q)𝟙 (2 サイト分割 — 自明 taste-singlet)。保存流由来
+stress V_S vs BOND-A の T_yy (Z なし正準照合)、Belinfante T₀y = J_E (on-shell)、
+動的 Ward q₀²χ₀₀ʸ + q̂²χ_SS = M₁ を機械検査。Gate 5 の momentum 行。
+
+  [PASS] [M0] V₀y(k;0) = −(1/2)sin(2k_y)𝟙・[h, V₀y(0)] = 0・転送ブロック整合  max|Δ| = 5.6e-17
+  [PASS] [M1] 連続の式: V_S = C/(2sin(q/2)) の Fourier 台 |n| ≤ 3 かつ q → 0 極限存在  台残差 = 1.2e-15, 収束差/ノルム = 4.8e-4
+  [PASS] [M2] 保存 stress = BOND-A T_yy (tree, Z なし): 射影ブロック差 → 0 (単調)   rel(0.4) = 5.99e-2 rel(0.2) = 1.45e-2 rel(0.1) = 3.61e-3 rel(0.05) = 9.01e-4
+  [PASS] [M3] Belinfante: on-shell で T₀y = J_E^y (射影ブロック差 → 0, 単調)   rel(0.4) = 1.28e-1 rel(0.2) = 3.10e-2 rel(0.1) = 7.70e-3 rel(0.05) = 1.92e-3
+  [PASS] [M4] 動的 Ward (momentum 行): q₀²χ_{0y,0y} + q̂²χ_SS = M₁ (q = 0.4)   q₀=0.3: 残差 1.1e-15 q₀=0.9: 残差 1.7e-15 (0 s)
+  [PASS] [M5] 変異: s_y 依存重み ×1.02 (taste-nonsinglet) → 保存破れで V_S(q→0) 発散 (比 > 10; 正版 < 2)  変異比 = 19.4, 正版比 = 0.66
+
+[artifact] ./results/v269m_momentum_ward.json
+
+[判定] 事前登録 (a): **momentum 行開通 — 保存 stress = BOND-A stress (tree, Z なし)・Belinfante T₀y = J_E 成立・動的 Ward 厳密** (残り = 10×10 kernel と contact 込み full 4D Ward)
+
+総合判定: [PASS] (0 s)

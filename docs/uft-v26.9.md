@@ -55,10 +55,39 @@ V_J(k;q) := i·C/(2 sin(q/2)) が **Fourier 台 |n| ≤ 2 の三角多項式** (
 「**縮退があるときは基底不変量で測れ**」。(ii) E3 の q → 0 収束判定は
 V_J の O(q) 依存を O(q²) と誤想定 — 倍化 q 差分に修正 (物理は無変更)。
 
+## A. v269m_momentum_ward — 運動量セクターの 4D Ward と Belinfante 対称性
+
+h₀ᵢ の source T₀ᵢ の定義閉包 (6 検査 PASS)。**構成**: taste 安全な 2 サイト
+分割 (1 サイトシフトは taste 混合・2 サイトは η² = 1 で自明 singlet):
+**V₀y(k;q) = −(1/2)sin(2k_y + q)·𝟙** — node 極限 = 中点運動量 p_y + q/2、
+q = 0 で [h, V₀y] = 0 厳密 (全運動量保存)。
+
+**格子連続の式の符号解析**: ∂_tρ(q) = i[H,ρ(q)] = +2i sin(q/2)·J(q)
+(中点 Fourier 規約) ⇒ **V_S = C/(2sin(q/2)) は実行列** (i は付かない)。
+
+| 検査 | 結果 |
+|---|---|
+| M0 恒等式 ([h,V₀y(0)] = 0 含む) | 5.6e-17 |
+| M1 V_S の局所性 (Fourier 台 ≤ 3) | 1.2e-15 |
+| **M2 保存 stress = BOND-A T_yy (Z なし)** | rel: 6.0e-2 → 9.0e-4 (縮小比 4.1, 4.0, 4.0 = O(ε²)) |
+| **M3 Belinfante T₀y = J_E^y (on-shell)** | rel: 1.3e-1 → 1.9e-3 (縮小比 4.1, 4.0, 4.0 = O(ε²)) |
+| M4 動的 Ward q₀²χ₀y + q̂²χ_SS = M₁ | ≤ 1.7e-15 |
+| M5 変異 (taste-nonsinglet 密度) | 発散比 19.4 (正版 0.66) |
+
+**Gate 5 の主要成分が 2 つ確立**: (i) **BOND-A (metric 変分) の stress =
+保存流由来の stress が tree レベル・自由パラメータなし (Z = 1) で一致** —
+「BOND-A source は保存 T_μν に流れる」の momentum-行版。(ii) **Belinfante
+対称性 T₀y = T_y0 (= J_E) が on-shell O(ε²) で成立** — 4D 対称テンソル
+kernel の対称性の前提が正当化された。
+
+開発記録: (i) run1 は V_S := iC/q̂ と置き、実の BOND-A 頂点との射影ブロック差
+が **rel = √2 で停留 — 位相直交の指紋** (i は規約の取り違え。符号解析で
+J = C/(2sin(q/2)) 実行列と確定)。教訓: 「**√2 の停留は大きさでなく位相の
+不一致を疑え**」。(ii) run1 の変異 (h.c. 片 ×1.02) は複素スカラー×𝟙 のまま
+h と可換で不発 — s_y 依存重み (taste-nonsinglet) に再設計。
+
 ## 1. 残り (v26.9 arc)
 
-- **運動量セクター**: h₀ᵢ ↔ T₀ᵢ の格子構成と、T₀ᵢ = Tᵢ₀ = J_E (Belinfante
-  対称性) の格子検証。運動量保存は離散並進 — Ward の形が energy 行と異なる。
 - 10×10 symmetric-tensor kernel (q₀ ≠ 0) の組み立てと 4D 射影子分解
   (ProjectorND.lean の d = 4 代数を使う)。
 - 4D Ward q_μΠ^{μν,ρσ} = contact 項 (tadpole/seagull 第二変分) の一括検証
@@ -69,3 +98,5 @@ V_J の O(q) 依存を O(q²) と誤想定 — 倍化 q 差分に修正 (物理�
 
 0: `sim/src/bin/v269e_energy_ward.rs` / `results/v269e_energy_ward.txt`
 (7 検査 PASS) / `results/v269e_energy_ward.json`。claims: QRN-GRAV-051。
+A: `sim/src/bin/v269m_momentum_ward.rs` / `results/v269m_momentum_ward.txt`
+(6 検査 PASS) / `results/v269m_momentum_ward.json`。claims: QRN-GRAV-052。

@@ -1,0 +1,6 @@
+{
+  "version": "v26.9-A",
+  "kind": "momentum_sector_4d_ward",
+  "v0y_construction": "V0y(k;q) = -(1/2)sin(2k_y+q)·1 (2 サイト分割, 自明 taste-singlet)",
+  "belinfante": "on-shell P+ (V0y - V_J) P- → 0 (ε-ladder)"
+}
