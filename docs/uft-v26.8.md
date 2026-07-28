@@ -243,9 +243,37 @@ v26.8-X の interim 判定 (max 1.3%、バー 1%/0.5% 未達) を、**採点器�
 いるので、これが最終値)。分類は operator/regulator universality —
 **測定器が正しいことの証明であり、QRN・創発重力の証拠ではない** (spec §12.8)。
 
-## 1. 登録済みの残り
+## T. v268t_threeway — 三者一致の完結 (spectral density と分散再構成)
 
-- 三者一致の残り (lattice spectral density / dispersion 再構成)。
+TT (D) チャネルの同一物理量を三つの独立経路で閉環:
+**Route I** = 直接 null 射影 (v268b/p)、**Route II** = 格子 spectral density
+σ^lat(E;q) の測定 + 分散再構成 (本ユニット)、**Route III** = 解析 oracle
+(ρ_D = s²/(160π²))。Route II は単一数値でなくスペクトル密度の**形**と
+Lorentz 回復 σ(E;q) = ρ(E²−q²) を測る — 経路 B の測定器で最も細かい検査。
+
+器械 2 種:
+- **ヒストグラム** (BZ 積分の δ-ビニング): 積分量にのみ使用。T0 で per-bin
+  χ 寄与の総和 = 直接 χ (再配列恒等式 2.3e-15)。
+- **殻積分** (level-set root-solve): 点評価用。σ^lat = (1/(2π)³)∫dΩ r²Σ|M|²/|∂F/∂r|、
+  F = E(k+q)+E(k) は射線ごとに単一上向き交差・勾配は閉形式。角度自己整合 3.8e-15。
+
+| 検査 | a = 0.09 | a = 0.045 | 縮小比 (a² 理論値 0.25) |
+|---|---|---|---|
+| T1 Lorentz 破れ max (s* ∈ {0.5,1,2}, Q 0.3↔1.2) | 1.25% | 0.31% | **0.251** |
+| T2 σ_phys/(2ρ_D) − 1 max (E ∈ [1,3], Q = 0.6) | 0.91% | 0.23% | **0.248** |
+| T3 分散再構成 A_rec/A_direct − 1 (安定核 K = n₀/Π(s+Qᵢ²)) | 0.93% | 0.38% | — |
+
+**破れの縮小率そのものが a² スケーリングの定量的証拠** (0.251/0.248 vs 0.25)。
+変異 (転写不変量 s = E²−2q²) は 18.7 倍の逸脱で検出。**三者一致完結 —
+spectral 経路でも測定器が正しい** (QRN・創発重力の証拠ではない)。
+
+開発記録: run1 はヒストグラムの点評価 (線形補間) で T1/T2 が ~15% FAIL —
+滑らかな GL 求積格子の δ-ビニングは遠ノード域で節点間隔 (~0.09) ≫ 殻幅
+(~a·δE) となりサンプリングノイズが支配する (積分は平均化で免疫 — T3 は
+run1 でも 0.4%)。教訓: 「**滑らかな格子の δ-ビニングを点評価に使うな。
+殻は root-solve で切れ**」。
+
+## 1. 登録済みの残り
 - **v26.9: 4D covariance closure** (h₀₀, h₀ᵢ, q₀, 10×10 kernel, 4D Ward —
   Gate 5。ここまで 1/Π・graviton propagator・dynamic metric へ進まない)。
 
@@ -273,3 +301,6 @@ claims: QRN-GRAV-048。
 P: `sim/src/bin/v268p_pred016.rs` / `results/v268p_pred016.txt` (5 検査 PASS) /
 `results/v268p_pred016.json` — **PRED-016 scored-hit (中心 max 0.14%・系統 max
 0.47%)**。claims: QRN-GRAV-049。
+T: `sim/src/bin/v268t_threeway.rs` / `results/v268t_threeway.txt` (6 検査 PASS) /
+`results/v268t_threeway.json` — **三者一致完結 (Lorentz 破れ・密度偏差の縮小比
+0.251/0.248 = a² 理論値 0.25)**。claims: QRN-GRAV-050。

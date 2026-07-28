@@ -2574,3 +2574,17 @@
     - "operator/regulator universality — 測定器が正しいことの証明であり QRN・創発重力の証拠ではない (spec §12.8 の凍結解釈)。"
     - "Wilson 2 比の系統 (0.34–0.47%) は O(a) 項が支配的なまま — バー内だが staggered (0.02%) より 1 桁大きい。a²ln 級の追加は §12.9 が禁止 (1 回限り条項)。"
     - "massless 系列のみ。log 係数 c の解析的閉形式は未導出 (fit の定数性と残差 ≤ 0.24% による間接証拠)。"
+
+- id: QRN-GRAV-050
+  version: "v26.8-T"
+  level: C2
+  claim: "三者一致の完結 — 格子 spectral density と分散再構成 (判定 a, 6 検査 PASS): TT (D) チャネルの同一物理量を Route I (直接 null 射影)・Route II (σ^lat(E;q) 測定 + 安定核 K(s) = n₀/Π(s+Qᵢ²) の分散再構成)・Route III (解析 ρ_D = s²/(160π²)) で閉環。器械 2 種 — ヒストグラム (積分用: per-bin χ 寄与の総和 = 直接 χ の再配列恒等式 2.3e-15) と殻積分 (点評価用: level-set root-solve, F = E(k+q)+E(k) は射線ごと単一交差・勾配閉形式・角度自己整合 3.8e-15)。**結果: (i) Lorentz 回復 σ(E;q) = ρ(E²−q²) の破れ max 1.25% (a=0.09) → 0.31% (a=0.045), 縮小比 0.251; (ii) 点ごと密度 σ_phys/(2ρ_D) 偏差 0.91% → 0.23%, 縮小比 0.248 — いずれも a² 理論値 0.25 と定量一致 = 破れが真の O(a²) discretization 効果である証拠; (iii) A_rec/A_direct − 1 = 0.93% → 0.38%**。変異 (転写不変量 s = E²−2q²) は 18.7 倍逸脱で検出。"
+  status: "判定 a — 三者一致完結。spectral 経路でも測定器が正しい (QRN・創発重力の証拠ではない)"
+  evidence:
+    code: "sim/src/bin/v268t_threeway.rs"
+    result: "results/v268t_threeway.txt"
+    doc: "docs/uft-v26.8.md"
+  limitations:
+    - "D チャネル・staggered・massless のみ (X/Wilson/massive の spectral 分解は未実施 — 積分レベルでは v268p が被覆)。"
+    - "開発記録: run1 のヒストグラム点評価は GL 求積格子の δ-ビニングノイズ ~15% で FAIL — 殻積分に置換 (積分量 T0/T3/T4 は run1 でも健全)。教訓「滑らかな格子の δ-ビニングを点評価に使うな」。"
+    - "operator/regulator の検証 — gravitational 主張には使わない (spec §12.8)。"
