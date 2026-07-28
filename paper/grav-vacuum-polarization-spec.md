@@ -408,3 +408,62 @@ a+a²/a²+a⁴) は §12.5 で「凍結 2 モデル」として登録したが�
    (iii) 求積自己整合 GL up at a_min < 1e-3。
 
 **禁止事項**: 本条項の登録後にモデル集合・窓・ladder を変えて再採点すること。
+
+## 13. 改訂 3 (v27.0 — temporal 二次変分と dynamic metric fork, 2026-07-28 実装前凍結)
+
+v26.9 arc 完了 (Gate 0–5 の Ward/分離部門確立: 動的 Ward 144 恒等式・
+Belinfante 完成 [spin-current 改良 λ = −1/8]・massless σ = ρ₂P₂ 完全崩壊) を
+受け、v27.0 の全ユニットを実装前に凍結する。**1/Π・graviton propagator・
+dynamic metric の禁止は §13.3 の解禁条件を通過するまで維持**。
+
+### 13.1 temporal 結合の scheme (BOND-A の 4D 完備化)
+
+lapse-shift 型 (ADM 転写):
+  H[N, Nⁱ, h_ij] = Σ_x N(x)·ε(x; h_ij) + Σ_x Nⁱ(x)·π_i(x)
+- ε(x; h_ij) = BOND-A 変調済みエネルギー密度 (中点規約 — 置換則
+  V(k;q) = V_unmod(k+q/2ŷ) が縦横一貫)。N は各ボンドの中点平均で掛かる。
+- π_i(x) = **Belinfante 運動量密度** (正準 2 サイト分割 + spin-current 改良
+  ΔT⁰ⁱ = q̂·λ·[α̂ᵢ, α̂_y], λ = −1/8 — v26.9-E 凍結値)。
+- 二次変分 (seagull/tadpole): ∂²H/∂N∂h_ij・∂²H/∂Nⁱ∂h_jk・∂²H/∂N² は
+  一点関数 (占有トレース) として計算可能でなければならない。
+  N 結合は multiplicative なので ∂²H/∂N² = 0 (linear-in-N scheme)、
+  ∂²H/∂N∂h_ij = h_ij-変調エネルギー密度の一次変分そのもの。
+- **禁止暗黙変換の追加**: (vii) k̂ の q₀² 係数 ≠「重力の伝播速度」/
+  (viii) N の多重度 ≠ lapse の力学 (自由場では N は外部パラメータ)。
+
+### 13.2 v27.0-A/B の要件 (full 4D kernel)
+
+- **v27.0-A**: full 4D kernel k̂^{μν,ρσ}(iq₀, q) = χ-部 (10×10 Matsubara) +
+  接触部 (等時刻交換子 + §13.1 の二次変分)。**要件: q_μ k̂^{μν,ρσ} = 0 が
+  カットオフ有限のまま厳密** (v26.6 静的核の 4D 拡張 — energy/momentum 行の
+  厳密恒等式は v26.9-0/A で確立済み。新規は接触完備化の 4D 組み立て)。
+  検査: 恒等式群 (機械精度)・静的極限で v26.6 の k̂ 回帰・変異。
+- **v27.0-B**: k̂ の繰り込み後 form factor の連続極限 — **10×10 の全チャネルが
+  ρ₂ (spin-2) と ρ₀ (spin-0, massive で復活) の 2 関数に崩壊し、q⁴ln q² 係数が
+  oracle と 4 比 (D/X × stag/Wil 級) の精度で一致**。外挿モデルは観測量ごとに
+  導出 (§12.9 の規律)。
+
+### 13.3 dynamic metric fork の判断プロトコル (凍結)
+
+**解禁条件** (全て通過で初めて 1/Π を計算してよい):
+  (i) v27.0-A の厳密 4D Ward、(ii) v27.0-B の連続 universality、
+  (iii) 分岐予言の事前登録 (下記)。
+**三分岐** (v26.5 登録の再確認):
+  (a) **composite graviton 路線**: 1/k̂ の resummation に massless spin-2 pole が
+      「生成される」と主張するには、**Weinberg–Witten を回避する破れ仮定を
+      事前明記** (本 program の候補: 格子 = 厳密 Lorentz 不変性なし / T_μν が
+      QRN では非局所)。事前登録予言: 自由場では pole なし (v26.7-II/v26.7.1 で
+      確認済み) — 相互作用で生成されるかは v27.x の ED で判定。
+  (b) **external metric 路線**: metric は外部 regulator のまま — program は
+      「matter-on-background audit」として完結 (QRN-Core v1 に接続)。
+  (c) **中止** — kernel が Ward を破る・universality が破れる場合。
+**判定の順序**: (i)(ii) 通過 → 1/k̂ の pole 構造を測る (予言: 自由場 = pole
+なし = 分岐 (b) 継続が既定)。pole が「見えた」場合は regulator 汚染をまず
+疑う (縦チャネル監査 — v26.6 の教訓)。
+**期統合 (v27.0-D)**: 第二十七期統合文書 + 全スイート儀式 + QRN-Core v1 の
+定義着手 (モラトリアム解除条件)。CLAUDE.md 到達点の更新もここ。
+
+### 13.4 ユニット計画
+
+v27.0-0 (本改訂) → v27.0-A (4D kernel 厳密 Ward) → v27.0-B (連続
+universality) → v27.0-C (fork 判定の執行) → v27.0-D (期統合)。
