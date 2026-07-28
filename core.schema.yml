@@ -1,0 +1,400 @@
+# =====================================================================
+# QRN 核意味論スキーマ (Core Semantic Schema) — v27.1 で導入 (PROMPT/10 §2)
+# =====================================================================
+# 「何が QRN 本体で、何が既知 QFT の測定器か」の機械可読な一次ソース。
+#   - layers / axis_*: 層と多軸の語彙 (claims.yml の 6 軸は v61_ledger [7] が書式検査)
+#   - status_*: QRN-Core v1 の状態表示 (docs/qrn-core-v1-spec.md §7 と一致すること)
+#   - concepts: 全概念の層分類 (未分類 = layer: unclassified は v271_core_audit で FAIL)
+#   - forbidden_conversions: 型レベルの禁止変換 (v27.2 で Rust 型化)
+#   - predictions: predictions.yml の各 PRED の分類 (自然の的中 0 の機械監査に使う)
+# 書式は制限 YAML — sim/src/bin/v271_core_audit.rs が解析・検証する。
+# 人間向けの説明は docs/qrn-terminology.md / docs/qrn-core-v1-spec.md。
+# =====================================================================
+
+version: "v27.1"
+
+layers: [core, dynamics, adapter, instrument, bridge, phenomenology, meta]
+
+axis_evidence_kind: [theorem, reproduction, calibration, mechanism_demo, internal_holdout, interpretation, natural_observation, external_replication]
+axis_independence: [same_implementation, algorithmically_diverse, same_author_clean_room, independent_author]
+axis_universality: [not_applicable, regulator_specific, scheme_dependent, continuum_universal, unknown]
+axis_data_relation: [not_applicable, fitted, calibration_data_reused, preregistered_holdout, future_observation]
+axis_physical_scope: [toy, effective_model, laboratory, natural]
+
+# QRN-Core v1 の状態表示 (spec §7 の status block と v271 が照合)
+status_kinematics: defined
+status_dynamics: model_family_only
+status_geometry_bridge: conjectural
+status_gravity_bridge: unsupported
+status_empirical_prediction: none
+
+concepts:
+- name: StateSpace
+  layer: core
+  status: defined
+  note: "有限次元 Hilbert 空間の族と状態。実装はガウス toy 1 族のみ (C3)"
+- name: ObservableAlgebra
+  layer: core
+  status: defined
+  note: "局所演算子代数。実装は相関行列の部分行列 (ガウス系限定)"
+- name: RelationalDecomposition
+  layer: core
+  status: defined
+  note: "テンソル分解は入力でなく読み出し (v11.4 の MI 貪欲マッチング)"
+- name: AllowedEquivalences
+  layer: core
+  status: unknown
+  note: "物理を変えない同値類の一般規則は未定義"
+- name: RelationalNodeId
+  layer: core
+  status: ontological_hypothesis
+  note: "QRN 存在論上の関係要素。RegulatorSiteId と別型 (禁止変換 1)"
+- name: GaussianFermionState
+  layer: core
+  status: certified_toy
+  note: "旧 QrnState — ガウスフェルミオン相関行列の toy 状態 (改名は v27.2)"
+- name: GaussianToyModel
+  layer: core
+  status: certified_toy
+  note: "旧 QrnModel — toy 模型族のインターフェース (改名は v27.2)"
+- name: EvolutionLaw
+  layer: dynamics
+  status: model_family_only
+  note: "QRN 固有の発展原理は未定義 — 模型族だけがある"
+- name: InitialConditionRule
+  layer: dynamics
+  status: undefined
+  note: "初期条件を選ぶ原理は未定義 (時間の矢は v5.1 の機構どまり)"
+- name: ConstraintAlgebra
+  layer: dynamics
+  status: model_family_only
+  note: "拘束 core 族 (v20–v22) の個別実装のみ — 一般代数は未定義"
+- name: EvolutionParameter
+  layer: dynamics
+  status: defined
+  note: "シミュレーションの外部発展パラメータ t — A1 の創発時間ではない (禁止変換 2)"
+- name: GaussianModelFamily
+  layer: dynamics
+  status: certified_toy
+  note: "RingChain / TfdPair / GrowingChain / PacketRing"
+- name: ConstraintCoreFamily
+  layer: dynamics
+  status: certified_toy
+  note: "SM 直積 core (v22.3)・SU core 階段 (v20–21)"
+- name: RegulatorSiteId
+  layer: adapter
+  status: certified
+  note: "数値離散化上の格子点 = regulator (v27.0 fork で存在論から分離確定)"
+- name: ContinuumPoint
+  layer: adapter
+  status: defined
+  note: "有効理論上の点 (連続極限の座標)"
+- name: ExternalMetricSource
+  layer: adapter
+  status: certified
+  note: "外部から入力する source h_μν — v26.2–v27.0 の全応答測定の対象 (禁止変換 3)"
+- name: BondACoupling
+  layer: adapter
+  status: certified
+  note: "結合則 scheme BOND-A (spec §2) — QRN の公理ではなく格子契約"
+- name: MidpointModulation
+  layer: adapter
+  status: certified
+  note: "置換則 (中点変調) V(k;q) = V_unmod(k+q/2ŷ) (v26.9-C)"
+- name: BelinfanteImprovement
+  layer: adapter
+  status: certified
+  note: "改良項 λ = −1/8 (su(2) 代数の予言どおり, v26.9-E)"
+- name: ContactTermCompletion
+  layer: adapter
+  status: certified
+  note: "接触完備化 (独立 2 実装照合 1.3e-13, v26.9-B / v27.0-A)"
+- name: CountertermLambda
+  layer: adapter
+  status: certified
+  note: "counterterm Λ√g (tadpole 減算と背景停留, spec §2)"
+- name: StaggeredDiscretization
+  layer: adapter
+  status: certified
+  note: "3+1D staggered (2-taste)。taste 構造は spin⊗taste 基底で認証 (v26.8)"
+- name: WilsonDiscretization
+  layer: adapter
+  status: certified
+  note: "独立離散化 (1 flavor)。二離散化 universality の対 (v26.8-C)"
+- name: ContinuumTrajectory
+  layer: adapter
+  status: certified
+  note: "a→0 (固定 m_phys, q_phys, L_phys) の連続極限軌道 (spec §8)"
+- name: NullCombinationLadder
+  layer: instrument
+  status: certified
+  note: "q⁴ln q² 係数の null 結合 ladder (v26.8, §12.9 凍結プロトコル)"
+- name: ShellIntegration
+  layer: instrument
+  status: certified
+  note: "殻積分は root-solve で切る (δ-ビニング点評価は ~15% ノイズ, v26.8-T)"
+- name: MatsubaraWard
+  layer: instrument
+  status: certified
+  note: "iq₀C − q̂C_J = −⟨[A,B]⟩ (144 恒等式, v26.9–v27.0)"
+- name: DerivedAsymptoticExtrapolator
+  layer: instrument
+  status: certified
+  note: "外挿モデルは観測量の漸近形から導出 (stag {1, a²ln(1/a), a²} / Wil {1, a, a²})"
+- name: SpectralMeasure
+  layer: instrument
+  status: certified
+  note: "有限サイズ spectral measure ρ(s) = ΣZδ(s−s_n) と不変量 M² 採点 (v26.7)"
+- name: FSumRule
+  layer: instrument
+  status: certified
+  note: "f-sum rule Σ2ΔE·Z = ⟨[T†,[H,T]]⟩ (dense 6e-13 / block 4e-16)"
+- name: AnalyticOracle
+  layer: instrument
+  status: certified
+  note: "解析 one-loop oracle 16π²A = −1/10 (三重経路一致, v26.8-A)"
+- name: BarnesRiversProjectorDictionary
+  layer: instrument
+  status: certified
+  note: "BR 射影のチャネル辞書 (Lean 27 定理: Projector/ProjectorND)"
+- name: ExactBlockDecomposition
+  layer: instrument
+  status: certified
+  note: "半空間 C_A の厳密ブロック分解 (N=192, v24.1–24.2)"
+- name: DoubleDoublePath
+  layer: instrument
+  status: certified
+  note: "dd.rs — f64 κ 床の突破経路 (κ_max=39.5, v22.7)"
+- name: IntervalArithmetic
+  layer: instrument
+  status: certified
+  note: "iv.rs — 外向き丸めの厳密包含 (v25.2 凍結対象)"
+- name: ClampLadder
+  layer: instrument
+  status: certified
+  note: "クランプ 2 点梯子 (κ 床の器械契約, v24.2)"
+- name: MutualInformationGeometry
+  layer: bridge
+  status: toy_demo
+  note: "B1: MI 距離→MDS (v0.7 円環 100%)。bridge law は未確立"
+- name: ModularFlowGeometry
+  layer: bridge
+  status: toy_demo
+  note: "B2: モジュラー構造の幾何 (BW 系 — 器械は較正済み、bridge は仮説)"
+- name: FisherResponseBridge
+  layer: bridge
+  status: toy_demo
+  note: "B3: 相対エントロピー/Fisher 応答 (v2.1, v15.6)"
+- name: CommutatorCausalGeometry
+  layer: bridge
+  status: toy_demo
+  note: "B4: 交換子・Lieb–Robinson 因果幾何 (v1.1 前線)"
+- name: EntanglementFirstLaw
+  layer: bridge
+  status: toy_verified
+  note: "δS=δ⟨K⟩ の toy 数値再現 — QI の一般恒等式であり Einstein 方程式の検証ではない (QRN-C0-001 の限定)"
+- name: AreaEntropyDictionary
+  layer: bridge
+  status: toy_demo
+  note: "A2 の面積=エントロピー辞書 (v0.5 面積則)"
+- name: GeometryReadout
+  layer: bridge
+  status: conjectural
+  note: "計量の読み出し規則 — bridge law 候補 B1–B4 の競争は次期以降 (実行前凍結)"
+- name: CausalReadout
+  layer: bridge
+  status: toy_demo
+  note: "光円錐の創発 (v1.1)。Lorentzian 因果構造の再構成は未"
+- name: ClockReadout
+  layer: bridge
+  status: undefined
+  note: "時計の読み出しは未構成"
+- name: MatterReadout
+  layer: bridge
+  status: toy_demo
+  note: "k_F・密度の読み出し (v6.7)"
+- name: ModularParameter
+  layer: bridge
+  status: defined
+  note: "モジュラー流のパラメータ (熱時間仮説の変数) — EvolutionParameter と別型"
+- name: OperationalClockReading
+  layer: bridge
+  status: undefined
+  note: "部分系時計の読み — 未構成"
+- name: ProperTime
+  layer: bridge
+  status: undefined
+  note: "固有時間の候補 — 未構成 (禁止変換 2 の右辺)"
+- name: EmergentMetricCandidate
+  layer: bridge
+  status: unsupported
+  note: "創発計量の候補 — 支持する結果 0 件 (v27.0 fork: graviton pole なし)"
+- name: GravityBridge
+  layer: bridge
+  status: unsupported
+  note: "重力 bridge — EmergentMetricCandidate に同じ (禁止変換 3 の右辺)"
+- name: AnomalyChiralScan
+  layer: phenomenology
+  status: certified_window
+  note: "無矛盾カイラル物質の窓付き全数定理 (C2) — 自然のゲージ群への適用は仮説"
+- name: UOneLadder
+  layer: phenomenology
+  status: certified_window
+  note: "U(1) の階段 Y → B−L → なし (v7.1/v8.2)"
+- name: GeometricYukawa
+  layer: phenomenology
+  status: fitted
+  note: "磁束ゼロモードの湯川 (M2 級) — CP は因子化窓で構造零 (PRED-003 refuted)"
+- name: FlavorPrequentialLedger
+  layer: phenomenology
+  status: published_negative
+  note: "S_program − S_FN = −55.9 の赤字公表 (v26.1)"
+- name: NeutrinoSeesawMinimal
+  layer: phenomenology
+  status: mostly_refuted
+  note: "最小幾何シーソー (M_R∝I) は PMNS θ23 で決定的 miss (PRED-010)"
+- name: BmvDiscriminationMap
+  layer: phenomenology
+  status: registered
+  note: "BMV 4 択判別マップ (v21.2) — laboratory の未来観測 (PRED-001)"
+- name: CosmologyToyLambda
+  layer: phenomenology
+  status: toy_demo
+  note: "ΛCDM 再現と Λ~1/√V₄ toy (v1.5)"
+- name: MeasureDissolution
+  layer: phenomenology
+  status: certified_window
+  note: "測度問題の幾何機構への溶解 (v17.9–18)"
+- name: ClaimLedger
+  layer: meta
+  status: certified
+  note: "C0–C5 + 6 軸の主張台帳 (v61_ledger / v151_audit / v271_core_audit)"
+- name: PredictionsLedger
+  layer: meta
+  status: certified
+  note: "予言台帳 (registered / scored-hit / scored-miss / window-refuted)"
+- name: FalsifierLedger
+  layer: meta
+  status: certified
+  note: "反証条件台帳 (falsifiers.yml)"
+- name: AssumptionsLedger
+  layer: meta
+  status: certified
+  note: "仮定台帳 (assumptions.yml)"
+- name: SuiteManifest
+  layer: meta
+  status: certified
+  note: "スイート実行台帳 (sha256 引用判定, PROMPT/5)"
+- name: FreezeManifest
+  layer: meta
+  status: certified
+  note: "v25.2 凍結台帳 (v252_manifest — 常設監査)"
+- name: CoreSemanticAudit
+  layer: meta
+  status: certified
+  note: "本スキーマと claims 多軸の常設監査 (v271_core_audit)"
+- name: PeriodIntegration
+  layer: meta
+  status: certified
+  note: "期統合文書 (docs/uft-vX.0.md) と正直な残高"
+
+forbidden_conversions:
+- from: RegulatorSiteId
+  to: RelationalNodeId
+  reason: "格子由来の構造の観測を『自然が量子ネットワークである証拠』に昇格させない"
+- from: EvolutionParameter
+  to: ProperTime
+  reason: "外部発展パラメータを創発時間と同一視しない (A1 の先取り禁止)"
+- from: ExternalMetricSource
+  to: EmergentMetricCandidate
+  reason: "external metric response ≠ emergent metric (v27.0 fork の凍結解釈)"
+- from: CalibrationEvidence
+  to: QrnEvidence
+  reason: "較正・測定器の証明は QRN の証拠でない (spec §12.8)"
+- from: InternalPrediction
+  to: NaturalObservation
+  reason: "計算実験内の的中は自然の観測量の的中でない (README PASS 分類)"
+- from: SameAuthorReplication
+  to: IndependentReplication
+  reason: "同一作者・同一 AI の別言語再実装は algorithmic diversity どまり (v27.4 replications.yml)"
+- from: RegulatorQuantity
+  to: UniversalQuantity
+  reason: "bare c₁/c₂ 型の a 走行量は scheme 量 (v27.0-C: 比 4.000 = a⁻²)"
+
+# predictions.yml の各 PRED の分類 — v271 R11:
+#   data_relation = future_observation の PRED は status = registered でなければならない
+#   (⇒「自然の観測量の的中 0」が機械的に保証される)。scored-hit の PRED-007/011 は
+#   測定値が公知の holdout (preregistered_holdout) であり自然の的中に数えない。
+predictions:
+- id: PRED-001
+  layer: phenomenology
+  physical_scope: laboratory
+  data_relation: future_observation
+- id: PRED-002
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: preregistered_holdout
+- id: PRED-003
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: preregistered_holdout
+- id: PRED-004
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: future_observation
+- id: PRED-005
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: future_observation
+- id: PRED-006
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: future_observation
+- id: PRED-007
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: preregistered_holdout
+- id: PRED-008
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: preregistered_holdout
+- id: PRED-009
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: preregistered_holdout
+- id: PRED-010
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: preregistered_holdout
+- id: PRED-011
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: preregistered_holdout
+- id: PRED-012
+  layer: phenomenology
+  physical_scope: natural
+  data_relation: preregistered_holdout
+- id: PRED-013
+  layer: instrument
+  physical_scope: toy
+  data_relation: preregistered_holdout
+- id: PRED-014
+  layer: instrument
+  physical_scope: toy
+  data_relation: preregistered_holdout
+- id: PRED-015
+  layer: instrument
+  physical_scope: toy
+  data_relation: preregistered_holdout
+- id: PRED-016
+  layer: instrument
+  physical_scope: effective_model
+  data_relation: preregistered_holdout
+- id: PRED-017
+  layer: instrument
+  physical_scope: effective_model
+  data_relation: preregistered_holdout
+- id: PRED-018
+  layer: instrument
+  physical_scope: effective_model
+  data_relation: preregistered_holdout

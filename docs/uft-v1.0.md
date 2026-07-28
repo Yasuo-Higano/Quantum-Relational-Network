@@ -42,6 +42,17 @@
 **エンタングルメントの熱力学第一法則 δS = δ⟨K⟩ を全ての小領域に課したときの状態方程式**である
 (線形化版は厳密に同値: Jacobson 1995 / Faulkner et al. 2013)。
 
+> **監査注記 (v27.1, 2026-07-28)**: 括弧内の「厳密に同値」は無条件ではない。Faulkner et
+> al. 2013 の同値はホログラフィック CFT の球領域に対する定理 (半古典双対・RT/Wald 辞書が
+> 前提)、Jacobson 1995 は局所 Rindler 地平線と面積エントロピー仮定からの熱力学的導出、
+> Jacobson 2015 (entanglement equilibrium) は小測地球・固定体積・停留性を仮定する
+> (claims.yml QRN-C0-001 の限定条項)。v0.7 の数値検証は第一法則 (QI 恒等式) の再現であり
+> A3 の直接証拠ではない (QRN-GRAV-001 は modular-response benchmark へ降格)。A3 は
+> **bridge 仮説** (layer: bridge, 状態: unsupported — docs/qrn-core-v1-spec.md §5) として
+> 維持され、QRN 固有の bridge law は未構成である。また A1 の「時間の創発」について、
+> 実装上の発展パラメータ t (QrnModel::evolve) は外部パラメータであり A1 の創発時間では
+> ない — 両者の型分離は docs/qrn-terminology.md §2.3 (v27.2 で型実装)。
+
 **A4(物質と力)** 網の低エネルギー集団励起が「場」と「粒子」。局所的な記述の冗長性
 (内部空間の接続)が「ゲージ場」。臨界性と普遍性が連続場理論を選び出し、
 真空の選択(対称性の破れ)が質量を与える。

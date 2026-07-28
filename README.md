@@ -20,7 +20,7 @@ C3 機構 / C4 現象論 / C5 解釈) に分類され、証拠と限界つきで
 を段階的に検証してきた記録である。公理系と反証条件は [docs/uft-v1.0.md](docs/uft-v1.0.md)、
 最新の統合と未解決問題の残高は docs/ の最新 vX.0 文書を参照。
 
-**現在の到達点: v27.0 (第二十七期 完結)** — 経路 B は vacuum-polarization audit として完結 (universality 4 比 0.14%・4D Ward 144 恒等式・**fork = 分岐 (b) external metric**)。スイート総計 PASS 1124 / FAIL 0。第二十八期 = QRN-Core v1 の定義。v25 系列は凍結済み (`v252_manifest` が常設監査) — Rust 162 本 + 探索層 python 5 本 + Lean 定理 50 本 (7 ファイル) + Coq/Prolog の補助検証。
+**現在の到達点: v27.1 (第二十八期 開幕 — 核意味論監査)** — 経路 B は vacuum-polarization audit として完結 (universality 4 比 0.14%・4D Ward 144 恒等式・**fork = 分岐 (b) external metric**)。v27.1 で理論本体/測定器/橋渡し仮説を層分類 ([qrn-core-v1-spec.md](docs/qrn-core-v1-spec.md)・[qrn-terminology.md](docs/qrn-terminology.md)・[core.schema.yml](core.schema.yml)): **§D.3 の成果物の正名は Matter-on-Background Adapter v1 + Metrology Suite v1** であり、QRN-Kinematics は defined (実装は toy のみ)・Dynamics は model_family_only・gravity bridge は unsupported。全 214 主張に 6 軸 (layer/evidence_kind/independence/universality/data_relation/physical_scope) を付与し、昇格禁止 R1–R7 (自然観測 0・独立外部再現 0 の機械化) を `v271_core_audit` が常設監査。v25 系列は凍結済み (`v252_manifest` が常設監査) — Rust 163 本 + 探索層 python 5 本 + Lean 定理 50 本 (7 ファイル) + Coq/Prolog の補助検証。
 主張依存グラフの機械監査 ([evidence_matrix.md](evidence_matrix.md))・Prolog 独立推論
 ([dag/report.md](dag/report.md))・予言台帳 ([predictions.yml](predictions.yml))。
 最新統合は [docs/uft-v25.0.md](docs/uft-v25.0.md)。この行の正しさ自体を `v151_audit` が CI で検査する。
@@ -247,13 +247,15 @@ cargo build --release          # 外部依存なし (std のみ)
 | v27.0-B | [uft-v27.0.md](docs/uft-v27.0.md) §B | `v270b_universality` | **温度セクターの連続 universality (spec §13.2-B, 判定 a, 5 検査 PASS)**: P₂ 幾何 (静的 θ₀₀ = 1・θ_yy = θ₀y = 0) + Lean チャネル辞書の予言 A_00/A_D = **2/3 厳密**・A_0y = A_yy = 0 を null 結合 ladder (§12.9) で判定 — **A_00/(⅔·A_D) = 0.9974 (spread 0.0000)・\|A_0y/A_D\| = 0.0021・\|A_yy/A_D\| = 0.0024 (純ゲージ消滅 = Lean 定理 L = yy の one-loop 版)**。A_D 回帰 5e-5・変異 1.0377 検出。温度セクターの one-loop 応答が空間と同一の繰り込み後 form factor に流れる — **spec §13.3 の 1/Π 解禁条件 (ii) 充足**。v26.6 の bare c₁ 汚染は繰り込みで消える scheme 量だったことの最終確認 |
 | v27.0-C | [uft-v27.0.md](docs/uft-v27.0.md) §C | `v270c_fork` | **dynamic metric fork の執行 — 分岐 (b) external metric 確定 (spec §13.3, 5 検査 PASS)**: 解禁条件 (i)(ii) 充足を受け 1/Π を本監査に限り計算。Π₂^ren = A₂q⁴ln q² のみ (フィット残差 **1.7e-12**) — **\|Π₂^ren/Q²\| の縮小比 0.235 が Q²lnQ² 導出値 0.232 に 0.9% 一致 = massless pole なし (graviton は生成されない)**。**Sakharov 誘導 Newton 定数候補の bare c₂ は比 4.000 (= a⁻² ちょうど) で走る regulator 量** — 「bare 係数 = scheme 量」の最終的・定量的実証。composite 路線は要件 (普遍 q² 項生成 + W–W 破れ仮定明示) 付きで封印・1/Π 常用は解禁せず。経路 B は vacuum-polarization audit として完結 → QRN-Core v1 へ |
 | **v27.0-D** | [**uft-v27.0.md**](docs/uft-v27.0.md) §D | (期統合+スイート) | **第二十七期 完結**。テーゼ「予言の台帳は赤字でも、測定器は黒字にできる」— v26.1 (flavor 台帳赤字公表) → v26.8 (universality 4 比 0.14%, PRED-013〜018 全 scored) → v26.9 (4D Ward 144 恒等式・Belinfante λ = −1/8) → v27.0 (**fork = 分岐 (b) external metric 確定**)。スイート **総計 PASS 1124 / FAIL 0** (実行 33 = 268 + 引用 129 = 856, sha256 不変)。正直な残高: 自然の観測量の的中 0・独立外部再現 0 — 経路 B は vacuum-polarization audit として完結。**第二十八期 = QRN-Core v1 の定義** (§D.3 の要件 4 項, モラトリアム維持) |
+| v27.1 | [uft-v27.1.md](docs/uft-v27.1.md) | `v271_core_audit` | **核意味論監査 — 第二十八期 開幕 (PROMPT/10, 物理 run なし, 13 検査 PASS)**: 理論本体/測定器/橋渡し仮説を 7 層 (core/dynamics/adapter/instrument/bridge/phenomenology/meta) に分離 — **§D.3 の「公理系」の正名は Matter-on-Background Adapter v1 + Metrology Suite v1** ([qrn-core-v1-spec.md](docs/qrn-core-v1-spec.md))。状態表示 = kinematics: defined / dynamics: model_family_only / gravity_bridge: unsupported / empirical_prediction: none。全 214 主張に 6 軸付与 (**layer: core の主張は 0 件** — 正直な姿)・昇格禁止 R1–R7 と型レベル禁止変換 7 種 ([qrn-terminology.md](docs/qrn-terminology.md)・[core.schema.yml](core.schema.yml))・**QRN-C0-001 を条件付き定理に限定・QRN-GRAV-001 (v0.7 第一法則) を modular-response benchmark に降格** (A3/v0.7/§D.3 に監査注記)。未分類 0 件 = v27.2 への進行ゲート開通 |
 
 ## リポジトリ構成
 
 ```
 CLAUDE.md            プロジェクトの指示
 PROMPT/              原点の指示と改良方針
-claims.yml           主張台帳 (全主張の等級・証拠・限界。v61_ledger が機械検証)
+claims.yml           主張台帳 (全主張の等級・証拠・限界 + 6 軸。v61_ledger が機械検証)
+core.schema.yml      核意味論スキーマ (層分類・軸語彙・禁止変換。v271_core_audit が機械検証)
 claims.graph.yml     主張依存グラフ (deps/asm/fal。v151_audit が機械検証)
 assumptions.yml      仮定台帳 (外すと結論が落ちる仮定の登録簿)
 falsifiers.yml       反証条件台帳 (何が出たらどの主張を降格するか)

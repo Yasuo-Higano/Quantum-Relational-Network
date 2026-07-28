@@ -130,6 +130,15 @@ one-loop 実証 (v26.6 の bare c₁ 汚染 [L チャネル同桁] と対照的 
 
 ### D.3 QRN-Core v1 の定義要件 (登録 — 定義完了までモラトリアム維持)
 
+> **監査注記 (v27.1, 2026-07-28)**: 本節の要件 1 が「公理系」と呼ぶもの (格子 =
+> regulator・BOND-A・中点変調・Belinfante λ = −1/8) は、v27.1 の層分類監査により
+> **QRN の存在論的公理ではなく Matter-on-Background Adapter の格子契約** (layer:
+> adapter) と判定された。§D.3 の成果物一式の正名は QRN-Matter-on-Background
+> Adapter v1 + QRN-Metrology Suite v1 であり、QRN-Kinematics / Dynamics / Bridge
+> は別に定義する (docs/qrn-core-v1-spec.md §1–§5, claims.yml QRN-META-030)。
+> 要件自体 (機械検査可能な凍結・器械台帳・等級・常設回帰) は有効のまま第二十八期で
+> 執行される。原文は記録として残す。
+
 QRN-Core v1 = 「この期までに**認証された器械と公理だけ**で書かれた、
 matter-on-background の最小核」。定義完了の要件:
 

@@ -138,6 +138,9 @@ fn parse_claims(text: &str) -> Result<Vec<Claim>, String> {
                         "version" => cur.version = v,
                         "level" => cur.level = v,
                         "claim" | "status" => {}
+                        // 6 軸 (v27.1 — 書式は v61_ledger [7]、意味論は v271_core_audit)
+                        "layer" | "evidence_kind" | "independence" | "universality"
+                        | "data_relation" | "physical_scope" => {}
                         _ => return Err(format!("{}行目: 未知フィールド '{}'", lno, k)),
                     }
                 }

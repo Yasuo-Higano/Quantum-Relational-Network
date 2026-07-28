@@ -32,8 +32,14 @@
 - id: QRN-C0-001
   version: "v0.7"
   level: C0
-  claim: "エンタングルメント第一法則 δS=δ⟨K⟩ と線形化 Einstein 方程式の同値性 (Jacobson 1995 / Faulkner et al. 2013) は確立された研究成果である。"
-  status: "前提 (確立された研究成果)"
+  claim: "エンタングルメント第一法則 δS=δ⟨K⟩ は基準状態近傍の密度行列に対する量子情報の一般恒等式であり、Einstein 方程式との対応は追加仮定の下での定理である: (i) Faulkner et al. 2013 (arXiv:1312.7856) — ホログラフィック CFT の全ての球領域に第一法則を課すことと双対バルクが線形化 Einstein 方程式を満たすことの同値 (半古典ホログラフィック双対・RT/Wald 辞書が前提)。(ii) Jacobson 1995 (gr-qc/9504004) — 局所 Rindler 地平線への δQ=TdS と面積エントロピーの仮定からの熱力学的導出 (entanglement equilibrium の論文ではない)。(iii) Jacobson 2015 (arXiv:1505.04753) — entanglement equilibrium (小測地球・固定体積・真空エンタングルメントの停留性・CFT 的仮定) からの導出。無条件の『同値性』ではない。"
+  status: "前提 (条件付き定理 — v27.1 監査で「一般的同値性」から「特定のホログラフィック / entanglement-equilibrium 仮定の下での導出」へ限定。経緯は docs/uft-v27.1.md)"
+  layer: bridge
+  evidence_kind: theorem
+  independence: independent_author
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     doc: "docs/uft-v0.7.md"
 
@@ -42,6 +48,12 @@
   level: C0
   claim: "QNEC (量子ヌルエネルギー条件) は場の量子論で証明済みの定理である (Bousso et al. 2016 / Balakrishnan et al. 2019 / Ceyhan–Faulkner 2020)。"
   status: "前提 (確立された定理)"
+  layer: bridge
+  evidence_kind: theorem
+  independence: independent_author
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     doc: "docs/uft-v4.1.md"
 
@@ -50,6 +62,12 @@
   level: C0
   claim: "ランダム純粋状態の部分系エントロピーの厳密公式 (Page 1993) は確立された結果である。"
   status: "前提 (確立された定理)"
+  layer: bridge
+  evidence_kind: theorem
+  independence: independent_author
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     doc: "docs/uft-v0.8.md"
 
@@ -58,6 +76,12 @@
   level: C0
   claim: "Unruh 温度 a/2π・Hawking 温度 κ/2π・Gibbons–Hawking 温度 H/2π は場の量子論の確立された結果である。"
   status: "前提 (確立された定理)"
+  layer: bridge
+  evidence_kind: theorem
+  independence: independent_author
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     doc: "docs/uft-v3.4.md"
 
@@ -66,6 +90,12 @@
   level: C0
   claim: "ゲージアノマリー消去条件・Witten SU(2) 大域アノマリー・Atiyah–Singer 指数定理・Nielsen–Ninomiya 定理は確立された定理である。"
   status: "前提 (確立された定理)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: independent_author
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     doc: "docs/uft-v2.3.md"
 
@@ -74,6 +104,12 @@
   level: C0
   claim: "Froggatt–Nielsen 機構 (1979) — U(1) 電荷と小パラメータ ε による湯川行列の冪構造 — は確立された現象論的枠組みである。"
   status: "前提 (確立された枠組み)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: independent_author
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     doc: "docs/uft-v3.2.md"
 
@@ -84,6 +120,12 @@
   level: C1
   claim: "Crank–Nicolson 法による 1D Schrödinger 方程式の再現: トンネル透過率が厳密解と 0.2%、波束拡散が理論と 3e-4、ノルム保存 1e-12。"
   status: "再現実装 (以後の創発検証の物差し)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: calibration_data_reused
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v01_qm.rs"
     result: "results/v01_qm.txt"
@@ -95,6 +137,12 @@
   level: C1
   claim: "Schwarzschild 測地線の数値積分: 水星近日点移動 42.979″/世紀 (観測 42.98±0.04)、光偏向 1.7512″ (観測 1.75)、光子球 b=3√3 GM/c²。"
   status: "再現実装"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: calibration_data_reused
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v01_gr.rs"
     result: "results/v01_gr.txt"
@@ -106,6 +154,12 @@
   level: C1
   claim: "Wick 回転恒等式のもとで、零点エネルギー E0=0.502±0.007 (厳密 0.5) と二重井戸トンネル分裂 ΔE=0.411±0.005 (厳密 0.398) を古典モンテカルロのみで再現。"
   status: "再現実装 (量子=虚時間の統計力学)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: calibration_data_reused
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v02_pimc.rs"
     result: "results/v02_pimc.txt"
@@ -118,6 +172,12 @@
   level: C1
   claim: "2D φ⁴ 格子場理論で自発的対称性の破れと Binder 交差 U≈0.61 (2D Ising 普遍値 0.6107) を再現 — 連続場理論は臨界現象である。"
   status: "再現実装 (格子場理論の標準結果)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: calibration_data_reused
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v03_phi4.rs"
     result: "results/v03_phi4.txt"
@@ -129,6 +189,12 @@
   level: C1
   claim: "2D U(1) 格子ゲージ理論: プラケット平均が厳密解 I₁(β)/I₀(β) と一致 (4β 全て)、Wilson ループ面積則 (閉じ込め)、ゲージ不変性は機械精度。"
   status: "再現実装 (力=接続の曲率)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v04_u1.rs"
     result: "results/v04_u1.txt"
@@ -140,6 +206,12 @@
   level: C1
   claim: "調和格子の基底状態エンタングルメントエントロピーが面積則に従う (2D: S=0.062×境界長−0.085, R²=0.99999)。1D 臨界鎖から中心電荷 c=0.974 (理論 1) を復元。"
   status: "再現実装 (Bombelli/Srednicki/Calabrese–Cardy)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v05_entangle.rs"
     result: "results/v05_entangle.txt"
@@ -152,6 +224,12 @@
   level: C1
   claim: "因果集合: 順序構造だけから時空次元 2/3/4 を 2.00/3.00/4.01 と復元 (Myrheim–Meyer)。ポアソン撒布はブースト (v=0.6c) で統計が不変 — 離散性とローレンツ不変性は両立する。"
   status: "再現実装 (因果集合プログラムの標準結果)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v06_causet.rs"
     result: "results/v06_causet.txt"
@@ -163,6 +241,12 @@
   level: C1
   claim: "動的三角形分割 (DT): ハウスドルフ次元 d_H→4 へ接近 (3.72)、スペクトル次元 d_s=2 (対数補正 P〜ln t/t まで検証) — 次元は測り方に依存する創発量。"
   status: "再現実装 (量子重力の複数アプローチが共有する結果)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v06_dt.rs"
     result: "results/v06_dt.txt"
@@ -174,6 +258,12 @@
   level: C3
   claim: "202 サイト円環格子の基底状態の相互情報量のみを入力に、MDS で円環幾何を復元 (隣接復元率 101/101=100%、半径ばらつき 0.0%) — 距離=相関の減衰率という辞書の機構実証。"
   status: "toy model による機構提示"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v07_infogeom.rs"
     result: "results/v07_infogeom.txt"
@@ -184,13 +274,20 @@
 - id: QRN-GRAV-001
   version: "v0.7"
   level: C1
-  claim: "エンタングルメント第一法則: 無限小ボンド摂動に対し δS_A=δ⟨K_A⟩ が比 1.002 で成立 (区間外の長距離応答は 1.0000)。FGHMV の 1+1 次元平坦時空版の直接数値検証。"
-  status: "再現実装 (線形化 Einstein 方程式の情報側)"
+  claim: "エンタングルメント第一法則: 無限小ボンド摂動に対し δS_A=δ⟨K_A⟩ が比 1.002 で成立 (区間外の長距離応答は 1.0000)。1+1 次元ガウス系におけるエンタングルメント第一法則とモジュラー核の数値再現 (modular-response benchmark)。"
+  status: "再現実装 (器械ベンチマーク — v27.1 監査で「線形化 Einstein 方程式の直接検証」の位置づけから降格。Einstein 方程式との対応には QRN-C0-001 の追加仮定が要る)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v07_infogeom.rs"
     result: "results/v07_infogeom.txt"
   limitations:
     - "1+1 次元・自由場・線形化まで。非線形 Einstein 方程式の導出ではない。"
+    - "検証したのは QI の一般恒等式 (第一法則) とモジュラー核であり、Einstein 方程式そのものではない — FGHMV の同値はホログラフィック双対を持つ CFT の球領域に対する定理で、本系 (平坦 1+1D 自由鎖) はその前提を検証していない (v27.1 監査注記, docs/uft-v0.7.md)。"
     - "有限励起 (1 量子) では等式でなく不等式 S_rel≥0 になる (当初の設計ミスとして文書に記録)。"
 
 - id: QRN-GRAV-002
@@ -198,6 +295,12 @@
   level: C1
   claim: "真空を区間に制限しただけでモジュラー核に Rindler 型の局所温度構造 (縁で高温・中央で低温) が現れる — Bisognano–Wichmann 構造の格子版。"
   status: "再現実装"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v07_infogeom.rs"
     result: "results/v07_infogeom.txt"
@@ -209,6 +312,12 @@
   level: C1
   claim: "ランダム純粋状態の蒸発モデルで Page 曲線を厳密公式と最大偏差 0.0008 nats で再現、S_A=S_B を 6 桁で確認 — ユニタリー性と情報保存の実演。"
   status: "再現実装 (Page 1993)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: calibration_data_reused
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v08_page.rs"
     result: "results/v08_page.txt"
@@ -222,6 +331,12 @@
   level: C1
   claim: "非相対論的な格子量子動力学から有効光円錐が創発: 相関前線 4.11t (理論 2v_max=4)、秩序変数 m(t)=|J₀(4t)| と機械精度一致 (3.9e-16)。"
   status: "再現実装 (Lieb–Robinson / Calabrese–Cardy)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v11_quench.rs"
     result: "results/v11_quench.txt"
@@ -233,6 +348,12 @@
   level: C3
   claim: "時間の矢=もつれの拡散: 全系は純粋なまま、局所観測量は T=∞ 熱平衡値へ緩和し S_A は線形成長→体積則飽和 — 可逆な法則から不可逆な見えの機構実証。"
   status: "toy model による機構提示"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v11_quench.rs"
     result: "results/v11_quench.txt"
@@ -244,6 +365,12 @@
   level: C3
   claim: "熱場二重状態の 2 本鎖で、温度 (もつれ) を絞ると鏡像領域間の相互情報量が 13.86→0.19 へ落ち「接続が千切れる」— ER=EPR の最小実演。"
   status: "toy model による機構提示"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v12_erepr.rs"
     result: "results/v12_erepr.txt"
@@ -255,6 +382,12 @@
   level: C1
   claim: "3 クォートリット完全符号 (Almheiri–Dong–Harlow の最小模型): I(R:1 領域)=0、I(R:2 領域)=2ln3、消失誤り耐性を機械精度で検証 — ホログラフィー辞書=量子誤り訂正。"
   status: "再現実装 (ADH 2015)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v13_qec.rs"
     result: "results/v13_qec.txt"
@@ -266,6 +399,12 @@
   level: C1
   claim: "3D Z2 格子ゲージ理論の閉じ込め転移を Ising 双対点 β_c=0.7614 で確認 (Creutz 比 0.395→0.0000) — ただのスピン系が赤外でゲージ理論として振る舞う (創発ゲージ場)。"
   status: "再現実装 (Wegner/Kitaev/Wen)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v14_z2gauge.rs"
     result: "results/v14_z2gauge.txt"
@@ -277,6 +416,12 @@
   level: C1
   claim: "ΛCDM 膨張史の再現: 宇宙年齢 13.79 Gyr (Planck 13.80)、減速→加速転換 z=0.632 (観測 0.6±0.1)、等密度 z_eq=3442 (観測 ≈3400)。"
   status: "再現実装 (較正)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: calibration_data_reused
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v15_lambda.rs"
     result: "results/v15_lambda.txt"
@@ -288,6 +433,12 @@
   level: C4
   claim: "宇宙定数の観測値 Λ≈2.9e-122 (プランク単位) が 1/√V₄=1.5e-122 と比 1.9 で一致 — 因果集合系の Λ〜1/√V₄ 揺らぎ予言 (加速膨張発見前の事前予言) のオーダー追認。"
   status: "オーダー推定 (説明を要する事実の指摘)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v15_lambda.rs"
     result: "results/v15_lambda.txt"
@@ -299,6 +450,12 @@
   level: C3
   claim: "常在 Λ (揺らぐ宇宙定数) トイ模型では物質密度が 36 桁変化する間 |Λ|/ρ_m が中央値 0.38 の帯に留まり、コインシデンス問題が構造的に消える。w(z) の揺らぎという検証可能な帰結を持つ。"
   status: "toy model による機構提示 (投機的と文書に明記)"
+  layer: phenomenology
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v15_lambda.rs"
     result: "results/v15_lambda.txt"
@@ -310,6 +467,12 @@
   level: C1
   claim: "デコヒーレンス: 干渉項が環境サイズ N とともに不可逆化 (N=32 で max|r|=5e-4)、τ_D·√N=0.64–0.69 で一定 — ポインター基底の選択と古典性の起源。"
   status: "再現実装 (Zeh/Zurek のデコヒーレンス理論)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v16_born.rs"
     result: "results/v16_born.txt"
@@ -321,6 +484,12 @@
   level: C1
   claim: "エンバリアンス (もつれの対称性) + 数え上げからボルン則 P=|ψ|² を導出する Zurek の議論を数値再現 (5 枝で P(0)=2/5、環境ユニタリー不変性 3e-16)。"
   status: "再現実装 (前提に論争が残る導出の検証)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v16_born.rs"
     result: "results/v16_born.txt"
@@ -334,6 +503,12 @@
   level: C1
   claim: "相対エントロピーの正値性・二次性 (べき 1.959、二次係数=Fisher 計量=正準エネルギー)・単調性 (A⊂B で増加) をフェルミオン鎖で厳密検証 — 非線形重力の情報側の土台 (二次まで)。"
   status: "再現実装 (量子情報の一般定理の実演)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v21_relent.rs"
     result: "results/v21_relent.txt"
@@ -345,6 +520,12 @@
   level: C1
   claim: "カルツァ=クライン機構の核心 (KK 塔・Wilson 線による電荷=巻き数・ゲージ場=ねじれ・分散関係) を格子で機械精度 (1e-15) で再現。"
   status: "再現実装"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: calibration_data_reused
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v22_kk.rs"
     result: "results/v22_kk.txt"
@@ -357,6 +538,12 @@
   level: C1
   claim: "磁束 Q を貫いたトーラス上のディラック演算子のゼロモード縮退度が Q に一致 (Q=1..4 全て) — 指数定理の数値再現。世代数=トポロジーの機構。"
   status: "再現実装 (Atiyah–Singer)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v23_matter.rs"
     result: "results/v23_matter.txt"
@@ -368,6 +555,12 @@
   level: C2
   claim: "SM の場の内容 (Q,u,d,L,e) と 4 つのアノマリー消去条件を与えると、超電荷は SM の値 (1/6,-2/3,1/3,-1/2) に一意に決まる (逆問題の厳密解)。"
   status: "制限付き計算定理 (場の内容は仮定)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v23_matter.rs"
     result: "results/v23_matter.txt"
@@ -379,6 +572,12 @@
   level: C1
   claim: "Mukhanov–Sasaki 方程式の Bunch–Davies 初期条件からの厳密積分: dS 厳密解と 1e-9、準 dS で n_s−1=−0.1000 (理論 3−2ν と 4 桁一致) — CMB ゆらぎ=真空ゆらぎの機構。"
   status: "再現実装 (インフレーション摂動論)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: calibration_data_reused
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v24_inflation.rs"
     result: "results/v24_inflation.txt"
@@ -391,6 +590,12 @@
   level: C4
   claim: "BMV 型重力誘起もつれ実験の実現可能パラメータ (m=1e-14 kg, d=200-250μm, τ=2.5-5s) で concurrence C=0.03-0.50 — 実験審判の定量化。"
   status: "現象論的推定 (提案論文に基づく)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: laboratory
   evidence:
     code: "sim/src/bin/v25_bmv.rs"
     result: "results/v25_bmv.txt"
@@ -405,6 +610,12 @@
   level: C2
   claim: "明示された探索領域内で、3 因子すべてに帯電する無矛盾なカイラル物質集合の最小解は標準模型 1 世代 (15 成分) であり、かつ一意である (6.37e7 集合の全数探索)。"
   status: "制限付き計算定理 (ゲージ群は仮定・領域は下記 inputs)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   inputs:
     gauge_group: "SU(3)xSU(2)xU(1)"
     reps: "SU(3) は 1,3,3bar / SU(2) は 1,2"
@@ -425,6 +636,12 @@
   level: C1
   claim: "SU(5) のトレースレス超電荷生成子から 5̄⊕10 の電荷を計算すると SM 1 世代と厳密一致 — 電荷量子化の群論的起源 (教科書事実の整数演算による検証)。"
   status: "再現実装 (Georgi–Glashow)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v31_gauge.rs"
     result: "results/v31_gauge.txt"
@@ -436,6 +653,12 @@
   level: C4
   claim: "1 ループ RG で 3 結合が高エネルギーでほぼ収束 (MSSM: 2e16 GeV に α⁻¹ で ~2%) — 統一群の間接証拠。"
   status: "現象論的推定"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v31_gauge.rs"
     result: "results/v31_gauge.txt"
@@ -447,6 +670,12 @@
   level: C4
   claim: "FN 機構 (ε=0.22、文献の整数電荷、O(1) 乱数係数 2000 試行) で質量比 6 種+CKM 3 種の全 9 量の中央値が実測の 5 倍以内。構造なし対照では階層が出ない (m1/m3 中央値 0.178)。"
   status: "現象論的 fit (M1 級: 電荷は選択されたもの)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v32_yukawa.rs"
     result: "results/v32_yukawa.txt"
@@ -459,6 +688,12 @@
   level: C1
   claim: "エントロピック c 関数 c(ℓ)=3ℓ·dS/dℓ が UV で 1.000-1.004 (ディラック CFT の c=1)、質量を入れると 1→0 へ全域単調減少、異なる m の曲線が x=ℓm の普遍関数に収束 (最大差 0.019)。"
   status: "再現実装 (Casini–Huerta のエントロピック c 定理)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: calibration_data_reused
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v33_ctheorem.rs"
     result: "results/v33_ctheorem.txt"
@@ -470,6 +705,12 @@
   level: C1
   claim: "一様加速検出器の応答関数が厳密に熱的: 詳細釣り合い e^(-2πω/a) が 3 桁成立、T_eff=0.15926 vs a/2π=0.15915 (相対誤差 6e-4)、スペクトルがプランク分布と 7e-4。"
   status: "再現実装 (Unruh 効果)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: calibration_data_reused
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v34_unruh.rs"
     result: "results/v34_unruh.txt"
@@ -483,6 +724,12 @@
   level: C1
   claim: "自由フェルミオン鎖 (N=302) のカイラル波束+光的端点変形で QNEC 型不等式を数値再現: 基本形 2πT_kk−S″ の最小ギャップ +4e-5 ≥ 0、強形 (−6(S′)² 込み) は −3e-5 (許容誤差内)。"
   status: "再現実装 (証明済み定理の離散・有限サイズ toy での確認)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v41_qnec.rs"
     result: "results/v41_qnec.txt"
@@ -495,6 +742,12 @@
   level: C4
   claim: "シーソー機構: m_ν=0.05 eV, m_D=174 GeV から M_R=6e14 GeV — v3.1 の結合統一点と独立に同じ桁。FN+アナーキー M_R の 2000 試行で PMNS 全観測値が 68% 帯内。レプトジェネシスで η_B~1.3e-9 (観測 6.1e-10)。"
   status: "現象論的推定 (機構の実証であり値の導出ではない)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v42_neutrino.rs"
     result: "results/v42_neutrino.txt"
@@ -506,6 +759,12 @@
   level: C2
   claim: "探索領域を ≤6 多重項・≤24 成分に拡張した全数探索で、理論空間のスペクトルは {15 成分: SM のみ 1 個, 16 成分: 8 個, 17-23 成分: 0 個, 24 成分: 459 個} — SM は最小かつ孤立。"
   status: "制限付き計算定理"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   inputs:
     reps: "SU(3) は 1,3,3bar / SU(2) は 1,2"
     hypercharge: "|Y| ≤ 3/2"
@@ -524,6 +783,12 @@
   level: C1
   claim: "de Sitter 共動検出器の詳細釣り合い e^(-2πω/H) と T_eff=H/2π (相対誤差 6e-4) — 地平線の熱の三位一体 (加速 a/2π・BH κ/2π・宇宙論 H/2π) が同一機構で完結。"
   status: "再現実装 (Gibbons–Hawking)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: calibration_data_reused
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v44_desitter.rs"
     result: "results/v44_desitter.txt"
@@ -535,6 +800,12 @@
   level: C4
   claim: "観測可能宇宙のエントロピー台帳 (桁): dS 地平線容量 ~2e122 に対し内容物 ~1e104 — 使用率 ~1e-18 でホログラフィック束縛を充足。ビッグバン時は容量の 1e-34。"
   status: "オーダー推定"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v44_desitter.rs"
     result: "results/v44_desitter.txt"
@@ -548,6 +819,12 @@
   level: C3
   claim: "自由度が増える系 (鎖 16→96 サイト成長、新モードは断熱的に真空で到着) では、全系が純粋なまま観測窓のエントロピーが 0→4.37 へ単調成長 — 低エントロピーの過去は微調整でなく「自由度が少ない過去」の帰結という機構。"
   status: "toy model による機構提示 (熱的到着との対照付き)"
+  layer: dynamics
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v51_arrow.rs"
     result: "results/v51_arrow.txt"
@@ -559,6 +836,12 @@
   level: C2
   claim: "大表現 ((1,3),(6,1),(6̄,1),(8,1)) を解禁した全数探索 (≤5 多重項・≤16 成分) でも、15 成分未満の解は 0 個・15 成分の解は SM ただ一つ — 孤立性は表現拡大に頑健。"
   status: "制限付き計算定理"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   inputs:
     reps: "SU(3) は 1,3,3bar,6,6bar,8 / SU(2) は 1,2,3"
     hypercharge: "|Y| ≤ 3/2"
@@ -575,6 +858,12 @@
   level: C1
   claim: "重い場 (質量 M) が低エネルギー相関に残す痕跡が |ΔC|∝M^(-1.913) で退場 (理論 −2) — 脱結合定理の toy 検証。v4.3 の「なぜ小さな理論を考えてよいか」を EFT+カイラル保護+アノマリー一意性の連鎖で閉じる。"
   status: "再現実装 (Appelquist–Carazzone)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: calibration_data_reused
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v53_decoupling.rs"
     result: "results/v53_decoupling.txt"
@@ -588,6 +877,12 @@
   level: C2
   claim: "独立アルゴリズム (meet-in-the-middle + 内蔵 DFS) が v3.1/v4.3/v5.2 の解集合を厳密再現し、拡張領域 (大表現+≤24 成分 / |Y|≤2 / |Y|≤3 / ≤8 多重項) の全てで 15 成分未満の解は 0 個・15 成分の解は SM ただ一つ。"
   status: "制限付き計算定理 (三重の独立実装で照合、certificates/ に全解と SHA-256)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   inputs:
     axes: "E1 大表現 ≤6 多重項 ≤24 成分 / E2 |Y|≤2 ≤18 成分 / E3 |Y|≤3 ≤16 成分 / E4 ≤8 多重項 ≤24 成分"
     arithmetic: "全て i64 厳密整数 (6Y)、浮動小数なし"
@@ -603,6 +898,12 @@
   level: C2
   claim: "SM 1 世代 (ν_R なし) に載る第 2 の超電荷は |6Y'|≤12 の全走査で Y の整数倍のみ。ν_R を加えると解は Y と B−L の張る 2 次元格子にちょうど一致する (B−L 自身を含む 104 解すべてが span 内)。"
   status: "制限付き計算定理 (混合アノマリー Y²Y'・YY'² 込み)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v62_atlas.rs"
     result: "results/v62_atlas.txt"
@@ -614,6 +915,12 @@
   level: C2
   claim: "陰性対照の地図: SM の最小性・一意性を担うのはカイラル性 (外すと最小 10 成分の vectorlike 解)・全因子帯電 (外すと 5 成分の純 U(1) カイラル解 {-9,-5,-1,7,8})・SU(3)³ (外すと 12 成分)・Witten (外すと 12 成分)・U(1)³ (外すと 15 成分に偽兄弟 8 個)。SU(3)²U(1)・SU(2)²U(1)・重力²U(1) は単独で外しても孤立性が保たれる (この領域では他条件から従う冗長条件)。"
   status: "制限付き計算定理 (基線 ⊆ 対照の単調性も機械検証)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v62_atlas.rs"
     result: "results/v62_atlas.txt"
@@ -625,6 +932,12 @@
   level: C1
   claim: "QNEC 型不等式を誤差予算つきで再評価: N=202/302/402 の相似設定で、tolerance = 微分打ち切り (Richardson) + 有限サイズ + 丸め (実測) と分解し、基本形 min gap +2.7e-5 > -4.3e-3 (全 N で正・N^(-1.7) で 0 へ)、強形 -1.3e-5 > -5.1e-3。強形の負ギャップは N^(-1.2) で縮む離散化効果であり QNEC 破れではない。非カイラル対照でカイラル固有の共動凍結が 9800 倍壊れ、QNEC 自体は対照でも成立。"
   status: "再現実装 (誤差予算・N 収束・陰性対照つき, JSON artifact)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v63_qnec_budget.rs"
     result: "results/v63_qnec_budget.txt"
@@ -638,6 +951,12 @@
   level: C3
   claim: "MI→MDS の幾何読み出しは正例 (円環基底状態: 隣接復元 100%・半径ばらつき 0%) だけを円環と判定し、MI 値の多重集合を保つシャッフル (1%)・非局所 GOE 基底状態 (5%)・volume-law ランダム状態 (2%)・古典的無相関状態 (MI≡0 を検出) の 4 対照は全て失敗する — 読み出しが検出するのは「MI の減衰の局所的パターン」である。"
   status: "陰性対照 (機構の特異性の実証 — 都合よく何でも幾何に見えるわけではない)"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v64_controls.rs"
     result: "results/v64_controls.txt"
@@ -650,6 +969,12 @@
   level: C4
   claim: "ベイズ模型比較: 質量比 6 つ (σ=ln2) だけで、FN (電荷自由・15^5 通り一様事前) はアナーキーに ln B ≥ +23 (M0 は保守的上界)、v3.2 の文献電荷は ln B ≥ +28 で勝ち、全 759,375 割当て中の上位 0.11% に位置する。学習に使っていない CKM 3 量を factor 5 以内で予測 (out-of-sample)。合成データ較正で、階層のないデータには FN が負けること (Occam 罰 -9.5) も確認。"
   status: "現象論的模型比較 (証拠はセクター表の積に厳密因子化、M0 は裾積分のため上界で処理)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v65_bayes.rs"
     result: "results/v65_bayes.txt"
@@ -663,6 +988,12 @@
   level: C5
   claim: "反証条件の現代化: BMV 型実験は「C>0 ⇔ 重力量子化」の二分法では読めない (Aziz–Howl, Nature 646, 813 (2025): 古典重力+QFT 物質でももつれ生成は可能)。QRN の反証条件は「予測位相 Δφ=Gm²τΔx²/(ħd³) で C≡0 なら A2/A3 棄却」に精密化され、C>0 から量子化を主張するにはスケーリング検証・古典 QFT 寄与の分離・付随ノイズの排除が別途必要。"
   status: "解釈 (反証条件表の 2025 年版への更新)"
+  layer: phenomenology
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: laboratory
   evidence:
     doc: "docs/uft-v6.6.md"
   limitations:
@@ -673,6 +1004,12 @@
   level: C3
   claim: "単一の QRN core (ガウスフェルミオン網 + ユニタリー発展) の同一状態から、幾何 (円環: 隣接復元 100%)・エントロピー (対数則 c=1.001)・物質 (k_F=π/2 厳密)・因果 (前線速度 2.10) の 4 つが読み出され、読み出し同士が整合する (前線速度 ≈ 2 sin k_F)。共有 core の健全性検査 (C²=C) が v6.3 の占有数バグと「密度はカイラル対称性で保護され伝播しない」という物理を即座に発見した。"
   status: "toy model による機構提示 (中心テーゼ「同じ網の異なる読み出し」の最小実演)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v67_core.rs"
     result: "results/v67_core.txt"
@@ -685,6 +1022,12 @@
   level: C2
   claim: "機械検証済み定理 (Lean 4): v3.1 領域 (小表現・|6Y|≤9・≤5 多重項・≤15 成分) の全列挙で、無矛盾条件を満たす集合はちょうど 4 個であり SM 1 世代の同値軌道 (恒等/共役/U(1)反転/両方) に一致する。SM が条件を満たすこと・1 目盛ずらすと破れることは Lean 核のみの decide で、全列挙は native_decide で検証。"
   status: "制限付き計算定理 — 機械検証済み (信頼基盤: Lean 核 + native_decide はコンパイラ込み)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_author_clean_room
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "proofs/Anomaly.lean"
     result: "results/v68_lean.txt"
@@ -700,6 +1043,12 @@
   level: C2
   claim: "構造も両電荷も自由にした SU(3)×SU(2)×U(1)² の rank-2 カイラル物質の全数探索 (窓: ≤4 多重項 |6Y|≤9 / ≤5 |6Y|≤6 / ≤6 |6Y|≤4 ≤18 成分): ≤5 多重項に解は存在せず、最小解は 16 成分でその電荷平面 (Plücker 標準形) は SM+ν_R の {Y, B−L} 平面ただ一つ。「力を 1 本足す最小の無矛盾な方法は ν_R を足して B−L をゲージ化すること」— SO(10) の構造と整合。"
   status: "制限付き計算定理 (物理的同値 = 電荷平面、基底不変性を自己検査)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   inputs:
     conditions: "10 アノマリー (線形 6 + 三次 4) + Witten + カイラル + 色弱帯電 + 階数 2"
     equivalence: "電荷の張る 2 次元平面 (Plücker 座標の gcd 約分・符号正規化)"
@@ -715,6 +1064,12 @@
   level: C4
   claim: "M2 級 FN: 湯川行列を磁束トーラスのゼロモード重なり積分から計算 (乱雑係数ゼロ、パラメータ = Wilson 線整数と Higgs 幅のみ)。単一 T² は原理的に浅く届かない (lnZ=-53.8, 陰性結果)。T²×T² 積模型 (6^10×4 の全空間積分) は lnZ=-20.4 でアナーキー上界を +15 上回り、質量比 5/6 (m_u/m_t 比 2.2)・out-of-sample CKM 2/3 (|V_cb| 比 1.03) を決定論的に再現 — 階層の深さは余剰次元の数を数えている。"
   status: "幾何拘束付き現象論 (M2 級 — v6.5 の M1 からの格上げ)。開発時の障害 (格子磁気並進は N|2Q でのみ閉じる) も記録"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v72_geomfn.rs"
     result: "results/v72_geomfn.txt"
@@ -728,6 +1083,12 @@
   level: C4
   claim: "BMV 判別の定量化: 量子チャネル (QRN) は C=|sin(Δφ/2)|・V=|cos(Δφ/2)| の相補性円周 C²+V²=1 上 (純粋・可逆)、同じ力を伝える KTM 型古典チャネルは C=0 かつ V₁V₂ ≤ e^(-Δφ/2) (相反定理: 総位相緩和 ≥ λ/2、最適 Γ=λ/4 — Γ 走査で数値検証)。判別は「C>0 か」ではなく (C,V) 平面上の位置。v2.5 パラメータで 3σ 判別に要る試行数まで定量化 (最良ケース: もつれ 36 / 可視度 120)。"
   status: "現象論的判別式 (密度行列の決定論的計算 — 素朴な期待「量子なら V=1」の誤りも数値が修正)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: laboratory
   evidence:
     code: "sim/src/bin/v73_bmv2.rs"
     result: "results/v73_bmv2.txt"
@@ -740,6 +1101,12 @@
   level: C3
   claim: "core 移行 (2): TfdPair (ER=EPR) と GrowingChain (成長する宇宙) を共通 core (QrnState/QrnModel/共有読み出し) の実装として再現 — TFD は鏡像 MI 13.86 (v1.2 と一致・20 ln2 の上限) が β で単調減衰し H_L+H_R で厳密に定常 (橋は動力学的に安定)、成長鎖は窓 S 0→4.37・上昇 30/40 (v5.1 と一致) で全系純粋 (欠陥 3e-13)。v6.7 の健全性検査 purity_defect が「全系は純粋のまま」の物理判定器として再利用された。"
   status: "toy model による機構提示 (core 移行地図: RingChain/TfdPair/GrowingChain ✓)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v74_core2.rs"
     result: "results/v74_core2.txt"
@@ -751,6 +1118,12 @@
   level: C2
   claim: "機械検証済み定理 (2): v5.2 域 (SU(3)≤8・SU(2)≤3 の大表現込み, |6Y|≤9, ≤5 多重項, ≤16 成分) の全列挙で、無矛盾条件を満たす集合は SM の同値軌道 4 通りのみ (native_decide)。SM の充足性と六重項反例は Lean 核のみの decide。孤立性の表現拡大への頑健性 (v5.2) が定理証明器の検証済み定理になった。"
   status: "制限付き計算定理 — 機械検証済み (毒値設計により列挙の完全性を定理が含意)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_author_clean_room
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "proofs/AnomalyBig.lean"
     result: "results/v75_lean.txt"
@@ -763,6 +1136,12 @@
   level: C4
   claim: "幾何の選択問題: トーラス数 {1,2,3} × Wilson 線格子 {Z6,Z12} の 6 幾何模型を質量比 6 つの証拠で比較 (乱雑係数なし)。余剰次元の数はデータから選べ、T3 が勝つ (T2 に +3.0)。格子の細分化は常に Occam 罰に見合わない (幾何は粗い離散格子で十分)。T3 の質量 MAP は 6 質量比を全て factor 5 以内にするが CKM を失う — 9 量の点評価では T2 の MAP が最良 (-17.8 vs -36.2)。「質量は次元を数え、混合は次元の間の傾きを測る」。"
   status: "幾何拘束付き現象論の模型選択 (Z6 の T1/T2 は v7.2 と厳密一致で照合)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v81_geoselect.rs"
     result: "results/v81_geoselect.txt"
@@ -776,6 +1155,12 @@
   level: C2
   claim: "三本目の U(1) は存在しない: rank-3 カイラル解の窓内全数探索 (19 アノマリー条件 + 階数 3, 窓 ≤5 多重項 |6Y|≤3/≤2) で解は 0 個。対照 (カイラル性オフ) では rank-3 vectorlike 解が 355 個見つかり装置の盲目でないことを確認。E6 の 27 の厳密分解でもカイラル芯は SM 1 世代に一致 (10 は vectorlike)。U(1) の階段は 2 段 (Y, B−L) で終わる — 無矛盾性は力の本数まで数えている。"
   status: "制限付き計算定理 (陰性結果 + 対照 + 群論的傍証)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v82_threeu1.rs"
     result: "results/v82_threeu1.txt"
@@ -790,6 +1175,12 @@
   level: C5
   claim: "「世界の基本的実在は量子相関の網であり、時空・重力・力・物質はその異なる読み出しである」— 公理系 A0-A5 と 6 つの反証条件を持つ研究プログラムの言明。"
   status: "解釈 (反証条件を v1.0 §4 に明示)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     doc: "docs/uft-v1.0.md"
   limitations:
@@ -800,6 +1191,12 @@
   level: C5
   claim: "「冗長な記録こそが実在をつくる」— 時空 (誤り訂正)・古典性 (quantum Darwinism)・熱 (記録の拡散) を貫く中心テーゼ。"
   status: "解釈"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     doc: "docs/uft-v2.0.md"
   limitations:
@@ -810,6 +1207,12 @@
   level: C5
   claim: "最小性原理 (物質の内容は無矛盾に存在しうるカイラル構造の極小元) と単調性原理 M (不可逆性=情報の単調性) — 第四期の統合原理。"
   status: "解釈 (数値的裏付けは C1/C2 級の各主張)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     doc: "docs/uft-v4.0.md"
   limitations:
@@ -820,6 +1223,12 @@
   level: C5
   claim: "公理系最終形: 一つの実在 (誤り訂正構造を持つ量子網) と少数の原理 (ユニタリー性・単調性・無矛盾性) から既知物理のほぼ全域が創発する、という統合の形。"
   status: "解釈"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v5.0.md"
   limitations:
@@ -830,6 +1239,12 @@
   level: C5
   claim: "最終テーゼ: 世界は無矛盾に符号化できる最小の量子情報網であり、冗長な記録が時空と古典性を、単調性が時間と熱と重力を、無垢な成長が歴史を生む。"
   status: "解釈 (全スイート 87/87 PASS の総括)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v6.0.md"
   limitations:
@@ -841,6 +1256,12 @@
   level: C5
   claim: "第七期 (監査期) のテーゼ: 主張は等級を持ち (C0-C5)、検証は誤差予算を持ち、装置は陰性対照を持ち、fit は null model を持ち、探索は証明書と機械検証された定理を持つ。理論の強さとは主張の大きさではなく、主張と証拠の距離の短さである。"
   status: "解釈 (第七期統合 — 全スイート 158/0 + Lean 定理 3 本)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v7.0.md"
   limitations:
@@ -851,6 +1272,12 @@
   level: C5
   claim: "第八期のテーゼ: 残高は消えない — 返済されるたびに、より深い通貨に両替される。「電荷はなぜこの値か」は「Wilson 線はなぜこの配置か」になった。問いの列が収束する先が理論の基底であり、各両替は全数探索・誤差予算・機械検証つきの領収書を残した。"
   status: "解釈 (第八期統合 — 全スイート 189/0 + Lean 定理 6 本)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v8.0.md"
   limitations:
@@ -861,6 +1288,12 @@
   level: C5
   claim: "第九期のテーゼ: 力の本数 (U(1) は 2 段で終わる)、物質の内容 (SM が唯一)、階層の深さ (次元が数える) — 恣意に見えたものが順に数えられていく。数え終えた場所には定理と証明書が残り、数え終えていない場所は残高として次の期の的になる。理論は「語る」ものから「数える」ものになった。"
   status: "解釈 (第九期統合)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v9.0.md"
   limitations:
@@ -871,6 +1304,12 @@
   level: C4
   claim: "CKM 込みの幾何選択 (質量と混合の緊張の解消): 全 9 量 (質量比 6 + CKM 3) を尤度に入れ、e セクターのみ因子化・クォーク部 (K_Q,K_u,K_d) 三重和の厳密経路で 4 幾何模型の証拠を計算。全 9 量でも T3 が勝ち (lnZ9 = -25.56, T2 に +1.6)、その MAP は 9 量中 8 を factor 5 以内に置く (|V_cb| 比 1.01)。v8.1 の緊張は MAP 点評価と証拠 (Occam 積分) の混同による人工物で、尤度に混合を入れれば 3 枚のトーラスが質量と混合を同時に保つ。"
   status: "幾何拘束付き現象論の模型選択 (退化検査: CKM 重み 0 で v8.1 の因子化経路と 3 模型厳密一致 — 独立実装の相互検証)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: algorithmically_diverse
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v91_ckmselect.rs"
     result: "results/v91_ckmselect.txt"
@@ -886,6 +1325,12 @@
   level: C4
   claim: "世代ラベルの安定化: 磁束トーラスの局在ゼロモードの 1 つは中心が wrap 境界 (格子座標 0≡N) 上に厳密に乗り (境界距離 1.2e-12)、中心昇順ソートの世代ラベルは丸めの ±ε で巡回する。単一トーラスの特異値はラベルに不変だが、積模型の対角世代対はラベルを跨ぐため lnZ が規約に依存 (質量のみで +0.9〜+1.7、全 9 量で +3.4〜+3.7)。公表値 10 個は「境界モード末尾」規約の値として全て ±0.02 で再現。幾何選択の勝者 (T3×Z6) と順位は両規約で不変 — 結論は頑健。以後は安定ラベル (0.5 サイト格子スナップ後ソート) を規約とする。"
   status: "装置の系統誤差の発見と修正 (python 独立再実装との照合が発見の入口; v7.2/v8.1/v9.1 へ正誤表)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v92_labelstab.rs"
     result: "results/v92_labelstab.txt"
@@ -899,6 +1344,12 @@
   level: C1
   claim: "QNEC 掃引の core 化: v6.3 の状態構築と観測量を共有 core の PacketRing 模型 (円環 GS + カイラル/定在波束) と QrnState の読み出し 4 種 (bond_energy/current/null_energy/chirality) に移し、v6.3 の一次ソースの数値 (N=302 の基本/強形 min gap・カイラル度・定在波対照・共動凍結比 9835.787) を桁落ちなく回帰再現 (|Δ|<1e-9)。core 模型は 4 つ (RingChain/TfdPair/GrowingChain/PacketRing) になった。"
   status: "core 再構成の回帰検証 (付加価値: 波束回転後と掃引終端の purity_defect < 1e-14、k_F 保存)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v94_qneccore.rs"
     result: "results/v94_qneccore.txt"
@@ -912,6 +1363,12 @@
   level: C5
   claim: "第十期のテーゼ: 答えの数字は規約の上に立つ。証拠 (Occam 積分) と点評価を混同すれば偽の緊張が生まれ (v9.1 で解消)、縮退帯ソートの綱渡りを放置すれば再現性は幻になる (v9.2 で安定化)。独立実装と照合装置は理論の付属品ではなく装置の一部であり、「3 枚のトーラス」という答えはそれらの上でだけ答えとして立つ。"
   status: "解釈 (第十期統合 — 全スイート 47 本 237/0 + Lean 定理 6 本)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v10.0.md"
     result: "results/v100_full_suite.txt"
@@ -923,6 +1380,12 @@
   level: C4
   claim: "対角世代対はデータに否定された (陰性結果): T2×T2 の世代対を置換 σ∈S3^4 (σQ=e ゲージ) として marginalize した M_perm は、Occam 罰 4ln6=7.17 を払ってなお対角対 M_diag に勝つ (質量のみ -15.08 vs -18.76 / 全 9 量 -19.86 vs -23.61)。MAP の対は非対角。さらに T2+自由対 (-19.86) は T3+対角対 (-21.84) に勝ち、v8.1/v9.1 の幾何選択の結論が対仮定に条件付きだったことが判明した。"
   status: "幾何拘束付き現象論の模型比較 (退化検査: σ 全て e で v9.2 安定側と厳密一致)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v101_pairing.rs"
     result: "results/v101_pairing.txt"
@@ -938,6 +1401,12 @@
   level: C4
   claim: "対込みの幾何選択: 世代対を marginalize した公平な比較でも T3 が勝つ — 質量のみ -14.11 vs T2 の -15.08 (+0.98)、全 9 量 -17.89 vs -19.86 (+1.97, 証明付き打ち切りの区間幅 ~1e-10 で確定)。T3 の五重和 ~10^13 は「CKM 対数尤度 ≤ 3 norm1」による厳密な残差上界つき打ち切り (Δ=35) で計算し、打ち切り実装は v10.1 の厳密五重和 (T2) を再現して相互検証済み。幾何選択『余剰次元は 3 枚』はラベル規約 (v9.2) と対仮定 (v10.2) の両方に頑健になった。"
   status: "幾何拘束付き現象論の模型選択 (回帰 7 件 + 区間保証)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v102_geopair.rs"
     result: "results/v102_geopair.txt"
@@ -951,6 +1420,12 @@
   level: C2
   claim: "世代対の既約性 (窓内の分類定理): T2×T2 の対状態 (kb∈Z6, σ∈S3) 36 通りを幾何候補 (k'∈Z18)×{通常, 鏡映 x→−x, 共役 (磁束 −Q)} の 54 状態と総当たり照合 (プローブ 3 種の Hadamard 特異値, 全行 Wilson, 閾 1e-9)。一致は自明な σ=e, k'=kb の 6 状態のみで、非自明な 30 状態はどの候補にも一致しない。世代対は位置 (Wilson) にも向き (鏡映・磁束符号) にも還元されない内部整列の離散自由度 — 「9 ゼロモードから 3 世代を束ねる射影」そのものが観測にかかる物理である。"
   status: "制限付き計算定理 (窓 = 候補 3 族 × Z18; 鏡映と共役も相互に不一致)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v103_pairgeom.rs"
     result: "results/v103_pairgeom.txt"
@@ -964,6 +1439,12 @@
   level: C5
   claim: "第十一期のテーゼ: 仮定を疑う最も誠実な方法は、それを模型空間に昇格させて証拠にかけることである。導出しようとした対角対は棄却され (v10.1)、還元しようとした置換は既約と判明し (v10.3)、それでも 3 枚のトーラスは勝ち残った (v10.2)。理論が強くなるのは仮定が正しいと分かったときではなく、仮定が何であるかが分かったときである。"
   status: "解釈 (第十一期統合 — 全スイート 50 本 256/0 + Lean 定理 6 本)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v11.0.md"
     result: "results/v110_full_suite.txt"
@@ -975,6 +1456,12 @@
   level: C2
   claim: "例外群走査の完結: G2 (7,14), F4 (26,52), E7 (56,133), E8 (248) のウェイト系を整数厳密に構成し (次元・ノルム²・Weyl 鏡映閉性で構成を検証、E8 は全 240 鏡映)、多重集合として W = −W (自己共役) を機械検証した。対照 (SU(3) の 3) は非自己共役と正しく判定。自己共役表現はvectorlike に対にできるためカイラル芯は空 — 複素表現を持つ例外群は E6 のみで、v8.2 (27 の芯 = SM 1 世代) と合わせて例外群の走査は閉じた。"
   status: "制限付き計算定理 (検査は最低次+随伴の代表 7 表現; 全既約表現の自己共役性は C0 の引用)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v111_exceptional.rs"
     result: "results/v111_exceptional.txt"
@@ -988,6 +1475,12 @@
   level: C3
   claim: "Z3 シフト・オービフォールドは世代対を導くが一様では足りない: y 方向 6 サイト並進はゼロモード上で厳密なクロック (非対角 2e-12) であり、クロック⊗クロックの固有値射影は 9 積状態からちょうど 3 つ (反対角対の族 i+j≡m) を選ぶ — 射影の形式は導出された。しかしゲージ不変な予言「全場が同じ族」の証拠 lnZ9(M_uni)=-21.83 (事前 4ln3) は M_full=-19.86 (事前 4ln6) に 1.96 nats 負け、MAP は混合パリティ (σ_u 奇, σ_d 偶) — セクターごとに射影の向きが違う機構 (場依存の磁化の向き) が必要。"
   status: "toy model による機構提示 + 検定 (退化検査: M_full は v10.1 と厳密一致)"
+  layer: phenomenology
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v112_orbifold.rs"
     result: "results/v112_orbifold.txt"
@@ -1001,6 +1494,12 @@
   level: C4
   claim: "機構のはしご: 場依存の磁化の向き模型 M_orient (巡回 Z3 × 向き Z2, 事前 4ln6) は lnZ9 = -20.86 で一様オービフォールド (-21.83) に勝つが、同じ事前の S3 対 (-19.86) にちょうど 1.00 nat 届かない。向きの相対性 (svals は共役に不変 → (C,C)≡(N,N)) を機械精度で検証し、ε 全 N の退化検査は v11.2 M_uni と一致。既知の幾何的着せ替え (Wilson・並進・向き) を尽くしても抽象的なタワー整列に 1 nat 残る — 残りは未試行の幾何 (傾き磁束・固定点・離散トーション) か、σ が幾何に還元されない離散データであるかの二択。"
   status: "幾何拘束付き現象論の機構比較 (退化検査 2 件 + 相対性恒等式)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v113_orient.rs"
     result: "results/v113_orient.txt"
@@ -1014,6 +1513,12 @@
   level: C3
   claim: "動的テンソル分解の第一級化: サイト間相互情報量の貪欲最大マッチング readout_natural_partition を core に追加。同じ読み出しが RingChain では空間隣接対 (21/21)、TfdPair では L−R 鏡像対 (21/21, ER=EPR の分解版)、GrowingChain では到着ボンド対 (3/3) を「自然な分解」として発見し、発展 (t=30) は到着対を 0/3 に組み替える — 分解は入力ではなく状態依存の読み出しである。core 移行地図 (4 模型 + 読み出し群) は残高なく閉じた。"
   status: "toy model による機構提示 (3 模型 × 構造の厳密一致 + purity 検査)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v114_tensorcore.rs"
     result: "results/v114_tensorcore.txt"
@@ -1027,6 +1532,12 @@
   level: C5
   claim: "第十二期のテーゼ: 走査は閉じることで力になり、機構は測れることで科学になる。「カイラル物質の扉は E6 型しかない」(v11.1) は閉じた走査の言葉であり、「向きの模型はあと 1 nat 足りない」(v11.3) は測れる機構の言葉である。core 移行も完結し (v11.4, 分解は入力ではなく読み出し)、開いた問い (なぜ 3 枚か、σ とは何か) は曖昧にされずに残る。"
   status: "解釈 (第十二期統合 — 全スイート 54 本 288/0 + Lean 定理 6 本)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v12.0.md"
     result: "results/v120_full_suite.txt"
@@ -1038,6 +1549,12 @@
   level: C3
   claim: "傾き磁束 T4 の第一原理 3 世代: N=6 の T4 格子に磁束 (Q1,Q2,t,s)=(2,2,1,-1) を実装し (全プラケット偏差 3e-15)、最低バンドが厳密に 3 重縮退 (幅 7e-13 ≪ ギャップ 0.32) であることを確認 — Dirac 指数 Pf(F)=Q1Q2+ts=3 の格子実証。対照 (t=s=0) は縮退 4 で、傾きが指数を 4→3 に変える。傾きのゼロモードは非因子化 (バンド平均のトーラス間 MI 0.0067 nats vs 対照 0) — 世代対のアンザッツ σ が果たしていた役割を傾き幾何そのものが果たす。「σ は存在しない (因子化近似の影)」が構成的候補として立った。"
   status: "toy model による機構提示 (指数の直接実証 + 対照 + 非因子化)"
+  layer: phenomenology
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v121_tiltflux.rs"
     result: "results/v121_tiltflux.txt"
@@ -1051,6 +1568,12 @@
   level: C4
   claim: "傾き T4 の証拠検定 (陰性): 磁束 (2,2,1,-1)・N=6 の 36 Wilson 配置を個別対角化 (std::thread 12 並列) し、指数 3 が Wilson 線に完全に頑健 (縮退幅 max 1.4e-12、ギャップ 0.3195 で一様) であることを確認した上で、9 量証拠 lnZ9 = -94.51 を得た — S3 対 (-19.86) に -74.65 nats 及ばない。アンザッツ・ラベル・対が原理的に不在という構成上の利点は証拠の不足を補わない: この磁束点の階層は浅すぎる。構造と証拠の距離が定量化された。"
   status: "幾何拘束付き現象論の検定 (陰性; 指数の Wilson 不変性 + v12.1 回帰つき)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v122_tiltwilson.rs"
     result: "results/v122_tiltwilson.txt"
@@ -1064,6 +1587,12 @@
   level: C4
   claim: "磁束族の走査 (陰性・境界確定): N=6 で指数 Pf(F)=3 を保つ 6 磁束を走査し、全点で厳密 3 重縮退 (幅 ~1e-13) を確認した上で、深さ代理 ln r1 は最深でも -3.58 (必要 -11.3) — しかも磁束を上げるほど浅くなる (小格子ではモード幅が太るため; T2 系の直観の逆転)。勝者 (2,2,1,-1) の全 36 Wilson 証拠は -94.51 で v12.2 と一致 (回帰)。N=6 の傾き窓に観測階層へ届く点は存在しない。格子拡大には疎行列固有値ソルバが必要 — 道具の限界として記録。"
   status: "幾何拘束付き現象論の系統走査 (陰性; 指数は全点厳密 + v12.2 回帰)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v123_fluxscan.rs"
     result: "results/v123_fluxscan.txt"
@@ -1077,6 +1606,12 @@
   level: C5
   claim: "第十三期のテーゼ: 美しい構成は秤を免除されない。指数 Pf(F)=3 が世代を数える傾き T4 はアンザッツ・ラベル・対を全て消し去りながら、証拠では 75 nats 負けた (v12.1-v12.3)。構成の存在と構成がデータを説明することの距離が初めて数値になり、N=6 窓の境界と道具の限界 (疎ソルバの欠如) が測量図に印として残った — 理論の墓地ではなく測量である。"
   status: "解釈 (第十三期統合 — 全スイート 57 本 305/0 + Lean 定理 6 本)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v13.0.md"
     result: "results/v130_full_suite.txt"
@@ -1088,6 +1623,12 @@
   level: C1
   claim: "Lanczos 疎ソルバの自作 (lib.rs, 外部クレートなし): 複素エルミート作用素の最低 k 固有対を完全再直交化・部分空間再スタート・残差検証つきで求める。検証 4 段 — 稠密ヤコビと 1.4e-13 一致 / 2D 磁束トーラスの縮退 3 バンド (ギャップ 0.1147 = 一次ソース 0.115) / N=6 傾き T4 の v12.1 回帰をヤコビ比 6700 倍速 (594 s → 89 ms) / 同シード bit 一致・異シード 8e-14。開発中に残差検査が未収束 (Krylov 120 での 2D) を正しく弾いた。"
   status: "数値道具の再現実装 (残高 11 の解除 — N=18 T4 が射程に)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v131_lanczos.rs"
     result: "results/v131_lanczos.txt"
@@ -1101,6 +1642,12 @@
   level: C4
   claim: "N=18 傾き T4 の最終決着 (Lanczos による再挑戦): 指数 Pf=3 の 7 磁束のうち格子上で厳密 3 重縮退を保つのは 3 点のみで、(2,2,1,-1) は N=6 で厳密・N=18 で分裂 (3.8e-2) — 格子上の指数は磁束と格子の整合の数論である (発見 1)。厳密な点の深さは全て単一タワー帯 [-5.2,-5.8] に張り付く: Pf = f+f- = 3 (素数) が第 2 固有面を平坦化し 2 タワーの抑制の掛け算を構造的に禁じる (発見 2)。勝者 (3,3,1,-6) の全 36 Wilson 証拠は lnZ9 = -34.88 (N=6 から 60 nats 改善、S3 対に 15.0 nats 及ばず)。「σ は因子化近似の影」仮説は棄却 — σ はコンパクト化の既約な離散データ (v10.3) の解釈が対抗仮説の棄却で強化された。"
   status: "幾何拘束付き現象論の系統走査 (最終決着; 残差 <1e-11・二分性・単一タワー帯の 3 検査つき)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v132_deeptilt.rs"
     result: "results/v132_deeptilt.txt"
@@ -1114,6 +1661,12 @@
   level: C5
   claim: "第十四期のテーゼ: 問いは答えられるだけでなく、住所を変える。「世代対 σ とは何か」は 5 期の検定 (仮定→棄却→頑健→既約→対抗仮説の構造的棄却) を経て「なぜこの離散データか」になった。位置・向き・傾きの全代替が素数 3 の構造論で落ちたからこそ、この住所替えは逃げではなく測量である。道具 (Lanczos 6700 倍) はその測量のために作られ、残った。"
   status: "解釈 (第十四期統合 — 全スイート 59 本 314/0 + Lean 定理 6 本)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v14.0.md"
     result: "results/v140_full_suite.txt"
@@ -1125,6 +1678,12 @@
   level: C2
   claim: "v4.3 域の孤立性スペクトルの Lean 機械検証 (配列ベース MITM): 定理 v43_spectrum : arrayScan = (1, 8, 459, 0) が native_decide 3.3 秒で成立 — 正準形 (並べ替え・共役・U(1) 反転・整数倍) 解の成分数分布はちょうど {15:1, 16:8, 24:459} で他は 0。完全性は固定範囲 for ループの直積の構造から自明 (燃料の毒が不要 — 毒燃料設計より強い)。従来の再帰 walk 設計の予測 17 時間から約 18,000 倍の短縮。初回の定理の偽が正準形の gcd 約分の欠落を検出した (開発記録)。"
   status: "制限付き計算定理の機械検証 (信頼基盤: Lean 核 + native_decide)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_author_clean_room
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "proofs/AnomalyArray.lean"
     result: "results/v144_lean.txt"
@@ -1137,6 +1696,12 @@
   level: C2
   claim: "E1 域 (大表現込み 10 型, |6Y|≤9, ≤6 多重項, ≤24 成分) の孤立地形の完全な Lean 機械検証: 定理 e1_spectrum : arrayScanBig = (1, 8, 1, 18, 2, 459, 0) が native_decide 13.8 秒で成立 — 正準形解の分布はちょうど {15:1, 16:8, 17:1, 18:18, 22:2, 24:459} で 19-21・23 成分は空白。AnomalyBig.lean (v5.2 域 ≤16 成分, 9734 s) より広い領域を ~700 分の 1 の時間で検証 (配列ベース MITM の移植、一発通過)。"
   status: "制限付き計算定理の機械検証 (信頼基盤: Lean 核 + native_decide)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_author_clean_room
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "proofs/AnomalyArrayBig.lean"
     result: "results/v145_lean.txt"
@@ -1148,6 +1713,12 @@
   level: C5
   claim: "第十五期のテーゼ: 計算は書かれて初めて科学になり、証明は速くなって初めて習慣になる。完全原稿 2 本と検証済み書誌で執筆の弧が閉じ、配列ベース設計 (完全性 = ループ構造、毒燃料不要、3〜4 桁の高速化) で形式化の弧が閉じた — SM の孤立地形は小表現・大表現の両域で端から端まで Lean 定理 (計 10 本) になった。改良方針の計算項目は全て返済・定理化・論文化された。"
   status: "解釈 (第十五期統合 — Rust 314/0 [sim 変更なしで v14.0 が有効] + Lean 定理 10 本)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v15.0.md"
     result: "results/v150_full_suite.txt"
@@ -1162,6 +1733,12 @@
   level: C2
   claim: "主張台帳の全 96 主張の依存グラフ (claims.graph.yml) は非循環 (最大深さ 11) で、等級単調性 rank(dep)≤rank(claim) (C0<C1<C2<{C3,C4}<C5) を全依存辺が満たし、C1 以上は反証条件を・C2 は仮定を必ず持ち、仮定 37 件・反証条件 15 件に孤児がない。各仮定の影響範囲 (抜くと落ちる主張の依存閉包) が機械導出され、最大は ASM-LATTICE (格子正則化) の 51 主張。"
   status: "制限付き計算定理 (領域 = 台帳の主張集合。辺の意味論は ASM-EDGE-SEMANTICS — 人手判定の設計判断)"
+  layer: meta
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v151_audit.rs"
     result: "results/v151_audit.txt"
@@ -1175,6 +1752,12 @@
   level: C2
   claim: "依存グラフの Prolog 独立推論 (swipl, 表付き推移閉包): 全主張の深さ・被支持閉包・全仮定の影響範囲・全反証条件の射程・非循環性・等級単調性を Rust 監査 (v151_audit) と独立に導出し、全数一致 (v15.2 時点 97 主張・112 辺・仮定 37・反証条件 15)。DOT/Mermaid/Markdown/JSON の 4 形式でレポートを生成する。"
   status: "制限付き計算定理 (独立実装の相互検証 — v6.2 の三重照合と同じ流儀を監査自体に適用)"
+  layer: instrument
+  evidence_kind: theorem
+  independence: same_author_clean_room
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "dag/report.pl"
     result: "results/v152_dag.txt"
@@ -1188,6 +1771,12 @@
   level: C3
   claim: "QrnCoreV2: Gauss 拘束を基底の構造として厳密に解いた 1+1D Z2 格子ゲージ+staggered フェルミオン (L=14, 相互作用・非ガウス) の同一状態・同一発展から、幾何 (MI→MDS 隣接復元 100%、対照 3 種は全て破綻)・エントロピー (純粋性双対 |ΔS|~1e-15、面積則的飽和)・物質 (ゲージ誘起凝縮 χ: 自由 0 → h=0.6 で −0.25)・ゲージ (弦張力 σ/2h=0.955、弦切れ: E(r) が min(2hr, 遮蔽) で飽和)・因果 (前線速度は LR 上界内で h とともに単調減少, v(1.2)/v(0)=0.60)・熱化 (S(t) 成長 0.37 が閉じ込めで 0.03 に抑制) が読み出され、整合する。拘束の解法は L=4 の拘束なし全空間 (リンク陽持ち 256 次元) とのスペクトル一致 (1e-14)、自由極限 (磁束 2 セクター厳密和と 1e-12)、古典極限 (厳密)、L=8 稠密対角化 (1e-13) で検証。奇数電荷セクターは構成不能 (超選択則)。"
   status: "toy model による機構提示 (25 検査内蔵 — ガウス外への core 拡張の最小実演: 閉じ込めが情報伝播と絡み合い成長を遅くする)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v153_corev2.rs"
     result: "results/v153_corev2.txt"
@@ -1202,6 +1791,12 @@
   level: C1
   claim: "連続極限の監査: fit 装置 y=B+A·N^(−p) を合成 3 種 (B=0 回復 / B=0.5 検出 / ノイズ耐性) と厳密自由系列 (e∞=−2/π を 1.4e-5 で復元、Casimir 型 p̂=2.02) で検証した上で、Z2 core (L=6..16) の e/χ/Δ/S/σ が Cauchy 収束 (最終差 3e-9〜2.5e-5、σ(L)=0.7635 一定)、幾何読み出しは全 L で隣接復元 100%、ガウス core の中心電荷は c(N=66..402) → B̂=0.99999 (Dirac CFT の 1)。陰性発見: 前線推定器 v̂(L) は 0.89→1.50 と未収束 (LR 上界 2w の内側で上方ドリフト) — ただし閉じ込め抑制比 v(1.2)/v(0) < 0.6 は全 L で頑健。監査した readout 群に消えない残差 (B≠0 型の破れ) はなく、FAL-CONTINUUM は発火しなかった。"
   status: "再現実装 + 監査測定 (装置検証 → 較正 → 適用の三段。gapped 相の p̂=4.0 はグリッド上限 = 指数収束の兆候)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: calibration_data_reused
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v154_continuum.rs"
     result: "results/v154_continuum.txt"
@@ -1216,6 +1811,12 @@
   level: C4
   claim: "選択原理の有限候補戦 (事前登録の判定 ±1 nat): σ・Wilson 線を選ぶ 5 つのデータ非参照原理を、v10.1 の T²×T² 証拠エンジン (回帰 ±0.003 で較正、MDL 正規化子は解析値 0 を 4e-11 で再現) 上で一様事前と競わせた。P3 階層最大化は ΔlnZ=−494 で壊滅的棄却 (宇宙は最深でなく特定の深さを選ぶ)、P2 自己安定 (Wilson 感度最小) は −3.9 で棄却 (高尤度 config は急峻な領域に住む — λ を上げるほど悪化)、P1 MDL は −0.33 で未決 (単純さは中立)、P4 熱力学 (結合凝縮の代理 ln‖Y‖) は +0.32 で未決 (唯一の正符号)、P5 計算可能性はこの窓で判別力を持たず空 (C5 から削除)。oracle 上界 −5.87 に対し全候補が 14 nats 以上未達 — σ・Wilson 線の既約性 (v10.3/v13.2) は選択原理のクラスに対しても強化された。"
   status: "現象論的模型比較 (原理事前は正規化済み — 集中の当否だけが効く。生存 0 / 棄却 2 / 未決 2 / 空 1)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v155_selection.rs"
     result: "results/v155_selection.txt"
@@ -1230,6 +1831,12 @@
   level: C1
   claim: "非線形 Einstein への梯子 (N=402 自由フェルミオン環, 全て厳密相関行列): [一次] 波束回転の第一法則 δS/δ⟨K⟩ が奇部+Richardson で 1.00000 (厳密モジュラー K, 規格 ⟨K₀⟩_ρ₀=S₀ は 2e-11)。[二次] S_rel の冪 2.0006・Fisher F=7.55 (正準エネルギー) > 0・三次係数 c₃=−3.095 を測定。[全次数] 熱状態の S(ℓ,β) が AdS₃/CFT₂ 辞書で BTZ ブラックホール (非線形 Einstein 方程式の厳密解) の測地線公式に自由パラメータ 0 (c=1, v_F=2 固定・UV は真空差で相殺) で一致: β≥12 で max 残差 0.0084 nats (x=πℓ/vβ ≈ 7.9 の深い非線形域まで)、線形化 (x² 打ち切り) は 32 倍以上外れる。小 x 展開の計量二次応答係数 a₄=−0.00159 (理論 −c/540=−0.00185, 14%)。β=8 では相対 1.2% に劣化 — 温度が格子分散を照らす境界で、創発幾何の UV カットオフの位置が見える。"
   status: "再現実装 (第一法則 FGHMV / 熱エントロピー Calabrese–Cardy / RT-BTZ 辞書 — 「一次の等式・二次の正準エネルギー・全次数の BTZ」が同一格子データに立った)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v156_einstein.rs"
     result: "results/v156_einstein.txt"
@@ -1244,6 +1851,12 @@
   level: C4
   claim: "予言台帳 predictions.yml の導入 (6 件, 形式: observable/qrn_value/competing/data_not_used/falsifier/status) と holdout 採点: 凍結済み幾何湯川模型 (v10.1 エンジン, 回帰 lnZ=−19.863・MAP lnL=−5.874 一致) の下で、一度も尤度に入れていない |V_td| と Jarlskog J を計算。|V_td| は事後 95% 帯 [0.0002, 0.0070] に対し測定 0.0086 で外れ (scored-miss)。J は構造的に厳密零 (長方形 T²×T²+実 Wilson の因子化位相 — MAP |J|=8e-17, P(|J|>1e-6)=0) で、測定 3.08e-5 と決定的乖離 (window-refuted)。含意: 傾き磁束/複素構造 (v12–v13 の非因子化方向) は CP 破れが要求する拡張である — 外れの内容が窓の拡張先を指定した。BMV (C,V) 表 (v7.3 回帰)・分数電荷・LV 消失・Majorana も登録。"
   status: "現象論的予言の登録と採点 (外れも status として削除せず記録 — 予言は外れて地図を描く)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v157_predict.rs"
     result: "results/v157_predict.txt"
@@ -1260,6 +1873,12 @@
   level: C5
   claim: "第十六期のテーゼ: 監査は理論を殺さず、予言の外れが理論を導く。次の方針の 6 本柱が一期で全て走った — 依存が数えられ (103 主張の DAG, Rust/Prolog 二重監査)、core がガウスの外に出て (拘束つき相互作用系 + 連続極限監査)、選択原理 5 候補が秤で落ち (生存 0)、重力の梯子が 2D で閉じ (BTZ 全次数・自由パラメータ 0)、予言は外れてなお地図を描いた (J 構造零 → CP は非因子化幾何を要求)。理論が「裁かれる機械」になったとき、外れは失敗ではなく測量になる。"
   status: "解釈 (第十六期統合 — 全スイート 61 本全数実行 + T⁴ 4 本は v14.0 引用 [fmt 差分のみ] + Lean 定理 10 本)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v16.0.md"
     result: "results/v160_full_suite.txt"
@@ -1273,6 +1892,12 @@
   level: C4
   claim: "傾き T⁴ の CP 検定 (陰性・二重の発見): v13.2 の勝者磁束 (3,3,1,−6) の全窓 (36 Wilson × (kQ,ku,kd) × 4σ_H ≈ 19 万点、lnZ₉=−34.8804 の完全回帰つき) で max|J| = 2.6e-8、MAP の J = 1e-17。陽性対照 (因子化磁束の単一 T² 厳密対角化 → 積構成・共有 kQ・磁束量子 Wilson) は J = 1.6e-4 を検出 — (発見 1) 因子化スカラー格子の J は 0 でなく格子スケール: 連続体の CP 保存 (実化可能性) は格子で O(1/N²) 級に破れる。v15.7 の厳密零は Dirac+局在基底+Hadamard 積という別構造の性質。(発見 2) 傾き厳密縮退点の J はその格子スケールより 6000 倍深い — 装置の床ではなく、この点に固有の構造的 CP 抑制。ゼロモードが非因子化 (v12.1: MI>0) で湯川が複素でも CKM は実に留まり、深さ (v13.2) に続き CP でもこの窓は死んだ。機構 (何が J を格子スケール以下に守るのか — Pf=3 素数の単一磁気並進軌道のクロックが候補) は開いた問い。"
   status: "幾何拘束付き現象論の検定 (陰性 — 「CP を作る窓」の地図の最初の測点。CP の要求は「非因子化なモード」では足りないと判明)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v161_tiltcp.rs"
     result: "results/v161_tiltcp.txt"
@@ -1287,6 +1912,12 @@
   level: C3
   claim: "複素構造は CP を作る (最初の CP 可能窓): シアー境界条件 (x,N−1)→(x+s,0) = 複素構造 τ=(s+iN)/N の格子実装で、s=0 の構造零 (max|J|=4e-16, v15.7 の床の回帰) から s≠0 で J が 11 桁立ち上がる — s∈{1,2,3,6,9} で max|J| = 2.9e-5〜1.5e-4 (共有 kQ の物理的 CKM, Wilson Z6³ × σ_H 2 点)。しかも厳密 3 重縮退は全シアーで保たれ (幅 ~2e-13, ギャップ 0.1147 不変)、世代数 3 と CP が両立する。プラケット磁束の一様性 3.6e-15 (幾何の張り替えは磁束を保つ)。最小シアー s=1 の max|J| = 2.9e-5 は測定 J = 3.08e-5 と同桁 — 大きさの符合は包絡値であり fit ではないが、窓の資格として記録する。"
   status: "toy model による機構実証 (肯定 — 「CP を作る窓」の地図に最初の生きた点。v15.7 (長方形: 構造零)・v16.1 (傾き素数点: 6000 倍抑制) との対照が機構の所在を「幾何の形の位相」に特定)"
+  layer: phenomenology
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v162_shearcp.rs"
     result: "results/v162_shearcp.txt"
@@ -1301,6 +1932,12 @@
   level: C4
   claim: "シアー入り T²×T² の三つ巴 (深さ×Occam×CP): 16 幾何 (s₁,s₂)∈{0..3}² の M_perm 9 量証拠で、rect は回帰 −19.863 (v10.1 ±0.003)、CP の値段は最小 1.27 nats (片側 s=1 で −21.13)、シアーが深いほど階層が壊れる (s=3 対で −31.1)。J の事後は (1,1) で中央値 3.3e-6・MAP +1.04e-5 — 測定 3.08e-5 の 3 倍以内に初到達 (ただし中央値は一桁下)。トーラス交換対称 (0,1)≡(1,0) が厳密一致 (内部整合)。事前登録の判定 (c): 9 量の秤では rect 勝ち — だが rect は J=0 構造零で測定 J≠0 を原理的に説明できず、J を 10 量目に昇格させた再戦 (v6.5→v9.1 と同じ規律移行) が指定された。"
   status: "幾何拘束付き現象論の模型比較 (緊張の定量化 — シアー s は「J という専用観測量を持つ離散データ」として σ・Wilson 線の仲間に入った)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v163_sheartriple.rs"
     result: "results/v163_sheartriple.txt"
@@ -1315,6 +1952,12 @@
   level: C4
   claim: "10 量証拠 (9 量 + |J|, lognormal σ=ln2) での再戦: 勝者は最小対称シアー (1,1) の lnZ₁₀ = −24.29 で、rect (数値床上界 −328.5; 構造零を厳密に取れば −∞) を +304 nats 上回る — 9 量で −2.06 nats 負けていた同じ幾何を J 1 個の観測量が +306 nats 反転させた。最後の holdout |V_td| (尤度に入れない) は勝者の 10 量事後で MAP = 0.0082 (測定 0.0086 の 5% 以内)・68% 帯 [0.0031, 0.0106] が測定を含む — v15.7 の miss (rect 95% 上端 0.0070) が、CP を作るのと同じ複素構造で hit に転じた。装置: rect 9 量部回帰 −19.863、トーラス交換対称 2.3e-9。複素構造 τ は J と |V_td| という専用観測量を 2 つ持つ必須の離散データに昇格した。"
   status: "幾何拘束付き現象論の模型比較 (CP アーク v15.7→v16.4 の完結 — J はこれで holdout でなくなる [交換条件は v16.3 で事前宣言]、|V_td| は holdout のまま hit)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v164_tenquantity.rs"
     result: "results/v164_tenquantity.txt"
@@ -1330,6 +1973,12 @@
   level: C4
   claim: "10 量勝者 (最小対称シアー (1,1)) の全量スコアカード: MAP 構成 (σ_H=1, Wilson (7,32,9), σ=(5,1), e=(22,14,5,4)) で全 12 観測量が factor 5 以内 — 尤度 10 量は 10/10 (最悪 m_s/m_b の 2.91)、holdout 2 量も 2/2 (|V_td| factor 1.05, |V_ts| 2.30)。パーセント級 4 つ (m_e/m_τ 1.01, m_μ/m_τ 1.01, |V_ub| 1.03, |V_td| 1.05)。UT 角は γ=29.8°/β=11.0° と実測の約半分だが比 β/γ=0.37 (実測 0.34) — 三角形の形は合う。本プログラム初の全量的中 (v9.1 の T³ は 9 量中 8)。回帰: lnZ₁₀=−24.293, |V_td|_MAP=0.0082 (v16.4 一致)。"
   status: "幾何拘束付き現象論の点検 (乱雑係数ゼロ・連続パラメータは σ_H グリッドのみ・残りは全て離散データという構成での 12/12)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v165_scorecard.rs"
     result: "results/v165_scorecard.txt"
@@ -1344,6 +1993,12 @@
   level: C4
   claim: "Wilson 細分化 (Z6→Z12) の検定: 勝者シアー (1,1) で lnZ₁₀(Z12) − lnZ₁₀(Z6) = −0.04 nats — 半ステップの追加尤度が Occam 罰 10·ln2 = 6.93 nats とほぼ正確に相殺 (v8.1 の rect 先例と整合する中立)。|V_us| の factor は 2.51 → 2.77 で不変 — Cabibbo 過大は Wilson の粗さでは説明できず、容疑者はシアー離散 (s∈Z_N) か N=18 窓に絞られた。副産物: Z12 の MAP は |J| を 1.84→1.05 に改善しつつ 12/12 を維持 (谷は移動するが山の高さは同じ — 点評価と証拠は別物の再演)。次の検定は (N,s)=(36,2) の同一 τ_re 倍格子に一意に絞られた。"
   status: "幾何拘束付き現象論の検定 (弱点の原因切り分け — Wilson 粗さ説の棄却)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v166_wilson12.rs"
     result: "results/v166_wilson12.txt"
@@ -1358,6 +2013,12 @@
   level: C4
   claim: "N スケーリングの判別 (同一 τ_re=1/18, σ_H∝N, 磁束量子分率固定): (N,s)=(18,1)→(36,2) で |V_us| の factor は 2.51→2.57 と不変 — Cabibbo 過大は格子効果でなく τ_re=1/18 の構造 (物理)。指数 3 の厳密縮退は倍格子+シアーでも生存 (幅 7.9e-13 — 傾き磁束が割れたのと対照的にシアー族は N に堅牢)。lnZ₁₀ は −24.29→−22.26 (+2.03 nats) と連続極限方向で改善し、MAP の |J| 1.10・|V_cb| 1.41・|V_ts| 1.52 も良化 (12/12 維持) — 模型は格子の偶然ではない。弱点は「どの τ_re が |V_us| と J を同時に置くか」の一次元走査に凝縮された。"
   status: "幾何拘束付き現象論の判別 (弱点の原因確定: Wilson 粗さ [v16.6 無罪]・格子 [本版無罪] → τ_re の構造)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v167_nscaling.rs"
     result: "results/v167_nscaling.txt"
@@ -1372,6 +2033,12 @@
   level: C4
   claim: "τ_re の一次元地図 (N=36, s∈{1..5} → τ_re∈{1/36..5/36}, σ_H={2,3,4,5} 固定, 対称シアー): 事前登録 (c) — どの τ_re も |V_us| factor を 1.8 以内に置けない (最良 1.90 は τ_re=5/36 で証拠 −4.7 nats)。Cabibbo ≈2 倍過大は σ (v10.1)・Wilson (v16.6)・N (v16.7)・τ_re (本版) の全レバーで不変 = 対称シアー模型の構造的予言。発見: 証拠の谷は τ_re=1/12 (lnZ₁₀=−21.76, 1/18 比 +0.51 nats — N=18 では踏めない点) で 12/12 維持・m_d/m_b 1.08・m_s/m_b 1.01・holdout |V_td| 1.23 / |V_ts| 1.10 も同じ向きに改善。地形は非単調: τ_re=1/9 (s=4) は峰 (m_u/m_t 7.15 で走査初の factor 5 破り — v16.3 の N=18 でも同じ点が沈む)。J は s≥2 で飽和 (factor 1.06–1.17) — CP が要求するのは非零の最小シアーのみ。"
   status: "幾何拘束付き現象論の地図 (CP アーク v15.7→v16.8 完結 — |V_us| が急所として確定)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v168_taure.rs"
     result: "results/v168_taure.txt"
@@ -1387,6 +2054,12 @@
   level: C4
   claim: "非対称シアー (s₁,s₂) ∈ {0..5}² の N=36 二次元地図 (21 幾何, 対角化 72 本は s ごと 1 回・対の評価は表の使い回し): 事前登録 (c) — 証拠最良は対角 (3,3)=−21.757 のまま (対角優勢は N=36 でも成立)。しかし谷底は平坦で、|V_us| は非対称度 |s₁−s₂| と系統的に動く (対角が最悪 1.90–3.04, Δs≥2 はほぼ全て 1.8 未満): (1,3)=−21.98 (Δ0.23 nats) で |V_us| 1.67・12/12、(2,3)=−22.26 (Δ0.50) で 1.35、(2,5) は factor 1.03 (−3.5 nats)。v16.8 の『Cabibbo の谷なし』は対称断面の病気であり、Cabibbo を壊すのはシアーでなく両トーラス同一シアーの対称性 (rect (0,0) も 1.17)。J は逆に対称 s≥2 を好む (1.06–1.17 vs 非対称 1.3–2.4) — 綱引きの正体は『J は対称・|V_us| は非対称』で、妥協点 (1,3)/(2,3) は全 12 量 factor 5 以内。片側シアー (0,s) は s₂≥2 で CP 可 ((0,1) は J 不足 factor 5.5 — v16.3 整合)。rect (0,0) の N=36 床 lnZ₁₀=−269 (|J| factor 2.0e6) で構造零を倍格子でも記録。装置: 対角 5 点の v16.8 回帰 ±0.001・交換対称 (2,3)≡(3,2) |Δ|=4.5e-12・厳密縮退 6 シアー全て ≤1.0e-12。"
   status: "幾何拘束付き現象論の地図 (シアー族 2D 完結 — |V_us| は急所から『対称/非対称の離散データ選択』へ)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v169_asymshear.rs"
     result: "results/v169_asymshear.txt"
@@ -1402,6 +2075,12 @@
   level: C4
   claim: "谷底平坦域の σ_H グリッド感度 (台上 4 幾何 (2,2),(2,3),(1,3),(3,3) × 4 グリッド): 事前登録 (b) — 首位はグリッドで入れ替わる。σ=2.0 を含む G0/G1 では (3,3) 首位 (Δ+0.23/+0.18 — 細分で縮む)、含まない G2 では (2,2)・G3 では (1,3) が首位で Δ は −3.18 まで反転。⇒ 『対角 vs 非対称』は現在の 10 量証拠では決められない (谷底 4 幾何は証拠縮退 — v16.9 の (c) 判定は σ_H の扱いに条件付き)。σ プロファイル terms10(σ) が影の正体を示す: 全 4 幾何の証拠は σ_H=2.0 (N=36) に集中し、(3,3) はピーク最高 (+4.71) かつ裾最速落ち (σ=3.0 で他幾何の 3〜5 nats 下) — ピークを外したグリッドは裾で順位を決める。頑健な発見: Higgs 幅の証拠は幾何・格子・グリッドに依らず物理幅 σ_H/N = 1/18 (v10.1 の N=18 MAP σ_H=1.0 と同一) — 湯川エンジンで最も安定した連続パラメータ。全 4 幾何 12/12 維持で個性が分かれる ((1,3) は |V_cb| 1.03・|V_ts| 1.01、(3,3) は質量比、(2,3) は |V_us| 1.35)。装置: G0 の 4 値は v16.9 回帰 ±0.02・厳密縮退 s=1,2,3。"
   status: "幾何拘束付き現象論の感度裁定 (幾何選択は証拠限界に到達 — 残る裁定手段は新観測量・σ 連続周辺化・外部原理)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v1610_sigsens.rs"
     result: "results/v1610_sigsens.txt"
@@ -1416,6 +2095,12 @@
   level: C4
   claim: "選択原理の再戦 (シアー族 N=36 全 21 幾何・10 量証拠 [J 込み — rect は尤度が構造零で殺す]・二層事前 π(幾何)×π(config)): 生存 1 / 棄却 2 / 未決 1。P3 Depth (階層最大化) が +2.31 nats [β=.25: +1.52, β=.5: +2.75] でプログラム初の生存 — v15.5 (rect 9 量) で −494 の壊滅だった原理が反転した。機構: 対称幾何では深さの尾が観測を突き抜け壊滅 (対角で −514.9 — v15.5 の rect −514.4 を再現)、非対称幾何では二つの異なるモード表の積が極値を揃えず尾が観測近くで切れる → 最深集中が一様に +1.9 nats 勝つ。生存した Depth は証拠縮退の谷底 (v16.10) を (1,3) 向きに破る (対角を −494 で消す)。P1 MDL は −2.16 で棄却 (v15.5 未決 → rect 選好が J の罰を相続)。P2 Robustness −1.56 棄却 (再現・λ 変種間で首位不安定)。P4 Thermo +0.41 未決 — v15.5 の +0.32 と符号・大きさが窓を跨いで再現 (弱いが消えない正信号)。装置: 一様 per-geometry の v16.9 回帰 21 幾何 最大偏差 4.8e-7・marginal −23.121 一致・モード表 disk キャッシュ導入 (対角化 101 分は最後の支払い、評価は 18 秒)。"
   status: "上位原理の残高が動いた (生存 0 → 1) — 幾何の対称/非対称は Depth 原理で選べる可能性。(1,3) は「Depth 生存下の作業仮説」(証拠単独の選択ではない — 規律ノート参照)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v1611_selection2.rs"
     result: "results/v1611_selection2.txt"
@@ -1430,6 +2115,12 @@
   level: C4
   claim: "Depth 生存曲線 (β 9 点 + 解析的 β→∞ hard selection 端点, キャッシュ全命中で対角化 0 本・20 秒): 事前登録 (a) — 崩壊あり。峰 β=1.0 (Δ+3.34, v16.11 の 2 点 marginal +2.31 を上回る)、生存帯 β∈[0.25,~1.7]、崩壊 β*=2.0、hard selection は Δ−8386 で壊滅 = シアー族の最深 config は観測に座っていない。v16.11 の解釈『非対称では尾が観測近くで切れる』を修正: 非対称の尾は対称より約 2 桁浅い (β→∞ 端点 −10⁴ vs −1.4×10⁶) がどちらも観測を突き抜け、生きているのは β~1 の傾けが典型集合を観測の深さに乗せること。『宇宙は最深を選ばない』(v15.5) はシアー族でも成立。峰の選好: 谷底内では (1,3) が生存帯全域で首位 (作業仮説は β 頑健)、全 21 幾何では (2,4) −18.23 が (1,3) −18.26 と 0.03 nats で並ぶ — 実体は |s₁−s₂|=2 の非対称帯。解釈 (未証明): e^{β·depth}=Πr^{−β} なので β=1 は質量比の対数一様 (スケール不変・Jeffreys 型) 測度への変換 — 生き残ったのは『最深化』でなく『スケール不変性』の可能性。回帰 3 本 (一様/β=.25/β=.5) 一致。"
   status: "原理戦の解剖 (Depth は有限 β の物語 — C5 昇格せず。より鋭い仮説『スケール不変測度』に置換、Jeffreys 判別が次の的)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v1612_depthscan.rs"
     result: "results/v1612_depthscan.txt"
@@ -1444,6 +2135,12 @@
   level: C4
   claim: "Jeffreys 判別 (β=1 傾き vs 深さ平坦化 1D vs 対数一様化 2D — 平坦化重みは配位集団のみから構成、データ盲目、ビン幅 3 種): 事前登録 (a) 成立 — flat1D (bw=.5) Δ+3.29 は β=1 の Δ+3.34 と 0.05 nats で並び、全変種が +2.9〜+3.3 の同じ帯 (性能レベルで β=1 の働き = 測度補正)。副検定は素朴機構を棄却: 配位密度 ln n(d) の勾配は中央値 −0.19 (10–90% [−0.24, −0.005]) で ≈−1 でない — β=1 は e^{−d} 密度の相殺ではない。統合: シアー族の配位測度は浅い質量比を過剰代表しており、それを除く任意の測度補正 (傾き・平坦化・対数一様化) が +3 nats 級で生存 — 原理の座は単一の Depth(β) から測度補正クラスへ。平坦化は有界重みなので対称幾何を殺さない ((3,3) が flat2D で −19.71 に復帰) が、(1,3) は全 8 変種で谷底首位 (作業仮説はクラス全体に頑健)・全体首位も (1,3)/(2,4) の |Δs|=2 帯で不変。回帰 2 本 (一様/β=1) 一致・キャッシュ全命中 21 秒。"
   status: "選択原理アーク (v15.5→v16.13) 一巡 — 現在の答え:『比のスケールに素朴一様測度は誤りで、補正はデータを見ずに構成できる』。第十七期統合が次"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v1613_jeffreys.rs"
     result: "results/v1613_jeffreys.txt"
@@ -1458,6 +2155,12 @@
   level: C5
   claim: "第十七期のテーゼ: 観測が幾何を選び、幾何の縮退は原理が破り、原理の正体は測度だった。幾何アーク (v16.1–v16.10) は前期の本丸「非因子化窓の CP」を完結させた — 傾きの死・シアーの突破・10 量での +306 nats 反転を経て複素構造 τ が専用観測量 2 つを持つ離散データとして台帳入りし、12/12 の全量的中の先で |V_us| は「両トーラス同一シアーの病気」と診断され、その診断すら証拠の分解能以下と裁かれた (Higgs 幅 = 物理幅 1/18 だけが頑健)。原理アーク (v16.11–v16.13) は証拠が縮退させたものをデータ盲目の原理が破るという選択原理の仕事を初めて実現し (Depth +2.31 生存・(1,3) 作業仮説)、その生存の正体を「最深の選好」から「配位測度の浅い比過剰代表の補正」クラスへ還元した。反証で進む機械は、否定 (rect・傾き・最深の死) を積むたびに台帳へ新しい離散データを刻む — CP は複素構造を、縮退は測度を刻んだ。"
   status: "解釈 (第十七期統合 — 全スイート 74 本全数実行 + T⁴ 4 本は v14.0 引用 + Lean 定理 10 本引用)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v17.0.md"
     result: "results/v170_full_suite.txt"
@@ -1469,6 +2172,12 @@
   level: C4
   claim: "谷底 2 幾何 ((3,3) 証拠最良 / (1,3) 生存原理の作業仮説) の 10 量事後帯 (5 量: |V_us|, |J|, |V_cb|, |V_td|, |V_ts| — v16.4 WHist 方式): 事前登録 (b) — |V_us| の 68% 帯は重なる ([0.42,0.52] vs [0.25,0.49]) = 縮退は証拠 (v16.10) だけでなく事後分布の置き場所でも縮退。ただし測定 0.225 の位置は非対称: (1,3) 帯の下端 0.2497 のすぐ外 (~10–16% 裾)・(3,3) の床 0.422 の遥か下。分布言明は点言明 (12/12 factor 5) より厳しい: 両幾何で |V_us| (過大) と |J| (過小) の 68% 帯が測定を外す — 模型族の張力の住所が 2 箇所に確定 (v16.9 の綱引きの分布版)。holdout |V_td|/|V_ts| は両幾何で 68% 被覆 (out-of-sample 健全性は分布でも維持)。被覆 3/5 ((1,3)) vs 2/5 ((3,3) — |V_cb| 0.0403 vs 0.041 の紙一重)。幾何判別は証拠・原理・分布の 3 評価法で縮退 — 残る判別手段は新観測量か新自由度 (τ_im 等)。装置: lnZ₁₀ 回帰 2 本 ±0.001・キャッシュ 24/24・1 分未満。"
   status: "幾何拘束付き現象論の分布診断 (QRN-YUK-024 限界 (ii) 返済 — 反証チャネルの住所 |V_us|/J が確定)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v174_postbands.rs"
     result: "results/v174_postbands.txt"
@@ -1483,6 +2192,12 @@
   level: C4
   claim: "τ_im (アスペクト比) の走査 — 全版で 1 に固定されてきた複素構造の虚部を初めて動かした (矩形格子 36×n_y, n_y∈{24,30,36,42,48}, シアー (3,3), 磁束は面積量子化, σ_H は面積比例): 事前登録 (b) — τ_im=2/3 が +2.12 nats で新レバー。証拠は走査全域で τ_im に単調 (横長ほど良い) で最良点は走査境界 (τ_im<2/3 へ開いたまま)。lnZ₁₀=−19.641 は 10 量証拠の計画最良値 (rect の 9 量王者 −19.86 を J 込みスケールで超えた — CP を作れて rect 水準を回復する幾何が初出)。v17.4 の張力 2 箇所が両方緩む: τ_im=2/3 で |V_us| 2.20→1.46 かつ |J| 1.17→1.11。τ_im=5/6 では |V_us| 1.17 (対角のまま — Cabibbo の「対称の病気」はアスペクト比でも治療可) だが J 2.10 — 張力は τ_im 軸上でもトレードし総証拠は片方向単調。格子の縮退数論は堅牢: 全 5 アスペクトで厳密 3 重縮退 ~1e-12 (面積量子化の下で矩形格子は指数を保護 — v16.1 の傾き磁束と対照)。系論: v16.10/v17.4 の「幾何縮退」は τ_im=1 断面内の縮退だった (判定は当時の走査空間で正しいが空間が広がった)。装置: 正方回帰 −21.757 (キャッシュ)・矩形一般化 3 関数。"
   status: "幾何拘束付き現象論の新レバー発見 (τ モジュライ平面が完全に開いた — τ_im<2/3 走査と最良点の全量スコアカードが次)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v175_tauim.rs"
     result: "results/v175_tauim.txt"
@@ -1497,6 +2212,12 @@
   level: C4
   claim: "σ_H の連続周辺化 (σ∈[1.2,8.0] 一様・台形則 69 点・収束ゲート 0.05 nats を半密度比較で通過 [初走 Δ=0.2 は 0.090 で外し基準を緩めず倍密で再走 — 開発記録]): 事前登録 (a) — 谷底 4 幾何は連続化後も全幅 0.33 nats で縮退 (v16.10 はグリッドの影でなく実体)、τ_im 単調性は保存されレバーは +2.12 (G0) → +3.00 nats (連続) に拡大。σ 事後は全 6 幾何 (矩形含む) で σ*≈2.0–2.2・物理幅 ≈1/18 — Higgs 幅の頑健性が三たび (グリッド 4 種・面積スケール・連続化) 確認された QRN 湯川系最強の連続構造。G0 回帰 6 本 ±0.001。矩形モード表 (36×24, 36×30) を rect キャッシュに格納 — 測度判定 (v18.4) の全窓が分単位化。measures.yml プロトコル 2 (σ 連続化が先) の返済。"
   status: "測度アークの装置整備 (PROMPT/3 v18.1 完了 — 判定 v18.4 の土俵が確定)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v177_sigmacont.rs"
     result: "results/v177_sigmacont.txt"
@@ -1511,6 +2232,12 @@
   level: C4
   claim: "配位密度の解析形検査 (モーメント構成 2D Gauss → 二次傾き測度 w=½(x−μ)ᵀΣ⁻¹(x−μ)、bin なし・フィット自由度ゼロ・データ非参照): 事前登録 (c) — 全窓一致は不成立。窓分解が本発見: 非対称 (36;1,3) では (a) 級に成立 (深さ QQ-RMS 0.25 = ほぼ Gauss、二次傾き Δ+3.09 は binned flat2D の +3.18 と 0.10 一致 — S1 完全充足)。対角 (36;3,3)/(24;3,3) では標本分散が尾に支配され (σ_d~50, QQ~52)、二次傾きは深い尾へ質量を送り自滅 (Δ−351/−318) — v16.12 hard-selection 壊滅と同一機構のモーメント版。核心構造: 対角幾何の配位空間には観測より遥かに深い異常な尾があり (v16.11 対称壊滅・v16.12 hard 壊滅・本版モーメント壊滅の三つの顔)、測度補正の解析形が書けるかは幾何族で分かれる — 非対称族 = モーメント適合、対角族 = 尾支配 (有界重みの平坦化のみ機能)。符合: 原理が選ぶ族と解析形が書ける族が一致。装置: 一様 G0 回帰 3 本 ±0.001・QQ は 99 分位の分布フリー比較・キャッシュ全命中 2 分。"
   status: "測度アークの構造発見 (PROMPT/3 v18.2 部分返済 — 解析形は族依存。MSR-GAUSSFLAT を資格条件つきで登録)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v178_densform.rs"
     result: "results/v178_densform.txt"
@@ -1525,6 +2252,12 @@
   level: C4
   claim: "測度判定 (measures.yml の事前登録候補 6 種を固定プロトコル [3 窓・連続 σ 69 点・全候補同時・S1–S3] で一斉判定): 生存 0 / 未決 1 / 棄却 5。GAUSSFLAT は Δ+1.93 と S2 を通過したが S3 違反 (資格窓の UT 角 holdout を 1.96→4.53 rad に悪化) で棄却 — S3 が初めて実戦で候補を落とした (「証拠を上げる測度」と「予言を良くする測度」は別物)。THERMO は +0.49 (3 窓 +0.44/+0.40/+0.63 全て正・v15.5/v16.11 と合わせ 3 時代 5 窓で符号不動) の唯一の全検査通過で未決 — 一ループ化が本命に昇格。構造発見: 窓 3 (τ_im=2/3 最良幾何) が平坦化系の優位を反転 (FLAT1D −2.15/FLAT2D −0.38/GAUSSFLAT 資格外) — v16.13 の測度補正クラスの生存は τ_im=1 断面の配位測度の病理の補償だった (=|V_us| の「対称の病気」と同構図で測度問題は幾何問題に溶ける)。副産物: UT 角基線が全窓で負符号 (β −7〜−10°, γ −12〜−16° vs 測定 +22.2°/+65.9°) — orientation (τ→−τ) 反転の検査が新しい的。装置: 一様連続値の v17.7 回帰 3 本 ±0.004・S3 基線は採点前凍結印字・キャッシュ全命中 63 秒。"
   status: "測度アークの判定完了 (PROMPT/3 v18.4 — 生存 0。上位原理の残高は THERMO 一ループ化・τ 分布の上位問題・orientation へ更新)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v179_measurejudge.rs"
     result: "results/v179_measurejudge.txt"
@@ -1539,6 +2272,12 @@
   level: C4
   claim: "τ_im の谷の底 (n_y∈{12,15,18,21,24}, シアー (3,3), v17.5 と同一プロトコル): 事前登録 (a) — 谷の底は内部の τ_im=1/2 (n_y=18) に確定。複素構造 τ = 1/12 + i/2 で lnZ₁₀=−18.43 (計画最良 — v17.5 の −19.64 を +1.2、rect 9 量王者 −19.86 を J 込みの秤で 1.4 nats 超え)。この一点で |V_us| factor 1.03 かつ |J| factor 1.06 — v16.9 の綱引き (J は対称・|V_us| は非対称を要求) が対角シアーのまま同時解決 = 綱引きは τ_im=1 断面内の見かけの対立だった。谷形: 底の両側に肩 (5/12: −18.85 / 7/12: −19.07)、|V_us| は走査に沿い振動 (格子有理点の数論の気配 — 未解明)。厳密 3 重縮退は τ_im∈[1/3,4/3] の 9 点全てで ~1e-13。幾何の現在地: τ = 1/12 + i/2・対角 (3,3)・Higgs 物理幅 1/18・36×18 — CP 6%・Cabibbo 3%・証拠最良・一様測度で立つ (τ は「必須の自由度」から「測定された値を持つ自由度」へ)。装置: n_y=24 回帰 ±0.001・対角化計 4 分・新аспект 4 種を rect キャッシュ格納。"
   status: "幾何拘束付き現象論の収束点 (綱引き同時解決 — 全量スコアカード・事後帯・測度再検・orientation が新最良幾何で次)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v1710_tauimdeep.rs"
     result: "results/v1710_tauimdeep.txt"
@@ -1553,6 +2292,12 @@
   level: C4
   claim: "収束点 τ=1/12+i/2 (36×18; 対角 (3,3)) の全量特性 (σ 連続 69 点・G0 回帰 ±0.001): [A] スコアカード 12/12 (6 幾何連続)・10% 級 6 個 (歴代最多) — |V_us| は factor 1.01 (0.5%)。最弱は m_c/m_t 2.04 (companion の歴史的弱点に回帰 — 幾何レバーは CKM/CP を解いたが第二世代 up 質量は別の住所)。UT 角 holdout: β=−13.7°/γ=−44.6° — 大きさは測定 (22.2°/65.9°) に近づき符号だけ全負 (orientation 検査が濃厚)。[B] 事後帯 (a): v17.4 で外れた |V_us|・|J| の 68% 帯が底では両方被覆 — 張力は分布レベルでも解消 (新たに |V_cb|/|V_ts| 帯がやや高め [端 11% 外] — 張力は移動し大幅に軽い)。[C] 測度再検 (a): 底では平坦化が明確に害 (FLAT1D −3.73/FLAT2D −1.23/GAUSSFLAT 資格外) — v17.9 の還元主張が真の底で確認・強化 (正誤表不要)。THERMO +0.51 — 4 つの窓世代で符号不動。"
   status: "収束点の全量像確定 (測度アーク完結 — 残る計算的弱点: m_c/m_t・|V_cb|/|V_ts| 帯・orientation)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v1711_apexchar.rs"
     result: "results/v1711_apexchar.txt"
@@ -1567,6 +2312,12 @@
   level: C4
   claim: "orientation の検査 (収束点 36×18; (3,3) の共役分枝 ψ→ψ*): 事前登録 (a) 成立 — 反ユニタリ対称が機械精度で検証された (lnZ₁₀ 分枝不変 3.3e-10・J 厳密反転 ±3.2634e-5・UT 角の和 ~1e-13)。orientation は Z₂ の離散データ (共役分枝の対) であり 10 量尤度 (|J|) はこれに盲目 — 測定された sign(J)>0 が分枝を一意に固定する (J の符号込み 11 量化は不要、分枝選択として台帳化)。測定分枝の holdout: γ = +66.8° vs 測定 65.9°±3.5° — 測定誤差内 (factor 1.01, PRED-007 scored-hit)・β = +15.2° vs 22.2°±0.7° (factor 1.46 — 誤差帯外・factor 5 内, PRED-008 保守的に scored-miss)。符号込みで 12 量 + UT 2 角 = 14/14 級 — CP の物語は大きさ (|J| 6%) と位相角 (γ 1.4%) の両方で閉じた。"
   status: "CP アークの最終ピース (orientation 固定 — 残る CKM 系弱点は β の 32% と m_c/m_t のみ)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v1713_orientation.rs"
     result: "results/v1713_orientation.txt"
@@ -1581,6 +2332,12 @@
   level: C5
   claim: "第十八期のテーゼ: 問いを一段上げるたびに、答えは幾何に返ってきた。測度を疑えば τ が動いていなかったことが分かり (測度補正クラスは S1–S3 の秤で全滅 — S3 の初仕事が「証拠を上げる測度と予言を良くする測度は別物」を実証)、τ を測れば張力が消え (τ = 1/12 + i/2 で lnZ₁₀=−18.43 計画最良・|V_us| 0.5%・12/12 と分布被覆)、残った符号は測定の 1 ビットが固定した (orientation = Z₂、γ = +66.8° が測定誤差内)。台帳の最深部にあるのは、いまや原理ではなく、測られるのを待つ数である。生き残りは熱力学の弱い声 (+0.3〜0.6, 4 窓世代で符号不動) と τ 分布の上位問題。PROMPT/3 の v18 系 6 項目を全て完了し、paper は 4 本 (全て LaTeX 化・コンパイル検証済み)。"
   status: "解釈 (第十八期統合 — 全スイート 82 本全数実行 485/0 + T⁴ 4 本引用 21/0 = 506 PASS / 0 FAIL + Lean 定理 10 本引用)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v18.0.md"
     result: "results/v180_full_suite.txt"
@@ -1592,6 +2349,12 @@
   level: C4
   claim: "収束点の連続極限検証 (τ = 1/12 + i/2 厳密固定で (36×18; s=3) → (72×36; s=6)、磁束面積量子化・σ 物理幅固定・5184² 稠密 jacobi×12): 事前登録 (b) — factor の系統移動あり、ただし移動は既知の弱点に集中。12/12 は倍格子でも維持 (7 幾何連続)・大半の factor ±20% 内 (m_u/m_t, m_s/m_b, |V_ub| は改善)・厳密 3 重縮退保持 (1.3e-12 — 有理点 n_x=2n_y は格子細分でも指数を保護 = 数論の追加データ)。一方 lnZ₁₀ は −18.429→−19.182 (−0.75) と低下し、最大移動は m_c/m_t 1.90→3.22 (1.70×) — 歴史的弱点が格子依存と判明 (粗格子の m_c 成功は一部離散化の産物)。τ_im=1 断面の「連続極限で証拠は強くなる」(v16.7) は apex では逆向き — −18.43 は格子条件付きで読む (v17.10/11 の scoping 修正; 12/12 と張力解消の質的主張は不変)。残存弱点 m_c/m_t は幾何レバー外+格子敏感 = 別の物理 (Higgs プロファイル等) の示唆。"
   status: "収束点の構造/格子の分離 (質的成功は構造・微差は格子 — m_c/m_t の住所が一段明確に)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v182_apexcont.rs"
     result: "results/v182_apexcont.txt"
@@ -1606,6 +2369,12 @@
   level: C4
   claim: "レプトン混合の holdout (最小幾何シーソー: ν_R は独自 Wilson 住所で 10 量尤度に無拘束・M_R=M₀·I [直交性による零パラメータ選択]・m_ν∝Y_νY_νᵀ・k_L は Y_e と共有・帯 = e 部事後×σ_H 事後×ν 一様の prior-predictive — 構成上データ盲目): 被覆 1/4 で最小設計は棄却級。sin²θ23 帯 [0.003,0.003,0.242] vs 測定 0.55 が決定的 miss (PRED-010)・sin²θ12 は 84% 端の 3% 外で惜敗 (PRED-009)・r=Δm²比 は 13 倍外 (PRED-012 — Dirac 階層の二乗が素通し)・sin²θ13 のみ hit (PRED-011, 帯広)。sign(J_lep) は P(+)=0.49 で予言なし (ν 一様が洗う)。読み: クォークを成功させた重なりの階層性はレプトン大混合に敗れる — J=0 構造零が複素構造を指したのと同型の情報量ある外れで、住所は Dirac 側でなく Majorana 側 (M_R = B−L 破れの幾何)。符合: anomaly-search の「第二の力は B−L で ν_R を強制」と繋がる — B−L 破れ場のプロファイルが M_R テクスチャを与える構造は台帳が既に持つ。装置: 収束点固定・キャッシュ命中・σ_H 事後折り込み・75 秒。"
   status: "レプトン・セクターの開幕 (否定的発見 — 次の的は M_R の幾何化 [B−L 破れプロファイル]、大混合が出れば PMNS の証拠昇格の道)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v183_pmns.rs"
     result: "results/v183_pmns.txt"
@@ -1620,6 +2389,12 @@
   level: C4
   claim: "M_R の幾何化 (B−L 破れ場 φ_B = 周期 Gaussian [位置 6×6 × 幅 4 = 144 種の新離散データ]・非共役 Majorana 重なり・シーソー Y M_R⁻¹ Yᵀ・v18.3 と同一のデータ盲目プロトコル・33 億配位 37 分・特異 M_R 0 件): 事前登録 (b) — sin²θ23 帯 [.003,.003,.278] は測定 0.55 に依然届かない (被覆 1/4→2/4 に前進)。ただし改善は全量で単調: sin²θ12 が被覆に転じ ([.003,.018,.357] ∋ 0.307)・r=Δm²比 4.5 倍改善 (上端 .0023→.0103)・θ23 上端 +15%。読み: Majorana 構造という方向は正しく、足りないのはプロファイルの豊かさ — 単一 Gaussian の M_R は一山の重みしか作れず、階層反転に要る強い非対角/near-singular 構造を作れない (特異 skip 0 件が良条件すぎる証拠)。次の構造候補を登録: (1) 磁束つき φ_B (位相干渉 — CP アークの型)、(2) ν_R を別幾何のトーラスに、(3) Weinberg 直行。規律: PRED-009 (θ12) は本設計なら hit だが事前登録採点は v18.3 設計に対するもの — status 不変 (設計変更後の hit は新登録で数える)。"
   status: "レプトン・アーク第 2 歩 (θ23 = 一貫した壁 — |V_us| の「対称の病気」と同型の構造診断待ち)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v184_mrgeom.rs"
     result: "results/v184_mrgeom.txt"
@@ -1634,6 +2409,12 @@
   level: C4
   claim: "磁束つき φ_B (巻き数位相 (wx,wy)∈{0..3}² × 位置 3×2 × 幅 3 = 288 種・複素 Majorana 重なり・66 億配位 72 分): 事前登録 (c) — 実質変化なし。θ23 上端 0.278→0.263 (僅かに低下)・特異 M_R は依然 0 件・P(sin²θ23∈[0.4,0.7])=5.9%。no-go の輪郭 (機構特定): M_R 非対角は世代波動関数の空間分離 (中心間 12 サイト vs 幅 ~3) で指数抑制され、φ_B が何であっても位相は「重なりのある場所」にしか干渉を作れない → M_R ほぼ対角 → シーソーは Y_ν の階層を保存 → 小混合。3 設計 (M∝I/Gaussian 144/位相 288)・計 100 億配位で壁が微動しないのはこの帰結 — 「局在ゼロモード × 任意スカラー・プロファイル」の枠内でシーソーは大混合を作れない (companion の単一トーラス no-go・素数 3 no-go と同型の構造的否定 — 数値的輪郭であり格子定理ではない)。Weinberg 直行も L の局在で同じ抑制の見込み (未走査)。逃げ道は「ν_R の局在半径を変える幾何」に絞られた: 小トーラス係数 (幅/間隔≳1 には Q≳2π n_x²/面積)・高磁束+射影・非最小結合。"
   status: "レプトン・アーク第 3 歩 — 問いが「どのプロファイルか」から「どの局在か」へ昇段 (|V_us|→τ と同じ型)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v185_fluxphib.rs"
     result: "results/v185_fluxphib.txt"
@@ -1648,6 +2429,12 @@
   level: C4
   claim: "θ23 尾の解剖 (σ 峰 1 本・16 億配位・62 分): 事前登録 (b) — 尾は無構造 (σ_B/巻き/σν の最大集中比 1.09, M_R 非対角比も尾=全体 0.38)。尾の大混合は U_ν (0.34→0.63) と U_e (0.12→0.31) の両因子の偶然の整列であり機構ではない — プロファイル調整の逃げ道は解剖レベルで閉じた。しかし存在証明が出た: 尾の中にレプトン 4 量をほぼ厳密再現する config が存在 (s12=0.309/0.307, s23=0.555/0.55, s13=0.022/0.022, r=0.0301/0.030 — σ_B=4, |w|=2, kν=Wilson 対 (3,3), σν=2。フィットではなく展示・事前質量 ~2.4e-5 と明記)。書き換え: v18.5 の no-go は典型集合 (帯) の言明で、到達可能集合は測定点を含む — 問いは「届くか」(届く) でなく「事前質量を針へ集める lever は何か」= クォークの |V_us| が τ 発見で「届くが典型でない→典型」になったのと同型。針の座標 (kν 対 = シアー対と同じ (3,3)) は手がかりとして記録 (偶然かは未検定)。lever 候補: ν 専用の幾何レバー・針近傍の局所地図・局在半径の幾何。"
   status: "レプトン・アーク第 4 歩 — 「届くが典型でない」と確定 (問いは lever 探索へ — クォーク τ アークの型)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v186_tailanat.rs"
     result: "results/v186_tailanat.txt"
@@ -1662,6 +2449,12 @@
   level: C4
   claim: "針の解剖 (全量 hit 集団の全記録 61,900 個・16 億配位・61 分): 事前登録 (b) — kν=(3,3) は偶然 (hit 集団の kν は散在: 上位シェア 4.6%, (3,3) は 2.0% — シアー整数対との一致はノイズ)。決定的発見: 針は σ_H に脆い (σ₀=3 でのみ全量圏、隣の σ で s23 0.555→0.11/0.16/0.11) — クォーク apex の σ 頑健性 (Higgs 幅 1/18 三重確認) と対照的に、レプトンの当たりは σ まで含めた多重調整の偶然。一方で尾域は連結 (針を通る軸上 kν 10/36・B 86/288) で存在証明は集団として頑健。弱い構造は σν=3 (巡回置換) の 29.2% シェア (1.75 倍 — 3 倍基準未達、記録のみ)。レプトン・アーク結語 (5 版): 現構成では測定点は到達可能集合に入るが、どの走査座標も事前質量を集めず — lever は現在の座標系の外 (ν_R 局在半径の幾何 = 高磁束+射影) にある。v18.5 の no-go 輪郭と独立経路で同じ出口に収束。"
   status: "レプトン・アーク結語 (第 5 歩 — 出口特定で健全な一時停止点。次は高磁束+射影の大型設計 or 他柱へ転進)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: algorithmically_diverse
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v187_needle.rs"
     result: "results/v187_needle.txt"
@@ -1676,6 +2469,12 @@
   level: C5
   claim: "第十九期のテーゼ: 届くことと選ばれることは違う。クォークでその隔たりを埋めたのは幾何の一つの数 (τ = 1/12 + i/2) だったが、その収束点も連続極限検証で「質的成功は構造・評価値は格子条件付き・m_c/m_t は格子依存」と精密化された (最良の結果ほど厳しく検証する規律)。レプトンで同じ隔たりを測ったら (5 版のアーク: 最小棄却 → Majorana 方向 → no-go の機構 [局在が壁] → 針の存在証明 [61,900 config] → 針は偶然かつ σ に脆い)、矢印は地図の外 — ν_R の局在半径を変える幾何 (高磁束 Q_ν ≳ 2π n_x²/面積 + 射影) — を指した。二つの独立経路 (no-go の機構と針の解剖) が同じ出口に収束。外れの連鎖が地図を描くのは、地図の端を教えるときも同じである。paper 4 本は LaTeX 化まで完了 (投稿前残は著者確定のみ計算外)。"
   status: "解釈 (第十九期統合 — 全スイート 84 本全数実行 472/0 + 引用 8 本 51/0 = 523 PASS / 0 FAIL + Lean 定理 10 本引用)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v19.0.md"
     result: "results/v190_full_suite.txt"
@@ -1687,6 +2486,12 @@
   level: C2
   claim: "3+1D 格子 Rindler のエンタングルメント第一法則 δS = δ⟨K_A⟩ (staggered fermion 実対称構成・x 開放 = 単一絡み面・半空間 A・K_A = C_A 固有基底の ln((1−c)/c)・壁局在波束対の直交回転摂動・奇部推定器 + Richardson): 事前登録 (a) 成立 — R = δS/δ⟨K_A⟩ が 4 点 (波束対 2 × N∈{8,12}) 全てで 0.99889〜0.99971 (最大 |R−1| = 0.11%, 基準 1% の一桁下)。R は N=8 と N=12 でほぼ同一 = 残差はサイズ非依存 (格子誤差でない)。Einstein 橋 (PROMPT/3 v20 の梯子) の第一段が 3+1D で立った — v0.7 (1+1D) の次元昇格。開発記録: 初走 (拡がった固有モード対) は N=12 で R~1.05-1.11 — R = 1+b+cα² 分解でモジュラー核の f64 床 (c の 1e-14 クランプ → κ ≤ 32.2 飽和) による α 非依存バイアス b を同定 (N=8 +0.96%/N=12 +5.44%)、本走の診断が同じ b を再現し同定を機械的に確認。CLAUDE.md 落とし穴に追記。装置: 閉殻ギャップ 1.14/0.77・C²=C ≤6e-13・面積則比 2.286 (期待 2.25)。"
   status: "Einstein 橋の第一段 (次: 第二段 K_A = 2π Σ x⊥ T₀₀ の格子ブースト同定 — G の読み出し口・核床問題の根治)"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v191_first3d.rs"
     result: "results/v191_first3d.txt"
@@ -1702,6 +2507,12 @@
   level: C4
   claim: "3+1D 格子ブースト照合 (核なし第一法則検定): 事前登録 (b) — R₂ = δS/δ⟨K_boost⟩ (K_boost = 2π Σ ξ T₀₀, ξ = ボンド中点の面からの距離・跨ぎ ξ=0) は物理幅固定 (wid=N/8) の壁密着波束で 1 へ収束しない: N=8: 0.803/0.774, N=12: 0.770/0.769, N=16: 0.75168/0.75167 (両対 5 桁一致 = 配置非依存) (|R₂−1| は N=12 で既に増加 = 単調減少の事前登録 (a) は棄却)。R_K ≈ 1.24-1.31 — 素朴な局所ブースト形は真の K_A より ~25-31% 過大応答。R₁ (核あり, v19.1 回帰) は N≤12 全点 1±1% 内 (N=16 は 0.986 = 核床成長で設計時からゲート外・記録)。判別情報: 物理幅固定 (wid=N/8) なので格子単位の壁距離は N と共に伸びる — 壁近傍格子効果が主因なら改善するはずが、実測は減速する微減の近似プラトー (Δ = −0.03→−0.02) = スケール不変成分 (有限スラブ比 ξ/L_A・横質量積 m_T·ξ ≈ √2π/16 — 固定物理形状で凍結) が支配。機構分離は v19.4/v19.6 と合わせ三角測量。N=16 は 4096² jacobi 8381 s (本プロジェクト最大)。"
   status: "Einstein 橋第二段の逸脱記録 (壁密着では局所ブースト形不成立 — G の読み出しは v19.6 の深部完成検定へ)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v192_boost3d.rs"
     result: "results/v192_boost3d.txt"
@@ -1715,6 +2526,12 @@
   level: C2
   claim: "3+1D 格子 Rindler の相対エントロピー三性質: 事前登録 (a) 成立 — [1] 正値性 S_rel > 0 (α=±0.01..±0.08 の 8 点, 最小 9.3e-5, 厳密ゲート) [2] 二次性: 局所傾き p(α→2α) の最小対 p₁ = p(0.01→0.02) が 4 点 (壁波束対 2 × N∈{8,12}) 全て 2±0.05 内 ({1.9929, 1.9999, 2.0117, 2.0046}) — しかも |p−2| が α と共に成長する列 = 大 α の逸脱は四次テイラー尾であることをデータが示す [3] 入れ子単調性 A₂⊂A₁⊂A₀ (厳密ゲート, 全成立)。Fisher F (Richardson 抽出): 対1 1.89→3.18, 対2 5.21→8.91 (N=8→12, 物理幅固定) — 第四・五段の規格化点。v2.1 (1+1D) の 3+1D 昇格 = Einstein 橋の第三段。開発記録: 初走は大域 ln-ln フィットが N=12 対1 で四次尾を拾い p=2.089 + 二次性をゲートに誤接続 (v19.1 の規律違反) — 局所傾き化+分岐化で精細化再走 (基準は緩めない)。"
   status: "Einstein 橋の第三段成立 (Fisher 計量 = 正準エネルギーの情報側が 3+1D で立った)"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v193_fisher3d.rs"
     result: "results/v193_fisher3d.txt"
@@ -1729,6 +2546,12 @@
   level: C4
   claim: "ブースト逸脱の壁距離掃引 (N=12, wid=1.0 固定, d∈{0.5,1.5,2.5,3.5}, 事前登録は v19.2 の N=16 完走前に凍結 = 盲検): 事前登録 (b) — ただし構造が主情報: (i) 有効 2 点で R₂ は 0.793→0.870 と上昇 (壁近傍格子効果仮説の向き, +0.077/格子距離 1)、(ii) d≥2.5 は R₁ カナリア (1±1%) が正しく作動して除外 (d=2.5: R₁=0.947, d=3.5: R₁=0.101) — 同幅 Gauss 波束対は深部で占有内容が縮退し δS 信号が消える + 核床。従来型摂動の測定可能域は壁距離 d≲2 と定量化 (v19.1 の壁密着設計判断の裏面)。最遠有効点 0.87 < 0.90 で (a) 未達。"
   status: "第二段の機構分離 (回復傾向は実在・完成度検定は深部信号が消えない粒子・正孔摂動 v19.6 へ)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v194_boostdist.rs"
     result: "results/v194_boostdist.txt"
@@ -1742,6 +2565,12 @@
   level: C2
   claim: "3+1D QNEC (窓平均形): 事前登録 (a) 成立 — 格子ヌル変形 A(λ)={x≤n/2−1+λ}, t=λ (Δx=Δt=1) に沿う Q_Δ = 2πT̄_kk − S″_Δ が N=12 の 2 構成で正: 静止 kx=π/2: +2.080 (S″_Δ=+0.192, 2πT̄=+2.271) / 移動 kx=π/4: +3.120 (S″_Δ=+0.216, 2πT̄=+3.336) — ε なしの不等式そのもの・フィット残差の 100 倍の裕度。移動構成の T̄ 47% 増はエネルギー流 2T_tx の共動増強 (T_kk 構造の直接確認)。装置 (核不使用): rank-2 のまま時間発展する粒子・正孔励起 (U(t)=Ve^{−iεt}ũ, O(ns²))・T_tx = −dE_A/dt (エネルギー保存に規約固定)・純粋性は補集合一致ゲート (S(A)=S(Aᶜ) ≤1e-9)・S″ は真空差引 (薄板・偶奇系統が消える)。全 22 ゲート PASS (E_bond=E_eig 9 桁・保存 2e-14・連続の式 Simpson 5 桁)。v4.1/v6.3/v9.4 (1+1D) の 3+1D 昇格 = Einstein 橋の第四段。開発記録: run1 で電流の向き較正 (|ΔN|=|∫j| 5 桁一致・符号逆) + 粒子・正孔対のエネルギー重心静止の物理を学習 (判別量は相対分離: 移動 0.866 vs 静止 0.000)。"
   status: "Einstein 橋の第四段成立 (エネルギー条件系が核と独立に 3+1D で立った)"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v195_qnec3d.rs"
     result: "results/v195_qnec3d.txt"
@@ -1756,6 +2585,12 @@
   level: C4
   claim: "粒子・正孔摂動の深部ブースト掃引 (N=12, d∈{0.5..4.5}, 核不使用): 事前登録 (b) — 壁際 (d≤1.5) は R₂ = 0.801→0.809 とほぼ平坦 (v19.4 の Gauss 対 0.79→0.87 と族依存の違い = K_A − K_boost は演算子レベルの差)、深部 (d≥2.5) は δS が d あたり ×1/5〜1/7 で指数崩壊し比が退化 (R₂ = +3.0/−0.04/−0.001 の散乱)。機構は v19.4 と別: u⊥w (大域直交 ⟨u|h|w⟩=0) のコヒーレンス応答は Fermi 波長で振動相殺し、壁際のみ ξ 勾配が相殺を破る。装置教訓: 絶対信号床+Richardson 線形性は分子分母の同時崩壊を捕らえない (相対信号量が正しい判定 — 記録)。第二段の総括 (3 器械の三角測量): 測定可能窓 d≲2 で逸脱 13-23%、窓外はどの器械も届かない。機構候補 3 つを記録: 壁近傍格子非局所性 / 有限スラブ幾何 (BW の無限半空間前提が破れ O(ξ/L_A) 補正 — v19.2 の N=16 が判別子) / 横有効質量 m_T = √2 sin(π/N) の窓狭窄。"
   status: "第二段は限界の定量化で閉じる (G の読み出し口は N≥24 / 横質量ゼロ構成 / 多倍長核まで保留)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v196_boostdeep.rs"
     result: "results/v196_boostdeep.txt"
@@ -1770,6 +2605,12 @@
   level: C2
   claim: "有限振幅の S_rel (α ∈ {0.2, 0.5, 1.0, π/2}, N=12, 摂動族 2 系): 事前登録 (b) — 情報側の不等式は普遍に成立 (正値性: 全 α 厳密ゲート PASS 最小 1.7e-3 / 入れ子単調性 α=1.0: 族A 5.02≥2.09≥0.62, 族B 3.34≥0.41≥0.02)、だが二次近似の崩壊構造は族依存で普遍性仮説は否定: 族A (壁波束対・実回転) は超二次 +13% 迄で π/2 に r=1.02 (α* 無し・四次符号 +1)、族B (粒子・正孔分枝分割) は亜二次で π/2 に r=0.48 (α*=π/2・符号 −1)。F アンカー 8.949 は v19.3 の 8.911 と 0.4% 一致 (暗黙のクロスチェック)。1 量子の完全励起 (族B α=π/2) の S_rel = 5.04 nats = 二次外挿の半分 — v0.7「1 量子は無限小でない」の 3+1D 定量化。結論の二層化: 不等式層 (定理・普遍) と構造層 (S_rel(α) の形・非普遍 — 「二次からのずれ」に重力的意味を与えるには族を物理で固定する必要 = 自由格子の外)。"
   status: "Einstein 橋の第五段 (到達可能形): 不等式層は普遍成立・構造層は非普遍の記録 — 梯子の最終段"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v197_nonlinear.rs"
     result: "results/v197_nonlinear.txt"
@@ -1784,6 +2625,12 @@
   level: C5
   claim: "第二十期のテーゼ: 橋は情報の柱で立った — そして立つことと読めることは違う。Einstein 橋の梯子 5 段 (PROMPT/3 v20) を事前登録 7 版で完走: 情報側の三本柱 (第一法則 0.1% [v19.1]・Fisher 三性質 [v19.3]・QNEC Q_Δ=+2.08/+3.12 ε なし [v19.5]) は 3+1D 格子で成立し、QNEC はモジュラー核を使わない器械で立った (核の数値困難と独立)。幾何の名札 (第二段: K_A = 2πΣξT₀₀ = G の読み出し口) は 3 器械の三角測量 (v19.2/19.4/19.6) で「測定可能窓 d≲2 で逸脱 13-23%・N=16 両対 R₂ 5 桁一致 = 配置非依存のスケール不変逸脱 (スラブ比・横質量積が固定形状で凍結)・窓の外は 2 系統の摂動とも信号消失」と限界を定量化。非線形 (第五段 v19.7) は二層に分解: 不等式層 (S_rel≥0・単調性) は α=π/2 まで普遍・構造層 (四次) は族依存で普遍性仮説は否定 — 1 量子の S_rel = 5.04 nats (v0.7 の 3+1D 定量化)。装置遺産 7 種 (rank-2 不変発展・T_tx=−dE_A/dt・補集合純粋性・真空差引 S″・偶奇部推定器・深部信号消失の 2 機構・jacobi 経済則)。"
   status: "解釈 (第二十期統合 — 全スイート 実行 88 本 500 PASS / 0 FAIL + 引用 11 本 100 PASS / 0 FAIL = 総計 600/0 + Lean 定理 10 本不変)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v20.0.md"
     result: "results/v200_full_suite.txt"
@@ -1797,6 +2644,12 @@
   level: C2
   claim: "compact U(1) 拘束 core (格子 Schwinger 模型, 第二十一期開幕 = PROMPT/3 v21 の第一歩): QrnCoreV2 (Z₂) の U(1) 昇格 — 基底 = (占有 bitmask, 巻き付き電場 ε∈ℤ)・ボンド電場 E_n = ε + 累積電荷・継ぎ目ホップが ε∓1、の構造で Gauss 拘束を厳密に解く。装置ゲート全 PASS: [A] リンク陽性表現 (L=4, Λ=1, 1296 次元) と (i) Gauss セクター保存 (混合 0) (ii) 物理セクター次元 13=13・スペクトル偏差 0.0 (機械精度) (iii) 外部電荷 ±1 セクター 9=9・偏差 0.0 (iv) 電荷超選択則 (Q≠0 は dim 0) / [B] x=0 厳密解・Λ 収束 9.6e-14。事前登録 (a′): ベクトル質量の連続外挿 M/g = 0.5605 + 0.224/√x (x∈{1..4}, N=18) → a₀ = 0.5605 vs 厳密 1/√π = 0.5642 — 差 0.7% (帯 ±0.05 の一桁内) で成立。遮蔽判別 (±½ 弦, N=16) は不成立 — 機構は器械の窓: 遮蔽長 ℓ≈2 サイトに対し漸近飽和は r≳5ℓ で ED の外 (μ=0 曲率 −0.061 vs μ=1 の −0.006 = コントラスト 10 倍は遮蔽の向きを示す)。凝縮 −0.2104 vs −0.1599 (記録)。開発記録: 電場更新符号 (∂E/∂t = −j) の逆符号バグを [A] 設計が捕捉。"
   status: "SU core への階段 第一段 (質量アンカー成立・遮蔽判別は v20.2 の局所観測量で完成)"
+  layer: dynamics
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v201_u1core.rs"
     result: "results/v201_u1core.txt"
@@ -1810,6 +2663,12 @@
   level: C4
   claim: "遮蔽の局所判別 (N=16, x=2, ±½ プローブ r=6): 事前登録 (b) — 判別子 E_mid (中点電場 = 弦が運ぶ磁束) の実測比 0.521 が登録 0.5 を 4% 外れ (閾値は動かさない)。ただし質的コントラストは全観測量で同じ向き: 曲率 10× / E_mid 1.9× / 雲 I(1) 3.1× / I(3) 3.3× — m=0 では磁束が溶け μ=1 では弦が運ぶ。結論: m=0 遮蔽の量的判別は N=16 ED 窓では閾値科学にならない (遮蔽長 ℓ≈2 に対し中点距離 ≫ℓ が要る) — 質的署名の記録 + 限界明示。開発記録 3 走 (各走の装置ゲートが実欠陥を捕捉): run1 = r=8 対蹠点の二重弦厳密縮退で基底不定 (和則が捕捉) / run2-3 = 鏡映-C 反対称は staggered の C が 1 サイト並進を伴うためどの μ でも非厳密 (μ=0 で 0.31 の破れは物理 — 私の対称性の誤解をゲートが暴いた) / 窓積分は CDW ノードに乗り脆い。教訓: メソスコピック窓の漸近閾値推定は構造的に脆い — 判定は順序命題で書く (v20.3 が実装)。θ 階段 σ = 0.054/0.212/0.462/0.652 (r≤6 単調 = クロスオーバー手前) は記録。"
   status: "遮蔽判別の窓の定量化 (質的署名は記録・量的完成は DMRG 級の課題として限界明示。θ 階段の判定は v20.3)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v202_screen.rs"
     result: "results/v202_screen.txt"
@@ -1823,6 +2682,12 @@
   level: C2
   claim: "compact U(1) の θ 構造 (N=18, x=2, μ=1, r∈{2,4,6,8}): 事前登録 (a) 成立 — 順序命題 3 本が広いマージンで立った: ρ(q) = 末端/初期勾配で ρ(1)=0.062 < ρ(¾)=0.893 < ρ(½)=0.983 (順序 ✓)、ρ(1) < 0.5ρ(½) (切れ — 16 倍マージン ✓)、ρ(½) > 0.6 (½ 弦の持続 ✓)。弦切れを現行犯で捕捉: q=1 の E(r) は r=6→8 で 4.398→4.498 に飽和 — 2m_meson ≈ 4.5 はクロスオーバー算術 r* ≈ 5.6 と一致 (v20.2 で事前計算)。物理の芯: q=½ のみ整数遮蔽で |E| を下げられない (½→−½ 同エネルギー) = 分数閉じ込め、q=1 は対生成で完全遮蔽 — Coleman の compact U(1) 描像が拘束 core の基底状態に現れた。方法の学び: v20.2 の 3 走の教訓 (メソスコピック窓の漸近閾値は脆い) を順序命題+クロスオーバー算術の事前見積もりとして実装 → 初走 (a)。"
   status: "U(1) の段が完成 (質量 0.7% + θ 構造)。次: Schwinger アノマリー or SU(2) 非可換化 (ε → 角運動量切断)"
+  layer: dynamics
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v203_staircase.rs"
     result: "results/v203_staircase.txt"
@@ -1836,6 +2701,12 @@
   level: C4
   claim: "Schwinger アノマリーの実時間検定 (磁束挿入クエンチ ε→ε+1, Krylov 発展, N∈{12,14}, x∈{2,4}): 事前登録 (b) — ただし構造は厳密: 勾配比 N=14/N=12 = 1.1665 vs 14/12 = 1.1667 (0.02% 一致 = 示量性 ∝L の確立)。外れは N 非依存の乗法係数に集約: dQ⁵/dt* / (2NE₀/π) = 0.865/0.865/0.849 — 素朴 staggered 軸性カレントの格子繰り込み (Z_A 様, O(ga) 規模) + 窓中の E 低下。x=4 の 1 点が登録帯 15% を 0.1% 超過 (帯は動かさない)。点毎の法則 dQ⁵/dt = (2N/π)Z⟨E⟩(t) は非線形周期で Z 非一定 (0.65±0.19) — 高運動量対の占有で素朴カレントが外れる領域を特定 (improvement が要る)。プラズマ振動は非調和軟化 (M_dyn/M = 0.665/0.776, E₀=1 は対生成閾値を跨ぐ大振幅 = 線形応答外)。装置: Krylov (m=26) の保存則 ~1e-12 — 多体実時間の器械を確立。開発記録: Q⁵ の二重計上 (係数が正確に 2 倍) を N 比例一致が示唆し修正 (run1 保存)。"
   status: "U(1) の章を閉じる記録 (確立 2 [質量・θ 構造] + 記録 2 [遮蔽の窓・アノマリー係数])。次: SU(2) 非可換化 or 軸性カレント改良"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v204_anomaly.rs"
     result: "results/v204_anomaly.txt"
@@ -1849,6 +2720,12 @@
   level: C2
   claim: "SU(2) 拘束 core (非可換 Coulomb 形式): 事前登録 (a) 成立 — 開鎖ではゲージ固定で SU(2) ゲージ場が厳密に消え、電場項は蓄積色電荷の Casimir Σ_links L_n² = Σ w(k,l) Q_k·Q_l (長距離非可換 Coulomb, w = N−1−max)。行列要素は Fock 基底のスピン演算子だけ (Clebsch 不要)・ゲージ切断誤差ゼロ。大域一重項は罰則 λS² (⟨S²⟩ ≤ 1e-13 で検証)。装置ゲート全 PASS: [A] x=0 短弦等式 1.500000 (機械精度) + 全点変分不等式 / [B] 電場ゼロ = 自由 2 色鎖厳密和 / [C] 残差 ≤ 1e-9。物理: x=1, μ=1, N=10 で σ₁/σ_½ = 1.836 ∈ (1.8, 8/3+0.2) かつ全 r で E₁ > E_½ — Casimir 域の非可換弦が立った (8/3 からの減少 = j=1 部分遮蔽の始まり、末端勾配に刻印)。開発記録 (run1, 保存): (i) x=0 でもセクター選択の弦切れが起きる (j=1 r=4 の 5.52 < 8.0 は正しい物理 — 「厳密解」の誤認をゲートが暴いた) (ii) 罰則 λ=8 の幅が Lanczos を殺す (変分違反 4.18 > 4.0 として発覚) → λ=4 + 再開始 Lanczos (メモリ有界) で根治。"
   status: "SU core の階段: Z₂ → U(1) → SU(2) が通った。次: 非可換遮蔽梯子 (実測 σ の算術後に登録) → SU(3) (Coulomb 形式はそのまま一般化)"
+  layer: dynamics
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v205_su2core.rs"
     result: "results/v205_su2core.txt"
@@ -1862,6 +2739,12 @@
   level: C2
   claim: "SU(3) color toy (Coulomb 形式の一般化): 事前登録 (a) 成立 — Fierz 恒等式で電場項が色交換演算子になり (2wQ_k·Q_l = wΣ(c†αcβ)_k(c†βcα)_l − w/3 n_kn_l) Clebsch 不要のまま SU(3) が動いた。装置ゲート全 PASS: [A] x=0 メソン (3,3̄) = 2.666666667 (差 −9.3e-15 = 8/3 機械精度) + バリオン Y (0,2,4) = 5.333333333 (= 16/3 厳密・非破断 — N-ality junction の算術) / [B] 自由 3 色鎖厳密和 / [C] ⟨C₂⟩ ≤ 1e-12。x=1, μ=1: メソン弦は閉じ込め方向 (σ₃ = 0.676 — SU(2) の σ_½ = 0.660 とほぼ同値の記録)、バリオン Y の劣加法性成立 (4.917 < 2×2.516 = junction 束縛 −0.11)。開発記録 (run1/2 保存): (i) 端のプローブは w(端,·) = 0 で電場から切断される配置バグ — 14/3 の遮蔽はこの配置固有で、内部 Y では 16/3 厳密 (セクター遮蔽は幾何に依る、の実地確認) (ii) [A] は「メソン等式+バリオン変分不等式」に再設計 (v20.5 の教訓の適用)。Z₂→U(1)→SU(2)→SU(3) の階段が一つの語彙 (拘束を基底で解く・Coulomb 形式・罰則一重項・順序命題) で通った — PROMPT/3 v21 の階段 4 段完了。"
   status: "SU core の階段完了。残るは直積群 SM 拘束基底 + カイラル物質 + anomaly-search 接続 (次期の橋)"
+  layer: dynamics
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v206_su3core.rs"
     result: "results/v206_su3core.txt"
@@ -1875,6 +2758,12 @@
   level: C5
   claim: "第二十一期のテーゼ: 群が大きくなっても語彙は増えなかった — 大きくすることと複雑にすることは違う。SU core の階段 (PROMPT/3 v21) を 6 版で完了: U(1) の章 (Schwinger 質量 0.7% 的中 [v20.1]・θ 階段 = 整数弦切れ ρ=0.062 / ½ 弦持続 ρ=0.983 [v20.3 a]・遮蔽の量的判別とアノマリー係数は ED 窓の外として定量化 [v20.2/20.4 b, 示量性は 0.02% 厳密])、SU(2) core (開鎖ゲージ消去 → 非可換 Coulomb, Casimir 域 σ₁/σ_½ = 1.836 [v20.5 a])、SU(3) (Fierz 交換形, メソン 8/3 [9e-15]・バリオン Y 弦 16/3 厳密 = N-ality junction [v20.6 a])。全て「拘束を基底で解く」一語彙 (巻き付き ε / ゲージ消去 + 長距離 Q·Q・罰則一重項・順序命題登録・再開始 Lanczos) — Clebsch/LSH は一度も要らなかった。隠れた主結果 = 器械の失敗が物理の教師 (教訓 7 つ: 窓の閾値は順序命題で / x=0 のセクター弦切れは物理 / 変分違反 = 未収束検出器 / 端プローブの電場切断 / 罰則幅と Krylov / 演算子簿記は保存則が暴く / staggered C は並進を伴う)。"
   status: "解釈 (第二十一期統合 — 全スイート 実行 93 本 545 PASS / 0 FAIL + 引用 12 本 107/0 = 総計 652/0 + Lean 10 本不変)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v21.0.md"
     result: "results/v210_full_suite.txt"
@@ -1887,6 +2776,12 @@
   level: C4
   claim: "アノマリー係数のスペクトル読み出し (多フレーバー U(1), M² = Σq²g²/π, スペクトル関数法): 事前登録 (b) — ただし三層分解: (1) 軽領域で橋成立 — {1,1} の外挿質量比 1.3588 vs √2 = 1.4142 (3.9%) — 台帳の代数係数 Σq²=2 が core の動力学スペクトルから同じ数として出た (PROMPT/3 §3 の橋の 1+1D 形・軽領域)。(2) 重電荷の格子窓 — {2} は M·a > 1.5 で 1/√x 外挿の外 (16.5%)。(3) 共鳴の連続体窓 — {1,2} の重ボソンは無質量フレーバー組合せの対連続体に沈み極が断片化 (重み 0.46→0.12 — 崩壊可能な状態は鋭い極でない、を器械が定量化)。装置 v2: シード (Ê−⟨E⟩)|0⟩ の 3 項 Lanczos = Ê スペクトル関数 — E が結合する状態だけが重みを持ちボソン同定内蔵 (極重み 0.96-1.00 [安定側])。{1} 自己アンカー 0.5499 = 1/√π ± 10% ✓。開発記録 (run1 保存): 素朴励起 Lanczos 非収束 (res ~1)・{2} の E₁ はフラックス状態・cross-N 帯 2.002% 落ち — 全てゲート捕捉。DMRG (§7R) の必要性を定量的に裏書き。"
   status: "橋の 1+1D 形: Σq²=2 で実証・Σq²≥4 は格子窓と共鳴窓の外 (窓を開けるのは DMRG 級)"
+  layer: bridge
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v211_anomspec.rs"
     result: "results/v211_anomspec.txt"
@@ -1899,6 +2794,12 @@
   level: C4
   claim: "BMV 判別マップ: 事前登録 (a) — 標準 BMV 帯 (m∈[1e-15,1e-13] kg, τ∈[0.5,10] s, d=250µm, Δx=100µm, δC=δV=0.02) に QRN/古典チャネル/半古典 NS/古典重力+QFT/デコヒーレンスの 4 択全分離窓が 89/625 格子点で存在。代表: m≈1e-14 kg で τ ≥ 0.93 s。判別子 4 本: (i) C > 3δC (ii) |C_Q − C_CQ| > 3δC (一次 vs 二次) (iii) τ 2 点比 r = C(2τ)/C(τ) → 2 (Q) / 4 (CQ) / 2e^{−Γτ} (D, 円周検定と併用) (iv) NS = C=0 ∧ V=1 ∧ 平均位相有限。装置ゲート (モデル極限 4 種) 全 PASS、教科書点の Δφ_ent = 0.24 rad は文献と整合。2025 年以降の「古典重力でも絡み合い」論争を受け、BMV を一発判定から判別問題へ整形 (PROMPT/3 §5) — QRN の C²+V²=1 円周 PRED はこの枠組みの [Q] 分枝。"
   status: "外部反証の整形完了 (BMV は δ=0.02 精度条件付きで QRN の判別に機能する)"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: laboratory
   evidence:
     code: "sim/src/bin/v212_bmvmap.rs"
     result: "results/v212_bmvmap.txt"
@@ -1911,6 +2812,12 @@
   level: C2
   claim: "二層構造 (PROMPT/3 §7) の初適用: 事前登録 (a) 成立 — 探索層 (python/numpy 2 サイト DMRG, 電場 MPO は走和構成 D=5, 自己検定内蔵: MPO 縮約 = 独立構成 H の偏差 0.0・DMRG = ED @N=8 1.8e-14) + 監査層 (Rust std: 開鎖はε なしで ED 厳密 — 同一幾何アンカー N=16 で DMRG と ≤2e-14 一致 = χ=96 は実質厳密)。v20.2 で『ED 窓の外』と定量化した遮蔽判別が完成: N=48・中点距離 12 で E_mid 比 = 0.0173/0.4022 = 0.043 (登録 <0.25 の 6 倍マージン) — m=0 の磁束は融解し μ=1 の弦は運ぶ (Coleman 描像の量的判別が閉じた)。減衰 0.52→0.043 は遮蔽長 ℓ≈2.4 の指数と整合。探索層にも PASS/FAIL 文化を適用した初例 (規約: 監査層アンカーの範囲が一次ソース)。"
   status: "§7R 確立 + v20.2 の窓を閉じた。次の適用先: v21.1 の重電荷/共鳴窓 (励起状態 DMRG)・N=72 幾何スキャン"
+  layer: dynamics
+  evidence_kind: theorem
+  independence: same_author_clean_room
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v213_dmrgaudit.rs"
     result: "results/v213_dmrgaudit.txt"
@@ -1924,6 +2831,12 @@
   level: C2
   claim: "Einstein 橋の残項目監査 (PROMPT/3 §2R): 事前登録 (a) — [測定 1] ローレンツ主要次数保護: staggered 分散の方向異方性 (軸 vs 対角) は log-log 勾配 p = 2.0032 (登録 2±0.1) で O(k²a²) 消失、|k|=0.1 の値は解析式 k²/9 と 0.1% 一致。[測定 2] ∇T=0 の格子形はエネルギー保存 (~1e-15)・粒子連続の式 (Simpson 5 桁) として v19.5 で実測済み (照合)。[限界 3-7] Newton 1/r・重力波 2 偏極・S_eff (G,Λ,α,β)・R² 上界は G の読み出し (第二段, 窓 d≲2 の外) への依存連鎖として限界化、QNEC 連続極限は N≥24 系列 (要疎化)。§2 の 7 項目 = 測定可能 2 (閉) + 完了済 1 (v19.5) + G 窓依存 4 (連鎖明示) に分解。"
   status: "§2R 完了 (測定可能分は成立・残は G 窓の依存連鎖として FAL-LORENTZ/FAL-CONTINUUM に接続)"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v214_bridgeaudit.rs"
     result: "results/v214_bridgeaudit.txt"
@@ -1936,6 +2849,12 @@
   level: C2
   claim: "収束点 (36×18; 3,3; τ=1/12+i/2) の posterior predictive 表 (PROMPT/3 §4 の完成形): 12 観測量 × 5 分位 (2.5/16/50/84/97.5%) × fitted/holdout。事前登録 (a) 成立 — holdout |V_td| は 68% 被覆維持 ([5.2e-3, 1.7e-2] ∋ 8.6e-3)、v17.11 で 68% を外した |V_cb|・|V_ts| は 95% で被覆。総被覆: 68% 帯 8/12・95% 帯 12/12 — 収束点の予言分布と測定の張力は全量 2σ 内。68% を外す 4 量 (m_u/m_t, m_c/m_t, |V_cb|, |V_ts|) は既知弱点の分布レベル確認。測度は一様 (v17.9-18 の確立事項)。ゲート: G0 回帰 −18.429 厳密一致・v17.11 の 5 量帯再現・[C] 測度再検再現 (3 重回帰アンカー)。"
   status: "PROMPT/3 §4 の表が完成 (PMNS/0νββ はレプトン no-go [v18.7] により対象外と明示)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v215_predictive.rs"
     result: "results/v215_predictive.txt"
@@ -1948,6 +2867,12 @@
   level: C2
   claim: "アノマリー探索の上流形式化 (PROMPT/3 §6): 探索表にハードコードされていた係数が表現論の閉形式からの Lean 定理になった (13 本, 検証 0.25 s, exit 0)。SU(3): 2T = dim·C₂/8 と A = (p−q)(p+2q+3)(q+2p+3)·dim/60 (整数化) から表の {1,3,3̄} の値が decide で出る + 教科書アンカー 5 本 (A(6)=7, A(10)=27, A(8)=0, 2T(6)=5, 2T(8)=6) + 窓 p,q≤12 全対 (169) の共役反対称・自己共役ゼロ・dim 正値 (native_decide) — 同値類規約 (共役軌道で数える) の上流正当化。SU(2): doublet 2T=1 が weight 列から。信頼基盤の連鎖: 表現論閉形式 (定理) → 係数表 → 方程式 → 全列挙完全性 (既存 10 本) — Lean 計 23 本。未形式化 (限界): 一般 N の方程式導出・J=0 代数証明 (mathlib 級)・index-3 no-go・Plücker 分類。"
   status: "PROMPT/3 §6 = 有限窓の上流化まで完了 (一般化は mathlib 級の限界として明示)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_author_clean_room
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "proofs/AnomalyUpstream.lean"
     result: "results/v216_lean.txt"
@@ -1960,6 +2885,12 @@
   level: C5
   claim: "PROMPT/3 §9 の最小 5 条件監査: 事前登録 (a) — 機械検査 9 本全 PASS (等級分布 C2:29 C3:13 / 鍵主張 7 本 [GRAV-005, GRAV-009, CORE-011, GAUGE-003, YUK-032, MSR 系, GAUGE-018] / 予言台帳 12 件)。採点 = [成立 3: データ非参照測度・holdout 採点・C5 降格実績 / 部分 2: 単一力学同時読み出し (欠落 = SM 直積 core + 重力の単一状態実演)・連続極限 GR+SM (欠落 = G 係数窓・カイラル格子化・ν 混合)]。到達していない、が『何が足りないか』は機械監査可能な形で列挙された — §9 はこの形で閉じる。"
   status: "PROMPT/3 §9 完了 (到達自体は次期以降の v22 級課題として名指し)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v217_fiveconditions.rs"
     result: "results/v217_fiveconditions.txt"
@@ -1972,6 +2903,12 @@
   level: C5
   claim: "第二十二期のテーゼ: 宿題は全て、成立か名前のついた限界になった — 地図に空白はもう無い。PROMPT/3 の残余 7 項目を 7 版で完遂: §3R アノマリー橋 (軽領域 3.9% 成立・格子窓/共鳴窓は名指し [v21.1])・§5R BMV 判別マップ (a) [v21.2]・§7R 二層構造の初適用 (v20.2 遮蔽窓を閉鎖) [v21.3]・§2R ローレンツ主要次数保護 + G 窓依存連鎖 [v21.4]・§4R predictive 表 12 量 95% 帯 12/12 [v21.5]・§6R Lean 上流 13 定理 (計 23 本) [v21.6]・§9R 五条件監査 = 成立 3/部分 2 [v21.7]。PROMPT/3 の結語『最深の仮定を殺しに行き、生き残りだけを原理に昇格させる』への本期の答え: 殺せる仮定は殺し (係数表・測度・遮蔽窓)、殺せないものは座標つきで地図に刻んだ (G 窓・カイラル格子化・単一 core 実演 = 次期の本丸)。"
   status: "解釈 (第二十二期統合 — 全スイート 実行 99 本 589 PASS / 0 FAIL + 引用 12 本 107/0 = 総計 696/0 + Lean 23 本)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v22.0.md"
     result: "results/v220_full_suite.txt"
@@ -1983,6 +2920,12 @@
   level: C2
   claim: "PROMPT/3 §9 条件 1 の 1+1D 実演: 事前登録 (a) 成立 — クォーク二重項 (3,2,+1/6) 6 成分/サイトの拘束 core (開鎖 N=4, Coulomb 形式 + Fierz 交換演算子, 等マージナルセクター dim 103704, 罰則で大域一重項) の単一基底状態から 4 読み出しが同時成立: [A] 代数 (gl(3) 交換関係・[色,弱]=0・Casimir 25/12 とも偏差 0.0)・[G] x=1 で色/弱/U(1) の 3 弦とも E(2)>E(1) (1.193→1.315 / 0.675→0.749 / 0.971→1.440)・[g] 相互作用基底状態の重力第一法則 R = δS/δ⟨K_A⟩ = 1.00000 (診断: 比が 1+O(λ²) スケーリング, 登録 1±2%)・[M] t₃ 接続相関の距離減衰 (0.185 > 0.0044)。[g] 器械の較正過程で多体第一法則の構造ゼロ分類学を確立: 転置マスターゼロ (実回転では中心差分奇部が恒等ゼロ — 状態回転に 1 次第一法則は存在しない) + PH ゼロ (半充填で PH-奇 V は dS/dλ=0) → 正解は PH-偶・一重項の無限小 H 摂動 V=(n₁−3)²。"
   status: "§9 条件 1 の欠落『単一状態からの同時実演』が埋まった。構造ゼロ分類学は将来の多体 modular 装置への装置知識"
+  layer: dynamics
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v223_smcore.rs"
     result: "results/v223_smcore.txt"
@@ -1996,6 +2939,12 @@
   level: C4
   claim: "G 窓の第一容疑者・横質量仮説の反証 (第二十三期 課題 2): y/z を周期境界にして m_T = √2 sin(π/N) → 0 の massless 線を復活させても (閉殻は維持: gap = 0.2411/0.1845 @ N=12/16)、ブースト比は R₂(d=0.5/1.5; N=12) = 0.79255/0.86452 — v19.4 の反周期構成 (m_T 最大) の 0.7932/0.8696 と 0.1–0.6% で一致し、事前登録 (b)。R₂ 不足は横質量が原因ではない。同時に f64 κ 床のカナリア死が d-局所と判明: R₁(d=2.5) = 0.94666/0.94440 (N=12/16, 差 0.002 — N 非依存)。開発記録: DD-Rayleigh 核は縮退クラスタ内の任意混合で棄却 (R=−327)・v19.1 拡張モード対錨は周期 y/z の横運動量縮退で構造的に不定 (R=−319.7) と判明し半空間専用に格下げ。"
   status: "容疑者 2 名のうち m_T が消えた。見かけの d·gap 崩壊 (3 点) は v22.4/v22.5 で検定 → 反証"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v222_gwindow.rs"
     result: "results/v222_gwindow.txt"
@@ -2008,6 +2957,12 @@
   level: C4
   claim: "f64 κ 床の境界測定 (事前登録 a′): 崩壊仮説の点予言 R₂(N=16, d=2.0) = 0.8667 ± 0.025 は両点カナリア死で採点不能 — 代わりに床境界が確定: R₁ の 1 からの偏差は d=1.5 で ~1e-4 → d=2.0 で 2.0% (R₁ = 0.97966/0.98006, N=12/16 の差 4e-4) → d=2.5 で 5.5% → d≥3.5 で崩壊。床は波束の絶対深さ d だけで噛む局所現象 (N 非依存) で、生存窓 d ≤ 1.5 が全 N 共通の器械限界。"
   status: "床境界 d ∈ (1.5, 2.0) が確定。生存窓内の崩壊検定は v22.5"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v224_collapse.rs"
     result: "results/v224_collapse.txt"
@@ -2019,6 +2974,12 @@
   level: C4
   claim: "R₂ 不足の幾何仮説の全滅 (事前登録 b — 反証成立): 生存窓内 6 点 (N ∈ {12,14} × d ∈ {0.5,1.0,1.5}, カナリア 6/6 有効) で d·gap 崩壊仮説を検定 → N=12 は d 非単調 (d=1.0 で R₂ = 0.89770 > d=1.5 の 0.86452 — v22.2 の『単調』は 2 点ゆえの錯覚)、N=14 は d·gap が 0.33→0.99 と 3 倍動いても R₂ ≈ 0.80 で平坦 (N=12 折れ線からの残差 −0.076 > 登録 0.025)。gap(N=14) = 0.6632 はシェル構造の N mod 4 敏感性を露呈 (12,16 ≡ 0 は準ゼロ横モード有・14 ≡ 2 は無) — ξ = 1.5 と最短の N=14 が R₂ 最低域で ξ/L_A スラブ仮説も同時反証。横質量 (v22.2)・d/ξ 崩壊・スラブの 3 仮説が全滅し、残る説明系はブースト重み K_boost 離散化のシェル依存 O(1) 補正のみ。器械知見: R₁ カナリアは分子分母が床バイアスを共有する共通モード盲 — カナリア有効は核の自己整合であって δS の完全性ではない。幾何走査プログラムは堂々巡り条件で終端。"
   status: "G 窓の残り路線は装置側 3 本 (named limits): DD-Gram 多倍長核 / κ 床非依存の読み出し / K_boost 離散化改良"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v225_collapselaw.rs"
     result: "results/v225_collapselaw.txt"
@@ -2031,6 +2992,12 @@
   level: C4
   claim: "K_boost 離散化変種の消去 (事前登録 b): 生存窓 4 点 (N=12 d∈{0.5,1.0,1.5} + N=14 d=1.0, カナリア全有効) で重み割り当て 3 変種を比較 — [A] 現行 v19.2 凍結: max|R₂−1| = 0.207 / [B] 両側反対称: 発散 (左楔の負重みが δ⟨K⟩ を相殺 — 楔第一法則は右楔生成子の専有事項という設計的教訓) / [C] セル平均: 2.49 (一様劣化)。どの変種も改善せず、R₂ 不足の説明系から重み割り当てが消えた。消去の系譜: 横質量 (v22.2) → d/ξ 崩壊・スラブ (v22.5) → 重み (本版)。残存仮説は演算子レベル (rank-2 波束回転と真の modular flow の O(1) ずれ = v19.6 の壁近傍非局所性)。副次確認: 浅域の δS, δ⟨K⟩ は α 線形で R₂ 不足は α 汚染ではない。"
   status: "残る改良路線は流れの生成子そのものの改良 (modular 応答の直接測定など)。v22.7 (DD 核) と相補"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v226_kboost.rs"
     result: "results/v226_kboost.txt"
@@ -2043,6 +3010,12 @@
   level: C4
   claim: "f64 κ 床の突破 (事前登録 a, PROMPT/4 並列研究): モジュラー核経路の全 DD 化 — (1) DD 部分空間 Newton (X = (⟨m|Hv⟩ − θ⟨m|v⟩)/(θ−λ), 第 2 項が f64 交差汚染を厳密相殺, 残差 9.8e-14 → 1.5e-27 の二次収束) + (2) DD C_A の DD jacobi (κ_max = 39.5 > f64 飽和 32.2) + (3) 漸近 α 対 0.005/0.010 — で深部カナリアが完全復活: R₁(DD) = 1.00000/0.99988/0.99991 @ d=1.5/2.0/2.5。v22.4 の床境界 d∈(1.5,2.0) は f64 固有と確定、真の信号消失 (占有縮退) は d∈(2.5,3.5) から。深部 R₂ の初有効測定: R₁=1 の深部で R₂ = 1.96 → −0.07 (振動・符号反転) — rank-2 プローブは K_A に深部でも完璧に結合するが K_boost 格子形とは d≳2 で乖離する (v22.6 の演算子レベル残存仮説の直接定量化)。G 窓 named limits の書き換え: 多倍長核 = 解決・κ 床非依存読み出し = 不要・残る唯一の項目 =「深部まで K_A と整合するブースト生成子の格子形」(理論課題)。"
   status: "床は破れた。G 窓の残高 = ブースト生成子の格子形 1 点に集約"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v227_ddkernel.rs"
     result: "results/v227_ddkernel.txt"
@@ -2056,6 +3029,12 @@
   level: C2
   claim: "重電荷窓の開通 (事前登録 a, 第二十三期 課題 3): 電荷 q の massless Schwinger (開鎖 N=64 + 全電荷罰則 λ_Q(Σq)² — 開鎖端の自由電荷が E₁ を偽装する寄生状態 [環の磁束状態の開鎖版] を除去、中性スペクトル厳密不変を監査ゲート化) で、ボソン質量比 M(2)/M(1) = 2.1001 (x=16, gap 法) が登録窓 2±7% に着地 — ボソン化の教科書線 M(q)/g = q/√π の比が格子第一原理から出た。相関質量法 (E₁ 不要・r=20 深プラトー・[G8] で gap 法と ±20% 整合) が 2.0634 で独立支持。二層 × 三推定器: E₀ は Rust/python 両エンジンで厳密一致 (Δ≤1e-12)、q=2 gap は両エンジン 0.1% 一致、q=1 gap は python 31h 収束 + [I4] 交差検証。監査層 (sim/src/bin/v221_dmrgex.rs) は N=10 全空間 ED (セクター仮定なし) と Δ~1e-13。計器開発の完全記録 (Rust 10 走: Gram σ除算の正準性破壊 → Hestenes SVD、局所 Ritz の偽低値 → 大域 Rayleigh 商誠実化、ほか) を保存。"
   status: "重電荷窓開通。残: q≥3・共鳴窓 (named limit)。Rust DMRG は再利用可能な計算層に"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: same_author_clean_room
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v221_dmrg.rs"
     code: "sim/src/bin/v221_dmrgex.rs"
@@ -2070,6 +3049,12 @@
   level: C5
   claim: "第二十三期のテーゼ: 窓が三つ開き、床が破れた — 消去法は資産である。判定 (a) 3 本: 単一状態の同時読み出し (§9 条件 1 が部分→成立) [v22.3]・重電荷窓 M(2)/M(1) = 2.1001 (ボソン化教科書線の格子検証) [v22.1]・f64 κ 床の突破 (DD 全経路核) [v22.7]。判定 (b) 4 本は消去法の連鎖: 横質量 [v22.2]・d/ξ 崩壊とスラブ [v22.5]・K_boost 重み変種 [v22.6] が全滅し、G 窓の障害は装置 3 本の named limits から『深部まで K_A と整合するブースト生成子の格子形』という理論課題 1 点に集約 — 深部 R₂ の符号反転 (1.96→−0.07) がその直接証拠。装置知識 6 項 (構造ゼロ分類学・寄生状態分類 [環=磁束/開鎖=端電荷]・DD 部分空間 Newton・カナリア共通モード盲・Hestenes SVD と大域 Rayleigh 誠実化・PROMPT/4 体制 = Rust 計算層 ~45 倍) が次期以降の全装置に継承される。全スイート 119 本 745 PASS。"
   status: "次期の本丸: ブースト生成子の格子形 (理論) と q≥3/共鳴窓 (装置は既製)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v23.0.md"
     result: "results/v230_full_suite.txt"
@@ -2081,6 +3066,12 @@
   level: C4
   claim: "ブースト生成子の格子形 I (事前登録 b + 決定的直測): DD 厳密構成した K_A の x-NN ボンドプロファイル T(ξ) は線形 Bisognano–Wichmann 形と 0.1–1.5% 一致 (T/T_ref = 1.00, 2.00, 3.00, 3.94, 4.96 @ ξ=1..5) — 二境界 (Cardy–Tonni 放物) 仮説は反証 (CT は深部で 56% ずれ、CT 重みの R₂ は改善せず符号反転も残存)。浅域の CT 予測と実測の「一致」(−8/−12.5% vs −10/−13.5%) は 2 点の偶然で、5 点の直測が形を裁いた — 事前登録が思い込みを殺した記録。帰結: ブースト重みの形は正しく、R₂ 不足 (0.79–0.90 + 深部符号反転) は K_A の非近接構造 (Δx≥2・対角・長距離) の寄与 — 重み再調整では直せないことが確定し、問いが「非近接予算の測定」に精密化された。"
   status: "次版 v23.2 = δ⟨K_A⟩ の距離分解で担い手を定量化"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v231_boostform.rs"
     result: "results/v231_boostform.txt"
@@ -2094,6 +3085,12 @@
   level: C4
   claim: "δ⟨K_A⟩ の距離分解 (事前登録 a): 真の modular 応答はバケット間相殺の微小残差 — 個別バケット (x-NN, y-NN, z-NN, 長距離) は総和の数倍〜数千倍で相殺し、総和は d=0.5/1.5/2.5 で個別項の ~21%/0.3%/0.03% (増幅率 A ≈ 4.7/340/8000)。非近接 (長距離が本体、NNN と対角は小) は d=1.5 で総和の ~6 倍・d=2.5 で ~200 倍の大きさを持ち NN 群と相殺する。[G4] バケット総和 = 固有基底 δ⟨K⟩ の恒等式を全 d で 8 桁検証。帰結 (仮説として次版で検定): K_boost の NN 形が K_A と 1% 一致 (v23.1) しても、sub-% の演算子差が相殺増幅で O(1) の比の逸脱になる — R₂ は悪条件比で、Bisognano–Wichmann は演算子レベルで成立している可能性。"
   status: "v23.3 = バケット別応答比 ρ_b で増幅説を検定"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v232_kbudget.rs"
     result: "results/v232_kbudget.txt"
@@ -2106,6 +3103,12 @@
   level: C4
   claim: "格子エンタングルメント温度 λ の発見 (事前登録 b の反証が導いた): バケット別応答比 ρ_b = δK_boost[b]/δK_A[b] は全 NN バケットでほぼ一定 (浅域 1.19–1.23, max 38% は d=2.5 の z-NN) — 増幅説 (ρ=1±3%) は反証されたが、ずれはランダムでなく共通規格化因子。v23.1 の生データの絶対読み: λ = πξ/T(ξ) = 1.186 が ξ 非依存の定数 — K_A の NN 成分は (2π/λ)·ξ·T⁰⁰ で、格子のエンタングルメント温度は 2π ではなく 2π/λ。modular 重みの ~16% は長距離項 (v23.2 の相殺相手) が担う。1/R₂ のバケット再構成が実測 R₂ (0.7926/0.8646/−0.0713) と 4 桁一致 — R₂ の全逸脱が λ + 長距離寄与で定量的に閉じた。帰結: G 窓の障害は『2π を素朴に信じた温度規格化』— λ(N) の連続極限挙動 (v23.4) がどちらに転んでも読み出しは開通する。"
   status: "v23.4 = λ(N) 系列 (N=8..16) が格子アーティファクト説 vs 有限繰り込み説を裁く"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v233_bucketmatch.rs"
     result: "results/v233_bucketmatch.txt"
@@ -2119,6 +3122,12 @@
   level: C4
   claim: "λ(N) 系列 (N=8..16, DD 全経路): バルク λ は ξ 非依存の定数 (N=16 で線形性偏差 0.03% — BW 形が精密成立) で、族内 1/N⁴ 収束 (差分比 6.3 vs 理論 5.95) により λ∞ = 1.1852 ± 0.001 へ — 32/27 = 1.18519 と 0.03% 一致 (数値照合、2⁵/3³ の staggered 種構造由来は理論課題)。λ_y = 1.2294 は N 非依存の別定数 (異方性 ≈ 1.037)。端曲がり (開放端 2-3 ボンドの λ 上昇、N=16 で +10%) は物理端の境界変形 — v23.1 で切断面に反証された CT 型変形は物理端に実在。開発記録の要: 登録基準「|λ−1| の単調減少」は λ→1 と λ→λ*≠1 を区別できない設計不足で、形式判定 (a) の解釈文「連続極限で BW 回復」は誤り — 実体は有限繰り込み (BW は 2π/λ∞ で回復)。判別は v23.5 の 1/N⁴ 外挿登録が行う。"
   status: "v23.5 = λ∞ 外挿判定、v23.6 = G_lattice 読み出し (温度 2π/λ∞)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v234_lambda.rs"
     result: "results/v234_lambda.txt"
@@ -2132,6 +3141,12 @@
   level: C4
   claim: "λ∞ 外挿判定 (事前登録 a′ — 有限繰り込みの確定): λ(N) = λ∞ + c/N⁴ の族別 Richardson 外挿で λ∞ = 1.18512 — [J1] 1/N⁴ 自己整合 Δ=0.0001 (mod-0 の 2 外挿 1.18544/1.18552)・[J2] 族間 Δ=0.0008。連続極限でも格子エンタングルメント温度は 2π でなく 2π/λ∞ = 2π·(27/32): **32/27 = 1.18519 との比 0.99994 (0.006%)** — staggered 種構造由来の厳密有理因子を強く示唆 (導出は理論課題・Lean 化候補)。v23.4 の登録設計不足 (単調性判定) を正しい判別基準 (外挿値 vs 1±0.02) で再登録して判定した。G_lattice 読み出し (v23.6) の温度規格が確定。"
   status: "v23.6 = T = 2π·27/32 での G_lattice 条件付き初読み出し。32/27 の導出 = 理論課題"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_author_clean_room
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v235_lambdainf.rs"
     result: "results/v235_lambdainf.txt"
@@ -2146,6 +3161,12 @@
   level: C4
   claim: "G_lattice の条件付き初読み出し (事前登録 a′ — G 窓開通): 温度 T = 2π/λ∞ (λ∞ = 32/27, v23.5) を Jacobson 鎖に通した G = a²/(4·λ∞·s_area) で、s_area(N) = S(C_A)/N² の N 系列 (8..16) は定数則 (対数係数 −0.0045 は負・微小 — 閉殻ギャップが IR を正則化し Gioev–Klich 対数は切れる): s∞ ≈ 0.198 ± 0.004 (shell ±2%) → **G∞ ≈ (1.06 ± 0.02)·a²** — Planck 長 ≈ 格子間隔、G ∝ a² は誘導重力 (Sakharov) の予想形で「重力結合は cutoff の物性」が数値として閉じた。G 窓の弧 (v19.6 保留 → 幾何仮説全滅 → κ 床突破 → BW 直測 → λ 発見 → 32/27 確定 → 本読み出し) が完結 — 障害は『2π を素朴に信じた温度規格化』だった。"
   status: "条件付き (自由フェルミオン toy)。次: 32/27 の理論導出 (Lean 化候補)・massless 極限の対数走行・実物質内容への拡張"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v236_gread.rs"
     result: "results/v236_gread.txt"
@@ -2161,6 +3182,12 @@
   level: C5
   claim: "第二十四期のテーゼ: 窓は開かなかったのではなく、温度計が狂っていた。単一の問い (ブースト生成子の格子形) を 6 版で解き切り G 窓を開通: K_A の NN 形 = 線形 BW ± 1% [v23.1]・応答は相殺の微小残差 (増幅率 ~8000) [v23.2]・エンタングルメント温度 λ = 1.186 の発見 [v23.3]・1/N⁴ 収束 [v23.4]・λ∞ = 32/27 (0.006%) の有限繰り込み確定 [v23.5]・G∞ ≈ (1.06±0.02)·a² の条件付き初読み出し [v23.6]。R₂ ≠ 1 の 5 期越しの謎は (i) 形は正しい (ii) 規格化が 2π/λ∞ (iii) 深部は相殺増幅の悪条件 (iv) 残りは長距離と物理端変形、で全貌解明。G ∝ a² は誘導重力 (Sakharov) 形 — 重力結合は cutoff の物性、QRN の重力読み出し口が数値で閉じた。器械知識: 相殺増幅 (比の前に増幅率を測る)・形と規格化の分離 (直測は絶対値で)・収束登録は外挿値に。全スイート 125 本 781 PASS。"
   status: "次期の本丸: 32/27 の理論導出 (staggered BZ 有理平均 — Lean 化で C2 昇格の筋)・λ_y 導出・massless 対数走行・SM core の s_area"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v24.0.md"
     result: "results/v240_full_suite.txt"
@@ -2175,6 +3202,12 @@
   level: C2
   claim: "3+1D staggered 格子 (x 開放・y/z 周期, ホップ ±1/2) の厳密構造: {D_i,D_j}=0・H²=ΣD_i² (半整数演算で逸脱 0)・バルク分散 E(k)=±√(cos²kx+cos²ky+cos²kz)。零集合は 8 点ノード (余次元 3) = 2 taste × 4 成分 Dirac、v=1 等方 — Fermi 面 (余次元 1) ではなく、Gioev–Klich 対数面積則の前提は本模型で不成立 (v23.6 の「対数 vs 定数」二択は正しい対でない)。x 開放でも E=±√(cos²(πn/(N+1))+cos²ky+cos²kz) の閉形式 (厳密恒等式 (−1)^x φ_n = φ_{N+1−n} による 2×2 分解) — dense jacobi と多重集合 Δ<2e-12 (N=8,10,12)。帰結: 半空間 C_A は (ky ペア, kz) ラベルの N²/2 個の N×N 実対称ブロックに厳密分解 (N=128 級への道)。シェル構造 (N mod 4) の起源 = 横運動量 π/2 (μ=0 系列) の有無 — gap 公式 2·minE で閉じた。"
   status: "第二十五期監査の理論的土台。v24.2 = ブロック器械の照合・認証"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v241_dispersion.rs"
     result: "results/v241_dispersion.txt"
@@ -2188,6 +3221,12 @@
   level: C2
   claim: "ブロック器械の認証と精度較正: (i) dense-DD 経路とブロック経路が S・全ボンド成分で一致 (Δ≲2e-15 = f64 集約床, N=6,8)、v23.4 公表値と λ_bulk 5 桁一致 (N=8: 1.19187, N=16: 1.18589) — 実装を共有しない 2 経路の相互検証。(ii) 厳密対称性 U = (y→y+1)∘((−1)^z ゲージ) により x ボンドの taste 交替成分 B_x ≡ 0・z ボンドの y 一様成分 A_z ≡ 0 (dense で逸脱厳密 0) — v23.4 の abs() 推定器は x-NN では無害 (λ_abs = λ_A 恒等)。(iii) κ 予算の実測: A_x(ξ) の 99% 飽和には |κ| ≈ 8ξ+12 が要る → f64 (κ床 32.2) の信頼域は ξ ≤ 2 (実測 relΔ: ξ=3 で 1.4e-3, ξ=6 で 19%)、DD (κ床 69.1) は ξ ≲ 7 完全 (N=16 の κ_max = 54.5 は床以下・クランプ 0 本)。v24.3 の測定規約 = DD + クランプ 2 点梯子 (1e-30/1e-26) の一致域のみ採用。"
   status: "器械認証済み — v24.3 (BW スケーリング窓監査) を解禁"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v242_blockdiag.rs"
     result: "results/v242_blockdiag.txt"
@@ -2201,6 +3240,12 @@
   level: C4
   claim: "BW スケーリング窓監査 (事前登録 a′ — 非 1 の λ が窓でも生存、ただし 32/27 ではない): (i) 固定 ξ≤3 推定器の N=96 直読み λ∞ = 1.185468(2) — **32/27 = 1.185185 は棄却** (偏差 2.82e-4 = 収束残差 1.5e-6 の 187 倍)。v23.5 の 0.006% 一致は N≤16・mod-2 族 2 点外挿の分解能不足 (1/N⁴ 指数自体は正しい — 差分比で確認)。(ii) λ_A(ξ) は信頼窓 (DD + クランプ 2 点梯子, ξ≤5–6) で完全平坦 1.18547 (窓フィット 4 族 holdout: λ∞ = 1.18550, 族間 3e-5) — 1 へのドリフト無し。(iii) λ_y(ξ) = λ_z(ξ) = 1.22943 が全 ξ・全 N (16–96) で不変 (y/z の 7 桁一致は新事実 — η 位相は y/z 非対称なのに応答は対称)。異方性 λ_y/λ_x = 1.03708 が UV でも窓でも生存 — 物理温度なら等方化するはずで、λ = 温度の解釈 (v24.0) に反する。帰結: 次期本丸だった『32/27 の理論導出』は対象消滅により中止。"
   status: "λ の解釈は v24.4 (演算子整合) が『方向別演算子規格化』の言語で確定させる"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v243_bwwindow.rs"
     result: "results/v243_bwwindow.txt"
@@ -2214,6 +3259,12 @@
   level: C4
   claim: "演算子整合 (事前登録 b — Z の方向依存の確定): A(ξ) = Z·πξ + b の窓フィット (ξ ∈ [3, ξ*], N=32/64, フィット族 2 種 + holdout) で b ≈ 0 (N=64 で +0.0002) — プロファイルは切片なしの純線形で『32/27 は境界演算子の混入』仮説も棄却。Z_x = 0.84352 (1/Z = 1.18551) ≠ Z_y = Z_z = 0.81338 (1/Z = 1.22943) — 等方偏差 3.6% が族間 5e-4・サイズ間で安定。BW が禁止する成分は清浄 (NNN/NN < 3e-8, on-site ドリフト ~1e-5, B_x ≡ 0)。帰結: **『格子エンタングルメント温度 2π/λ』(v23.3–v24.0) の解釈を棄却** — λ_dir = 1/Z_dir は温度でなく NN ボンド演算子の方向別規格化 (staggered の η 位相が切断面の向き x̂ を特別扱いする regulator 物性)。PROMPT/6 判定リスト第 3 項『整合後も方向別定数 → Lorentz 不変な連続極限が未成立』に該当。"
   status: "1+1D 対照 (v24.5) が『離散化固有 vs 推定器普遍』を判別する"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v244_opmatch.rs"
     result: "results/v244_opmatch.txt"
@@ -2227,6 +3278,12 @@
   level: C4
   claim: "離散化普遍性 I (事前登録 a — 両離散化とも λ → 1): 同一の連続理論 (massless 1+1D Dirac 1 種, v=1) の 2 離散化 — XX 鎖 (ノード ±π/2, N≤512, 解析 sine 経路が dense-DD と 2e-30 一致) と Wilson 鎖 (m=0 r=1, ノード 0, 反周期解析スペクトルと 1.6e-14 一致) — に同一の符号付き射影推定器を適用: **λ_XX = 1.00000–1.00015, λ_Wilson = 1.00002–1.00015 (UV 層 ξ=1 から 4–5 桁で 1)**。帰結: (i) 推定器は正しい連続極限で 1 を返す (BW は 1+1D 格子で窓を待たず成立)、(ii) 3+1D staggered の λ_x = 1.18547 / λ_y,z = 1.22943 (v24.3/24.4) は 3+1D staggered 離散化固有の規格化構造 = regulator artifact と確定 (PROMPT/6 判定表『離散化を変えると値が変わる』)、(iii) 『格子エンタングルメント温度』(v23.3–v24.0) は最終棄却 — λ は離散化・方向・次元依存の NN 演算子規格化。"
   status: "3+1D Wilson の直接対照と長距離和則 = 次期課題として登録"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v245_discretization.rs"
     result: "results/v245_discretization.txt"
@@ -2240,6 +3297,12 @@
   level: C4
   claim: "点ノード面積則の有限サイズ形 (事前登録 b — holdout は βlnN/N² を選好): 事前登録 5 族を N≤64 でフィットし N=96/128/192 を holdout 予測 — F5 (Gioev–Klich, S~N²lnN) が最悪 1.3e-3 (点ノード理論の予告どおり v23.6 の二択の対照は誤形)、定数面積則 (leading) は生存、F3 (α+(βlnN+γ)/N²) が最良 1.1e-5 (F2 の 4.3 倍)。s∞ = 0.196639 (シェル系統 1.8e-4)。UV 有限量 (相互情報 I(s), N=64) を離散化間比較の基準として登録。G^bare の再分類: G = a²/(4λs∞) は λ の方向依存 (v24.4) を継承し x スキーム 1.0725 / y,z スキーム 1.0341 — **正名 G_entropy^bare(a; regulator, 方向スキーム)、物理的 Newton 定数ではない** (v23.6 の 1.06a² は棄却済み λ=32/27・x スキームの一点、G∝a² は定義式の代数的必然)。独立バックエンド照合 (numpy/LAPACK): S は 3e-12、λ(ξ≤2) は f64 床内で一次ソースと一致 (PROMPT/6 PR9)。"
   status: "副次項 βlnN/N² の物理的解釈 (シェル走行/ギャップ対数化) は未確定 — 記録"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_author_clean_room
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v246_entropyscale.rs"
     result: "results/v246_entropyscale.txt"
@@ -2253,6 +3316,12 @@
   level: C5
   claim: "第二十五期のテーゼ: 温度計が狂っていたのではなく、それは温度計ではなかった。PROMPT/6 (普遍性・極限・演算子整合監査) の 6 版 (v24.1–24.6) で v24.0 の中心結果を意図的に破壊検査し、両方が予定どおり壊れた: (i) 32/27 は N=96 直読みで棄却 [v24.3]、(ii) 『格子エンタングルメント温度』は棄却 (FAL-CONTINUUM 発火) — λ は方向依存 (λ_x = 1.185468 ≠ λ_⊥ = 1.229430、λ_y = λ_z は対称性 W = swap(y,z)∘(−1)^{yz} で厳密) のまま窓で平坦・演算子整合でも b≈0 で Z 方向依存 3.6% [v24.4]・1+1D では XX/Wilson とも λ = 1 が UV 層 (ξ=1) から成立 [v24.5] — 実体は 3+1D staggered の NN ボンド演算子の方向別規格化 (regulator 物性)、(iii) G^bare は方向スキームで 3.7% 動く bare 面積係数と正名化・Gioev–Klich 対照は holdout 最悪 [v24.6]。生存 = BW 線形形 (b≈0 の純線形, 5 桁)・定数面積則 (s∞ = 0.196639)・v23.4/23.5 の数値 (5 桁再現 + numpy/LAPACK 独立照合)。新器械 = 厳密ブロック分解 (dense N=16 → N=192)・dd.rs 全精度化・κ 予算則 (κ99 ≈ 8ξ+12) とクランプ 2 点梯子規約・対称性 U/W。器械知識 = 外挿より大 N 直読み・ゲートは器械の実測に貼る・『精度 ≠ 正確さ』・数秘術は事前登録なしでは記録どまり。"
   status: "次期: λ_x/λ_⊥ の解析的導出 (regulator 定数として — 正当化された問い)・長距離和則・3+1D Wilson 対照・y⊥ 切断転置・qd (κ床147)・誘導重力は経路 B (背景計量 → Γ[g], v26 系列)・カイラル SM (v27 系列)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     doc: "docs/uft-v25.0.md"
     result: "results/v250_full_suite.txt"
@@ -2267,6 +3336,12 @@
   level: C4
   claim: "λ の起源の厳密還元 (事前登録 a): 横ブロック (ky,kz) の 2 バンドは回転基底で質量 ±μ (μ=√(cos²ky+cos²kz)) の 1D staggered 鎖 2 本に厳密分解し (N=32 の和則: 3D スキャン = 1D 鎖和、認証窓 ξ≤5 で max|Δ| = 4.5e-7)、荷電共役 K(−μ) = −ΣK(μ)Σ (numpy 検算 4e-16) により **1/λ_x = ⟨g(μ)⟩_BZ、1/λ_⊥ = ⟨2cos²ky·g_m(μ)⟩_BZ** に帰着。g(μ) = 鎖 K の NN ボンド勾配/πξ (単調減少: 1 → 0.7457 at √2)、g_m = 質量チャネル対角勾配。μ 格子 78 点 + BZ 求積 (M=512) で λ_x = 1.185472 (相対差 3.7e-6)・λ_⊥ = 1.229427 (2.5e-6) を再構成。帰結: (i) 異方性 λ_⊥/λ_x は Lorentz 破れでなくチャネル重み (一様 vs 2cos²ky) の幾何、(ii) g_m ≈ g が 4–5 桁で成立 — 運動項と質量項の規格化は同一関数の示唆、(iii) 導出は 1D 関数 g(μ) の解析形 1 つに帰着 (v25.2)。"
   status: "v25.2 = g(μ) の解析形 (小 μ: μ²lnμ 型? / 大 μ 減衰) と g_m = g の検証"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_author_clean_room
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v251_gmu.rs"
     result: "results/v251_gmu.txt"
@@ -2280,6 +3355,12 @@
   level: C0
   claim: "半無限 staggered フェルミオン鎖 Ĥ = −(1/2)Σ(c†c+h.c.) + μΣ(−1)ⁿ c†c の半無限領域 entanglement Hamiltonian は H_EH = 4κK(κ′)·T で厳密に与えられる (T: t_m = −m/2, d_m = (−1)^m μ(m−1/2)、κ = 1/√(1+μ²)、κ′ = |μ|/√(1+μ²)、K は第一種完全楕円積分)。BW 形は gapped 鎖で『分散依存の非普遍 prefactor を除いて厳密』(V. Eisler, J. Stat. Mech. (2025) 013101, arXiv:2410.16433, 式 (64)(67)(72))。"
   status: "前提 (確立された研究成果。単一著者の 2024/2025 論文 = 教科書級ではなく単一論文級の C0 — 本リポジトリの v252_exact_g が独立数値照合を添えている)"
+  layer: instrument
+  evidence_kind: theorem
+  independence: independent_author
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     doc: "docs/uft-v25.2.md"
 
@@ -2288,6 +3369,12 @@
   level: C1
   claim: "v25.1 の 1D 質量関数は g(μ) = g_m(μ) = (2/π)κK(κ′) = 1/AGM(1,√(1+μ²)) と厳密同定される (Eisler 厳密解の QRN 規格化への翻訳 — hopping 符号は局所ユニタリ cₙ→(−1)ⁿcₙ で吸収、g_m ≡ g は同一 prefactor の帰結として定理に昇格)。検証 21 PASS: 三表示 (AGM/楕円求積/積分求積) 相互一致 3.4e-14 (μ∈[1e-4,1e4])・g(1) = ガウス定数と 1 ulp・v25.1 一次データと max|ĝ/g−1| = 1.18e-5 (事前登録窓 μ≥0.5 の 48 点)・g_m は 4.4e-7。漸近確定: 小 μ は 1−μ²/4+9μ⁴/64−… の μ² 解析級数 (μ²lnμ 型は不在: (g−1)/μ² = −0.25±1.5e-9)、大 μ は (2/πμ)ln(4μ)(1+O(1/μ²)) (1/μ² 型は棄却: μg は ln 成長 1.27762 = 予言 5 桁)。旧最良候補 π/(2K(κ′)) は EH スペクトル間隔の因子分解 [prefactor]×[T 固有値間隔] の後者であり棄却確定 (ドリフト 0.16%→3.81% が設計ノートの記録を再現)。変異検出層 5 種 (κ↔κ′/規格 4/π/母数混同/√忘れ/旧候補) 全てゲート検出。"
   status: "確定 (事前登録判定 a)。閉形式は既知 (QRN-C0-007) — 新規性は同定・棄却・3D BZ moment への接続のみ"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v252_exact_g.rs"
     result: "results/v252_exact_g.txt"
@@ -2302,6 +3389,12 @@
   level: C2
   claim: "BZ moment の計算定理 (区間演算による厳密包含): r_x = ⟨1/AGM(1,√(1+cos²ky+cos²kz))⟩_BZ ∈ [0.843545503984956, 0.843552926638375]、r_⊥ = ⟨2cos²ky·(同関数)⟩_BZ ∈ [0.813356957837832, 0.813414806840221] (外向き丸め区間 Riemann n=2^15・π 区間定数・cos は剰余項つき Taylor・区間 AGM・階層和・2 冪除算)。帰結: λ_x = 1/r_x ∈ [1.185462071698428, 1.185472502995920]、λ_⊥ = 1/r_⊥ ∈ [1.229385046338885, 1.229472484821826]、r_x − r_⊥ ≥ 0.0301307 > 0 (厳密) ⟹ **λ_⊥ − λ_x ≥ 0.04391 (証明付き)**。独立 2 実装 — 3D トーラス中点則 (AGM 不使用) と 2D BZ+AGM — は 3.9e-16 で一致し、区間に包含される (S4)。異方性の解析定理: Y=cos²ky, Z=cos²kz 独立・E[Y]=1/2・h(s)=g(√s) 狭義減少 (g′<0) ⟹ r_⊥−r_x = 2Cov(Y,h(Y+Z)) < 0 (Chebyshev 相関不等式を Z 条件付けで適用)。変異検出層 3 種 (重み sin²/係数 2 忘れ/kz 落とし) 全て検出。"
   status: "証明付き数値 (事前登録 a)。15 桁値は独立 2 実装の相互照合 (非区間)、区間は 5–6 桁 — 分業を明示"
+  layer: instrument
+  evidence_kind: calibration
+  independence: algorithmically_diverse
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v252_bz_certificate.rs"
     result: "results/v252_bz_certificate.txt"
@@ -2316,6 +3409,12 @@
   level: C4
   claim: "λ の解析的完結 (v25.0 残高 1 の完済): 3+1D staggered 半空間の方向別 BW 規格化は λ_x = 1.185467287349258 / λ_⊥ = 1.229428764341310 (= 既知 1D 厳密解 g の BZ moment の逆数 — 証明付き区間は QRN-GRAV-032)。v24.3 の 3D 直接測定 (1.185468 / 1.229430) と相対差 6.0e-7 / 1.0e-6 で整合。**異方性 λ_⊥/λ_x = 1.037084 の向きは定理** — 横チャネル重み 2cos²ky と質量依存 prefactor g(μ) の負の共分散 (Lorentz 破れではなくチャネル重みの幾何、v25.1 の機構主張が符号まで定理化)。"
   status: "完結 (事前登録 a)。λ は依然 regulator 物性 (方向・離散化・演算子規格化依存 — v24.5/24.6 の正名を継承)"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v252_bz_certificate.rs"
     result: "results/v252_bz_certificate.txt"
@@ -2329,6 +3428,12 @@
   level: C1
   claim: "有限鎖の役割の再定義 (収束試験化) と fail-closed 器械化: (i) ĝ_N は厳密 g(μ) を器械床 ≤ 8.1e-6 で読む — 床は N=64→512 で不変 (収束次数 p ≈ 0) = 有限サイズではなく窓/クランプ律速 (ξ* = 5–6 の κ 予算端)。質量チャネル ĝ_m は ≤ 5.3e-7 (半サイト格子の利) — Eisler 同定の最強の実測照合。(ii) crossover 則の定量化: x = N·arsinh(μ) ≥ 25 で収束域 (実測 |d| ≤ 6e-6 < 1e-4)、x ≤ 2 で ĝ は massless 値 ĝ_N(0) を読む (≤ 7.1e-4) — v25.1 の『μ ≥ 0.5 で判定』の事前登録除外が定量規則に昇格。(iii) v251 の 3 欠陥を遡及修正: fail-open 窓 (xi_trust.max(4)) → fail-closed (ξ*≥5, 不成立 None)・到達不能だった判定分岐 (b) → 段階別計数・linfit 無検証 → linfit_checked。再走で公表数値 15 桁不変 (除外ゼロ)、負制御 (粗クランプ対 1e-8/1e-6 → κ 予算破綻 → None) で修正の検出可能性を証拠化。"
   status: "判定 a (収束の形は a-ii 器械床支配)。開発記録: run1 は『N で減少』という物理仮説をゲート化する設計ミス — 器械精度ゲートに再設計 (v24.3 W1/W2 と同型)。v25.1 文書の『78 点』は 75 点の計数ミス (数値影響なし) も訂正"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v252_finite_size.rs"
     result: "results/v252_finite_size.txt"
@@ -2343,6 +3448,12 @@
   level: C5
   claim: "v25 系列の凍結テーゼ: λ 問題は「発見」ではなく「同定と証明」で閉じた — 1D 閉形式は既知 (Eisler = QRN-C0-007)、本系列の寄与は厳密還元 (v25.1)・同定と旧仮説棄却 (QRN-GRAV-031)・BZ moment の区間証明と異方性定理 (032/033)・器械の fail-closed 化と床の同定 (034)。凍結は宣言でなく機械検査 (v252_manifest が SHA-256 台帳との照合を常設 — 破れはスイート FAIL)。PASS 分類 (45 検査) で『凍結新規予言 0・独立外部再現 0』を明示 — 既知結果の再現と予言の的中を同じ 1 PASS と数えない。論文原稿 (paper/modular-bw-full.md) はタイトルから QRN・量子重力を外し、結果単体 (staggered 格子 BW 規格化の BZ moment 公式) で査読に耐える形に限定。v25.3 は開始しない — moving target では外部再現の途中で主張が動く。再開条件は FAL-SUITE/FAL-CONTINUUM の発火または凍結台帳の照合破れのみ。"
   status: "凍結 (2026-07-22)。次期は PROMPT/7 の残り順序: anomaly-search 主張域限定 → flavor 三部作統合 → 誘導重力は Γ[g] 経路 B → QRN-Core v1 まで広域モジュール追加停止"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v252_manifest.rs"
     result: "results/v252_manifest.txt"
@@ -2358,6 +3469,12 @@
   level: C4
   claim: "flavor 三部作の prequential 監査 (規則 aa66a3e・台帳 c1121a3 を凍結後に実行、判定 a — 器械回帰 8/8 PASS): 当時機構の逐語再現 (rect lnZ₉ = −19.863 [v10.1 公表 −19.86]・MAP lnL = −5.874・shear (1,1) lnZ₁₀ = −24.293 [v16.4/16.5 公表と一致]・MAP 構成 σ_H=1/(7,32,9)/(5,1) と |V_td|,|V_ts|,β,γ の値が v16.5 スコアカードと印字精度で一致・PRED-002 帯 5 分位点再現) の上で、S = Σ ln p(D_k|M_{k−1}) を凍結初見表の credit で採点: **S_program − S_anarchy = −41.83 (bracket) / −∞ (strict)、S_program − S_FN(v3.2) = −55.91 (bracket) / −∞ (strict)**。支配項は D_J = −48.9/−54.0 (v15.7 以前の試行 23 種は CP を構造的に作れず [混合上界 −45.4]、複素 O(1) 係数を持つ FN は |J| をほぼ的中 [+8.53, 最大 +9.83])。J を除いた 4 ブロックでも対 FN は −1.96 (|V_ts| +0.28 で辛勝、γ −1.56・|V_td| −0.68 で負け)、対アナーキーは +7.04。帰結: 三部作の段階内証拠 (+306 nats・12/12) は同時代データの模型比較として有効なまま、**プログラム横断の『予測』の台帳は赤字** — 各論文の holdout が払わなかった adaptive selection cost の総額。生存: τ=1/12+i/2 は未試験の前方予言・係数ゼロの構成的性格 (FN は 18 複素 O(1) を周辺化)・予言登録機構そのもの (PRED-002/003 の凍結採点が本監査の分水嶺を可能にした)。"
   status: "判定 a (規約 P4: 負のまま公表 — これが統合論文 paper/flavor-unification-full.md の主結果)。開発記録: run1 のゲート 2 件を較正 (1 有効桁アンカーの許容・MC 標本 10⁶ 化) — 物理数値は run1/run2 同一"
+  layer: phenomenology
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: fitted
+  physical_scope: natural
   evidence:
     code: "sim/src/bin/v261_prequential.rs"
     result: "results/v261_prequential.txt"
@@ -2372,6 +3489,12 @@
   level: C1
   claim: "格子 stress 器械の較正 (誘導重力 経路 B の要件 1–3, 20 検査 PASS): 3+1D staggered (x のみ反周期 twist — E_min = sin(π/N), 解析分散と dense jacobi が 4 系で ~1e-12 一致) 上で、(i) 局所エネルギー密度 T_00(x) の分解 Σ_x T_00 = H が bit 厳密、(ii) 保存: C(q) = i[H, T_00(q)] が C(0) = 0 厳密 + ‖C(q)‖/q 有界安定 (線形消滅 = 流れ J^E の存在 — Ward 恒等式の時間成分)、(iii) vierbein 結合: x ボンド変調の Feynman–Hellmann dE₀/dε = ⟨T_xx⟩ が 9 桁一致、q≠0 の一次応答は運動量保存で零 (5e-11)、二次応答 d²E₀/dε² = −χ_O(q) が Lehmann 和と独立照合 3e-5 で一致。応答の厳密対称 y↔z (W 対称性) が ~1e-15 — v24.x の λ_y = λ_z の応答関数版。x/y 非対称 (twist 境界 + η 構造) は N=8→12 で 0.446→0.344 (m=0) / 0.179→0.037 (m=0.5) と減少。ギャップ対照 (χ_00 抑制 0.884) と変異検出 2 種 (η_z 落とし・質量二重計上)。"
   status: "判定 a — 器械較正済み。c₁ (Sakharov 項) 抽出・spin-2/spin-0 分解・連続極限対照・動的 Ward・massless spin-2 pole は v26.3+ の登録課題。開発記録: run1 ゲート 2 件は前提誤り (x↔y 立方対称は twist と η 構造で破れる — 厳密なのは y↔z / ‖C‖/q は成長し得る) — 較正して再走、物理数値は不変"
+  layer: adapter
+  evidence_kind: reproduction
+  independence: algorithmically_diverse
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v262_stress_ward.rs"
     result: "results/v262_stress_ward.txt"
@@ -2386,6 +3509,12 @@
   level: C4
   claim: "Sakharov 係数の非普遍性 (応答関数版, 判定 a — 8 検査 PASS): 横運動量ブロック分解 (dense 20 値を abs 5e-7 で再現する認証済みエンジン, N=64) による静的応答の小 q 展開 D_ch(q) = c₁ q² + c₂ q⁴ から、(i) **c₁^xx = 0.01826(6) [m=0] → 0.01770 [m=0.25] → 0.01595 [m=0.5] — 質量走行 12.6% は系統 0.3% の 42 倍 (branch A)**: 繰り込み条件なしに誘導重力運動項の普遍値は存在しない — v24.6 の G_entropy^bare 正名とエンタングルメント非依存の独立器械で同一結論。(ii) **c₁^00 = 0 (≤1e-5) vs c₁^xx ≠ 0 (branch A′)** — チャネル (演算子規格化) 依存は最大。(iii) **発見: χ_00(q) ∝ q⁴ (スロープ 3.990)** — 事前登録の q² 予言は外れ、機構を特定: 自由場では全エネルギー流 J^E_tot が保存量 (運動量関数) → エネルギー双極子の占有→非占有行列要素が消える。反証可能な帰結を登録: 相互作用系では χ_00 が q² に戻る (c₁^00 生成) はず。窓安定性 0.3%・N=32→64 移動 0.4%・χ_xx(0) の N 収束 2e-5・変異検出 (η 符号スリップ, 0.187)。"
   status: "判定 a。開発記録: run1 の 3 設計バグ (q² 予言のゲート化・branch 距離の分母・変異と観測量の食い違い) を較正 — 物理数値は run1/run2 同一"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: scheme_dependent
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v263_c1_response.rs"
     result: "results/v263_c1_response.txt"
@@ -2400,6 +3529,12 @@
   level: C4
   claim: "c₁ の等方性 (branch B, 8 検査 PASS) — λ の異方性はバルク応答の性質ではない: ブロック対エンジン (q∥ŷ, 内蔵 dense と 5.1e-14 / x 経路は REF262 20 値と v26.3 c₁ を回帰 / χ(0) の 2 エンジン恒等 2.2e-16) による c₁ 異方性行列 (N=64) は、縦組 c₁[xx](x̂) = c₁[yy](ŷ) (m=0.5 で 0.01595 の 5 桁一致・m=0 で差 0.4% = 系統内)、横組 c₁[yy](x̂) = c₁[xx](ŷ) = −0.01264 (完全一致)。**バルクの応答テンソルは立方対称** (η 位相の座標交換ゲージ同値と整合) — v24.x の λ_x ≠ λ_⊥ は輸送・応答の異方性ではなく、切断面に相対的なモジュラー規格化の性質と確定 (部門の境界: 応答=等方 / モジュラー=異方)。副次: 縦係数 +0.01595 / 横係数 −0.01264 の弾性 2 係数構造、両方とも質量走行 (v26.3 の非普遍性は両チャネル)。"
   status: "判定 a。開発記録: run1 は chi_pair の転置縮約バグ (0.28 の過大) — numpy 三者裁定で特定。深い罠として登録: 単片は転置で ±不変なので単片照合は通過する — 保存キャンセルを含む合成量で照合せよ"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: algorithmically_diverse
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v264_c1_anisotropy.rs"
     result: "results/v264_c1_anisotropy.txt"
@@ -2413,6 +3548,12 @@
   level: C4
   claim: "graviton チャネルの c₁ も bare 量 (判定 a — 6 検査 PASS): q∥ŷ の横指数 {x,z} による plus 偏極分解 D = (T_xx−T_zz)/√2 (T_xy 型の奇運動量頂点 = staggered taste の point-split 問題を回避し、認証済み演算子のみで spin-2 に到達)。新規器械は交差相関 χ_AB のみ (内蔵 dense と 3.6e-14 / x↔z 対称回帰 4.1e-6 / 正値性 χ_D,χ_S ≥ 0 / 変異検出 2.5e-2)。**c₁^(2) = −0.01935(14) [m=0] → −0.01444(1) [m=0.5] — 質量走行 25.4% は系統 0.7% の 36 倍**。横 spin-0 は −0.01177 → −0.01083。帰結: (i) 応答関数三部作の完結 — 縦 +0.01595 (走行 12.6%) / 横 −0.01264 / spin-2 −0.01444 (走行 25.4%) / 横 spin-0 −0.01083 — **全チャネルの運動項係数が regulator の中身に O(10%) で依存し、重力を作るはずの spin-2 チャネルで非普遍性が最も強い**。(ii) 交差相関 χ_xz(0) = −0.0523 (横応力の負相関) がチャネル構造を決める。"
   status: "判定 a。c₁^(2) < 0 の『ghost』読みは保留 — 接触項分離・ω 依存・完全テンソル分解 (v26.6+ 登録) が要る。主張は『graviton チャネルの静的 q² 係数は有限・可測・非普遍』まで"
+  layer: instrument
+  evidence_kind: reproduction
+  independence: algorithmically_diverse
+  universality: scheme_dependent
+  data_relation: fitted
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v265_spin2.rs"
     result: "results/v265_spin2.txt"
@@ -2427,6 +3568,12 @@
   level: C4
   claim: "重力真空偏極の監査 I — 接触項込み完全核と縦 Ward 汚染 (判定 a — 17 検査 PASS): 事前登録 spec (paper/grav-vacuum-polarization-spec.md, 実装前コミット 157ca53) どおり、scheme BOND-A (ボンド (1+h_ii)^{−1/2}・接触項 (3/4)δ_dir・counterterm Λ√g [Λ=−e_y]) の完全静的核 k̂ = (3/4)eδ − ¼χ − (Λ/4)(J−2I) を構成し器械認証した — dense FD Hessian 完全性 (d²E/dh² = ⟨S⟩−χ_V, 相対 ~5e-8)・block 3×3 χ = dense 5.1e-14・tadpole 解析照合 6.5e-14・背景停留 |dΓ/dε| = 7.4e-10 (要件 0)・y 並進 1.8e-16 (接触項の q 非依存性 ⇒ c₁ は接触完備化で不変, v26.5 回帰 4.1e-6)・uniform 連続性 4.5e-8。射影代数は proofs/Projector.lean (定理 13 本: BR 完全性・冪等・直交・trace=rank・Ward 収縮・ゲージ消去/再現 + ŷ チャネル辞書 D/X = spin-2, S = P0s, **L = yy = 純ゲージ**)。**主結果 [S6 branch a]: R(m) = |c₁^χ[L]|/|c₁^χ[D]| = 0.947 (m=0) / 1.105 (m=0.5)** — 純ゲージの縦チャネル (連続極限で恒等消滅すべき) の q² 係数 +0.01833/+0.01595 が spin-2 の −0.01935/−0.01444 と同桁で走る = **bare c₁ は非共変 regulator 汚染に支配される** (v26.3–26.5 の『c₁ は bare 量』に汚染の物差しがついた)。q⁰ 側も k̂_LL(0) = −0.1256 ≠ 0。新測定: スカラー混合 c₁^χ[SL] = +0.00187→+0.00234 (走行 25.2%)、K_DS/K_DL は m=0.5 で機械零 (~1e-16) — 汚染は縦列に局在。帰結: 連続比較には少なくとも 3 種の繰り込み条件 (Λ / q⁰ 縦核 / q² 縦核) が前提 — 要件 10 の書き換え (bare 一致は要求しない) の実測的裏づけ。"
   status: "判定 a。開発記録: S2a の解析参照 (k 和) に band-pairing ×2 の二重計上 — 走行前の独立 python 照合が検出しゲート発火前に修正 (器械側は無変更)。run1 は S0 逐次走行中に打ち切り (検査出力なし)、FD を 118 点並列バッチ化した run2 が公表 run"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_author_clean_room
+  universality: scheme_dependent
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v266_vacuum_pol.rs"
     result: "results/v266_vacuum_pol.txt"
@@ -2441,6 +3588,12 @@
   level: C3
   claim: "相互作用による χ_00 の q⁴ 保護の破れ — PRED-013 的中 (判定 a, 8 検査 PASS): v26.3 で登録した機構予言 (自由場の J^E_tot 保存 → χ_00 ∝ q⁴; 相互作用で保存が壊れ q² へ) を、spec §7 (157ca53) で凍結したプロトコル (1+1D staggered 鎖 + V Σ n n 斥力・V ∈ {0,0.5,1.0}・N ∈ {10..16}・fit 規則・判定 p < 3.0・モデル交換禁止) どおり many-body 厳密対角化 (Lanczos + CG, dim ≤ 12870) で採点した。**p(V=1.0, m=0.5, N=16) = 1.804 < 3.0 ⇒ hit** — V 系列で p = 3.795 (自由, q⁴) → 1.942 → 1.804 (q², N 依存ほぼ無し)。χ(q₁) は自由場の 32 倍 = 相互作用が c₁^00 (T_00 チャネル運動項係数) を生成する — 誘導重力の source 構造は matter の相互作用に依存する。器械証明: V=0 の E₀/χ が 1 粒子 Dirac 海 Lehmann と 7.8e-13/混合許容 0 倍、T_00(0) = H bit 厳密、変異検出。副産物: (i) m=0 自由場の χ(q₁) は N≡0 (mod 4) で厳密零 (選択則 — 走行前の厳密参照で発見)、(ii) S5 対照の事前期待 (XXZ 可積分なら q⁴ 残存) は外れ — JW 後の V n n が生む縦場片により T_00 の完全カレントに spin current が混ざり Δ≠0 で保存されない (機構の精密化)。"
   status: "判定 a — PRED-013 は scored-hit。**計算実験内の機構予言の的中であり、自然の観測量の予言ではない** (README PASS 分類の別枠計上を維持)。開発記録: run1→run2 のゲート較正 2 件 (S0b の厳密零での相対比較・S2 の縮退対照線 gap) — 物理表は run1/run2 で bit 同一 (diff 証明)、採点値は較正に依存しない"
+  layer: instrument
+  evidence_kind: internal_holdout
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: preregistered_holdout
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v267b_q4break.rs"
     result: "results/v267b_q4break.txt"
@@ -2455,6 +3608,12 @@
   level: C4
   claim: "有限サイズ spectral measure と massless pole の不在 (判定 a — 7 検査 PASS): ρ_A^(N)(s) = Σ_n Z_n δ(s−s_n) (s = ΔE², 粒子–正孔対, チャネルは Projector.lean の ŷ 辞書 D/S/L) を q = 2π/16 固定の体積列 N ∈ {16,32,64}, m ∈ {0,0.5} で構成した。器械認証: (i) **f-sum rule Σ 2ΔE Z_A = ⟨0|[T_A†,[H,T_A]]|0⟩ — 二重交換子 (1 体演算子の相関行列 trace) との独立モーメント照合が dense 6.4e-13 / block 4.4e-16**、(ii) 対和 Σ2Z/ΔE = χ 器械の内部恒等 (0.0)、(iii) Z ≥ 0 構成的、(iv) threshold: m=0.5 で s_min ≥ 4m² (厳密) かつ 2 粒子 threshold 4m²+q² = 1.1542 へ上から収束 (1.430→1.191→1.162)、massless の端は光円錐 s_min/q² = 2.53→1.24→1.05。**主結果 [S5 branch α]: 自由場に massless spin-2 pole なし** — pole の凍結判定の residue 条件 Z_n→Z_*>0 が両質量で否定される: W₁(N) = 最低クラスタ ΣZ/V は m=0.5 で 5.9e-5→9.9e-7→3.2e-8 (~N⁻⁵·⁴)、m=0 で最低対の行列要素が選択則的に機械零 (~1e-37) — 重みは体積とともに消え、連続体のみ (v26.5 の登録予想の確認)。[v26.7.1 訂正 — QRN-GRAV-042]: (α) 判定変数「s → 0」は固定 q ≠ 0 で ill-posed — 不変量 M² = ΔE² − q² で再採点し結論維持 (PRED-014 hit)。(β) 縦チャネルのスペクトル重み (χ_L = 0.107 は spin-2 0.154 と同規模) を「静的汚染の動的対応物」と読んだのは過大 — 4D Ward relation により T_yy 単独の重みは保存則違反を意味せず、temporal block 実装まで dynamic Ward 診断には使えない。"
   status: "判定 a。「分母が零に近い」だけでは pole の証拠にならない、という spec §7 の凍結判定基準がそのまま器械になった。誘導重力の pole は (あるなら) 1/Π の構造から来るべきもの — 動的 metric の反転核は v26.8 (連続極限) の後"
+  layer: instrument
+  evidence_kind: internal_holdout
+  independence: algorithmically_diverse
+  universality: regulator_specific
+  data_relation: preregistered_holdout
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v267_spectral.rs"
     result: "results/v267_spectral.txt"
@@ -2469,6 +3628,12 @@
   level: C4
   claim: "不変量 M² = ΔE² − q² での pole 再採点 — PRED-014 hit (判定 a, 6 検査 PASS): PROMPT/9 の指摘 (固定 q ≠ 0 で「s → 0」は ill-posed — massless は光円錐 ΔE² = q² に住む) を spec §12.1 として凍結してから、v26.7-II の spectral データを不変量 M² (と tree-level improved q̂ = 2sin(q/2) の M̂²) で再採点した。**ε-ladder {0.5, 0.25, 0.125}q² の半減比 = 0.132 / 0.048 (N=64, 両変数で同値) — 孤立 pole (比 → 1) と正反対の急峻な連続体端 (W_ε ~ ε³ 級)**。M²_min/q² = 1.53 → 0.24 → 0.0497 (単調 → 0)・最低クラスタ residue W₁/V → 2e-38・窓 [0, 0.5q²] 内の状態数 0 → 64 → 1216 (成長 = 連続体)。massive 対照は M²_min = 1.0077 × 4m² (threshold, ΔE² ≥ 4m² は厳密)。**v26.7-II の no-pole 結論は不変量でも維持 — 判定規則の修正であり結論の反転ではない**。同時に T_yy スペクトル重みの解釈を降格: 4D Ward relation ΔE_n⟨0|T_0ν|n⟩ = q_i⟨0|T_iν|n⟩ により T_yy 単独の大きな重みは保存則違反を意味しない — temporal 成分 (T_00, T_0i) 実装まで dynamic Ward 診断には使えない (QRN-GRAV-041 の該当解釈を訂正)。"
   status: "判定 a — PRED-014 scored-hit。開発記録: run1 は近傍対 cutoff 1.7q² が N=16 の最低対 (2.53q²) を覆えず空リスト panic — 4q² に拡幅 (ゲート発火前の被覆バグ; S0 回帰 4.0e-7 が v26.7-II との物理同一性を担保)"
+  layer: instrument
+  evidence_kind: internal_holdout
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: preregistered_holdout
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v2671_pole_semantics.rs"
     result: "results/v2671_pole_semantics.txt"
@@ -2482,6 +3647,12 @@
   level: C2
   claim: "BOND-A source matching certificate — Gate 1 開通 (判定 a: 0a Lean 14 定理 + 0b 8 検査 PASS, PRED-015 hit): (0a) ProjectorND.lean が公理 θ²=θ, ω²=ω, θω=0, θ+ω=I, trθ=τ, trω=1 から Barnes–Rivers 代数を任意次元の形式代数 (乗積表, 係数 ℤ[τ]) として機械検証 — 結合律・冪等・直交・完全性・matrix units・rank 公式 (d=4: (5,3,1,1))・**S₃ = (E_xx+E_zz)/√2 の 4D 分解 3S₃ = 2u0 + u20 (spin-0 と spin-2 の混合 — S₃ を 4D spin-0 と呼ぶことを禁止)**・D/X が 4D P₂ 固有 (真の TT)。表は d=3/d=4 具体行列で全数認証 (係数アフィン ⇒ 2 点で確定)。(0b) 8 成分折込み基底 (H = Σcos k_i Γ_i + mΓ_m, Γ 反交換厳密, taste 可換子環 = M₂ [twirl rank 4], 頂点公式を N=8 格子 sandwich と 5.1e-15 で照合) の matching ladder ε ∈ {0.4..0.05}: **[D] r_D ~ 4e-15 — 対角頂点は Γ の多項式で taste-singlet 性が構成的定理。m_D = O(ε²) → 3.9e-5, Z_D → 0.9997 ⇒ D は TreeLevelMatchedTTSource (Gate 1 開通 — 経路 B は strain response ではない)**。[X naive] 素朴 BOND-A off-diagonal 転写は r = 1.000 (Λ_z = I⊗I⊗σ₃ が Clifford 像に直交 — 100% taste-nonsinglet) で**棄却**。[X split] 4 隅 point-split (σρ 符号交代 = sin·sin 積選択) を構成し認証: r ~ 5e-15 (厳密 singlet), m → 7.8e-5, Z_X → 1.9975 (D と別の Z — 立方分裂どおり)。"
   status: "判定 a — PRED-015 scored-hit。Gate 1 開通により v26.8-A (解析 oracle 二重導出 — Gate 2) へ進む資格。開発記録: X_split run1 の相対符号ミスは shape ゲート (m ≈ 2.0, 反対称結合 = 回転生成子) が検出 — r だけでは不十分で m と Z が別の目。corner 符号変異は r に不感 (全項 Γx 構造) → 変異は η parity 破りに再設計 (r = 0.707)"
+  layer: adapter
+  evidence_kind: internal_holdout
+  independence: same_author_clean_room
+  universality: regulator_specific
+  data_relation: preregistered_holdout
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v268z_source_matching.rs"
     result: "results/v268z_source_matching.txt"
@@ -2496,6 +3667,12 @@
   level: C2
   claim: "解析 one-loop oracle の三重経路一致 — Gate 2 開通 (判定 a, 13 検査 PASS): 連続 3+1D 自由 Dirac 場 (1 flavor) の TT (D) チャネル静的感受率の null-combination 係数を、凍結規約 (Belinfante 頂点 = v268z の matching と同一チェーン・χ = ∫dE 2σ/E・Σw = Σwq² = Σwq⁴ = 0, Σwq⁴ln q² = 1) の下で三重に導出した。(i) スピン和閉形式 tr[P₊(a·α)P₋(a·α)] = (1/E₁E₂)[(E₁E₂+k₁·p+m²)a² − 2(p·a)²] が明示行列トレースと 8.9e-16、(ii) **Lorentz 不変性の器械証明**: σ_D(E;q) = ρ(E²−q²) (異 q 同 s で 1.6e-15) ⇒ KL 表示が厳密、massless の **ρ_D(s) = s²/(160π²) (閉形式)** と massive 閉形式を認証、(iii) **Route I (直接ループ) = Route II (分散・安定通分形) = Route III (解析): A = −1/(160π²)、16π²A = −1/10 厳密** (I/II 4.6e-8, II/III 3.1e-9)。λ スケール不変 1.8e-15 (branch α = 純 q⁴ln q²)。σ_X̂ = σ_D 6.7e-16 (spin-2 の 2 偏極の縮退)。massive decoupling A(m)/A(0) → m⁻¹·⁹⁰ ≈ (q/m)² (PRED-018 の oracle 側)。スカラー和則 ∫ρ_θ/s³ = 1/(80π²) (3.5e-12, 質量不変 — 2 taste で PRED-017 の的 1/(120π²) に対応)。**A_oracle(2 taste) = −1/(80π²) を v26.8-B の格子比較の分母として凍結** (PRED-016)。"
   status: "判定 a — Gate 2 開通、v26.8-B (staggered TT continuum limit) へ進む資格。開発記録 (run1→run3): 素朴な Σwσ は大 E 域の f64 桁落ち (解析的相殺の数値崩壊) で O(10⁷) 倍の誤差 — 通分形 K(s) = n₀/Π(s+qᵢ²) (n₃=n₂=n₁=0 が Σw 拘束で恒等) で桁落ちゼロに。Route I は球座標 + 閾値パネル + 冪外挿 tail に再設計。教訓:「解析的に消える項は数値でも消してから積分せよ」"
+  layer: instrument
+  evidence_kind: calibration
+  independence: algorithmically_diverse
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v268a_oracle.rs"
     result: "results/v268a_oracle.txt"
@@ -2510,6 +3687,12 @@
   level: C2
   claim: "staggered TT の連続極限 — 繰り込み後 form factor が連続 2-taste Dirac に収束 (判定 a, 6 検査 PASS — PRED-016 前半 hit): 8 成分折込み基底の H(k) を無限体積格子の厳密 1 粒子 Hamiltonian とし、χ_D の BZ 積分 (ノード中心セル・3 段入れ子箱 + ノード点分割 GL) を continuum trajectory (q^lat = a·Q, Q = {0.3,0.6,0.9,1.2}; m^lat = a·m_phys) で測定した。器械回帰: BZ 積分の χ_D(2π/16) = v26.7-II 有限体積公表値と **4.1e-7** (0.154068 = 0.154068)。**主結果: A(a)/2A_oracle = 1.1653 (a=0.5) → 1.0014 (a=0.032) の単調収束、2 モデル外挿で A₀/(2A_oracle) = 1.0102/0.9908 (spread 1.9%) = 1 ± 2%** — staggered の null-combination TT 係数は v26.8-A の解析 oracle −1/(80π²) に収束する (taste 数 2 の同時測定 — 1 taste なら比 0.5 に行くはず)。q̂ = (2/a)sin(aq/2) 変種と 1.1% 一致 (spec §12.1)。**massive decoupling (PRED-018 格子側): A₀(m_phys=1)/A₀(0) = 0.1793 vs oracle 比 0.1741 (閉形式 ρ_D(s;m) から計算) — 3.0% 一致**。求積自己整合 4.1e-4・変異 (η parity 破り) 検出 0.503。"
   status: "判定 a — PRED-016 前半 hit (完成は Wilson 側 v26.8-C: A^Wil と X チャネル)。PRED-018 は oracle 冪 (q/m)² + 格子 3.0% 一致で両側から成立。開発記録 (run1→run5): ノード構造を解像しない箱設計を S1 が 35% で検出 (3 段入れ子 + ノード点分割へ)・massive 対照の am = 0.7 artifact (m_phys 2.0→1.0)・oracle 比較の placeholder 定数を閉形式計算に置換 (出所不明の定数は禁じ手)"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v268b_continuum.rs"
     result: "results/v268b_continuum.txt"
@@ -2524,6 +3707,12 @@
   level: C2
   claim: "Wilson 独立離散化の連続極限 — 二離散化 universality (D チャネル) 成立 (判定 a, 7 検査 PASS): 空間 Wilson Hamiltonian H_W(k) = Σαᵢsin kᵢ + β(m + rΣ(1−cos kᵢ)) (時間連続 — taste trap 回避, 単一ノード = 1 Dirac flavor) は厳密に Dirac 型 (H² = E²·1 機械精度) — 射影子閉形式の BZ 積分で continuum trajectory を走らせた。BOND-A 頂点 V_ii = −½[αᵢsin kᵢ − rβcos kᵢ] (on-site m, 3rβ は h 非結合; 頂点 = ∂H/∂h を行列 FD で認証 3.9e-11)。D チャネルの β 汚染は差で O(p²) improvement 級。**主結果: A(a)/A_oracle = 1.3371 (a=0.5) → 1.0042 (a=0.032)、凍結 2 モデル外挿 (a+a²/a²+a⁴ — spec §12.5) = 0.9872/1.0058 (spread 1.9%) = 1 ± 2% — Wilson-D は 1×A_oracle = −1/(160π²) に収束。staggered の 2× (QRN-GRAV-045) と合わせ taste 数 (2 vs 1) まで交差検証された二離散化 universality が D チャネルで成立**。regulator 内普遍性 (新ゲート): r = 1.0 と 0.7 (a=0.5 で 1.337 vs 1.387) の外挿 A₀ が 0.1% で一致 — 同一連続極限の直接実演。q̂ 変種 1.0%。変異 (rβ 片符号反転 = 頂点 ≠ ∂H/∂h) は 2467× の逸脱で検出。"
   status: "判定 a — PRED-016 の D チャネル 2 比 (stag/Wil) 完了。残りは X チャネル 2 比 (staggered point-split の one-loop / Wilson 混合ボンド転写) で PRED-016 の完全採点"
+  layer: instrument
+  evidence_kind: calibration
+  independence: algorithmically_diverse
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v268c_wilson.rs"
     result: "results/v268c_wilson.txt"
@@ -2538,6 +3727,12 @@
   level: C2
   claim: "X チャネル 2 比の連続極限 — 4 比の二離散化 universality 完成 (判定 a, 6 検査 PASS): staggered は v268z 認証済み point-split X (全 k で厳密 taste-singlet — 閉形式構造を 1.1e-16 で回帰) を BZ 積分へ、Wilson は混合ボンド転写 V = ½(αx sin kz + αz sin kx) (Z = 1)。的は tree 正規化込みで staggered = 4·A_oracle (Z = 2 の凍結構成)、Wilson = A_oracle/2。**結果: A_X^stag/4A_or = 0.9972/1.0026 (spread 0.5%)、A_X^Wil/(A_or/2) = 0.9932/1.0032 (spread 1.0%) — D の 2 比 (QRN-GRAV-045/046) と合わせ 4/4 比が 1 ± 1.3%**。spin-2 の両偏極 (D, X)・二離散化 (staggered/Wilson)・taste 数 (2 vs 1)・頂点正規化 (Z 系) の全てが同一の解析 oracle −1/(160π²) に交差整合 — spec §12.8 の分岐表で最良の帰結 (「測定器が正しい。QRN や創発重力の証拠ではない」)。RenormalizedTTFormFactor / RegulatorUniversalTT 型が 2% 精度で初めて発行可能。"
   status: "判定 a — **PRED-016 は interim (正直判定): 登録バー『1% 以内・系統 0.5%』に対し現到達 max 1.3% (D の外挿 spread が支配) で未達**。精緻化 (外挿モデルの正当化・小 a・高次 fit) が残作業。開発記録: S0 検査コードの piece2 期待符号の転記ミス (Δ=0.94 がちょうど 2 倍項 — 頂点構成は v268z 認証のまま無変更)"
+  layer: instrument
+  evidence_kind: calibration
+  independence: algorithmically_diverse
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v268x_completion.rs"
     result: "results/v268x_completion.txt"
@@ -2552,6 +3747,12 @@
   level: C2
   claim: "スカラー spectral 和則の格子側 — PRED-017 scored-hit (判定 a, 6 検査 PASS): 凍結不変量 S = 2∫σ_θ(E)/E⁵ dE (v268a で三重検証・1/(80π²)/Dirac・質量不変) を q = 0 の単一 BZ 積分 (null 結合不要・UV 有限) S^lat = ∫d³k/(2π)³·2m²T/(2E)⁵ で測定。T は射影子トレースの閉形式 (stag: 4Σcos²/E² [8 成分, V_θ = Γm] / Wil: 2Σsin²/E² [4 成分, V_θ = β]) — 明示行列トレースと 9.3e-15 一致。外挿モデルは S 自身の漸近形から導出 (stag: ノード sin² 補正 → δS = c·a²ln(1/a) + d·a², 数値で Δ/(a²ln(1/a)) = 2.44–2.47 の定数性を確認 / Wil: r 項交差 2rmp² → δS = c·a + d·a²)。**結果 (全域/尾部窓): staggered S₀·(80π²)/2 = 0.9991/0.9999・Wilson S₀·(80π²) = 0.9988/1.0022 — max 偏差 0.34% < falsifier 1%、taste 数 2 vs 1 がスカラーチャネルでも成立 (D・X に続き三たび)**。m_phys 非依存 0.1%・変異 (taste-nonsinglet 密度) は 100% 逸脱で検出。"
   status: "判定 a — PRED-017 scored-hit (operator benchmark — spec §12.7 の分類どおり gravitational response とは呼ばない)"
+  layer: instrument
+  evidence_kind: calibration
+  independence: algorithmically_diverse
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v268s_sumrule.rs"
     result: "results/v268s_sumrule.txt"
@@ -2566,6 +3767,12 @@
   level: C2
   claim: "PRED-016 の登録バー到達 — 4 比の二離散化 universality を導出モデルで scored-hit (判定 a, 5 検査 PASS): 修正条項 1 (spec §12.9) を採点器の実装・走行より先にコミット (08a1321) し、外挿プロトコルのみを 1 回限り修正 (的・観測量・バー 1%/0.5% 不変)。モデルは観測量の漸近形から導出 — staggered は null 重みが q⁴ln(aQ)² の ln a を殺す (ΣwQ⁴ = 0) が a² 次の a²Q⁶ln(aQ)² は ΣwQ⁶ ≠ 0 で生存 → {1, a²ln(1/a), a²}、Wilson は r 項の O(a) → {1, a, a²}。ladder を a = 0.022 まで延長し 4 チャネル (D/X × stag/Wil) を転記なしで再計算 — a = 0.125 rung が公表 JSON (v268b/c/x) と 1.6e-4 一致 (P0)、GL 自己整合 5.7e-6 (P1)、fit 残差 ≤ 0.24% (P2)。**結果: 中心 (尾部窓 a ≤ 0.125) stagD 1.0000・wilD 0.9986・stagX 1.0000・wilX 0.9990 — max |中心 − 1| = 0.14% ≤ 1% (P3)、系統 |全域 − 尾部| max 0.47% ≤ 0.5% (P4)**。導出モデルの staggered 2 比は 1.0000 ± 0.0002 — a²ln(1/a) 項の実在の強い証拠。"
   status: "判定 a — PRED-016 scored-hit (登録バー到達)。wilD の系統 0.47% はバー際 — §12.9 により再修正禁止、これが最終値"
+  layer: instrument
+  evidence_kind: calibration
+  independence: algorithmically_diverse
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v268p_pred016.rs"
     result: "results/v268p_pred016.txt"
@@ -2580,6 +3787,12 @@
   level: C2
   claim: "三者一致の完結 — 格子 spectral density と分散再構成 (判定 a, 6 検査 PASS): TT (D) チャネルの同一物理量を Route I (直接 null 射影)・Route II (σ^lat(E;q) 測定 + 安定核 K(s) = n₀/Π(s+Qᵢ²) の分散再構成)・Route III (解析 ρ_D = s²/(160π²)) で閉環。器械 2 種 — ヒストグラム (積分用: per-bin χ 寄与の総和 = 直接 χ の再配列恒等式 2.3e-15) と殻積分 (点評価用: level-set root-solve, F = E(k+q)+E(k) は射線ごと単一交差・勾配閉形式・角度自己整合 3.8e-15)。**結果: (i) Lorentz 回復 σ(E;q) = ρ(E²−q²) の破れ max 1.25% (a=0.09) → 0.31% (a=0.045), 縮小比 0.251; (ii) 点ごと密度 σ_phys/(2ρ_D) 偏差 0.91% → 0.23%, 縮小比 0.248 — いずれも a² 理論値 0.25 と定量一致 = 破れが真の O(a²) discretization 効果である証拠; (iii) A_rec/A_direct − 1 = 0.93% → 0.38%**。変異 (転写不変量 s = E²−2q²) は 18.7 倍逸脱で検出。"
   status: "判定 a — 三者一致完結。spectral 経路でも測定器が正しい (QRN・創発重力の証拠ではない)"
+  layer: instrument
+  evidence_kind: calibration
+  independence: algorithmically_diverse
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v268t_threeway.rs"
     result: "results/v268t_threeway.txt"
@@ -2594,6 +3807,12 @@
   level: C2
   claim: "エネルギーセクターの 4D Ward — 厳密演算子恒等式 (判定 a, 7 検査 PASS): 中点変調規約の格子エネルギー密度は折込み 8 成分基底で V₀₀(k;q) = h(k+(q/2)ŷ) 厳密 (E0 = 0.0, taste 純度 1.8e-17, tree matching O(ε²) 縮小比 3.99/4.00)。連続の式: V_J := i[h(k+qŷ)V₀₀ − V₀₀h(k)]/(2sin(q/2)) が Fourier 台 |n| ≤ 2 の三角多項式 (残差 8.0e-14) = 到達距離 ≤ 2 の局所エネルギー流 J_E の構成的存在証明。対ごと厳密恒等式 (E_μ−E_ν)M₀₀ = −i·q̂·M_J (1.6e-14)。**動的 Ward (プロジェクト初の q₀ ≠ 0 恒等式): q₀²χ₀₀(iq₀,q) + q̂²χ_JJ(iq₀,q) = M₁(q) が BZ 積分で 4.4e-16** — カットオフ有限のまま周波数方向の Ward が厳密成立。副発見: v268z の一般頂点公式の (s+ε) 規約は q 方向ボンドに適用不可 (両片相殺の誤零 — v26.8 は全て q ⊥ ボンドで露見せず)。"
   status: "判定 a — Gate 5 の energy 行開通。次 = 運動量セクター h₀ᵢ (T₀ᵢ = J_E の Belinfante 対称性)"
+  layer: adapter
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v269e_energy_ward.rs"
     result: "results/v269e_energy_ward.txt"
@@ -2608,6 +3827,12 @@
   level: C2
   claim: "運動量セクターの 4D Ward と Belinfante 対称性 (判定 a, 6 検査 PASS): taste 安全な 2 サイト分割の運動量密度 V₀y(k;q) = −(1/2)sin(2k_y+q)·𝟙 (自明 taste-singlet, node 極限 = 中点運動量, [h,V₀y(0)] = 0 厳密)。格子連続の式の符号解析 (∂_tρ(q) = +2i sin(q/2)J(q)) から保存流由来 stress V_S = C/(2sin(q/2)) は実行列。**(i) 保存 stress = BOND-A (metric 変分) T_yy が tree レベル・自由パラメータなし (Z = 1) で一致 — 射影ブロック差 rel 6.0e-2 → 9.0e-4, 縮小比 4.1/4.0/4.0 = O(ε²)。(ii) Belinfante 対称性 T₀y = T_y0 (= J_E^y) が on-shell で成立 — rel 1.3e-1 → 1.9e-3, O(ε²)**。V_S の局所性 (Fourier 台 ≤ 3) 1.2e-15・動的 Ward q₀²χ₀y + q̂²χ_SS = M₁ が 1.7e-15・変異 (taste-nonsinglet 密度) 19.4 倍逸脱。Gate 5 の momentum 行開通 — 4D 対称テンソル kernel の対称性の前提 (T₀ᵢ = Tᵢ₀) が正当化された。"
   status: "判定 a — 残り = 10×10 kernel (q₀ ≠ 0)・contact 項込み full 4D Ward (Gate 5 判定)・spin-0/2 4D 分離"
+  layer: adapter
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v269m_momentum_ward.rs"
     result: "results/v269m_momentum_ward.txt"
@@ -2622,6 +3847,12 @@
   level: C2
   claim: "full 4D Ward — 64 恒等式の一括機械検査 (判定 a, 6 検査 PASS): 密度 4 種 D_ν (V₀₀ = h(k+q/2ŷ), V₀ᵢ = −(1/2)sin(2kᵢ+qδ_iy)𝟙) から保存フラックス V_Fν = [h(k+qŷ)D_ν − D_νh(k)]/(2sin(q/2)) を一様生成 — 全 4 本が局所 (Fourier 台 ≤ 3, 6.3e-14)。Matsubara Ward iq₀C_{AB} − q̂C_{J_AB} = −⟨[A(q),B(−q)]⟩ が **4 行 × 8 列 (密度 4 + BOND-A stress 4) × 2 周波数 = 64 恒等式で k 点ごと 1.5e-12・12³ BZ 積分 4.8e-14** で閉じる。接触項は独立 2 実装照合 1.3e-13 (対和 = −⟨[A,B]⟩ / 占有トレース = +⟨[A,B]⟩ — k 点ごとには不一致で occ-occ 片が BZ 和のみ相殺する副定理; 格子上の厳密相殺には q を格子可約に取る)。**概念的成果: Ward の物理はフラックス局所性 (保存破れ → 1/q̂ 発散 — 変異で比 13.6 実演) + 接触項構造に宿る** (恒等式自体は任意双線形の厳密再配列)。[W3] ‖V_Fy − V_yy^A‖_F は off-shell 全行列でも ε^2.0 — BOND-A と保存 stress の差は off-shell O(ε²)。"
   status: "判定 a — Gate 5 の Ward 機構確立。残り = spin-0/2 の 4D 分離と BOND-A 差の連続極限 (v26.9-C) → Gate 5 総括"
+  layer: adapter
+  evidence_kind: theorem
+  independence: algorithmically_diverse
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v269w_ward4d.rs"
     result: "results/v269w_ward4d.txt"
@@ -2636,6 +3867,12 @@
   level: C2
   claim: "4D spin 分離と Gate 5 総括 (判定 a, 6 検査 PASS): 置換則 V(k;q) = V_unmod(k+q/2ŷ) を独立照合 (d_y = 1, 2, 1.7e-16) し T_xy/T_yz point-split を構成 — 全 10 source 完成、full 4D Ward は 80 恒等式 (4.3e-13)。**Belinfante 構造の格子分解 (発見): (i) 厳密恒等式 — 正準フラックス V_Fx = point-split の piece2 単独 (3.8e-16 の演算子恒等)、Belinfante (両 piece 平均) とは回転流の分 O(1) [0.81] で相違。(ii) scheme 混合の定理 — 正準 T⁰ᵢ と Belinfante T_ij を混ぜた 10×10 の横断性破れは a 非依存 (0.616)、格子の厳密横断性は正準 (非対称 16 成分) テンソルが担う**。4D spin-2 分離: D/X は timelike q_L = (E,Qŷ) でも厳密 P₂ — 殻積分で偏極縮退 |σ_DD/2σ_XX − 1| = 0.0118 → 0.0007 (縮小比 4.0/4.0 = O(a²))・直交 1.8e-16・oracle 絶対アンカー σ_DD/(2ρ_D) = 1.0007・変異 (Z 落とし) は縮退比 3.997 = 4 予言どおり。"
   status: "判定 a — Gate 5: Ward/分離部門は確立。残り = Belinfante 対称 10×10 の完全崩壊 (v26.9-D — 二重変調則 V₀₀(k;px̂+qŷ) = h(k+p/2x̂+q/2ŷ) で T⁰ⁱ 対称化) と temporal 二次変分 (v27.0)。型名 FullGravitationalVacuumPolarization は保留・1/Π 禁止維持"
+  layer: instrument
+  evidence_kind: calibration
+  independence: algorithmically_diverse
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v269c_spin4d.rs"
     result: "results/v269c_spin4d.txt"
@@ -2650,6 +3887,12 @@
   level: C2
   claim: "Belinfante 対称化の素朴平均は失敗する — 負の結果の認証 (判定 b, 5 検査 PASS): エネルギー流の閉形式 J^i = ½{h(mid), ∂ᵢh(mid)} (連続の式の p → 0 極限から導出; J_subst − J_exact = (q/8)[∂²h,h] + O(q²) の O(q) 交換子項まで機械照合) を用いた T⁰ᵢ_naive := (V₀ᵢ + J^i)/2 は格子 Belinfante 密度ではない。**負の発見 3 件 (全て ladder で停留 = 収束した非零定数): (1) T⁰ˣ_naive の厳密流束 Φ = [h, T⁰ˣ]/q̂ は point-split T^{xy} に収束しない — rel 1.30 が ε 非依存 (spread 6e-4)・(2) 対称 10×10 の横断性破れ 0.674 が a 非依存・(3) J 片は殻上の破れに寄与しない — tv(naive) = tv(正準) が機械精度一致** ((E₁−E₂) 型 J 行列要素の対称殻相殺)。P₂ 部門は無傷 (σ_DD/(2ρ_D) = 1.0007 回帰 PASS)。結論: 格子 Belinfante 0i 密度には spin-current 改良項 (∂_λK^{λ0i} の格子転写) の明示構成が必要。"
   status: "判定 b — 負の結果を凍結 (知的誠実性規約)。次 = spin-current 改良頂点の明示構成 → 対称 10×10 崩壊の再判定"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v269d_belinfante.rs"
     result: "results/v269d_belinfante.txt"
@@ -2664,6 +3907,12 @@
   level: C2
   claim: "spin-current 改良と Belinfante 完成 (判定 a, 6 検査 PASS): 転送 q∥ŷ の Belinfante 改良 ΔT⁰ⁱ = q̂·λ·[α̂ᵢ, α̂_y] (α̂ᵢ = ∂h/∂kᵢ|node の on-site 定数行列)。su(2) 型代数 [Σpⱼα̂ⱼ, [α̂ᵢ,α̂_y]] = 4(pᵢα̂_y − p_yα̂ᵢ) が回転流構造を予言 — **λ_fit = −0.124638 が有理値 −1/8 に的中 (凍結)**。0y/00 は改良不要 (K^{y0y} = K^{y00} = 0)。**結果: (1) 流束閉包 — Φ(T_B⁰ˣ) vs T^{xy}-split が v26.9-D の停留 1.30 から 9.5e-4 へ (O(ε²))・(2) 対称 10×10 の横断性 0.674 → 3.9e-4 (縮小比 4.0/4.0 = O(a²))・(3) conformal 崩壊 — trace 比 1.0e-4 = massless の σ = ρ₂P₂ 完全崩壊**。oracle アンカー/縮退 1.0007 無傷・変異 (λ → −λ) 2000 倍逸脱。Gate 5 の分離部門完結 (v26.9 arc 完了)。"
   status: "判定 a — v26.9 arc 完了。v27.0 への残り = temporal 二次変分 scheme の設計と dynamic metric fork 分岐 (spec §12.6)。型名 FullGravitationalVacuumPolarization は保留・1/Π 禁止維持"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v269i_spin_improve.rs"
     result: "results/v269i_spin_improve.txt"
@@ -2678,6 +3927,12 @@
   level: C2
   claim: "full 4D kernel の厳密 Ward (spec §13.2, 判定 a, 5 検査 PASS): k̂^{0ν,B} := C_{T⁰ν_Bel,B}(iq₀) / k̂^{yν,B} := C_{J_ν,B}(iq₀) − ⟨[T⁰ν_Bel(q),B(−q)]⟩/q̂ (接触完備化) — v26.9-B の Matsubara 恒等式により **iq₀k̂^{0ν} − q̂k̂^{yν} = 0 がカットオフ有限のまま構成的に厳密 (12³ BZ で 6.8e-14, 4 行 × 10 列 × 2 周波数)** = v26.6 静的核の 4D 拡張。接触完備化は q → 0 で正則 (成長比 1.000 — 交換子が q² 以上で消える対も正則の正しい判定 = 非発散)。**A3 対称テンソル整合性: Ward-厳密な流束行が Belinfante stress 行に全 4 行で O(ε²) 収束** (例 ν=x 1.5e-2 → 9.5e-4) — 核は連続極限で対称・保存・Ward-厳密を同時充足。Onsager 対称性は反対称改良頂点 (λq̂W) の微小破れ込みで 7.5e-9。変異 (λ → 0) は ν=x 行 1.30 停留 (1370 倍)。"
   status: "判定 a — spec §13.2-A 充足。FullGravitationalVacuumPolarization 型の発行と 1/Π は §13.3 全条件 (v27.0-B universality + fork 予言登録) まで保留"
+  layer: adapter
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v270a_kernel4d.rs"
     result: "results/v270a_kernel4d.txt"
@@ -2692,6 +3947,12 @@
   level: C2
   claim: "温度セクターの連続 universality (spec §13.2-B, 判定 a, 5 検査 PASS): P₂ 幾何 (静的 q_L = (0,Qŷ) で θ₀₀ = 1・θ_yy = θ₀y = 0) + Lean 証明済みチャネル辞書から、massless kernel の q⁴ln q² 係数は A_I = A₂·⟨I|P₂|I⟩ — 予言 A_00/A_D = 2/3 厳密・A_0y = A_yy = 0。null 結合 ladder (§12.9 凍結プロトコル) で **A_00/(⅔·A_D) = 0.9974 (spread 0.0000)・|A_0y/A_D| = 0.0021・|A_yy/A_D| = 0.0024**・A_D 回帰 5e-5・変異 (V₀₀ ×1.02) 1.0377 で検出。**温度セクター (h₀₀/h₀y) の one-loop 応答が空間セクターと同一の繰り込み後 form factor に流れる — 縦・時間チャネルは純ゲージ (Lean 定理 L = yy の one-loop 版)。spec §13.3 の 1/Π 解禁条件 (ii) 充足**。"
   status: "判定 a — v26.6 の bare c₁ 汚染 (L チャネル同桁) は繰り込みで消える scheme 量だったことの最終確認。次 = v27.0-C fork 判定"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_author_clean_room
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v270b_universality.rs"
     result: "results/v270b_universality.txt"
@@ -2706,6 +3967,12 @@
   level: C2
   claim: "dynamic metric fork の執行 — 分岐 (b) external metric 確定 (spec §13.3 凍結プロトコル, 判定どおり, 5 検査 PASS): 解禁条件 (i)(ii) 充足を受け 1/Π を本監査に限り計算。繰り込み後 Π₂^ren = χ_D − c₀ − c₂q² − c₄q⁴ (A₂ = 2A_oracle 凍結) は **(1) フィット残差 1.7e-12 で A₂q⁴ln q² 形のみ — |Π₂^ren/Q²| の縮小比 0.235 が Q²lnQ² 導出値 0.232 に 0.9% 一致 = 有限留数の massless pole なし (graviton は生成されない)。(2) Sakharov「誘導 Newton 定数」候補の bare c₂ は c₂(0.045)/c₂(0.09) = 4.000 (= a⁻² ちょうど) で走る regulator 量** — v26.3 以来の「bare 係数 = scheme 量」の最終的・定量的実証。変異 (A₂ ×2) は残差 380 倍。composite graviton 路線は「相互作用による普遍 q² 項生成 + Weinberg–Witten 破れ仮定の明示」を要件とする将来の別プログラムに封印。1/Π の常用は解禁しない。"
   status: "fork 確定 — metric は外部 regulator のまま。経路 B は vacuum-polarization audit として完結、QRN-Core v1 (matter-on-background) へ接続。残り = v27.0-D 期統合"
+  layer: instrument
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: continuum_universal
+  data_relation: not_applicable
+  physical_scope: effective_model
   evidence:
     code: "sim/src/bin/v270c_fork.rs"
     result: "results/v270c_fork.txt"
@@ -2720,6 +3987,12 @@
   level: C5
   claim: "第二十七期 完結 (期統合, 2026-07-28): v26.1 (flavor prequential — 台帳赤字のまま公表) → v26.2–26.7 (BOND-A 静的監査・完全核・PRED-013 的中・no-pole) → v26.8 (連続極限 universality: 4 比 0.14%・和則・三者一致 — PRED-013〜018 全て scored) → v26.9 (4D covariance closure: 動的 Ward 144 恒等式・Belinfante 完成 λ = −1/8・σ = ρ₂P₂ 崩壊・負の結果 1 件凍結) → v27.0 (厳密 4D kernel・温度 universality・**dynamic metric fork = 分岐 (b) external metric 確定**)。スイート: 実行 33 本 PASS 268 + 引用 129 本 PASS 856 = **総計 PASS 1124 / FAIL 0**。正直な残高: 的中は全て計算実験内の機構予言 — **自然の観測量の的中 0・独立外部再現 0**。経路 B は vacuum-polarization audit として完結 (凍結解釈: 測定器の証明であり QRN・創発重力の証拠ではない)。第二十八期 = QRN-Core v1 の定義 (uft-v27.0.md §D.3 の要件 4 項 — 定義完了まで広域モジュール追加停止維持)。"
   status: "期統合 — テーゼ「予言の台帳は赤字でも、測定器は黒字にできる」"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
   evidence:
     code: "sim/src/bin/v270c_fork.rs"
     result: "results/v270_suite.txt"
@@ -2727,3 +4000,39 @@
   limitations:
     - "スイートは増分 (完全再計算の儀式は v25.2 の 905 PASS が直近 — 次回儀式は第二十八期の節目で)。"
     - "外部作業が未消化: anomaly-search/modular-BW 投稿・第三者再実装公募 (最優先マイルストーン)。"
+
+- id: QRN-META-029
+  version: "v27.1"
+  level: C2
+  claim: "核意味論監査 (第二十八期, PROMPT/10 §2): (1) 全概念 (core.schema.yml の 67 概念) が 7 層 (core/dynamics/adapter/instrument/bridge/phenomenology/meta) に分類され未分類 0 件。(2) claims.yml 全主張が 6 軸 (layer/evidence_kind/independence/universality/data_relation/physical_scope) を完備し語彙適合。(3) 昇格禁止規則 R1–R7 を全件充足 — 特に evidence_kind=natural_observation 0 件・external_replication 0 件・independent_author は C0 (外部の確立結果) のみ =「自然の観測量の的中 0・独立外部再現 0」の機械化。(4) predictions.yml の全 PRED が分類済みで、data_relation=future_observation の PRED は全て未採点 (registered) — scored-hit の γ_UT/θ13 は公知測定値の holdout であり自然の的中に数えない。(5) QRN-C0-001 を条件付き定理に限定・QRN-GRAV-001 を modular-response benchmark に降格・uft-v0.7/v1.0(A3)/v27.0(§D.3) に監査注記。"
+  status: "制限付き計算定理 (領域 = 台帳と schema の全項目。分類の意味論は ASM-LAYER-SEMANTICS)"
+  layer: meta
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v271_core_audit.rs"
+    result: "results/v271_core_audit.txt"
+    doc: "docs/uft-v27.1.md"
+  limitations:
+    - "分類は規約 (ASM-LAYER-SEMANTICS) — 監査が保証するのは分類の完備性・語彙適合・禁止昇格の不在であり、分類自体の物理的正しさではない。"
+    - "R1–R3 は台帳の自己申告に対する検査 — 台帳外の文書での過大主張は R10 の文書アンカー検査が部分的に覆うのみ。"
+
+- id: QRN-META-030
+  version: "v27.1"
+  level: C5
+  claim: "QRN-Core v1 の判定 (docs/qrn-core-v1-spec.md): uft-v27.0.md §D.3 が「QRN-Core v1 の公理系」と呼んだもの (BOND-A・中点変調・Belinfante λ=−1/8・格子=regulator) は QRN の存在論的公理ではなく Matter-on-Background Adapter v1 + Metrology Suite v1 (外部計量上の Dirac 物質を格子正則化で正しく測定するための認証済み計量応答カーネル) である。QRN の中心命題「量子相関網から時空・重力・物質・因果が読み出される」の核は QRN-Kinematics (defined — 実装はガウス toy のみ)・QRN-Dynamics (model_family_only — 固有原理未定義)・QRN-Bridge (conjectural — 重力 bridge は unsupported) であり、empirical_prediction: none。現時点で完成しているのは統一場理論の core ではなく、強い計算物理・理論監査プラットフォームである。"
+  status: "解釈 (層分類の帰結 — 状態表示 5 項は v271_core_audit R10 が機械照合)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    doc: "docs/qrn-core-v1-spec.md"
+  limitations:
+    - "「adapter/instrument である」という判定自体が分類規約 (ASM-LAYER-SEMANTICS) に依存する。"
+    - "kinematics: defined は「定義が書かれた」ことであり、一般 (非ガウス) 実装・動力学原理・bridge law は全て未完 — 空の部分を Core 完成と呼ばない (spec §7 の完了条件)。"

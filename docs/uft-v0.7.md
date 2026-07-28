@@ -64,6 +64,16 @@ Faulkner–Guica–Hartman–Myers–Van Raamsdonk (2013) の定理: AdS/CFT で
 この第一法則を課すことは、**バルク時空が線形化アインシュタイン方程式を満たすことと同値**。
 本計算はその平坦時空・1+1 次元版の直接検証である。
 
+> **監査注記 (v27.1, 2026-07-28)**: 上の位置づけは過大だった。本節が実際に検証したのは
+> **1+1 次元ガウス系におけるエンタングルメント第一法則 δS=δ⟨K⟩ (量子情報の一般恒等式)
+> とモジュラー核の数値再現**であり、Einstein 方程式は検証していない。FGHMV の同値は
+> ホログラフィック双対を持つ CFT の球領域に対する定理で、追加仮定 (半古典双対・RT/Wald
+> 辞書) を要する。Jacobson 1995 は局所 Rindler 地平線への δQ=TdS からの熱力学的導出、
+> entanglement equilibrium からの導出は Jacobson 2015 (小測地球・固定体積・停留性の仮定)
+> であり、いずれも無条件の同値ではない。本結果は **C1 instrument benchmark /
+> modular-response benchmark** に降格する (claims.yml QRN-GRAV-001 / QRN-C0-001 の限定、
+> docs/qrn-core-v1-spec.md §5)。原文は記録として残す。
+
 ### 2c. 有限の励起では等式が不等式になる(Bekenstein 型束縛)
 
 有限振幅の粒子-正孔波束(1 量子相当)では:

@@ -323,3 +323,11 @@
   status: active
   statement: "IEEE-754 (binary64) 準拠: 基本 4 演算と sqrt は正しく丸められる。区間演算 (iv.rs) の外向き 1 ulp ナッジは、この仮定の下で真値の厳密な包含を与える。"
   note: "π と cos は libm を信頼しない (区間 π 定数・剰余項パディングつき Taylor)。ハードウェア/コンパイラが IEEE-754 の正しい丸めを破る場合、QRN-GRAV-032 の『証明付き区間』が落ちる。iv_self_test が数学定数 (π, cos(π/3)=1/2, AGM(1,√2)) の包含を毎走行検査する。"
+
+- id: ASM-LAYER-SEMANTICS
+  type: convention
+  scope: global
+  introduced: "v27.1"
+  status: active
+  statement: "7 層分類 (core/dynamics/adapter/instrument/bridge/phenomenology/meta) と 6 軸語彙 (core.schema.yml) が各概念・主張の役割を過不足なく一意に表せる、という分類規約。誤分類は v271_core_audit の網羅性を破る (検査は分類の完備性と禁止昇格の不在であり、分類自体の正しさではない)。"
+  note: "境界例 (複数層にまたがる主張) は meta に逃がし、判断は core.schema.yml の note と docs/qrn-terminology.md §5 に記録する。"

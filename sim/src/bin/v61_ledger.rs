@@ -8,8 +8,11 @@
 //!   [4] 証拠 (code/result/doc) のファイルが全て実在する
 //!   [5] C0 以外の全主張が限界 (limitations) を最低 1 件持つ
 //!   [6] 全シミュレーションバイナリが台帳から参照されている (取りこぼしなし)
+//!   [7] 6 軸 (layer/evidence_kind/independence/universality/data_relation/
+//!       physical_scope — v27.1 の多軸化, PROMPT/10 §3) が全主張に揃い語彙適合
 //! これにより「どこまでが導出でどこからが解釈か分からない」という批判に
 //! 機械検証可能な形で答える。台帳の内容そのものの正しさは各文書と results/ が担う。
+//! 6 軸の意味論 (昇格禁止 R1–R7) は v271_core_audit が検査する。
 
 use std::collections::{BTreeMap, HashSet};
 use std::fs;
@@ -22,11 +25,74 @@ struct Claim {
     level: String,
     claim: String,
     status: String,
+    axes: Vec<(String, String)>, // 6 軸 (v27.1): layer / evidence_kind / independence / universality / data_relation / physical_scope
     evidence: Vec<(String, String)>,
     limitations: Vec<String>,
     inputs: Vec<(String, String)>,
     line: usize,
 }
+
+/// 6 軸の名前と許される語彙 (一次ソースは core.schema.yml — 意味論は v271_core_audit)
+const AXES: [(&str, &[&str]); 6] = [
+    (
+        "layer",
+        &[
+            "core",
+            "dynamics",
+            "adapter",
+            "instrument",
+            "bridge",
+            "phenomenology",
+            "meta",
+        ],
+    ),
+    (
+        "evidence_kind",
+        &[
+            "theorem",
+            "reproduction",
+            "calibration",
+            "mechanism_demo",
+            "internal_holdout",
+            "interpretation",
+            "natural_observation",
+            "external_replication",
+        ],
+    ),
+    (
+        "independence",
+        &[
+            "same_implementation",
+            "algorithmically_diverse",
+            "same_author_clean_room",
+            "independent_author",
+        ],
+    ),
+    (
+        "universality",
+        &[
+            "not_applicable",
+            "regulator_specific",
+            "scheme_dependent",
+            "continuum_universal",
+            "unknown",
+        ],
+    ),
+    (
+        "data_relation",
+        &[
+            "not_applicable",
+            "fitted",
+            "calibration_data_reused",
+            "preregistered_holdout",
+            "future_observation",
+        ],
+    ),
+    (
+        "physical_scope",
+        &["toy", "effective_model", "laboratory", "natural"],
+    ),
+];
 
 fn unquote(s: &str) -> String {
     let t = s.trim();
@@ -107,6 +173,7 @@ fn parse(text: &str) -> Result<Vec<Claim>, String> {
                         "level" => cur.level = v,
                         "claim" => cur.claim = v,
                         "status" => cur.status = v,
+                        _ if AXES.iter().any(|(a, _)| *a == k) => cur.axes.push((k, v)),
                         _ => return Err(format!("{}行目: 未知のフィールド '{}'", lno, k)),
                     }
                 }
@@ -264,6 +331,35 @@ fn main() {
             );
         } else {
             println!("[6] バイナリ被覆: 未参照 {:?}  [FAIL]", missing);
+            nfail += 1;
+        }
+    }
+
+    // [7] 6 軸の完備性と語彙 (v27.1 の多軸化)
+    {
+        let mut bad = Vec::new();
+        for c in &claims {
+            for (axis, vocab) in AXES {
+                match c.axes.iter().find(|(k, _)| k == axis) {
+                    None => bad.push(format!("{}: 軸 {} が無い", c.id, axis)),
+                    Some((_, v)) if !vocab.contains(&v.as_str()) => {
+                        bad.push(format!("{}: {} の語彙外の値 '{}'", c.id, axis, v))
+                    }
+                    _ => {}
+                }
+            }
+            if c.axes.len() != 6 {
+                bad.push(format!("{}: 軸が {} 個 (6 個必要)", c.id, c.axes.len()));
+            }
+        }
+        if bad.is_empty() {
+            println!(
+                "[7] 6 軸の完備性・語彙 (layer/evidence_kind/independence/universality/data_relation/physical_scope): 全 {} 件 OK  [PASS]",
+                claims.len()
+            );
+        } else {
+            bad.truncate(10);
+            println!("[7] 6 軸: {:?}  [FAIL]", bad);
             nfail += 1;
         }
     }

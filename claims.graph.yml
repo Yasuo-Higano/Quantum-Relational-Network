@@ -1113,3 +1113,13 @@
   deps: [QRN-GRAV-059]
   asm: [ASM-IEEE754]
   fal: [FAL-SUITE]
+
+- id: QRN-META-029
+  deps: [QRN-META-015]
+  asm: [ASM-LAYER-SEMANTICS]
+  fal: [FAL-SUITE]
+
+- id: QRN-META-030
+  deps: [QRN-META-028, QRN-META-029]
+  asm: [ASM-LAYER-SEMANTICS]
+  fal: [FAL-SUITE]
