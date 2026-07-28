@@ -185,11 +185,41 @@ v26.9-C で登録した「Belinfante 対称 10×10 の完全崩壊」の第一�
 → 次ユニットに登録。P₂ (spin-2) 部門は無傷 (oracle 回帰 1.0007 — v26.9-C の
 縮退・アンカーは D/X のみで閉じる)。
 
-## 1. 残り (v26.9 arc)
+## E. v269i_spin_improve — spin-current 改良と Belinfante 完成 (6 検査 PASS)
 
-- **spin-current 改良項の明示構成** (格子 K^{λ0i} → Belinfante 0i 密度 →
-  対称 10×10 の完全崩壊の再判定)。
-- その後 Gate 5 の最終判定 → v27.0 dynamic metric fork の分岐判断。
+v26.9-D の負の結果を受けた改良項の明示構成 — **成功**。転送 q ∥ ŷ の
+Belinfante 改良は
+  **ΔT⁰ⁱ(qŷ) = q̂·λ·[α̂ᵢ, α̂_y]** (α̂ᵢ = ∂h/∂kᵢ|node, on-site 定数行列)
+で、su(2) 型代数 [Σpⱼα̂ⱼ, [α̂ᵢ,α̂_y]] = 4(pᵢα̂_y − p_yα̂ᵢ) から **λ = ±1/8 の
+有理値を予言 → fit −0.124638 が −1/8 に的中** (E0)。0y/00 成分は改良不要
+(K^{y0y} = K^{y00} = 0 — v26.9-A の M3 が既に O(ε²) だったことと整合)。
+
+| 検査 | v26.9-D (素朴平均) | v26.9-E (改良後) |
+|---|---|---|
+| 流束閉包 rel(Φ(T⁰ˣ) vs T^{xy}) | 1.30 停留 | 6.3e-2 → **9.5e-4** (O(ε²)) |
+| 対称 10×10 の横断性破れ | 0.674 停留 | 6.3e-3 → **3.9e-4** (縮小比 4.0/4.0) |
+| conformal 崩壊 (trace 比) | — | 1.1e-3 → **1.0e-4** |
+| oracle アンカー / 縮退 | 1.0007 | 1.0007 (無傷) |
+| 変異 λ → −λ | — | 0.877 (正版の 2000 倍) |
+
+**massless Belinfante 対称 10×10 が σ = ρ₂·P₂ に完全崩壊 — Gate 5 の分離
+部門完結**。開発記録: run1 の trace 方向ベクトルは η 上げ (0i 成分の符号) と
+非対角重み 2 を落としており物理の trace 方向を向いていなかった (停留 0.265
+は器械欠陥 — 「不定計量の縮約はベクトル化の重みまで含めて検査せよ」)。
+
+### Gate 5 最終総括 (v26.9 arc 完了)
+
+**確立 (0/A/B/C/D/E の 6 ユニット)**: h₀₀/h₀ᵢ source 厳密構成・動的 (q₀ ≠ 0)
+Matsubara Ward 64+80 恒等式・正準テンソルの厳密横断性・**Belinfante 対称
+10×10 の構成 (spin-current 改良 λ = −1/8) と σ = ρ₂P₂ への完全崩壊**・
+spin-2 の 4D 分離 (縮退 O(a²)・oracle アンカー 1.0007)・BOND-A = 保存 stress
+(tree)・Belinfante 構造の格子分解 (正準 = piece 単独・改良 = 回転流)。
+
+**v27.0 への残り**: temporal h の二次変分 scheme (kinetic term 部門) の設計と
+dynamic metric fork の分岐判断 — spec §12.6 の凍結どおり v27.0 の設計項目。
+**型名 FullGravitationalVacuumPolarization は v27.0 の二次変分完備まで保留・
+1/Π 禁止も維持** (凍結解釈: v26.9 arc の全成果は測定器の証明であり、QRN・
+創発重力の証拠ではない)。
 
 ## 2. 成果物
 
@@ -204,3 +234,5 @@ C: `sim/src/bin/v269c_spin4d.rs` / `results/v269c_spin4d.txt`
 D: `sim/src/bin/v269d_belinfante.rs` / `results/v269d_belinfante.txt`
 (負の結果の認証 5 検査 PASS) / `results/v269d_belinfante.json`。
 claims: QRN-GRAV-055。
+E: `sim/src/bin/v269i_spin_improve.rs` / `results/v269i_spin_improve.txt`
+(6 検査 PASS) / `results/v269i_spin_improve.json`。claims: QRN-GRAV-056。

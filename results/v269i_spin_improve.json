@@ -1,0 +1,6 @@
+{
+  "version": "v26.9-E",
+  "kind": "spin_current_improvement",
+  "lambda": -0.125,
+  "construction": "ΔT0i = qhat·λ·[αi, αy] (on-site) — Belinfante 完成"
+}

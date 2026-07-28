@@ -3,13 +3,13 @@
 **このファイルは `sh dag/run.sh` が生成する。手で編集しない。**
 Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導出値と全数照合済み。
 
-主張 207 / 依存辺 352 / 仮定 39 / 反証条件 15 / 最大深さ 34
+主張 208 / 依存辺 355 / 仮定 39 / 反証条件 15 / 最大深さ 34
 
 ## 仮定の影響範囲 (抜くと落ちる主張の閉包 — 降順)
 
 | 仮定 | type | 閉包 |
 |---|---|---|
-| ASM-LATTICE | framework | 155 |
+| ASM-LATTICE | framework | 156 |
 | ASM-SEED | design | 77 |
 | ASM-PDG | data | 70 |
 | ASM-TORUS | model | 65 |
@@ -31,7 +31,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-EFT-VALIDITY | model | 30 |
 | ASM-WINDOW-U1SQ | window | 17 |
 | ASM-SMCONTENT | data | 16 |
-| ASM-IEEE754 | trust | 15 |
+| ASM-IEEE754 | trust | 16 |
 | ASM-Z2-MINIMAL | model | 14 |
 | ASM-EDGE-SEMANTICS | design | 14 |
 | ASM-INIT | model | 9 |
@@ -53,7 +53,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 
 | 反証条件 | status | 閉包 |
 |---|---|---|
-| FAL-SUITE | open | 199 |
+| FAL-SUITE | open | 200 |
 | FAL-CONTINUUM | open | 88 |
 | FAL-CKM-OOS | open | 63 |
 | FAL-BMV | open | 48 |
@@ -80,7 +80,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | 4 | 15 |
 | 5 | 9 |
 | 6 | 5 |
-| 7 | 3 |
+| 7 | 4 |
 | 8 | 6 |
 | 9 | 6 |
 | 10 | 5 |

@@ -2658,3 +2658,17 @@
     - "負の結果 — 「素朴平均では作れない」ことの証明であり、spin-current 改良で作れることの証明ではない (それは次ユニット)。"
     - "massless 殻 (E, Q) = (1.5, 0.6) の 1 点での認証 (停留の a 依存は 3 点 ladder)。"
     - "開発記録: D0 の O(q²) 誤想定を展開導出 (O(q) 交換子項) で較正。"
+
+- id: QRN-GRAV-056
+  version: "v26.9-E"
+  level: C2
+  claim: "spin-current 改良と Belinfante 完成 (判定 a, 6 検査 PASS): 転送 q∥ŷ の Belinfante 改良 ΔT⁰ⁱ = q̂·λ·[α̂ᵢ, α̂_y] (α̂ᵢ = ∂h/∂kᵢ|node の on-site 定数行列)。su(2) 型代数 [Σpⱼα̂ⱼ, [α̂ᵢ,α̂_y]] = 4(pᵢα̂_y − p_yα̂ᵢ) が回転流構造を予言 — **λ_fit = −0.124638 が有理値 −1/8 に的中 (凍結)**。0y/00 は改良不要 (K^{y0y} = K^{y00} = 0)。**結果: (1) 流束閉包 — Φ(T_B⁰ˣ) vs T^{xy}-split が v26.9-D の停留 1.30 から 9.5e-4 へ (O(ε²))・(2) 対称 10×10 の横断性 0.674 → 3.9e-4 (縮小比 4.0/4.0 = O(a²))・(3) conformal 崩壊 — trace 比 1.0e-4 = massless の σ = ρ₂P₂ 完全崩壊**。oracle アンカー/縮退 1.0007 無傷・変異 (λ → −λ) 2000 倍逸脱。Gate 5 の分離部門完結 (v26.9 arc 完了)。"
+  status: "判定 a — v26.9 arc 完了。v27.0 への残り = temporal 二次変分 scheme の設計と dynamic metric fork 分岐 (spec §12.6)。型名 FullGravitationalVacuumPolarization は保留・1/Π 禁止維持"
+  evidence:
+    code: "sim/src/bin/v269i_spin_improve.rs"
+    result: "results/v269i_spin_improve.txt"
+    doc: "docs/uft-v26.9.md"
+  limitations:
+    - "massless・q ∥ ŷ・(E,Q) = (1.5,0.6) の 1 運動学点 (ladder 3 点)。massive の ρ₀ ≠ 0 (trace 復活) は将来拡張。"
+    - "λ = −1/8 は tree matching による凍結 — one-loop レベルの λ 繰り込みは未検査 (自由場では tree が厳密)。"
+    - "開発記録: run1 の trace 方向ベクトルが η 上げと非対角重み 2 を欠き停留 0.265 (器械) —「不定計量の縮約はベクトル化の重みまで含めて検査せよ」。"
