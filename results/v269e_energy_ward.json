@@ -1,0 +1,6 @@
+{
+  "version": "v26.9-0",
+  "kind": "energy_sector_4d_ward",
+  "v00_construction": "V00(k;q) = h(k + q/2 ŷ) 厳密 (中点変調規約)",
+  "current_construction": "V_J = i[h(k+qŷ)V00 − V00 h(k)]/(2sin(q/2)), Fourier 台 ≤ 2"
+}

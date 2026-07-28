@@ -2588,3 +2588,17 @@
     - "D チャネル・staggered・massless のみ (X/Wilson/massive の spectral 分解は未実施 — 積分レベルでは v268p が被覆)。"
     - "開発記録: run1 のヒストグラム点評価は GL 求積格子の δ-ビニングノイズ ~15% で FAIL — 殻積分に置換 (積分量 T0/T3/T4 は run1 でも健全)。教訓「滑らかな格子の δ-ビニングを点評価に使うな」。"
     - "operator/regulator の検証 — gravitational 主張には使わない (spec §12.8)。"
+
+- id: QRN-GRAV-051
+  version: "v26.9-0"
+  level: C2
+  claim: "エネルギーセクターの 4D Ward — 厳密演算子恒等式 (判定 a, 7 検査 PASS): 中点変調規約の格子エネルギー密度は折込み 8 成分基底で V₀₀(k;q) = h(k+(q/2)ŷ) 厳密 (E0 = 0.0, taste 純度 1.8e-17, tree matching O(ε²) 縮小比 3.99/4.00)。連続の式: V_J := i[h(k+qŷ)V₀₀ − V₀₀h(k)]/(2sin(q/2)) が Fourier 台 |n| ≤ 2 の三角多項式 (残差 8.0e-14) = 到達距離 ≤ 2 の局所エネルギー流 J_E の構成的存在証明。対ごと厳密恒等式 (E_μ−E_ν)M₀₀ = −i·q̂·M_J (1.6e-14)。**動的 Ward (プロジェクト初の q₀ ≠ 0 恒等式): q₀²χ₀₀(iq₀,q) + q̂²χ_JJ(iq₀,q) = M₁(q) が BZ 積分で 4.4e-16** — カットオフ有限のまま周波数方向の Ward が厳密成立。副発見: v268z の一般頂点公式の (s+ε) 規約は q 方向ボンドに適用不可 (両片相殺の誤零 — v26.8 は全て q ⊥ ボンドで露見せず)。"
+  status: "判定 a — Gate 5 の energy 行開通。次 = 運動量セクター h₀ᵢ (T₀ᵢ = J_E の Belinfante 対称性)"
+  evidence:
+    code: "sim/src/bin/v269e_energy_ward.rs"
+    result: "results/v269e_energy_ward.txt"
+    doc: "docs/uft-v26.9.md"
+  limitations:
+    - "エネルギーセクターのみ (h₀₀/J_E)。運動量セクター (h₀ᵢ)・10×10 kernel・contact 項込み full 4D Ward は残作業 — Gate 5 判定はそこ。"
+    - "動的 Ward は Euclidean q₀ (χ = Σ2|M|²ΔE/(ΔE²+q₀²)) の f-和則型 — 実時間応答への解析接続は未使用。"
+    - "開発記録: E2 の run1-2 は縮退部分空間の単一行列要素比で非単調 → Frobenius 基底不変量に置換 (「縮退があるときは基底不変量で測れ」)。E3 の収束判定の O(q²) 誤想定を修正。"

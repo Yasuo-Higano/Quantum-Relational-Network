@@ -1,0 +1,19 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v26.9-0 v269e_energy_ward — エネルギーセクターの 4D Ward ===
+
+V₀₀(k;q) = h(k+q/2ŷ) (厳密導出)。連続の式 V_J = iC/(2sin(q/2)) の局所性と
+動的 Ward q₀²χ₀₀ + q̂²χ_JJ = M₁ を機械検査。Gate 5 の energy 行。
+
+  [PASS] [E0] V₀₀(k;0) = h(k) かつ V₀₀(k;q)ᵀ = V₀₀(k+qŷ;−q)  max|Δ| = 0.0e0
+  [PASS] [E1] taste-singlet: V₀₀ の指標純度残差 < 1e-12 (全 eps ブロック)  max 残差 = 1.8e-17
+  [PASS] [E2] tree matching: ‖V₀₀ − h_lin(中点)‖/‖h_lin‖ = O(ε²) (縮小比 ~4)   rel(0.4) = 1.13e-2 rel(0.2) = 2.84e-3 rel(0.1) = 7.10e-4 rel(0.05) = 1.78e-4 — 縮小比 3.99, 4.00
+  [PASS] [E3] 連続の式: V_J = iC/(2sin(q/2)) の Fourier 台 |n| ≤ 2 かつ q → 0 極限存在  台残差 = 8.0e-14, 収束差 (q = 1e-4 vs 2e-4)/ノルム = 2.4e-4
+  [PASS] [E4] 対ごと恒等式: (E_μ−E_ν)·M₀₀ = −i·q̂·M_J (全 64 対, サンプル k)  max|Δ| = 1.6e-14
+  [PASS] [E5] 変異: m 重み ×1.01 → V_J(q→0) 発散 (比 > 10; 正版は < 2)  変異比 = 24.5, 正版比 = 0.81
+  [PASS] [E6] 動的 Ward: q₀²χ₀₀(iq₀,q) + q̂²χ_JJ(iq₀,q) = M₁(q) (q = 0.4, BZ 積分)   q₀=0.3: 残差 0.0e0 q₀=0.9: 残差 4.4e-16 (0 s)
+
+[artifact] ./results/v269e_energy_ward.json
+
+[判定] 事前登録 (a): **h₀₀ source・局所エネルギー流 J_E・動的 (q₀ ≠ 0) Ward が格子上で厳密に確立 — Gate 5 の energy 行開通** (次 = 運動量セクター h₀ᵢ)
+
+総合判定: [PASS] (0 s)
