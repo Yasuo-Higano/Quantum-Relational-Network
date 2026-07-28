@@ -59,10 +59,38 @@ channels {D, 00, 0y, yy} に適用:
 one-loop 実証 (v26.6 の bare c₁ 汚染 [L チャネル同桁] と対照的 — 汚染は
 繰り込みで消える scheme 量だったことの最終確認)。
 
+## C. v270c_fork — dynamic metric fork 判定の執行 (5 検査 PASS)
+
+§13.3 の凍結プロトコル執行 — 解禁条件 (i)(ii) 充足を受け、**1/Π をこの監査に
+限って計算**。繰り込み後 Π₂^ren(q²) := χ_D(q) − c₀ − c₂q² − c₄q⁴ (A₂ =
+2A_oracle 凍結、a = 0.045/0.09, Q ∈ [0.15, 0.9]):
+
+| 検査 | 結果 |
+|---|---|
+| F0 A₂ 凍結フィット残差 | **1.7e-12** (凍結 A₂ がデータを厳密記述) |
+| F1 形状 Π₂^ren/(A₂Q⁴lnQ²) | ∈ [0.986, 1.014] (零交差なし) |
+| **F2 no-pole** \|Π₂^ren/Q²\| → 0 | 縮小比 0.235 vs Q²lnQ² 導出値 **0.232** |
+| **F3 Sakharov 走行** c₂(0.045)/c₂(0.09) | **4.000** (= a⁻² ちょうど) |
+| F4 変異 (A₂ ×2) | 残差 380 倍 |
+
+**fork 執行 (確定)**: **分岐 (b) external metric** —
+1. 自由場 matter loop の普遍部分は A₂q⁴ln q² のみ — **1/Π₂ に有限留数の
+   massless pole なし (graviton は生成されない)**。
+2. pole を作りうる q² 項 (Sakharov 誘導 Newton 定数) は bare c₂ で **a⁻² で
+   走る regulator 量** — 本プログラム自身の universality 基準で非普遍。
+   v26.3 以来の「bare c₁/c₂ は scheme 量」の主張の最終的・定量的実証 (比 4.000)。
+3. composite graviton 路線 (分岐 a) は「相互作用による普遍 q² 項の生成 +
+   Weinberg–Witten 破れ仮定の明示」を要件とする**将来の別プログラムに封印**。
+4. **1/Π の常用は解禁しない** (本監査限り)。metric は外部 regulator のまま —
+   経路 B は「機械証明・source matching・二離散化・4D Ward を備えた Dirac
+   stress-tensor vacuum-polarization audit」として完結し、QRN-Core v1
+   (matter-on-background) へ接続する。
+
+開発記録: F2 run1 のバー 0.2 は log 増強を落とした誤較正 — 導出値 0.232 との
+5% 照合に較正 (測定 0.235 は 0.9% 一致 — 判定がむしろ強くなった)。
+
 ## 1. 残り (v27.0 arc)
 
-- **v27.0-C**: fork 判定の執行 (§13.3 — 予言: 自由場 = pole なし = 分岐 (b)
-  既定。条件 (i)(ii) は充足済み)。
 - **v27.0-D**: 期統合 (第二十七期統合文書・スイート・QRN-Core v1 着手・
   CLAUDE.md 到達点更新)。
 
@@ -72,3 +100,5 @@ A: `sim/src/bin/v270a_kernel4d.rs` / `results/v270a_kernel4d.txt`
 (5 検査 PASS) / `results/v270a_kernel4d.json`。claims: QRN-GRAV-057。
 B: `sim/src/bin/v270b_universality.rs` / `results/v270b_universality.txt`
 (5 検査 PASS) / `results/v270b_universality.json`。claims: QRN-GRAV-058。
+C: `sim/src/bin/v270c_fork.rs` / `results/v270c_fork.txt`
+(5 検査 PASS) / `results/v270c_fork.json`。claims: QRN-GRAV-059。

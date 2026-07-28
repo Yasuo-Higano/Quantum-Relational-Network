@@ -1,0 +1,9 @@
+{
+  "version": "v27.0-C",
+  "kind": "dynamic_metric_fork_execution",
+  "spec": "§13.3 (b46bce3)",
+  "decision": "branch (b) external metric",
+  "c2_fine": -9.59610161124266,
+  "c2_coarse": -2.399021911384472,
+  "c2_ratio": 4.000005821416097
+}

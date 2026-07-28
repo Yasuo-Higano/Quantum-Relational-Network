@@ -2700,3 +2700,17 @@
     - "staggered のみ (Wilson 側の温度チャネルは未実施 — 空間 4 比は v26.8-P で両離散化済み)。massless (ρ₀ 復活は massive 拡張)。"
     - "B1 の 0.26% 偏差は導出モデルの残差水準 — 登録バー 2% 内だが 0.1% 級の照合には ladder 延長が要る。"
     - "凍結解釈: 測定器の証明であり QRN・創発重力の証拠ではない。"
+
+- id: QRN-GRAV-059
+  version: "v27.0-C"
+  level: C2
+  claim: "dynamic metric fork の執行 — 分岐 (b) external metric 確定 (spec §13.3 凍結プロトコル, 判定どおり, 5 検査 PASS): 解禁条件 (i)(ii) 充足を受け 1/Π を本監査に限り計算。繰り込み後 Π₂^ren = χ_D − c₀ − c₂q² − c₄q⁴ (A₂ = 2A_oracle 凍結) は **(1) フィット残差 1.7e-12 で A₂q⁴ln q² 形のみ — |Π₂^ren/Q²| の縮小比 0.235 が Q²lnQ² 導出値 0.232 に 0.9% 一致 = 有限留数の massless pole なし (graviton は生成されない)。(2) Sakharov「誘導 Newton 定数」候補の bare c₂ は c₂(0.045)/c₂(0.09) = 4.000 (= a⁻² ちょうど) で走る regulator 量** — v26.3 以来の「bare 係数 = scheme 量」の最終的・定量的実証。変異 (A₂ ×2) は残差 380 倍。composite graviton 路線は「相互作用による普遍 q² 項生成 + Weinberg–Witten 破れ仮定の明示」を要件とする将来の別プログラムに封印。1/Π の常用は解禁しない。"
+  status: "fork 確定 — metric は外部 regulator のまま。経路 B は vacuum-polarization audit として完結、QRN-Core v1 (matter-on-background) へ接続。残り = v27.0-D 期統合"
+  evidence:
+    code: "sim/src/bin/v270c_fork.rs"
+    result: "results/v270c_fork.txt"
+    doc: "docs/uft-v27.0.md"
+  limitations:
+    - "自由場の判定 — 相互作用系で普遍 q² 項が生成される可能性は封印条件付きで開いている (v26.7 の q⁴ 破れ PRED-013 が相互作用の入口)。"
+    - "staggered・D チャネル・q ∈ [0.15, 0.9] 窓。開発記録: F2 run1 のバー 0.2 は log 増強落ちの誤較正 → 導出値 0.232 照合に強化。"
+    - "凍結解釈: 分岐 (b) は『予言どおり』であり発見ではない — pole の不在は v26.7-II/v26.7.1 の有限サイズ判定とも整合。"
