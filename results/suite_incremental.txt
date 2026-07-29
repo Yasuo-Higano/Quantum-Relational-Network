@@ -82,19 +82,19 @@
 ===== sim/target/release/v151_audit =====
 === v15.1 監査版: 主張依存グラフの機械検証 ===
 
-[1] 書式解析: 主張 218 / グラフ 218 / 仮定 40 / 反証条件 15  [PASS]
+[1] 書式解析: 主張 219 / グラフ 219 / 仮定 40 / 反証条件 15  [PASS]
 [2] id 一意性・命名・語彙: OK  [PASS]
-[3] graph ↔ claims 1:1 対応: 全 218 主張  [PASS]
-[4] 参照の実在: 依存辺 376 本ほか全て OK  [PASS]
+[3] graph ↔ claims 1:1 対応: 全 219 主張  [PASS]
+[4] 参照の実在: 依存辺 379 本ほか全て OK  [PASS]
 [5] DAG 非循環性: OK (最大深さ 34 — 例 QRN-META-027)  [PASS]
 [6] 等級単調性 (C0<C1<C2<{C3,C4}<C5): 全依存辺 OK  [PASS]
 [7] 被覆 (C1+ に fal / C2 に asm / 孤児なし): OK  [PASS]
 [8] Lean 定理数: 8 ファイル計 62 本 = 期待値、文書記述とも一致  [PASS]
-[9] README 網羅性: 全文書・全バイナリ言及、到達点 v28.0 明示  [PASS]
+[9] README 網羅性: 全文書・全バイナリ言及、到達点 v28.1 明示  [PASS]
 [10] 生成物の同一性: committed 内容 = 再生成内容  [PASS]
 
 ---- 依存グラフの概観 ----
-  節点 218 / 辺 376 / 根 (deps なし) 42 / 最大深さ 34
+  節点 219 / 辺 379 / 根 (deps なし) 42 / 最大深さ 34
   被支持数の上位 (この主張が落ちると連鎖する数):
     QRN-C0-005             80 主張
     QRN-C0-006             64 主張
@@ -102,10 +102,10 @@
     QRN-YUK-001            62 主張
     QRN-YUK-002            61 主張
   仮定の影響範囲の上位 (抜くと落ちる主張の閉包):
-    ASM-LATTICE            162 主張
+    ASM-LATTICE            163 主張
     ASM-SEED               77 主張
     ASM-PDG                70 主張
-    ASM-LOWDIM             65 主張
+    ASM-LOWDIM             66 主張
     ASM-PRIOR              65 主張
 
 総合判定: [PASS] 依存グラフは非循環・等級単調・完全被覆 (辺の意味論は ASM-EDGE-SEMANTICS)
@@ -313,7 +313,7 @@
 
 事前登録: (a) 機械検査全 PASS + 採点 [成立 3 / 部分 2] / (b) 台帳不整合
 
-  [PASS] 台帳の等級分布 (C2+C3 ≥ 40 = 定理・機構層の厚み)  C0:8 C1:35 C2:55 C3:14 C4:77 C5:30 (計 219)
+  [PASS] 台帳の等級分布 (C2+C3 ≥ 40 = 定理・機構層の厚み)  C0:8 C1:35 C2:55 C3:15 C4:77 C5:30 (計 220)
   [PASS] 鍵主張の存在: 重力・第一法則 (QRN-GRAV-005)  QRN-GRAV-005
   [PASS] 鍵主張の存在: QNEC (QRN-GRAV-009)  QRN-GRAV-009
   [PASS] 鍵主張の存在: SU(3) core (QRN-CORE-011)  QRN-CORE-011
@@ -557,7 +557,7 @@
   [PASS] [S0] schema 解析・層 7 値・軸語彙 5 本・QRN-Core v1 状態表示  concepts 67 / conversions 7 / predictions 18
   [PASS] [S1] 全概念の層分類 — 未分類 0 件・必須 35 概念の登録 (v27.2 への進行ゲート)  67 概念 [adapter:11 bridge:15 core:7 dynamics:6 instrument:12 meta:8 phenomenology:8]
   [PASS] [S2] 型レベル禁止変換 7 種の登録 (reason つき)  regulator/時間/計量/証拠の 4 部門
-  [PASS] [S3] claims.yml 全主張の 6 軸完備・語彙適合  218 主張
+  [PASS] [S3] claims.yml 全主張の 6 軸完備・語彙適合  219 主張
   [PASS] [S4] R1/R2 自然観測・外部再現の証拠 0 件 (正直な残高の機械化)  natural_observation 0 / external_replication 0
   [PASS] [S5] R3 independent_author は C0 (外部の確立結果) のみ — 独立外部再現 0  C0 の 7 件のみ
   [PASS] [S6] R4 core/dynamics/bridge 層 (C0 以外) は toy/effective_model のみ  toy mechanism → theory of nature の昇格なし
@@ -620,6 +620,42 @@
 
 総合判定: [PASS]
 ----- exit=0 -----
+===== sim/target/release/v281_bridge_train =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v28.1 relational geometry bridge — 訓練資格認定 (第二十九期 I/III, bridge_candidates.yml 執行) ===
+
+[T0] 凍結節 SHA-256 = 7a28d0dbe9f7eb10f5f017eaf96e09ee5b817516a79c2871aad1b5a53bf1f772 (v282 が逐語一致を検査)
+
+  [PASS] [T0] Z2 決定的 rdm — 2 回呼び bit 同一・lib 値と一致 (l=4 器械検査)  bit同一 true / lib との最大差 2.8e-17 / lib 2 回呼びの差 1.4e-17 (HashMap 群化 — 0 でも per-process 乱数の機構は残る)
+  [PASS] [T0] Z2 核 3 種のスモーク (有限・対称・非負) + Spearman 恒等検査  B1 max 0.434 / B2 max 2.278 / B3 max 0.101
+  [PASS] [T1a] 陰性対照 — 積状態と重みシャッフルで幾何を幻視しない  積状態 detected=false / シャッフル detected=false (被覆 Cycle/Path が 90% 未満)
+  [PASS] [T1b-d] TRAIN-1 B1 (MI) — Cycle N=202・隣接 100%・橋 0  detected=true comps=1 topo=Cycle 隣接 1.0000 橋 0
+  [PASS] [T1b-d] TRAIN-1 B2 (modular) — Cycle N=202・隣接 100%・橋 0  detected=true comps=1 topo=Cycle 隣接 1.0000 橋 0
+  [PASS] [T1b-d] TRAIN-1 B3 (応答) — Cycle N=202・隣接 100%・橋 0  detected=true comps=1 topo=Cycle 隣接 1.0000 橋 0
+  [PASS] [T1e] MDS 署名 — 円環の縮退対 (λ1≈λ2, λ3≈λ4)  |λ1/λ2−1| = 2.00e-15 / |λ3/λ4−1| = 1.04e-14
+  [PASS] [T1f] 頑健性 — 局所位相不変・2 サイト粗視化で Cycle 101  位相 Δw/wmax = 2.3e-15 / 粗視化 Cycle=true 隣接 1.0000
+  [PASS] [T1g] B4 — 局所擾乱の前線速度 v (真値 v_F = 2 で資格認定)  v_fit = 2.0986 (対 2.0, 1248 点)
+  [PASS] [T2a-c] TRAIN-2 B1 — 鏡像橋 ≥95%・空間 2 Cycle・隣接 100%  鏡像率 1.000 橋 64 / comps 2 (2 Cycle true) / 隣接 1.0000
+  [PASS] [T2a-c] TRAIN-2 B2 — 鏡像橋 ≥95%・空間 2 Cycle・隣接 100%  鏡像率 1.000 橋 64 / comps 2 (2 Cycle true) / 隣接 1.0000
+  [PASS] [T2a-c] TRAIN-2 B3 — 鏡像橋 ≥95%・空間 2 Cycle・隣接 100%  鏡像率 1.000 橋 64 / comps 2 (2 Cycle true) / 隣接 1.0000
+  [PASS] [T2d] B4 — TFD の因果二成分 (L 源の前線は R に到達しない)  L 到達 64/64 / R 到達 0 (期待 0)
+
+[成果物] ./results/v281_bridge_train.json
+
+---- holdout 契約 (v28.2 — bridge_candidates.yml の 4 系, バーは凍結節定数) ----
+  HOLD-1 開放端鎖 N=101 (非一様ホッピング): Path・端点 2・隣接 100%・橋 0・MDS λ2/λ1 ≤ 1e-8
+  HOLD-2 Z2GaugeRing l=14 (w=1, h=0.6, m=0.2, 閉じ込め相): Cycle 14・隣接 100%・橋 0
+          + B4 (apply_bond_op クエンチ): 到着順 vs 再構成距離の Spearman ≥ 0.85
+          + 未使用チャネル: B1 幾何が B3 チャネルを予言 (d ≤ 5, Spearman ≥ 0.90)
+  HOLD-3 staggered vs Wilson リング N=402 (m_phys·a = 0.05): 両方 Cycle・隣接 100%・ξ 比 ∈ [0.8, 1.25]
+  HOLD-4 リングクエンチ (実時間): t* vs d_B1 線形 R² ≥ 0.98・源間 v ばらつき ≤ 3%・開放鎖は無巻き付き
+  B4 適用表: TRAIN-1/2, HOLD-1/2/4 (HOLD-3 は計量検査 — 因果は HOLD-4 が担う)
+  失敗規則: バー外の候補は調整せず棄却 (failed_bridges_rejected_not_tuned)
+
+[判定] 全候補が訓練資格を通過 — 読み出し規則と判定バーはこのコミットで凍結され、v28.2 (holdout) へ進む
+
+総合判定: [PASS]
+----- exit=0 -----
 ===== sim/target/release/v31_gauge ===== [引用]
 [引用] ソース不変 (src sha256 3a394e32ee44…) — 2026-07-29 の実行結果 results/v31_gauge.txt を引用 (PASS 2 / FAIL 0)
 ----- cite -----
@@ -656,22 +692,22 @@
 ===== sim/target/release/v61_ledger =====
 === v6.1 主張台帳 (claims.yml) の機械検証 ===
 
-[1] 書式解析: 218 件の主張を解析  [PASS]
-[2] id 一意性・命名規則: 全 218 件 OK  [PASS]
+[1] 書式解析: 219 件の主張を解析  [PASS]
+[2] id 一意性・命名規則: 全 219 件 OK  [PASS]
 [3] 等級・必須フィールド: OK  [PASS]
-[4] 証拠ファイルの実在: 全 545 参照 OK  [PASS]
+[4] 証拠ファイルの実在: 全 548 参照 OK  [PASS]
 [5] 限界の明示 (C0 以外は必須): OK  [PASS]
-[6] バイナリ被覆: 全 165 本が台帳から参照されている  [PASS]
-[7] 6 軸の完備性・語彙 (layer/evidence_kind/independence/universality/data_relation/physical_scope): 全 218 件 OK  [PASS]
+[6] バイナリ被覆: 全 166 本が台帳から参照されている  [PASS]
+[7] 6 軸の完備性・語彙 (layer/evidence_kind/independence/universality/data_relation/physical_scope): 全 219 件 OK  [PASS]
 
 ---- 等級別の集計 ----
   C0 教科書的・既存定理 (前提)                7 件
   C1 既存結果の再現実装                    35 件
   C2 制限付き計算定理                     55 件
-  C3 toy model による機構提示            14 件
+  C3 toy model による機構提示            15 件
   C4 現象論的 fit / オーダー推定            77 件
   C5 解釈・哲学・スローガン                  30 件
-  計 218 件
+  計 219 件
 
 ---- 期別の主張数 ----
   v0.x : 14 件
@@ -695,7 +731,7 @@
   v25.x : 8 件
   v26.x : 23 件
   v27.x : 9 件
-  v28.x : 1 件
+  v28.x : 2 件
   v3.x : 8 件
   v4.x : 7 件
   v5.x : 4 件
@@ -750,7 +786,7 @@
 ----- cite -----
 
 ===== 集計 =====
-実行 11 本: PASS 88 / FAIL 0
+実行 12 本: PASS 102 / FAIL 0
 引用 155 本: PASS 1075 / FAIL 0 (ソース不変を sha256 で確認 — 台帳 results/suite_manifest.tsv)
-総計: PASS 1163 / FAIL 0
+総計: PASS 1177 / FAIL 0
 lib.rs 5b4d82de939543b2eb59b8a79b473d3d8cf062505b1480d9ec002db04d01764e / Cargo.toml fcbdde4968e5a893025368bc1c4e572b4e63849825945841d486814e95e062b2 / rustc 1.94.0 (4a4ef493e 2026-03-02)

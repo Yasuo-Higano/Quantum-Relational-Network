@@ -4112,3 +4112,23 @@
   limitations:
     - "本期は物理 run なし — 新しい物理主張は一つもない (意味論・型・台帳・外部固定のみ)。"
     - "外部作業が未消化: 投稿・reproducer 公募 (最優先マイルストーン — 独立外部再現 0 のまま)。"
+
+- id: QRN-BRIDGE-001
+  version: "v28.1"
+  level: C3
+  claim: "relational geometry bridge 候補 B1 (MI)・B2 (モジュラー核 off-diagonal)・B3 (密度応答)・B4 (局所擾乱の到着時刻) の訓練資格認定 (bridge_candidates.yml の執行 I, 12 検査 PASS): ノードラベルを乱数置換した状態だけを入力に (座標・隣接・外部計量なし)、TRAIN-1 (RingChain N=202) で B1/B2/B3 が Cycle・隣接 100%・橋 0、TRAIN-2 (TfdPair) で鏡像橋 100%・空間 2 Cycle・隣接 100% (「二成分+橋」の完全復元)、B4 が前線速度 v = 2.099 (v_F の 4.9%) と TFD の因果二成分 (L 源は R に不到達) を読み出した。陰性対照 (積状態・重みシャッフル) で幾何を幻視せず、局所位相 (2e-15) と 2 サイト粗視化に頑健。読み出し規則と holdout 判定バーは FROZEN BRIDGE READOUT 節 (SHA-256 = 7a28d0db…) に凍結 — v28.2 は逐語複製の節ハッシュ一致を機械検査するため、holdout を見てからの調整はコード上不可能。"
+  status: "toy 機構 (訓練資格 — holdout 執行前の凍結点。成功しても C3 どまり、bridge law 登録簿は空のまま)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v281_bridge_train.rs"
+    result: "results/v281_bridge_train.txt"
+    doc: "docs/uft-v28.1.md"
+  limitations:
+    - "訓練系 2 つ (自由ガウス) での資格であり、holdout (開放端・相互作用 Z2・二離散化・Lorentzian) は v28.2 で未執行。"
+    - "開発記録: B4 初版 (位相破壊) は粒子正孔対称で密度が厳密不変となり前線が読めなかった — v6.7 の教訓の再演として粒子注入に修正 (訓練段階の設計修正)。"
+    - "v153 run 間ドリフトの機構特定 (lib rdm の HashMap 群化) — bridge 監査は決定的 rdm (BTreeMap) を凍結して回避。lib 修正は次の lib 変更版に登録。"

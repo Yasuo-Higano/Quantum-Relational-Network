@@ -1,0 +1,15 @@
+{
+  "version": "v28.1",
+  "frozen_readout_sha256": "7a28d0dbe9f7eb10f5f017eaf96e09ee5b817516a79c2871aad1b5a53bf1f772",
+  "train1_b1_sample": [
+    0,
+    0.045409046191198676,
+    0,
+    0.00058986609997147,
+    0.0002766257328101762
+  ],
+  "train1_v_fit": 2.0986102841506518,
+  "tfd_n": 64,
+  "tfd_beta": 0.4,
+  "perm_seed_ring": 20260729
+}
