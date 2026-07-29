@@ -1,0 +1,73 @@
+# =====================================================================
+# QRN-Bridge 候補の事前登録 (Bridge Candidates) — v28.0 で実行前凍結 (PROMPT/10 §8)
+# =====================================================================
+# 第二十九期の最初の物理課題「外部計量を入力しない relational geometry bridge の
+# 比較」の候補選択規則・訓練系・holdout 系・失敗条件を、**結果を見る前に**凍結する。
+# 走行は本ファイルのコミット後にのみ許される (spec 実装前凍結の方式 — b46bce3 と同型)。
+# 一次ソース: docs/qrn-core-v1-spec.md §5 (成功条件 7 項)。
+# PRED-019 は QRN 固有の数値または明確な二者択一が解析的に導出できるまで登録しない。
+# =====================================================================
+
+version: "v28.0"
+status: "frozen_before_run"
+
+# ---- 候補 bridge (4 本 — 全て同じ入出力契約で競争させる) ----
+candidates:
+- id: B1
+  name: "mutual-information distance"
+  readout: "d(i,j) := f(MI(i,j)) の単調減少変換 + 最短経路 → MDS/等長埋め込み"
+  prior_art_in_repo: "v0.7 (円環 100%)・v6.4 (陰性対照)・v11.4 (動的分解)"
+- id: B2
+  name: "modular-flow geometry"
+  readout: "局所モジュラー生成子のプロファイル → 距離/因果構造 (BW 系の器械を bridge に転用)"
+  prior_art_in_repo: "v19–v25 (器械較正済み — bridge 用途は未検証)"
+- id: B3
+  name: "relative-entropy / quantum-Fisher response"
+  readout: "S_rel の二次形式 (Fisher 計量) → 情報計量として読む"
+  prior_art_in_repo: "v2.1 (S_rel 正値性・二次性)・v15.6 (BTZ 辞書)"
+- id: B4
+  name: "commutator / Lieb–Robinson causal geometry"
+  readout: "⟨[A(t), B]⟩ の前線 → 因果円錐 → Lorentzian 構造"
+  prior_art_in_repo: "v1.1 (光円錐 4.11t)・v6.7 (前線 = 2 sin k_F)"
+
+# ---- 入力契約 (全候補共通) ----
+input_contract:
+  allowed: "量子状態 (相関行列または波動関数) と演算子代数のみ"
+  forbidden: "座標・隣接関係・外部計量・格子の幾何ラベル (RegulatorSiteId の幾何的意味) を読み出しに入れない"
+  note: "テンソル分解は入力でなく読み出し (RelationalDecomposition — v11.4 の規約)"
+
+# ---- 訓練系 (読み出し規則の設計に使ってよい系 — 2 模型) ----
+training_systems:
+- id: TRAIN-1
+  system: "RingChain (円環自由フェルミオン, 半充填 GS, N=202)"
+  known_answer: "S¹ (円環)"
+- id: TRAIN-2
+  system: "TfdPair (熱場二重, 鏡像もつれ)"
+  known_answer: "二成分 + 橋 (鏡像対)"
+
+# ---- holdout 系 (設計後に初めて走らせる系 — 微視的に異なる 2 模型 × 2 regulator) ----
+holdout_systems:
+- id: HOLD-1
+  system: "開放端鎖 (自由フェルミオン, 非一様ホッピング窓)"
+  expectation: "区間 (端の存在) — 円環との位相の区別"
+- id: HOLD-2
+  system: "ConstrainedToyCoreV2 (Z2 格子ゲージ + staggered, 閉じ込め相)"
+  expectation: "円環 (相互作用があっても同じ巨視幾何)"
+- id: HOLD-3
+  system: "同一連続理論の別離散化 (Wilson 型 1D 鎖, 同じ物理パラメータ)"
+  expectation: "staggered 版と同一の巨視幾何 (regulator 非依存性の直接検査)"
+- id: HOLD-4
+  system: "クエンチ後の RingChain (実時間 — Lorentzian 検査)"
+  expectation: "空間幾何 + 光円錐因果構造の同時読み出し"
+
+# ---- 成功条件 (docs/qrn-core-v1-spec.md §5 の 7 項 — 全て必須) ----
+success_conditions: [no_geometric_input, two_models_same_geometry, robust_to_basis_change, lorentzian_causal_structure, predicts_unused_channel, not_copy_of_source, failed_bridges_rejected_not_tuned]
+
+# ---- 失敗条件 (凍結 — 調整禁止) ----
+failure_rules:
+- "holdout 系 (HOLD-1..4) のいずれかで巨視幾何の再構成に失敗した候補は、パラメータ・変換 f・埋め込み法を交換せずに棄却する (failed_bridges_rejected_not_tuned)"
+- "2 つ以上の微視的模型 + 2 つ以上の regulator で無調整一致しない候補は棄却"
+- "全候補が棄却された場合、その事実を負の結果として文書化し、bridge law 不在のまま登録簿を空に保つ"
+scoring: "候補ごとに [PASS]/[FAIL] を訓練 2 + holdout 4 で判定 — 訓練系の成功は資格であり得点ではない"
+
+forbidden_promotions_reminder: "成功しても『同じ網から時空が出る』の C3 (toy 機構) どまり — EmergentMetricCandidate の昇格には BridgeLawCertificate の登録 (claims 改訂 + 監査期待値の更新) が要る"

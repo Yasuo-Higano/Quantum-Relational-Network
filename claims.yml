@@ -4094,3 +4094,21 @@
   limitations:
     - "単位の固定は再現の成立ではない — 独立外部再現は依然 0 (成立時は CLAIMS.md の手続きで監査の期待値ごと更新する)。"
     - "単位 B/C の完全な構成は凍結原稿 (paper/) への参照に依存 — SPEC.md 単独では operational 定義と期待値のみ。仕様の曖昧さの発見自体を報告対象と明記した。"
+
+- id: QRN-META-034
+  version: "v28.0"
+  level: C5
+  claim: "第二十八期 完結 (期統合, 2026-07-29): v27.1 (核意味論監査 — §D.3 の正名 = Matter-on-Background Adapter v1 + Metrology Suite v1・全主張 6 軸・昇格禁止 R1–R7 機械化・QRN-C0-001 限定・v0.7 降格) → v27.2 (型付き Core Contract — 別型・空の bridge 登録簿・居住不能型・改名 QrnState→GaussianFermionState・Lean 12 定理) → v27.3 (器械台帳 22 器械 + 認証 SHA-256 + 常設回帰 5 本) → v27.4 (reproducer 3 単位 + replications.yml 6 条件 — 同一 AI は独立でない)。**QRN-Core v1 完了 (spec §7 全 10 項成立) — ただし『完了』= QRN 固有の理論核を構築できるかを初めて失敗可能な形で問える状態であって統一理論ではない**。完全再走の儀式: 全 166 本 PASS 1161 / FAIL 2 (物理でなく監査層の読み書き競合 — suite 二相化で根絶)・再検証 総計 PASS 1163 / FAIL 0・既存 163 本の PASS/FAIL 数は儀式前後で完全一致 (末桁ドリフト検査)。正直な残高: 自然の観測量の的中 0・独立外部再現 0・layer: core の主張 0 件・bridge law 0 本。第二十九期 = relational geometry bridge の比較 (bridge_candidates.yml に B1–B4・訓練 2 系・holdout 4 系・失敗条件を実行前凍結 — PRED-019 は解析的導出まで登録しない)。"
+  status: "期統合 — テーゼ「名を正すと、負けられる問いが立つ」"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    result: "results/v280_full_suite.txt"
+    doc: "docs/uft-v28.0.md"
+  limitations:
+    - "本期は物理 run なし — 新しい物理主張は一つもない (意味論・型・台帳・外部固定のみ)。"
+    - "外部作業が未消化: 投稿・reproducer 公募 (最優先マイルストーン — 独立外部再現 0 のまま)。"

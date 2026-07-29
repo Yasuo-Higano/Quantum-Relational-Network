@@ -209,15 +209,27 @@ while IFS= read -r b; do
     [ -x "$REL/$b" ] || { echo "エラー: $REL/$b が無い — 先に make build" >&2; exit 2; }
 done < "$tmp/runlist"
 
+# 監査層 (ALWAYS_RUN) は他バイナリの結果 txt/JSON を読むため、並列再走との
+# 読み書き競合を避けて**全バイナリの後**に回す (v28.0 の儀式で v273 が
+# 書き込み途中の v268p 結果を読み偽 FAIL — 実行順の二相化で根絶)。
+: > "$tmp/runlist_main"
+: > "$tmp/runlist_audit"
+while IFS= read -r b; do
+    if in_always_run "$b"; then echo "$b" >> "$tmp/runlist_audit"
+    else echo "$b" >> "$tmp/runlist_main"; fi
+done < "$tmp/runlist"
+
 [ -n "$rustc_note" ] && echo "$rustc_note"
 JOBS=${JOBS:-1}
-echo "実行 $n_run 本 / 引用 $n_cite 本 (JOBS=$JOBS) → $out"
+echo "実行 $n_run 本 / 引用 $n_cite 本 (JOBS=$JOBS, 監査層は後段) → $out"
 SUITE_TMP=$tmp
 export SUITE_TMP
 if [ "$JOBS" -gt 1 ]; then
-    xargs -P "$JOBS" -n1 sh tools/suite.sh run-one < "$tmp/runlist"
+    xargs -P "$JOBS" -n1 sh tools/suite.sh run-one < "$tmp/runlist_main"
+    xargs -P "$JOBS" -n1 sh tools/suite.sh run-one < "$tmp/runlist_audit"
 else
-    while IFS= read -r b; do sh tools/suite.sh run-one "$b"; done < "$tmp/runlist"
+    while IFS= read -r b; do sh tools/suite.sh run-one "$b"; done < "$tmp/runlist_main"
+    while IFS= read -r b; do sh tools/suite.sh run-one "$b"; done < "$tmp/runlist_audit"
 fi
 
 # ---- 集約と台帳の更新 ----
