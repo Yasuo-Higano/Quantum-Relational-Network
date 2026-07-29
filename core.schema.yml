@@ -176,19 +176,19 @@ concepts:
 - name: MutualInformationGeometry
   layer: bridge
   status: toy_demo
-  note: "B1: MI 距離→MDS (v0.7 円環 100%)。bridge law は未確立"
+  note: "B1: MI 距離 (v0.7)。v28.3 で棄却 — 境界増強が橋判定と衝突 (端のある空間で橋と縁を混同)"
 - name: ModularFlowGeometry
   layer: bridge
   status: toy_demo
-  note: "B2: モジュラー構造の幾何 (BW 系 — 器械は較正済み、bridge は仮説)"
+  note: "B2: モジュラー核の幾何。v28.3 で棄却 — 規格化の regulator 依存 (v24 の λ regulator 物性と同根)"
 - name: FisherResponseBridge
   layer: bridge
   status: toy_demo
-  note: "B3: 相対エントロピー/Fisher 応答 (v2.1, v15.6)"
+  note: "B3: 応答核 (v28.1 で密度応答 |⟨nn⟩_c| に具体化)。v28.3 生存 — 2 模型 × 2 regulator 無調整一致 (C3)"
 - name: CommutatorCausalGeometry
   layer: bridge
   status: toy_demo
-  note: "B4: 交換子・Lieb–Robinson 因果幾何 (v1.1 前線)"
+  note: "B4: 局所擾乱の前線。v28.3 生存 — Lorentzian 整合 R² 0.997–0.999・相互作用因果順 (C3)"
 - name: EntanglementFirstLaw
   layer: bridge
   status: toy_verified
@@ -200,11 +200,11 @@ concepts:
 - name: GeometryReadout
   layer: bridge
   status: conjectural
-  note: "計量の読み出し規則 — bridge law 候補 B1–B4 の競争は次期以降 (実行前凍結)"
+  note: "計量の読み出し規則 — v28.1–28.3 の競争で B3/B4 が C3 資格 (law 未満 — 一意性・計量定量化・高次元が残高)"
 - name: CausalReadout
   layer: bridge
   status: toy_demo
-  note: "光円錐の創発 (v1.1)。Lorentzian 因果構造の再構成は未"
+  note: "光円錐の創発 (v1.1)。v28.3 で再構成距離への円錐線形性まで — 完全な Lorentzian 計量再構成は未"
 - name: ClockReadout
   layer: bridge
   status: undefined

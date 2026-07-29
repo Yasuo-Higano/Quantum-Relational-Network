@@ -4171,3 +4171,21 @@
     - "1 次元位相 (S¹/区間) + 小さい相互作用系 (l=14) — 高次元・大規模・非可積分域は未検証。生存 = C3 toy 機構であり bridge law ではない。"
     - "ξ 比の窓 [0.8, 1.25] は粗い事前バー — B3 の 0.968 は導出期待に乗るが、B2 の棄却 (0.755) が「regulator 物性」か「推定則の残る癖」かの完全分離には二離散化の第 3 対 (別 regulator) が要る (残高)。"
     - "B4 の開放鎖距離供給は B2 (修正条項 2 の B1→B2→B3 順) — 供給候補自体は H1 通過済みだが、供給の一意性 (B2 と B3 の path が一致するか) は次段の一意性検査に含める。"
+
+- id: QRN-META-035
+  version: "v29.0"
+  level: C5
+  claim: "第二十九期 完結 (期統合, 2026-07-29): bridge_candidates.yml (v28.0 実行前凍結) の完全執行 — v28.1 (訓練資格 + 読み出し規則の SHA-256 凍結) → v28.2 (holdout 第一採点: 全候補棄却 as-run 公表 + 採点器修正条項の走行前凍結) → v28.3 (確定: **B3 密度応答・B4 因果前線が生存 / B1 MI は境界増強・B2 モジュラーは regulator 物性で棄却**)。成立 = 『同じ網から時空 (的構造) が読み出せる』という QRN 固有の C3 主張 (座標・隣接・外部計量なし [置換強制]・自由場 2 系 + Z2 相互作用系 + 二離散化の無調整一致・Lorentzian 整合)。B2 の棄却は v24.4–25 の『λ は regulator 物性』の独立再発見 (期をまたぐ整合)。bridge law 登録簿は空のまま・empirical_prediction: none 不変・PRED-019 未登録維持。スイート総計 PASS 1184 / FAIL 0 (共有部無変更 — 儀式不要の期)。第三十期候補 = bridge law 化の次段 (一意性・計量定量化・高次元位相・予言常設化)。"
+  status: "期統合 — テーゼ「四本架けて二本落ちた — 落ち方が物理だった」"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    result: "results/v283_bridge_rescore.txt"
+    doc: "docs/uft-v29.0.md"
+  limitations:
+    - "生存 2 本は C3 toy 機構 — bridge law ではない (登録簿は空。1 次元位相 + 小相互作用系の範囲)。"
+    - "外部作業は未消化のまま (投稿・reproducer 公募 — 独立外部再現 0)。"

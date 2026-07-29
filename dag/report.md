@@ -3,19 +3,19 @@
 **このファイルは `sh dag/run.sh` が生成する。手で編集しない。**
 Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導出値と全数照合済み。
 
-主張 221 / 依存辺 382 / 仮定 40 / 反証条件 15 / 最大深さ 34
+主張 222 / 依存辺 384 / 仮定 40 / 反証条件 15 / 最大深さ 34
 
 ## 仮定の影響範囲 (抜くと落ちる主張の閉包 — 降順)
 
 | 仮定 | type | 閉包 |
 |---|---|---|
-| ASM-LATTICE | framework | 165 |
+| ASM-LATTICE | framework | 166 |
 | ASM-SEED | design | 77 |
 | ASM-PDG | data | 70 |
-| ASM-LOWDIM | framework | 68 |
+| ASM-LOWDIM | framework | 69 |
+| ASM-GAUSS | framework | 66 |
 | ASM-TORUS | model | 65 |
 | ASM-PRIOR | design | 65 |
-| ASM-GAUSS | framework | 65 |
 | ASM-WILSON-GRID | design | 62 |
 | ASM-OVERLAP | model | 62 |
 | ASM-STABLE-LABEL | convention | 61 |
@@ -29,19 +29,19 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-ALL-CHARGED | definition | 35 |
 | ASM-WINDOW-V31 | window | 30 |
 | ASM-EFT-VALIDITY | model | 30 |
-| ASM-IEEE754 | trust | 22 |
-| ASM-EDGE-SEMANTICS | design | 20 |
+| ASM-IEEE754 | trust | 23 |
+| ASM-EDGE-SEMANTICS | design | 21 |
+| ASM-Z2-MINIMAL | model | 17 |
 | ASM-WINDOW-U1SQ | window | 17 |
-| ASM-Z2-MINIMAL | model | 16 |
 | ASM-SMCONTENT | data | 16 |
-| ASM-LEAN-TRUST | trust | 12 |
-| ASM-INIT | model | 12 |
-| ASM-DOF-GROWTH | model | 10 |
+| ASM-LEAN-TRUST | trust | 13 |
+| ASM-INIT | model | 13 |
+| ASM-DOF-GROWTH | model | 11 |
 | ASM-WINDOW-EXT | window | 8 |
 | ASM-WINDOW-V43 | window | 7 |
 | ASM-OBS-FRACTIONAL | observational | 7 |
 | ASM-NET-REAL | ontology | 7 |
-| ASM-LAYER-SEMANTICS | convention | 6 |
+| ASM-LAYER-SEMANTICS | convention | 7 |
 | ASM-WINDOW-PAIR | window | 5 |
 | ASM-WINDOW-U1CUBE | window | 4 |
 | ASM-ORBIFOLD | model | 3 |
@@ -54,8 +54,8 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 
 | 反証条件 | status | 閉包 |
 |---|---|---|
-| FAL-SUITE | open | 213 |
-| FAL-CONTINUUM | open | 91 |
+| FAL-SUITE | open | 214 |
+| FAL-CONTINUUM | open | 92 |
 | FAL-CKM-OOS | open | 63 |
 | FAL-BMV | open | 48 |
 | FAL-CEX-WINDOW | open | 41 |
@@ -88,7 +88,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | 11 | 5 |
 | 12 | 5 |
 | 13 | 4 |
-| 14 | 2 |
+| 14 | 3 |
 | 15 | 4 |
 | 16 | 5 |
 | 17 | 1 |

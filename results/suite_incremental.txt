@@ -82,19 +82,19 @@
 ===== sim/target/release/v151_audit =====
 === v15.1 監査版: 主張依存グラフの機械検証 ===
 
-[1] 書式解析: 主張 221 / グラフ 221 / 仮定 40 / 反証条件 15  [PASS]
+[1] 書式解析: 主張 222 / グラフ 222 / 仮定 40 / 反証条件 15  [PASS]
 [2] id 一意性・命名・語彙: OK  [PASS]
-[3] graph ↔ claims 1:1 対応: 全 221 主張  [PASS]
-[4] 参照の実在: 依存辺 382 本ほか全て OK  [PASS]
+[3] graph ↔ claims 1:1 対応: 全 222 主張  [PASS]
+[4] 参照の実在: 依存辺 384 本ほか全て OK  [PASS]
 [5] DAG 非循環性: OK (最大深さ 34 — 例 QRN-META-027)  [PASS]
 [6] 等級単調性 (C0<C1<C2<{C3,C4}<C5): 全依存辺 OK  [PASS]
 [7] 被覆 (C1+ に fal / C2 に asm / 孤児なし): OK  [PASS]
 [8] Lean 定理数: 8 ファイル計 62 本 = 期待値、文書記述とも一致  [PASS]
-[9] README 網羅性: 全文書・全バイナリ言及、到達点 v28.3 明示  [PASS]
+[9] README 網羅性: 全文書・全バイナリ言及、到達点 v29.0 明示  [PASS]
 [10] 生成物の同一性: committed 内容 = 再生成内容  [PASS]
 
 ---- 依存グラフの概観 ----
-  節点 221 / 辺 382 / 根 (deps なし) 42 / 最大深さ 34
+  節点 222 / 辺 384 / 根 (deps なし) 42 / 最大深さ 34
   被支持数の上位 (この主張が落ちると連鎖する数):
     QRN-C0-005             80 主張
     QRN-C0-006             64 主張
@@ -102,11 +102,11 @@
     QRN-YUK-001            62 主張
     QRN-YUK-002            61 主張
   仮定の影響範囲の上位 (抜くと落ちる主張の閉包):
-    ASM-LATTICE            165 主張
+    ASM-LATTICE            166 主張
     ASM-SEED               77 主張
     ASM-PDG                70 主張
-    ASM-LOWDIM             68 主張
-    ASM-GAUSS              65 主張
+    ASM-LOWDIM             69 主張
+    ASM-GAUSS              66 主張
 
 総合判定: [PASS] 依存グラフは非循環・等級単調・完全被覆 (辺の意味論は ASM-EDGE-SEMANTICS)
 ----- exit=0 -----
@@ -313,7 +313,7 @@
 
 事前登録: (a) 機械検査全 PASS + 採点 [成立 3 / 部分 2] / (b) 台帳不整合
 
-  [PASS] 台帳の等級分布 (C2+C3 ≥ 40 = 定理・機構層の厚み)  C0:8 C1:35 C2:55 C3:17 C4:77 C5:30 (計 222)
+  [PASS] 台帳の等級分布 (C2+C3 ≥ 40 = 定理・機構層の厚み)  C0:8 C1:35 C2:55 C3:17 C4:77 C5:31 (計 223)
   [PASS] 鍵主張の存在: 重力・第一法則 (QRN-GRAV-005)  QRN-GRAV-005
   [PASS] 鍵主張の存在: QNEC (QRN-GRAV-009)  QRN-GRAV-009
   [PASS] 鍵主張の存在: SU(3) core (QRN-CORE-011)  QRN-CORE-011
@@ -557,7 +557,7 @@
   [PASS] [S0] schema 解析・層 7 値・軸語彙 5 本・QRN-Core v1 状態表示  concepts 67 / conversions 7 / predictions 18
   [PASS] [S1] 全概念の層分類 — 未分類 0 件・必須 35 概念の登録 (v27.2 への進行ゲート)  67 概念 [adapter:11 bridge:15 core:7 dynamics:6 instrument:12 meta:8 phenomenology:8]
   [PASS] [S2] 型レベル禁止変換 7 種の登録 (reason つき)  regulator/時間/計量/証拠の 4 部門
-  [PASS] [S3] claims.yml 全主張の 6 軸完備・語彙適合  221 主張
+  [PASS] [S3] claims.yml 全主張の 6 軸完備・語彙適合  222 主張
   [PASS] [S4] R1/R2 自然観測・外部再現の証拠 0 件 (正直な残高の機械化)  natural_observation 0 / external_replication 0
   [PASS] [S5] R3 independent_author は C0 (外部の確立結果) のみ — 独立外部再現 0  C0 の 7 件のみ
   [PASS] [S6] R4 core/dynamics/bridge 層 (C0 以外) は toy/effective_model のみ  toy mechanism → theory of nature の昇格なし
@@ -626,40 +626,9 @@
 ===== sim/target/release/v282_bridge_holdout ===== [引用]
 [引用] ソース不変 (src sha256 26507a63544d…) — 2026-07-29 の実行結果 results/v282_bridge_holdout.txt を引用 (PASS 3 / FAIL 0)
 ----- cite -----
-===== sim/target/release/v283_bridge_rescore =====
-[self_test] OK (jacobi residual 3.11e-15)
-=== v28.3 bridge holdout の修正採点 — 修正条項 1/2 の執行 (第二十九期 III 前半) ===
-
-  [PASS] [R0] 凍結節 SHA-256 = v281 (核・パイプライン・バーの無変更)  一致 true
-  [PASS] [R0b] Z2 基底状態の器械 (Lanczos 収束)  残差 1.1e-12
-  [PASS] [R1] 修正と無関係な 9 セルの裁定が第一採点 (v28.2 as-run) と一致  修正条項は波及していない
-  [採点] B1 × HOLD-1 開放端鎖 → バー外 → 棄却  第一採点どおり (橋誤検出 — 候補固有)
-  [採点] B2 × HOLD-1 開放端鎖 → バー内  第一採点どおり
-  [採点] B3 × HOLD-1 開放端鎖 → バー内  第一採点どおり
-  [採点] B1 × HOLD-2 Z2 (相互作用) → バー内  第一採点どおり
-  [採点] B2 × HOLD-2 Z2 (相互作用) → バー内  第一採点どおり
-  [採点] B3 × HOLD-2 Z2 (相互作用) → バー内  第一採点どおり
-  [採点] B1 × HOLD-2 未使用チャネル → バー内  第一採点どおり
-  [採点] B4 × HOLD-2 因果 (相互作用系) → バー内  第一採点どおり
-  [採点] B4 × HOLD-4 リング (Lorentzian) → バー内  第一採点どおり
-  (導出参考: κ_s = arsinh(ma) = 0.049979 / κ_w ≈ ln(1+ma) = 0.048790 — 期待比 ~0.976)
-  [採点] B1 × HOLD-3 二離散化 (修正条項 1) → バー内  stag ξ=0.26 / Wil ξ=0.29 / ξ比 0.902 (窓 [0.8, 1.25] — バー不変)
-  [採点] B2 × HOLD-3 二離散化 (修正条項 1) → バー外 → 棄却  stag ξ=0.81 / Wil ξ=1.07 / ξ比 0.755 (窓 [0.8, 1.25] — バー不変)
-  [採点] B3 × HOLD-3 二離散化 (修正条項 1) → バー内  stag ξ=0.19 / Wil ξ=0.20 / ξ比 0.968 (窓 [0.8, 1.25] — バー不変)
-  [採点] B4 × HOLD-4 開放鎖 (修正条項 2) → バー内  距離供給 = B2 / v = 2.1963 R² = 0.99696 (288 点, バー R² ≥ 0.98)
-
----- 確定成績 (第一採点 + 修正条項 — 候補・核・バーは v28.1 凍結のまま) ----
-  B1 — HOLD-1 開放端鎖:外 / HOLD-2 Z2 (相互作用):内 / HOLD-2 未使用チャネル:内 / HOLD-3 二離散化 (修正条項 1):内 → **棄却**
-  B2 — HOLD-1 開放端鎖:内 / HOLD-2 Z2 (相互作用):内 / HOLD-3 二離散化 (修正条項 1):外 → **棄却**
-  B3 — HOLD-1 開放端鎖:内 / HOLD-2 Z2 (相互作用):内 / HOLD-3 二離散化 (修正条項 1):内 → **生存**
-  B4 — HOLD-2 因果 (相互作用系):内 / HOLD-4 リング (Lorentzian):内 / HOLD-4 開放鎖 (修正条項 2):内 → **生存**
-
-[成果物] ./results/v283_bridge_rescore.json
-
-[判定] 確定: 生存 ["B3", "B4"] / 棄却 ["B1", "B2"]。生存候補が示すのは「同じ網から時空 (的構造) が出る」toy 機構 (C3) — bridge law 登録簿は空のまま (登録には 2 模型 × 2 regulator を超える一意性・Lorentzian 完全性・未使用チャネルの事前予言の常設化が要る)。
-
-総合判定: [PASS]
------ exit=0 -----
+===== sim/target/release/v283_bridge_rescore ===== [引用]
+[引用] ソース不変 (src sha256 57f0d3535069…) — 2026-07-29 の実行結果 results/v283_bridge_rescore.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
 ===== sim/target/release/v31_gauge ===== [引用]
 [引用] ソース不変 (src sha256 3a394e32ee44…) — 2026-07-29 の実行結果 results/v31_gauge.txt を引用 (PASS 2 / FAIL 0)
 ----- cite -----
@@ -696,13 +665,13 @@
 ===== sim/target/release/v61_ledger =====
 === v6.1 主張台帳 (claims.yml) の機械検証 ===
 
-[1] 書式解析: 221 件の主張を解析  [PASS]
-[2] id 一意性・命名規則: 全 221 件 OK  [PASS]
+[1] 書式解析: 222 件の主張を解析  [PASS]
+[2] id 一意性・命名規則: 全 222 件 OK  [PASS]
 [3] 等級・必須フィールド: OK  [PASS]
-[4] 証拠ファイルの実在: 全 554 参照 OK  [PASS]
+[4] 証拠ファイルの実在: 全 556 参照 OK  [PASS]
 [5] 限界の明示 (C0 以外は必須): OK  [PASS]
 [6] バイナリ被覆: 全 168 本が台帳から参照されている  [PASS]
-[7] 6 軸の完備性・語彙 (layer/evidence_kind/independence/universality/data_relation/physical_scope): 全 221 件 OK  [PASS]
+[7] 6 軸の完備性・語彙 (layer/evidence_kind/independence/universality/data_relation/physical_scope): 全 222 件 OK  [PASS]
 
 ---- 等級別の集計 ----
   C0 教科書的・既存定理 (前提)                7 件
@@ -710,8 +679,8 @@
   C2 制限付き計算定理                     55 件
   C3 toy model による機構提示            17 件
   C4 現象論的 fit / オーダー推定            77 件
-  C5 解釈・哲学・スローガン                  30 件
-  計 221 件
+  C5 解釈・哲学・スローガン                  31 件
+  計 222 件
 
 ---- 期別の主張数 ----
   v0.x : 14 件
@@ -736,6 +705,7 @@
   v26.x : 23 件
   v27.x : 9 件
   v28.x : 4 件
+  v29.x : 1 件
   v3.x : 8 件
   v4.x : 7 件
   v5.x : 4 件
@@ -790,7 +760,7 @@
 ----- cite -----
 
 ===== 集計 =====
-実行 12 本: PASS 92 / FAIL 0
-引用 157 本: PASS 1092 / FAIL 0 (ソース不変を sha256 で確認 — 台帳 results/suite_manifest.tsv)
+実行 11 本: PASS 88 / FAIL 0
+引用 158 本: PASS 1096 / FAIL 0 (ソース不変を sha256 で確認 — 台帳 results/suite_manifest.tsv)
 総計: PASS 1184 / FAIL 0
 lib.rs 5b4d82de939543b2eb59b8a79b473d3d8cf062505b1480d9ec002db04d01764e / Cargo.toml fcbdde4968e5a893025368bc1c4e572b4e63849825945841d486814e95e062b2 / rustc 1.94.0 (4a4ef493e 2026-03-02)
