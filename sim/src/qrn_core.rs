@@ -285,3 +285,51 @@ pub fn qrn_core_self_test() -> Result<(), String> {
     }
     Ok(())
 }
+
+// ---------------------------------------------------------------- 減衰長の型 (v29.1)
+
+/// 指数減衰率 κ > 0 (単位: 1/ノード間隔)。構成は TryFrom<LinearFit> のみ —
+/// ln w vs d の**傾き**が負の有限値であることを型が強制する (v28.2/28.3 の
+/// HOLD-3 採点器が切片を減衰率に使い裁定を反転させた事故 [PROMPT/11] の恒久対策)。
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+pub struct DecayRate(f64);
+
+impl DecayRate {
+    pub fn value(self) -> f64 {
+        self.0
+    }
+}
+
+impl TryFrom<crate::LinearFit> for DecayRate {
+    type Error = &'static str;
+    fn try_from(fit: crate::LinearFit) -> Result<Self, Self::Error> {
+        if !fit.slope.is_finite() || fit.slope >= 0.0 {
+            return Err("指数減衰を示す負の有限傾きではない");
+        }
+        Ok(DecayRate(-fit.slope))
+    }
+}
+
+/// 核減衰長 ξ = 1/κ (単位: ノード間隔)。**物理的相関長と呼ばない** — カーネル冪
+/// (|C| vs |C|²) や代数的前因子が未分離のため、これは「当該核の実効減衰長」である
+/// (v29.1 の命名修正: 旧称「ξ (相関長)」を KernelDecayLength に限定)。
+#[derive(Debug, Clone, Copy, PartialEq, PartialOrd)]
+pub struct KernelDecayLength(f64);
+
+impl KernelDecayLength {
+    pub fn value(self) -> f64 {
+        self.0
+    }
+}
+
+impl TryFrom<crate::LinearFit> for KernelDecayLength {
+    type Error = &'static str;
+    fn try_from(fit: crate::LinearFit) -> Result<Self, Self::Error> {
+        let rate = DecayRate::try_from(fit)?;
+        let xi = 1.0 / rate.value();
+        if !xi.is_finite() || xi <= 0.0 {
+            return Err("正の有限な核減衰長を構成できない");
+        }
+        Ok(KernelDecayLength(xi))
+    }
+}

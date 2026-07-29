@@ -176,19 +176,19 @@ concepts:
 - name: MutualInformationGeometry
   layer: bridge
   status: toy_demo
-  note: "B1: MI 距離 (v0.7)。v28.3 で棄却 — 境界増強が橋判定と衝突 (端のある空間で橋と縁を混同)"
+  note: "B1: MI 距離 (v0.7)。v28.3/v29.1 で棄却維持 — 境界増強が橋判定と衝突 (端のある空間で橋と縁を混同)"
 - name: ModularFlowGeometry
   layer: bridge
   status: toy_demo
-  note: "B2: モジュラー核の幾何。v28.3 で棄却 — 規格化の regulator 依存 (v24 の λ regulator 物性と同根)"
+  note: "B2: モジュラー核の幾何。v29.1 erratum で生存へ訂正 (v28.3 の棄却は採点器バグ − 1/切片 — regulator 物性解釈は撤回)"
 - name: FisherResponseBridge
   layer: bridge
   status: toy_demo
-  note: "B3: 応答核 (v28.1 で密度応答 |⟨nn⟩_c| に具体化)。v28.3 生存 — 2 模型 × 2 regulator 無調整一致 (C3)"
+  note: "B3-COV (正名 v29.1): density 共分散核。生存 (KernelDecayLength 比 1.026)。事前登録の B3-QFI/BKM は未試験候補として分離"
 - name: CommutatorCausalGeometry
   layer: bridge
   status: toy_demo
-  note: "B4: 局所擾乱の前線。v28.3 生存 — Lorentzian 整合 R² 0.997–0.999・相互作用因果順 (C3)"
+  note: "B4-DENSITY-FRONT (正名 v29.1): 空間核×密度前線の合成 readout。生存 — Lorentzian R² 0.997–0.999。B4-COMMUTATOR/LR は未試験候補として分離"
 - name: EntanglementFirstLaw
   layer: bridge
   status: toy_verified
@@ -200,7 +200,7 @@ concepts:
 - name: GeometryReadout
   layer: bridge
   status: conjectural
-  note: "計量の読み出し規則 — v28.1–28.3 の競争で B3/B4 が C3 資格 (law 未満 — 一意性・計量定量化・高次元が残高)"
+  note: "計量の読み出し規則 — v29.1 訂正確定: B2/B3-COV/B4-DENSITY-FRONT が C3 資格 (与えられた因子分解の下で。law 未満 — 一意性・計量定量化・高次元が残高)"
 - name: CausalReadout
   layer: bridge
   status: toy_demo

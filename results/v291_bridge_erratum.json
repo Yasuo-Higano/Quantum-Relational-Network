@@ -1,0 +1,12 @@
+{
+  "version": "v29.1",
+  "survived": [
+    "B2",
+    "B3-COV",
+    "B4-DENSITY-FRONT"
+  ],
+  "rejected": [
+    "B1"
+  ],
+  "note": "v28.2/28.3 の HOLD-3 は切片を減衰率に使用 (裁定無効) — 本表が確定。v28.3 は post-holdout instrument-repair retest と再分類"
+}

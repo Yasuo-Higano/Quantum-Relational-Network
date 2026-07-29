@@ -1,0 +1,33 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v29.1 bridge 裁定の Integrity Erratum — 切片/傾きバグの再現と修正裁定 (第三十期 第0課題) ===
+
+  [PASS] [E0] 凍結節 SHA-256 = v281 (核・パイプライン・バーの無変更 — バグは採点側)  一致 true
+  [PASS] [E1] バグの再現 — 切片版推定器が v28.2/v28.3 の公表値を印字精度で再現 (同一入力・同一バグの機械証明)  6 系列 × 2 推定器の全公表値を再現 — 公表 ξ は −1/切片 だったことが確定
+  (導出参考: κ_s = arsinh(ma) = 0.049979 / κ_w ≈ ln(1+ma) = 0.048790 — 期待比 ~0.976。修正後の ξ は「核減衰長」であり物理的相関長と呼ばない)
+  [採点] B1 × HOLD-3 二離散化 (修正裁定) → バー内  KernelDecayLength stag 4.2609 / Wil 4.3049 / 比 0.9898 (窓 [0.8, 1.25] — バー不変)
+  [採点] B2 × HOLD-3 二離散化 (修正裁定) → バー内  KernelDecayLength stag 8.5061 / Wil 9.0096 / 比 0.9441 (窓 [0.8, 1.25] — バー不変)
+  [採点] B3-COV × HOLD-3 二離散化 (修正裁定) → バー内  KernelDecayLength stag 4.2620 / Wil 4.1535 / 比 1.0261 (窓 [0.8, 1.25] — バー不変)
+  [PASS] [E3a] Z2 基底状態の器械 (Lanczos 収束)  残差 1.1e-12
+  [PASS] [E3] 修正と無関係な 10 セルの裁定が v28.3 (as-run) と一致  erratum は HOLD-3 の ξ にのみ波及
+  [採点] B1 × HOLD-1 開放端鎖 → バー外 → 棄却  橋誤検出 (境界増強) — 候補固有・棄却維持
+  [採点] B2 × HOLD-1 開放端鎖 → バー内  
+  [採点] B3-COV × HOLD-1 開放端鎖 → バー内  
+  [採点] B1 × HOLD-2 Z2 (相互作用) → バー内  
+  [採点] B2 × HOLD-2 Z2 (相互作用) → バー内  
+  [採点] B3-COV × HOLD-2 Z2 (相互作用) → バー内  
+  [採点] B1 × HOLD-2 未使用チャネル → バー内  B1 の得点 — 棄却候補のため生存者の根拠に流用しない
+  [採点] B4-DENSITY-FRONT × HOLD-2 因果 (相互作用系) → バー内  距離 = B1 再構成 (合成 readout)
+  [採点] B4-DENSITY-FRONT × HOLD-4 リング (Lorentzian) → バー内  距離 = B1 再構成 (合成 readout)
+  [採点] B4-DENSITY-FRONT × HOLD-4 開放鎖 → バー内  距離 = B2 再構成 (合成 readout, 修正条項 2)
+
+---- 訂正後の確定成績 (正名: B3-COV = density 共分散核 / B4-DENSITY-FRONT = 空間核×密度前線の合成) ----
+  B1 — HOLD-3 二離散化 (修正裁定):内 / HOLD-1 開放端鎖:外 / HOLD-2 Z2 (相互作用):内 / HOLD-2 未使用チャネル:内 → **棄却**
+  B2 — HOLD-3 二離散化 (修正裁定):内 / HOLD-1 開放端鎖:内 / HOLD-2 Z2 (相互作用):内 → **生存**
+  B3-COV — HOLD-3 二離散化 (修正裁定):内 / HOLD-1 開放端鎖:内 / HOLD-2 Z2 (相互作用):内 → **生存**
+  B4-DENSITY-FRONT — HOLD-2 因果 (相互作用系):内 / HOLD-4 リング (Lorentzian):内 / HOLD-4 開放鎖:内 → **生存**
+
+[成果物] ./results/v291_bridge_erratum.json
+
+[判定] 訂正後の確定: 生存 ["B2", "B3-COV", "B4-DENSITY-FRONT"] / 棄却 ["B1"]。B2 の「regulator 物性ゆえ棄却」と B3 の「導出期待に 0.8% 一致」は撤回 (erratum)。生存は「与えられたノード因子分解の下で、ラベル・座標・隣接を入力せず、隠れた 1 次元隣接・位相・因果順を回復した」toy 機構 (C3) — bridge law 登録簿は空のまま。
+
+総合判定: [PASS]

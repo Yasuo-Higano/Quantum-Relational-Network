@@ -308,6 +308,63 @@ pub fn linfit(x: &[f64], y: &[f64]) -> (f64, f64) {
     (a, b)
 }
 
+/// 直線フィット y = a + b·x の**名前つき**結果 (v29.1 — 裸タプル (a, b) の
+/// 取り違え事故の恒久対策)。v28.2/28.3 の HOLD-3 採点器は `let (slope, _) =
+/// linfit(..)` と書いて**切片**を減衰率に使い、bridge 裁定を反転させた
+/// (PROMPT/11 で発見)。同型 f64 のタプルは位置の意味を型が守らない —
+/// 意味を持つ量は名前つきフィールドで受け取ること。
+/// 旧 linfit / linfit_checked は v25.2 凍結対象 (v251/v252 系) が使用しており
+/// 署名変更は凍結破りになるため**変更しない** — 新規・採点コードは本 API を使う。
+#[derive(Debug, Clone, Copy)]
+pub struct LinearFit {
+    pub intercept: f64,
+    pub slope: f64,
+    pub r_squared: f64,
+}
+
+/// 検証つき・名前つき直線フィット (v29.1)。fail-closed: 長さ不一致・点数 < 3・
+/// 非有限値・x の分散ゼロを拒否。変成テストは self_test に常設 (切片/傾きの
+/// 取り違え・スケール不変性・距離共変性を毎起動で検査)。
+pub fn linfit_typed(x: &[f64], y: &[f64]) -> Result<LinearFit, &'static str> {
+    if x.len() != y.len() {
+        return Err("x/y の長さ不一致");
+    }
+    if x.len() < 3 {
+        return Err("点数不足 (< 3)");
+    }
+    if x.iter().chain(y.iter()).any(|v| !v.is_finite()) {
+        return Err("非有限値を含む");
+    }
+    let n = x.len() as f64;
+    let mx = x.iter().sum::<f64>() / n;
+    if x.iter().map(|v| (v - mx) * (v - mx)).sum::<f64>() <= 0.0 {
+        return Err("x の分散ゼロ");
+    }
+    let (a, b) = linfit(x, y);
+    let my = y.iter().sum::<f64>() / n;
+    let ss_tot: f64 = y.iter().map(|v| (v - my) * (v - my)).sum();
+    let ss_res: f64 = x
+        .iter()
+        .zip(y)
+        .map(|(xv, yv)| {
+            let e = yv - (a + b * xv);
+            e * e
+        })
+        .sum();
+    let r_squared = if ss_tot > 0.0 {
+        1.0 - ss_res / ss_tot
+    } else if ss_res <= 1e-30 {
+        1.0
+    } else {
+        0.0
+    };
+    Ok(LinearFit {
+        intercept: a,
+        slope: b,
+        r_squared,
+    })
+}
+
 /// 検証つき最小二乗直線フィット (v25.2 fail-closed 化)。
 /// 点数 < 2・非有限値・x の分散ゼロを型で拒否する — 旧 linfit はこれらで
 /// NaN/∞ を黙って返し、下流ゲートの意味を破壊する (PROMPT/7 の指摘)。
@@ -2052,9 +2109,12 @@ impl ConstrainedToyStateV2 for Z2CoreState {
         let na = sites.len();
         let dima = 1usize << na;
         let ncomb = self.masks.len();
-        // 環境キー (補集合ビット列 + ε) ごとに (a, 符号つき振幅) を集める
-        let mut groups: std::collections::HashMap<u64, Vec<(usize, (f64, f64))>> =
-            std::collections::HashMap::new();
+        // 環境キー (補集合ビット列 + ε) ごとに (a, 符号つき振幅) を集める。
+        // v29.1: HashMap → BTreeMap — HashMap の反復順は per-process 乱数で、
+        // ρ への浮動小数和の順序が走行ごとに変わり 1e-15 級の run 間ドリフトを
+        // 生んでいた (v153 の |Δ| 揺れの機構 — v28.1 で特定)。BTreeMap で決定化。
+        let mut groups: std::collections::BTreeMap<u64, Vec<(usize, (f64, f64))>> =
+            std::collections::BTreeMap::new();
         let in_a: Vec<Option<usize>> = (0..self.l)
             .map(|s| sites.iter().position(|&t| t == s))
             .collect();
@@ -2211,6 +2271,42 @@ pub fn self_test() {
     // qrn_core 契約 (v27.2): bridge law 登録簿が空・証明書発行不能・状態表示の
     // 水増しなし (成功時は無音 — 破れのみ panic。出力の byte 不変性を保つ)
     qrn_core::qrn_core_self_test().expect("qrn_core 契約の破れ");
+    // linfit_typed の変成テスト (v29.1 — 切片/傾き取り違え事故の再発防止。成功時無音):
+    //   (1) y = 3 − 0.2x → slope = −0.2, ξ = −1/slope = 5 (切片 3 を使うと必ず失敗)
+    //   (2) w → c·w (ln で切片シフト) は傾き = 減衰率を変えない
+    //   (3) d → 2d で傾きは 1/2 (ξ は 2 倍)
+    //   (4) fail-closed: 正傾き・点数不足・分散ゼロは Err
+    {
+        let xs = [1.0, 2.0, 3.0, 4.0, 5.0];
+        let ys: Vec<f64> = xs.iter().map(|x| 3.0 - 0.2 * x).collect();
+        let f = linfit_typed(&xs, &ys).expect("linfit_typed 基本");
+        assert!(
+            (f.slope + 0.2).abs() < 1e-12 && (f.intercept - 3.0).abs() < 1e-12,
+            "linfit_typed: slope/intercept の意味が壊れている"
+        );
+        let xi = qrn_core::KernelDecayLength::try_from(f).expect("ξ 構成");
+        assert!((xi.value() - 5.0).abs() < 1e-10, "ξ = −1/slope = 5 でない");
+        let ys2: Vec<f64> = ys.iter().map(|y| y + 7.0f64.ln()).collect(); // w → 7w
+        let f2 = linfit_typed(&xs, &ys2).expect("linfit_typed scale");
+        assert!(
+            (f2.slope - f.slope).abs() < 1e-12,
+            "w → c·w で減衰率が変わった (切片使用の指紋)"
+        );
+        let xs3: Vec<f64> = xs.iter().map(|x| 2.0 * x).collect();
+        let f3 = linfit_typed(&xs3, &ys).expect("linfit_typed dist");
+        assert!((f3.slope + 0.1).abs() < 1e-12, "d → 2d の共変性が壊れている");
+        let pos: Vec<f64> = xs.iter().map(|x| 1.0 + 0.5 * x).collect();
+        let fp = linfit_typed(&xs, &pos).expect("正傾き fit 自体は可");
+        assert!(
+            qrn_core::KernelDecayLength::try_from(fp).is_err(),
+            "非減衰 (正傾き) から ξ が構成できてしまう"
+        );
+        assert!(linfit_typed(&xs[..2], &ys[..2]).is_err(), "点数不足が通った");
+        assert!(
+            linfit_typed(&[1.0, 1.0, 1.0], &[1.0, 2.0, 3.0]).is_err(),
+            "分散ゼロが通った"
+        );
+    }
     // ヤコビ法: ランダム対称行列で A v = λ v を検証
     let n = 8;
     let mut rng = Rng::new(12345);
