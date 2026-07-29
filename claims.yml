@@ -4151,3 +4151,23 @@
   limitations:
     - "第一採点の棄却 3 件のうち 2 件 (HOLD-3 共通モード・B4 距離供給) は採点器の欠陥に帰着 — 修正条項の下での再採点 (v28.3) が最終表。B1 の HOLD-1 棄却は候補固有で維持。"
     - "候補の棄却は [採点] 行で記録し [FAIL] トークンを使わない (棄却は実験の正しい帰結 — suite の FAIL 計数と器械故障を混同しない設計)。"
+
+- id: QRN-BRIDGE-003
+  version: "v28.3"
+  level: C3
+  claim: "bridge 比較の確定 (修正条項 1/2 の執行 — 候補・核・バーは v28.1 凍結節のまま SHA-256 で機械確認): **B3 (密度応答) と B4 (因果前線) が生存、B1 (MI) と B2 (モジュラー) は棄却**。B3: 開放端 Path 101・Z2 相互作用系 Cycle 14 (隣接 100%)・二離散化 ξ 比 0.968 (導出期待 κ_w/κ_s = 0.976 に 0.8%)。B4: Z2 因果順 Spearman 0.886 (14/14)・リング Lorentzian R² 0.99876 (源間ばらつき 0)・開放鎖無巻き付き R² 0.99696。棄却の物理: B1 = MI の境界増強が橋判定則と衝突 (端のある空間で橋と縁を混同)・B2 = 二離散化 ξ 比 0.755 が窓外 — モジュラー規格化の regulator 依存 (v24.4–24.5 の λ regulator 物性の bridge 競争による独立再発見)。修正条項の非波及は無関係 9 セルの裁定一致 [R1] で機械証明。成立したのは『同じ網から時空 (的構造) が読み出せる』という QRN 固有の C3 主張 — 座標・隣接・外部計量なし (ラベル置換で強制)、自由場 2 系 + 相互作用系 + 二離散化で無調整一致、Lorentzian 整合込み。"
+  status: "toy 機構 (bridge_candidates.yml の成功条件を holdout 規律下で充足 — bridge law 登録簿は空のまま。law 昇格には一意性・計量定量化・高次元位相・予言常設化が要る)"
+  layer: bridge
+  evidence_kind: internal_holdout
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: preregistered_holdout
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v283_bridge_rescore.rs"
+    result: "results/v283_bridge_rescore.txt"
+    doc: "docs/uft-v28.3.md"
+  limitations:
+    - "1 次元位相 (S¹/区間) + 小さい相互作用系 (l=14) — 高次元・大規模・非可積分域は未検証。生存 = C3 toy 機構であり bridge law ではない。"
+    - "ξ 比の窓 [0.8, 1.25] は粗い事前バー — B3 の 0.968 は導出期待に乗るが、B2 の棄却 (0.755) が「regulator 物性」か「推定則の残る癖」かの完全分離には二離散化の第 3 対 (別 regulator) が要る (残高)。"
+    - "B4 の開放鎖距離供給は B2 (修正条項 2 の B1→B2→B3 順) — 供給候補自体は H1 通過済みだが、供給の一意性 (B2 と B3 の path が一致するか) は次段の一意性検査に含める。"

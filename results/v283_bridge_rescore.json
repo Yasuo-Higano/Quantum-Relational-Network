@@ -1,0 +1,11 @@
+{
+  "version": "v28.3",
+  "survived": [
+    "B3",
+    "B4"
+  ],
+  "rejected": [
+    "B1",
+    "B2"
+  ]
+}
