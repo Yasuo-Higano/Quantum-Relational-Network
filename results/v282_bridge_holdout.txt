@@ -1,0 +1,31 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v28.2 relational geometry bridge — holdout 執行 (第二十九期 II/III, 調整禁止) ===
+
+  [PASS] [H0] 凍結節 SHA-256 一致 (v281 = v282) + TRAIN-1 B1 標本の回帰アンカー  sha 一致 true (7a28d0dbe9f7eb10…) / アンカー最大差 0.0e0
+  [採点] B1 × HOLD-1 開放端鎖 → バー外 → 棄却  Path=false 隣接 1.0000 橋 2 MDS=false
+  [採点] B2 × HOLD-1 開放端鎖 → バー内  Path=true 隣接 1.0000 橋 0 MDS=true
+  [採点] B3 × HOLD-1 開放端鎖 → バー内  Path=true 隣接 1.0000 橋 0 MDS=true
+  [PASS] [H2] Z2 基底状態の器械 (Lanczos 収束)  E₀ = -15.062644141 (dim 6864, 残差 1.1e-12)
+  [採点] B1 × HOLD-2 Z2 (相互作用) → バー内  Cycle=true 隣接 1.0000 橋 0
+  [採点] B2 × HOLD-2 Z2 (相互作用) → バー内  Cycle=true 隣接 1.0000 橋 0
+  [採点] B3 × HOLD-2 Z2 (相互作用) → バー内  Cycle=true 隣接 1.0000 橋 0
+  [採点] B1 × HOLD-2 未使用チャネル (B1 幾何 → B3 予言) → バー内  Spearman = 0.9705 (バー 0.90, 70 対)
+  [採点] B4 × HOLD-2 因果 (相互作用系) → バー内  Spearman = 0.8857 (バー 0.85) / 到達 14/14
+  [採点] B1 × HOLD-3 二離散化 → バー外 → 棄却  stag ok=true ξ=0.19 / Wil ok=true ξ=0.27 / ξ比 0.701 (窓 [0.8, 1.25])
+  [採点] B2 × HOLD-3 二離散化 → バー外 → 棄却  stag ok=true ξ=0.53 / Wil ok=true ξ=1.00 / ξ比 0.528 (窓 [0.8, 1.25])
+  [採点] B3 × HOLD-3 二離散化 → バー外 → 棄却  stag ok=true ξ=0.15 / Wil ok=true ξ=0.19 / ξ比 0.797 (窓 [0.8, 1.25])
+  [採点] B4 × HOLD-4 リング (Lorentzian: t* vs 再構成距離) → バー内  v = 2.0986 R² = 0.99876 源間ばらつき 0.0000 (1248 点)
+  [採点] B4 × HOLD-4 開放鎖 (無巻き付き — 位相を因果が追認) → バー外 → 棄却  v = 0.0000 R² = 0.00000 (0 点)
+
+---- 候補別成績 (凍結規則: バー外は調整せず棄却) ----
+  B1 — HOLD-1 開放端鎖:外 / HOLD-2 Z2 (相互作用):内 / HOLD-2 未使用チャネル (B1 幾何 → B3 予言):内 / HOLD-3 二離散化:外 → **棄却**
+  B2 — HOLD-1 開放端鎖:内 / HOLD-2 Z2 (相互作用):内 / HOLD-3 二離散化:外 → **棄却**
+  B3 — HOLD-1 開放端鎖:内 / HOLD-2 Z2 (相互作用):内 / HOLD-3 二離散化:外 → **棄却**
+  B4 — HOLD-2 因果 (相互作用系):内 / HOLD-4 リング (Lorentzian: t* vs 再構成距離):内 / HOLD-4 開放鎖 (無巻き付き — 位相を因果が追認):外 → **棄却**
+
+[成果物] ./results/v282_bridge_holdout.json
+
+[判定] 生存 [] / 棄却 ["B1", "B2", "B3", "B4"] — 棄却候補の再調整は行わない (bridge_candidates.yml の失敗規則)。
+解釈の上限: 生存候補が示すのは「同じ網から時空 (的構造) が出る」toy 機構 (C3) — bridge law 登録簿は空のまま。
+
+総合判定: [PASS]

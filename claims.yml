@@ -4132,3 +4132,22 @@
     - "訓練系 2 つ (自由ガウス) での資格であり、holdout (開放端・相互作用 Z2・二離散化・Lorentzian) は v28.2 で未執行。"
     - "開発記録: B4 初版 (位相破壊) は粒子正孔対称で密度が厳密不変となり前線が読めなかった — v6.7 の教訓の再演として粒子注入に修正 (訓練段階の設計修正)。"
     - "v153 run 間ドリフトの機構特定 (lib rdm の HashMap 群化) — bridge 監査は決定的 rdm (BTreeMap) を凍結して回避。lib 修正は次の lib 変更版に登録。"
+
+- id: QRN-BRIDGE-002
+  version: "v28.2"
+  level: C3
+  claim: "bridge holdout の第一採点 (bridge_candidates.yml 執行 II, 調整禁止, as-run): 凍結規則の下で 4 候補全て棄却。内訳 — (a) B1 (MI) は開放端鎖で橋 2 対を誤検出 (端点 MI の境界増強が凍結の 3× 支配則を発火 — B2/B3 は同系を Path 101・隣接 100% で通過しており候補固有の失敗)。(b) HOLD-3 (staggered vs Wilson, m_phys·a = 0.05) は 3 候補が同型に ξ 比 0.53–0.80 で窓 [0.8, 1.25] 外 — 共通モードは採点器の指紋で、宣言した偶距離 ξ 推定則が staggered の同副格子 (C(偶d) は m→0 で恒等零の抑制チャネル) と Wilson の通常チャネルを比較していた (判定変数の ill-posed — PRED-014 と同型)。(c) B4 の開放鎖検査は距離供給を B1 に固定していたため B1 棄却に連動して 0 点 (採点インフラの設計不備)。肯定面: 相互作用系 (Z2 閉じ込め相) で B1/B2/B3 が Cycle 14・隣接 100%、B1 幾何は未使用チャネル B3 を Spearman 0.97 で予言、B4 は相互作用因果順 0.886 (14/14 到達) とリング Lorentzian R² 0.999 を通した。修正条項 1 (ξ の上包絡推定 — 導出: κ_w/κ_s ≈ 0.976) と 2 (距離供給則) を本コミットで凍結 — 候補・核・バーは不変、再採点は v28.3。"
+  status: "toy 機構の holdout 第一採点 (as-run — この表は置き換えない。凍結節 SHA-256 一致 + TRAIN-1 アンカー 0.0 を機械確認)"
+  layer: bridge
+  evidence_kind: internal_holdout
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: preregistered_holdout
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v282_bridge_holdout.rs"
+    result: "results/v282_bridge_holdout.txt"
+    doc: "docs/uft-v28.2.md"
+  limitations:
+    - "第一採点の棄却 3 件のうち 2 件 (HOLD-3 共通モード・B4 距離供給) は採点器の欠陥に帰着 — 修正条項の下での再採点 (v28.3) が最終表。B1 の HOLD-1 棄却は候補固有で維持。"
+    - "候補の棄却は [採点] 行で記録し [FAIL] トークンを使わない (棄却は実験の正しい帰結 — suite の FAIL 計数と器械故障を混同しない設計)。"

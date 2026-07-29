@@ -1,0 +1,77 @@
+{
+  "version": "v28.2",
+  "survived": [],
+  "rejected": [
+    "B1",
+    "B2",
+    "B3",
+    "B4"
+  ],
+  "judgements": [
+    {
+      "name": "B1 × HOLD-1 開放端鎖",
+      "bar_ok": "外",
+      "detail": "Path=false 隣接 1.0000 橋 2 MDS=false"
+    },
+    {
+      "name": "B2 × HOLD-1 開放端鎖",
+      "bar_ok": "内",
+      "detail": "Path=true 隣接 1.0000 橋 0 MDS=true"
+    },
+    {
+      "name": "B3 × HOLD-1 開放端鎖",
+      "bar_ok": "内",
+      "detail": "Path=true 隣接 1.0000 橋 0 MDS=true"
+    },
+    {
+      "name": "B1 × HOLD-2 Z2 (相互作用)",
+      "bar_ok": "内",
+      "detail": "Cycle=true 隣接 1.0000 橋 0"
+    },
+    {
+      "name": "B2 × HOLD-2 Z2 (相互作用)",
+      "bar_ok": "内",
+      "detail": "Cycle=true 隣接 1.0000 橋 0"
+    },
+    {
+      "name": "B3 × HOLD-2 Z2 (相互作用)",
+      "bar_ok": "内",
+      "detail": "Cycle=true 隣接 1.0000 橋 0"
+    },
+    {
+      "name": "B1 × HOLD-2 未使用チャネル (B1 幾何 → B3 予言)",
+      "bar_ok": "内",
+      "detail": "Spearman = 0.9705 (バー 0.90, 70 対)"
+    },
+    {
+      "name": "B4 × HOLD-2 因果 (相互作用系)",
+      "bar_ok": "内",
+      "detail": "Spearman = 0.8857 (バー 0.85) / 到達 14/14"
+    },
+    {
+      "name": "B1 × HOLD-3 二離散化",
+      "bar_ok": "外",
+      "detail": "stag ok=true ξ=0.19 / Wil ok=true ξ=0.27 / ξ比 0.701 (窓 [0.8, 1.25])"
+    },
+    {
+      "name": "B2 × HOLD-3 二離散化",
+      "bar_ok": "外",
+      "detail": "stag ok=true ξ=0.53 / Wil ok=true ξ=1.00 / ξ比 0.528 (窓 [0.8, 1.25])"
+    },
+    {
+      "name": "B3 × HOLD-3 二離散化",
+      "bar_ok": "外",
+      "detail": "stag ok=true ξ=0.15 / Wil ok=true ξ=0.19 / ξ比 0.797 (窓 [0.8, 1.25])"
+    },
+    {
+      "name": "B4 × HOLD-4 リング (Lorentzian: t* vs 再構成距離)",
+      "bar_ok": "内",
+      "detail": "v = 2.0986 R² = 0.99876 源間ばらつき 0.0000 (1248 点)"
+    },
+    {
+      "name": "B4 × HOLD-4 開放鎖 (無巻き付き — 位相を因果が追認)",
+      "bar_ok": "外",
+      "detail": "v = 0.0000 R² = 0.00000 (0 点)"
+    }
+  ]
+}
