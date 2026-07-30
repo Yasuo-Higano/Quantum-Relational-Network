@@ -3,7 +3,7 @@
   [PASS] [S0] schema 解析・層 7 値・軸語彙 5 本・QRN-Core v1 状態表示  concepts 70 / conversions 7 / predictions 18
   [PASS] [S1] 全概念の層分類 — 未分類 0 件・必須 35 概念の登録 (v27.2 への進行ゲート)  70 概念 [adapter:11 bridge:18 core:7 dynamics:6 instrument:12 meta:8 phenomenology:8]
   [PASS] [S2] 型レベル禁止変換 7 種の登録 (reason つき)  regulator/時間/計量/証拠の 4 部門
-  [PASS] [S3] claims.yml 全主張の 6 軸完備・語彙適合  227 主張
+  [PASS] [S3] claims.yml 全主張の 6 軸完備・語彙適合  228 主張
   [PASS] [S4] R1/R2 自然観測・外部再現の証拠 0 件 (正直な残高の機械化)  natural_observation 0 / external_replication 0
   [PASS] [S5] R3 independent_author は C0 (外部の確立結果) のみ — 独立外部再現 0  C0 の 7 件のみ
   [PASS] [S6] R4 core/dynamics/bridge 層 (C0 以外) は toy/effective_model のみ  toy mechanism → theory of nature の昇格なし

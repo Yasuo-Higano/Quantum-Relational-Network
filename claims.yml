@@ -4290,3 +4290,24 @@
     - "τ 予言の max 統計は近接場過渡支配の弱バー (因子 2.1 許容) — 分布の実態は中央値 3–15%。"
     - "3 regulator (固定 a) の一致であり連続極限普遍性ではない (a→0 系列は HOLD-5 に含まれない)。"
     - "scope は「与えられたノード因子分解の下で」— FactorizationBridge 未定義・bridge law 登録簿は空のまま・PRED-019 未登録。"
+
+- id: QRN-BRIDGE-008
+  version: "v29.5"
+  level: C3
+  claim: "一意性・反例探索の collision atlas (9 検査 PASS): n = 4..7 連結グラフ全数 (6/21/112/853 = OEIS A001349 照合) × 半充填自由フェルミオン基底状態で、非同型対の識別余裕を証明書つきで確定 (整列多重集合下界 → 下界昇順の厳密 min-perm 評価)。**発見 1**: 静的核の厳密衝突対 (n=6 最小反例) — P6 (5 辺) と単環 693 (6 辺) は cospectral ですらないのに B1/B3/B5 全静的核が置換一致 (≤ 1.9e-14)。機構 = 二部・半充填では C = (1 − sign(A))/2 で静的核は sign(A) までしか見えない。**動的 KIN が 0.50 で分離** —「静的単独では不可・応答チャネル併用で同定可能」の最小機械実例。**発見 2**: Petersen が完全 1D path と誤認 — 頂点推移性の縮退カーネル (拡がり 3.8e-16) で mutual top-2 が断片化し、v29 橋つき fallback が非辺を継いで path を捏造 (選択辺の非辺混入が機械的証拠)。no-go 側: 無情報状態 C = I/2 は幾何なし・factorization は選定不能 (C12 の 5 群化 — 局所 3 種は整合円環、反対点 quotient は別の自己整合幾何 C6、ランダムは円環なし)・静的 top-2 は弱い弦を g = 1.0 でも見落とす (動的は全域で即検出)。"
+  status: "identifiability/no-go 境界の機械化 — 探索領域・margin・衝突クラス・機構の証明書 (PROMPT/11 第三課題)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v295_collision_atlas.rs"
+    result: "results/v295_collision_atlas.txt"
+    doc: "docs/uft-v29.5.md"
+  limitations:
+    - "探索領域は n ≤ 7 の一様重みグラフ + 半充填 (シェル規則) — 重みつき・別 filling・混合状態族は未探索 (sign(A) 同値類は filling に依存する)。"
+    - "KIN の大量衝突は閾値 ε = 1e-3・dt = 0.05 の分解能での言明 — 連続 t* や振幅情報を使えば分離は増える (粗い不変量の限界であって力学の限界ではない)。"
+    - "Petersen 誤認は縮退カーネル + fallback 経路の故障モード — HOLD-5 (縮退のない不均一系・真値隣接照合つき) の裁定には波及しない。v29.6 pipeline は縮退検査で裁定保留を返すべき (設計入力)。"
+    - "「識別可能」は与えられたノード因子分解の下での言明 (FactorizationBridge 未定義のまま — [C5] がその空隙自体を機械記録)。"

@@ -1,0 +1,133 @@
+{
+  "version": "v29.5",
+  "atlas": [
+    {
+      "n": 4,
+      "channel": "B1-MI",
+      "margin": 0.1483580473520092,
+      "exact_evals": 1,
+      "n_collisions": 0,
+      "n_near": 0
+    },
+    {
+      "n": 4,
+      "channel": "B3-COV",
+      "margin": 0.03472222222222229,
+      "exact_evals": 1,
+      "n_collisions": 0,
+      "n_near": 0
+    },
+    {
+      "n": 4,
+      "channel": "B5-QFI",
+      "margin": 0.5153882032022074,
+      "exact_evals": 1,
+      "n_collisions": 0,
+      "n_near": 0
+    },
+    {
+      "n": 4,
+      "channel": "KIN",
+      "margin": 0,
+      "exact_evals": 10,
+      "n_collisions": 10,
+      "n_near": 0
+    },
+    {
+      "n": 5,
+      "channel": "B1-MI",
+      "margin": 0.09674852925204047,
+      "exact_evals": 3,
+      "n_collisions": 0,
+      "n_near": 0
+    },
+    {
+      "n": 5,
+      "channel": "B3-COV",
+      "margin": 0.023519449521641003,
+      "exact_evals": 4,
+      "n_collisions": 0,
+      "n_near": 0
+    },
+    {
+      "n": 5,
+      "channel": "B5-QFI",
+      "margin": 0.2634354520958052,
+      "exact_evals": 2,
+      "n_collisions": 0,
+      "n_near": 0
+    },
+    {
+      "n": 5,
+      "channel": "KIN",
+      "margin": 0,
+      "exact_evals": 107,
+      "n_collisions": 107,
+      "n_near": 0
+    },
+    {
+      "n": 6,
+      "channel": "B1-MI",
+      "margin": 0.0000000000000033306690738754696,
+      "exact_evals": 1,
+      "n_collisions": 1,
+      "n_near": 0
+    },
+    {
+      "n": 6,
+      "channel": "B3-COV",
+      "margin": 0.0000000000000006106226635438361,
+      "exact_evals": 1,
+      "n_collisions": 1,
+      "n_near": 0
+    },
+    {
+      "n": 6,
+      "channel": "B5-QFI",
+      "margin": 0.00000000000001865174681370263,
+      "exact_evals": 1,
+      "n_collisions": 1,
+      "n_near": 0
+    },
+    {
+      "n": 6,
+      "channel": "KIN",
+      "margin": 0,
+      "exact_evals": 1937,
+      "n_collisions": 1925,
+      "n_near": 0
+    },
+    {
+      "n": 7,
+      "channel": "B1-MI",
+      "margin": 0.020641251750237677,
+      "exact_evals": 2,
+      "n_collisions": 0,
+      "n_near": 0
+    },
+    {
+      "n": 7,
+      "channel": "B3-COV",
+      "margin": 0.005085950377636185,
+      "exact_evals": 1,
+      "n_collisions": 0,
+      "n_near": 0
+    },
+    {
+      "n": 7,
+      "channel": "B5-QFI",
+      "margin": 0.0662701547814479,
+      "exact_evals": 1,
+      "n_collisions": 0,
+      "n_near": 0
+    },
+    {
+      "n": 7,
+      "channel": "KIN",
+      "margin": 0,
+      "exact_evals": 83359,
+      "n_collisions": 81913,
+      "n_near": 0
+    }
+  ]
+}
