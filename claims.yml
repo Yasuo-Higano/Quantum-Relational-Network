@@ -4212,3 +4212,20 @@
     - "同じ holdout 系の 3 回目の観測 — 統計的な新鮮さはない (instrument-repair retest)。新規検証力は HOLD-5 以降 (v29.2 で候補仕様・scorer・バー・生成分布・未公開 seed を凍結してから生成) に持ち越し。"
     - "KernelDecayLength はカーネル冪・前因子未分離の実効量 — 物理的相関長ではない (モデル選択 log w = c − p·log d − q·κd は次段の事前登録項目)。"
     - "独立実装との 4–5 桁一致は採点器の相互再現であり、独立外部再現 (replications.yml の 6 条件) には数えない (同一入力・アドバイス経路)。"
+
+- id: QRN-META-036
+  version: "v29.2"
+  level: C5
+  claim: "意味論再基礎化 (PROMPT/11 ロードマップ v29.2, 物理 run なし): (1) bridge_candidates.yml 追補 — 実装候補の正名 (B3-COV / B4-DENSITY-FRONT [空間核×因果チャネルの合成]) を凍結記録に反映し、事前登録の本来形 B5-QFI (BKM 核 — 固有分解の閉形式 (λ_a−λ_b)/(ln λ_a−ln λ_b) で定義) と B6-COMMUTATOR (retarded [n(t),n] 前線 + Gaussian 運動学変種) を未試験候補として定義凍結。(2) v29.3 の採点原則を凍結 — S (空間核 4) × C (因果チャネル 2) の全組合せを独立セルで採点・距離供給のフォールバック禁止・棄却候補の得点流用禁止。(3) HOLD-5 生成器の凍結 — 不均一 1D 速度プロファイル v(x) (滑らかな正値 Gaussian bump 和)・3 regulator (単鎖/細分格子/Wilson)・train/val/holdout の seed 分離・instance seed = sha256(SECRET+id) 規則・**seed コミットメント sha256 = cfeb1959f3ba63b1… を公開 (SECRET は走行版で開示 — 第三者が生成系列を検証可能)**・holdout instance は走行版まで生成すらしない。(4) FactorizationBridge / GeometryBridge の二層分離を spec/terminology/schema に明文化 —『与えられたノード因子分解の下で』が現行主張の scope。"
+  status: "意味論の再基礎化と次段の実行前凍結 (holdout 3 回観測問題への応答 — 新しい検証力は HOLD-5 から)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    doc: "docs/uft-v29.2.md"
+  limitations:
+    - "定義と凍結のみ — B5/B6 の実装・較正、HOLD-5 の生成・走行は v29.3 以降。凍結の効力はコミット順 (本コミットが実装より先) に依存する。"
+    - "seed コミットメントの検証可能性は SECRET の将来開示に依存 (開示までは自己申告)。"

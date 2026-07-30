@@ -71,3 +71,50 @@ failure_rules:
 scoring: "候補ごとに [PASS]/[FAIL] を訓練 2 + holdout 4 で判定 — 訓練系の成功は資格であり得点ではない"
 
 forbidden_promotions_reminder: "成功しても『同じ網から時空が出る』の C3 (toy 機構) どまり — EmergentMetricCandidate の昇格には BridgeLawCertificate の登録 (claims 改訂 + 監査期待値の更新) が要る"
+
+# =====================================================================
+# 追補 (v29.2, 2026-07-30 — 意味論再基礎化, PROMPT/11)
+# 上の §candidates 以下の原文は as-run の凍結記録として不変。本追補が正名と
+# 次段の凍結を定める。v29.1 の Integrity Erratum (裁定訂正) が前提。
+# =====================================================================
+
+amendment_v292_date: "2026-07-30"
+amendment_v292_reason: "v29.1 Erratum の帰結 — 実装候補の正名化・未試験候補の分離・二層分離・新鮮 holdout の凍結"
+
+# ---- 正名 (v29.1 で確定) ----
+renames_v292:
+- "B3 (実装) → B3-COV: density connected-covariance kernel |⟨n_i n_j⟩_c| — 事前登録の relative-entropy/QFI そのものではない"
+- "B4 (実装) → B4-DENSITY-FRONT: density-threshold perturbation front — 空間核×因果チャネルの合成 readout (距離供給は空間核であり単独候補ではない)"
+
+# ---- 二層分離 (scope の明文化) ----
+two_layer_split: "FactorizationBridge (global algebra → local subalgebras — 未定義・別課題) と GeometryBridge (与えられた部分代数間の幾何抽出 — 本プログラムの現行成果) を分離する。現行主張の正確な scope は『与えられたノード因子分解の下で、ラベル・座標・隣接を入力せず、隠れた 1 次元隣接・位相・因果順を回復した』"
+
+# ---- 未試験候補の再登録 (実装・較正は v29.3 以降 — 定義だけを先に凍結) ----
+candidates_untested:
+- id: B5-QFI
+  name: "BKM/quantum Fisher kernel (事前登録 B3 の本来形)"
+  readout: "w(i,j) = ‖ρ_ij − ρ_i⊗ρ_j‖_BKM。BKM 内積 ⟨A,B⟩_BKM = ∫₀¹ tr(ρ^s A ρ^{1−s} B) ds は ρ の固有分解で閉形式 — 基底 |a⟩⟨b| の重み c(λ_a, λ_b) = (λ_a − λ_b)/(ln λ_a − ln λ_b) (λ_a = λ_b では λ_a)。2 ノード RDM (4×4 級) で厳密評価可"
+  status: registered_untested
+- id: B6-COMMUTATOR
+  name: "retarded commutator / Lieb–Robinson front (事前登録 B4 の本来形)"
+  readout: "t*(i,j) = 最初の t で |⟨[n_i(t), n_j]⟩| ≥ ε (状態依存・多体可)。Gaussian 系では運動学変種 |{c_i(t), c†_j}| = |[e^{−iht}]_{ij}| (状態非依存の運動学的円錐) を併記し、両者を区別して採点する"
+  status: registered_untested
+
+# ---- 次段の採点原則 (v29.3 — 凍結) ----
+scoring_principle_v293: "S (空間核: B1, B2, B3-COV, B5-QFI) × C (因果チャネル: DENSITY-FRONT, COMMUTATOR) の全組合せを独立セルとして採点する。距離供給のフォールバック禁止 — 各セルは自セルの S の再構成距離のみを使う。棄却候補の得点をセル間で流用しない"
+
+# ---- HOLD-5 生成器の凍結 (走行は v29.3 以降。生成分布・分割・seed 規則を先に固定) ----
+hold5_generator:
+  family: "不均一 1 次元 Dirac 系 — 滑らかな正値速度プロファイル v(x)"
+  profile: "v(x) = 1 + Σ_{k=1..K} A_k exp(−((x−c_k)/w_k)²)。K ∈ {3,4,5}・A_k ∈ [−0.3, 0.4] (v(x) > 0.5 を保証するよう棄却サンプル)・w_k ∈ [8, 20]・c_k は一様 — 全て instance seed から決定"
+  regulators:
+  - "R-A: 単鎖 (ボンド x,x+1 のホッピング t = v(x+1/2)/2, N = 128)"
+  - "R-B: 同一 v(x) の細分格子 (a → a/2, 2N サイト — ボンド t = v/2 を物理位置で評価)"
+  - "R-C: Wilson 2 成分鎖 (同一 v(x) を sin 項の係数に, r = 1, N = 128)"
+  masses: "m_phys·a ∈ {0, 0.05}"
+  topology: "リング/開放端の両方 (instance seed の 1 bit で決定)"
+  seed_rule: "instance seed (u64) = sha256(SECRET + \":\" + instance_id) の先頭 8 バイト (big-endian)。instance_id = \"train-0\"..\"train-3\" / \"val-4\"..\"val-7\" / \"hold-8\"..\"hold-15\""
+  seed_commitment_sha256: "cfeb1959f3ba63b17c8ea7d1261f0f24570d33f7f8a2b3956a3df761bd301ab2"
+  disclosure: "SECRET は holdout 走行版の結果公開と同時に文書へ開示する — 第三者がコミットメントと全生成系列を検証できる。開示までリポジトリに SECRET を置かない"
+  split: "train-0..3 = 設計・較正可 / val-4..7 = 中間確認 (1 回) / hold-8..15 = 走行版まで生成すらしない"
+  scoring_v294: "静的核の再構成距離 d_S が、未使用の摂動源・未使用時刻系列の動的到着時刻 τ(x,y) ≈ Σ_bonds 1/v を無調整で予言すること。距離一致は Δ∞(d₁, d₂) = inf_{α>0} max_{i<j} |ln(d₁(i,j)/(α·d₂(i,j)))| で採点 (置換は採点側の逆写像で固定・全体スケール α のみ自由)。バー値は v29.3/29.4 の凍結時に導出して事前登録する (結果を見てから決めない)"

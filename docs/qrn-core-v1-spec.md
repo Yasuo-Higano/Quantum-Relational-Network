@@ -61,9 +61,11 @@ QRN の存在論的骨格。**定義**であり、現時点の実装はガウス
   一般の (非ガウス・非フェルミオン) 状態空間は**未実装**。
 - **ObservableAlgebra**: 局所演算子代数とその部分代数束。現行実装 =
   相関行列の部分行列 (ガウス系では十分)。一般代数は未実装。
-- **RelationalDecomposition**: テンソル分解は入力ではなく読み出しである
-  (v11.4 の動的テンソル分解 — MI 貪欲マッチング)。関係要素の型は
-  `RelationalNodeId` — 格子点 `RegulatorSiteId` と別型 (禁止変換 §2.1)。
+- **RelationalDecomposition**: テンソル分解は入力ではなく読み出しである —
+  これは kinematics の**設計目標** (v11.4 の動的テンソル分解が toy 実演)。
+  ただし現行の bridge 成果 (第二十九期〜) は分解を**入力**に取っており、
+  分解抽出は FactorizationBridge として分離した (§5 の v29.2 追記)。
+  関係要素の型は `RelationalNodeId` — 格子点 `RegulatorSiteId` と別型 (§2.1)。
 - **AllowedEquivalences**: 基底変換・分解の組み替えのうち物理を変えない同値類。
   現状は toy ごとの個別実装 — 一般規則は未定義 (Unknown)。
 
@@ -104,6 +106,13 @@ known failure modes, allowed claims, forbidden interpretations, certificate)
 (spec §12.8/§13.3 の凍結解釈)。
 
 ## 5. QRN-Bridge Hypotheses v0 (layer: bridge) — 状態: conjectural
+
+> **v29.2 追記 (二層分離)**: bridge は FactorizationBridge (global algebra →
+> 局所部分代数 — **未定義**) と GeometryBridge (与えられた部分代数間の幾何抽出 —
+> 現行成果) に分離する。第二十九期〜v29.1 で C3 資格を得たのは後者であり、その
+> scope は「与えられたノード因子分解の下で」。実装候補の正名は B3-COV /
+> B4-DENSITY-FRONT (合成)、事前登録の B5-QFI / B6-COMMUTATOR は未試験
+> (bridge_candidates.yml 追補 v29.2)。
 
 状態・相関から計量・因果・時計・物質を読み出す規則。**全て仮説段階** —
 toy 実演 (C3) はあるが、bridge law (regulator に依らない一意な読み出し規則)

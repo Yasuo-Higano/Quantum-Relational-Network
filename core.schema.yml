@@ -233,6 +233,18 @@ concepts:
   layer: bridge
   status: unsupported
   note: "重力 bridge — EmergentMetricCandidate に同じ (禁止変換 3 の右辺)"
+- name: FactorizationBridge
+  layer: bridge
+  status: undefined
+  note: "global algebra → 局所部分代数の抽出 (v29.2 で GeometryBridge から分離)。現行の全成果は因子分解を入力に取る"
+- name: BkmFisherKernel
+  layer: bridge
+  status: registered_untested
+  note: "B5-QFI: BKM/quantum Fisher 核 (事前登録 B3 の本来形) — v29.2 で定義凍結・未試験"
+- name: CommutatorFrontKernel
+  layer: bridge
+  status: registered_untested
+  note: "B6-COMMUTATOR: retarded [n(t), n] 前線 + Gaussian 運動学変種 (事前登録 B4 の本来形) — v29.2 で定義凍結・未試験"
 - name: AnomalyChiralScan
   layer: phenomenology
   status: certified_window

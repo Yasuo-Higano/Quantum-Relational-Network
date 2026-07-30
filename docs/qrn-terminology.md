@@ -147,6 +147,25 @@ physical_scope = natural **かつ** data_relation = future_observation のもの
 **測定値が公知の holdout** (preregistered_holdout) であり、この定義で自然の的中に
 数えない — README の「自然の観測量の的中 0」と整合する。
 
+## 4b. 二層分離 (v29.2 追記): FactorizationBridge と GeometryBridge
+
+bridge 層を二層に分離する (PROMPT/11 の意味論監査):
+
+```text
+global algebra/state → [FactorizationBridge] → local observable subalgebras
+                     → [GeometryBridge]      → adjacency / metric / causal order
+```
+
+- **FactorizationBridge** (未定義): 大域代数・状態から局所部分代数 (テンソル因子)
+  を抽出する規則。現行の全 bridge 成果はこれを**入力**に取る — NodeState はモードを
+  ノードへ群化して受け取り、隠しているのは座標・隣接・ラベルであって分解ではない。
+- **GeometryBridge** (現行成果 = C3): 与えられた部分代数間の相関・応答から幾何を
+  抽出する。第二十九期〜v29.1 の確定主張の正確な scope は「**与えられたノード因子
+  分解の下で**、ラベル・座標・隣接を入力せず、隠れた 1 次元隣接・位相・因果順を
+  回復した」。
+- 減衰長の正名 = **KernelDecayLength** (v29.1) — カーネル冪・前因子が未分離のため
+  「物理的相関長」と呼ばない。
+
 ## 5. 検証と限界
 
 - 本文書は分類の**規約**であり、分類自体の正しさは仮定 ASM-LAYER-SEMANTICS
