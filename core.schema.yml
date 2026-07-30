@@ -309,6 +309,10 @@ concepts:
   layer: meta
   status: certified
   note: "期統合文書 (docs/uft-vX.0.md) と正直な残高"
+- name: CapabilityIndexedCertificate
+  layer: bridge
+  status: defined
+  note: "能力別 BridgeLawCertificate<C> (v30.0, PROMPT/11) — 8 能力タグ・登録簿は全能力で空。ClockCalibration/FullLorentzianMetric は BridgeCapability 未実装で型レベル構成不能 (ProperTime への門は関数ごと削除)"
 
 forbidden_conversions:
 - from: RegulatorSiteId

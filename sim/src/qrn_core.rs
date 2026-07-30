@@ -198,25 +198,78 @@ pub mod evidence {
     pub enum UniversalQuantityForBridge {}
 }
 
-// ---------------------------------------------------------------- Bridge law の門
+// ---------------------------------------------------------------- Bridge law の門 (v30.0: 能力別)
 
-/// 確立済み bridge law の登録簿 — **現在は空** (qrn-core-v1-spec.md §5:
-/// 成功条件 7 項を満たす bridge law は一つもない)。追加は「二つ以上の微視的模型・
-/// 二つ以上の regulator から無調整で同じ巨視的幾何」の証拠 (claims.yml の id) を
-/// 伴う改訂としてのみ行う。v272_core_contract が空であることを検査する。
+/// 確立済み bridge law の登録簿の**統合ビュー** — 全能力の和集合で、**現在は空**
+/// (qrn-core-v1-spec.md §5: 成功条件 7 項を満たす bridge law は一つもない)。
+/// v30.0 で登録簿は能力ごと (BridgeCapability::REGISTERED) に分割された —
+/// 空間位相の証拠と proper time の証拠を単一 claim id で混同できた旧設計の是正
+/// (PROMPT/11)。追加は証拠 (claims.yml の id) を伴う改訂としてのみ行う。
+/// v272_core_contract が全能力で空であることを検査する。
 pub const REGISTERED_BRIDGE_LAWS: &[&str] = &[];
 
-/// 型境界を越える変換の唯一の門。登録簿が空である限り構成不能。
-#[derive(Clone, Copy, Debug)]
-pub struct BridgeLawCertificate {
-    claim_id: &'static str,
+mod sealed_cap {
+    pub trait Sealed {}
 }
 
-impl BridgeLawCertificate {
-    /// 登録済み bridge law の claim id に対してのみ証明書を発行する (現在は常に None)
+/// bridge 能力タグ (v30.0, PROMPT/11) — 証明書は能力ごとに別型で、ある能力の
+/// 証拠を別の能力に流用する経路が型レベルで存在しない。実装は本モジュール内に
+/// 封印 (sealed) — 外部 crate/モジュールから能力を追加できない。
+pub trait BridgeCapability: sealed_cap::Sealed {
+    const NAME: &'static str;
+    /// この能力で確立済みの bridge law (claims.yml の id) — 現在は全能力で空
+    const REGISTERED: &'static [&'static str];
+}
+
+// 8 能力タグ (空 enum — 値は存在せず、型パラメータとしてのみ使う)。
+// 現行証拠で将来到達しうる上限は SpatialTopologyGivenFactorization /
+// SpatialMetricUpToGlobalScale / CausalOrderGivenExternalClock の 3 つ (PROMPT/11)。
+pub enum FactorizationGivenObservables {}
+pub enum SpatialTopologyGivenFactorization {}
+pub enum SpatialMetricUpToGlobalScale {}
+pub enum CausalOrderGivenExternalClock {}
+pub enum ConformalLorentzianStructure {}
+pub enum VolumeMeasure {}
+pub enum ClockCalibration {}
+pub enum FullLorentzianMetric {}
+
+macro_rules! impl_capability {
+    ($t:ty, $name:literal) => {
+        impl sealed_cap::Sealed for $t {}
+        impl BridgeCapability for $t {
+            const NAME: &'static str = $name;
+            const REGISTERED: &'static [&'static str] = &[];
+        }
+    };
+}
+impl_capability!(FactorizationGivenObservables, "factorization_given_observables");
+impl_capability!(SpatialTopologyGivenFactorization, "spatial_topology_given_factorization");
+impl_capability!(SpatialMetricUpToGlobalScale, "spatial_metric_up_to_global_scale");
+impl_capability!(CausalOrderGivenExternalClock, "causal_order_given_external_clock");
+impl_capability!(ConformalLorentzianStructure, "conformal_lorentzian_structure");
+impl_capability!(VolumeMeasure, "volume_measure");
+// **ClockCalibration / FullLorentzianMetric には BridgeCapability を実装しない** —
+// BridgeLawCertificate<ClockCalibration> はトレイト境界を満たせず**型レベルで
+// 構成不能** (別の証拠が立つまで封鎖 — PROMPT/11「ClockCalibration、ProperTime、
+// FullLorentzianMetric は別の証拠がない限り構成不能にすべき」)。sealed のみ
+/// 実装し、外部からの後付け実装も封じる。
+impl sealed_cap::Sealed for ClockCalibration {}
+impl sealed_cap::Sealed for FullLorentzianMetric {}
+
+/// 型境界を越える変換の唯一の門 (能力別)。能力 C の登録簿が空である限り構成不能。
+pub struct BridgeLawCertificate<C: BridgeCapability> {
+    claim_id: &'static str,
+    _capability: std::marker::PhantomData<C>,
+}
+
+impl<C: BridgeCapability> BridgeLawCertificate<C> {
+    /// 能力 C で登録済みの claim id に対してのみ証明書を発行する (現在は常に None)
     pub fn register(claim_id: &'static str) -> Option<Self> {
-        if REGISTERED_BRIDGE_LAWS.contains(&claim_id) {
-            Some(BridgeLawCertificate { claim_id })
+        if C::REGISTERED.contains(&claim_id) {
+            Some(BridgeLawCertificate {
+                claim_id,
+                _capability: std::marker::PhantomData,
+            })
         } else {
             None
         }
@@ -224,37 +277,36 @@ impl BridgeLawCertificate {
     pub fn claim_id(&self) -> &'static str {
         self.claim_id
     }
+    pub fn capability(&self) -> &'static str {
+        C::NAME
+    }
 }
 
-/// 格子点 → 関係要素 (禁止変換 1 の唯一の門 — 証明書必須)
+/// 格子点 → 関係要素 (禁止変換 1 の唯一の門 — factorization 能力の証明書必須。
+/// v29.5 [C5] が機械記録したとおり readout は factorization を選定できない —
+/// この能力の登録には FactorizationBridge の確立が要る)
 pub fn promote_site_to_node(
     site: RegulatorSiteId,
-    cert: &BridgeLawCertificate,
+    cert: &BridgeLawCertificate<FactorizationGivenObservables>,
 ) -> RelationalNodeId {
-    // 証明書の存在自体が登録簿由来 (登録簿が空の間、この関数は到達不能)
     let _ = cert.claim_id;
     RelationalNodeId(site.0)
 }
 
-/// 発展パラメータ → 固有時間 (禁止変換 2 の唯一の門 — 証明書必須)
-pub fn promote_evolution_to_proper_time(
-    t: EvolutionParameter,
-    cert: &BridgeLawCertificate,
-) -> ProperTime {
-    let _ = cert.claim_id;
-    ProperTime(t.0)
-}
-
-/// 外部計量応答 → 創発計量候補 (禁止変換 3 の唯一の門 — 証明書必須)
+/// 外部計量応答 → 創発計量候補 (禁止変換 3 の唯一の門 — 空間計量能力の証明書必須)
 pub fn promote_external_to_emergent(
     source: &ExternalMetricSource,
-    cert: &BridgeLawCertificate,
+    cert: &BridgeLawCertificate<SpatialMetricUpToGlobalScale>,
 ) -> EmergentMetricCandidate {
     EmergentMetricCandidate {
         components: vec![source.amplitude],
         bridge_claim_id: cert.claim_id(),
     }
 }
+
+// 旧 promote_evolution_to_proper_time (発展パラメータ → 固有時間) は v30.0 で
+// **削除** — 対応する能力 ClockCalibration が BridgeCapability 未実装のため、
+// この門は型として書けない (禁止変換 2 は関数の不在で強制される)。
 
 // ---------------------------------------------------------------- 自己検査
 
@@ -267,8 +319,18 @@ pub fn qrn_core_self_test() -> Result<(), String> {
             REGISTERED_BRIDGE_LAWS
         ));
     }
-    if BridgeLawCertificate::register("QRN-META-030").is_some() {
-        return Err("未登録の claim id に証明書が発行された".into());
+    // 能力別登録簿が全て空・全能力で発行不能 (v30.0)
+    fn cap_locked<C: BridgeCapability>() -> bool {
+        C::REGISTERED.is_empty() && BridgeLawCertificate::<C>::register("QRN-META-030").is_none()
+    }
+    if !(cap_locked::<FactorizationGivenObservables>()
+        && cap_locked::<SpatialTopologyGivenFactorization>()
+        && cap_locked::<SpatialMetricUpToGlobalScale>()
+        && cap_locked::<CausalOrderGivenExternalClock>()
+        && cap_locked::<ConformalLorentzianStructure>()
+        && cap_locked::<VolumeMeasure>())
+    {
+        return Err("能力別登録簿に登録がある / 未登録 id に証明書が発行された".into());
     }
     // 状態表示の水増し検査: dynamics/bridge に Defined が混入していないこと
     for c in &QRN_CORE_V1 {

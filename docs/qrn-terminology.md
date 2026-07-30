@@ -81,6 +81,9 @@ struct ProperTime(f64);              // 固有時間の候補 (layer: bridge —
 であり、A1 の創発時間ではない。現状は両者が同じ `f64` に潰れている
 (uft-v1.0.md A1 の監査注記を参照)。**禁止変換:
 `EvolutionParameter -> ProperTime`** (bridge law なしの同一視は A1 の先取り)。
+> v30.0 追記: 証明書は能力別 `BridgeLawCertificate<C>` に分割され、ProperTime へ
+> 至る能力 (ClockCalibration) は BridgeCapability 未実装で**型レベル構成不能** —
+> この変換の門は関数ごと削除された (docs/uft-v30.0.md §1)。
 
 ### 2.4 証拠 4 型 — 昇格の禁止
 

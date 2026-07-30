@@ -167,12 +167,16 @@ fn main() {
         let ok1 = lib
             .contains("fn evolve(&self, s: &GaussianFermionState, t: EvolutionParameter) -> GaussianFermionState");
         let ok2 = lib.contains("fn step(&self, s: &S, dt: EvolutionParameter) -> S");
-        // 型そのものの実演: EvolutionParameter は ProperTime と別型 (登録簿が空なので変換不能)
+        // 型そのものの実演: EvolutionParameter は ProperTime と別型。v30.0 以降、
+        // ProperTime へ至る能力 (ClockCalibration) は BridgeCapability 未実装で
+        // 証明書型が構成不能 — 門となる関数も削除済み (qrn_core の source 検査)
         let t = EvolutionParameter(1.5);
-        let cert = BridgeLawCertificate::register("QRN-META-030");
-        let ok3 = cert.is_none(); // 変換の門は閉じている
+        let core_src = rd("sim/src/qrn_core.rs").unwrap_or_default();
+        let ok3 = !core_src.contains("fn promote_evolution_to_proper_time(")
+            && core_src.contains("impl sealed_cap::Sealed for ClockCalibration {}")
+            && !core_src.contains("impl_capability!(ClockCalibration");
         check(
-            "[T3] 外部時間の型分離 — evolve/step の t は EvolutionParameter (ProperTime へ変換不能)",
+            "[T3] 外部時間の型分離 — evolve/step の t は EvolutionParameter (ProperTime への門は関数ごと不在)",
             ok1 && ok2 && ok3,
             format!(
                 "GaussianToyModel::evolve {} / ConstrainedToyDynamicsV2::step {} / 門は閉 (t = {:?})",
@@ -181,21 +185,31 @@ fn main() {
         );
     }
 
-    // ---- [T4] 証明書の門 ----
+    // ---- [T4] 証明書の門 (v30.0: 能力別) ----
     {
         let ids = [
             "QRN-GRAV-001",
             "QRN-META-029",
             "QRN-CORE-001",
+            "QRN-BRIDGE-004",
             "MutualInformationGeometry",
         ];
-        let all_none = ids
-            .iter()
-            .all(|id| BridgeLawCertificate::register(id).is_none());
+        fn locked<C: BridgeCapability>(ids: &[&'static str]) -> bool {
+            C::REGISTERED.is_empty()
+                && ids
+                    .iter()
+                    .all(|id| BridgeLawCertificate::<C>::register(id).is_none())
+        }
+        let all_none = locked::<FactorizationGivenObservables>(&ids)
+            && locked::<SpatialTopologyGivenFactorization>(&ids)
+            && locked::<SpatialMetricUpToGlobalScale>(&ids)
+            && locked::<CausalOrderGivenExternalClock>(&ids)
+            && locked::<ConformalLorentzianStructure>(&ids)
+            && locked::<VolumeMeasure>(&ids);
         check(
-            "[T4] BridgeLawCertificate::register — 未登録 id は全て None (bridge law 0 件)",
+            "[T4] BridgeLawCertificate<能力>::register — 全 6 実装能力 × 未登録 id で None (bridge law 0 件・ClockCalibration/FullLorentzianMetric は型レベル構成不能)",
             all_none,
-            format!("{} 個の id で発行拒否を確認", ids.len()),
+            format!("{} 個の id × 6 能力で発行拒否を確認", ids.len()),
         );
     }
 

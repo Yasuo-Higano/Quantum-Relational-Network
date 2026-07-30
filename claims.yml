@@ -4332,3 +4332,41 @@
     - "設計区画 (正例・対照を見ながら則を確定) であり検証力はない — 未見位相・計量変調つき 2D の holdout は v30.0。"
     - "穴スケールの寿命分離は clique-順位 filtration では不滅バーになり不可 — 計量 VR の persistence は次段。"
     - "β2 の実証は icosphere-1 (42 頂点) まで — 高 genus・より大きな球は未試験。"
+
+- id: QRN-META-037
+  version: "v30.0-A"
+  level: C4
+  claim: "能力別 BridgeLawCertificate<C> (PROMPT/11 の型改訂): bridge 証明書を 8 能力タグに分割し、空間位相の証拠と proper time の証拠を型で混同できなくした。登録簿は全能力で空 (v29.4b の生存でも登録しない — 独立外部再現 0 の R2/R3 と整合)。ClockCalibration / FullLorentzianMetric は BridgeCapability 未実装 + sealed で**型レベル構成不能**、旧 promote_evolution_to_proper_time は関数ごと削除 (禁止変換 2 は門の不在で強制)。qrn_core_self_test + v272 [T3]/[T4] (6 能力 × 5 id の発行拒否) が常設検査。"
+  status: "型契約の改訂 (v27.2 の後継) — 全 176 本の儀式で非波及を検証 (v30.0-B)"
+  layer: meta
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/qrn_core.rs"
+    result: "results/v272_core_contract.txt"
+    doc: "docs/uft-v30.0.md"
+  limitations:
+    - "能力の分類 (8 タグ・実装上限 3) は PROMPT/11 の設計判断 — 分類自体の正しさは ASM-LAYER-SEMANTICS と同種の規約仮定。"
+    - "型レベル封鎖は Rust 実装内の保証 — 文書・主張レベルの護りは R1–R7 と Lean が担う。"
+
+- id: QRN-BRIDGE-010
+  version: "v30.0-A"
+  level: C3
+  claim: "HOLD-6 の凍結と train 設計走行 (4 検査 PASS): 2D topology pipeline (v296 逐語コピー — FROZEN TOPO v32, SHA-256 = e4a1472f…) の新鮮 holdout を HOLD-5 と同じ開封順序で準備。seed コミットメント sha256 = fe3c9cbd… を公表 (SECRET は v30.0-B で開示)。生成器: 5 クラス (torus/cylinder/disk/two-holes/sphere)・サイズ乱択・滑らかな速度場の重みつきボンド (v ∈ [0.65, 1.45] 棄却保証)・ノード置換。離散バー = (Betti, 曲面性) 厳密一致 + 窓全会一致。**train 5 系 (クラス別) 満票 + [G1b] 生成器健全性** (真の複体が多様体かつ期待 Betti — 設計走行で貪欲成長穴が真の複体にピンチ点を作る欠陥を発見し凸ブロックへ根治。生成器の期待プロファイル自体を検査するゲートを常設)。"
+  status: "凍結半 (設計区画) — holdout hold-0..7 は未生成。開封・本採点は v30.0-B"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v300a_hold6_freeze.rs"
+    result: "results/v300a_hold6_freeze.txt"
+    doc: "docs/uft-v30.0.md"
+  limitations:
+    - "train は設計区画 — 検証力はない。holdout (v30.0-B) が (Betti, 曲面性) の離散バーで本採点する。"
+    - "family は資格状態族 (熱的 βt=1)・v ∈ [0.65, 1.45] に制限 — 臨界状態・強い重み変調は v29.6 [T2b] の既知限界の外側のまま。"

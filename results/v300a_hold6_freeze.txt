@@ -1,0 +1,19 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v30.0-A HOLD-6 の凍結と train 設計走行 (第三十期 期末) ===
+
+  [PASS] [G0] 凍結整合 — コミットメント形式・v296 提供元アンカー・基準 torus 裁定 (1,2,1) closed  fmt true / anchor true / 基準 [1, 2, 1] closed
+
+  -- [G1] train (重み場 + 置換つき, 離散バー = 期待プロファイル厳密一致) --
+     instance        class      n    β 実測     曲面裁定   一致  窓
+     train-torus     torus       64  [1, 2, 1]  closed    true   4  
+     train-cylinder  cylinder    49  [1, 1, 0]  boundary  true   4  
+     train-disk      disk        54  [1, 0, 0]  boundary  true   4  
+     train-holes     two-holes  127  [1, 2, 0]  boundary  true   4  
+     train-sphere    sphere      42  [1, 0, 1]  closed    true   4  
+  [PASS] [G1] train 5 系が離散バー内 (設計区画 — 破れたら凍結前に生成器を再設計)  詳細は上表
+  [PASS] [G1b] 生成器健全性 — train 全系の真の複体が多様体かつ期待 Betti (期待プロファイルの検証)  T:OK C:OK D:OK H:OK S:OK
+  [PASS] [G2] FROZEN TOPO v32 節の存在 (SHA-256 印字 — v30.0-B が照合)  SHA-256 = e4a1472f7628567445dd3951dc32a97726f83775a378923473dffeae5122a7af
+
+        hold-0..7 の seed は v30.0-B まで印字も生成もしない (凍結順序の維持)
+
+総合判定: [PASS]

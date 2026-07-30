@@ -4,8 +4,8 @@
   [PASS] [T0] qrn_core_self_test — 登録簿空・証明書発行不能・状態表示の水増しなし・居住不能型  REGISTERED_BRIDGE_LAWS = [] / QrnEvidence 等 4 型は構成不能 (空 enum)
   [PASS] [T1] QRN_CORE_V1 (Rust const 10 成分) ↔ core.schema.yml の状態表示  kinematics: defined / dynamics: model_family_only / geometry: conjectural / gravity: unsupported / clock: undefined
   [PASS] [T2] 旧名 QrnState/QrnModel の根絶 (GaussianFermionState/GaussianToyModel へ)  sim/src 全走査 — 残存 0 (toy の名から Qrn を外した)
-  [PASS] [T3] 外部時間の型分離 — evolve/step の t は EvolutionParameter (ProperTime へ変換不能)  GaussianToyModel::evolve true / ConstrainedToyDynamicsV2::step true / 門は閉 (t = EvolutionParameter(1.5))
-  [PASS] [T4] BridgeLawCertificate::register — 未登録 id は全て None (bridge law 0 件)  4 個の id で発行拒否を確認
+  [PASS] [T3] 外部時間の型分離 — evolve/step の t は EvolutionParameter (ProperTime への門は関数ごと不在)  GaussianToyModel::evolve true / ConstrainedToyDynamicsV2::step true / 門は閉 (t = EvolutionParameter(1.5))
+  [PASS] [T4] BridgeLawCertificate<能力>::register — 全 6 実装能力 × 未登録 id で None (bridge law 0 件・ClockCalibration/FullLorentzianMetric は型レベル構成不能)  5 個の id × 6 能力で発行拒否を確認
   [PASS] [T5] proofs/QrnPromotion.lean — 昇格グラフ・状態表示の形式化 (定理 12 本)  theorem 宣言 12 本 (証明対象は形式的性質であり物理的正しさではない)
 
 [判定] 型境界は成立 — regulator/存在論・外部/創発計量・発展/固有時間の暗黙変換はコンパイル不能、bridge law の門は閉
