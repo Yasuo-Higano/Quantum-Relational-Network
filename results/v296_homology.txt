@@ -1,0 +1,35 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v29.6 dimension-agnostic topology — persistent homology pipeline の資格 (第三十期) ===
+
+  [PASS] [T0] homology エンジン (Z2 列簡約) — C8 (1,1,0) / K4 充満 (1,0,0) / 2×C6 (2,2,0) / 三角化 T² (1,2,1) / icosphere S² (1,0,1)  C8 [1, 1, 0] / K4 [1, 0, 0] / 2×C6 [2, 2, 0] / T² [1, 2, 1] / S² [1, 0, 1]
+  [PASS] [T0b] icosphere-1 構成 — V = 42, E = 120, 全 link 円周 (閉曲面)  V=42 E=120 link(閉/境/破)=(42,0,0)
+  [PASS] [T1] 内在次元 (殻計数 S(r) ~ r^{d−1}) — C24 = 1・三角 T² 8×8 = 2  dim(C24) = 1.000 / dim(T²) = 2.000
+
+  -- [T2] 正例 (熱的 Gaussian 状態 β t = 1 → B3-COV 核 → pipeline, 窓 kmax = 7..10) --
+     系             β 期待     β 実測     曲面裁定   全会一致  dim    geodesic
+     torus 8×8     [1, 2, 1]  [1, 2, 1]  closed    true  (4窓)  2.00  0.670  [診断 E=192 欠0 余0 link 64/0/0]  
+     cylinder 8×6  [1, 1, 0]  [1, 1, 0]  boundary  true  (4窓)  1.75  0.752  [診断 E=128 欠0 余0 link 32/16/0]  
+     disk 8×7      [1, 0, 0]  [1, 0, 0]  boundary  true  (4窓)  1.58  0.777  [診断 E=139 欠0 余0 link 30/26/0]  
+     sphere ico-1  [1, 0, 1]  [1, 0, 1]  closed    true  (4窓)  1.65  0.749  [診断 E=120 欠0 余0 link 42/0/0]  
+  [PASS] [T2] 正例 4 種の end-to-end 資格 (熱的状態族) — β・曲面性が期待どおり + 窓の全会一致  詳細は上表
+
+  -- [T2b] 臨界半充填 GS の既知限界 (報告のみ): 境界増強・Friedel 共鳴が局所グラフ抽出を破る --
+     torus 8×8     β [1, 2, 1] (期待 [1, 2, 1]) 裁定 closed      [欠0 余0] (この系は臨界でも無傷)
+     cylinder 8×6  β [1, 1, 0] (期待 [1, 1, 0]) 裁定 not-surface [欠0 余32] ← 臨界 GS の長距離構造 (v28 境界増強の 2D 版)
+     disk 8×7      β [1, 6, 0] (期待 [1, 0, 0]) 裁定 not-surface [欠6 余2] ← 臨界 GS の長距離構造 (v28 境界増強の 2D 版)
+     sphere ico-1  β [1, 6, 1] (期待 [1, 0, 1]) 裁定 not-surface [欠0 余6] ← 臨界 GS の長距離構造 (v28 境界増強の 2D 版)
+     → 状態族の仮定が pipeline の前提 (v29.5 [C4] と同じ論点の裏面 — ギャップ相関で資格・臨界は既知限界)
+
+  -- [T3] 敵対対照 --
+     random 3-regular n=64: 裁定 not-surface (一致 true) β [1, 33, 0]  (曲面と誤認せず)
+     branched (3 シート共有線) n=80: 裁定 not-surface (spine link は theta 型)  (非多様体を検出)
+     two-holes disk n=124: β [1, 2, 0] (期待 [1,2,0]) 裁定 boundary 一致 true  (大小 2 穴を分離)
+     Petersen: 裁定 not-surface β [1, 6, 0] (適応 k=3 + link 検査 — v29.5 誤認の構造解決)  
+     K7 (完全グラフ): 裁定 not-surface 縮退保留窓 4/4 — 捏造なし
+  [PASS] [T3] 敵対対照 5 種 — 曲面の捏造なし・2 穴分離・縮退保留  詳細は上表
+
+[要約] dimension-agnostic pipeline (頂点適応 gap kNN + clique complex + Z2 homology + link 検査 +
+    殻計数次元 + geodesic 整合 + 窓の全会一致) が 2D 正例 4 種を状態から end-to-end で同定し、
+    敵対対照で幾何を捏造しないことを資格した — 設計区画であり、新鮮 holdout での検証は v30.0。
+
+総合判定: [PASS]

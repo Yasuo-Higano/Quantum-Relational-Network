@@ -4311,3 +4311,24 @@
     - "KIN の大量衝突は閾値 ε = 1e-3・dt = 0.05 の分解能での言明 — 連続 t* や振幅情報を使えば分離は増える (粗い不変量の限界であって力学の限界ではない)。"
     - "Petersen 誤認は縮退カーネル + fallback 経路の故障モード — HOLD-5 (縮退のない不均一系・真値隣接照合つき) の裁定には波及しない。v29.6 pipeline は縮退検査で裁定保留を返すべき (設計入力)。"
     - "「識別可能」は与えられたノード因子分解の下での言明 (FactorizationBridge 未定義のまま — [C5] がその空隙自体を機械記録)。"
+
+- id: QRN-BRIDGE-009
+  version: "v29.6"
+  level: C3
+  claim: "dimension-agnostic topology pipeline の資格 (6 検査 PASS): 頂点適応 gap 則 (スケールガード付き最大段差・段差なしは裁定保留) → 相互グラフ → clique complex → Z2 homology (自作列簡約 — C8/K4/2×C6/三角化T²/icosphere S² の既知 Betti を再現) → vertex link 多様体性 → 殻計数内在次元 (dim(T²) = 2.000 厳密) → 窓全会一致。**正例 4 種を状態から end-to-end で同定**: 熱的 Gaussian 状態 (βt=1) の B3-COV 核だけから torus (1,2,1)/cylinder (1,1,0)/disk (1,0,0)/sphere (1,0,1) — 隣接復元は全て欠0余0、座標・隣接・次元は不使用。**1 次元専用だった幾何読み出しが初めて次元を跨いだ**。敵対対照 5 種で捏造なし: random 3-正則・分岐面 3 枚 (theta link 検出)・大小 2 穴 (β1=2 分離)・Petersen (v29.5 誤認の構造解決 — 適応 k=3 + link 検査)・K7 (全窓縮退保留)。**発見 [T2b]**: 臨界半充填 GS は境界増強 (円筒 余32 辺)・Friedel 共鳴 (球 余6 辺) で局所グラフ抽出を破る — v28 の B1 境界増強の 2D 版の独立再発見 (torus は境界なしで無傷)。"
+  status: "設計区画の資格 — 検証力はない (新鮮 holdout は v30.0)。臨界状態の 2D 読み出しは open problem として登録"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v296_homology.rs"
+    result: "results/v296_homology.txt"
+    doc: "docs/uft-v29.6.md"
+  limitations:
+    - "資格状態族は熱的 Gaussian (βt=1) — 臨界半充填 GS では正例 3/4 が破れる ([T2b] に機構込みで記録)。状態族の仮定が identifiability の実質的前提。"
+    - "設計区画 (正例・対照を見ながら則を確定) であり検証力はない — 未見位相・計量変調つき 2D の holdout は v30.0。"
+    - "穴スケールの寿命分離は clique-順位 filtration では不滅バーになり不可 — 計量 VR の persistence は次段。"
+    - "β2 の実証は icosphere-1 (42 頂点) まで — 高 genus・より大きな球は未試験。"

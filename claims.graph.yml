@@ -1193,3 +1193,8 @@
   deps: [QRN-BRIDGE-007]
   asm: [ASM-GAUSS, ASM-LOWDIM]
   fal: [FAL-SUITE]
+
+- id: QRN-BRIDGE-009
+  deps: [QRN-BRIDGE-008]
+  asm: [ASM-GAUSS, ASM-LOWDIM]
+  fal: [FAL-SUITE]

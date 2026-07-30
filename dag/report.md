@@ -3,16 +3,16 @@
 **このファイルは `sh dag/run.sh` が生成する。手で編集しない。**
 Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導出値と全数照合済み。
 
-主張 228 / 依存辺 391 / 仮定 40 / 反証条件 15 / 最大深さ 34
+主張 229 / 依存辺 392 / 仮定 40 / 反証条件 15 / 最大深さ 34
 
 ## 仮定の影響範囲 (抜くと落ちる主張の閉包 — 降順)
 
 | 仮定 | type | 閉包 |
 |---|---|---|
-| ASM-LATTICE | framework | 172 |
-| ASM-SEED | design | 79 |
-| ASM-LOWDIM | framework | 75 |
-| ASM-GAUSS | framework | 72 |
+| ASM-LATTICE | framework | 173 |
+| ASM-SEED | design | 80 |
+| ASM-LOWDIM | framework | 76 |
+| ASM-GAUSS | framework | 73 |
 | ASM-PDG | data | 70 |
 | ASM-TORUS | model | 65 |
 | ASM-PRIOR | design | 65 |
@@ -29,12 +29,12 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-ALL-CHARGED | definition | 35 |
 | ASM-WINDOW-V31 | window | 30 |
 | ASM-EFT-VALIDITY | model | 30 |
+| ASM-Z2-MINIMAL | model | 24 |
 | ASM-IEEE754 | trust | 24 |
-| ASM-Z2-MINIMAL | model | 23 |
 | ASM-EDGE-SEMANTICS | design | 22 |
-| ASM-INIT | model | 19 |
+| ASM-INIT | model | 20 |
+| ASM-DOF-GROWTH | model | 18 |
 | ASM-WINDOW-U1SQ | window | 17 |
-| ASM-DOF-GROWTH | model | 17 |
 | ASM-SMCONTENT | data | 16 |
 | ASM-LEAN-TRUST | trust | 14 |
 | ASM-WINDOW-EXT | window | 8 |
@@ -54,8 +54,8 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 
 | 反証条件 | status | 閉包 |
 |---|---|---|
-| FAL-SUITE | open | 220 |
-| FAL-CONTINUUM | open | 98 |
+| FAL-SUITE | open | 221 |
+| FAL-CONTINUUM | open | 99 |
 | FAL-CKM-OOS | open | 63 |
 | FAL-BMV | open | 48 |
 | FAL-CEX-WINDOW | open | 41 |
@@ -87,7 +87,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | 10 | 7 |
 | 11 | 6 |
 | 12 | 6 |
-| 13 | 4 |
+| 13 | 5 |
 | 14 | 3 |
 | 15 | 5 |
 | 16 | 5 |
