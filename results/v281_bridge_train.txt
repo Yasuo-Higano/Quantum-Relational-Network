@@ -3,7 +3,7 @@
 
 [T0] 凍結節 SHA-256 = 7a28d0dbe9f7eb10f5f017eaf96e09ee5b817516a79c2871aad1b5a53bf1f772 (v282 が逐語一致を検査)
 
-  [PASS] [T0] Z2 決定的 rdm — 2 回呼び bit 同一・lib 値と一致 (l=4 器械検査)  bit同一 true / lib との最大差 2.8e-17 / lib 2 回呼びの差 1.4e-17 (HashMap 群化 — 0 でも per-process 乱数の機構は残る)
+  [PASS] [T0] Z2 決定的 rdm — 2 回呼び bit 同一・lib 値と一致 (l=4 器械検査)  bit同一 true / lib との最大差 0.0e0 / lib 2 回呼びの差 0.0e0 (HashMap 群化 — 0 でも per-process 乱数の機構は残る)
   [PASS] [T0] Z2 核 3 種のスモーク (有限・対称・非負) + Spearman 恒等検査  B1 max 0.434 / B2 max 2.278 / B3 max 0.101
   [PASS] [T1a] 陰性対照 — 積状態と重みシャッフルで幾何を幻視しない  積状態 detected=false / シャッフル detected=false (被覆 Cycle/Path が 90% 未満)
   [PASS] [T1b-d] TRAIN-1 B1 (MI) — Cycle N=202・隣接 100%・橋 0  detected=true comps=1 topo=Cycle 隣接 1.0000 橋 0
