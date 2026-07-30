@@ -4229,3 +4229,23 @@
   limitations:
     - "定義と凍結のみ — B5/B6 の実装・較正、HOLD-5 の生成・走行は v29.3 以降。凍結の効力はコミット順 (本コミットが実装より先) に依存する。"
     - "seed コミットメントの検証可能性は SECRET の将来開示に依存 (開示までは自己申告)。"
+
+- id: QRN-BRIDGE-005
+  version: "v29.3"
+  level: C3
+  claim: "S×C 合成 bridge の訓練資格 (HOLD-5 train 区画, 3 検査 PASS): 新候補 B5-QFI (BKM 核 — 数保存 Gaussian の Fock 公式 ρ_{S'S} = det(1−G)·det(K[S'|S]) で厳密構成, 恒等検査 [M0a] 済み) と B6-COMMUTATOR (retarded ⟨[n_j(t),n_q]⟩ = 2i·Im(P_{qj}(P†Ce_q)_j) + 運動学的円錐 |P| の 2 チャネル) を実装し、**train 4 系 × 3 regulator × 2 質量 × S(4) × C(3) = 288 セル全てが資格内 (隣接 100%・順位相関最小 0.9718)**。Wilson は基底回転 T = diag(1,i) で実対称化 (分散照合 3.5e-14)。設計区画の教訓 2 件: Wilson 係数の 1/2 二重掛け ([M0b] が検出)・情報系核 (B1/B5) が不均一計量の強ボンド対を橋と誤検出 (v28 の境界増強のバルク版) → 順序付きパイプライン (橋なし優先・失敗時のみ橋抽出 = Occam) を v30 節に凍結。バー = Spearman ≥ 0.90 (実測最小 0.9718 に余裕) で凍結、節 SHA-256 = 93e1aa5c… を v29.4 が照合する。"
+  status: "toy 機構の訓練資格 (設計区画 — val は v29.4 で 1 回・holdout は未生成のまま。凍結点 = 本コミット)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v293_bridge_matrix.rs"
+    result: "results/v293_bridge_matrix.txt"
+    doc: "docs/uft-v29.3.md"
+  limitations:
+    - "train 区画 (設計許可) の資格であり検証力はない — 検証は v29.4 の val (1 回) と未生成 holdout (hold-8..15) が担う。"
+    - "順序付きパイプラインの橋フォールバック路は HOLD-5 家族 (橋なし) では未発火 — TFD 型での回帰は v29 系の凍結結果が担保。"
+    - "B5 の BKM ノルムは ρ_ij 基準の双対重み (1/c) 実装 — 情報計量の規約は凍結節に固定 (別規約は別候補)。"

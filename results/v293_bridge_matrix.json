@@ -1,0 +1,6 @@
+{
+  "version": "v29.3",
+  "frozen_matrix_sha256": "93e1aa5cc0aed19ff8488fb8aa98f07ffd28ebda10cb61fd99b85f1a6e59fd8c",
+  "min_spearman_train": 0.9718191112738815,
+  "bar_sxc_spearman": 0.9
+}

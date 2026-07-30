@@ -1,0 +1,13 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v29.3 合成 bridge — S×C 全組合せの訓練資格 (HOLD-5 train, 第三十期) ===
+
+  [PASS] [M0a] Fock 構成 ρ = det(1−G)·det(K[S'|S]) の恒等検査 (1/2 モード・縮約・BKM 重み)  1モード true / trace&対角 true / 縮約 true / BKM true
+  [PASS] [M0b] Wilson 実ゲージ構成の分散照合 (一様極限 = 解析 ±E(k))  max|ΔE| = 3.51e-14
+  [PASS] [M1] train 4 系 × 3 regulator × 2 質量 × S(4) × C(3) = 288 セルの資格 (隣接 100%・Spearman ≥ 0.90)  全セル バー内 — 最小 Spearman = 0.9718
+
+[凍結] FROZEN BRIDGE MATRIX v30 節 SHA-256 = 93e1aa5cc0aed19ff8488fb8aa98f07ffd28ebda10cb61fd99b85f1a6e59fd8c (v29.4 が照合)
+[成果物] ./results/v293_bridge_matrix.json
+
+[判定] S×C 全組合せ (B5-QFI/B6-COMMUTATOR 込み) が train で資格 — 本コミットが凍結点、val (1 回) と holdout は v29.4
+
+総合判定: [PASS]
