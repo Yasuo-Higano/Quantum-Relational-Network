@@ -4249,3 +4249,23 @@
     - "train 区画 (設計許可) の資格であり検証力はない — 検証は v29.4 の val (1 回) と未生成 holdout (hold-8..15) が担う。"
     - "順序付きパイプラインの橋フォールバック路は HOLD-5 家族 (橋なし) では未発火 — TFD 型での回帰は v29 系の凍結結果が担保。"
     - "B5 の BKM ノルムは ρ_ij 基準の双対重み (1/c) 実装 — 情報計量の規約は凍結節に固定 (別規約は別候補)。"
+
+- id: QRN-BRIDGE-006
+  version: "v29.4a"
+  level: C3
+  claim: "HOLD-5 val 区画の 1 回使用 (4 検査 PASS): (i) v29.3 凍結の S×C 資格採点器が新鮮な val 4 系でも健全 — 288 セル全てバー内 (隣接 100%・順位相関最小 0.9633)。(ii) 定量計量の読み出しを凍結 (FROZEN QUANT v31) — 較正源 2 点の前線差分から局所速度場 v̂ を再構成し、未使用源 4 点の到着時刻を τ_pred = Σ ŝ で無調整予言。val 実測: 円環で Δ∞(v̂, v_true) = 3.6–6.0%・regulator 間 3.6–9.1%、開放鎖は境界系統で 2–4 倍悪化 (max 0.2377)。バーは宣言済み規則 (実測 × 1.5, 2 桁切り上げ) で機械導出し凍結: Δ∞true ≤ 0.36 / τ ≤ 0.75 / xreg ≤ 0.23。(iii) SECRET を開示 — sha256 が v29.2 コミットメントと一致・train seed が v29.3 公開定数と一致を機械照合。hold-8..15 は未生成のまま。"
+  status: "定量計量の較正とバー凍結 (val は 1 回で閉じた — 検証力は v29.4b の holdout が担う)"
+  layer: bridge
+  evidence_kind: calibration
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: fitted
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v294a_bridge_val.rs"
+    result: "results/v294a_bridge_val.txt"
+    doc: "docs/uft-v29.4.md"
+  limitations:
+    - "τ 予言の max 統計は d = 5 近傍の近接場過渡が支配 (全セル ~0.5) — 中央値 0.03–0.14 が分布の実態。統計量は導出走行前に宣言済みのため変更せず、弱いバー (因子 2.1) として凍結した。"
+    - "バーは val 実測への fit であり検証ではない — 検証は凍結後の holdout (v29.4b) のみが担う。"
+    - "開放鎖の境界系統 (端の前線反射・Wilson 端 v̄ 補正) は既知の弱点としてバーに織り込み済み。"
