@@ -4452,3 +4452,24 @@
     - "読めるのは h の block Frobenius 重み — 計量そのものではない (計量昇格は B3 整合 [v31.3] と VR persistence [v31.6] の後)。因子分解は依然入力 (E3 未解決)。"
     - "到着時刻 = 重みの下流は 1 例の直接証拠 — B4 圧縮性の系統評価は v31.3。"
     - "資格・設計区画 — 新鮮 holdout は HOLD-7。bridge_candidates.yml への凍結登録も v32.0 で行う。"
+
+- id: QRN-BRIDGE-014
+  version: "v31.3"
+  level: C3
+  claim: "観測予算 hierarchy — 同一 hidden generator (重み場 ring12/chain12/u693) への 7 lane 一斉適用による識別可能性相図 (10 検査 PASS)。**階層の確定 (β=1 重み誤差)**: oracle 1.2e-14 → coherent 1.1e-7 → 密度応答 3.7e-8 (重み², 状態非依存) → **patch 1.7%** → pair-B2 20–30% (系統 renormalization — 契約準位の性質) → B3 単調 proxy (Spearman 0.973) → 到着時刻 距離 proxy (0.991)。**patchwise inversion の中間性の初定量**: pair → 半径 2 patch で系統偏差 20.4% → 1.7% (OperationalPatch は B3 観測のみから構築・OraclePatch と型分離のうえ一致を検査)。**相図スライス (β=25)**: global exact は正しく棄却・応答 lane は不変 (3.7e-8)。**発見 [H8] = encoded but not operationally readable の実例は pair 準位**: pair rdm は縮約混合で full-rank のまま資格を通るのに gap 抽出器では支持が破れ (余22)、ranking (precision@12) では全 lane 1.0 — 情報は符号化されているのに契約の抽出器が読めない。**ノイズの代価 [H9]**: σ=1e-4 で応答 lane は静的比 5903× の誤差増幅 (1/dt² — 状態非依存性の対価の機械記録)。"
+  status: "識別可能性相図の E2 断面 — 抽出器 (スケールガード付き gap 則) の凍結は HOLD-7 で行う"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v313_budget_hierarchy.rs"
+    result: "results/v313_budget_hierarchy.txt"
+    doc: "docs/uft-v31.3.md"
+  limitations:
+    - "隠れ族は 1D 系 (ring/chain) + u693 の 3 系 — 2D・高 genus の hierarchy は v31.6 以降。"
+    - "「readable」の境界は抽出器 (gap 則) に相対的 — ranking との差がそれを機械的に示す。抽出器の恣意性は HOLD-7 の凍結で消す。"
+    - "ノイズは iid Gaussian — 相関ノイズ・デコヒーレンスは未走査。"
+    - "開発記録: ガードなし gap 則は f64 尾部をカットし偽陽性 (v29.6 スケールガードの独立再発見)。β=25 の pair 全対棄却の初期予想も誤り — 縮約混合で pair rdm は常に full-rank (棄却なしに読めないセル)。"

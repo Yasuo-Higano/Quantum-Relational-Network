@@ -1,0 +1,23 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v31.3 観測予算 hierarchy — 7 lane の識別可能性相図 (PROMPT/12) ===
+
+  [PASS] [H0] 隠れ族 3 系 (重み場 ring12 / 開鎖 chain12 / 単環 u693) の生成  重み場は決定的 (シードなし解析形) — 真値は検査内でのみ参照
+  [PASS] [H1] lane 1 GlobalOneBodyCorrelation + oracle: 重み厳密復元 ≤ 1e-9 (E1 の天井)  max off-diag 誤差 1.22e-14
+  [PASS] [H2] lane 5 LocalBiasDensityResponse: 重み² を rel ≤ 1e-5 復元 — 状態領域に依存しない (probe 準備)  max rel 誤差 3.67e-8 (β=1/β=25/projector の別は probe lane に無関係)
+  [PASS] [H3] lane 6 CoherentLocalResponse: Z2 ゲージ最小化つき符号復元 ≤ 1e-5  max 誤差 1.14e-7 (ゲージは木伝播で固定)
+  [PASS] [H4] lane 3 PairReducedStates (B2): 支持 (位相) は欠0余0 — 重みは系統 renormalization (機械記録)  支持: ring12 欠0余0 chain12 欠0余0 u693 欠0余0 / 重みの系統偏差 max 30.2% (環境 renormalization — 失敗ではなく契約準位の性質)
+  [PASS] [H5] lane 4 B3 静的共分散: 支持 欠0余0・重みは単調 proxy (Spearman ≥ 0.9)  支持: ring12 欠0余0 chain12 欠0余0 u693 欠0余0 / min Spearman(真重み, |C|²) = 0.973
+  [PASS] [H6] lane 2 OperationalPatch (B3 観測から, 半径 2): 中心辺の重み誤差 < pair-B2 (階層の中間点) + OraclePatch と一致 (型は分離)  patch 重み偏差 max 1.7% < pair-B2 20.4% / OperationalPatch = OraclePatch (B3 支持が正しいため)
+  [PASS] [H7] lane 7 ArrivalTimeResponse: τ は重みつき最短路距離の単調 proxy (Spearman ≥ 0.8) — 重み情報は圧縮  min Spearman(τ, dist) = 0.991
+
+  -- 相図スライス (ring12, 静的 lane × 状態領域 β=25) --
+     global: exact 棄却 true / estimate gap 支持 欠0余0 / ranking precision@12 = 1.000
+     pair-B2: 資格棄却 0/66 (縮約混合で pair rdm は full-rank のまま — 棄却は起きず読みが歪む) / gap 支持 欠0余22 / precision@12 = 1.000
+     B3:     gap 支持 欠0余0 / precision@12 = 1.000 (深部飽和の劣化 — 失敗を消さない)
+     projector GS: 資格 RankDeficient = true (sign 類 — v31.1 [T9]) / 応答 lane (5/6) は状態領域に依存しない ([H2])
+  [PASS] [H8] 相図スライス (β=25): global exact は正しく棄却・estimate/B3 の gap 支持は生存。pair-B2 は資格が通る (縮約混合) のに gap 支持が破れ (余22)、ranking には情報が残る (precision 1.0) — **encoded but not operationally readable** の実例は pair 準位に出る  gap 支持: global 欠0余0 / pair 欠0余22 / B3 欠0余0 — ranking precision@12 は全 lane 1.0 (情報はあるのに pair の gap 抽出器だけ読めない)
+  [PASS] [H9] ノイズ σ=1e-4: 応答 lane は 1/dt² 増幅を払う (静的比 ≥ 10×) — 状態非依存の代価の機械記録  静的 K 誤差 1.65e-3 / 応答 W 誤差 9.76e0 (増幅 5903× — 予言オーダ 2.9e0 と整合)
+
+[判定] 観測予算の hierarchy が確定した — oracle > coherent > 密度応答 > patch > pair-B2 > B3 > 到着時刻。応答 lane は状態領域に依存しない代わりにノイズ増幅を払い、静的 lane は低温・projector で正しく棄却/劣化する。「encoded but not operationally readable」のセルは実在し機械記録された
+
+総合判定: [PASS]
