@@ -1,0 +1,31 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v32.0-A HOLD-7 の凍結 — identifiability 相図の新鮮 holdout (PROMPT/12) ===
+
+  [F0] SECRET コミットメント (開示は v32.0-B):
+       sha256(SECRET) = c50c4c30993b1bb7113734609e87f116e8f280a30315571261f92377bd3ec9ea
+       train seed = 32001 (可視 — holdout シードは SECRET から導出)
+
+  [PASS] [F1] 生成器健全性: genus2 (1,4,1)・T³ L=4 flag (1,3,3,1)・セル構成 17 (非識別 5)  真の複体プロファイルと構成数が期待どおり
+  K1-0 torus5 → "β=[1, 2, 1] closed=true" ✓ 
+  K1-1 twoholes → "β=[1, 2, 0] closed=false" ✓ 
+  K1-2 genus2 → "β=[1, 4, 1] closed=true" ✓ 
+  K2-0 S3 → "β=[1, 0, 0, 1] closed" ✓ 
+  K2-1 S3 → "β=[1, 0, 0, 1] closed" ✓ 
+  K3-ring24 → "death/perim=0.3428" ✓ (バー [0.28, 0.37])
+  K3-holes14:8 → "ratio=2.000" ✓ (真比 1.75)
+  K4-warm → "ExactH" ✓ (err 2.0e-14)
+  K4-cold [非識別] → "EquivClass" ✓ 正しい棄却/同値類
+  K5-projector [非識別] → "EquivClass" ✓ 正しい棄却/同値類
+  K6-oracle V=2.46 [非識別] → "Abstain(non_gaussian_domain)" ✓ 正しい棄却/同値類
+  K6-resp V=2.46 → "Weights" ✓ 
+  K7-unknownfact [非識別] → "Abstain(unknown_factorization)" ✓ 正しい棄却/同値類
+  K8-lownoise → "Weights" ✓ 
+  K8-highnoise [非識別] → "Abstain(insufficient_observation)" ✓ 正しい棄却/同値類
+  K9-metamorphic → "Weights" ✓ (変成: 次数列 + 重み多重集合)
+  K10-regulator → "ratio=6.571" ✓ (端バイアス a=1/a=½ 減衰比, バー ≥ 2)
+  [PASS] [F2] train 採点: selective risk 0 / coverage ≥ 0.9 / impossibility recall = 1.0  回答 12/12 (coverage 1.00) / 誤り 0 / 非識別 5 中 正棄却 5 (recall 1.00) / 強制回答 0
+  [PASS] [F3] 凍結宣言: FROZEN-HOLD7 区間の SHA-256 (v32.0-B が逐語一致を照合する)  kernel sha256 = e9d4079e6ed5adfa…
+
+[判定] HOLD-7 は凍結された — 生成器・採点器・バー・観測契約・非識別の裁定規則が本コミットで固定。次コミット (v32.0-B) で SECRET を開示し holdout を初生成・本採点する (調整なし)
+
+総合判定: [PASS]

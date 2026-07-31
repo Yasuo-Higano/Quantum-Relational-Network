@@ -4556,3 +4556,23 @@
     - "一様 v・m = 0.4 の 1 点 — hold-12 の重み場との複合効果・m 掃引は未走査。振幅消失の厳密な冪 (O(a) か O(a^1.5)) は未同定。"
     - "「artifact = 連続極限で消える」の裁定は a ∈ {1, ½, ¼} の 3 点外挿 — さらに細かい a は未走査。"
     - "統計量の参照系を 3 回誤った開発記録を保存 (局所 v̂ の離散化ノイズ・bulk 差の未除去・LDOS の bulk DOS 差) — 教訓 =「regulator 比較は自分の bulk を参照してから境界を見る」。"
+
+- id: QRN-BRIDGE-019
+  version: "v32.0-A"
+  level: C3
+  claim: "HOLD-7 の凍結 (3 検査 PASS + train 17 セル満票): identifiability 相図全体の新鮮 holdout を HOLD-5/6 と同じ開封順序で準備。sha256(SECRET) = c50c4c30… を公表。**HOLD-5/6 との違い = 非識別セルの正しい棄却を採点する** (selective risk 0 / coverage ≥ 0.9 / impossibility recall 1.0 — 強制回答は FAIL)。凍結カーネル (FROZEN-HOLD7 区間 sha256 = e9d4079e…) = v31 期器械の逐語コピー (曲率 lane・最終 gap 則・∂₄ 込み homology・link 分類・VR H1・oracle・Wick witness・t-V ED) + 凍結棄却規則 4 本 (因子分解なし/witness 超え/RankDeficient/ノイズ見積り超え)。セル 10 クラス 17 セル (topo2d/3d・計量・oracle 温冷・projector 衝突・相互作用・因子分解不明・ノイズ 2 水準・変成対・regulator)。train (可視シード): 回答 12/12・誤り 0・非識別 5/5 正棄却・強制回答 0。"
+  status: "凍結半 (設計区画) — holdout は未生成。開封・本採点は v32.0-B (調整なし)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v320a_hold7_freeze.rs"
+    result: "results/v320a_hold7_freeze.txt"
+    doc: "docs/uft-v32.0.md"
+  limitations:
+    - "train は設計区画 — 検証力はない。holdout (v32.0-B) が凍結バーで本採点する。"
+    - "セル族は v31 期の資格状態族・模型族に制限 (熱的 βt=1 系・t-V N=8・1D/2D/3D の既定クラス) — 相図の軸は網羅するが各軸の深さは有限。"
+    - "K10 regulator は v31.7 の a 減衰検査の 1 セル化 — hold-12 級のフル v̂ 照合ではない。"
