@@ -1213,3 +1213,8 @@
   deps: [QRN-BRIDGE-010]
   asm: [ASM-GAUSS, ASM-LOWDIM, ASM-SEED]
   fal: [FAL-SUITE]
+
+- id: QRN-META-038
+  deps: [QRN-META-037]
+  asm: [ASM-LAYER-SEMANTICS]
+  fal: [FAL-SUITE]

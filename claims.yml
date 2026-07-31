@@ -4390,3 +4390,23 @@
     - "disk クラスは holdout 抽選に出なかった (seed の選択 — train でのみ検証。恣意でないことは seed 系列の第三者検証で確認可能)。"
     - "family は資格状態族 (熱的 βt=1)・v ∈ [0.65, 1.45]・5 クラスに制限 — 臨界状態・高 genus・3D は未試験 (第三十一期課題)。"
     - "内部 holdout であり独立外部再現ではない — bridge law 登録の blocker は R2/R3 のまま。"
+
+- id: QRN-META-038
+  version: "v31.0"
+  level: C4
+  claim: "幾何読み出しの識別可能性契約 (PROMPT/12 の意味論・型・protocol 凍結, 8 検査 PASS): 読み出しを一語で扱わず、E0 encoding / E1 global inversion / E2 operational readout / E3 factorization discovery / E4 physical bridge を別能力として型で分離した (sim/src/readout_contract.rs — ReadoutCertificate<能力, 状態領域, 観測契約, 因子分解状態>)。(i) **生成子 2 型**: ParentModularGenerator (K(C) = log[(I−C)C⁻¹]) と PhysicalGenerator は別型 — 唯一の門 identify_physical_generator が GaussianityEvidence + GibbsProvenance を要求し、証拠なしは棄却 (禁止変換 8)。(ii) **相関 2 型**: ExactFullRankCorrelation は clamp なしスペクトル証明書 (0 < λ < 1, δ ≥ 1e-13) を内部計算で要求 — RegularizedCorrelation から exact 資格は構成不能 (禁止変換 9)。(iii) **patch 2 型**: OraclePatch (真の半径・診断専用) → OperationalPatch の変換不在 (禁止変換 10 — 循環防止)。(iv) 裁定 5 値 + 棄却理由 8 種 — 非識別セルの正しい棄却を一級市民にする HOLD-7 採点原則を型で先に凍結。(v) core.schema.yml の RelationalDecomposition 意味論差を是正 (「入力でなく読み出し」→ 選定は設計目標・現行成果は GivenNodeFactorization を入力に取る)。(vi) replications.yml を claim/capability scoped に拡張 (Unit D schema — geometry 能力の blocker 解除は matching D2 のみ)。[R7] は熱的 Gaussian round-trip の最小実演 (P4, β = 1.7, μ = 0.3): 資格 → K(C) → 門 → max|ĥ−h| < 1e-10・projector は RankDeficient 棄却。"
+  status: "型契約の凍結 (v27.2/v30.0 の後継) — 共有部変更は本版に集約し期末儀式で無波及を検証する (v30.0 方式)"
+  layer: meta
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v310_readout_semantics.rs"
+    result: "results/v310_readout_semantics.txt"
+    doc: "docs/uft-v31.0.md"
+  limitations:
+    - "4 軸の分類 (状態領域 4 / 観測契約 6 / 因子分解 3) は PROMPT/12 の設計判断 — 分類自体の正しさは ASM-LAYER-SEMANTICS と同種の規約仮定。"
+    - "型レベル封鎖は Rust 実装内の保証 — 文書・主張レベルの護りは R1–R7 と v310 の source 走査が担う。"
+    - "K(C) の逆変換自体は自由フェルミオンの標準的事実 (oracle ceiling) — QRN 固有法則ではなく、この式だけで bridge law 登録・PRED-019 登録は行わない。"

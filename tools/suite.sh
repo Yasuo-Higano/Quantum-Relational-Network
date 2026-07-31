@@ -29,7 +29,7 @@
 set -eu
 
 # リポジトリ状態を入力に読むため、ソース不変でも引用できない監査・照合層
-ALWAYS_RUN="v61_ledger v151_audit v213_dmrgaudit v214_bridgeaudit v217_fiveconditions v221_dmrgex v235_lambdainf v271_core_audit v272_core_contract v273_instruments v274_reproducer"
+ALWAYS_RUN="v61_ledger v151_audit v213_dmrgaudit v214_bridgeaudit v217_fiveconditions v221_dmrgex v235_lambdainf v271_core_audit v272_core_contract v273_instruments v274_reproducer v310_readout_semantics"
 
 MANIFEST=results/suite_manifest.tsv
 BINDIR=sim/src/bin

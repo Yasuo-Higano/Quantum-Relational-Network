@@ -19,9 +19,33 @@ external_replications: 0
 
 algorithmic_diversity_note: "同一作者・同一 AI・同一数値カーネルの別言語実装は algorithmic diversity であり、ここに登録しても external_replications に数えない (NO_SHARED_CODE.md)"
 
-# entries の書式 (登録時に追記):
+# =====================================================================
+# v31.0 拡張 (PROMPT/12 Track X): claim/capability scoped 台帳
+# =====================================================================
+# 総数 (external_replications) だけでは「どの主張のどの能力が再現されたか」を
+# 区別できない — gauge の Unit A 成功が geometry 能力の blocker を解除する誤読を
+# 型で封じる。単位と能力の対応:
+#   Unit A/B/C = gauge 全数定理 / vacuum-polarization 区間 / one-loop oracle 系の
+#                claim 専用。geometry 系能力には効力を持たない。
+#   Unit D (Geometry Identifiability) = D1 凍結 C 行列の kernel/readout 数値再現 /
+#     D2 独立モデル生成・独立 state solver・独立 readout の end-to-end /
+#     D3 負定理 (P6/693 衝突・projector 同値類・factorization 非一意性) の独立確認 /
+#     D4 LocalBiasCurvatureLaw の独立実装。
+#   geometry 系能力 (spatial_topology_given_factorization 等) の blocker 解除 =
+#   **対応する claim を scope に含む D2 の 6 条件成立のみ** (D1 は数値再現どまり)。
+capability_scope_version: "v31.0"
+unit_capability_note: "unit A/B/C は geometry 能力の blocker を解除しない — geometry の登録条件は matching Unit D2 のみ (v310_readout_semantics が常設監査)"
+
+# entries の書式 (v31.0 拡張 — 旧フィールドに加えて claim/capability scope を必須化):
 # - id: REP-001
-#   unit: "A | B | C"
+#   unit: "A | B | C | D1 | D2 | D3 | D4"
+#   claim_ids: "[QRN-...]"          # 対象 claim (総数でなく claim-scoped)
+#   capabilities: "[spatial_topology_given_factorization, ...]"  # 対象能力 (qrn_core の 8 タグ語彙)
+#   replication_level: "numerical_only | end_to_end | negative_theorem | response_law"
+#   independence_scope: "different_author | same_author_clean_room | algorithmically_diverse"
+#   protocol_commit: "<git hash>"   # 凍結プロトコルのコミット
+#   generator_hash: "<sha256>"      # 独立生成インスタンスの hash
+#   input_hash: "<sha256>"          # 凍結入力の hash
 #   author: "..."
 #   repository: "..."
 #   commit: "..."

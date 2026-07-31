@@ -40,7 +40,7 @@ concepts:
 - name: RelationalDecomposition
   layer: core
   status: defined
-  note: "テンソル分解は入力でなく読み出し (v11.4 の MI 貪欲マッチング)"
+  note: "テンソル分解の核運動学。v31.0 監査で意味論差を是正: 状態からの選定は設計目標 (RelationalDecompositionGoal, 未構成) であり、現行の全 bridge 成果は GivenNodeFactorization を入力に取る (v29.5 [C5]。v11.4 の MI マッチングは正例デモで選定則ではない)"
 - name: AllowedEquivalences
   layer: core
   status: unknown
@@ -313,6 +313,67 @@ concepts:
   layer: bridge
   status: defined
   note: "能力別 BridgeLawCertificate<C> (v30.0, PROMPT/11) — 8 能力タグ・登録簿は全能力で空。ClockCalibration/FullLorentzianMetric は BridgeCapability 未実装で型レベル構成不能 (ProperTime への門は関数ごと削除)"
+# ---- v31.0 (PROMPT/12): 幾何読み出しの識別可能性契約 (sim/src/readout_contract.rs) ----
+- name: ReadoutCertificate
+  layer: bridge
+  status: defined
+  note: "読み出し実験 1 件の裁定記録 ReadoutCertificate<能力, 状態領域, 観測契約, 因子分解状態> (v31.0) — 昇格の門ではない (門は BridgeLawCertificate のみ)。verdict は私有でコンストラクタ 4 本だけが裁定を書ける"
+- name: StateDomainTag
+  layer: meta
+  status: defined
+  note: "状態領域 4 タグ (sealed): GaussianGibbsFullRank / GaussianProjector / InteractingFermion / UnknownStateDomain — full-rank Gaussian の結果を pure/interacting へ暗黙拡張しない"
+- name: ObservationContractTag
+  layer: meta
+  status: defined
+  note: "観測契約 6 タグ (sealed): GlobalOneBodyCorrelation / PairReducedStates / StaticLocalObservables / LocalBiasDensityResponse / CoherentLocalResponse / RetardedResponse。強さの半順序は v31.3 が実測する"
+- name: FactorizationStatusTag
+  layer: meta
+  status: defined
+  note: "因子分解状態 3 タグ (sealed): GivenNodeFactorization / OperationallyInferredFactorization / UnknownFactorization"
+- name: IdentifiabilityVerdict
+  layer: meta
+  status: defined
+  note: "裁定 5 値 (ExactUpToGauge / ExactUpToGlobalScale / StableEstimate / EquivalenceClassOnly / Abstain) + 棄却理由 8 種 — 非識別セルの正しい棄却を一級市民にする (HOLD-7 の採点原則)"
+- name: ParentModularGenerator
+  layer: bridge
+  status: defined
+  note: "完全な C と整合する Gaussian parent K(C) = log[(I−C)C⁻¹] — **物理生成子ではない** (禁止変換 8)。PhysicalGenerator への唯一の門は identify_physical_generator (GaussianityEvidence + GibbsProvenance を要求)"
+- name: PhysicalGenerator
+  layer: dynamics
+  status: defined
+  note: "模型の実時間発展生成子 h (一体エルミート) — 読み出し側では同定対象。ParentModularGenerator からの impl From は存在しない"
+- name: GaussianityEvidence
+  layer: meta
+  status: defined
+  note: "Gaussian 性の証拠 3 値: ByConstruction / WickResidualBound (バーは走行前凍結) / Unknown — 証拠なしの logit 読み出しは abstain (v31.5 で witness 実装)"
+- name: GibbsProvenance
+  layer: meta
+  status: defined
+  note: "Gibbs 出自の証拠 3 値: KnownBetaMu / BetaUnknownPositive (正スケール同値類) / Missing"
+- name: GivenNodeFactorization
+  layer: adapter
+  status: certified
+  note: "因子分解を入力として与える観測資源 — 読み出しではない。現行の全 bridge 成果 (HOLD-5/6 含む) の scope はこの下にある (v29.5 [C5] の機械記録)"
+- name: RelationalDecompositionGoal
+  layer: bridge
+  status: undefined
+  note: "状態・操作から因子分解を選ぶ設計目標 = FactorizationBridge の別名 — 未構成。成立には OperationalAlgebra (準備・介入・測定・両立性) が必要 (v31.4 で no-go 側を定理化)"
+- name: OraclePatch
+  layer: instrument
+  status: defined
+  note: "診断専用: 真の隣接半径で選ぶ patch — OperationalPatch への変換は存在しない (禁止変換 10: 真の幾何で patch を選ぶ読み出しは循環)"
+- name: OperationalPatch
+  layer: instrument
+  status: defined
+  note: "観測だけから構築する patch (B3 等の観測 graph から拡張)。provenance に構築に使った観測契約を記録"
+- name: ExactFullRankCorrelation
+  layer: instrument
+  status: defined
+  note: "clamp なしのスペクトル証明書 (0 < λ < 1, δ ≥ 1e-13) を内部計算で要求する唯一のコンストラクタ — RegularizedCorrelation からの変換は存在しない (禁止変換 9)"
+- name: RegularizedCorrelation
+  layer: instrument
+  status: defined
+  note: "clamp/正則化済み相関 — estimate lane 専用。数値推定として正当だが exact 識別可能性証明書の根拠にできない"
 
 forbidden_conversions:
 - from: RegulatorSiteId
@@ -336,6 +397,15 @@ forbidden_conversions:
 - from: RegulatorQuantity
   to: UniversalQuantity
   reason: "bare c₁/c₂ 型の a 走行量は scheme 量 (v27.0-C: 比 4.000 = a⁻²)"
+- from: ParentModularGenerator
+  to: PhysicalGenerator
+  reason: "Gibbs 出自と Gaussian 性の証拠なしに親モジュラー生成子を物理生成子と同一視しない (v31.0 禁止変換 8 — 唯一の門は identify_physical_generator)"
+- from: RegularizedCorrelation
+  to: ExactFullRankCorrelation
+  reason: "clamp/正則化した相関から exact 識別可能性証明書を発行しない (v31.0 禁止変換 9 — 現行 B2 の eigenvalue clamp は estimate lane 専用)"
+- from: OraclePatch
+  to: OperationalPatch
+  reason: "真の幾何半径で選んだ patch を操作的読み出しと偽装しない (v31.0 禁止変換 10 — 循環防止。OraclePatch は診断専用)"
 
 # predictions.yml の各 PRED の分類 — v271 R11:
 #   data_relation = future_observation の PRED は status = registered でなければならない

@@ -3,6 +3,7 @@
 pub mod dd; // double-double 演算 (v22.7/v23.4 の実証経路を v24.1 で昇格)
 pub mod iv; // 区間演算 — 外向き丸めの厳密包含 (v25.2 BZ moment 証明書)
 pub mod qrn_core; // 型付き Core Contract — 型境界と bridge law の門 (v27.2, PROMPT/10 §4)
+pub mod readout_contract; // 幾何読み出しの識別可能性契約 — 4 軸の型分離 (v31.0, PROMPT/12)
 pub mod stag; // 3+1D staggered 半空間の厳密ブロック理論 (v24.1)
 
 pub use qrn_core::EvolutionParameter; // 旧 toy API (evolve の t) が使う外部発展パラメータ型

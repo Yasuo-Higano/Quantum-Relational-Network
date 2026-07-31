@@ -70,7 +70,7 @@ pub const QRN_CORE_V1: [ContractComponent; 10] = [
         name: "RelationalDecomposition",
         layer: "core",
         status: ContractStatus::Defined,
-        note: "テンソル分解は入力でなく読み出し (v11.4)。型は RelationalNodeId",
+        note: "テンソル分解の核運動学 (型は RelationalNodeId)。v31.0 監査: 状態からの選定は設計目標 (RelationalDecompositionGoal, 未構成) — 現行の全 bridge 成果は GivenNodeFactorization を入力に取る (v29.5 [C5])",
     },
     ContractComponent {
         name: "EvolutionLaw",
