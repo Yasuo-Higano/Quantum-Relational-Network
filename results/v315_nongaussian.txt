@@ -1,0 +1,15 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v31.5 非 Gaussian transfer — t-V (ED) と Z2 拘束系 (PROMPT/12) ===
+
+  [PASS] [N0] ED アンカー (V=0): GS C = 自由射影 ≤ 1e-11 / grand canonical C = Gibbs 公式 ≤ 1e-11  GS 乖離 3.00e-14 / 熱的乖離 7.44e-15
+  [PASS] [N1] Gaussianity witness (密度-密度 Wick 残差): V=0 で ≤ 1e-12・V とともに単調増大  witness: V=0 → 1.45e-14 / V=0.5 → 1.38e-2 / V=1 → 2.89e-2 / V=2 → 6.35e-2 / V=4 → 1.41e-1
+  [PASS] [N2] 門の転移拒否: V=2 熱的 C の witness がバー超え → NonGaussianDomain 棄却 (parent K は hopping 外へ漏れる)  witness 4.22e-2 > bar 1e-8 → 棄却 / K の hopping 外成分 max 0.032 (bond 上 1.159) — 棄却しなければ偽の長距離結合を物理と誤読
+  [PASS] [N3] 曲率則の厳密転移: (n̈⁺−n̈⁻)/(4ε) = t² が V ∈ {0,2,4} で不変 ≤ 1e-12 (V 項は対角 probe 差とのトレースで厳密に消える)  隣接 (0,1): ["V=0 → 1.000000000000", "V=2 → 1.000000000000", "V=4 → 1.000000000000"] (= t² = 1) / 非隣接 (0,3): max |0.0e0|
+  [PASS] [N4] 測定 lane の転移 (V=2): 密度時系列のみから Ŵ = t² を rel ≤ 1e-4 復元  max rel 誤差 1.27e-8 (dt = 0.02, Richardson)
+  [PASS] [N5] 静的 B3 の状態依存: **熱的 V=4 は CDW 前駆の次近接相関で支持が破れる (ring + 偽 NNN 辺)** — 熱的 V=0.5・GS V=0.5/4 は生存 (CDW margin 縮小 0.66 を記録)。応答 lane は [N3] で無傷  熱的支持: V=0.5 10 辺 (= ring) / V=4 20 辺 (偽 NNN 混入 = 非 Gaussian 静的障害の実例) / GS: V=0.5 10 辺・V=4 10 辺 (= ring, CDW 対蹠 0.13 は最小 bond の 66%)
+  [PASS] [N6] 系列 B (Z2 拘束系): 支持 (位相) は厳密転移 (非 bond ≤ 1e-12)・重みは拘束の系統偏差 ≤ 0.3 (機構 = probe 積構造の破れ) — 位相のみ転移と確定  非 bond max 7.37e-17 (厳密 0 = 位相は無傷) / bond 偏差 max 14.3% / 背景相関 |⟨n₀n₁⟩_c| = 3.57e-2
+  [PASS] [N7] 凍結バー holdout (未使用セル 2): oracle は棄却・応答 lane は W_REL_BAR 内で復元  (V=1.5, N=8, open): oracle 棄却 true / 応答 rel 5.9e-9 ✓ (V=3, N=8, pbc): oracle 棄却 true / 応答 rel 1.9e-8 ✓ 
+
+[判定] 転移の境界が確定した — 大域 logit oracle は非 Gaussian で正しく棄却し (Gaussian-only と確定)、密度曲率則は密度対角相互作用に厳密転移する (V 項は対角 probe 差とのトレースで消える定理)。CDW 長距離秩序は静的 B3 を破るが応答 lane は無傷 — 応答読み出しは Gaussian 資格の外へ拡張できる最初の候補
+
+総合判定: [PASS]
