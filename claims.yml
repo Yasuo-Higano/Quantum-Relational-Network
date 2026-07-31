@@ -4536,3 +4536,23 @@
     - "VR persistence は H1 まで (H2 persistence 未実装 — β₂ は clique 側)。bottleneck は有意 bar ≤ 6 の brute force。"
     - "計量はグラフ測地 — 埋め込み計量との比較・regulator 依存は v31.7 以降。GAP_MIN = ln 3 は設計判断 (HOLD-7 で凍結検証)。"
     - "器械最終化に伴う裁定更新 1 件 (v31.5 [N5] GS V=4) は監査注記として uft-v31.5.md に記録 — 歴史文書は改変せず追記。"
+
+- id: QRN-BRIDGE-018
+  version: "v31.7"
+  level: C3
+  claim: "開放境界 regulator 不一致 (v29.4b hold-12 R-A×R-C 0.2328 > バー 0.23) の機構分類 (7 検査 PASS): **振幅消失型 reflection artifact と確定 — 異なる境界普遍類ではない**。(i) bulk 前線速度差は O(a) で消える (29.7% → 6.7% → 2.7%, a = 1→¼)。(ii) 機構の実体 = 実効壁位置の regulator 差 Δδ = 0.60 格子 (整合 k での固有モード位相抽出 — 自己共役境界条件の差の現れ) + 境界 LDOS 偏差 (自 bulk 参照で端 0.024 → 深部 0.005)。(iii) 壁位置差が刻む反射尾は**物理スパン ~14 セル一定・振幅 ~O(a) 消失** (7.9 → 1.08 → 0.47)・端 1 物理セルの τ バイアスは a=1→¼ で ×0.06。(iv) a=1 (HOLD-5 設定) では bulk 分散形状差が境界超過 (1.9×) と同オーダで加算 — hold-12 の尾はこの複合。**バー 0.23 と不成立の記録は変更しない** (機構が分かっても成立扱いにしない)。次期設計入力: 開放境界系は反射尾セルの型除外・境界別バー・a 掃引 lane のいずれかを実行前に選ぶ。"
+  status: "機構分類の確定 — v29.4b の裁定・バーは不変。次期 holdout の設計入力として登録"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: regulator_specific
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v317_boundary_mechanism.rs"
+    result: "results/v317_boundary_mechanism.txt"
+    doc: "docs/uft-v31.7.md"
+  limitations:
+    - "一様 v・m = 0.4 の 1 点 — hold-12 の重み場との複合効果・m 掃引は未走査。振幅消失の厳密な冪 (O(a) か O(a^1.5)) は未同定。"
+    - "「artifact = 連続極限で消える」の裁定は a ∈ {1, ½, ¼} の 3 点外挿 — さらに細かい a は未走査。"
+    - "統計量の参照系を 3 回誤った開発記録を保存 (局所 v̂ の離散化ノイズ・bulk 差の未除去・LDOS の bulk DOS 差) — 教訓 =「regulator 比較は自分の bulk を参照してから境界を見る」。"
