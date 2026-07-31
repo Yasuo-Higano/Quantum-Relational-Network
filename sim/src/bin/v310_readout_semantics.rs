@@ -393,6 +393,48 @@ fn main() {
         );
     }
 
+    // ---- [R8] 外部再現 Unit D の実在と整合 (Track X — v31 期で追加) ----
+    {
+        let mut bad = Vec::new();
+        let unit_d = rd("reproducer/UNIT_D.md").unwrap_or_default();
+        if unit_d.is_empty() {
+            bad.push("reproducer/UNIT_D.md が無い".to_string());
+        }
+        for needle in [
+            "D1",
+            "D2",
+            "D3",
+            "D4",
+            "geometry 能力の blocker を解除できるのはこの水準のみ",
+            "同一 AI による再実装は independence を満たさない",
+            "β₃ には ∂₄ が必須",
+            "L ≥ 4",
+        ] {
+            if !unit_d.contains(needle) {
+                bad.push(format!("UNIT_D.md: 「{}」が無い", needle));
+            }
+        }
+        let d1 = rd("reproducer/INPUTS/unit_d1_frozen_c.json").unwrap_or_default();
+        for needle in ["u693", "C_reference_1e-9", "\"beta\": 1.0"] {
+            if !d1.contains(needle) {
+                bad.push(format!("unit_d1_frozen_c.json: 「{}」が無い", needle));
+            }
+        }
+        let claims_md = rd("reproducer/CLAIMS.md").unwrap_or_default();
+        if !claims_md.contains("単位 D") || !claims_md.contains("QRN-BRIDGE-013") {
+            bad.push("CLAIMS.md に単位 D 表が無い".to_string());
+        }
+        check(
+            "[R8] 外部再現 Unit D (Track X): UNIT_D.md (D1–D4)・凍結入力 D1・CLAIMS.md の単位 D 表 — geometry 解除は D2 のみ",
+            bad.is_empty(),
+            if bad.is_empty() {
+                "geometry 用 reproducer が公開された — external_replications = 0 は維持".into()
+            } else {
+                format!("{:?}", bad)
+            },
+        );
+    }
+
     println!(
         "\n[判定] {}",
         if nfail == 0 {

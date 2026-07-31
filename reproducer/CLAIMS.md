@@ -27,6 +27,18 @@ core.schema.yml) を更新する。**それまでは 0 のまま維持する。*
 3. 切り分け後も不一致が残る場合、上表の主張を**降格** (C2 → 要再検証) し、
    README の到達点行に不一致を明記する。FAL-SUITE の発火に相当する扱い。
 
+## 単位 D (Geometry Identifiability — v31.0/PROMPT-12 で追加, 詳細は UNIT_D.md)
+
+| 単位 | 対象主張 (claims.yml) | 効力 |
+|---|---|---|
+| D1 | QRN-BRIDGE-013, QRN-BRIDGE-017 | 数値再現のみ (blocker は残る) |
+| D2 | QRN-BRIDGE-013, QRN-BRIDGE-017 | **geometry 能力の blocker 解除候補 (これのみ)** |
+| D3 | QRN-BRIDGE-012, QRN-BRIDGE-015 | 負定理の独立確認 |
+| D4 | QRN-BRIDGE-013, QRN-BRIDGE-016 | 応答法則の独立確認 |
+
+gauge 単位 A/B/C の成功は geometry 能力を解除しない (capability scoped —
+replications.yml v31.0 拡張)。
+
 ## 注意
 
 - 同一作者・同一 AI・同一数値カーネルの別言語実装は algorithmic diversity
