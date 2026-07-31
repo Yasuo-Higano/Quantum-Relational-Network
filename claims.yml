@@ -4431,3 +4431,24 @@
     - "探索領域は n ≤ 7 一様重みグラフ + 4 β + μ 固定 — 重みつき・別 filling は未走査 (sign(A) 類は filling 依存)。"
     - "条件数定理の margin δ̃ は f64 数値 — 区間演算での厳密証明書は未実施。"
     - "Lean は 2×2 block の格子恒等 + スコープ明示 — matrix log 全体・一般 d は未形式化。"
+
+- id: QRN-BRIDGE-013
+  version: "v31.2"
+  level: C3
+  claim: "LocalBiasCommutatorLaw — 局所バイアス応答の短時間曲率則 (9 検査 PASS, 不変ノルム核の第一候補): probe 対 C_i^± = I/2 ± εP_i に対し (i) P_j(Ċ⁺−Ċ⁻)(0)P_i = −2iεP_jhP_i (ii) (n̈_j⁺−n̈_j⁻)(0)/(4ε) = ‖P_jhP_i‖_F² — **有限行列の恒等式** (線形応答近似ではない: ε = 0.05/0.45 の測定一致 3.4e-11)。複素エルミート h (4 ノード × 2 軌道) で代数残差 2.2e-16。**密度時系列のみの readout** (h は署名レベル不可視) が 5 点 stencil + Richardson で Frobenius 重みを rel 4.0e-9 復元 (改善比 1e5)。gauge: 密度重みは block-local U(2) 不変 9.6e-12・coherent block は U_jBU_i† 共変 1.9e-14。**[L6] P6/693 の分離**: 静的 projector でゲージ同値 (v31.1 [T9]) だった衝突対を、密度曲率則が隣接ごと復元 (6.1e-8) し min-perm 1.000 で分離 — 「静的単独不可・応答併用可」(v29.5) が到着時刻の経験則から恒等式に昇格。**[L5] 能力の真の階層**: block 回転 h₂ (重み不変) は LocalBiasDensityResponse で識別不能 (厳密 0)・CoherentLocalResponse は識別 (0.300)・到着時刻も識別不能 (0.09 = 0.09 — ArrivalTime は重みの下流の初の直接証拠)。Lean 6 定理 (LocalBias.lean — commutator block・trace–Frobenius・曲率・probe 分離・多軌道・gauge 不変)。"
+  status: "資格 (設計区画) — 観測資源は局所 probe 準備 + 密度時系列 (状態のみからの読み出しではない)。holdout 検証は HOLD-7 (v32.0)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v312_localbias_law.rs"
+    result: "results/v312_localbias_law.txt"
+    doc: "docs/uft-v31.2.md"
+  limitations:
+    - "観測資源は局所 probe 準備 (C± = I/2 ± εP_i の瞬時準備・デコヒーレンスなしの理想化) — 状態だけからの読み出しではない。証明書型に LocalBiasDensityResponse / CoherentLocalResponse を明示。"
+    - "読めるのは h の block Frobenius 重み — 計量そのものではない (計量昇格は B3 整合 [v31.3] と VR persistence [v31.6] の後)。因子分解は依然入力 (E3 未解決)。"
+    - "到着時刻 = 重みの下流は 1 例の直接証拠 — B4 圧縮性の系統評価は v31.3。"
+    - "資格・設計区画 — 新鮮 holdout は HOLD-7。bridge_candidates.yml への凍結登録も v32.0 で行う。"

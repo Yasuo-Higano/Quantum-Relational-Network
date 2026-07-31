@@ -1,0 +1,18 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v31.2 LocalBiasCommutatorLaw — 局所バイアス応答の短時間曲率則 (PROMPT/12) ===
+(probe C± = I/2 ± εP_i は準備された状態 — equilibrium 状態の logit を使わず、
+ P6/693 の sign(A) no-go・臨界境界増強と衝突しない。readout は時系列のみを見る)
+
+  [PASS] [L0] 厳密代数 oracle: commutator 則と密度曲率則が機械精度 (ε 3 値 — 高次補正は厳密 0)  commutator 残差 7.85e-17 / 曲率残差 2.22e-16
+  [PASS] [L1] 密度測定 lane (h 不可視・時系列のみ): ‖P_j h P_i‖_F² を rel ≤ 1e-5 復元 + Richardson が中心差分を ≥ 10× 改善  max rel 誤差 4.04e-9 (dt = 0.02) / 改善比 min→ 101647.4×
+  [PASS] [L2] coherent 測定 lane: block P_j h P_i を entry ≤ 1e-5 で gauge 共変に復元  max entry 誤差 1.41e-8
+  [PASS] [L3] gauge: 密度重みは block-local U(2) 不変 ≤ 1e-9・coherent block は U_j B U_i† 共変 ≤ 1e-5  重み乖離 9.56e-12 / 共変乖離 1.89e-14
+  [PASS] [L4] ノード置換共変: Ŵ(PhPᵀ)_{ij} = Ŵ(h)_{π(i)π(j)} ≤ 1e-9  max 乖離 9.71e-12
+  [PASS] [L5] 能力分離: block 回転 h₂ は密度 lane で識別不能 (厳密 0)・coherent lane は識別 ≥ 0.1 — 観測契約は真に階層  重み差 0.0e0 (測定 6.3e-11) / coherent 分離 0.300 / 到着時刻 (参考): 0.09 vs 0.09
+  [PASS] [L6] P6/693: 密度曲率則が隣接を復元 (≤ 1e-5) し衝突対を分離 (min-perm ≥ 0.9) — 静的不可・応答可の恒等式化  隣接復元誤差 6.07e-8 / 対の分離 (min-perm ∞) 1.000
+  [PASS] [L7] ε 非依存: ε = 0.05 と 0.45 の測定が一致 ≤ 1e-4 (恒等式は probe 線形 — 微小応答近似ではない)  max 乖離 3.40e-11
+  [PASS] [L8] proofs/LocalBias.lean — 6 定理 (commutator block・trace–Frobenius・曲率・probe 分離・多軌道・gauge 不変)  theorem 宣言 6 本 (lean 4.31 でコンパイル検証 — 保証は格子上の恒等・複素/一般 d は数値側)
+
+[判定] 局所バイアス曲率則は成立 — 密度時系列だけで生成子 block の Frobenius 重みが gauge 不変に読め、coherent 応答は block を共変復元する。静的 projector でゲージ同値だった P6/693 も応答で分離 — 「静的単独不可・応答併用可」が有限行列の恒等式になった (不変ノルム核の第一候補)
+
+総合判定: [PASS]
