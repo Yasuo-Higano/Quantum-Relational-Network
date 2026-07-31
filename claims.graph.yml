@@ -1218,3 +1218,8 @@
   deps: [QRN-META-037]
   asm: [ASM-LAYER-SEMANTICS]
   fal: [FAL-SUITE]
+
+- id: QRN-BRIDGE-012
+  deps: [QRN-META-038]
+  asm: [ASM-GAUSS, ASM-IEEE754]
+  fal: [FAL-SUITE]

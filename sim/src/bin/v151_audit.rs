@@ -629,12 +629,13 @@ fn main() {
     }
 
     // [8] Lean 定理数の照合
-    let lean_expected: [(&str, usize); 8] = [
+    let lean_expected: [(&str, usize); 9] = [
         ("Anomaly.lean", 3),
         ("AnomalyArray.lean", 2),
         ("AnomalyArrayBig.lean", 2),
         ("AnomalyBig.lean", 3),
         ("AnomalyUpstream.lean", 13),
+        ("GibbsInverse.lean", 9),
         ("Projector.lean", 13),
         ("ProjectorND.lean", 14),
         ("QrnPromotion.lean", 12),

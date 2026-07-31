@@ -374,6 +374,10 @@ concepts:
   layer: instrument
   status: defined
   note: "clamp/正則化済み相関 — estimate lane 専用。数値推定として正当だが exact 識別可能性証明書の根拠にできない"
+- name: GaussianGibbsInverseOracle
+  layer: instrument
+  status: certified
+  note: "大域静的逆問題の oracle ceiling K(C) = log[(I−C)C⁻¹] = β(h−μI) (v31.1) — 自由フェルミオンの標準的事実で QRN 固有法則ではない。exact/estimate 2 lane・条件数定理 ‖ΔK‖_F ≤ ‖ΔC‖_F/(δ(1−δ)) (飽和例つき)・低温飽和則 (深部モードは sign のみ)。この式だけで bridge 登録・PRED-019 登録は不可"
 
 forbidden_conversions:
 - from: RegulatorSiteId

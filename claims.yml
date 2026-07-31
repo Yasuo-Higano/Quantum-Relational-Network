@@ -4410,3 +4410,24 @@
     - "4 軸の分類 (状態領域 4 / 観測契約 6 / 因子分解 3) は PROMPT/12 の設計判断 — 分類自体の正しさは ASM-LAYER-SEMANTICS と同種の規約仮定。"
     - "型レベル封鎖は Rust 実装内の保証 — 文書・主張レベルの護りは R1–R7 と v310 の source 走査が担う。"
     - "K(C) の逆変換自体は自由フェルミオンの標準的事実 (oracle ceiling) — QRN 固有法則ではなく、この式だけで bridge law 登録・PRED-019 登録は行わない。"
+
+- id: QRN-BRIDGE-012
+  version: "v31.1"
+  level: C3
+  claim: "GaussianGibbsInverseOracle — 大域静的逆問題の oracle ceiling の機械化 (12 検査 PASS): C = (I+e^{β(h−μI)})⁻¹ に対する K(C) = log[(I−C)C⁻¹] = β(h−μI) (自由フェルミオンの標準的事実 — QRN 固有法則ではない)。(i) **exact lane 全数**: n≤7 連結グラフ 992 × β ∈ {0.5..4} で資格 3968/3968・復元誤差は条件数バー 10nε/(βδ(1−δ)) 内 (比 0.463)。(ii) **条件数定理 ‖ΔK‖_F ≤ ‖ΔC‖_F/(δ̃(1−δ̃))** — 45 対で成立 (max 比 0.779)・整列 rank-1 摂動で飽和比 0.99996 (上界は最良)。(iii) **同値類構造**: β 未知 = 正スケール (1e-13)・μ 未知 = 恒等シフト (1.8e-14)・block-local unitary で特異値/Schatten ノルム不変 (7e-15)・ノード置換共変。(iv) **logit 2 経路の常設反例**: P4 で GlobalLogitThenBlock (−1.000 = βh 厳密) ≠ PairBlockThenLogit (−0.9276) — 現行 B2 は環境 renormalize 量。(v) **発見 = P6/693 の projector 衝突はゲージ同値**: 符号つき C は 0.194 異なるが Z2 ゲージ×置換で 1.1e-15 一致 — v29.5 のカーネル衝突の機構は「ノード内位相ゲージの必然」であり、full C 観測でも原理的識別不能。有限 β は min-perm‖ΔK‖∞ = β で分離。(vi) **低温飽和則**: β=40 で exact は正しく棄却・estimate lane は k = sign(βλ)·min(β|λ|, ln((1−ε)/ε)) — 深部モードは sign のみ (β→∞ で sign(A) 類へ連続退化 = P6/693 機構の連続版)。Lean 9 定理 (GibbsInverse.lean — Frobenius–Gram 恒等式・直交/スケール/シフト同値, 格子 native_decide)。"
+  status: "oracle ceiling (E1 の天井) — bridge law 登録・PRED-019 登録はこの結果からは行わない (identifiability 相図の第一断面)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v311_gibbs_oracle.rs"
+    result: "results/v311_gibbs_oracle.txt"
+    doc: "docs/uft-v31.1.md"
+  limitations:
+    - "oracle ceiling = 完全な大域 C の観測を仮定 (GlobalOneBodyCorrelation) — 実際の観測契約 (pair/局所/応答) の hierarchy は v31.3。E1 ≠ E2。"
+    - "探索領域は n ≤ 7 一様重みグラフ + 4 β + μ 固定 — 重みつき・別 filling は未走査 (sign(A) 類は filling 依存)。"
+    - "条件数定理の margin δ̃ は f64 数値 — 区間演算での厳密証明書は未実施。"
+    - "Lean は 2×2 block の格子恒等 + スコープ明示 — matrix log 全体・一般 d は未形式化。"

@@ -1,0 +1,21 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v31.1 GaussianGibbsInverseOracle — 大域静的逆問題の oracle ceiling (PROMPT/12) ===
+(この逆変換は自由フェルミオンの標準的事実 — QRN 固有法則ではない。
+ bridge law 登録・PRED-019 登録はこの結果からは行わない)
+
+  [PASS] [T0] 連結グラフ全数 = OEIS A001349 (6/21/112/853) + 衝突対 692 (P6)/693 (単環) 実在  counts = [6, 21, 112, 853]
+  [PASS] [T1] exact lane 全数 (992 グラフ × 4β, μ=0.2): 資格 100% + 誤差 ≤ 条件数バー 10nε/(βδ(1−δ)) + β≤2 は ≤ 1e-8  資格 3968/3968 / 最悪誤差 7.62e-7 (バー比 0.463) / β≤2 の最悪 1.30e-11 / 族の最小 δ = 1.696e-11
+  [PASS] [T2] β 未知 = 正スケール同値: max|K(β₁)/β₁ − K(β₂)/β₂| ≤ 1e-9 (n=5 全数) + 門は同値類  max 乖離 1.06e-13 (β = 0.5 vs 2)
+  [PASS] [T3] μ 未知 = 恒等シフト: K(μ)−K(0) = −βμI (off-diag 不変 ≤ 1e-10, n=5 全数)  off-diag 乖離 1.77e-14 / diag − (−βμ) 乖離 1.81e-14
+  [PASS] [T4] block-local unitary 共変性 (乱択 20): K'_ij = U_i K_ij U_jᵀ + 特異値/F/op/核ノルム不変  共変乖離 6.99e-15 / 特異値乖離 3.77e-15 / ノルム乖離 5.77e-15
+  [PASS] [T5] ノード置換共変性: K(PhPᵀ)_IJ = K(h)_{π(I)π(J)} ≤ 1e-12  max 乖離 3.44e-15
+  [PASS] [T6] logit 2 経路: n=2 一致 (全系=pair) / P4 で有限乖離 ≥ 0.05 (f(PCP) ≠ Pf(C)P の常設反例)  n=2 乖離 0.0e0 / P4: global -1.000000 (=βh_01 厳密) vs pair-B2 -0.927576 — 乖離 0.0724
+  [PASS] [T7] 条件数定理: ‖ΔK‖_F ≤ ‖ΔC‖_F/(δ̃(1−δ̃)) (微小 30 + 大摂動 15) + rank-1 整列で飽和 ≥ 0.995  max ‖ΔK‖/bound = 0.778772 (42 対) / 整列 rank-1 の飽和比 = 0.999957
+  [PASS] [T8] 低温 P4 (β=40): exact は棄却・estimate は飽和則 k = sign·min(β|λ|, ln((1−ε)/ε)) — 深部は sign のみ  K_est 固有値 [-27.632, -24.721, 24.721, 27.631] / 期待 [-27.631, -24.721, 24.721, 27.631] / 飽和モード 2/4 (P6/693 機構の連続版 — β→∞ で sign(A) 類へ)
+  [PASS] [T9] P6/693: projector はカーネル準位 |C| で衝突 ≤ 2e-13 (v29.5 再現)・資格は RankDeficient・裁定は同値類 / 有限 β は min-perm‖ΔK‖∞ = β で分離  |C| 衝突 1.11e-15 (符号つき素 C 0.194 / Z2 ゲージ×置換 min 1.110e-15) / K 分離 [0.5, 1.0, 2.0, 4.0] (= β) / C 分離 (β=1) 0.1811
+  [PASS] [T10] 門の必須証拠: Unknown→棄却 / Gibbs 出自なし→棄却 / Wick 残差超え→棄却 / 証拠あり→Exact  P6 (β=1) の実データで 4 経路とも契約どおり
+  [PASS] [T11] proofs/GibbsInverse.lean — 9 定理 (Frobenius–Gram 恒等式・直交/スケール/シフト同値, 格子 native_decide + スコープ明示)  theorem 宣言 9 本 (コンパイルは著作時に lean 4.31 で検証 — 保証は格子上の恒等であり実数全域は次数論法)
+
+[判定] 大域逆問題の天井が確定した — full-rank Gaussian Gibbs では h は厳密復元可能 (β 未知は正スケール・μ 未知は対角シフトの同値類)、projector 極限では sign 類まで、低温 estimate lane は飽和則で sign 類へ連続的に退化する。これは oracle ceiling であり bridge law ではない
+
+総合判定: [PASS]
