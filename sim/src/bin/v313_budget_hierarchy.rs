@@ -281,20 +281,26 @@ fn support_from_weights(w: &[f64], n: usize) -> Vec<(usize, usize)> {
     }
     let mut sorted = vals.clone();
     sorted.sort_by(|a, b| b.partial_cmp(a).unwrap());
+    // 最終規則 (v31.6 で凍結): スケールガード窓 (max·1e-3) の**内側**の最大対数段差が
+    // 有意 (≥ ln 3) ならそこで切る。有意な窓内段差がなければ窓内は単一クラスタ =
+    // 全て辺として窓境界で切る。
     let guard = sorted[0] * 1e-3;
-    let mut cut = 0usize;
+    let mut cut: Option<usize> = None;
     let mut best_gap = 0.0;
     for k in 0..sorted.len() - 1 {
         if sorted[k + 1] < guard {
-            break; // カットは 3 桁のダイナミックレンジ内のみ
+            break; // 窓内段差のみ (両端 ≥ guard)
         }
         let gap = (sorted[k] / sorted[k + 1]).ln();
         if gap > best_gap {
             best_gap = gap;
-            cut = k;
+            cut = Some(k);
         }
     }
-    let thr = (sorted[cut] * sorted[cut + 1]).sqrt();
+    let thr = match cut {
+        Some(k) if best_gap >= 3.0f64.ln() => (sorted[k] * sorted[k + 1]).sqrt(),
+        _ => guard,
+    };
     let mut e = Vec::new();
     for i in 0..n {
         for j in (i + 1)..n {

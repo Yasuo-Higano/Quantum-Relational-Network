@@ -1,0 +1,16 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v31.6 計量 VR persistence / 高 genus / 3D homology (PROMPT/12) ===
+(事前登録計量: ℓ = 1/√ŵ [曲率則の凍結重み] + 最短路閉包 — raw affinity を計量と呼ばない)
+
+  [PASS] [V0] 3D engine anchors: K5 (1,0,0,0 — im ∂₄ 必須) / ∂Δ⁴ (1,0,0,1) / 16-cell (1,0,0,1) / Kuhn T³ (1,3,3,1) / 中実立方体 (1,0,0,0)  K5 β=[1, 0, 0, 0] (4-simplex 1 個 — 除くと β₃=1 = ∂Δ⁴ [1, 0, 0, 1]) / 16-cell [1, 0, 0, 1] / T³ [1, 3, 3, 1] (162 tets) / ball [1, 0, 0, 0]
+  [PASS] [V1] 3-manifold link 分類: T³ 全 27 頂点 link = S² / 中実立方体は内部 1 (S²)・境界 26 (D²)・特異 0 / 1 点接着 tet 対は not-manifold  T³ link 全 S² = true / ball: 内部 1 境界 26 特異 0 (中心 S2 角 D2) / 特異対照 = other
+  [PASS] [V2] from-state 3D: 曲率則測定 lane → 支持 → clique → (β₀..β₃) + link 多様体性 — T³ (1,3,3,1)/S³ (1,0,0,1)/3-ball (1,0,0,0) を同定  T3: 欠0余0 β=[1, 3, 3, 1] closed ✓ / S3(16cell): 欠0余0 β=[1, 0, 0, 1] closed ✓ / 3-ball: 欠0余0 β=[1, 0, 0, 0] boundary ✓
+  [PASS] [V3] 円環の 1/3 法則: VR H1 主 bar の死亡/周長 ∈ [0.28, 0.37] (測地円の理論値 1/3)・第 2 bar は雑音床  death/周長 = 0.3367 (bar [1.183, 8.073], 周長 23.976) / 第 2 persistence 0.000
+  [PASS] [V4] 大小 2 穴 (16:8): H1 bar 2 本が寿命で分離 (比 ∈ [1.5, 3])・第 3 bar は床 — 穴スケールの寿命分離 (v29.6 既知限界の解消)  persistence: 5.000 / 2.000 (比 2.50) / 第 3 0.000
+  [PASS] [V5] genus-2 (2 T² の接着, 42 頂点): 構成 β = (1,4,1) + 状態から支持 欠0余0 → β₁ = 4・閉曲面 — 高 genus の初同定  構成 β = [1, 4, 1] / 支持 欠0余0 / 推定 β = [1, 4, 1] / 閉曲面 = true (頂点 42)
+  [PASS] [V6] 敵対対照: narrow neck (K4 対 + 橋) は H1 主 persistence < 0.5 (穴を捏造しない) / 近接同サイズ 2 穴は bar 2 本が同寿命で残る (合体しない)  neck max persistence = 0.000 / 近接 2 穴 persistence = 2.000, 2.000 (比 1.00)
+  [PASS] [V7] ノイズ安定性: bottleneck(H1 図) ≤ sup|Δd| (persistence 安定性定理の機械照合, σ = 2%/5%)  σ=0.02: bottleneck 0.0095 ≤ sup|Δd| 0.0277 ✓ σ=0.05: bottleneck 0.0496 ≤ sup|Δd| 0.0589 ✓ 
+
+[判定] 幾何読み出しが 3 次元と計量に到達した — β₃ (im ∂₄ 必須) と link 多様体性で T³/S³/3-ball を状態から同定し、事前登録計量の VR persistence が円環 1/3 法則・穴スケールの寿命分離・genus-2 を定量化し、安定性定理が bottleneck で機械照合された
+
+総合判定: [PASS]

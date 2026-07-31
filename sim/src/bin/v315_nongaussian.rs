@@ -341,20 +341,28 @@ fn support_from_weights(w: &[f64], n: usize) -> Vec<(usize, usize)> {
     }
     let mut sorted = vals.clone();
     sorted.sort_by(|a, b| b.partial_cmp(a).unwrap());
+    // 最終規則 (v31.6 で凍結): スケールガード窓 (max·1e-3) の**内側**の最大対数段差が
+    // 有意 (≥ ln 3) ならそこで切る。有意な窓内段差がなければ窓内は単一クラスタ =
+    // 全て辺として窓境界で切る。旧規則 2 種の故障を両方閉じる:
+    //   (i) ガードなし: f64 尾部の発散段差を拾う (v31.3 で訂正済み)
+    //   (ii) 跨ぎ段差を本命にする: 多段階系で物理段差を尾部跨ぎが上書き
     let guard = sorted[0] * 1e-3;
-    let mut cut = 0usize;
+    let mut cut: Option<usize> = None;
     let mut best_gap = 0.0;
     for k in 0..sorted.len() - 1 {
         if sorted[k + 1] < guard {
-            break;
+            break; // 窓内段差のみ (両端 ≥ guard)
         }
         let gap = (sorted[k] / sorted[k + 1]).ln();
         if gap > best_gap {
             best_gap = gap;
-            cut = k;
+            cut = Some(k);
         }
     }
-    let thr = (sorted[cut] * sorted[cut + 1]).sqrt();
+    let thr = match cut {
+        Some(k) if best_gap >= 3.0f64.ln() => (sorted[k] * sorted[k + 1]).sqrt(),
+        _ => guard,
+    };
     let mut e = Vec::new();
     for i in 0..n {
         for j in (i + 1)..n {
@@ -623,7 +631,10 @@ fn main() {
         let s_gs05 = b3_support(&cgs05, &nngs05);
         let s_gs4 = b3_support(&cgs4, &nngs4);
         let gs05_ok = s_gs05.len() == n && ring.iter().all(|e| s_gs05.contains(e));
-        let gs4_ok = s_gs4.len() == n && ring.iter().all(|e| s_gs4.contains(e));
+        // 最終 gap 則 (v31.6 凍結: 窓内有意段差 ≥ ln3 なければ窓全体 = 辺) の下では
+        // CDW GS はスケール分離を持たず全 45 対が窓内 → 支持は破れる (当初予想どおり —
+        // 暫定規則は非有意段差で偶然 ring に切れていた)
+        let gs4_broken = s_gs4.len() > n;
         // CDW margin の縮小: 対蹠相関 vs 最小 bond 相関 (破れの前兆の定量)
         let far = (nngs4[5] - cgs4[0] * cgs4[5 * n + 5]).abs();
         let min_bond = ring
@@ -631,10 +642,10 @@ fn main() {
             .map(|&(i, j)| (nngs4[i * n + j] - cgs4[i * n + i] * cgs4[j * n + j]).abs())
             .fold(f64::INFINITY, f64::min);
         check(
-            "[N5] 静的 B3 の状態依存: **熱的 V=4 は CDW 前駆の次近接相関で支持が破れる (ring + 偽 NNN 辺)** — 熱的 V=0.5・GS V=0.5/4 は生存 (CDW margin 縮小 0.66 を記録)。応答 lane は [N3] で無傷",
-            th05_ok && th4_broken && gs05_ok && gs4_ok && far / min_bond > 0.3,
+            "[N5] 静的 B3 の状態依存: **強結合 V=4 は熱的 (偽 NNN 辺) でも GS (CDW スケール分離消失 → 全対) でも支持が破れる** — V=0.5 は熱的/GS とも生存。応答 lane は [N3] で無傷",
+            th05_ok && th4_broken && gs05_ok && gs4_broken && far / min_bond > 0.3,
             format!(
-                "熱的支持: V=0.5 {} 辺 (= ring) / V=4 {} 辺 (偽 NNN 混入 = 非 Gaussian 静的障害の実例) / GS: V=0.5 {} 辺・V=4 {} 辺 (= ring, CDW 対蹠 0.13 は最小 bond の {:.0}%)",
+                "熱的支持: V=0.5 {} 辺 (= ring) / V=4 {} 辺 (偽 NNN) / GS: V=0.5 {} 辺 (= ring)・V=4 {} 辺 (全対 — CDW 対蹠 0.13 は最小 bond の {:.0}% で ln3 段差なし)",
                 s05.len(),
                 s4.len(),
                 s_gs05.len(),

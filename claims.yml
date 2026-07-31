@@ -4498,7 +4498,7 @@
 - id: QRN-BRIDGE-016
   version: "v31.5"
   level: C3
-  claim: "非 Gaussian transfer の機械化 (8 検査 PASS, spinless t-V ED N=10 + Z2GaugeRing L=8)。**中心定理 = 密度曲率則の厳密転移**: (n̈⁺−n̈⁻)/(4ε) = t² が V ∈ {0,2,4} で 1.000000000000 (≤ 1e-12) — (i) probe 積状態差は ε に厳密線形 (ii) 密度対角 V 項は二重交換子の対角トレースで厳密に消える。測定 lane (V=2 実時間 ED・密度時系列のみ) も rel 1.3e-8。**大域 oracle は Gaussian-only と確定**: witness (密度-密度 Wick 残差) は V=0 で 1.5e-14 → V=4 で 0.14 単調増大、V=2 で凍結バー 1e-8 超え → NonGaussianDomain 棄却 (parent K は hopping 外へ max 0.032 漏れる — 棄却しなければ偽の長距離結合を誤読)。**静的 B3 の非 Gaussian 障害**: 熱的 V=4 は CDW 前駆の次近接相関で支持が破れる (20 辺 = ring + 偽 NNN) — 応答 lane は同状態領域で無傷。GS V=4 は N=10 で生存 (対蹠/bond 比 0.66 の margin 縮小を記録)。**Z2 拘束系は位相のみ転移**: 非 bond 応答 7.4e-17 (厳密 0)・bond 重みは拘束の系統偏差 14.3% (probe 積構造の破れ・背景相関 3.6e-2)。凍結バー holdout (未使用 2 セル): oracle 棄却・応答復元の両生存。"
+  claim: "非 Gaussian transfer の機械化 (8 検査 PASS, spinless t-V ED N=10 + Z2GaugeRing L=8)。**中心定理 = 密度曲率則の厳密転移**: (n̈⁺−n̈⁻)/(4ε) = t² が V ∈ {0,2,4} で 1.000000000000 (≤ 1e-12) — (i) probe 積状態差は ε に厳密線形 (ii) 密度対角 V 項は二重交換子の対角トレースで厳密に消える。測定 lane (V=2 実時間 ED・密度時系列のみ) も rel 1.3e-8。**大域 oracle は Gaussian-only と確定**: witness (密度-密度 Wick 残差) は V=0 で 1.5e-14 → V=4 で 0.14 単調増大、V=2 で凍結バー 1e-8 超え → NonGaussianDomain 棄却 (parent K は hopping 外へ max 0.032 漏れる — 棄却しなければ偽の長距離結合を誤読)。**静的 B3 の非 Gaussian 障害**: 強結合 V=4 は熱的 (20 辺 = ring + 偽 NNN) でも GS (CDW スケール分離消失 → 全 45 対) でも支持が破れる — 応答 lane は同状態領域で無傷 (v31.6 の最終 gap 則凍結で GS 側の裁定を「生存」から「破れ」に更新 — 暫定規則は非有意段差で偶然 ring に切れていた)。**Z2 拘束系は位相のみ転移**: 非 bond 応答 7.4e-17 (厳密 0)・bond 重みは拘束の系統偏差 14.3% (probe 積構造の破れ・背景相関 3.6e-2)。凍結バー holdout (未使用 2 セル): oracle 棄却・応答復元の両生存。"
   status: "転移相図の確定 — 応答読み出しは密度対角相互作用スコープで Gaussian 資格の外へ拡張可能・oracle は Gaussian-only"
   layer: bridge
   evidence_kind: mechanism_demo
@@ -4515,3 +4515,24 @@
     - "witness は密度-密度 Wick 残差の最小実装 — 一般 4 点・高次キュムラント階層は未整備。"
     - "ED は N ≤ 10・熱力学極限スケーリング未走査。凍結バーは同一バイナリ内宣言 (コミット分離凍結は HOLD-7)。"
     - "初期予想の訂正 2 件を記録: CDW GS の B3 破れは N=10 で未発現 (破れは熱的 V=4 に出た)・Z2 重み偏差は想定 5% → 実測 14.3%。"
+
+- id: QRN-BRIDGE-017
+  version: "v31.6"
+  level: C3
+  claim: "計量 VR persistence・高 genus・3D homology (8 検査 PASS)。**3D engine**: β₃ = dim ker ∂₃ − rank ∂₄ で **K5 anchor が im ∂₄ の必須性を機械化** (4-simplex を落とすと (1,0,0,0) が S³ の (1,0,0,1) に化ける)。anchors: ∂Δ⁴/16-cell/Kuhn T³ L=3 (1,3,3,1)/中実立方体 + **3-manifold link 分類** (内部 = S²・境界 = D²・1 点接着は not-manifold)。**from-state 3D**: 曲率則測定 lane (状態非依存・時系列のみ) から T³ L=4 (1,3,3,1) closed・S³ = 16-cell (1,0,0,1) closed・3-ball (1,0,0,0) boundary を全て支持 欠0余0 で同定 — **幾何読み出しが初めて 3 次元を跨いだ**。**計量 VR persistence** (事前登録: ℓ = 1/√ŵ + 最短路閉包): 円環 1/3 法則 death/周長 = 0.3367 (理論 1/3)・大小 2 穴の寿命分離 5.0/2.0 (比 2.50 — **v29.6 既知限界の解消**)・**genus-2 (42 頂点) β₁ = 4 の初同定**・narrow neck 捏造なし・近接同穴の非合体・**安定性定理 bottleneck ≤ sup|Δd| の機械照合** (σ = 2%/5%)。**発見**: T³ L=3 は周期軸線の巻き付き 3-クリークで clique complex ≠ 三角化 (flag 性の破れ — 最小周期系に系サイズ下限)。**器械最終化**: gap 抽出器の 2 故障モード (跨ぎ未評価/跨ぎ支配) を根治した最終規則 (窓内有意段差 ≥ ln 3・なければ窓 = 単一クラスタ) を v313–v316 に統一凍結 — v31.5 [N5] GS V=4 の裁定を「破れ」に更新。測定 lane の dt はスペクトル半径スケールに昇格 (1D 固定 dt は次数 14 で O(1) 誤差)。"
+  status: "3D・計量到達 — HOLD-7 (v32.0) が凍結器械で holdout 検証する"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v316_metric_vr.rs"
+    result: "results/v316_metric_vr.txt"
+    doc: "docs/uft-v31.6.md"
+  limitations:
+    - "T³ は L=4 (64 頂点)・S³ は 16-cell — レンズ空間等の非自明 3 多様体・大型 3D 系は未走査。"
+    - "VR persistence は H1 まで (H2 persistence 未実装 — β₂ は clique 側)。bottleneck は有意 bar ≤ 6 の brute force。"
+    - "計量はグラフ測地 — 埋め込み計量との比較・regulator 依存は v31.7 以降。GAP_MIN = ln 3 は設計判断 (HOLD-7 で凍結検証)。"
+    - "器械最終化に伴う裁定更新 1 件 (v31.5 [N5] GS V=4) は監査注記として uft-v31.5.md に記録 — 歴史文書は改変せず追記。"
