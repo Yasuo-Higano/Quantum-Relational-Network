@@ -4473,3 +4473,24 @@
     - "「readable」の境界は抽出器 (gap 則) に相対的 — ranking との差がそれを機械的に示す。抽出器の恣意性は HOLD-7 の凍結で消す。"
     - "ノイズは iid Gaussian — 相関ノイズ・デコヒーレンスは未走査。"
     - "開発記録: ガードなし gap 則は f64 尾部をカットし偽陽性 (v29.6 スケールガードの独立再発見)。β=25 の pair 全対棄却の初期予想も誤り — 縮約混合で pair rdm は常に full-rank (棄却なしに読めないセル)。"
+
+- id: QRN-BRIDGE-015
+  version: "v31.4"
+  level: C3
+  claim: "不変 operator response atlas と factorization no-go (8 検査 PASS)。**Part A**: parity-even 局所演算子基底の whitened atlas X̂ = G^{−1/2}XG^{−1/2} (静的 Wick = Tr(M(I−C)M'C) 二重実装 5.6e-17・動的 retarded 二重経路 1.9e-11) — 特異スペクトル/作用素/Frobenius/核/時間積分ノルムが**任意の可逆再結合 L_i で不変** (7.8e-15, unitary に限らない)。**B3 = atlas の (n,n) 成分 (|X| = C² 厳密)・B4 = 動的成分の到着時刻圧縮** (Spearman 0.991) — PROMPT/11 第二課題「B3/B4 の統一」の解。rank 欠損 Gram は ObservableSupportCertificate {rank, threshold, nullspace} + 支持制限 whitening (清浄基底と厳密一致 0.0) — 無条件擬似逆の禁止を実装。**Part B (E3 no-go の定理化)**: 同一 ring12 状態が factorization の選び方で 3 幾何 (site = ring 12 辺 / eigenmode = 幾何なし [モード間相関 4.3e-16] / pair 回転 = 24 辺) — state-only 静的共分散では一意選定不可。**負制御**: 疎性基準は mode 基底 (nnz 12 < 24) を選び幾何を自明化 — hidden basis convention 流入の検出器。**OperationalAlgebra が幾何を選ぶ**: site-probe 応答 = ring (2.2e-16)・mode-probe 応答 = 厳密 0 (1.3e-30) — 因子分解は操作代数 (準備・介入・測定・両立性) が運ぶ。v29.5 [C5] の空隙の定理化。"
+  status: "atlas 資格 + E3 no-go 確定 — FactorizationGivenObservables の登録には状態以外の操作的入力が必須と確定"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v314_operator_atlas.rs"
+    result: "results/v314_operator_atlas.txt"
+    doc: "docs/uft-v31.4.md"
+  limitations:
+    - "atlas は実対称枠 (Im hop 演算子は複素 M — 複素側の gauge 共変性は v31.2 [L3] が担保・一般複素 atlas は未実装)。"
+    - "no-go は静的 one-body 共分散からの一意選定不可の言明 — 高次相関・非 Gaussian 資源による選定は未走査。"
+    - "どの factorization が「物理的」かは E4 (自然との橋) の問いであり本版の射程外。"
+    - "開発記録: 2 サイトノードの実対称 quadratic 空間は 3 次元 — 初版の 4 本目 (n₁−n₂) は従属で Gram 正定 assert が捕捉 (支持証明書経路の存在意義の実地確認)。"

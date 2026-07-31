@@ -1,0 +1,16 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v31.4 不変 operator response atlas / factorization no-go (PROMPT/12) ===
+
+  [PASS] [A0] Wick 静的共分散: 4 重ループ vs 行列積の二重実装 ≤ 1e-13 + n-n 成分 = −C_pq² 厳密  二重実装乖離 5.55e-17 / n-n 解析値乖離 1.39e-17
+  [PASS] [A1] whitening 不変性: 特異スペクトル/作用素/Frobenius/核ノルムが任意の可逆再結合 L_i で不変 ≤ 1e-9  max 乖離 7.80e-15 (乱択 8 draws — unitary に限らない)
+  [PASS] [A2] 動的 atlas: 短時間展開との二重経路 ≤ 1e-6 + 時間積分ノルム ∫‖R̂‖dt の再結合不変 ≤ 1e-9  二重経路乖離 1.86e-11 / ∫‖R̂‖dt = 0.589940 (再結合後乖離 3.33e-16)
+  [PASS] [A3] B3 = atlas の (n,n) 成分 (|X| = C² 厳密) / B4 = 動的 (n,n) 成分の到着時刻圧縮 (Spearman ≥ 0.8)  B3 成分乖離 1.39e-17 / Spearman(τ_R, dist) = 0.991
+  [PASS] [A4] rank 欠損 Gram (従属演算子): ObservableSupportCertificate {rank 3, null 1} + 支持制限 whitening = 清浄基底の不変量 ≤ 1e-9  rank 3 / nullspace 1 / 支持 vs 清浄の特異値乖離 0.00e0 (無条件擬似逆は不使用)
+  [PASS] [A5] mode factorization no-go: モード間静的相関は厳密 0 (幾何なし) + 疎性基準は mode 基底 (nnz 最小) を選ぶ — state-only 選択の負制御  モード間 |C̃| max 4.34e-16 / nnz: site 24 vs mode 12 — 「最も疎な基底」は幾何を自明化する
+  [PASS] [A6] 同一状態の 3 因子分解 → 3 幾何 (site = ring 12 辺 / mode = 幾何なし / pair 回転 = 別の支持) — 一意選定は state-only では不可能  site 支持 12 辺 (= ring) / 回転基底 支持 24 辺 (≠ site) / mode 0 辺 — 全て同じ大域状態の「正しい読み」
+     site 代数 ["C± = I/2 ± εP_i (site 射影)"] → ring / mode 代数 ["C± = I/2 ± εP_m (mode 射影)"] → 幾何なし
+  [PASS] [A7] OperationalAlgebra が幾何を選ぶ: site-local probe → ring (厳密) / mode-local probe → 応答 0 (厳密) — 因子分解は操作代数が運ぶ (状態ではない)  site 応答 = 隣接重み² (乖離 2.22e-16) / mode 間応答 max 1.32e-30
+
+[判定] atlas と no-go が確定 — whitened 不変量は演算子基底の可逆再結合に不変で B3/B4 はその成分/圧縮。同一状態は複数の因子分解で異なる幾何を返し (mode 基底では幾何が消える)、state-only の選択基準 (疎性) は自明幾何を選ぶ。FactorizationGivenObservables には OperationalAlgebra (準備・介入・測定・両立性) の入力が必要 — v29.5 [C5] の空隙が定理化された
+
+総合判定: [PASS]
