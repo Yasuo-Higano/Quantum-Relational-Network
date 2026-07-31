@@ -10,7 +10,7 @@
   [PASS] [S2b] 解析閉形式: ρ_D(s) = s²/(160π²) [m=0] / (pE_p/4π²)[(2/3)p²−(4/15)p⁴/E_p²] [m>0]  max 相対差 = 5.6e-16 (m=0) / 6.7e-16 (m>0)
   [PASS] [S5] Lorentz 不変性: σ_D(E;q) は s = E²−q² のみの関数 (異 q 同 s, 相対 1e-8)  max 相対差 = 1.6e-15
     [Route II] A (分散, m=0) = -6.33257396e-4 (1 s)
-    [Route I]  A (直接, m=0) = -6.33257425e-4 (2 s)
+    [Route I]  A (直接, m=0) = -6.33257425e-4 (1 s)
   [PASS] [S3] Gate 2: Route I (直接ループ) = Route II (分散) — 相対 5e-4  相対差 = 4.63e-8
   [PASS] [S3b] Gate 2 (第三経路): A = −1/(160π²) (解析 — 自前導出, 相対 1e-4)  A_II/A_ana − 1 = -3.07e-9, A_I/A_ana − 1 = 4.32e-8 (16π²·A_ana = −1/10)
   [PASS] [S4] テンソル整合: σ_X̂ = σ_D (spin-2 の 2 偏極が同一 form factor, 相対 1e-8)  max 相対差 = 6.7e-16
@@ -32,4 +32,4 @@
 
 [判定] 事前登録 (a): **Gate 2 開通 — A_oracle 凍結、v26.8-B (staggered TT continuum limit) へ進む資格**
 
-総合判定: [PASS] (18 s)
+総合判定: [PASS] (10 s)

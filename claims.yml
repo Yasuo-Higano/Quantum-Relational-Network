@@ -4370,3 +4370,23 @@
   limitations:
     - "train は設計区画 — 検証力はない。holdout (v30.0-B) が (Betti, 曲面性) の離散バーで本採点する。"
     - "family は資格状態族 (熱的 βt=1)・v ∈ [0.65, 1.45] に制限 — 臨界状態・強い重み変調は v29.6 [T2b] の既知限界の外側のまま。"
+
+- id: QRN-BRIDGE-011
+  version: "v30.0-B"
+  level: C3
+  claim: "HOLD-6 holdout (hold-0..7, 初開封) の本採点 — 事前凍結の離散バー・調整なし: **全 8 系バー内 (満票)**。クラスは seed 決定 (cylinder×3, two-holes×2, torus×1, sphere×2): torus (1,2,1) closed・sphere (1,0,1) closed・two-holes (1,2,0) boundary 等、全て (Betti, 曲面性) 厳密一致 + 窓全会一致 4/4。dimension-agnostic pipeline (v29.6 資格) が**新鮮な重み場つき 2D holdout で生存** — 1 次元を跨いだ幾何読み出しの初の holdout 検証。[H0] が SECRET 開示 (sha256 = コミットメント fe3c9cbd… 照合)・train seed 一致・FROZEN TOPO v32 の SHA-256 逐語一致を機械検査。開封順序 (コミットメント + 凍結 [v30.0-A = 8024f17] → 開示 + 開封 [本版]) は別コミットで第三者検証可能。"
+  status: "内部 holdout 生存 — bridge law 登録は独立外部再現 0 のため引き続き行わない (登録に最も近い能力 = SpatialTopologyGivenFactorization)"
+  layer: bridge
+  evidence_kind: internal_holdout
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: preregistered_holdout
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v300b_hold6_open.rs"
+    result: "results/v300b_hold6_open.txt"
+    doc: "docs/uft-v30.0.md"
+  limitations:
+    - "disk クラスは holdout 抽選に出なかった (seed の選択 — train でのみ検証。恣意でないことは seed 系列の第三者検証で確認可能)。"
+    - "family は資格状態族 (熱的 βt=1)・v ∈ [0.65, 1.45]・5 クラスに制限 — 臨界状態・高 genus・3D は未試験 (第三十一期課題)。"
+    - "内部 holdout であり独立外部再現ではない — bridge law 登録の blocker は R2/R3 のまま。"

@@ -1,0 +1,34 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v30.0-B HOLD-6 の開封と本採点 (第三十期 最終検証) ===
+
+  [PASS] [H0] 凍結の完全性 — SECRET コミットメント・train seed・FROZEN TOPO v32 の逐語一致  commitment true / train true / v32 true (e4a1472f76285674…)
+
+  [開封] hold seed (本走行で初導出):
+        hold-0 = 11393606124885254543
+        hold-1 = 15545862665211327605
+        hold-2 = 6283310337581222689
+        hold-3 = 9815756477952419785
+        hold-4 = 15268682729712380577
+        hold-5 = 8636970978088425679
+        hold-6 = 10019632279346270344
+        hold-7 = 14419833548128454049
+
+  -- [H1] holdout 8 系 (クラスは seed が決定, 重み場 + 置換つき) --
+     instance  class      n    β 実測     曲面裁定   一致  窓   裁定
+     hold-0   cylinder    35  [1, 1, 0]  boundary  true   4   バー内
+     hold-1   two-holes  149  [1, 2, 0]  boundary  true   4   バー内
+     hold-2   cylinder    45  [1, 1, 0]  boundary  true   4   バー内
+     hold-3   cylinder    48  [1, 1, 0]  boundary  true   4   バー内
+     hold-4   torus       64  [1, 2, 1]  closed    true   4   バー内
+     hold-5   two-holes  116  [1, 2, 0]  boundary  true   4   バー内
+     hold-6   sphere      42  [1, 0, 1]  closed    true   4   バー内
+     hold-7   sphere      42  [1, 0, 1]  closed    true   4   バー内
+
+  [採点] [H1] holdout 8 系: バー外 0 件 (離散バー = (Betti, 曲面性) 厳密一致 + 全会一致 + 窓 ≥ 2)
+  [PASS] [H2] 採点可能性 — 全 8 系で pipeline が裁定を返した (全窓縮退保留なし)  採点不能 0 件想定 / バー外 0 件は [採点] 行 (器械破れではない)
+
+[裁定] HOLD-6 holdout (事前凍結の離散バーでの本採点 — 調整なし): 全 8 系バー内 — dimension-agnostic pipeline が新鮮な重み場つき 2D holdout で生存
+
+[成果物] ./results/v300b_hold6_open.json
+
+総合判定: [PASS]

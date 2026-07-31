@@ -1,12 +1,16 @@
 # QRN v30.0 — 第三十期 統合: 能力別 certificate・HOLD-6・期の残高
 
-**Version**: v30.0-A (2026-07-30 — 凍結半) / v30.0-B (holdout 開封 + 期統合 — 未実行)
+**Version**: v30.0-A (2026-07-30, コミット 8024f17 — 凍結半) / v30.0-B (2026-07-31 —
+儀式 + holdout 開封 + 期統合)
 **Sim**: `sim/src/qrn_core.rs` (能力別 certificate) → `results/v272_core_contract.txt`
 (7 検査 PASS) / `sim/src/bin/v300a_hold6_freeze.rs` → `results/v300a_hold6_freeze.txt`
-(4 検査 PASS)
-**位置づけ**: PROMPT/11 ロードマップの最終版。qrn_core の共有部変更を伴うため、
-本コミット後に**完全再走の儀式** (全 176 本) を実施し、その後 v30.0-B が HOLD-6 を
-開封して期を閉じる。
+(4 検査 PASS) / `sim/src/bin/v300b_hold6_open.rs` → `results/v300b_hold6_open.txt`
+(器械 2 検査 PASS + [採点])
+**儀式**: qrn_core 共有部変更に伴う完全再走 — **全 176 本 実行, 総計 PASS 1224 /
+FAIL 0** (`results/v300_full_suite.txt`, 壁時計 ~15.3 h, JOBS=12)。**末桁ドリフト:
+既存 173 本の PASS/FAIL は儀式前後で台帳比較により完全一致** (差分は新規 3 本
+[v295 11 + v296 6 + v300a 5 = +22] のみ) — 能力別改訂は既存物理に無波及。
+**位置づけ**: PROMPT/11 ロードマップの最終版 = 第三十期の期統合。
 
 ---
 
@@ -62,16 +66,66 @@ sha256(SECRET) = fe3c9cbd0c2d733f852422734ca4f212cd01e488fac763142ceef07d598d6b6
   連続 → link は弧のまま)。「生成器の期待プロファイル自体を検査する」ゲートとして
   常設。
 
-## 3. v30.0-B (本コミット時点で未実行)
+## 3. v30.0-B — HOLD-6 の開封と本採点 (確定表)
 
-儀式 (全 176 本再走 — qrn_core 変更の検証) の完走後に: SECRET 開示 → hold-0..7
-初開封・本採点 (調整なし・[採点] 行) → 期統合 (第三十期の確定残高・教訓・
-第三十一期への課題) を本文書に追記して期を閉じる。
+SECRET を開示 (`HOLD6-b4b84a54679589ad2773200a3251c43d` — [H0] が sha256 =
+コミットメント fe3c9cbd… と train seed の一致を機械照合) し、hold-0..7 を初生成・
+本採点した (調整なし):
 
-## 4. 開発記録 (v30.0-A)
+| instance | class (seed 決定) | n | β 実測 | 曲面裁定 | 裁定 |
+|---|---|---|---|---|---|
+| hold-0 | cylinder | 35 | (1,1,0) | boundary | バー内 |
+| hold-1 | two-holes | 149 | (1,2,0) | boundary | バー内 |
+| hold-2 | cylinder | 45 | (1,1,0) | boundary | バー内 |
+| hold-3 | cylinder | 48 | (1,1,0) | boundary | バー内 |
+| hold-4 | torus | 64 | **(1,2,1)** | closed | バー内 |
+| hold-5 | two-holes | 116 | (1,2,0) | boundary | バー内 |
+| hold-6 | sphere | 42 | **(1,0,1)** | closed | バー内 |
+| hold-7 | sphere | 42 | (1,0,1) | closed | バー内 |
+
+**全 8 系バー内 (満票)** — 全会一致・採用窓 4/4。dimension-agnostic pipeline が
+**新鮮な重み場つき 2D holdout で生存**した。注記: disk クラスは holdout 抽選に
+出なかった (seed の選択 — train でのみ検証済み。恣意ではないことは seed 系列の
+第三者検証で確認可能)。
+
+## 4. 第三十期の統合 — 確定残高
+
+**期テーゼ: 「監査が裁定を正し、凍結が誠実を守り、読み出しが次元を跨いだ」**
+
+| 版 | 成果 (確定) |
+|---|---|
+| v29.1 | Integrity Erratum — linfit 切片バグの再現・訂正。**B2 復活・B1 のみ棄却**。LinearFit 型 + 変成テスト常設 |
+| v29.2 | 意味論再基礎化 — B5/B6 定義凍結・S×C 採点原則・二層分離・HOLD-5 コミットメント |
+| v29.3 | S×C 合成 train 288 セル満票 (Wilson 実対称化・橋なし優先 pipeline) |
+| v29.4a | val 1 回使用 — 資格健全 + 定量バー機械導出 + **SECRET 開示** |
+| v29.4b | **HOLD-5 本採点**: 資格 576 満票・**v̂ 真値照合 24/24 (円環 Δ∞ ≤ 7%)・τ 予言 24/24・regulator 間 23/24** (1 対不成立を確定 — 開放鎖境界系統) |
+| v29.5 | collision atlas — **静的核衝突対 (P6, 693) 発見** (静的核は sign(A) まで — KIN が 0.5 で分離 = 「静的単独不可・応答併用可」の最小実例)・Petersen 誤認の機構同定・factorization 選定不能の機械記録 |
+| v29.6 | **dimension-agnostic pipeline** — torus (1,2,1)/cylinder/disk/sphere (1,0,1) を状態から end-to-end 同定。臨界 GS の境界増強 2D 版を発見 |
+| v30.0 | 能力別 certificate (ProperTime への門は関数ごと不在)・**HOLD-6 満票**・儀式 PASS 1224/0 |
+
+**正直な残高 (変わらないもの)**:
+- **bridge law 登録簿は全能力で空のまま** — HOLD-5/6 の生存をもってしても登録
+  しない。blocker は独立外部再現 0 (R2/R3 の機械化)。登録に将来最も近い能力は
+  SpatialTopologyGivenFactorization (HOLD-6 満票 + v29.5 の同値類証明書が裏付け)。
+- PRED-019 未登録 (QRN 固有の数値の解析的導出なし)・自然の観測量の的中 0。
+- scope はすべて「**与えられたノード因子分解の下で**」— FactorizationBridge は
+  未定義のまま (v29.5 [C5] がその空隙自体を機械記録)。
+
+**未解決 (第三十一期への課題)**: (i) 不変ノルム核 (PROMPT/11 第二課題の残り —
+B3-COV と B4 を同一応答 atlas の断面として統一する superoperator ノルム)。
+(ii) 臨界状態に頑健な 2D 核 (境界増強・Friedel 共鳴を除去する読み出し)。
+(iii) 計量 Vietoris–Rips persistence (穴スケールの寿命分離)・高 genus・3D。
+(iv) regulator 間不一致 1 対 (開放鎖境界) の機構の定量化。
+(v) **外部独立再現の公募 (最優先)** — reproducer/ は 3 単位を公開済み、
+replications.yml は空のまま。
+
+## 5. 開発記録 (v30.0)
 
 - ピンチ点の発見が [G1b] を生んだ: holdout の「期待プロファイル」も検査対象で
   ある — 採点器だけ検査して生成器を信じるのは非対称だった。
 - 能力別 certificate の「構成不能」は 3 段構え: (i) 能力トレイト未実装 (型レベル)
   (ii) sealed で外部実装封鎖 (iii) 登録簿空 (値レベル) — Lean の昇格不能定理
   (QrnPromotion.lean) と合わせて 4 重。
+- 儀式は 4 回目 (v28.0, v29.1, 本版 ×1 + v25 期) — 二相実行 (監査層後段) 以降、
+  偽 FAIL ゼロが続いている。台帳比較 (manifest tsv の git 前後 diff) による
+  ドリフト検査を儀式の標準手順に昇格。
