@@ -4756,3 +4756,23 @@
     - "toy (3 モード JW, dim 8) — pair hopping・4 体・複数 hyperedge の交差項は HOLD-8 セルで走査 (枠のみ本版で確定)。"
     - "遷移率和則の係数 1/4 は JW bond 演算子の規約 (‖h_bond‖²_F = 4) — 一般格子の規約非依存正規化は外部単位の凍結時に固定する。"
     - "条件付き probe は補助ノード占有の射影準備を仮定 — 準備誤差下のノイズ裁定は SupportNoiseCertificate の変成として未走査。"
+
+- id: QRN-BRIDGE-026
+  version: "v32.6"
+  level: C2
+  claim: "VR exactness — 離散円環 bar 定理と H2 persistence (6 検査 PASS): (i) **規約の型**: RipsConvention (DiameterLessThan | DiameterLessOrEqual)・BarEndpoint (Open | Closed) — 整数 filtration で VR_< ≡ VR_≤(r−1)・bar 端点は規約差でちょうど +1 シフト (n = 5..20 全数)。(ii) **離散円環 H1 bar 定理**: C_n (測地・VR_≤) の H1 bar = [1, ⌈n/3⌉) のただ 1 本・persistence = ⌈n/3⌉ − 1 — n = 4..30 全数機械化 (persistence bar と per-step β₁ [GF2 rank] が全 r で一致)。n ≡ 0 (mod 3) は death/n = 1/3 厳密・n ≢ 0 は上から (超過 ≤ 2/(3n)) — **連続極限 L/3 − s と離散 exact の分離を確定** (L/3 − s を全離散系の exact formula として凍結しない)。(iii) **H2 persistence (sparse + column clearing)**: 8 面体 = H2 bar [1,2) × 1・**wedge-S² 遷移** (n ≡ 0 mod 3, r = n/3 で β₂ = n/3 − 1: (9,2),(12,3),(15,4) — S¹→S³ の狭間の縮退点の正体)・clearing on/off で bar 完全一致 (列削減 25% 節約) — 大規模 H2 の brute-force blocker への器械解。(iv) **K3-holes の retrodiction**: 2 穴比の理論値 (⌈16/3⌉−1)/(⌈6/3⌉−1) = **5.0 = HOLD-7 実測 5.00 と厳密一致** — 凍結バー 2.67 (周長比例) の誤りの機構確認 (バー・不成立記録は変更しない)。train 対 (14,8) → 2.0 (実測 2.20 — 重み場系統込み)。(v) **S³ 帯の直接測定**: VR_≤(C₁₁, 3) = (1,1,0,0) → VR_≤(C₁₁, 4) = (1,0,0,1) (β₃ は ∂₄ 必須)。"
+  status: "1/3 法則は発見でなく導出 — 次の holdout の VR バーは離散式 pers = ⌈n/3⌉ − 1 から導出する。重みつき円環の実数 filtration exact bar は次段"
+  layer: instrument
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v326_vr_exactness.rs"
+    result: "results/v326_vr_exactness.txt"
+    doc: "docs/uft-v32.6.md"
+  limitations:
+    - "対象は一様重み円環 + 8 面体の整数 filtration — 重みつき円環 (実数 filtration) の exact bar は未導出 (birth = max 辺重みの実数化が予想・holdout バー凍結時に導出)。"
+    - "円の VR が球面列を経ること自体は既知 (Adamaszek–Adams) — 寄与は QRN の離散測地・規約・有限標本への厳密化と K3-holes の閉形式 retrodiction。"
+    - "レンズ空間・大型 3D は意図的に後回し (Z2 Betti + link では分類不能 — torsion 不変量の能力分離が先, PROMPT/13 §6)。"

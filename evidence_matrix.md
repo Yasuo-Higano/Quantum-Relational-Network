@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 250 件 / 依存辺 423 本 / 仮定 40 件 / 反証条件 15 件。
+主張 251 件 / 依存辺 423 本 / 仮定 40 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -262,6 +262,7 @@
 | QRN-BRIDGE-023 | C3 | v32.3 | CDR | 1 | 2 | 1 | 1 |
 | QRN-BRIDGE-024 | C3 | v32.4 | CDR | 2 | 2 | 1 | 1 |
 | QRN-BRIDGE-025 | C3 | v32.5 | CDR | 2 | 2 | 1 | 0 |
+| QRN-BRIDGE-026 | C2 | v32.6 | CDR | 0 | 2 | 1 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -271,7 +272,7 @@
 |---|---|---|---|---|---|
 | ASM-LATTICE | framework | active | 115 | 176 | QRN-ARROW-001, QRN-BORN-001, QRN-BRIDGE-001, QRN-BRIDGE-002, … |
 | ASM-GAUSS | framework | active | 58 | 90 | QRN-ARROW-001, QRN-BRIDGE-001, QRN-BRIDGE-002, QRN-BRIDGE-003, … |
-| ASM-LOWDIM | framework | active | 33 | 88 | QRN-ARROW-001, QRN-BORN-001, QRN-BRIDGE-001, QRN-BRIDGE-002, … |
+| ASM-LOWDIM | framework | active | 34 | 89 | QRN-ARROW-001, QRN-BORN-001, QRN-BRIDGE-001, QRN-BRIDGE-002, … |
 | ASM-SEED | design | active | 18 | 86 | QRN-BH-001, QRN-BORN-001, QRN-BRIDGE-007, QRN-BRIDGE-008, … |
 | ASM-PDG | data | active | 47 | 70 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
 | ASM-TORUS | model | active | 45 | 65 | QRN-KK-001, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
@@ -284,7 +285,7 @@
 | ASM-MODK | definition | active | 14 | 49 | QRN-CORE-003, QRN-CORE-014, QRN-GRAV-001, QRN-GRAV-002, … |
 | ASM-KTM | model | active | 2 | 42 | QRN-EXP-003, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
 | ASM-EDGE-SEMANTICS | design | active | 2 | 41 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
-| ASM-IEEE754 | trust | active | 33 | 39 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
+| ASM-IEEE754 | trust | active | 34 | 40 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
 | ASM-GAUGE-GROUP | model | active | 14 | 37 | QRN-GAUGE-003, QRN-GAUGE-004, QRN-GAUGE-006, QRN-GAUGE-007, … |
 | ASM-ANOMALY-COEFS | data | active | 14 | 36 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
 | ASM-CHIRALITY | model | active | 11 | 35 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
@@ -314,7 +315,7 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 232 | 242 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 233 | 243 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CONTINUUM | open | 63 | 102 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-CKM-OOS | open | 12 | 63 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-BMV | open | 8 | 48 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |

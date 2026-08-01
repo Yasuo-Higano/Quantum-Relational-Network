@@ -1,0 +1,13 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v32.6 VR exactness — 離散円環 bar 定理・端点規約・H2 persistence (PROMPT/13 §6) ===
+
+  [PASS] [V0] 規約の型 — VR_< と VR_≤ は整数 filtration で端点 +1 シフト (規約を bar が運ぶ)  death_<(n) = death_≤(n) + 1 (n = 5..20 全数)・VR_<(r) ≡ VR_≤(r−1)
+  [PASS] [V1] 離散円環 H1 bar 定理 — bar = [1, ⌈n/3⌉) ただ 1 本 (n = 4..30 全数)・per-step β₁ 一致・連続極限 1/3 との分離  例 (n, death, pers) = [(4, 2, 1), (5, 2, 1), (6, 2, 1)]・n ≡ 0 (mod 3) は death/n = 1/3 厳密 (9 件)・n ≢ 0 は上から (max 超過 0.1667 ≤ 2/(3n))
+  [PASS] [V2] H2 persistence (sparse + clearing) — 8 面体 [1,2)・wedge-S² 遷移 β₂ = n/3 − 1・clearing 同一性  8 面体 H2 = [1,2) × 1・wedge (n, β₂(n/3)) = [(9, 2), (12, 3), (15, 4)] (= n/3 − 1, bar は [n/3, n/3+1))・clearing 列削減 13744 → 10310 演算 (節約 25%)
+  [PASS] [V3] アフィン則 — pers = ⌈n/3⌉ − 1 の 2 穴比: (16,6) → 5.0 = HOLD-7 実測 5.00 の retrodiction  pers(16) = 5, pers(6) = 1 → 比 5.00 (HOLD-7 K3-holes 実測 5.00・凍結バー 2.67 = 周長比例の誤り)・(14,8) → 2.00 (train 実測 2.20 — 重み場系統込み)。バーと不成立記録は変更しない
+  [PASS] [V4] S³ 帯 — VR_≤(C₁₁, 3) = S¹ (1,1,0,0) → VR_≤(C₁₁, 4) = S³ (1,0,0,1) (β₃ は ∂₄ 必須)  β(r=3) = [1, 1, 0, 0] / β(r=4) = [1, 0, 0, 1] — 円の VR が 3 球面を経る帯 (1/3 < 4/11 < 2/5)
+  [PASS] [V5] 文書アンカー — uft-v32.6.md の bar 定理・規約・追認  離散 exact bar が規約の型ごと凍結された
+
+[判定] 1/3 法則は発見でなく導出になった — 離散円環の bar は [1, ⌈n/3⌉) の閉形式で、K3-holes の 5.00 はその帰結だった
+
+総合判定: [PASS]
