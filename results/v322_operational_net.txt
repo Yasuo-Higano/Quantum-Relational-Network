@@ -1,0 +1,15 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v32.2 OperationalNet — 型分離と global-algebra erasure no-go (PROMPT/13 §2) ===
+
+  [PASS] [N0] operational_net_self_test — 役割 4 型・証明書 3 値・odd 拒否・文脈要求・閉包/commutant  役割は型・可換性は証明書・grading は構成時ゲート
+  [PASS] [N1] erasure no-go — site 族と DFT 共役族の閉包はともに M_8 (dim 64)・su(2) 対応は不在  閉包 dim: site = 64 / mode = 64 (full = true)・su(2) subspace overlap: 対角自己 = 1.000000000000・site×mode 最大 = 0.617851 (≪ 1 = 因子分解は別物)
+  [PASS] [N2] marking → 因子分解 (preview) — 両 net とも成分 3 × M_2・local_dims [2,2,2]・同一閉包から別の因子分解  site/mode の成分閉包次元 → local_dims = [[2, 2, 2], [2, 2, 2]] (読みは ExactUpToLocalUnitaryAndPermutation の候補 — 本裁定は v32.3)
+  [PASS] [N3] 役割の型分離 — 測定は積に閉じない (3→4)・準備は凸で閉じ積は tr≠1・介入は Lie で閉じる  preparation / control / measurement は同じ数学的型ではない — 型と意味論が一致
+  [PASS] [N4] 証明書 3 値 — 非可換 2√8・可換 0・跨ぎは Abstain (文脈構成・成分分解とも拒否 = 辺の強制禁止)  ν_edge = 5.656854 (= 2√8 = 5.656854)・ν_comm = 0.0e0・跨ぎ [0.3τ, 1.5τ] → abstain
+  [PASS] [N5] JW 幾何誤読の遮断 — odd は ordinary で K₃ 捏造 (‖[γ,γ']‖ = 2√8)・graded で空・型は構成時拒否  ordinary 辺 3/3 (min ‖[·,·]‖ = 5.656854)・graded 辺 0/3 (max ‖{·,·}‖ = 0.0e0)・even 双線形の ordinary 可換 = 0.0e0
+  [PASS] [N6] 封鎖の source 検査 — 禁止変換 11 の From 不在・役割型間 From 不在・odd ゲート実在・既存契約不変  閉包から marking へ戻る経路はコンパイル不能 — qrn_core/readout_contract の封鎖も不変
+  [PASS] [N7] schema/文書 — 概念登録 + 禁止変換 11 + 定理文のアンカー  no-go が型・schema・文書の三点で凍結された
+
+[判定] 大域閉包は因子分解を消す — 因子分解を運ぶのは OperationalNet (marking) であり、閉包から戻る経路は型に存在しない
+
+総合判定: [PASS]

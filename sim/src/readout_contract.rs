@@ -457,6 +457,9 @@ pub struct ObservableSupportCertificate {
 /// FactorizationGivenObservables が成立するために必要な操作的構造 (v31.4 で実装)。
 /// 静的状態だけでは因子分解は一意選定できない — 選定には準備・介入・測定・両立性の
 /// 資源が要る (v29.5 [C5] の空隙を埋める側の定義)。
+/// **v32.2 で後継が確定**: 本型は文字列リストの雛形であり、積・随伴・閉包・可換子
+/// 証明書を持たない — 精密化は `crate::operational_net::OperationalNet` (marked
+/// family of subalgebras, PROMPT/13 §2)。本型は v31.4 の記録との互換のため凍結保存。
 #[derive(Clone, Debug, Default)]
 pub struct OperationalAlgebra {
     pub preparations: Vec<&'static str>,

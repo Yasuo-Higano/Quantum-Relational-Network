@@ -4656,3 +4656,43 @@
     - "schema の負制御は自作 validator による — 外部標準実装 (ajv 等) との相互検証は外部再現者の環境に委ねる (schema は標準 draft 2020-12 の部分語彙のみを使用)。"
     - "版分離は変更手続きの規約であり、v27.4 原本の凍結性そのものは従来どおり v274_reproducer が監査する。"
     - "external_replications = 0 のまま — 本版は報告の受け皿の修復であって独立外部再現ではない。"
+
+- id: QRN-BRIDGE-022
+  version: "v32.2"
+  level: C3
+  claim: "OperationalNet と global-algebra erasure no-go (8 検査 PASS): v31.4「因子分解は操作代数が運ぶ」の操作代数を marked family of subalgebras に精密化し、**第二の no-go (目標定理 A)** を機械実証 — (i) site 生成族 {X_i, Z_i} と DFT₈ 共役族 {VX_iV†, VZ_iV†} ((C²)⊗³) の *-閉包は**ともに複素次元 64 = M₈ 全体** (HS Gram–Schmidt 成長, 決定的)。一方 su(2) 部分代数の対応は存在しない (subspace overlap: 対角自己 1.000000000000 / site×mode 最大 **0.617851**) — **同一の大域閉包・異なる因子分解 = 大域代数の同型類だけから因子分解は識別不能**。型化 = GlobalClosure (閉包の同型類のみ) → OperationalNet の変換不在 (**禁止変換 11**)。(ii) **marking は因子分解を運ぶ** (v32.3 preview): 両 net の非可換グラフ成分 = 3 × M₂ (dim 4)・local_dims [2,2,2] — 同一閉包から net ごとに別の因子分解が復元。(iii) **役割の型分離**: 測定 (作用素系) は積に閉じない (span 3 → 積で 4)・準備は凸結合で閉じ行列積は tr = 1/8 で状態でない・介入は Lie bracket で閉じる ([X₁,Z₁]/i ∈ su(2)₁ 残差 0)。(iv) **可換子証明書の 3 値**: 非可換 ‖[X₁,Z₁]‖_F = 2√8 = 5.656854・可換 0・**跨ぎ区間 [0.3τ, 1.5τ] は Abstain — 文脈構成・成分分解とも拒否 (辺の強制禁止)**。(v) **JW 幾何誤読の遮断**: 独立 3 モードの site-local odd (γ₁, γ₃, γ₅) は ordinary 可換子で完全グラフ K₃ (‖[γ,γ']‖ = 2√8) に見えるが、graded (odd×odd = 反可換子) では空グラフ (厳密 0 = 真の独立)・parity-even 双線形は ordinary で厳密可換 — **OrdinaryCommutation の net は odd primitive を構成時に拒否** (型ゲート)。"
+  status: "OperationalNet 凍結 — 構成的 recovery (double commutant・中心・gauge orbit・三値裁定) は v32.3。現行資格は parity-even lane (graded lane は odd の唯一の入口)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v322_operational_net.rs"
+    result: "results/v322_operational_net.txt"
+    doc: "docs/uft-v32.2.md"
+  limitations:
+    - "toy (dim 8)・可換子は exact ノルムの区間 — ノイズ下の可換子測定・gauge orbit 裁定・中心非自明系・graded recovery は v32.3 (目標定理 B)。"
+    - "「操作可能な観測・相互作用が tensor product structure を規定する」一般原理は既存研究 (operational tensor product / operational mereology) — 新規性は識別可能性の fiber・棄却型・証明書つき可換構造・holdout を含む構成的実装に置く (PROMPT/13 §7)。"
+    - "DFT₈ 共役は「別の因子分解」の一例 — 因子分解全体の空間 (local unitary × 置換の商) の系統走査は HOLD-8 の変成セルで行う。"
+
+- id: QRN-META-041
+  version: "v32.2"
+  level: C2
+  claim: "OperationalNet 型契約の登録 (PROMPT/13 §2): (i) sim/src/operational_net.rs — 役割 4 型 (Preparation [tr = 1・PSD を構成時資格審査] / ControlGenerator [エルミート] / MeasurementEffect [0 ≤ E ≤ I] / DriftGenerator — **相互 impl From なし**)・OperatorParity (Even/Odd)・CommutationGrading 2 タグ (sealed — **Ordinary は odd primitive を構成時拒否**: JW 弦の幾何誤読の型遮断)・CertifiedCommutator (区間 + 3 値裁定 — 跨ぎは Abstain)・OperationalNet (文脈は全対 Commuting 証明書を要求・Abstain 対があれば成分分解を棄却)・**FactorizationReading を先凍結** (Exact / SuperselectionSectors [中心非自明で tensor を強制しない] / EquivalenceClassOnly / Abstain 4 理由 — v32.3 の出力型)・**InteractionHypergraph を先凍結** (w_S = ‖H_S‖_F² — v32.5 の出力型)・共用素子 (HS 閉包成長 algebra_closure / commutant_dim [128×128 実 Gram 零空間])。(ii) core.schema.yml に概念 4 種 + **禁止変換 11 (GlobalClosure → OperationalNet)** を登録。(iii) 旧 OperationalAlgebra (readout_contract) は互換凍結 + 後継注記。v322 [N0] が資格審査・裁定・ゲートを、[N6] が impl From の不在と qrn_core/readout_contract の封鎖不変を source 検査。"
+  status: "第三十二期の共有型契約 — 共有部 (lib.rs) の変更は本版に集約し、期末に完全再走の儀式で無波及を検査する (v31 期と同じ運用)"
+  layer: meta
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/operational_net.rs"
+    result: "results/v322_operational_net.txt"
+    doc: "docs/uft-v32.2.md"
+  limitations:
+    - "型契約は封鎖経路の不在を保証するのであって、分類の物理的正しさを保証しない (ASM-LAYER-SEMANTICS と同種の規約)。"
+    - "commutant_dim は f64 数値の零空間計数 (tol = 1e-10·λ_max) — 区間演算の厳密証明書ではない。"
+    - "v32.3–v32.5 の出力型を先凍結したが、その充填 (recovery 定理・応答階層・hypergraph 測定) は各版の検査に委ねる。"

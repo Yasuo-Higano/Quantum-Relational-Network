@@ -1278,3 +1278,13 @@
   deps: [QRN-META-033]
   asm: [ASM-LAYER-SEMANTICS]
   fal: [FAL-SUITE]
+
+- id: QRN-BRIDGE-022
+  deps: [QRN-BRIDGE-015]
+  asm: [ASM-LOWDIM, ASM-IEEE754]
+  fal: [FAL-SUITE]
+
+- id: QRN-META-041
+  deps: [QRN-META-031]
+  asm: [ASM-LAYER-SEMANTICS]
+  fal: [FAL-SUITE]

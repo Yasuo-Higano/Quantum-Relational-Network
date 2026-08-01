@@ -366,6 +366,22 @@ concepts:
   layer: instrument
   status: defined
   note: "観測だけから構築する patch (B3 等の観測 graph から拡張)。provenance に構築に使った観測契約を記録"
+- name: OperationalNet
+  layer: core
+  status: defined
+  note: "操作的文脈の marked family of subalgebras (v32.2, PROMPT/13 §2) — primitive の役割 (別型 4 種)・可換子の区間証明書・文脈 (可換分解の区画)・grading (Ordinary は odd を構成時拒否) を運ぶ。旧 OperationalAlgebra (文字列雛形) の後継。因子分解を運ぶのは閉包でなくこの marking (v322 [N1][N2] erasure no-go)。実装は toy (≤ 8 次元の実演)"
+- name: PrimitiveOperation
+  layer: core
+  status: defined
+  note: "OperationalNet の最小単位 — 役割 (Preparation [tr=1/PSD 資格] / ControlGenerator [エルミート] / MeasurementEffect [0≤E≤I] / DriftGenerator) は別型で相互 From なし。準備は凸結合で・介入は Lie bracket で閉じ、測定 (作用素系) は積閉包を要求しない (v322 [N3])"
+- name: CertifiedCommutator
+  layer: instrument
+  status: defined
+  note: "(graded) bracket ノルムの区間証明書 [lo, hi] — 閾値との 3 値裁定 (Commuting / NonCommuting / 跨ぎは Abstain)。Abstain 対を含む文脈構成・成分分解は拒否される (辺の強制禁止 — HOLD-7 棄却原則の継承)"
+- name: GlobalClosure
+  layer: core
+  status: defined
+  note: "生成族の *-閉包の同型類 (次元) のみを運ぶ型 — OperationalNet・因子分解への変換は存在しない (禁止変換 11)。site 生成族も mode 生成族も同じ B(H) に閉じる (v322 [N1] erasure no-go) ため、閉包は marking を消す"
 - name: ExactFullRankCorrelation
   layer: instrument
   status: defined
@@ -410,6 +426,9 @@ forbidden_conversions:
 - from: OraclePatch
   to: OperationalPatch
   reason: "真の幾何半径で選んだ patch を操作的読み出しと偽装しない (v31.0 禁止変換 10 — 循環防止。OraclePatch は診断専用)"
+- from: GlobalClosure
+  to: OperationalNet
+  reason: "閉包は marking を消す — site 生成族も mode 生成族も同じ B(H) に閉じるため、大域代数の同型類から因子分解・操作文脈へ戻る経路は存在しない (v32.2 禁止変換 11 — global-algebra erasure no-go の型化。復元の入力は marked OperationalNet のみ)"
 
 # predictions.yml の各 PRED の分類 — v271 R11:
 #   data_relation = future_observation の PRED は status = registered でなければならない
