@@ -34,7 +34,23 @@ algorithmic_diversity_note: "同一作者・同一 AI・同一数値カーネル
 #   geometry 系能力 (spatial_topology_given_factorization 等) の blocker 解除 =
 #   **対応する claim を scope に含む D2 の 6 条件成立のみ** (D1 は数値再現どまり)。
 capability_scope_version: "v31.0"
-unit_capability_note: "unit A/B/C は geometry 能力の blocker を解除しない — geometry の登録条件は matching Unit D2 のみ (v310_readout_semantics が常設監査)"
+unit_capability_note: "unit A/B/C は geometry 能力の blocker を解除しない — geometry の登録条件は matching Unit D2 (v32.1 以降は D2-R lane) のみ (v310_readout_semantics が常設監査)"
+
+# =====================================================================
+# v32.1: プロトコル正誤表 (外部走行前の反例 — 外部再現の失敗ではない)
+# =====================================================================
+# 反例を黙って修正せず、版を分離して登録する (PROMPT/13 §1.2)。版台帳は
+# reproducer/protocols/v32.1/protocol-index.yml、発見と全数機械化は
+# sim/src/bin/v321_d2_erratum.rs (results/v321_d2_erratum.txt)。
+protocol_errata:
+- id: ERR-D2-V1
+  unit: "D2"
+  status: "superseded_before_external_run"
+  discovered: "2026-08-01 (PROMPT/13 — 外部走行 0 件の時点で発見)"
+  counterexample_graph6: "F}oXO"
+  mechanism: "熱的相関 C = (I+e^{−A})⁻¹ は A の解析関数で非辺にも歩道由来の相関が乗る — 凍結 gap 則の「窓内最大対数段差」は、非辺尾部の段差 (2.5130) が真の辺/非辺境界の段差 (1.9790 ≥ ln 3) を上回るとき誤った切断を選ぶ (11 辺 → 13 辺の余剰報告)"
+  scan: "n=7 連結同型類 853 中 22 で余剰辺 (欠落 0)・n=4..6 は 0 — v321_d2_erratum [E2]"
+  superseded_by: "D2-S (B3SupportMarginCertificate scoped) + D2-R (応答 end-to-end) — reproducer/protocols/v32.1/"
 
 # entries の書式 (v31.0 拡張 — 旧フィールドに加えて claim/capability scope を必須化):
 # - id: REP-001

@@ -20,16 +20,38 @@ h = −隣接行列, C = (I + e^{βh})⁻¹ の参照値 (1e-9 丸め)。
 
 **geometry 能力の blocker を解除できるのはこの水準のみ。**
 
-言語中立プロトコル (自分で新しくインスタンスを選ぶこと — 本リポジトリの seed を使わない):
-1. 連結グラフ G (重みつき可) を独立に選ぶ。h = −(重み行列)。
-2. 熱的 Gaussian 状態 C = (I + e^{βh})⁻¹ (β = 1) を独立実装の固有分解で構成する。
-3. readout (独立実装): B3 核 → gap 支持 → clique complex (5-クリークまで) →
-   Z2 homology (β₀..β₃ — **β₃ には ∂₄ が必須**) → vertex link 多様体性 (S²/D²/特異)。
-4. 期待: 支持 = G の辺 (欠0余0)。G が Kuhn T³ (L ≥ 4)/16-cell/中実 Kuhn 立方体の
-   1-skeleton なら β = (1,3,3,1)/(1,0,0,1)/(1,0,0,0) + link 裁定 closed/closed/boundary。
-   注意: Kuhn T³ は **L ≥ 4** (L = 3 は周期軸線の巻き付き 3-クリークで
-   clique complex ≠ 三角化 — 既知の系サイズ下限)。
-5. 失敗・不一致も同じ形式で提出する。
+**プロトコル改訂 (v32.1)**: 初版 D2 (v31.7,「任意の連結グラフ」) は外部走行 0 件の
+時点でプロトコル反例が見つかり `superseded_before_external_run` として版分離された。
+熱的相関 C = (I+e^{−A})⁻¹ は A の解析関数なので、連結グラフでは一般に非辺にも歩道
+由来の非零相関が乗り、凍結 gap 則は任意グラフの支持を厳密再現しない — 反例 graph6
+`F}oXO` (7 頂点 11 辺 → 13 辺の余剰報告)・n=7 連結同型類 853 中 22 で同型故障
+(全て余剰のみ・欠落 0)。これは外部再現の失敗ではなく実行前に発見・登録された
+プロトコル欠陥である (発見器械: `sim/src/bin/v321_d2_erratum.rs`・supersession 台帳:
+[protocols/v32.1/protocol-index.yml](protocols/v32.1/protocol-index.yml)・旧文面の
+逐語保存: [protocols/v31.7/d2-v1-superseded.md](protocols/v31.7/d2-v1-superseded.md))。
+
+現行 D2 は 2 lane に分離される。報告契約 = [protocols/v32.1/unit-d-report.schema.json](protocols/v32.1/unit-d-report.schema.json)
+(JSON Schema draft 2020-12 — 正直な失敗は適合・能力の水増しは不適合) /
+許容誤差と凍結参照値 = [protocols/v32.1/unit-d-tolerances.yml](protocols/v32.1/unit-d-tolerances.yml)。
+
+### D2-S — 静的 B3 lane ([protocols/v32.1/d2-static.md](protocols/v32.1/d2-static.md); StableEstimate scoped — blocker は解除しない)
+
+事前証明された分離マージン (**B3SupportMarginCertificate** — 走行前に真値グラフから
+計算でき、certificate 成立 ⟺ 凍結則 exact が n=4..7 全 992 グラフで例外 0) を持つ
+グラフ族に対してのみ支持と下流位相の再現を主張する。必須負制御 = `F}oXO` (凍結則の
+13 辺誤報告の再現 + certificate 不成立の確認)。certificate 不成立グラフの正答は
+rejected_no_certificate — 強制回答は fail。
+
+### D2-R — 応答 lane ([protocols/v32.1/d2-response.md](protocols/v32.1/d2-response.md); end_to_end — **blocker 解除の本命**)
+
+独立に選んだ h → 独立 probe 準備 (C± = I/2 ± εP_i) → **密度時系列のみ** → 曲率則で
+ŵ = |h_ij|² 復元 (有限行列恒等式 — 静的 lane の反例を受けない) → gap 支持 →
+clique complex → Z2 homology (β₀..β₃ — **β₃ には ∂₄ が必須**) → vertex link。
+必須セル 6: Kuhn T³ (**L ≥ 4**)・16-cell (S³)・中実 Kuhn 3-ball・T³ L=3 の flag
+破れ負制御・独立生成 sparse weighted graph・高ノイズでの Abstain(InsufficientObservation)。
+ノイズ下の支持は SupportNoiseCertificate (ガード比 — 重みバー通過は支持の保証では
+ない) で裁定する。成功で解除されるのは **spatial_topology_given_factorization の
+独立性 blocker のみ** — E3 因子分解・PRED-019・bridge law 登録は別問題のまま。
 
 ## D3 — 負定理の独立確認 (replication_level: negative_theorem)
 
@@ -63,7 +85,8 @@ probe 対 C± = I/2 ± εP_i (0 < ε < 1/2) を C(t) = e^{−iht}C±e^{iht} で�
 
 報告は replications.yml の v31.0 拡張書式で登録する (claim_ids / capabilities /
 replication_level / independence_scope / protocol_commit / generator_hash / input_hash)。
-対象 claim: D1/D2 → QRN-BRIDGE-013, QRN-BRIDGE-017 / D3 → QRN-BRIDGE-012,
-QRN-BRIDGE-015 / D4 → QRN-BRIDGE-013, QRN-BRIDGE-016。
-**geometry 能力の解除効力を持つのは matching D2 のみ** — D1/D3/D4 は数値再現・
-負定理確認・応答法則確認として登録される (それ自体に価値があるが blocker は残る)。
+対象 claim: D1/D2-R → QRN-BRIDGE-013, QRN-BRIDGE-017 / D2-S → QRN-BRIDGE-021 /
+D3 → QRN-BRIDGE-012, QRN-BRIDGE-015 / D4 → QRN-BRIDGE-013, QRN-BRIDGE-016。
+**geometry 能力の解除効力を持つのは matching D2-R のみ** — D1/D2-S/D3/D4 は数値再現・
+scoped 静的再現・負定理確認・応答法則確認として登録される (それ自体に価値があるが
+blocker は残る)。

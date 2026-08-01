@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/Yasuo-Higano/Quantum-Relational-Network/main/reproducer/protocols/v32.1/unit-d-report.schema.json",
+  "title": "QRN Unit D 再現報告 (protocol v32.1)",
+  "description": "Unit D (Geometry Identifiability) の再現報告 JSON の正式契約。v27.4 の EXPECTED_SCHEMA.json (フィールド説明を値に入れた例示 JSON) と異なり、本ファイルは JSON Schema draft 2020-12 の実スキーマである。設計原則: (1) 正直な失敗報告は適合する (status: fail と failures の記録は一級市民)。(2) 能力の水増しは不適合になる — D1/D2S/D3/D4 は capability を主張できず、D2R が主張できるのは spatial_topology_given_factorization のみ。許容誤差と凍結参照値は unit-d-tolerances.yml。負制御 (pass 適合 / fail 適合 / 必須欠落 不適合 / 能力昇格 不適合) は sim/src/bin/v321_d2_erratum.rs [E6] が機械検査する。",
+  "type": "object",
+  "required": ["schema_version", "replication", "units", "failures"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "v32.1" },
+    "replication": {
+      "type": "object",
+      "required": ["author", "repository", "commit", "date", "language", "protocol_frozen_commit", "shared_numerical_kernel"],
+      "additionalProperties": false,
+      "properties": {
+        "author": { "type": "string", "minLength": 1, "description": "本リポジトリの作者・生成 AI と独立であること (NO_SHARED_CODE.md)" },
+        "repository": { "type": "string", "minLength": 1, "description": "公開リポジトリの URL" },
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$", "description": "再現実装のコミットハッシュ" },
+        "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+        "language": { "type": "string", "minLength": 1 },
+        "protocol_frozen_commit": { "type": "string", "pattern": "^[0-9a-f]{7,40}$", "description": "走行前に固定した本リポジトリのコミット" },
+        "shared_numerical_kernel": { "type": "boolean", "description": "独立外部再現と数えるには false であること (true の正直な報告も適合はする — 計数されないだけ)" }
+      }
+    },
+    "units": {
+      "type": "object",
+      "description": "実施した単位のみ載せる (最低 1 つ)。失敗した単位は省略せず failures にも記録する。",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "D1": { "$ref": "#/$defs/unitD1" },
+        "D2S": { "$ref": "#/$defs/unitD2S" },
+        "D2R": { "$ref": "#/$defs/unitD2R" },
+        "D3": { "$ref": "#/$defs/unitD3" },
+        "D4": { "$ref": "#/$defs/unitD4" }
+      }
+    },
+    "failures": {
+      "type": "array",
+      "description": "不一致・再現失敗の記録 (空配列可)。失敗の隠蔽は反証可能性を破壊する。",
+      "items": {
+        "type": "object",
+        "required": ["unit", "description"],
+        "additionalProperties": false,
+        "properties": {
+          "unit": { "enum": ["D1", "D2S", "D2R", "D3", "D4"] },
+          "description": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "status": { "enum": ["pass", "fail"] },
+    "unitD1": {
+      "type": "object",
+      "description": "凍結 C 行列からの kernel/readout 数値再現 (numerical_only — blocker は残る)",
+      "required": ["status", "c_max_abs_err", "support_missing", "support_surplus", "logit_offdiag_max_err"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "$ref": "#/$defs/status" },
+        "c_max_abs_err": { "type": "number", "minimum": 0 },
+        "support_missing": { "type": "integer", "minimum": 0 },
+        "support_surplus": { "type": "integer", "minimum": 0 },
+        "logit_offdiag_max_err": { "type": "number", "minimum": 0 }
+      }
+    },
+    "unitD2S": {
+      "type": "object",
+      "description": "静的 B3 lane (StableEstimate scoped — geometry blocker を解除しない)。d2-static.md 参照。",
+      "required": ["status", "graphs", "mandatory_negative_control"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "$ref": "#/$defs/status" },
+        "graphs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["graph6", "n", "weighted", "certificate_holds", "verdict", "support_missing", "support_surplus"],
+            "additionalProperties": false,
+            "properties": {
+              "graph6": { "type": "string", "minLength": 1 },
+              "n": { "type": "integer", "minimum": 2 },
+              "weighted": { "type": "boolean" },
+              "certificate_holds": { "type": "boolean", "description": "B3SupportMarginCertificate (d2-static.md) の成立" },
+              "min_true_edge_b3": { "type": "number" },
+              "max_non_edge_b3": { "type": "number" },
+              "boundary_gap_ln": { "type": "number" },
+              "verdict": { "enum": ["support_exact", "rejected_no_certificate", "mismatch"], "description": "certificate 不成立グラフの正答は rejected_no_certificate (強制回答は fail と採点)" },
+              "support_missing": { "type": "integer", "minimum": 0 },
+              "support_surplus": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "mandatory_negative_control": {
+          "type": "object",
+          "description": "必須負制御 graph6 F}oXO — 凍結 gap 則の故障 (11 → 13 辺・余剰 2・欠落 0) を再現すること",
+          "required": ["graph6", "frozen_rule_reported_edges", "support_missing", "support_surplus"],
+          "additionalProperties": false,
+          "properties": {
+            "graph6": { "const": "F}oXO" },
+            "frozen_rule_reported_edges": { "const": 13 },
+            "support_missing": { "const": 0 },
+            "support_surplus": { "const": 2 }
+          }
+        }
+      }
+    },
+    "unitD2R": {
+      "type": "object",
+      "description": "応答 lane (end_to_end — geometry blocker 解除候補はこの lane のみ)。d2-response.md 参照。",
+      "required": ["status", "claimed_capabilities", "cells"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "$ref": "#/$defs/status" },
+        "claimed_capabilities": {
+          "type": "array",
+          "maxItems": 1,
+          "description": "主張できる能力は spatial_topology_given_factorization のみ (空配列可)。他の能力名は不適合 (無効な能力昇格)。",
+          "items": { "enum": ["spatial_topology_given_factorization"] }
+        },
+        "cells": {
+          "type": "array",
+          "minItems": 6,
+          "description": "必須 6 セル (d2-response.md の表と同一の cell 名)",
+          "items": {
+            "type": "object",
+            "required": ["cell", "verdict"],
+            "additionalProperties": false,
+            "properties": {
+              "cell": { "enum": ["kuhn_t3_L4plus", "cell16_s3", "solid_kuhn_ball", "t3_L3_flag_break_negative", "independent_sparse_weighted", "high_noise_abstain"] },
+              "verdict": { "enum": ["support_exact_topology_match", "abstain", "negative_control_confirmed", "mismatch"] },
+              "abstain_reason": { "enum": ["insufficient_observation"] },
+              "betti": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "type": "integer", "minimum": 0 } },
+              "links": { "enum": ["closed", "boundary", "singular", "not_applicable"] },
+              "support_missing": { "type": "integer", "minimum": 0 },
+              "support_surplus": { "type": "integer", "minimum": 0 },
+              "response_margin_min_edge": { "type": "number", "description": "min_{(i,j)∈E} ŵ_ij (ResponseSupportMargin の分子)" },
+              "curvature_error_bound": { "type": "number", "description": "曲率誤差上界 (有限差分 + ノイズ — d2-response.md の 2 段裁定)" }
+            }
+          }
+        }
+      }
+    },
+    "unitD3": {
+      "type": "object",
+      "description": "負定理の独立確認 (negative_theorem)",
+      "required": ["status", "p6_u693_gauge_distance", "projector_exact_qualification_rejected", "factorization_nonuniqueness_confirmed"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "$ref": "#/$defs/status" },
+        "p6_u693_gauge_distance": { "type": "number", "minimum": 0 },
+        "projector_exact_qualification_rejected": { "type": "boolean" },
+        "factorization_nonuniqueness_confirmed": { "type": "boolean" }
+      }
+    },
+    "unitD4": {
+      "type": "object",
+      "description": "LocalBiasCurvatureLaw の独立実装 (response_law)",
+      "required": ["status", "uniform_ring_rel_err", "eps_pair_max_rel_diff", "gauge_invariance_ok", "tv_transfer_v_independent"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "$ref": "#/$defs/status" },
+        "uniform_ring_rel_err": { "type": "number", "minimum": 0 },
+        "eps_pair_max_rel_diff": { "type": "number", "minimum": 0 },
+        "gauge_invariance_ok": { "type": "boolean" },
+        "tv_transfer_v_independent": { "type": "boolean" }
+      }
+    }
+  }
+}

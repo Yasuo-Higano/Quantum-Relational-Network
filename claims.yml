@@ -4616,3 +4616,43 @@
     - "儀式は決定性・無波及の検査であって物理的正しさの証拠ではない (PASS 総数はソフトウェア健全性の指標 — README の PASS 分類規約)。"
     - "ドリフト検査は PASS/FAIL 数の一致 — 数値の末桁一致そのものは各バイナリ内の [PASS] 判定バーに委ねている。"
     - "期の全成果は layer: bridge の toy 機構であり、bridge law 登録簿は空・独立外部再現 0・自然の的中 0 のまま。"
+
+- id: QRN-BRIDGE-021
+  version: "v32.1"
+  level: C3
+  claim: "Unit D2 静的 gap 則の実行前反例と成功域の全数機械化 (8 検査 PASS): 熱的相関 C = (I+e^{−A})⁻¹ は A の解析関数なので連結グラフでは非辺にも歩道由来の非零相関が乗る — 凍結 gap 則 (スケールガード窓 max·1e-3・窓内最大対数段差 ≥ ln 3 で切断) が任意の連結グラフで支持を厳密再現する定理は存在しない。**反例 graph6 `F}oXO`** (7 頂点 11 辺 — PROMPT/13 の NetworkX 走査を独立デコード + 逐語凍結則で機械確定): 真の辺/非辺境界の段差 1.9790 ≥ ln 3 にもかかわらず非辺尾部の段差 2.5130 が窓内最大となり、非辺 (2,5),(3,6) を余剰報告 (11 → 13 辺・欠落 0。B3 参照値: max 0.03296722 / min 辺 0.01807046 / max 非辺 0.00249751 / 次層 0.00020236)。**全数スキャン**: n = 4..7 連結同型類 (6/21/112/853 = OEIS A001349) で故障は n=7 の 22/853 のみ — **全て余剰のみ (欠落 0)**・n ≤ 6 は 0。**B3SupportMarginCertificate ⟺ 凍結則 exact** (Case A: 全辺窓内 ∧ 分離 ∧ 境界段差 ≥ ln 3 ∧ 窓内厳密最大 / Case B: 非辺全て窓外 ∧ 辺内部に有意段差なし) を全 992 グラフで機械照合 — cert 970 (うち Case B 14) = exact 970・**例外 0** (回答資格は走行前に真値グラフから計算できる)。**応答 lane (v31.2 曲率恒等式) は全 22 反例 + F}oXO を修復**: ŵ = |h_ij|² 支持 欠0余0・辺/非辺比 ≥ 8.6e8・|ŵ−1| ≤ 9.5e-10。**発見 = SupportNoiseCertificate の必要性**: 凍結重みバー (0.1) を通る σ=1e-9 でも、凍結則の順序対ごと閾値判定はノイズ最大値の窓ガード (max·1e-3) 跨ぎで余剰辺を作る (F}oXO 実測 余1 欠0 — 見積り 4.6e-4 はガードの ~1.6σ)。支持段の回答資格 noise_error_bound·√(2 ln(m/1e-6)) ≤ 1e-3·max ŵ (m = n(n−1) = 閾値判定される順序対数) を凍結 — F}oXO σ=1e-9 は正しく不成立・ring12 σ=1e-9 / F}oXO σ=1e-12 は成立 + 支持一致 (次数 → dt → ノイズ増幅のグラフ依存が裁定に正しく出る)。"
+  status: "D2-S の scope 確定 (certificate 族に限る StableEstimate) + D2-R のノイズ裁定の凍結 — geometry blocker 解除候補は D2-R のみ (D2-v1 は superseded_before_external_run)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v321_d2_erratum.rs"
+    result: "results/v321_d2_erratum.txt"
+    doc: "docs/uft-v32.1.md"
+  limitations:
+    - "反例と全数照合は β=1・一様重み (0/1 隣接)・n ≤ 7 — 重みつき・別 β での certificate 成立分布は未走査 (certificate 自体は任意重み・任意 β で定義され走行前に計算可能)。"
+    - "SupportNoiseCertificate は Gauss ノイズ模型下の最大値尾上界 (δ = 1e-6) — 誤差見積り 17√6/3 は 1 読みのノイズスケールであり厳密な分布上界ではない (不確かなら棄却に倒す)。"
+    - "certificate ⟺ exact の照合は f64 数値 — 段差の厳密同値 (tie) は「厳密最大」条件で保守側 (certificate 不成立) に倒してある。"
+
+- id: QRN-META-040
+  version: "v32.1"
+  level: C2
+  claim: "外部再現プロトコルの型修復と版分離 (PROMPT/13 §1): (i) reproducer/protocols/ を導入 — v27.4 凍結原本 (EXPECTED_SCHEMA.json / TOLERANCES.yml) は reproducer/ 直下に不変のまま、版付き複製 (byte 一致を常設監査) と v32.1 の Unit D 契約を版分離。(ii) 報告契約を例示 JSON から**実 JSON Schema (draft 2020-12)** に修復 (unit-d-report.schema.json — $defs/$ref・required・additionalProperties・enum/const・pattern)。自作最小 validator (JSON パーサ + schema 部分語彙 + 最小 regex) の負制御: pass 報告 適合・**failed 報告 適合 (正直な失敗は一級市民)**・必須欠落 不適合・**無効な能力昇格 不適合** (D1 の capability 主張は additionalProperties で、D2-R の語彙外能力は items enum で遮断 — D2-R が主張できるのは spatial_topology_given_factorization のみ)。(iii) D2-v1 を superseded_before_external_run として登録 (protocol-index.yml + replications.yml ERR-D2-V1 + 旧文面の逐語保存 protocols/v31.7/d2-v1-superseded.md) — **反例を黙って修正しない**。(iv) 凍結一式 6 ファイルの sha256-16 認証を v310 [R9] (ALWAYS_RUN) に常設化 — 変更は認証値の意識的更新 (= 版分離) を要する。replications.yml の 6 条件・external_replications = 0 は不変。"
+  status: "Track X (外部公募) の受け皿修復 — 第三者が機械的に妥当な Unit D 報告 (失敗報告を含む) を作れる状態になった。公募は本版の凍結直後から主研究と並列"
+  layer: meta
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v321_d2_erratum.rs"
+    result: "results/v321_d2_erratum.txt"
+    doc: "docs/uft-v32.1.md"
+  limitations:
+    - "schema の負制御は自作 validator による — 外部標準実装 (ajv 等) との相互検証は外部再現者の環境に委ねる (schema は標準 draft 2020-12 の部分語彙のみを使用)。"
+    - "版分離は変更手続きの規約であり、v27.4 原本の凍結性そのものは従来どおり v274_reproducer が監査する。"
+    - "external_replications = 0 のまま — 本版は報告の受け皿の修復であって独立外部再現ではない。"

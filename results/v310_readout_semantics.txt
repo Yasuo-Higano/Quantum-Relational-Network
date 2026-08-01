@@ -10,6 +10,7 @@
   [PASS] [R6] tools/suite.sh の ALWAYS_RUN に本監査が登録されている  リポジトリ状態を読む監査層として常時実行
   [PASS] [R7] 熱的 Gaussian round-trip — C = (I+e^{β(h−μI)})⁻¹ → K(C) → 門 → h 復元・projector は棄却  δ = 3.749e-2 / 復元誤差 max|ĥ−h| = 1.33e-15 (バー 1e-10)
   [PASS] [R8] 外部再現 Unit D (Track X): UNIT_D.md (D1–D4)・凍結入力 D1・CLAIMS.md の単位 D 表 — geometry 解除は D2 のみ  geometry 用 reproducer が公開された — external_replications = 0 は維持
+  [PASS] [R9] 外部再現プロトコルの版分離 (v32.1): 凍結一式 sha256 認証・v27.4 複製 byte 一致・supersession 台帳  D2-v1 の supersession と D2-S/D2-R の凍結が常設監査下にある
 
 [判定] 意味論・型・protocol は凍結された — encoding / inversion / operational readout / factorization / bridge は別能力として型で分離されている
 

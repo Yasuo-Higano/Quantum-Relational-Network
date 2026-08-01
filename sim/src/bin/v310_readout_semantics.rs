@@ -18,6 +18,10 @@
 //!   [R6] 常設監査への自己登録 — tools/suite.sh の ALWAYS_RUN に本監査が載っている
 //!   [R7] 熱的 Gaussian round-trip 実演 — P4 鎖 C = (I+e^{β(h−μI)})⁻¹ から
 //!        K(C) = log[(I−C)C⁻¹] = β(h−μI) を経て門で h を復元 (v31.1 の先行最小例)
+//!   [R9] 外部再現プロトコルの版分離 (v32.1, PROMPT/13 で追加) — 凍結プロトコル
+//!        一式の sha256-16 認証・v27.4 版付き複製 = 原本の byte 一致・
+//!        supersession 台帳 (ERR-D2-V1) の実在。凍結ファイルの変更は本監査の
+//!        認証値の意識的更新 (= 版分離) を要する
 //!
 //! 本監査はスイートの常時実行層 (ALWAYS_RUN)。契約の分類自体の物理的正しさは
 //! 保証しない (ASM-LAYER-SEMANTICS と同種の規約) — 保証するのは封鎖経路の不在と
@@ -26,7 +30,7 @@
 use std::fs;
 use std::path::Path;
 use uft_sim::readout_contract::*;
-use uft_sim::{jacobi_eigh, matfun_sym};
+use uft_sim::{jacobi_eigh, matfun_sym, sha256_hex};
 
 fn main() {
     uft_sim::self_test();
@@ -429,6 +433,85 @@ fn main() {
             bad.is_empty(),
             if bad.is_empty() {
                 "geometry 用 reproducer が公開された — external_replications = 0 は維持".into()
+            } else {
+                format!("{:?}", bad)
+            },
+        );
+    }
+
+    // ---- [R9] 外部再現プロトコルの版分離 (v32.1, PROMPT/13) — 凍結一式の常設監査 ----
+    {
+        let mut bad = Vec::new();
+        // 凍結プロトコル一式の sha256-16 (変更は版分離 + 認証値の意識的更新のみ)
+        let frozen: [(&str, &str); 6] = [
+            (
+                "reproducer/protocols/v32.1/unit-d-report.schema.json",
+                "f578816c54db3d23",
+            ),
+            (
+                "reproducer/protocols/v32.1/unit-d-tolerances.yml",
+                "0ebc7098c6961355",
+            ),
+            ("reproducer/protocols/v32.1/d2-static.md", "f858fa4bdeaa3554"),
+            ("reproducer/protocols/v32.1/d2-response.md", "ce27f04b56303110"),
+            (
+                "reproducer/protocols/v32.1/protocol-index.yml",
+                "62d2ef94632ec5ac",
+            ),
+            (
+                "reproducer/protocols/v31.7/d2-v1-superseded.md",
+                "a4419dc8794558a6",
+            ),
+        ];
+        for (f, want) in frozen {
+            match rd(f) {
+                Err(_) => bad.push(format!("{} が無い", f)),
+                Ok(t) => {
+                    let h = sha256_hex(t.as_bytes());
+                    if &h[..16] != want {
+                        bad.push(format!("{} の sha256-16 {} ≠ 凍結値 {}", f, &h[..16], want));
+                    }
+                }
+            }
+        }
+        // v27.4 の版付き複製 = 凍結原本と byte 一致 (drift の禁止)
+        for (copy, orig) in [
+            (
+                "reproducer/protocols/v27.4/abc-report.schema.json",
+                "reproducer/EXPECTED_SCHEMA.json",
+            ),
+            (
+                "reproducer/protocols/v27.4/abc-tolerances.yml",
+                "reproducer/TOLERANCES.yml",
+            ),
+        ] {
+            match (rd(copy), rd(orig)) {
+                (Ok(c), Ok(o)) => {
+                    if sha256_hex(c.as_bytes()) != sha256_hex(o.as_bytes()) {
+                        bad.push(format!("{} が原本 {} と byte 不一致", copy, orig));
+                    }
+                }
+                _ => bad.push(format!("{} または {} が読めない", copy, orig)),
+            }
+        }
+        // supersession 台帳と UNIT_D.md の版分離ポインタ
+        let rep = rd("replications.yml").unwrap_or_default();
+        for needle in ["ERR-D2-V1", "superseded_before_external_run"] {
+            if !rep.contains(needle) {
+                bad.push(format!("replications.yml: 「{}」が無い", needle));
+            }
+        }
+        let unit_d = rd("reproducer/UNIT_D.md").unwrap_or_default();
+        for needle in ["D2-S", "D2-R", "protocols/v32.1/"] {
+            if !unit_d.contains(needle) {
+                bad.push(format!("UNIT_D.md: 「{}」が無い", needle));
+            }
+        }
+        check(
+            "[R9] 外部再現プロトコルの版分離 (v32.1): 凍結一式 sha256 認証・v27.4 複製 byte 一致・supersession 台帳",
+            bad.is_empty(),
+            if bad.is_empty() {
+                "D2-v1 の supersession と D2-S/D2-R の凍結が常設監査下にある".into()
             } else {
                 format!("{:?}", bad)
             },

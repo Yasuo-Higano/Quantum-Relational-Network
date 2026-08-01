@@ -1,0 +1,15 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v32.1 Unit D2 プロトコルの型修復と反例登録 (第三十二期, PROMPT/13 §1) ===
+
+  [PASS] [E0] graph6 `F}oXO` の独立デコード — 7 頂点 11 辺 連結・辺表一致  n = 7, |E| = 11, 辺表 = [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 3), (1, 4), (2, 6), (3, 5), (4, 5), (4, 6)]
+  [PASS] [E1] 凍結 gap 則の故障再現 — 境界段差 1.9790 ≥ ln 3 なのに尾部段差 2.5130 が最大 → 余剰 (2,5),(3,6)  報告 13 辺 (真 11)・欠 0 余 2 [(2, 5), (3, 6)]・min_edge B = 0.01807046・max_nonedge B = 0.00249751・境界段差 1.9790・窓内最大段差 2.5130
+  [PASS] [E2] n=4..7 連結同型類全数 (OEIS A001349) — 凍結則の故障は余剰のみ (欠落 0)・n=7 で 22/853・F}oXO は故障集合の元  類数/故障 (欠落型): [(4, 6, 0, 0), (5, 21, 0, 0), (6, 112, 0, 0), (7, 853, 22, 0)] — PROMPT/13 の独立走査 (NetworkX atlas, 22/853) と一致 = true
+  [PASS] [E3] B3SupportMarginCertificate ⟺ 凍結則 exact (n=4..7 全数・例外 0) — F}oXO は certificate 不成立  全 992 グラフ: cert 970 (うち Case B 14) = exact 970・cert∧¬exact = 0・exact∧¬cert = 0・F}oXO cert = false
+  [PASS] [E4] D2-R 応答 lane (曲率則) は全静的故障を修復 — ŵ = |h_ij|² 支持 欠0余0  故障 22 グラフ + F}oXO: 全て欠0余0 = true・ResponseSupportMargin (辺/非辺比) ≥ 8.6e8・辺重み |ŵ−1| ≤ 9.5e-10
+  [PASS] [E5] ノイズ裁定 — 規則 4 の棄却 (σ=1e-3)・SupportNoiseCertificate (ガード比) が支持段を守る  σ=1e-3 見積り 462.7 > 0.1 棄却 / F}oXO σ=1e-9: 重みバー通過でも cert 不成立 (2.74e-3 > 1.00e-3) で実測 余1 欠0 / ring12 σ=1e-9: cert 成立 支持一致 / F}oXO σ=1e-12: cert 成立 支持一致
+  [PASS] [E6] unit-d-report.schema.json (draft 2020-12) — pass/failed 適合・必須欠落/能力昇格 不適合  正直な失敗は適合・能力の水増しは不適合 — 契約が型で言えた
+  [PASS] [E7] 版分離の整合 — v27.4 byte 一致・supersession 記録・tolerances = 計算値・台帳不変・旧文面保存  凍結原本は不変のまま、新契約が版として分離された
+
+[判定] D2-v1 は superseded_before_external_run として登録され、D2-S (margin certificate scoped) / D2-R (応答 end-to-end) が凍結された — 反例は外部再現失敗ではなく実行前の設計入力である
+
+総合判定: [PASS]

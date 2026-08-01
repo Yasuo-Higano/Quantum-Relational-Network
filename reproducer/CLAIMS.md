@@ -27,15 +27,19 @@ core.schema.yml) を更新する。**それまでは 0 のまま維持する。*
 3. 切り分け後も不一致が残る場合、上表の主張を**降格** (C2 → 要再検証) し、
    README の到達点行に不一致を明記する。FAL-SUITE の発火に相当する扱い。
 
-## 単位 D (Geometry Identifiability — v31.0/PROMPT-12 で追加, 詳細は UNIT_D.md)
+## 単位 D (Geometry Identifiability — v31.0/PROMPT-12 で追加・v32.1 で D2 を版分離, 詳細は UNIT_D.md)
 
 | 単位 | 対象主張 (claims.yml) | 効力 |
 |---|---|---|
 | D1 | QRN-BRIDGE-013, QRN-BRIDGE-017 | 数値再現のみ (blocker は残る) |
-| D2 | QRN-BRIDGE-013, QRN-BRIDGE-017 | **geometry 能力の blocker 解除候補 (これのみ)** |
+| D2-S | QRN-BRIDGE-021 | 静的 lane の scoped 再現 (StableEstimate — blocker は解除しない) |
+| D2-R | QRN-BRIDGE-013, QRN-BRIDGE-017 | **geometry 能力の blocker 解除候補 (これのみ)** |
 | D3 | QRN-BRIDGE-012, QRN-BRIDGE-015 | 負定理の独立確認 |
 | D4 | QRN-BRIDGE-013, QRN-BRIDGE-016 | 応答法則の独立確認 |
 
+D2-v1 (v31.7 の「任意の連結グラフ」) は外部走行前の反例 (graph6 F}oXO) により
+`superseded_before_external_run` — 版台帳は
+[protocols/v32.1/protocol-index.yml](protocols/v32.1/protocol-index.yml)。
 gauge 単位 A/B/C の成功は geometry 能力を解除しない (capability scoped —
 replications.yml v31.0 拡張)。
 

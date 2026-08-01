@@ -1,0 +1,58 @@
+# =====================================================================
+# 外部再現プロトコルの版台帳 (v32.1 で導入 — PROMPT/13 §1)
+# =====================================================================
+# 原則: 凍結済みプロトコルは直接書き換えない — 版を分離し、supersession を
+# ここに記録する。整合は sim/src/bin/v321_d2_erratum.rs ([E6][E7]) と
+# v310_readout_semantics ([R9]) が機械検査する。
+
+index_version: "v32.1"
+
+protocols:
+- unit: "A/B/C"
+  version: "v27.4"
+  spec: "reproducer/SPEC.md"
+  report_schema: "reproducer/protocols/v27.4/abc-report.schema.json"
+  tolerances: "reproducer/protocols/v27.4/abc-tolerances.yml"
+  status: "frozen"
+  note: "v27.4 の凍結原本 (EXPECTED_SCHEMA.json / TOLERANCES.yml) は reproducer/ 直下に不変のまま — 本ディレクトリは版付き複製で、原本との byte 一致 (sha256) を v321 [E7] が監査する"
+
+- unit: "D1"
+  version: "v32.1"
+  spec: "reproducer/UNIT_D.md"
+  report_schema: "reproducer/protocols/v32.1/unit-d-report.schema.json"
+  tolerances: "reproducer/protocols/v32.1/unit-d-tolerances.yml"
+  status: "frozen"
+  note: "内容は v31.7 D1 と同一 — 報告契約 (実 JSON Schema + 機械可読許容誤差) の正式化のみ"
+
+- unit: "D2-v1"
+  version: "v31.7"
+  status: "superseded_before_external_run"
+  superseded_by: "D2-S + D2-R (v32.1)"
+  counterexample: "graph6 F}oXO — 凍結 gap 則が非辺 (2,5),(3,6) を余剰報告 (11 → 13 辺)。n=7 連結同型類 853 中 22 で同型故障 (全て余剰のみ・欠落 0)"
+  archive: "reproducer/protocols/v31.7/d2-v1-superseded.md"
+  discovered_by: "sim/src/bin/v321_d2_erratum.rs (外部走行 0 件の時点 — PROMPT/13 の独立走査を機械確定)"
+  note: "外部再現の失敗ではない — 実行前に発見・登録されたプロトコル欠陥 (黙って修正せず版を分離)"
+
+- unit: "D2-S"
+  version: "v32.1"
+  spec: "reproducer/protocols/v32.1/d2-static.md"
+  report_schema: "reproducer/protocols/v32.1/unit-d-report.schema.json"
+  tolerances: "reproducer/protocols/v32.1/unit-d-tolerances.yml"
+  status: "frozen"
+  capability_note: "StableEstimate scoped — geometry blocker を解除しない (B3SupportMarginCertificate 成立族に限る)"
+
+- unit: "D2-R"
+  version: "v32.1"
+  spec: "reproducer/protocols/v32.1/d2-response.md"
+  report_schema: "reproducer/protocols/v32.1/unit-d-report.schema.json"
+  tolerances: "reproducer/protocols/v32.1/unit-d-tolerances.yml"
+  status: "frozen"
+  capability_note: "end_to_end — 成功で解除されるのは spatial_topology_given_factorization の独立性 blocker のみ (E3/PRED-019/bridge 登録は別問題)"
+
+- unit: "D3/D4"
+  version: "v32.1"
+  spec: "reproducer/UNIT_D.md"
+  report_schema: "reproducer/protocols/v32.1/unit-d-report.schema.json"
+  tolerances: "reproducer/protocols/v32.1/unit-d-tolerances.yml"
+  status: "frozen"
+  note: "内容は v31.7 と同一 — 報告契約の正式化のみ"

@@ -1,0 +1,42 @@
+# Unit D 許容誤差と凍結参照値 (protocol v32.1 — 機械可読)。
+# 一次ソース: sim/src/bin/v321_d2_erratum.rs (results/v321_d2_erratum.txt) が
+# 本ファイルの参照値 = 計算値であることを機械検査する ([E7])。
+# 判定規則: pass = 実施単位が全て bar 内 / fail = 1 つでも bar 外 (fail も報告に値する)。
+
+# ---- D1 (v31.7 凍結のまま — UNIT_D.md §D1) ----
+d1_c_abs_tol: 0.000001
+d1_support_requirement: "欠0余0"
+d1_logit_offdiag_tol: 1e-9
+
+# ---- D2-S (静的 B3 lane — StableEstimate scoped, protocols/v32.1/d2-static.md) ----
+d2s_scope: "B3SupportMarginCertificate 成立グラフのみ回答可 — certificate 不成立グラフの正答は rejected_no_certificate (強制回答は fail)"
+d2s_negative_control_graph6: "F}oXO"
+d2s_negative_control_reported_edges: 13
+d2s_negative_control_missing: 0
+d2s_negative_control_surplus: 2
+d2s_negative_control_surplus_pairs: "(2,5) (3,6)"
+d2s_reference_max_b3: 0.03296722
+d2s_reference_min_true_edge_b3: 0.01807046
+d2s_reference_max_non_edge_b3: 0.00249751
+d2s_reference_next_tier_b3: 0.00020236
+d2s_reference_boundary_gap_ln: 1.9790
+d2s_reference_max_window_gap_ln: 2.5130
+d2s_reference_abs_tol: 0.00000005
+d2s_scan_n7_classes: 853
+d2s_scan_n7_rule_failures: 22
+d2s_scan_n4_6_rule_failures: 0
+d2s_certificate_atlas: "n=4..7 全 992 グラフで certificate 970 (うち Case B 14) ⟺ 凍結則 exact 970 — 例外 0 (v321 [E3])"
+d2s_note: "参照値は β=1, h=−A, C=(I+e^{−A})⁻¹, B=|C_ij|² の厳密値の 8 桁丸め (段差は 4 桁)。凍結 gap 則 = スケールガード窓 (max·1e-3)・窓内最大対数段差 ≥ ln 3 で切断 (閾値 = 段差両端の幾何平均)・なければ窓全体・各順序対を独立に閾値判定"
+
+# ---- D2-R (応答 lane — end_to_end, protocols/v32.1/d2-response.md) ----
+d2r_curvature_rel_tol: 1e-4
+d2r_support_requirement: "欠0余0 (順序対全体)"
+d2r_required_cells: "kuhn_t3_L4plus cell16_s3 solid_kuhn_ball t3_L3_flag_break_negative independent_sparse_weighted high_noise_abstain"
+d2r_weight_abstain_bar: 0.1
+d2r_support_noise_certificate: "noise_error_bound(sigma, l1(h)) * sqrt(2*ln(m/1e-6)) <= 1e-3 * max(w_hat), m = n(n-1) — 不成立なら支持は Abstain(InsufficientObservation)"
+d2r_note: "重みバー (0.1) の通過は支持の保証ではない — F}oXO の sigma=1e-9 は重みバー内 (4.6e-4) なのにガード跨ぎの余剰辺 1 が実測される (v321 [E5])。支持の回答資格は support_noise_certificate で裁定する"
+
+# ---- D3 / D4 (v31.7 凍結のまま — UNIT_D.md §D3, §D4) ----
+d3_gauge_distance_tol: 2e-13
+d4_rel_tol: 1e-4
+d4_dt_recommendation: "dt <= 0.02/l1(h), 5 点 stencil + Richardson"
