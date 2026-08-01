@@ -4716,3 +4716,23 @@
     - "toy (dim ≤ 8)・ノイズは可換子ノルム読みへの加法 Gauss 模型 (6σ 区間) — 実測定の系統誤差・変成対は HOLD-8 の変成セルで走査する。"
     - "中心射影は √(k+2) 重み生成元の Lagrange 補間 — 固有値の偶然縮退は m_α² 整数検証が guard する (ComponentNotFactor へ倒す)。区間演算の厳密証明書ではない。"
     - "事前登録 functional による fiber 内 tie-break は意図的に不実装 (EquivalenceClassOnly を返す) — 実装するなら実行前凍結が必要 (PROMPT/13 §2 の選択基準)。"
+
+- id: QRN-BRIDGE-024
+  version: "v32.4"
+  level: C3
+  claim: "Liouvillian 応答階層 (6 検査 PASS): 基準状態対 ρ± = ρ₀ ± εA_α・測定 B_β の短時間応答恒等式 R⁽¹⁾ = −i Tr(B[H,A])・R⁽²⁾ = Tr([H,B][H,A]) (Schrödinger 規約 — v31.2 と同一) を測定 lane (複素 Taylor expm + 4 次 stencil) で照合 (非自明対 4+4 本, max rel 2.0e-10 / 1.5e-10・ε ∈ {0.02, 0.10} 差 8.9e-15 = **恒等式であり線形応答近似ではない**)。**能力階層**: (i) **一階×情報完全基底は H を中心を除いて一意に決める** — 15×15 線形逆問題で ‖Ĥ − H_traceless‖/‖H‖ = 1.2e-16・H + cI の R⁽¹⁾ 差は厳密 0。(ii) **二階は H ↔ −H を原理的に区別しない** (ad_H² の偶性 — max|R⁽²⁾[H] − R⁽²⁾[−H]| = 0.0 厳密・一階は符号分離)。(iii) **密度制限はさらに粗い**: 3 モード JW ring の磁束 θ は density-only 二階核に厳密不可視 (θ 差 0.0 — 曲率が |h_ij|² = t² を返すため)・coherent 一階 (電流観測) は分離 (−1.0000 vs −0.9211)。(iv) **保存則の和則**: 数保存 H で B = N̂ の応答は全次数厳密 0。(v) **PSD**: 応答 Gram 核 K = Tr([H,A]†[H,A']) の λ_min = 0.0 (負固有値なし)。(vi) **統一**: many-body R⁽²⁾_ji (密度 × 積状態接ベクトル (n_i−1/2)/4) = one-body ‖P_j h P_i‖² = |h_ij|² が厳密一致 (max 偏差 < 1e-12) — **v31.2 曲率則は本階層の対角特殊化**。相関 hopping の採点原則が確定: 「破れ」ではなく観測契約ごとの読める同値類 (v32.5 の枠)。"
+  status: "観測契約別 kernel の相図の基礎 — 密度-only 同値類の完全分類 (符号・位相・交差項) は v32.5 + HOLD-8 の採点軸"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v324_liouvillian_hierarchy.rs"
+    result: "results/v324_liouvillian_hierarchy.txt"
+    doc: "docs/uft-v32.4.md"
+  limitations:
+    - "toy (dim ≤ 8, JW 3 モード)・ρ₀ = I/n の無情報基準 — 恒等式は ρ₀ 非依存だが、有限温度・相関 ρ₀ での信号強度/条件数は未走査。"
+    - "短時間応答による Hamiltonian learning 自体は既存研究 — 新規性は観測契約ごとの kernel・同値類・棄却の相図側 (PROMPT/13 §7)。"
+    - "磁束不可視性は density-only kernel の性質 — 干渉計型 (ループ) 観測を密度時系列に含めれば分離し得る (未走査)。"
