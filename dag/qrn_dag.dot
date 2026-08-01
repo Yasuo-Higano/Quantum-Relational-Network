@@ -243,6 +243,8 @@ digraph qrn {
   "QRN-BRIDGE-017" [fillcolor="#fb8c00", label="QRN-BRIDGE-017\nC3 v31.6"];
   "QRN-BRIDGE-018" [fillcolor="#fb8c00", label="QRN-BRIDGE-018\nC3 v31.7"];
   "QRN-BRIDGE-019" [fillcolor="#fb8c00", label="QRN-BRIDGE-019\nC3 v32.0-A"];
+  "QRN-BRIDGE-020" [fillcolor="#fb8c00", label="QRN-BRIDGE-020\nC3 v32.0-B"];
+  "QRN-META-039" [fillcolor="#fdd835", label="QRN-META-039\nC4 v32.0-B"];
   "QRN-GRAV-001" -> "QRN-C0-001";
   "QRN-BH-001" -> "QRN-C0-003";
   "QRN-CAUSAL-002" -> "QRN-CAUSAL-001";
@@ -653,4 +655,7 @@ digraph qrn {
   "QRN-BRIDGE-018" -> "QRN-BRIDGE-013";
   "QRN-BRIDGE-019" -> "QRN-BRIDGE-013";
   "QRN-BRIDGE-019" -> "QRN-BRIDGE-017";
+  "QRN-BRIDGE-020" -> "QRN-BRIDGE-019";
+  "QRN-META-039" -> "QRN-BRIDGE-020";
+  "QRN-META-039" -> "QRN-META-038";
 }

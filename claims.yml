@@ -4576,3 +4576,43 @@
     - "train は設計区画 — 検証力はない。holdout (v32.0-B) が凍結バーで本採点する。"
     - "セル族は v31 期の資格状態族・模型族に制限 (熱的 βt=1 系・t-V N=8・1D/2D/3D の既定クラス) — 相図の軸は網羅するが各軸の深さは有限。"
     - "K10 regulator は v31.7 の a 減衰検査の 1 セル化 — hold-12 級のフル v̂ 照合ではない。"
+
+- id: QRN-BRIDGE-020
+  version: "v32.0-B"
+  level: C3
+  claim: "HOLD-7 holdout (初開封) の本採点 — 事前凍結の生成器・採点器・バー・棄却規則・調整なし: **16/17 セル生存・K3-holes の 1 セル不成立を確定**。[H0] SECRET 開示 (sha256 = コミットメント c50c4c30… 照合)・FROZEN-HOLD7 区間の v320a との逐語一致 (SHA e9d4079e…)・train seed 不変を機械照合。生存の内訳: **位相 2D (twoholes (1,2,0)/genus2 (1,4,1)/torus4 (1,2,1))・位相 3D (T³ (1,3,3,1) closed / S³ (1,0,0,1) closed — holdout 抽選に T³ が出て生存)・計量 ring 1/3 法則 (0.3488)・oracle exact (2.3e-14)・t-V 応答転移・変成対・regulator 減衰 6.57**。**非識別 5 セル全てで正しい棄却/同値類 (impossibility recall 1.0・強制回答 0)**: β=30 → EquivClass・projector P6 → EquivClass・t-V oracle → NonGaussianDomain・因子分解不明 → UnknownFactorization・σ=1e-3 → InsufficientObservation。**不成立 1 セル (K3-holes 16:6)**: persistence 比 5.00 vs バー (周長比 2.67 ± 35%) — 機構 = 採点器バーモデルの誤り (VR persistence は穴径に比例でなくアフィン則 L/3 − s: holdout 予測 4.33 はバー外・train (14:8) の 2.20 は偶然バー内)。**採点器のバーモデル誤りを holdout が捕捉した** — 調整・再採点なし (v29.4b hold-12 と同格の確定)。"
+  status: "内部 holdout 16/17 生存 + 1 不成立確定 (調整なし)。非識別セルの棄却採点は初の holdout 通過 — bridge law 登録は独立外部再現 0 のため引き続き行わない"
+  layer: bridge
+  evidence_kind: internal_holdout
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: preregistered_holdout
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v320b_hold7_open.rs"
+    result: "results/v320b_hold7_open.txt"
+    doc: "docs/uft-v32.0.md"
+  limitations:
+    - "K3-holes の不成立は確定 —「16/17」を『満票』に丸めない。原因 = 定量バーを観測量の応答則 (アフィン) からでなく素朴な比例仮定から導出した設計誤り。教訓は v29.4a と同じ「バーは走行前に感度設計」の再確認であり、次期の VR バーはアフィン則から導出する。"
+    - "内部 holdout であり独立外部再現ではない — bridge law 登録の blocker (R2/R3) は残る。Unit D2 の公募が最優先のまま。"
+    - "K10 は a 減衰の 1 セル圧縮 — hold-12 級のフル v̂ 照合は含まない。"
+
+- id: QRN-META-039
+  version: "v32.0-B"
+  level: C4
+  claim: "第三十一期の統合 — 期末完全儀式と確定残高: **make suite-full で全 187 本を再計算し 総計 PASS 1314 / FAIL 0** (壁時計 ~11.3h, JOBS=12)。**末桁ドリフト検査 (台帳の期前後比較): 既存 177 本の PASS/FAIL は e8f9daf 時点と完全一致 (ドリフト 0 件)** — 差分は新規 10 本 (v310–v317, v320a/b) の +87 PASS のみで、第三十一期の型改訂 (readout_contract 新設・qrn_core note 是正) と器械最終化 (gap 則・dt スケール) は既存物理に無波及。期テーゼ = 「読めることと、読めないと言えることは、同じ資格の両面である」。確定成果: E0–E4 の型分離と 3 禁止変換 (v31.0)・大域逆の oracle ceiling と条件数定理・P6/693 のゲージ同値 (v31.1)・密度曲率則の恒等式化と P6/693 の応答分離 (v31.2)・7 lane hierarchy と『encoded but not operationally readable』(v31.3)・B3/B4 統一 atlas と E3 no-go (v31.4)・曲率則の厳密転移定理と oracle の Gaussian-only 確定 (v31.5)・3D 読み出しと計量 VR persistence (v31.6)・境界不一致 = reflection artifact (v31.7)・Unit D 公開 (Track X)・HOLD-7 16/17 生存と非識別 5/5 正棄却 (v32.0)。**不成立の記録 2 件を調整せず保持** (v29.4b hold-12 / v32.0-B K3-holes)。"
+  status: "第三十一期 完結 — bridge law 登録簿は全能力で空・external_replications = 0・PRED-019 未登録のまま"
+  layer: meta
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "tools/suite.sh"
+    result: "results/v320_full_suite.txt"
+    doc: "docs/uft-v32.0.md"
+  limitations:
+    - "儀式は決定性・無波及の検査であって物理的正しさの証拠ではない (PASS 総数はソフトウェア健全性の指標 — README の PASS 分類規約)。"
+    - "ドリフト検査は PASS/FAIL 数の一致 — 数値の末桁一致そのものは各バイナリ内の [PASS] 判定バーに委ねている。"
+    - "期の全成果は layer: bridge の toy 機構であり、bridge law 登録簿は空・独立外部再現 0・自然の的中 0 のまま。"

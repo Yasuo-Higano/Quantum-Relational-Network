@@ -1,0 +1,28 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v32.0-B HOLD-7 の開封と本採点 — 調整なし (PROMPT/12) ===
+
+  [PASS] [H0] SECRET 開示 = コミットメント一致 / FROZEN-HOLD7 区間の逐語一致 (SHA-256) / train seed 不変  SECRET = HOLD7-f6618f3e15fc1566479e431de0bf6c59 / kernel sha = e9d4079e6ed5adfa…
+  [H1] holdout シード = 14198807496805260215 (SECRET から導出) — 初生成・本採点:
+  K1-0 twoholes → "β=[1, 2, 0] closed=false" ✓ 
+  K1-1 genus2 → "β=[1, 4, 1] closed=true" ✓ 
+  K1-2 torus4 → "β=[1, 2, 1] closed=true" ✓ 
+  K2-0 T3 → "β=[1, 3, 3, 1] closed" ✓ 
+  K2-1 S3 → "β=[1, 0, 0, 1] closed" ✓ 
+  K3-ring21 → "death/perim=0.3488" ✓ (バー [0.28, 0.37])
+  K3-holes16:6 → "ratio=5.000" ✗ (真比 2.67)
+  K4-warm → "ExactH" ✓ (err 2.3e-14)
+  K4-cold [非識別] → "EquivClass" ✓ 正しい棄却/同値類
+  K5-projector [非識別] → "EquivClass" ✓ 正しい棄却/同値類
+  K6-oracle V=1.17 [非識別] → "Abstain(non_gaussian_domain)" ✓ 正しい棄却/同値類
+  K6-resp V=1.17 → "Weights" ✓ 
+  K7-unknownfact [非識別] → "Abstain(unknown_factorization)" ✓ 正しい棄却/同値類
+  K8-lownoise → "Weights" ✓ 
+  K8-highnoise [非識別] → "Abstain(insufficient_observation)" ✓ 正しい棄却/同値類
+  K9-metamorphic → "Weights" ✓ (変成: 次数列 + 重み多重集合)
+  K10-regulator → "ratio=6.571" ✓ (端バイアス a=1/a=½ 減衰比, バー ≥ 2)
+  [PASS] [H1] HOLD-7 本採点の確定 (調整なし): 回答 12 (正 11 / 誤 1 = K3-holes のみ)・coverage 1.0・非識別 5/5 正棄却・強制回答 0 — **K3-holes は不成立として確定**  回答 12/12 (coverage 1.00) / 誤り 1 / 非識別 5 中 正棄却 5 (recall 1.00) / 強制回答 0
+  [PASS] [H2] 不成立機構の解剖 (事後分析): persistence はアフィン則 (L/3 − s) — holdout 予測 4.33 (バー外) / train 予測 2.20 (偶然バー内)。採点器のバーモデル誤りの捕捉 = holdout の機能  アフィン予測: holdout 4.33 (周長比 2.67 の 1.63 倍 — バー外) / train 2.20 (周長比 1.75 の 1.26 倍 — バー内) — 教訓: 定量バーは観測量の応答則から導出すること (v29.4a の教訓の再確認)
+
+[判定] HOLD-7 確定 — 16/17 生存: 位相 (2D/3D)・計量 1/3 法則・oracle・応答転移・変成・regulator と、非識別 5 セル全ての正しい棄却が新鮮 holdout で検証された。K3-holes の 1 セルは採点器のバーモデル誤り (persistence のアフィン則) により不成立として確定 — 調整・再採点はしない (v29.4b hold-12 と同格の教訓記録)
+
+総合判定: [PASS]

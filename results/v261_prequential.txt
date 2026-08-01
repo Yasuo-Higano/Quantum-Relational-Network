@@ -41,4 +41,4 @@
 
 [判定] 事前登録 (a): 器械回帰 PASS — **S 表が主結果**: S_program − S_anarchy = -41.83 (bracket) / −∞ (strict), S_program − S_FN = -55.91 (bracket)。符号の解釈は docs/uft-v26.1.md へ (規約 P4: 負なら負のまま公表)
 
-総合判定: [PASS] (58 s)
+総合判定: [PASS] (55 s)
