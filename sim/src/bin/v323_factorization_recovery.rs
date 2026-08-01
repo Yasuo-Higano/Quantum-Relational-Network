@@ -201,8 +201,14 @@ fn center_basis(basis: &[Vec<C64>], gens: &[Vec<C64>], n: usize) -> Vec<Vec<C64>
                 C64::new(d.im * 0.5, -d.re * 0.5) // /(2i)
             })
             .collect();
-        push_ortho(&mut out, &h1, 1e-8);
-        push_ortho(&mut out, &h2, 1e-8);
+        // dust guard (v33.0-A 設計走行で発見・統一適用): 共役射影の数値塵
+        // (‖候補‖ ≈ 0) を正規化して基底に混入させない
+        if hs_norm(&h1) > 1e-9 {
+            push_ortho(&mut out, &h1, 1e-8);
+        }
+        if hs_norm(&h2) > 1e-9 {
+            push_ortho(&mut out, &h2, 1e-8);
+        }
     }
     out
 }
@@ -386,6 +392,10 @@ fn recover_factorization<G: CommutationGrading>(
         let mut restricted: Vec<Vec<C64>> = Vec::new();
         for b in &joint {
             let pbp = cmul(p, &cmul(b, p, n), n);
+            // dust guard: 他 sector にしか台を持たない b の像 (≈ 0) を除外
+            if hs_norm(&pbp) < 1e-9 {
+                continue;
+            }
             push_ortho(&mut restricted, &pbp, 1e-8);
         }
         let m2 = restricted.len();

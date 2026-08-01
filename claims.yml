@@ -4776,3 +4776,23 @@
     - "対象は一様重み円環 + 8 面体の整数 filtration — 重みつき円環 (実数 filtration) の exact bar は未導出 (birth = max 辺重みの実数化が予想・holdout バー凍結時に導出)。"
     - "円の VR が球面列を経ること自体は既知 (Adamaszek–Adams) — 寄与は QRN の離散測地・規約・有限標本への厳密化と K3-holes の閉形式 retrodiction。"
     - "レンズ空間・大型 3D は意図的に後回し (Z2 Betti + link では分類不能 — torsion 不変量の能力分離が先, PROMPT/13 §6)。"
+
+- id: QRN-BRIDGE-027
+  version: "v33.0-A"
+  level: C3
+  claim: "HOLD-8 の凍結 (3 検査 PASS + train 20 セル満票): 第三十二期の全器械を凍結し、factorization × interaction order × observation contract の識別可能性境界を新鮮 holdout で採点する準備。sha256(SECRET) = fb05a4a0… を公表。採点は **selective risk 0 / impossibility recall 1 / answerable recall 1** (coverage 単独は最大化しない — v31.0 採点原則の第二執行)。凍結カーネル (FROZEN-HOLD8 区間 — v330b との逐語一致を [H0] が照合) = OperationalNet 構築 (可換子の区間証明書 τ=1e-3)・recovery 決定手順 (成分→閉包→中心→三値)・R⁽¹⁾/R⁽²⁾ 応答核・条件付き接ベクトル・最終 gap 則・SupportNoiseCertificate・hyperedge 検出バー (条件差 > 1e-6·max)・coherent 2 チャネル分離バー (0.05)。セル 8 クラス 20 (隠しパラメータ = 重み・角度・置換・V・θ・σ): F1/F2 site/mode net → Exact + orbit・F3 number-only → 棄却・F4 非互換 2 net → EquivalenceClassOnly・F5 中心非自明 → sectors・F6 odd 拒否 + graded [(4,1),(4,1)]・I1–I5 支持/V 不可視/hyperedge 検出 ± null・I6/I7 密度=同値・coherent=分離の対・M1/M3 変成不変・M4/M5 ノイズ棄却。**train (可視シード 33001) 満票: risk 0.000・recall 1.000/1.000 (回答 14/14・正棄却 6/6)**。器械訂正 1 件 (設計走行で発見): 共役射影の数値塵 (‖PbP‖ ≈ 0) の dust guard を v32.3 kernel に統一適用 — v323 の 8 検査は不変 (exact 射影で no-op)。"
+  status: "凍結半 (設計区画) — holdout は未生成。開封・本採点は v33.0-B (調整なし)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v330a_hold8_freeze.rs"
+    result: "results/v330a_hold8_freeze.txt"
+    doc: "docs/uft-v33.0.md"
+  limitations:
+    - "train は設計区画 — 検証力はない。holdout (v33.0-B) が凍結採点器で本採点する。"
+    - "セル族は 3 qubit/3 モード (dim 8) の toy 族に制限 — 相図の軸 (因子分解・相互作用次数・観測契約) は網羅するが各軸の深さは有限。"
+    - "coherent 分離は電流 + 実 hopping の 2 チャネル固定 — 一般の情報完全 coherent 契約の相図は v32.4 [L1] の範囲。"
