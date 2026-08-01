@@ -1,0 +1,14 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v32.3 Factorization recovery — 目標定理 B と三値裁定 (PROMPT/13 §2) ===
+
+  [PASS] [F0] exact oracle lane — site/DFT 共役 net → Exact [2,2,2]・qutrit×qubit → Exact [2,3]  site = exact_up_to_local_unitary_and_permutation [2, 2, 2] / mode = exact_up_to_local_unitary_and_permutation / C⁶ = exact_up_to_local_unitary_and_permutation [2, 3]
+  [PASS] [F1] 不可能セルの正棄却 — number operator のみ / 部分 net → Abstain(InsufficientOperationalGenerators)  {Z₁,Z₂,Z₃} → abstain / {X₁,Z₁} → abstain (未 address 自由度で tensor を主張しない)
+  [PASS] [F2] 中心非自明 → SuperselectionSectors (tensor 強制の禁止) — 電荷 net [(2,1),(2,2)]・部分 address [(2,2),(2,2)]  電荷つき C²⊕C²⊗C² → superselection_sectors [(2, 1), (2, 2)] / {X₁,Z₁,Z₂} → superselection_sectors [(2, 2), (2, 2)] (測定だけの軸 = 超選択ラベル・未 address = 多重度) / 対照 {X₁,Z₁Z₂} → abstain (非局所符号化 1 qubit — 中心自明 dim 4 の因子で Insufficient が正)
+  [PASS] [F3] gauge orbit — 局所 unitary × SWAP は同一 orbit (overlap 1)・site vs DFT は EquivalenceClassOnly  回転+置換 net: exact_up_to_local_unitary_and_permutation (matching overlap = 1.000000000000) / site×DFT: matching なし (best min-overlap = 0.562500) → equivalence_class_only
+  [PASS] [F4] noise abstention — σ=1e-6 は Exact・σ=5e-4 は可換対の区間が閾値を跨ぎ Abstain  σ=1e-6 → exact_up_to_local_unitary_and_permutation / σ=5e-4 → abstain (辺の強制なし — 假定 5 の機械化)
+  [PASS] [F5] parity-even フェルミオン net — 復元は tensor でなく [(4,1),(4,1)] = パリティ超選択の機械発見  偶代数 dim = 32 (= 32)・中心 dim = 2 (span{I, Z₁Z₂Z₃ = Γ} 一致 = true)・裁定 = superselection_sectors [(4, 1), (4, 1)]
+  [PASS] [F6] 文書アンカー — 定理 B・三値裁定・凍結決定手順  復元は定理・裁定・文書の三点で凍結された
+
+[判定] marking からの因子分解復元が三値裁定つきで機械化された — 読めるときは gauge orbit まで・中心非自明は sector・不能は棄却
+
+総合判定: [PASS]

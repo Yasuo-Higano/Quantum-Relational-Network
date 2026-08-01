@@ -4696,3 +4696,23 @@
     - "型契約は封鎖経路の不在を保証するのであって、分類の物理的正しさを保証しない (ASM-LAYER-SEMANTICS と同種の規約)。"
     - "commutant_dim は f64 数値の零空間計数 (tol = 1e-10·λ_max) — 区間演算の厳密証明書ではない。"
     - "v32.3–v32.5 の出力型を先凍結したが、その充填 (recovery 定理・応答階層・hypergraph 測定) は各版の検査に委ねる。"
+
+- id: QRN-BRIDGE-023
+  version: "v32.3"
+  level: C3
+  claim: "Marked operational recovery (目標定理 B) と三値裁定 (7 検査 PASS): 非可換グラフ (可換子の区間証明書つき) の連結成分 + *-閉包 + 中心から因子分解を復元する凍結決定手順を機械化 — (i) **exact oracle lane**: site net / DFT₈ 共役 net → Exact [2,2,2] (同一閉包の 2 つの marking がそれぞれ正しく復元)・qutrit×qubit → Exact [2,3]。(ii) **不可能セルの正棄却**: number operator のみ (可換 joint)・部分 net {X₁,Z₁} (中心自明だが full でない = 未 address 自由度) → Abstain(InsufficientOperationalGenerators)。(iii) **中心非自明 → SuperselectionSectors (tensor 強制の禁止)**: 電荷つき C²⊕C²⊗C² → [(2,1),(2,2)]・部分 address {X₁,Z₁,Z₂} → [(2,2),(2,2)] — **測定しかできない軸は超選択ラベルに・操作が届かない自由度は多重度 n_α に現れる**。対照 {X₁,Z₁Z₂} は dim 4 の因子 (非局所符号化 1 qubit・中心自明) で Insufficient — 超選択と誤読しない (中心次元で機械区別)。(iv) **gauge orbit の裁定**: 局所 unitary × SWAP 共役 net は成分部分代数の matching overlap 1.000000000000 で同一 orbit・site×DFT は matching 不在 (best min-overlap 0.5625) → **EquivalenceClassOnly** (無制約 tie-breaker で選ばない — v31.4 疎性負制御の教訓)。(v) **noise abstention**: σ=1e-6 → Exact・σ=5e-4 → 可換対の区間が閾値 τ=1e-3 を跨ぎ Abstain(CommutatorMarginStraddled)。(vi) **パリティ超選択の機械発見**: parity-even フェルミオン net (Majorana 双線形 path) → 偶代数 dim 32・中心 = span{I, Γ=Z₁Z₂Z₃} (残差 < 1e-8) → **[(4,1),(4,1)]** — フェルミオンの超選択則が復元器の出力として自動的に現れた。"
+  status: "E3 の operational fiber の機械化 (no-go の裏返しの正側) — accessible primitive 集合は依然入力。graded recovery (odd からのモード構造) は未実装・現行資格は parity-even lane。holdout 検証は HOLD-8 (v33.0)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v323_factorization_recovery.rs"
+    result: "results/v323_factorization_recovery.txt"
+    doc: "docs/uft-v32.3.md"
+  limitations:
+    - "toy (dim ≤ 8)・ノイズは可換子ノルム読みへの加法 Gauss 模型 (6σ 区間) — 実測定の系統誤差・変成対は HOLD-8 の変成セルで走査する。"
+    - "中心射影は √(k+2) 重み生成元の Lagrange 補間 — 固有値の偶然縮退は m_α² 整数検証が guard する (ComponentNotFactor へ倒す)。区間演算の厳密証明書ではない。"
+    - "事前登録 functional による fiber 内 tie-break は意図的に不実装 (EquivalenceClassOnly を返す) — 実装するなら実行前凍結が必要 (PROMPT/13 §2 の選択基準)。"
