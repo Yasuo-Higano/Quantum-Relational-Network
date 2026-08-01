@@ -1,0 +1,14 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v32.5 Interaction hypergraph — H_S 直交分解・相関ホッピング・条件付き probe (PROMPT/13 §3) ===
+
+  [PASS] [G0] 正準分解 — Möbius 条件期待値 = Pauli 支持射影・直交・完全 (w_S ≥ 0 は構成上)  max|H_S^Möbius − H_S^Pauli| = 5.6e-16・Σ H_S − H = 3.9e-16・max 直交残差 = 6.9e-18
+  [PASS] [G1] w_S は block-local unitary 不変・非局所 unitary (DFT₈) は変える (負制御)  局所 U での max|Δw_S| = 1.8e-15・DFT₈ での max|Δw_S| = 2.831 (> 0.1)
+  [PASS] [G2] 中心化分離 — V·n₃h₁₂ = 二体 (V/2)h₁₂ ⊕ 三体 −(V/2)Z₃h₁₂ (等重み (V/2)²‖h₁₂‖²_F = V²)  w_{12} = 0.3600000000 / w_{123} = 0.3600000000 (= V² = 0.3600000000)・他の S なし = true
+  [PASS] [G3] 条件付き密度 probe — K(v) = |t + vV|² 厳密・K(1)−K(0) は hyperedge 検出器 (V=0 負制御)・混合恒等式  K(0) = 0.640000 = t²・K(1) = 1.960000 = (t+V)²・K_uncond = 1.300000 = 平均・V=0 条件差 = 0.0e0
+  [PASS] [G4] 符号の観測契約 — t ↔ −t は密度曲率に厳密不可視・coherent 一階 (電流) が分離 (密度単独は符号同値類)  密度曲率の t↔−t 差 = 0.0e0・coherent R⁽¹⁾: +t → 0.8000 / −t → -0.8000 (奇 = 符号読み出し)
+  [PASS] [G5] hypergraph 組み立て + 遷移率和則 — 支持 {0}/{0,1}/{1,2}/{0,1,2}・K_uncond = (w₂ + w₃)/4  w = {0}: 0.2450 / {0,1}: 4.8400 / {1,2}: 2.5600 / {0,1,2}: 0.3600・K_uncond(2←1) = 1.300000 = (w_{01}+w_{012})/4 — 密度曲率は対を含む hyperedge 重みの和を読む
+  [PASS] [G6] 文書アンカー — uft-v32.5.md の正準分解・lane・和則  hypergraph の定義・観測契約・和則が文書に凍結された
+
+[判定] 相関ホッピングは「破れ」ではない — 密度曲率は hyperedge 重みの和 (条件付き遷移率の Gram 核) を読み、条件付き probe が次数を分離し、coherent probe が符号を読む
+
+総合判定: [PASS]

@@ -4736,3 +4736,23 @@
     - "toy (dim ≤ 8, JW 3 モード)・ρ₀ = I/n の無情報基準 — 恒等式は ρ₀ 非依存だが、有限温度・相関 ρ₀ での信号強度/条件数は未走査。"
     - "短時間応答による Hamiltonian learning 自体は既存研究 — 新規性は観測契約ごとの kernel・同値類・棄却の相図側 (PROMPT/13 §7)。"
     - "磁束不可視性は density-only kernel の性質 — 干渉計型 (ループ) 観測を密度時系列に含めれば分離し得る (未走査)。"
+
+- id: QRN-BRIDGE-025
+  version: "v32.5"
+  level: C3
+  claim: "Interaction hypergraph — H_S 直交分解と相関ホッピングの観測契約別読み (7 検査 PASS): (i) **正準定義**: H = Σ_S H_S (局所 Hilbert–Schmidt 条件期待値の Möbius 反転)・w_S = ‖H_S‖²_F — **二重定義一致** (Möbius = Pauli 支持射影 5.6e-16)・直交 6.9e-18・完全 3.9e-16・**block-local unitary 不変 1.8e-15** (非局所 DFT₈ は変える 2.83 — 負制御)。(ii) **中心化分離**: 相関ホッピング V·n₃h₁₂ = 二体 (V/2)h₁₂ ⊕ 真の三体 −(V/2)Z₃h₁₂ (等重み w = V² 厳密) — 「三体項」の半分は半充填平均 dressing として二体に住む。(iii) **lane 1 (密度曲率) の遷移率和則**: K_uncond(j←i) = Σ_{S⊇{i,j}} w_S/4 が厳密成立 (1.300000 = (w₀₁+w₀₁₂)/4) — 相関 hopping 下の曲率は「破れ」ではなく**対を含む hyperedge 重みの和 (条件付き遷移率の Gram 核)** を読む。(iv) **lane 2 (条件付き密度 probe)**: 補助ノード占有の条件付けで K(v) = |t+vV|² 厳密 (K(0) = t²・K(1) = (t+V)²)・**K(1)−K(0) は hyperedge 検出器** (V=0 で厳密 0 = 負制御)・混合恒等式 K_uncond = (K(0)+K(1))/2。(v) **lane 3 (coherent parity-even)**: t ↔ −t は密度曲率に厳密不可視 (0.0)・coherent 電流一階が奇 (±0.8000) で符号回復 — 密度単独の正答は符号同値類。模型 H = t(h₀₁+h₁₂) + Vn₃h₀₁ + μn₀ の全正準重み (4(t+V/2)²/4t²/V²/2μ²) が厳密一致し InteractionHypergraph (v32.2 先凍結型) に組み上がる。"
+  status: "相互作用次数 × 観測契約の相図が閉じた — HOLD-8 の相互作用セル (quadratic/t-V/相関/pair/三体混合/H↔−H/位相対) の採点枠"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v325_interaction_hypergraph.rs"
+    result: "results/v325_interaction_hypergraph.txt"
+    doc: "docs/uft-v32.5.md"
+  limitations:
+    - "toy (3 モード JW, dim 8) — pair hopping・4 体・複数 hyperedge の交差項は HOLD-8 セルで走査 (枠のみ本版で確定)。"
+    - "遷移率和則の係数 1/4 は JW bond 演算子の規約 (‖h_bond‖²_F = 4) — 一般格子の規約非依存正規化は外部単位の凍結時に固定する。"
+    - "条件付き probe は補助ノード占有の射影準備を仮定 — 準備誤差下のノイズ裁定は SupportNoiseCertificate の変成として未走査。"
