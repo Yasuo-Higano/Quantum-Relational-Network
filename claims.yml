@@ -4916,3 +4916,23 @@
     - "chart 復元は control lane の Exact 因子まで — 中心非自明 (superselection) atlas・graded chart は未実装 (前者は sector つき matching・後者は v33.5)。"
     - "matching バーは exact 証明書域 (overlap ≥ 1−1e-9) — ノイズ下の overlap 区間と Straddled 裁定は HOLD-9 変成セルで走査する。"
     - "複数 glue の数え上げは chart 群の連結分割に基づく凍結規則 (toy の chart 数 ≤ 3 で厳密) — 一般の極大整合部分 atlas 列挙 (指数的) はスコープ外。MeasurementContext 等の atlas 統合も据え置き。"
+
+- id: QRN-BRIDGE-033
+  version: "v33.5"
+  level: C3
+  claim: "Graded recovery の正しい境界 — Majorana locality ≠ Dirac locality (7 検査 PASS, 共有契約 `sim/src/graded_recovery.rs` 新設): **odd CAR だけから複素 fermion mode は一意に得られない**。(i) **O(2N) 不変性**: JW 6 本 (dim 8) の CAR 資格は Givens 回転 frame でも完全一致・graded bracket は全対**厳密 0** (空グラフ — ordinary では 2√8 の K₆ に見える v32.2 [N5] の罠) — pairing の情報は CAR に無い。(ii) **Dirac pairing no-go (禁止変換 20)**: witness なしの読みは MajoranaFrameOnly (O(2N) orbit)。標準 pairing (12)(34)(56) と回転 pairing はともに mode-CAR ≤ 2.2e-16 を満たし n̂₁ の差 0.97 — CAR データの関数では選べず、MajoranaFrame → ComplexModeFactorization の witness なし変換は存在しない。(iii) **正側**: charge witness Q = Σn_i の adjoint 作用の frame 展開 J_{ba} = ⟨γ_b, i[Q,γ_a]⟩/‖γ‖² から直交複素構造を抽出 (実・反対称・**J² = −I 残差 4.4e-16**) → J 不変平面から 3 モード回復 — **mode-CAR 6.3e-16・Σâ†â = Q 残差 1.2e-15** (回転 frame 座標でも 2.2e-15 — 残る自由度は U(N) gauge)。**witness が O(2N) orbit から pairing を選ぶ**。(iv) **縮退/非線形 witness → Abstain**: 部分 charge n₁ は J'² ≠ −I → ComplexStructureUnresolved・quartic 汚染 0.3γ₁γ₂γ₃γ₄ は frame 外漏れ → WitnessNotLinearOnFrame・微小汚染 1e-12 はバー内で資格。(v) **既存復元器は捏造しない**: ordinary は odd 構成時拒否 (継承)・graded net の marked recovery は成分単本×6・閉包 dim 2 → Abstain(ComponentNotFactor) — witness 経路が唯一の門。既存 6 依存バイナリ出力 byte 一致。"
+  status: "graded lane の識別境界が確定 (現行資格 = MajoranaFrame + charge witness) — BCS 型 witness・graded chart glue・モード空間局所性は次期候補。構造化 backend のスケーリングが v33.6 の主題"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v335_graded_recovery.rs"
+    result: "results/v335_graded_recovery.txt"
+    doc: "docs/uft-v33.5.md"
+  limitations:
+    - "witness は偶・二次域の charge を想定 — 一般の偶演算子からの最良近似複素構造 + 誤差区間は未構成 (ノイズ下の J 資格の Straddled は HOLD-9 変成セル)。"
+    - "pairing 後のモード空間局所性 (どのモードがどのサイトか) は別問題 — v33.1–v33.4 の control/context 機構が担う (graded 版 chart glue は未実装)。"
+    - "複素構造が CAR 表現を定めること自体は自己双対形式の標準的数学 — 寄与は識別可能性 fiber としての型化 (witness なし昇格の禁止・棄却 2 種) と機械検証。"

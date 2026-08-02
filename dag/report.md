@@ -3,15 +3,15 @@
 **このファイルは `sh dag/run.sh` が生成する。手で編集しない。**
 Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導出値と全数照合済み。
 
-主張 258 / 依存辺 440 / 仮定 40 / 反証条件 15 / 最大深さ 34
+主張 259 / 依存辺 442 / 仮定 40 / 反証条件 15 / 最大深さ 34
 
 ## 仮定の影響範囲 (抜くと落ちる主張の閉包 — 降順)
 
 | 仮定 | type | 閉包 |
 |---|---|---|
 | ASM-LATTICE | framework | 176 |
-| ASM-GAUSS | framework | 97 |
-| ASM-LOWDIM | framework | 96 |
+| ASM-GAUSS | framework | 98 |
+| ASM-LOWDIM | framework | 97 |
 | ASM-SEED | design | 89 |
 | ASM-PDG | data | 70 |
 | ASM-TORUS | model | 65 |
@@ -22,15 +22,15 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-DIAGPAIR | model | 60 |
 | ASM-SIGMA-DATA | model | 54 |
 | ASM-MODK | definition | 49 |
-| ASM-EDGE-SEMANTICS | design | 48 |
-| ASM-IEEE754 | trust | 47 |
+| ASM-EDGE-SEMANTICS | design | 49 |
+| ASM-IEEE754 | trust | 48 |
 | ASM-KTM | model | 42 |
-| ASM-LEAN-TRUST | trust | 40 |
+| ASM-LEAN-TRUST | trust | 41 |
 | ASM-GAUGE-GROUP | model | 37 |
 | ASM-ANOMALY-COEFS | data | 36 |
+| ASM-LAYER-SEMANTICS | convention | 35 |
 | ASM-CHIRALITY | model | 35 |
 | ASM-ALL-CHARGED | definition | 35 |
-| ASM-LAYER-SEMANTICS | convention | 34 |
 | ASM-WINDOW-V31 | window | 30 |
 | ASM-EFT-VALIDITY | model | 30 |
 | ASM-Z2-MINIMAL | model | 27 |
@@ -54,7 +54,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 
 | 反証条件 | status | 閉包 |
 |---|---|---|
-| FAL-SUITE | open | 250 |
+| FAL-SUITE | open | 251 |
 | FAL-CONTINUUM | open | 102 |
 | FAL-CKM-OOS | open | 63 |
 | FAL-BMV | open | 48 |
@@ -84,7 +84,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | 7 | 7 |
 | 8 | 12 |
 | 9 | 11 |
-| 10 | 11 |
+| 10 | 12 |
 | 11 | 8 |
 | 12 | 8 |
 | 13 | 5 |

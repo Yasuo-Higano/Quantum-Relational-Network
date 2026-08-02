@@ -1,0 +1,14 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v33.5 Graded recovery — Majorana locality ≠ Dirac locality (PROMPT/14) ===
+
+  [PASS] [M0] 契約自己検査 — graded_recovery (新) + 既存 4 契約の不変  Dirac pairing は witness の関数 — CAR だけの昇格は型に無い
+  [PASS] [M1] odd CAR は O(2N) 不変・graded graph は空 (ordinary では K₆ に見える罠)  CAR 資格: 原 frame ✓・Givens 回転 frame ✓ (完全一致)・graded 全対 ‖{γ,γ'}‖ ≤ 0.0e0・ordinary ‖[γ,γ']‖ = 5.656854 — pairing の情報は CAR に無い
+  [PASS] [M2] Dirac pairing no-go — witness なしは MajoranaFrameOnly・非同値な 2 pairing がともに完全な mode-CAR  標準 (12)(34)(56) と Givens 回転 pairing: mode-CAR 偏差 0.0e0 / 2.2e-16・n̂₁ の差 0.9699 — CAR データは選べない (禁止変換 20: witness なし昇格の門は無い)
+  [PASS] [M3] 正側 — Q = Σn_i から J (実・反対称・J² = −I) を抽出し 3 モード回復 (U(N) gauge を除く)  J² + I 残差 4.4e-16・mode-CAR 6.3e-16・Σâ†â = Q 残差 1.2e-15 (回転 frame 座標でも 2.2e-15) — witness が O(6) orbit から pairing を選ぶ
+  [PASS] [M4] 縮退/非線形 witness — 部分 charge は ComplexStructureUnresolved・quartic 汚染は WitnessNotLinearOnFrame・微小汚染は資格  n₁ だけでは残り 4 本の pairing が決まらない (J² ≠ −I)・0.3 γ₁γ₂γ₃γ₄ は adjoint 作用が frame 外へ漏れる・1e-12 はバー内
+  [PASS] [M5] 既存復元器は捏造しない — ordinary は odd 構成時拒否・graded net の marked recovery は Abstain(ComponentNotFactor)  graded graph (全対 0) の成分は単本 ×6・閉包 dim 2 は factor でない — モード構造は graded graph から出ない (witness 経路が唯一)
+  [PASS] [M6] 封鎖の schema/文書 — 概念登録 + 禁止変換 20・impl From 不在・アンカー  CAR から pairing への直接路はコンパイル不能 — witness が唯一の門
+
+[判定] Majorana locality と Dirac locality は型で分離された — pairing は charge witness の関数であり、CAR 単独の読みは O(2N) orbit で止まる。構造化 backend のスケーリングが v33.6 の主題
+
+総合判定: [PASS]

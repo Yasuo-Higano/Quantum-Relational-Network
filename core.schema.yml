@@ -481,6 +481,19 @@ concepts:
   layer: core
   status: defined
   note: "昇格可能な局所性 (v33.3 凍結規則): (読み + gauge orbit) の同値クラスの領域に**比較可能な対 (chain ≥ 2) が存在する**こと。単一閾値で一瞬だけ出現した読み (単点領域 = transient) は昇格しない (禁止変換 17)。grid の頂・縁で切れる読みは調査 grid 相対で transient と正直に記録"
+# ---- v33.5 (PROMPT/14): Graded recovery の正しい境界 ----
+- name: MajoranaFrame
+  layer: core
+  status: defined
+  note: "CAR ({γ_a,γ_b} = 2δ_ab) を構成時資格審査した 2N 本の Majorana 族 (v33.5)。CAR は O(2N) に不変で「どの二本が一組か」の情報はここに無い — ComplexModeFactorization への witness なし変換は存在しない (禁止変換 20)"
+- name: ComplexStructureWitness
+  layer: instrument
+  status: defined
+  note: "直交複素構造 J (実・反対称・J² = −I) の証明書 (v33.5) — 唯一の構成は extract_complex_structure (charge witness Q の adjoint 作用 i[Q,γ_a] の frame 展開と J² = −I の機械検証)。線形性破れ (frame 外漏れ) は WitnessNotLinearOnFrame・縮退 (J² ≠ −I) は ComplexStructureUnresolved で棄却"
+- name: GradedRecoveryReading
+  layer: core
+  status: defined
+  note: "graded lane の読みの凍結階層 (v33.5): odd CAR only → MajoranaFrameOnly (O(2N) orbit — Dirac モードは同値類) / + witness → ComplexModeFactorization (U(N) gauge を除く回復 — mode-CAR と Σâ†â = Q を機械照合) / 縮退・非線形 witness → Abstain"
 # ---- v33.4 (PROMPT/14): Contextual factorization ----
 - name: ChartSpec
   layer: core
@@ -553,6 +566,9 @@ forbidden_conversions:
 - from: ChartLocalFactorization
   to: GlobalFactorization
   reason: "chart の局所 Exact を大域因子分解に昇格しない (v33.4 禁止変換 19) — 大域は glue (overlap 上の部分代数 matching + 被覆 Π d = n + クラス対ごとの証人文脈) だけが与える。v334 [A3]: entangler W = CZ₂₃ で捻れた chart は A と局所 Exact 同士なのに matching (overlap 1/3) が破れ Abstain(GlueInconsistent) — 局所的に完全な 2 つの持ち場が大域構造を定めない実例"
+- from: MajoranaFrame
+  to: ComplexModeFactorization
+  reason: "odd CAR だけから Dirac mode を主張しない (v33.5 禁止変換 20) — 2N 本の Majorana の CAR は O(2N) に不変で、pairing には直交複素構造 J (J² = −I) の witness が追加で要る。v335 [M2]: 標準 pairing と Givens 回転 pairing はともに完全な mode-CAR を満たし (n̂₁ の差 0.97)、CAR データからは区別不能。正側の唯一の門は extract_complex_structure (charge witness) — 部分 charge は ComplexStructureUnresolved・frame 外漏れは WitnessNotLinearOnFrame で棄却 (v335 [M3][M4])"
 
 # predictions.yml の各 PRED の分類 — v271 R11:
 #   data_relation = future_observation の PRED は status = registered でなければならない
