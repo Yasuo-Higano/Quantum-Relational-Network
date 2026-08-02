@@ -481,6 +481,23 @@ concepts:
   layer: core
   status: defined
   note: "昇格可能な局所性 (v33.3 凍結規則): (読み + gauge orbit) の同値クラスの領域に**比較可能な対 (chain ≥ 2) が存在する**こと。単一閾値で一瞬だけ出現した読み (単点領域 = transient) は昇格しない (禁止変換 17)。grid の頂・縁で切れる読みは調査 grid 相対で transient と正直に記録"
+# ---- v33.6 (PROMPT/14): 構造化スケーリング ----
+- name: GenericDenseBackend
+  layer: instrument
+  status: defined
+  note: "小次元の完全一般系 lane (v33.6) — v33.1 の dense 復元器に凍結サイズバー (dim ≤ 4096) を付与。超過は ScopeExceeded (試行すらしない)。小系成果を大型一般系へ昇格しない (禁止変換 21)"
+- name: PauliSymplecticBackend
+  layer: instrument
+  status: defined
+  note: "Pauli/Clifford 型の structured lane (v33.6) — 演算子 = GF(2)^{2n} (x|z)・可換性 = symplectic 形式 ω・閉包次元 = 2^{dim V}・中心 = ω の radical。v33.1 凍結手順の裁定 (Exact/Insufficient/unwitnessed/超選択) を**行列を生成せず** 48 qubit で返す (v336 [S2])。n=3 全 7 セルで dense と裁定完全一致 ([S1])。証明書は宣言された Pauli 構造の厳密代数データ — 測定ノイズ lane は dense の区間証明書の領分"
+- name: MajoranaQuadraticBackend
+  layer: instrument
+  status: defined
+  note: "quadratic fermion / Majorana 双線形の structured lane (v33.6) — 表現 = 実反対称 2N×2N 行列・ブロック = 支持グラフ成分・閉包 = Lie (so) 閉包。quadratic 閉包は full M_d を与えない (偶 Clifford = パリティ超選択) — dense 対応原理は「支持分割 = dense 成分・dense *-閉包 dim = 2^{2m−1}」(v336 [S3] で小 N 照合・大 N = 48 Majorana で so(16)³ → so(32))"
+- name: StructuredScopeError
+  layer: meta
+  status: defined
+  note: "scope 外入力の正しい裁定 3 種 (v33.6): DimensionTooLargeForDense / NotPauliString (和・一般行列は PauliVector に構成不能) / NotAntisymmetric。「できない」を型と裁定で言う — ScopeExceeded は失敗ではなく正答"
 # ---- v33.5 (PROMPT/14): Graded recovery の正しい境界 ----
 - name: MajoranaFrame
   layer: core
@@ -569,6 +586,9 @@ forbidden_conversions:
 - from: MajoranaFrame
   to: ComplexModeFactorization
   reason: "odd CAR だけから Dirac mode を主張しない (v33.5 禁止変換 20) — 2N 本の Majorana の CAR は O(2N) に不変で、pairing には直交複素構造 J (J² = −I) の witness が追加で要る。v335 [M2]: 標準 pairing と Givens 回転 pairing はともに完全な mode-CAR を満たし (n̂₁ の差 0.97)、CAR データからは区別不能。正側の唯一の門は extract_complex_structure (charge witness) — 部分 charge は ComplexStructureUnresolved・frame 外漏れは WitnessNotLinearOnFrame で棄却 (v335 [M3][M4])"
+- from: GenericDenseSmallSystemResult
+  to: LargeSystemFactorizationClaim
+  reason: "generic dense の小系成果を大型一般系へ昇格しない (v33.6 禁止変換 21) — dense lane には凍結サイズバー (dim ≤ 4096) があり、超過入力の正しい裁定は ScopeExceeded (試行すらしない)。大型の主張は structured lane (PauliSymplecticBackend / MajoranaQuadraticBackend) の scope 内でのみ立ち、その資格は小系での dense との裁定完全一致 (v336 [S1]) と対応原理 ([S3]) が与える"
 
 # predictions.yml の各 PRED の分類 — v271 R11:
 #   data_relation = future_observation の PRED は status = registered でなければならない

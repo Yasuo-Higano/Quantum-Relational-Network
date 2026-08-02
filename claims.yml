@@ -4936,3 +4936,23 @@
     - "witness は偶・二次域の charge を想定 — 一般の偶演算子からの最良近似複素構造 + 誤差区間は未構成 (ノイズ下の J 資格の Straddled は HOLD-9 変成セル)。"
     - "pairing 後のモード空間局所性 (どのモードがどのサイトか) は別問題 — v33.1–v33.4 の control/context 機構が担う (graded 版 chart glue は未実装)。"
     - "複素構造が CAR 表現を定めること自体は自己双対形式の標準的数学 — 寄与は識別可能性 fiber としての型化 (witness なし昇格の禁止・棄却 2 種) と機械検証。"
+
+- id: QRN-BRIDGE-034
+  version: "v33.6"
+  level: C3
+  claim: "構造化スケーリング — Pauli GF(2) / Majorana quadratic backend (6 検査 PASS, 共有契約 `sim/src/structured_backend.rs` 新設): 一般 dense の高速化ではなく lane の分離。(i) **PauliSymplecticBackend**: 演算子 = GF(2)^{2n} (x|z)・可換性 = symplectic ω・閉包次元 = 2^{dim V}・**中心 = ω の radical** — v33.1 凍結手順 (資格・成分・証人ゲート・三値裁定) を同じ FactorizationReading 型で実装。**n=3 の全 7 セルで dense と裁定完全一致** (site [2,2,2]・entangler [2,4]・number-only/部分 net Insufficient・singleton unwitnessed・部分 address [(2,2),(2,2)] [radical = Z₂]・パリティ [(4,1),(4,1)] [radical = Z₁Z₂Z₃] — 超選択の sector 構造まで radical が数える)。(ii) **48 qubit の証明書 (壁時計 ≤ 5 s)**: site 96 本 → Exact [2×48]・+entangler → [2×46,4]・Z₄₈ 欠落 → [(2⁴⁷,1)×2] — 全て 96×96 GF(2) rank で決まり **2^48 次元行列はどこにも現れない**。(iii) **MajoranaQuadraticBackend**: 実反対称 A・ブロック = 支持成分・閉包 = so 閉包。**quadratic 閉包は full M_d を与えない** (偶 Clifford) — 対応原理「支持分割 = dense 成分・dense *-閉包 dim = 2^{2m−1}」を小 N=3 で機械照合 (8/2 = 予言 8/2)・大 N=24 (48 Majorana) で **so(16) 閉包 (dim 120) × 3 → cross hop で [16,32] (so(32) dim 496)**。(iv) **scope 規律 (禁止変換 21)**: dense は dim > 4096 (凍結バー) で ScopeExceeded (試行しない)・非 Pauli 和 X₁+X₂ は PauliVector に構成不能 (真の Pauli は反可換パターンまで往復復元)・非反対称は quadratic 資格外 — **ScopeExceeded は失敗ではなく正答**。既存 7 依存バイナリ出力 byte 一致。"
+  status: "PROMPT/14 v33.1–v33.6 の版計画が完走 — 残るは HOLD-9 (v34.0-A/B) と Track X (D2-R campaign layer)。structured lane のノイズ跨ぎ・graded witness 統合・profile/atlas の大型版は次期候補"
+  layer: instrument
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v336_structured_backend.rs"
+    result: "results/v336_structured_backend.txt"
+    doc: "docs/uft-v33.6.md"
+  limitations:
+    - "Pauli lane は宣言された厳密 Pauli 構造の lane (測定ではない) — ノイズ下の資格 (区間・Straddled) は dense lane の領分で、ノイズつき大型の跨ぎは未構成。"
+    - "quadratic lane の読みはブロック分割 + so 閉包まで — v33.5 の複素構造 witness との統合 (大型 quadratic 系の complex mode 回復) は次期候補。"
+    - "48 qubit / 48 Majorana は「行列を生成しない」ことの実演であって物理主張ではない (physical_scope: toy)。resource profile / atlas glue の structured 版は未実装。"
