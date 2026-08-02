@@ -22,6 +22,11 @@
 //!        一式の sha256-16 認証・v27.4 版付き複製 = 原本の byte 一致・
 //!        supersession 台帳 (ERR-D2-V1) の実在。凍結ファイルの変更は本監査の
 //!        認証値の意識的更新 (= 版分離) を要する
+//!   [R10] D2-R campaign layer (Track X, PROMPT/14 で追加) — 数値 kernel を含まない
+//!        公募の受け皿 (reproducer/campaigns/d2r-v1/) の常設監査: 成果物の実在と
+//!        MANIFEST.sha256 一致・funnel の単調性と full_D2R_valid = 0 (外部報告が
+//!        ない限り)・事前登録 fixture の正負判定・campaign 内にコードなし・
+//!        凍結された約束 (一件で足りる/HOLD 非混入) の文言
 //!
 //! 本監査はスイートの常時実行層 (ALWAYS_RUN)。契約の分類自体の物理的正しさは
 //! 保証しない (ASM-LAYER-SEMANTICS と同種の規約) — 保証するのは封鎖経路の不在と
@@ -512,6 +517,158 @@ fn main() {
             bad.is_empty(),
             if bad.is_empty() {
                 "D2-v1 の supersession と D2-S/D2-R の凍結が常設監査下にある".into()
+            } else {
+                format!("{:?}", bad)
+            },
+        );
+    }
+
+    // ---- [R10] D2-R campaign layer (Track X, PROMPT/14) — 公募の受け皿の常設監査 ----
+    {
+        let mut bad = Vec::new();
+        let base = "reproducer/campaigns/d2r-v1";
+        // (a) 成果物の実在と MANIFEST.sha256 の一致 (自己記述の drift 検出)
+        let manifest = rd(&format!("{}/MANIFEST.sha256", base)).unwrap_or_default();
+        if manifest.is_empty() {
+            bad.push("MANIFEST.sha256 が無い".into());
+        }
+        let mut n_manifest = 0usize;
+        for line in manifest.lines() {
+            let line = line.trim();
+            if line.is_empty() {
+                continue;
+            }
+            let mut it = line.split_whitespace();
+            let (Some(want), Some(fname)) = (it.next(), it.next()) else {
+                bad.push(format!("MANIFEST の行が解釈できない: {}", line));
+                continue;
+            };
+            n_manifest += 1;
+            match rd(&format!("{}/{}", base, fname)) {
+                Err(_) => bad.push(format!("{}/{} が無い", base, fname)),
+                Ok(t) => {
+                    if sha256_hex(t.as_bytes()) != want {
+                        bad.push(format!("{} の sha256 が MANIFEST と不一致", fname));
+                    }
+                }
+            }
+        }
+        if n_manifest < 10 {
+            bad.push(format!("MANIFEST の成果物が {} 件 (期待 ≥ 10)", n_manifest));
+        }
+        // (b) funnel: 単調性 (後段 ≤ 前段)・full_D2R_valid = 0 (外部報告がない限り)
+        let funnel = rd(&format!("{}/REPLICATION_FUNNEL.yml", base)).unwrap_or_default();
+        let stage = |k: &str| -> Option<i64> {
+            funnel.lines().find_map(|l| {
+                let l = l.trim();
+                l.strip_prefix(&format!("{}:", k))
+                    .and_then(|v| v.trim().parse::<i64>().ok())
+            })
+        };
+        let chain = [
+            "preregistered",
+            "implementation_started",
+            "run_completed",
+            "report_submitted",
+            "schema_valid",
+            "independence_valid",
+            "full_D2R_valid",
+        ];
+        let vals: Vec<Option<i64>> = chain.iter().map(|k| stage(k)).collect();
+        if vals.iter().any(|v| v.is_none()) {
+            bad.push("funnel の段が欠落/非整数".into());
+        } else {
+            for w in vals.windows(2) {
+                if w[1].unwrap() > w[0].unwrap() {
+                    bad.push("funnel の単調性が破れている (後段 > 前段)".into());
+                    break;
+                }
+            }
+            // 外部再現 0 が replications.yml と一致 (有効な第三者報告のみが動かす)
+            let rep = rd("replications.yml").unwrap_or_default();
+            let zero_ok = rep.contains("external_replications: 0")
+                || rep.contains("entries: []")
+                || !rep.contains("independent_author: true");
+            if vals[6].unwrap() != 0 && zero_ok {
+                bad.push("funnel の full_D2R_valid ≠ 0 なのに replications.yml に有効報告がない".into());
+            }
+        }
+        if !funnel.contains("not_instrumented") {
+            bad.push("protocol_viewed の非計測宣言 (数を捏造しない) が無い".into());
+        }
+        // (c) 事前登録 fixture の正負 (最小構造検査 — 完全な draft 2020-12 検証は外部の道具の仕事)
+        let prereg_ok = |t: &str| -> bool {
+            let has = |k: &str| t.contains(&format!("\"{}\"", k));
+            has("schema_version")
+                && (t.contains("\"D2-R-FULL\"") || t.contains("\"D2-R-QUAL\""))
+                && has("independence")
+                && t.contains("\"no_shared_numerical_kernel\": true")
+                && t.contains("\"distinct_author\": true")
+                && has("repository_url")
+                && t.contains("ce27f04b56303110")
+        };
+        let fx = |name: &str| rd(&format!("{}/INVALID_REPORT_FIXTURES/{}", base, name));
+        match fx("prereg_valid_minimal.json") {
+            Ok(t) if prereg_ok(&t) => {}
+            Ok(_) => bad.push("正例 fixture が最小構造検査を通らない".into()),
+            Err(_) => bad.push("正例 fixture が無い".into()),
+        }
+        for name in [
+            "prereg_invalid_missing_independence.json",
+            "prereg_invalid_capability_inflation.json",
+        ] {
+            match fx(name) {
+                Ok(t) if !prereg_ok(&t) => {}
+                Ok(_) => bad.push(format!("{} が不適合にならない (validator が緩い)", name)),
+                Err(_) => bad.push(format!("{} が無い", name)),
+            }
+        }
+        // (d) campaign 内にコードなし (数値 kernel 非提供の機械化)
+        fn scan_no_code(dir: &std::path::Path, bad: &mut Vec<String>) {
+            if let Ok(rd) = std::fs::read_dir(dir) {
+                for e in rd.filter_map(|e| e.ok()) {
+                    let p = e.path();
+                    if p.is_dir() {
+                        scan_no_code(&p, bad);
+                    } else if let Some(ext) = p.extension().and_then(|x| x.to_str()) {
+                        if ["rs", "py", "c", "cpp", "js", "jl", "f90"].contains(&ext) {
+                            bad.push(format!("campaign にコード {} が混入", p.display()));
+                        }
+                    }
+                }
+            }
+        }
+        let dir = std::path::Path::new(root).join(base);
+        scan_no_code(&dir, &mut bad);
+        // (e) 凍結された約束の文言 (事後変更の禁止)
+        let note = rd(&format!("{}/REPLICATION_NOTE.md", base)).unwrap_or_default();
+        for needle in [
+            "一件で足りる",
+            "二件要求へ変更しない",
+            "HOLD-9 以降) のセルに入れない",
+            "D2-R の成功でも解除されない",
+            "ce27f04b56303110",
+        ] {
+            if !note.contains(needle) {
+                bad.push(format!("REPLICATION_NOTE: 「{}」が無い", needle));
+            }
+        }
+        let outreach = rd(&format!("{}/OUTREACH_LEDGER.yml", base)).unwrap_or_default();
+        if !outreach.contains("捏造・シミュレーション") || !outreach.contains("entries: []") {
+            // entries が増えるのは実 outreach の記録時のみ — 空でなくなったら
+            // 禁止文言だけを検査する
+            if !outreach.contains("捏造・シミュレーション") {
+                bad.push("OUTREACH_LEDGER: 捏造禁止の方針文言が無い".into());
+            }
+        }
+        check(
+            "[R10] D2-R campaign layer (Track X): 成果物 MANIFEST 認証・funnel 単調 0・fixture 正負・コードなし・約束文言",
+            bad.is_empty(),
+            if bad.is_empty() {
+                format!(
+                    "campaign 成果物 {} 件が認証下 — 受け皿はコードなし・約束は凍結・数は実記録のみ",
+                    n_manifest
+                )
             } else {
                 format!("{:?}", bad)
             },

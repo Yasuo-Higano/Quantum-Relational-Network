@@ -1,0 +1,12 @@
+# OUTREACH_LEDGER — 公募の実施記録 (d2r-v1)
+#
+# 方針: **実際に行った outreach のみを記録する** (捏造・シミュレーション・
+# 予定の記載は禁止 — 空の台帳は正直な状態である)。エントリは
+# - id / date / channel (issue | mailing-list | forum | conference | direct) /
+#   target_kind (匿名化した対象種別) / response (none | viewed | question |
+#   preregistered) を持つ。個人を特定する情報は書かない。
+#
+# 現在のエントリ: 0 件 (本 campaign layer の公開が最初の受け皿整備であり、
+# 能動的な outreach はまだ行われていない — この行自体が正直な残高の記録)。
+
+entries: []

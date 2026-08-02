@@ -1,0 +1,22 @@
+# AMBIGUITIES — D2-R 凍結プロトコルへの質問と明確化の台帳 (d2r-v1)
+#
+# 方針: 凍結文書 (protocols/v32.1/*) は逐語不変。曖昧さの解決は**追記の明確化**
+# としてここに公開する (実質的な仕様変更が必要なら版分離 = 新プロトコル版 +
+# supersession 記録であり、本台帳では行わない)。
+# 書式: - id / date / raised_by (external | internal) / question / clarification /
+#        status (open | clarified)
+# 外部からの質問はそれ自体が寄与 — 遠慮なく issue で。
+
+- id: AMB-001
+  date: "2026-08-02"
+  raised_by: internal
+  question: "SupportNoiseCertificate の m は何を数えるか (対の数え方)"
+  clarification: "凍結文 (d2-response.md) の定義どおり m = n(n−1) — **順序対**の数。無順序対 n(n−1)/2 と取り違えると回答資格バーが √2 倍緩む。"
+  status: clarified
+
+- id: AMB-002
+  date: "2026-08-02"
+  raised_by: internal
+  question: "報告 JSON に console 出力の写しは必要か"
+  clarification: "不要。適合対象は unit-d-report.schema.json の JSON のみ。console/ログの形式は自由 (公開は推奨するが判定対象ではない)。"
+  status: clarified

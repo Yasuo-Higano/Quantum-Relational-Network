@@ -1,0 +1,12 @@
+{
+  "schema_version": "d2r-v1",
+  "unit": "D2-R-FULL",
+  "author": {
+    "name": "EXAMPLE — placeholder (実在の再現者ではない)",
+    "contact": "example@example.org"
+  },
+  "planned": {
+    "protocol_sha256_16": "ce27f04b56303110",
+    "freeze_declaration": "https://example.org/placeholder/d2r-replication/issues/1"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Yasuo-Higano/Quantum-Relational-Network/reproducer/campaigns/d2r-v1/PREREGISTRATION.schema.json",
+  "title": "D2-R campaign preregistration (d2r-v1)",
+  "description": "走行前に公開 commit する事前登録の書式。結果フィールドは持たない (結果は unit-d-report.schema.json の領分)。",
+  "type": "object",
+  "required": ["schema_version", "unit", "author", "independence", "planned"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "d2r-v1" },
+    "unit": { "enum": ["D2-R-FULL", "D2-R-QUAL"] },
+    "author": {
+      "type": "object",
+      "required": ["name", "contact"],
+      "additionalProperties": true,
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "affiliation": { "type": "string" },
+        "contact": { "type": "string", "minLength": 3 }
+      }
+    },
+    "independence": {
+      "type": "object",
+      "required": [
+        "distinct_author",
+        "no_shared_numerical_kernel",
+        "implementation_language",
+        "repository_url"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "distinct_author": { "const": true },
+        "no_shared_numerical_kernel": { "const": true },
+        "implementation_language": { "type": "string", "minLength": 1 },
+        "repository_url": { "type": "string", "minLength": 8 }
+      }
+    },
+    "planned": {
+      "type": "object",
+      "required": ["protocol_sha256_16", "freeze_declaration"],
+      "additionalProperties": false,
+      "properties": {
+        "protocol_sha256_16": {
+          "const": "ce27f04b56303110",
+          "description": "reproducer/protocols/v32.1/d2-response.md の凍結 sha256 先頭 16 桁 — 版の結束"
+        },
+        "freeze_declaration": {
+          "type": "string",
+          "minLength": 8,
+          "description": "実装 commit → 予告 → 走行 の順序を第三者検証可能にする公開記録 (URL 等)"
+        },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

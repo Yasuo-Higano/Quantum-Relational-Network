@@ -1,0 +1,23 @@
+# REPLICATION_FUNNEL — 外部化可能性のメタ実験 (d2r-v1)
+#
+# これは物理証拠ではなく、**プロトコルが外部化可能かを測るメタ実験**の台帳である。
+# 更新規則 (凍結):
+#   - 各段の数は実際の公開記録 (issue / commit / 報告 JSON) に対応するときのみ増える。
+#   - 単調性: preregistered ≥ implementation_started ≥ run_completed ≥
+#     report_submitted ≥ schema_valid ≥ independence_valid ≥ full_D2R_valid
+#     (後段は前段の部分集合 — v310 [R10] が機械監査)。
+#   - full_D2R_valid は replications.yml の外部再現数と常に一致する。
+#   - 不適合の報告も report_submitted に数える (提出の事実を消さない)。
+#     dropout_reasons に段と理由を追記する。
+#   - protocol_viewed は計測基盤がないため not_instrumented (数を捏造しない)。
+
+protocol_viewed: not_instrumented
+preregistered: 0
+implementation_started: 0
+run_completed: 0
+report_submitted: 0
+schema_valid: 0
+independence_valid: 0
+full_D2R_valid: 0
+
+dropout_reasons: []
