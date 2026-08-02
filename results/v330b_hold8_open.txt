@@ -1,0 +1,31 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v33.0-B HOLD-8 の開封 — SECRET 開示・holdout 初生成・本採点 (調整なし) ===
+
+  [PASS] [H0] SECRET 開示 = コミットメント一致 / FROZEN-HOLD8 区間の逐語一致 (SHA-256) / train seed 不変  SECRET = HOLD8-7cb8c1a325d20044e4f87f89c2bd7892 / kernel sha = 44d14839…
+      holdout シード = 18088044487616495343 (SECRET から導出) — 初生成・本採点:
+        ✓ F1-site                [回答] dims [2, 2, 2], orbit overlap 1.000000000
+        ✓ F2-mode                [回答] dims [2, 2, 2], orbit overlap 1.000000000
+        ✓ F3-numberonly          [棄却] abstain(insufficient_operational_generators)
+        ✓ F4-incompatible        [棄却] equivalence_class_only
+        ✓ F5-superselect         [回答] sectors [(2, 2), (2, 2)]
+        ✓ F6-graded              [回答] ordinary 拒否 true, sectors [(4, 1), (4, 1)]
+        ✓ I1-quadratic-ring      [回答] edges [(0, 1), (0, 2), (1, 2)], hyper []
+        ✓ I2-tv                  [回答] edges [(0, 1), (1, 2)], hyper []
+        ✓ I3-corrhop             [回答] edges [(0, 1), (1, 2)], hyper [(0, 1, 2)]
+        ✓ I4-pairhop             [回答] edges [(0, 1), (1, 2)], hyper []
+        ✓ I5a-threebody          [回答] edges [(0, 1), (1, 2)], hyper [(0, 1, 2)]
+        ✓ I5b-threebody-null     [回答] edges [(0, 1), (1, 2)], hyper []
+        ✓ I6d-signpair-density   [棄却] density identical = true
+        ✓ I6c-signpair-coherent  [回答] density identical = true, coherent split = Some(true)
+        ✓ I7d-fluxpair-density   [棄却] density identical = true
+        ✓ I7c-fluxpair-coherent  [回答] density identical = true, coherent split = Some(true)
+        ✓ M1-metamorphic         [回答] orbit overlap 1.000000000000
+        ✓ M3-recombination       [回答] dims [2, 2, 2], orbit overlap 1.000000000
+        ✓ M4-commnoise           [棄却] abstain(commutator_margin_straddled)
+        ✓ M5-weakedge            [棄却] abstain(insufficient_observation)
+  [PASS] [H1] holdout 20 セルの本採点を執行 (凍結採点器・調整なし)  selective risk = 0.000 / impossibility recall = 1.000 / answerable recall = 1.000
+  [PASS] [H2] 自己整合 — 計量がセル表から再計算と一致・回答可能 14 / 非識別 6 の区画不変  risk 再計算 0.000 = 0.000 / 区画 14/6
+
+[判定] HOLD-8 開封: 20/20 満票 — 読める境界では全て読み、読めない境界では全て棄却した (調整なし)
+
+総合判定: [PASS]

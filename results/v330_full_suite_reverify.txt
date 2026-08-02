@@ -1,0 +1,864 @@
+===== sim/target/release/v01_gr ===== [引用]
+[引用] ソース不変 (src sha256 cfd0b9fd2a6d…) — 2026-08-01 の実行結果 results/v01_gr.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v01_qm ===== [引用]
+[引用] ソース不変 (src sha256 a41ee0bf08d8…) — 2026-08-01 の実行結果 results/v01_qm.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v02_pimc ===== [引用]
+[引用] ソース不変 (src sha256 79dc749c991c…) — 2026-08-01 の実行結果 results/v02_pimc.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v03_phi4 ===== [引用]
+[引用] ソース不変 (src sha256 6489fc7ac703…) — 2026-08-01 の実行結果 results/v03_phi4.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v04_u1 ===== [引用]
+[引用] ソース不変 (src sha256 9eb5ad3b11b8…) — 2026-08-01 の実行結果 results/v04_u1.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v05_entangle ===== [引用]
+[引用] ソース不変 (src sha256 3a3e1d3a6a6c…) — 2026-08-01 の実行結果 results/v05_entangle.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v06_causet ===== [引用]
+[引用] ソース不変 (src sha256 2daaf36259a6…) — 2026-08-01 の実行結果 results/v06_causet.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v06_dt ===== [引用]
+[引用] ソース不変 (src sha256 de333d3186b8…) — 2026-08-01 の実行結果 results/v06_dt.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v07_infogeom ===== [引用]
+[引用] ソース不変 (src sha256 889ba7b2e8ae…) — 2026-08-01 の実行結果 results/v07_infogeom.txt を引用 (PASS 1 / FAIL 0)
+----- cite -----
+===== sim/target/release/v08_page ===== [引用]
+[引用] ソース不変 (src sha256 8f85b9a3cd13…) — 2026-08-01 の実行結果 results/v08_page.txt を引用 (PASS 1 / FAIL 0)
+----- cite -----
+===== sim/target/release/v101_pairing ===== [引用]
+[引用] ソース不変 (src sha256 16ec1c67d98f…) — 2026-08-01 の実行結果 results/v101_pairing.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v102_geopair ===== [引用]
+[引用] ソース不変 (src sha256 a7788f7b9bf5…) — 2026-08-01 の実行結果 results/v102_geopair.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v103_pairgeom ===== [引用]
+[引用] ソース不変 (src sha256 85b98ef9d576…) — 2026-08-01 の実行結果 results/v103_pairgeom.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v11_quench ===== [引用]
+[引用] ソース不変 (src sha256 bb3c875fa0c9…) — 2026-08-01 の実行結果 results/v11_quench.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v111_exceptional ===== [引用]
+[引用] ソース不変 (src sha256 b5b3e0dd6787…) — 2026-08-01 の実行結果 results/v111_exceptional.txt を引用 (PASS 17 / FAIL 0)
+----- cite -----
+===== sim/target/release/v112_orbifold ===== [引用]
+[引用] ソース不変 (src sha256 e2a37e97a140…) — 2026-08-01 の実行結果 results/v112_orbifold.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v113_orient ===== [引用]
+[引用] ソース不変 (src sha256 3a0dfba333d5…) — 2026-08-01 の実行結果 results/v113_orient.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v114_tensorcore ===== [引用]
+[引用] ソース不変 (src sha256 11befe4c6367…) — 2026-08-01 の実行結果 results/v114_tensorcore.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v12_erepr ===== [引用]
+[引用] ソース不変 (src sha256 9b08e37428bf…) — 2026-08-01 の実行結果 results/v12_erepr.txt を引用 (PASS 1 / FAIL 0)
+----- cite -----
+===== sim/target/release/v121_tiltflux ===== [引用]
+[引用] ソース不変 (src sha256 6fe94289624c…) — 2026-08-01 の実行結果 results/v121_tiltflux.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v122_tiltwilson ===== [引用]
+[引用] ソース不変 (src sha256 9ba9114be705…) — 2026-08-01 の実行結果 results/v122_tiltwilson.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v123_fluxscan ===== [引用]
+[引用] ソース不変 (src sha256 e95ddaf31ec5…) — 2026-08-01 の実行結果 results/v123_fluxscan.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v13_qec ===== [引用]
+[引用] ソース不変 (src sha256 b328bc4f549c…) — 2026-08-01 の実行結果 results/v13_qec.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v131_lanczos ===== [引用]
+[引用] ソース不変 (src sha256 0f68e9dda4ad…) — 2026-08-01 の実行結果 results/v131_lanczos.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v132_deeptilt ===== [引用]
+[引用] ソース不変 (src sha256 cf158a9cab3e…) — 2026-08-01 の実行結果 results/v132_deeptilt.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v14_z2gauge ===== [引用]
+[引用] ソース不変 (src sha256 d7858ddef50d…) — 2026-08-01 の実行結果 results/v14_z2gauge.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v15_lambda ===== [引用]
+[引用] ソース不変 (src sha256 61fdfcd55b61…) — 2026-08-01 の実行結果 results/v15_lambda.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v151_audit =====
+=== v15.1 監査版: 主張依存グラフの機械検証 ===
+
+[1] 書式解析: 主張 254 / グラフ 254 / 仮定 40 / 反証条件 15  [PASS]
+[2] id 一意性・命名・語彙: OK  [PASS]
+[3] graph ↔ claims 1:1 対応: 全 254 主張  [PASS]
+[4] 参照の実在: 依存辺 431 本ほか全て OK  [PASS]
+[5] DAG 非循環性: OK (最大深さ 34 — 例 QRN-META-027)  [PASS]
+[6] 等級単調性 (C0<C1<C2<{C3,C4}<C5): 全依存辺 OK  [PASS]
+[7] 被覆 (C1+ に fal / C2 に asm / 孤児なし): OK  [PASS]
+[8] Lean 定理数: 10 ファイル計 77 本 = 期待値、文書記述とも一致  [PASS]
+[9] README 網羅性: 全文書・全バイナリ言及、到達点 v33.0 明示  [PASS]
+[10] 生成物の同一性: committed 内容 = 再生成内容  [PASS]
+
+---- 依存グラフの概観 ----
+  節点 254 / 辺 431 / 根 (deps なし) 43 / 最大深さ 34
+  被支持数の上位 (この主張が落ちると連鎖する数):
+    QRN-C0-005             80 主張
+    QRN-C0-006             64 主張
+    QRN-MATTER-001         62 主張
+    QRN-YUK-001            62 主張
+    QRN-YUK-002            61 主張
+  仮定の影響範囲の上位 (抜くと落ちる主張の閉包):
+    ASM-LATTICE            176 主張
+    ASM-GAUSS              93 主張
+    ASM-LOWDIM             92 主張
+    ASM-SEED               89 主張
+    ASM-PDG                70 主張
+
+総合判定: [PASS] 依存グラフは非循環・等級単調・完全被覆 (辺の意味論は ASM-EDGE-SEMANTICS)
+----- exit=0 -----
+===== sim/target/release/v153_corev2 ===== [引用]
+[引用] ソース不変 (src sha256 bdf6f22293e8…) — 2026-08-01 の実行結果 results/v153_corev2.txt を引用 (PASS 25 / FAIL 0)
+----- cite -----
+===== sim/target/release/v154_continuum ===== [引用]
+[引用] ソース不変 (src sha256 1c3062e71525…) — 2026-08-01 の実行結果 results/v154_continuum.txt を引用 (PASS 15 / FAIL 0)
+----- cite -----
+===== sim/target/release/v155_selection ===== [引用]
+[引用] ソース不変 (src sha256 cd04db101cfd…) — 2026-08-01 の実行結果 results/v155_selection.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v156_einstein ===== [引用]
+[引用] ソース不変 (src sha256 433e9c423064…) — 2026-08-01 の実行結果 results/v156_einstein.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v157_predict ===== [引用]
+[引用] ソース不変 (src sha256 c8ddde9e00f4…) — 2026-08-01 の実行結果 results/v157_predict.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v16_born ===== [引用]
+[引用] ソース不変 (src sha256 a683cb37d0f9…) — 2026-08-01 の実行結果 results/v16_born.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v161_tiltcp ===== [引用]
+[引用] ソース不変 (src sha256 adf96261b296…) — 2026-08-01 の実行結果 results/v161_tiltcp.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1610_sigsens ===== [引用]
+[引用] ソース不変 (src sha256 2dbe3fad2f94…) — 2026-08-01 の実行結果 results/v1610_sigsens.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1611_selection2 ===== [引用]
+[引用] ソース不変 (src sha256 7826a337adc4…) — 2026-08-01 の実行結果 results/v1611_selection2.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1612_depthscan ===== [引用]
+[引用] ソース不変 (src sha256 abc1481c5a45…) — 2026-08-01 の実行結果 results/v1612_depthscan.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1613_jeffreys ===== [引用]
+[引用] ソース不変 (src sha256 1cd450a64b75…) — 2026-08-01 の実行結果 results/v1613_jeffreys.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v162_shearcp ===== [引用]
+[引用] ソース不変 (src sha256 5870e1cb256e…) — 2026-08-01 の実行結果 results/v162_shearcp.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v163_sheartriple ===== [引用]
+[引用] ソース不変 (src sha256 b987e59286d2…) — 2026-08-01 の実行結果 results/v163_sheartriple.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v164_tenquantity ===== [引用]
+[引用] ソース不変 (src sha256 9cf8ad33ce08…) — 2026-08-01 の実行結果 results/v164_tenquantity.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v165_scorecard ===== [引用]
+[引用] ソース不変 (src sha256 d9b3138574a2…) — 2026-08-01 の実行結果 results/v165_scorecard.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v166_wilson12 ===== [引用]
+[引用] ソース不変 (src sha256 5c7cbf1b213d…) — 2026-08-01 の実行結果 results/v166_wilson12.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v167_nscaling ===== [引用]
+[引用] ソース不変 (src sha256 e014fd7bdb2d…) — 2026-08-01 の実行結果 results/v167_nscaling.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v168_taure ===== [引用]
+[引用] ソース不変 (src sha256 c6567965deb4…) — 2026-08-02 の実行結果 results/v168_taure.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v169_asymshear ===== [引用]
+[引用] ソース不変 (src sha256 49b2a24688d1…) — 2026-08-02 の実行結果 results/v169_asymshear.txt を引用 (PASS 13 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1710_tauimdeep ===== [引用]
+[引用] ソース不変 (src sha256 7583a709e478…) — 2026-08-01 の実行結果 results/v1710_tauimdeep.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1711_apexchar ===== [引用]
+[引用] ソース不変 (src sha256 64d157565ce7…) — 2026-08-01 の実行結果 results/v1711_apexchar.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v1713_orientation ===== [引用]
+[引用] ソース不変 (src sha256 ab2ef943c8df…) — 2026-08-01 の実行結果 results/v1713_orientation.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v174_postbands ===== [引用]
+[引用] ソース不変 (src sha256 4f95c249f5dc…) — 2026-08-01 の実行結果 results/v174_postbands.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v175_tauim ===== [引用]
+[引用] ソース不変 (src sha256 32b4fb080529…) — 2026-08-02 の実行結果 results/v175_tauim.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v177_sigmacont ===== [引用]
+[引用] ソース不変 (src sha256 2f133ca38ead…) — 2026-08-01 の実行結果 results/v177_sigmacont.txt を引用 (PASS 13 / FAIL 0)
+----- cite -----
+===== sim/target/release/v178_densform ===== [引用]
+[引用] ソース不変 (src sha256 c0b55fa622d0…) — 2026-08-01 の実行結果 results/v178_densform.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v179_measurejudge ===== [引用]
+[引用] ソース不変 (src sha256 5b38e156d6f2…) — 2026-08-01 の実行結果 results/v179_measurejudge.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v182_apexcont ===== [引用]
+[引用] ソース不変 (src sha256 879a30f4756e…) — 2026-08-01 の実行結果 results/v182_apexcont.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v183_pmns ===== [引用]
+[引用] ソース不変 (src sha256 bfb910ff4418…) — 2026-08-01 の実行結果 results/v183_pmns.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v184_mrgeom ===== [引用]
+[引用] ソース不変 (src sha256 24c7931a4b73…) — 2026-08-01 の実行結果 results/v184_mrgeom.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v185_fluxphib ===== [引用]
+[引用] ソース不変 (src sha256 5ff317153ba4…) — 2026-08-02 の実行結果 results/v185_fluxphib.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v186_tailanat ===== [引用]
+[引用] ソース不変 (src sha256 bb70172d5dbb…) — 2026-08-02 の実行結果 results/v186_tailanat.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v187_needle ===== [引用]
+[引用] ソース不変 (src sha256 9fd8e9bd7466…) — 2026-08-02 の実行結果 results/v187_needle.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v191_first3d ===== [引用]
+[引用] ソース不変 (src sha256 683f0798676e…) — 2026-08-01 の実行結果 results/v191_first3d.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v192_boost3d ===== [引用]
+[引用] ソース不変 (src sha256 1a3bb6fac8f0…) — 2026-08-02 の実行結果 results/v192_boost3d.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v193_fisher3d ===== [引用]
+[引用] ソース不変 (src sha256 fb0428d62345…) — 2026-08-01 の実行結果 results/v193_fisher3d.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v194_boostdist ===== [引用]
+[引用] ソース不変 (src sha256 6ce86541faa4…) — 2026-08-01 の実行結果 results/v194_boostdist.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v195_qnec3d ===== [引用]
+[引用] ソース不変 (src sha256 e15e0c20d330…) — 2026-08-02 の実行結果 results/v195_qnec3d.txt を引用 (PASS 29 / FAIL 0)
+----- cite -----
+===== sim/target/release/v196_boostdeep ===== [引用]
+[引用] ソース不変 (src sha256 695457f70613…) — 2026-08-02 の実行結果 results/v196_boostdeep.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v197_nonlinear ===== [引用]
+[引用] ソース不変 (src sha256 0685c13714cb…) — 2026-08-02 の実行結果 results/v197_nonlinear.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v201_u1core ===== [引用]
+[引用] ソース不変 (src sha256 db7367e3942b…) — 2026-08-01 の実行結果 results/v201_u1core.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v202_screen ===== [引用]
+[引用] ソース不変 (src sha256 fa7858d731a7…) — 2026-08-01 の実行結果 results/v202_screen.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v203_staircase ===== [引用]
+[引用] ソース不変 (src sha256 38e6610e53fc…) — 2026-08-02 の実行結果 results/v203_staircase.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v204_anomaly ===== [引用]
+[引用] ソース不変 (src sha256 23152043583a…) — 2026-08-01 の実行結果 results/v204_anomaly.txt を引用 (PASS 16 / FAIL 0)
+----- cite -----
+===== sim/target/release/v205_su2core ===== [引用]
+[引用] ソース不変 (src sha256 ab84b902dae0…) — 2026-08-02 の実行結果 results/v205_su2core.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v206_su3core ===== [引用]
+[引用] ソース不変 (src sha256 57c029107230…) — 2026-08-02 の実行結果 results/v206_su3core.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v21_relent ===== [引用]
+[引用] ソース不変 (src sha256 393140253318…) — 2026-08-02 の実行結果 results/v21_relent.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v211_anomspec ===== [引用]
+[引用] ソース不変 (src sha256 298eceb76676…) — 2026-08-02 の実行結果 results/v211_anomspec.txt を引用 (PASS 18 / FAIL 0)
+----- cite -----
+===== sim/target/release/v212_bmvmap ===== [引用]
+[引用] ソース不変 (src sha256 a3a5266be1b6…) — 2026-08-02 の実行結果 results/v212_bmvmap.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v213_dmrgaudit =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v21.3 監査層: DMRG 探索の ED 照合と遮蔽窓の判定 (二層構造の初適用) ===
+
+事前登録: (a) アンカー全 PASS かつ N=48 の E_mid 比 < 0.25 = 遮蔽判別完成 +
+          二層構造成立 / (b) 外れ。探索層 = explore/dmrg_schwinger.py (numpy)
+
+  [PASS] [A] 探索層自己検定 (MPO 偏差 = 0・DMRG = ED @ N=8)  dev = 0.0e0, |ΔE| = 1.8e-14
+  [PASS] [B] N=16 アンカー μ=0 (ED vs DMRG ± 0.005)  ED = 0.2409, DMRG = 0.2409 (差 1.4e-14) (1 s)
+  [PASS] [B] N=16 アンカー μ=1 (ED vs DMRG ± 0.005)  ED = 0.4214, DMRG = 0.4214 (差 2.0e-15) (3 s)
+
+[判定] 事前登録 (a): 遮蔽判別が DMRG で完成 — m=0 の磁束は融解し (比 0.043)、μ=1 は弦が運ぶ。二層構造 (探索 python / 監査 Rust) の初適用成立
+    N=48 (中点距離 12): E_mid = +0.0173 (μ=0) / +0.4022 (μ=1), 比 = 0.0431 (登録 < 0.25)
+    v20.2 の ED 窓 (距離 3, 比 0.521) が距離 12 で 0.043 — 遮蔽長 ℓ≈2 の算術と整合
+
+[artifact] ./results/v213_dmrgaudit.json
+
+総合判定: [PASS] 装置は較正済み — 分岐 (a)/(b) は [判定] が一次ソース
+----- exit=0 -----
+===== sim/target/release/v214_bridgeaudit =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v21.4 Einstein 橋の残項目監査 — 測れるものと依存連鎖 (PROMPT/3 §2R) ===
+
+事前登録: (a) 分散異方性の log-log 勾配 p = 2 ± 0.1 = ローレンツ主要次数保護 /
+          (b) 外れ。G 依存項目 (1/r・2 偏極・S_eff・R²) は限界の依存連鎖を明示
+
+    |k| = 0.05: E_axis = 0.049979, E_diag = 0.049993, 異方性 = 2.778e-4
+    |k| = 0.10: E_axis = 0.099833, E_diag = 0.099944, 異方性 = 1.112e-3
+    |k| = 0.20: E_axis = 0.198669, E_diag = 0.199556, 異方性 = 4.452e-3
+    |k| = 0.40: E_axis = 0.389418, E_diag = 0.396454, 異方性 = 1.791e-2
+  [PASS] [測定 1] 異方性の勾配 p = 2 ± 0.1 (O(k²a²) 保護)  p = 2.0032
+    [記録] |k|=0.1 の異方性 1.112e-3 vs 解析 k²/9 = 1.111e-3 (小 k 展開)
+  [PASS] [測定 2] ∇T=0 の格子形 (v19.5 の保存則ゲートの存在照合)  エネルギー保存 true, 連続の式 true
+  [PASS] [限界 3-7] G 窓の定量化文書 (v19.6 §2 の三角測量) の存在  docs/uft-v19.6.md
+
+    依存連鎖 (限界の明示):
+      Newton 1/r ← S_eff の EH 項係数 G ← 第二段 (窓 d≲2 の外, v19.2/19.4/19.6)
+      重力波 2 偏極 ← 線形化 S_eff ← 同上 / R² 上界 ← S_eff 次次数 ← 同上
+      QNEC 連続極限 ← N≥24 格子系列 (jacobi 経済則: ~27h/対角化 — 要疎化)
+      脱出路 (登録済): N≥24 疎化・横質量ゼロ構成・多倍長核
+
+[判定] 事前登録 (a): ローレンツ主要次数保護が成立 — §2 の測定可能分は閉じ、残 4 項目は G 窓の依存連鎖として限界化
+
+[artifact] ./results/v214_bridgeaudit.json
+
+総合判定: [PASS] 装置は較正済み — 分岐 (a)/(b) は [判定] が一次ソース
+----- exit=0 -----
+===== sim/target/release/v215_predictive ===== [引用]
+[引用] ソース不変 (src sha256 f23c4254962c…) — 2026-08-02 の実行結果 results/v215_predictive.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v217_fiveconditions =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v21.7 最小 5 条件の監査 (PROMPT/3 §9) ===
+
+事前登録: (a) 機械検査全 PASS + 採点 [成立 3 / 部分 2] / (b) 台帳不整合
+
+  [PASS] 台帳の等級分布 (C2+C3 ≥ 40 = 定理・機構層の厚み)  C0:8 C1:35 C2:58 C3:41 C4:81 C5:32 (計 255)
+  [PASS] 鍵主張の存在: 重力・第一法則 (QRN-GRAV-005)  QRN-GRAV-005
+  [PASS] 鍵主張の存在: QNEC (QRN-GRAV-009)  QRN-GRAV-009
+  [PASS] 鍵主張の存在: SU(3) core (QRN-CORE-011)  QRN-CORE-011
+  [PASS] 鍵主張の存在: アノマリー一意性 (QRN-GAUGE-003)  QRN-GAUGE-003
+  [PASS] 鍵主張の存在: predictive 表 (QRN-YUK-032)  QRN-YUK-032
+  [PASS] 鍵主張の存在: 測度溶解の系譜 (v17.9-18 系)  QRN-MSR-
+  [PASS] 鍵主張の存在: Lean 上流 (QRN-GAUGE-018)  QRN-GAUGE-018
+  [PASS] 予言台帳の登録数 ≥ 8 (holdout 採点可能性)  18 件
+
+[採点] PROMPT/3 §9 の 5 条件:
+  [1] 単一力学からの同時読み出し: 部分 — 語彙は統一 (拘束 core + 関係エントロピー)、
+      同一状態からの同時実演 (v22) が未。欠落 = SM 直積 core + 重力読み出しの単一化
+  [2] 連続極限 GR+SM+物質: 部分 — 橋 3 本柱・SU 階段・アノマリー橋 (軽領域) は成立、
+      G 係数窓 (v19.6)・カイラル格子化 (doubling)・ν 混合 (v18.7 no-go) が未
+  [3] データ非参照測度: 成立 — 一様測度の登録 (補正有害を機械判定 [v17.9-18])、
+      predictive 表 12/12 @95% (v21.5)
+  [4] holdout 事前登録+採点: 成立 — |V_td|/|V_ts|/γ_UT 採点済・BMV 判別子 (v21.2)
+  [5] C5→下位への降格実績: 成立 — 測度問題 (C5 解釈 → 幾何の C2/C3 機構へ溶解)・
+      CP 起源 (τ 幾何の C2)・第一法則/QNEC (C2)
+
+[判定] 事前登録 (a): 台帳整合 — §9 = [成立 3 / 部分 2]。未達 2 条件の欠落は v22 課題として名指し済み
+
+[artifact] ./results/v217_fiveconditions.json
+
+総合判定: [PASS] 装置は較正済み — 分岐 (a)/(b) は [判定] が一次ソース
+----- exit=0 -----
+===== sim/target/release/v22_kk ===== [引用]
+[引用] ソース不変 (src sha256 b2bf2d19d28e…) — 2026-08-02 の実行結果 results/v22_kk.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v221_dmrg ===== [引用]
+[引用] ソース不変 (src sha256 98fc312afe79…) — 2026-08-02 の実行結果 results/v221_dmrg.txt を引用 (PASS 19 / FAIL 0)
+----- cite -----
+===== sim/target/release/v221_dmrgex =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v22.1 重電荷ボソンの DMRG 励起状態 — ED アンカー照合 (第二十三期 課題 3) ===
+
+事前登録: (a) 装置ゲート PASS ∧ x=16 の M/g 比 (q=2)/(q=1) = 2 ± 7% /
+          (b) 外れ = 記録。教科書線: M(q)/g = q/√π (ボソン化)
+
+  [PASS] [I1] q=1 E₀: ED = DMRG ± 1e-4  ED -9.83216275 vs DMRG -9.83216275 (Δ 9.6e-13, 7 s)
+  [PASS] [I2] q=1 E₁: ED = DMRG ± 1e-3 (罰則法許容)  ED -7.54793015 vs DMRG -7.54793015 (Δ 1.1e-13, gap ED 2.284233)
+  [PASS] [I3] q=1 罰則の中性不変性 (厳密恒等式) ∧ E₁ 中性  ΔE₀ 0.0e0, ΔE₁ 0.0e0 (中性 dim 252), ⟨n⟩(E₀/E₁) = 5.000/5.000
+  [PASS] [I1] q=2 E₀: ED = DMRG ± 1e-4  ED -6.19452711 vs DMRG -6.19452711 (Δ 3.9e-13, 14 s)
+  [PASS] [I2] q=2 E₁: ED = DMRG ± 1e-3 (罰則法許容)  ED -1.05963290 vs DMRG -1.05963290 (Δ 5.9e-14, gap ED 5.134894)
+  [PASS] [I3] q=2 罰則の中性不変性 (厳密恒等式) ∧ E₁ 中性  ΔE₀ 0.0e0, ΔE₁ 0.0e0 (中性 dim 252), ⟨n⟩(E₀/E₁) = 5.000/5.000
+
+  [PASS] [I4] x=9 q=1 E₀ 交差エンジン ± 1e-6  rust -345.685059986 vs python -345.685059986 (Δ 9.7e-13)
+  [PASS] [I4] x=16 q=1 E₀ 交差エンジン ± 1e-6  rust -627.210986171 vs python -627.210986171 (Δ 8.0e-13)
+
+    x= 9: M/g(1) = 0.6531 [gap py], M/g(2) = 1.4253 [gap rs], 比 = 2.1822 (相関比 2.1139)
+    x=16: M/g(1) = 0.6482 [gap py], M/g(2) = 1.3612 [gap rs], 比 = 2.1001 (相関比 2.0634)
+    [記録] M/g(q=1, x=16) = 0.6482 vs 1/√π = 0.5642 (偏差 +14.9%; 相関法 0.7198)
+  [PASS] x=16, N=64 の gap 質量比 (q=2)/(q=1) = 2 ± 7% (当初登録の判定量)  比 = 2.1001 (x=9: 2.1822)
+
+[判定] 事前登録 (a): 重電荷窓の開通 — 開鎖 (ε なし) + 直交罰則 DMRG で M(2)/M(1) = 2 を確認
+
+[artifact] ./results/v221_dmrgex.json
+
+総合判定: [PASS]
+----- exit=0 -----
+===== sim/target/release/v222_gwindow ===== [引用]
+[引用] ソース不変 (src sha256 6592ae836ba4…) — 2026-08-02 の実行結果 results/v222_gwindow.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v223_smcore ===== [引用]
+[引用] ソース不変 (src sha256 1e3c1dfa62e5…) — 2026-08-02 の実行結果 results/v223_smcore.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v224_collapse ===== [引用]
+[引用] ソース不変 (src sha256 46a4debef140…) — 2026-08-02 の実行結果 results/v224_collapse.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v225_collapselaw ===== [引用]
+[引用] ソース不変 (src sha256 e5a6af589c2b…) — 2026-08-02 の実行結果 results/v225_collapselaw.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v226_kboost ===== [引用]
+[引用] ソース不変 (src sha256 78173cf9f8d7…) — 2026-08-02 の実行結果 results/v226_kboost.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v227_ddkernel ===== [引用]
+[引用] ソース不変 (src sha256 38c783f59dd0…) — 2026-08-02 の実行結果 results/v227_ddkernel.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v23_matter ===== [引用]
+[引用] ソース不変 (src sha256 31187128011c…) — 2026-08-02 の実行結果 results/v23_matter.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v231_boostform ===== [引用]
+[引用] ソース不変 (src sha256 64fb142bc247…) — 2026-08-02 の実行結果 results/v231_boostform.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v232_kbudget ===== [引用]
+[引用] ソース不変 (src sha256 9082683a5b0d…) — 2026-08-02 の実行結果 results/v232_kbudget.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v233_bucketmatch ===== [引用]
+[引用] ソース不変 (src sha256 77babb2ab693…) — 2026-08-02 の実行結果 results/v233_bucketmatch.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v234_lambda ===== [引用]
+[引用] ソース不変 (src sha256 94af80e9ff69…) — 2026-08-02 の実行結果 results/v234_lambda.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v235_lambdainf =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v23.5 λ∞ の外挿判定 — 有限繰り込みか素朴回復か (第二十四期) ===
+
+事前登録: (a) λ∞ = 1 ± 0.02 = BW 素朴回復 / (a′) 外 = 有限繰り込み 2π/λ∞ /
+          (b) 1/N⁴ 自己整合・族間整合の破れ
+
+    N= 8: λ = 1.19187
+    N=10: λ = 1.19020
+    N=12: λ = 1.18671
+    N=14: λ = 1.18614
+    N=16: λ = 1.18589
+    外挿: mod-0 族 (8,12) → 1.18544 / (12,16) → 1.18552 / mod-2 族 (10,14) → 1.18472
+  [PASS] [J1] 1/N⁴ 自己整合 (mod-0 の 2 外挿が ± 0.002)  Δ = 0.0001
+  [PASS] [J2] 族間整合 |λ∞(mod0) − λ∞(mod2)| < 0.003  mod0 1.18552 vs mod2 1.18472 (Δ 0.0008)
+
+    λ∞ = 1.18512 (族平均) — 32/27 = 1.18519 との比 = 0.99994
+
+[判定] 事前登録 (a′): 有限繰り込みの確定 — 格子エンタングルメント温度は 2π/λ∞。G 読み出し (v23.6) はこの温度で行う
+
+[artifact] ./results/v235_lambdainf.json
+
+総合判定: [PASS] 装置は較正済み — 分岐 (a)/(a′)/(b) は [判定] が一次ソース
+----- exit=0 -----
+===== sim/target/release/v236_gread ===== [引用]
+[引用] ソース不変 (src sha256 49be9d6fc33a…) — 2026-08-02 の実行結果 results/v236_gread.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v24_inflation ===== [引用]
+[引用] ソース不変 (src sha256 611524874259…) — 2026-08-02 の実行結果 results/v24_inflation.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v241_dispersion ===== [引用]
+[引用] ソース不変 (src sha256 c08c99ab1a18…) — 2026-08-02 の実行結果 results/v241_dispersion.txt を引用 (PASS 18 / FAIL 0)
+----- cite -----
+===== sim/target/release/v242_blockdiag ===== [引用]
+[引用] ソース不変 (src sha256 8a1883c31d61…) — 2026-08-02 の実行結果 results/v242_blockdiag.txt を引用 (PASS 14 / FAIL 0)
+----- cite -----
+===== sim/target/release/v243_bwwindow ===== [引用]
+[引用] ソース不変 (src sha256 889a2c516bcc…) — 2026-08-02 の実行結果 results/v243_bwwindow.txt を引用 (PASS 22 / FAIL 0)
+----- cite -----
+===== sim/target/release/v244_opmatch ===== [引用]
+[引用] ソース不変 (src sha256 b9d452cd9bb9…) — 2026-08-02 の実行結果 results/v244_opmatch.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v245_discretization ===== [引用]
+[引用] ソース不変 (src sha256 8061d7b8da21…) — 2026-08-02 の実行結果 results/v245_discretization.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v246_entropyscale ===== [引用]
+[引用] ソース不変 (src sha256 d19b14d38776…) — 2026-08-02 の実行結果 results/v246_entropyscale.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v25_bmv ===== [引用]
+[引用] ソース不変 (src sha256 a8d6f84b266b…) — 2026-08-02 の実行結果 results/v25_bmv.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v251_gmu ===== [引用]
+[引用] ソース不変 (src sha256 8b17e47eb12a…) — 2026-08-02 の実行結果 results/v251_gmu.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v252_bz_certificate ===== [引用]
+[引用] ソース不変 (src sha256 e1e07c8efe60…) — 2026-08-02 の実行結果 results/v252_bz_certificate.txt を引用 (PASS 12 / FAIL 0)
+----- cite -----
+===== sim/target/release/v252_exact_g ===== [引用]
+[引用] ソース不変 (src sha256 61e83b011bbd…) — 2026-08-02 の実行結果 results/v252_exact_g.txt を引用 (PASS 22 / FAIL 0)
+----- cite -----
+===== sim/target/release/v252_finite_size ===== [引用]
+[引用] ソース不変 (src sha256 9df5e131b6a3…) — 2026-08-02 の実行結果 results/v252_finite_size.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v252_manifest ===== [引用]
+[引用] ソース不変 (src sha256 ce23e79f42be…) — 2026-08-02 の実行結果 results/v252_manifest.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v261_prequential ===== [引用]
+[引用] ソース不変 (src sha256 86a9526f9735…) — 2026-08-02 の実行結果 results/v261_prequential.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v262_stress_ward ===== [引用]
+[引用] ソース不変 (src sha256 508588fd2f95…) — 2026-08-02 の実行結果 results/v262_stress_ward.txt を引用 (PASS 22 / FAIL 0)
+----- cite -----
+===== sim/target/release/v263_c1_response ===== [引用]
+[引用] ソース不変 (src sha256 67dd1238eac9…) — 2026-08-02 の実行結果 results/v263_c1_response.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v264_c1_anisotropy ===== [引用]
+[引用] ソース不変 (src sha256 51e4057c90a0…) — 2026-08-02 の実行結果 results/v264_c1_anisotropy.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v265_spin2 ===== [引用]
+[引用] ソース不変 (src sha256 dddd96bc2a02…) — 2026-08-02 の実行結果 results/v265_spin2.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v266_vacuum_pol ===== [引用]
+[引用] ソース不変 (src sha256 4a1d26ec8f0a…) — 2026-08-02 の実行結果 results/v266_vacuum_pol.txt を引用 (PASS 18 / FAIL 0)
+----- cite -----
+===== sim/target/release/v267_spectral ===== [引用]
+[引用] ソース不変 (src sha256 79a9e02c8667…) — 2026-08-02 の実行結果 results/v267_spectral.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v2671_pole_semantics ===== [引用]
+[引用] ソース不変 (src sha256 2448b2e446eb…) — 2026-08-02 の実行結果 results/v2671_pole_semantics.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v267b_q4break ===== [引用]
+[引用] ソース不変 (src sha256 c71710ec0f97…) — 2026-08-02 の実行結果 results/v267b_q4break.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v268a_oracle ===== [引用]
+[引用] ソース不変 (src sha256 b6ea49fce948…) — 2026-08-02 の実行結果 results/v268a_oracle.txt を引用 (PASS 13 / FAIL 0)
+----- cite -----
+===== sim/target/release/v268b_continuum ===== [引用]
+[引用] ソース不変 (src sha256 332fabaa274a…) — 2026-08-02 の実行結果 results/v268b_continuum.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v268c_wilson ===== [引用]
+[引用] ソース不変 (src sha256 f03373965ab4…) — 2026-08-02 の実行結果 results/v268c_wilson.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v268p_pred016 ===== [引用]
+[引用] ソース不変 (src sha256 0a85e7550988…) — 2026-08-02 の実行結果 results/v268p_pred016.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v268s_sumrule ===== [引用]
+[引用] ソース不変 (src sha256 f5a1700cfbc1…) — 2026-08-02 の実行結果 results/v268s_sumrule.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v268t_threeway ===== [引用]
+[引用] ソース不変 (src sha256 591f9c5d1267…) — 2026-08-02 の実行結果 results/v268t_threeway.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v268x_completion ===== [引用]
+[引用] ソース不変 (src sha256 4e5dd406d74a…) — 2026-08-02 の実行結果 results/v268x_completion.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v268z_source_matching ===== [引用]
+[引用] ソース不変 (src sha256 40cc8d5838b2…) — 2026-08-02 の実行結果 results/v268z_source_matching.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v269c_spin4d ===== [引用]
+[引用] ソース不変 (src sha256 672bef915d0c…) — 2026-08-02 の実行結果 results/v269c_spin4d.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v269d_belinfante ===== [引用]
+[引用] ソース不変 (src sha256 2892cf7b6723…) — 2026-08-02 の実行結果 results/v269d_belinfante.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v269e_energy_ward ===== [引用]
+[引用] ソース不変 (src sha256 351535deecdd…) — 2026-08-02 の実行結果 results/v269e_energy_ward.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v269i_spin_improve ===== [引用]
+[引用] ソース不変 (src sha256 57f70a6961e5…) — 2026-08-02 の実行結果 results/v269i_spin_improve.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v269m_momentum_ward ===== [引用]
+[引用] ソース不変 (src sha256 b8e73df9b2a5…) — 2026-08-02 の実行結果 results/v269m_momentum_ward.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v269w_ward4d ===== [引用]
+[引用] ソース不変 (src sha256 dd3ddab63bf2…) — 2026-08-02 の実行結果 results/v269w_ward4d.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v270a_kernel4d ===== [引用]
+[引用] ソース不変 (src sha256 10bbb1133313…) — 2026-08-02 の実行結果 results/v270a_kernel4d.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v270b_universality ===== [引用]
+[引用] ソース不変 (src sha256 1084977b33ec…) — 2026-08-02 の実行結果 results/v270b_universality.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v270c_fork ===== [引用]
+[引用] ソース不変 (src sha256 49f4fdec9e77…) — 2026-08-02 の実行結果 results/v270c_fork.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v271_core_audit =====
+=== v27.1 核意味論監査 — 層分類・多軸台帳・昇格禁止 (第二十八期, PROMPT/10) ===
+
+  [PASS] [S0] schema 解析・層 7 値・軸語彙 5 本・QRN-Core v1 状態表示  concepts 91 / conversions 11 / predictions 18
+  [PASS] [S1] 全概念の層分類 — 未分類 0 件・必須 35 概念の登録 (v27.2 への進行ゲート)  91 概念 [adapter:12 bridge:22 core:10 dynamics:7 instrument:18 meta:14 phenomenology:8]
+  [PASS] [S2] 型レベル禁止変換 7 種の登録 (reason つき)  regulator/時間/計量/証拠の 4 部門
+  [PASS] [S3] claims.yml 全主張の 6 軸完備・語彙適合  254 主張
+  [PASS] [S4] R1/R2 自然観測・外部再現の証拠 0 件 (正直な残高の機械化)  natural_observation 0 / external_replication 0
+  [PASS] [S5] R3 independent_author は C0 (外部の確立結果) のみ — 独立外部再現 0  C0 の 7 件のみ
+  [PASS] [S6] R4 core/dynamics/bridge 層 (C0 以外) は toy/effective_model のみ  toy mechanism → theory of nature の昇格なし
+  [PASS] [S7] R5 future_observation を根拠にする主張は存在しない  未来のデータは主張を支えない
+  [PASS] [S8] R6 continuum_universal は adapter/instrument (または C0) の専有  連続普遍性の bridge/core への漏出なし
+  [PASS] [S9] R7 internal_holdout ⇒ preregistered_holdout  11 件の holdout 主張が整合
+  [PASS] [S10] predictions 照合 — 自然の観測量の的中 (natural×future×hit) = 0・PRED-019 不在  18 PRED 分類済み / 自然の的中 0 (公知測定値 holdout の hit は別枠)
+  [PASS] [S11] 文書アンカー — 状態表示・監査注記 (v0.7/v1.0/v27.0)・C0-001 限定・GRAV-001 降格・README 残高  6 文書 + 2 主張
+  [PASS] [S12] 禁止 impl From の不在 (regulator→ontology / 発展→固有時間 / 外部→創発計量)  sim/src 全走査 — 検出 0
+
+[判定] 層分類は完備・昇格禁止は保たれている — 未分類 0 件 (v27.2 への進行ゲート開通)
+
+総合判定: [PASS]
+----- exit=0 -----
+===== sim/target/release/v272_core_contract =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v27.2 型付き Core Contract の機械検査 (PROMPT/10 §4) ===
+
+  [PASS] [T0] qrn_core_self_test — 登録簿空・証明書発行不能・状態表示の水増しなし・居住不能型  REGISTERED_BRIDGE_LAWS = [] / QrnEvidence 等 4 型は構成不能 (空 enum)
+  [PASS] [T1] QRN_CORE_V1 (Rust const 10 成分) ↔ core.schema.yml の状態表示  kinematics: defined / dynamics: model_family_only / geometry: conjectural / gravity: unsupported / clock: undefined
+  [PASS] [T2] 旧名 QrnState/QrnModel の根絶 (GaussianFermionState/GaussianToyModel へ)  sim/src 全走査 — 残存 0 (toy の名から Qrn を外した)
+  [PASS] [T3] 外部時間の型分離 — evolve/step の t は EvolutionParameter (ProperTime への門は関数ごと不在)  GaussianToyModel::evolve true / ConstrainedToyDynamicsV2::step true / 門は閉 (t = EvolutionParameter(1.5))
+  [PASS] [T4] BridgeLawCertificate<能力>::register — 全 6 実装能力 × 未登録 id で None (bridge law 0 件・ClockCalibration/FullLorentzianMetric は型レベル構成不能)  5 個の id × 6 能力で発行拒否を確認
+  [PASS] [T5] proofs/QrnPromotion.lean — 昇格グラフ・状態表示の形式化 (定理 12 本)  theorem 宣言 12 本 (証明対象は形式的性質であり物理的正しさではない)
+
+[判定] 型境界は成立 — regulator/存在論・外部/創発計量・発展/固有時間の暗黙変換はコンパイル不能、bridge law の門は閉
+
+総合判定: [PASS]
+----- exit=0 -----
+===== sim/target/release/v273_instruments =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v27.3 器械台帳の機械検証 — Adapter v1 / Metrology Suite v1 の凍結 (PROMPT/10 §5) ===
+
+  [PASS] [I0] instruments.yml の解析  器械 22 (adapter 8 + metrology 14) / 常設回帰 5
+  [PASS] [I1] 必須 16 フィールドの完備・family 語彙  22 器械 × 16 フィールド
+  [PASS] [I2] concept ↔ core.schema.yml の層一致 (adapter → adapter / metrology → instrument)  台帳間の分類が単一の層辞書に従う
+  [PASS] [I3] 較正記録・認証ファイルの実在 + certificate SHA-256 の一致  22 器械の認証ハッシュが凍結どおり
+  [PASS] [I4] allowed_claims の id が claims.yml に実在  器械 → 主張の対応が台帳で閉じる
+  [PASS] [I5] forbidden_interpretations が全器械で非空 (凍結解釈の明示)  22/22 器械
+  [PASS] [I6] 常設回帰 (4 比 universality・和則・Ward 64/kernel・fork) の記録照合  5 回帰の凍結判定文と FAIL 不在を確認
+  [PASS] [I7] PROMPT/10 §5 指定の器械 (BOND-A〜staggered/Wilson matching) の全登録  9 + Wilson 対照の 10 概念を被覆
+
+[判定] Adapter v1 / Metrology Suite v1 は凍結された — 器械の変更は認証ハッシュの更新 (意識的な再認証) を要する
+
+総合判定: [PASS]
+----- exit=0 -----
+===== sim/target/release/v274_reproducer =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v27.4 外部再現単位の機械検証 — reproducer/ と replications.yml (PROMPT/10 §6) ===
+
+  [PASS] [P0] reproducer/ 一式 + replications.yml の実在  9 ファイル
+  [PASS] [P1] JSON 4 ファイルの構文 (最小パーサ)  全て well-formed
+  [PASS] [P2] TOLERANCES ↔ 凍結一次ソース (v62 証明書・v25.2 凍結値・oracle −1/10・PRED-016 バー)  外部への約束と内部の凍結が同一の数
+  [PASS] [P3] 単位 A の領域 (D₁) と期待解 (SM 15 成分) ↔ certificates の一致  領域も答えも証明書から転写されている (転記ミスの機械検出)
+  [PASS] [P4] replications.yml — 6 条件定義・計数 = claims 台帳 (現在どちらも 0)  external_replications = 0 / entries = 0 / claims 側 = 0
+  [PASS] [P5] CLAIMS.md の昇格対象 id が claims.yml に実在  15 id を確認
+  [PASS] [P6] クリーンルーム条項 (同一 AI 非独立・失敗も公開) の文書アンカー  外部への約束が文書に凍結されている
+
+[判定] 外部再現単位は固定された — 独立外部再現 0 は「未達の目標」として機械監査下にある
+
+総合判定: [PASS]
+----- exit=0 -----
+===== sim/target/release/v281_bridge_train ===== [引用]
+[引用] ソース不変 (src sha256 c5d567e22cfa…) — 2026-08-02 の実行結果 results/v281_bridge_train.txt を引用 (PASS 14 / FAIL 0)
+----- cite -----
+===== sim/target/release/v282_bridge_holdout ===== [引用]
+[引用] ソース不変 (src sha256 26507a63544d…) — 2026-08-02 の実行結果 results/v282_bridge_holdout.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v283_bridge_rescore ===== [引用]
+[引用] ソース不変 (src sha256 57f0d3535069…) — 2026-08-02 の実行結果 results/v283_bridge_rescore.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v291_bridge_erratum ===== [引用]
+[引用] ソース不変 (src sha256 957a23a03f7d…) — 2026-08-02 の実行結果 results/v291_bridge_erratum.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v293_bridge_matrix ===== [引用]
+[引用] ソース不変 (src sha256 a0ca0dc9e393…) — 2026-08-02 の実行結果 results/v293_bridge_matrix.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v294a_bridge_val ===== [引用]
+[引用] ソース不変 (src sha256 5cc7d6d3102b…) — 2026-08-02 の実行結果 results/v294a_bridge_val.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v294b_bridge_holdout5 ===== [引用]
+[引用] ソース不変 (src sha256 be091180d7a6…) — 2026-08-02 の実行結果 results/v294b_bridge_holdout5.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v295_collision_atlas ===== [引用]
+[引用] ソース不変 (src sha256 ee16b5335ff1…) — 2026-08-02 の実行結果 results/v295_collision_atlas.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v296_homology ===== [引用]
+[引用] ソース不変 (src sha256 aeb9860896e2…) — 2026-08-02 の実行結果 results/v296_homology.txt を引用 (PASS 6 / FAIL 0)
+----- cite -----
+===== sim/target/release/v300a_hold6_freeze ===== [引用]
+[引用] ソース不変 (src sha256 03f03410ddc2…) — 2026-08-02 の実行結果 results/v300a_hold6_freeze.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v300b_hold6_open ===== [引用]
+[引用] ソース不変 (src sha256 ba48e51c58e2…) — 2026-08-02 の実行結果 results/v300b_hold6_open.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v31_gauge ===== [引用]
+[引用] ソース不変 (src sha256 3a394e32ee44…) — 2026-08-02 の実行結果 results/v31_gauge.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v310_readout_semantics =====
+[self_test] OK (jacobi residual 3.11e-15)
+=== v31.0 幾何読み出しの識別可能性契約 — 意味論・型・protocol 凍結 (PROMPT/12) ===
+
+  [PASS] [R0] readout_contract_self_test — タグ 13 種・exact 床・門の棄却・証明書封鎖  状態領域 4 / 観測契約 6 / 因子分解 3 タグ・棄却理由 8 種・δ 床 1e-13
+  [PASS] [R1] 型レベル封鎖 — 禁止 impl From 3 種の不在 (sim/src 全走査) + verdict 私有  親→物理生成子 / 正則化→exact / oracle→operational patch の経路なし
+  [PASS] [R2] core.schema.yml — 新概念 15 種・意味論差是正・禁止変換 8–10 (reason つき)  「定義済み読み出し」と「設計目標」と「現行 bridge の入力」が分離された
+  [PASS] [R3] replications.yml — claim/capability scoped 拡張・Unit D schema・external 0 維持  gauge 単位の成功は geometry 能力を解除しない (D2 のみ解除可)
+  [PASS] [R4] 文書アンカー — uft-v31.0.md の E0–E4 分離・絶対禁止・採点原則・qrn_core note  意味論凍結が文書に固定されている
+  [PASS] [R5] qrn_core の封鎖不変 — ProperTime 門の不在・ClockCalibration 構成不能・登録簿空  v30.0 の封鎖は v31.0 の追加後も保たれている
+  [PASS] [R6] tools/suite.sh の ALWAYS_RUN に本監査が登録されている  リポジトリ状態を読む監査層として常時実行
+  [PASS] [R7] 熱的 Gaussian round-trip — C = (I+e^{β(h−μI)})⁻¹ → K(C) → 門 → h 復元・projector は棄却  δ = 3.749e-2 / 復元誤差 max|ĥ−h| = 1.33e-15 (バー 1e-10)
+  [PASS] [R8] 外部再現 Unit D (Track X): UNIT_D.md (D1–D4)・凍結入力 D1・CLAIMS.md の単位 D 表 — geometry 解除は D2 のみ  geometry 用 reproducer が公開された — external_replications = 0 は維持
+  [PASS] [R9] 外部再現プロトコルの版分離 (v32.1): 凍結一式 sha256 認証・v27.4 複製 byte 一致・supersession 台帳  D2-v1 の supersession と D2-S/D2-R の凍結が常設監査下にある
+
+[判定] 意味論・型・protocol は凍結された — encoding / inversion / operational readout / factorization / bridge は別能力として型で分離されている
+
+総合判定: [PASS]
+----- exit=0 -----
+===== sim/target/release/v311_gibbs_oracle ===== [引用]
+[引用] ソース不変 (src sha256 6fb15cb5c86a…) — 2026-08-02 の実行結果 results/v311_gibbs_oracle.txt を引用 (PASS 13 / FAIL 0)
+----- cite -----
+===== sim/target/release/v312_localbias_law ===== [引用]
+[引用] ソース不変 (src sha256 caf1ef5d0c2b…) — 2026-08-02 の実行結果 results/v312_localbias_law.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+===== sim/target/release/v313_budget_hierarchy ===== [引用]
+[引用] ソース不変 (src sha256 bf56aee13f6c…) — 2026-08-02 の実行結果 results/v313_budget_hierarchy.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v314_operator_atlas ===== [引用]
+[引用] ソース不変 (src sha256 b3b17ebfcead…) — 2026-08-02 の実行結果 results/v314_operator_atlas.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v315_nongaussian ===== [引用]
+[引用] ソース不変 (src sha256 5b9796d1be1d…) — 2026-08-02 の実行結果 results/v315_nongaussian.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v316_metric_vr ===== [引用]
+[引用] ソース不変 (src sha256 d234d47233ee…) — 2026-08-02 の実行結果 results/v316_metric_vr.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v317_boundary_mechanism ===== [引用]
+[引用] ソース不変 (src sha256 16be09127ec7…) — 2026-08-02 の実行結果 results/v317_boundary_mechanism.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v32_yukawa ===== [引用]
+[引用] ソース不変 (src sha256 432454c05cc7…) — 2026-08-02 の実行結果 results/v32_yukawa.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v320a_hold7_freeze ===== [引用]
+[引用] ソース不変 (src sha256 d5155432519b…) — 2026-08-02 の実行結果 results/v320a_hold7_freeze.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v320b_hold7_open ===== [引用]
+[引用] ソース不変 (src sha256 1c574010b916…) — 2026-08-02 の実行結果 results/v320b_hold7_open.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v321_d2_erratum ===== [引用]
+[引用] ソース不変 (src sha256 8361f5f104d7…) — 2026-08-02 の実行結果 results/v321_d2_erratum.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v322_operational_net ===== [引用]
+[引用] ソース不変 (src sha256 9bf010fb742e…) — 2026-08-02 の実行結果 results/v322_operational_net.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v323_factorization_recovery ===== [引用]
+[引用] ソース不変 (src sha256 51b60c3f7f82…) — 2026-08-02 の実行結果 results/v323_factorization_recovery.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v324_liouvillian_hierarchy ===== [引用]
+[引用] ソース不変 (src sha256 941b7206df46…) — 2026-08-02 の実行結果 results/v324_liouvillian_hierarchy.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v325_interaction_hypergraph ===== [引用]
+[引用] ソース不変 (src sha256 2c1189648d37…) — 2026-08-02 の実行結果 results/v325_interaction_hypergraph.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v326_vr_exactness ===== [引用]
+[引用] ソース不変 (src sha256 6202664164b0…) — 2026-08-02 の実行結果 results/v326_vr_exactness.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v33_ctheorem ===== [引用]
+[引用] ソース不変 (src sha256 074ebbf9e5c6…) — 2026-08-02 の実行結果 results/v33_ctheorem.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v330a_hold8_freeze ===== [引用]
+[引用] ソース不変 (src sha256 1804c832b246…) — 2026-08-02 の実行結果 results/v330a_hold8_freeze.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v330b_hold8_open ===== [引用]
+[引用] ソース不変 (src sha256 5f1cd599c1d0…) — 2026-08-02 の実行結果 results/v330b_hold8_open.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v34_unruh ===== [引用]
+[引用] ソース不変 (src sha256 1aa768a3fd68…) — 2026-08-02 の実行結果 results/v34_unruh.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v41_qnec ===== [引用]
+[引用] ソース不変 (src sha256 bcd922aeb4f1…) — 2026-08-02 の実行結果 results/v41_qnec.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v42_neutrino ===== [引用]
+[引用] ソース不変 (src sha256 9688df8acaef…) — 2026-08-02 の実行結果 results/v42_neutrino.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v43_landscape ===== [引用]
+[引用] ソース不変 (src sha256 c8022c2fc15e…) — 2026-08-02 の実行結果 results/v43_landscape.txt を引用 (PASS 0 / FAIL 0)
+----- cite -----
+===== sim/target/release/v44_desitter ===== [引用]
+[引用] ソース不変 (src sha256 063c824935c4…) — 2026-08-02 の実行結果 results/v44_desitter.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v51_arrow ===== [引用]
+[引用] ソース不変 (src sha256 2adaab85c983…) — 2026-08-02 の実行結果 results/v51_arrow.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v52_bigreps ===== [引用]
+[引用] ソース不変 (src sha256 36c88a2e940d…) — 2026-08-02 の実行結果 results/v52_bigreps.txt を引用 (PASS 1 / FAIL 0)
+----- cite -----
+===== sim/target/release/v53_decoupling ===== [引用]
+[引用] ソース不変 (src sha256 ba07704d898b…) — 2026-08-02 の実行結果 results/v53_decoupling.txt を引用 (PASS 1 / FAIL 0)
+----- cite -----
+===== sim/target/release/v61_ledger =====
+=== v6.1 主張台帳 (claims.yml) の機械検証 ===
+
+[1] 書式解析: 254 件の主張を解析  [PASS]
+[2] id 一意性・命名規則: 全 254 件 OK  [PASS]
+[3] 等級・必須フィールド: OK  [PASS]
+[4] 証拠ファイルの実在: 全 650 参照 OK  [PASS]
+[5] 限界の明示 (C0 以外は必須): OK  [PASS]
+[6] バイナリ被覆: 全 194 本が台帳から参照されている  [PASS]
+[7] 6 軸の完備性・語彙 (layer/evidence_kind/independence/universality/data_relation/physical_scope): 全 254 件 OK  [PASS]
+
+---- 等級別の集計 ----
+  C0 教科書的・既存定理 (前提)                7 件
+  C1 既存結果の再現実装                    35 件
+  C2 制限付き計算定理                     58 件
+  C3 toy model による機構提示            41 件
+  C4 現象論的 fit / オーダー推定            81 件
+  C5 解釈・哲学・スローガン                  32 件
+  計 254 件
+
+---- 期別の主張数 ----
+  v0.x : 14 件
+  v1.x : 11 件
+  v10.x : 4 件
+  v11.x : 5 件
+  v12.x : 4 件
+  v13.x : 3 件
+  v14.x : 3 件
+  v15.x : 8 件
+  v16.x : 14 件
+  v17.x : 9 件
+  v18.x : 7 件
+  v19.x : 8 件
+  v2.x : 8 件
+  v20.x : 7 件
+  v21.x : 8 件
+  v22.x : 8 件
+  v23.x : 7 件
+  v24.x : 7 件
+  v25.x : 8 件
+  v26.x : 23 件
+  v27.x : 9 件
+  v28.x : 4 件
+  v29.x : 8 件
+  v3.x : 8 件
+  v30.x : 3 件
+  v31.x : 8 件
+  v32.x : 11 件
+  v33.x : 3 件
+  v4.x : 7 件
+  v5.x : 4 件
+  v6.x : 10 件
+  v7.x : 6 件
+  v8.x : 3 件
+  v9.x : 4 件
+
+総合判定: [PASS] 台帳は形式的に健全 (内容の正しさは各文書と results/ が担う)
+----- exit=0 -----
+===== sim/target/release/v62_atlas ===== [引用]
+[引用] ソース不変 (src sha256 051d0e468ef4…) — 2026-08-02 の実行結果 results/v62_atlas.txt を引用 (PASS 39 / FAIL 0)
+----- cite -----
+===== sim/target/release/v63_qnec_budget ===== [引用]
+[引用] ソース不変 (src sha256 4c65eca558ae…) — 2026-08-02 の実行結果 results/v63_qnec_budget.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v64_controls ===== [引用]
+[引用] ソース不変 (src sha256 78de19e0ea77…) — 2026-08-02 の実行結果 results/v64_controls.txt を引用 (PASS 3 / FAIL 0)
+----- cite -----
+===== sim/target/release/v65_bayes ===== [引用]
+[引用] ソース不変 (src sha256 daf5eca7d4d0…) — 2026-08-02 の実行結果 results/v65_bayes.txt を引用 (PASS 8 / FAIL 0)
+----- cite -----
+===== sim/target/release/v67_core ===== [引用]
+[引用] ソース不変 (src sha256 21605fbc3af8…) — 2026-08-02 の実行結果 results/v67_core.txt を引用 (PASS 7 / FAIL 0)
+----- cite -----
+===== sim/target/release/v71_twou1 ===== [引用]
+[引用] ソース不変 (src sha256 0276cb4f7fe2…) — 2026-08-02 の実行結果 results/v71_twou1.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v72_geomfn ===== [引用]
+[引用] ソース不変 (src sha256 5876e07923d3…) — 2026-08-02 の実行結果 results/v72_geomfn.txt を引用 (PASS 2 / FAIL 0)
+----- cite -----
+===== sim/target/release/v73_bmv2 ===== [引用]
+[引用] ソース不変 (src sha256 0dac3cef88e6…) — 2026-08-02 の実行結果 results/v73_bmv2.txt を引用 (PASS 9 / FAIL 0)
+----- cite -----
+===== sim/target/release/v74_core2 ===== [引用]
+[引用] ソース不変 (src sha256 a928023cc867…) — 2026-08-02 の実行結果 results/v74_core2.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v81_geoselect ===== [引用]
+[引用] ソース不変 (src sha256 bdd7508b9c1a…) — 2026-08-02 の実行結果 results/v81_geoselect.txt を引用 (PASS 4 / FAIL 0)
+----- cite -----
+===== sim/target/release/v82_threeu1 ===== [引用]
+[引用] ソース不変 (src sha256 c16bc36f4ee3…) — 2026-08-02 の実行結果 results/v82_threeu1.txt を引用 (PASS 11 / FAIL 0)
+----- cite -----
+===== sim/target/release/v91_ckmselect ===== [引用]
+[引用] ソース不変 (src sha256 8f2c600bf791…) — 2026-08-02 の実行結果 results/v91_ckmselect.txt を引用 (PASS 5 / FAIL 0)
+----- cite -----
+===== sim/target/release/v92_labelstab ===== [引用]
+[引用] ソース不変 (src sha256 ae3b2128304e…) — 2026-08-02 の実行結果 results/v92_labelstab.txt を引用 (PASS 18 / FAIL 0)
+----- cite -----
+===== sim/target/release/v94_qneccore ===== [引用]
+[引用] ソース不変 (src sha256 7b0d69dba84f…) — 2026-08-02 の実行結果 results/v94_qneccore.txt を引用 (PASS 10 / FAIL 0)
+----- cite -----
+
+===== 集計 =====
+実行 12 本: PASS 99 / FAIL 0
+引用 183 本: PASS 1272 / FAIL 0 (ソース不変を sha256 で確認 — 台帳 results/suite_manifest.tsv)
+総計: PASS 1371 / FAIL 0
+lib.rs ed65c664e26581b1f55a292419a22b2bbfe5dd16fd9658fcf2a07fa83dacda03 / Cargo.toml fcbdde4968e5a893025368bc1c4e572b4e63849825945841d486814e95e062b2 / rustc 1.94.0 (4a4ef493e 2026-03-02)

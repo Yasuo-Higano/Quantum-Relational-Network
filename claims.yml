@@ -4796,3 +4796,43 @@
     - "train は設計区画 — 検証力はない。holdout (v33.0-B) が凍結採点器で本採点する。"
     - "セル族は 3 qubit/3 モード (dim 8) の toy 族に制限 — 相図の軸 (因子分解・相互作用次数・観測契約) は網羅するが各軸の深さは有限。"
     - "coherent 分離は電流 + 実 hopping の 2 チャネル固定 — 一般の情報完全 coherent 契約の相図は v32.4 [L1] の範囲。"
+
+- id: QRN-BRIDGE-028
+  version: "v33.0-B"
+  level: C3
+  claim: "HOLD-8 holdout (初開封) の本採点 — 事前凍結の生成器・採点器・バー・棄却規則・調整なし: **20/20 セル満票 — selective risk 0.000・impossibility recall 1.000 (6/6)・answerable recall 1.000 (14/14)・強制回答 0**。[H0] SECRET 開示 (HOLD8-7cb8c1a3… の sha256 = コミットメント fb05a4a0… 照合)・FROZEN-HOLD8 区間の v330a との逐語一致 (kernel sha 44d14839…)・train seed 不変を機械照合。holdout シード 18088044487616495343 (SECRET 導出) の新鮮セルで: **因子分解** = site/mode net とも Exact [2,2,2] + gauge orbit 一致 1.000000000・number-only → Insufficient 正棄却・非互換 2 net → EquivalenceClassOnly (強制一致なし)・中心非自明 → [(2,2),(2,2)]・odd 入力は ordinary 構成時拒否 + graded 化 [(4,1),(4,1)]。**相互作用** = quadratic (holdout 抽選は ring — 支持 欠0余0)・t-V (ŵ = t², V 不可視)・相関 hopping (hyper (0,1,2) 検出 + K(v) = |t+vV|²)・pair hopping (hyper 誤検出なし)・三体 ± null 対 (検出/不発)・**H↔−H 対と磁束 ±θ 対は密度 lane が同値裁定 (分離を主張せず正棄却)・coherent 2 チャネルが分離**。**変成・ノイズ** = 局所 U×置換の変成対 同一 orbit (1.000000000000)・基底可逆再結合で不変・可換子 margin 跨ぎ → Straddled 棄却・弱辺 + ノイズ → InsufficientObservation 棄却。"
+  status: "内部 holdout 満票 (調整なし) — 因子分解 × 相互作用次数 × 観測契約の識別可能性境界が新鮮データで機能した。bridge law 登録は独立外部再現 0 のため引き続き行わない"
+  layer: bridge
+  evidence_kind: internal_holdout
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: preregistered_holdout
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v330b_hold8_open.rs"
+    result: "results/v330b_hold8_open.txt"
+    doc: "docs/uft-v33.0.md"
+  limitations:
+    - "内部 holdout であり独立外部再現ではない — bridge law 登録の blocker (R2/R3) は残る。Unit D2-R の公募が最優先のまま。"
+    - "セル族は dim 8 (3 qubit/3 モード) の toy 相図 — 軸 (因子分解・相互作用次数・観測契約・変成・ノイズ) は網羅するが深さは有限。大型系のスケーリングは次期。"
+    - "holdout の隠し自由度は数値パラメータ (重み・角度・置換・V・θ・σ) と小構造選択 (ring/chain) — セルクラス自体は凍結時に公開されている (HOLD-7 と同じ設計)。"
+
+- id: QRN-META-042
+  version: "v33.0-B"
+  level: C4
+  claim: "第三十二期の統合 — 期末完全儀式と確定残高: **make suite-full で全 195 本を完全再計算 (~16.7h, JOBS=12) し、末桁ドリフト検査 (台帳の期前後比較) で既存 175 非監査バイナリの PASS/FAIL が完全一致 (ドリフト 0 件)** — 第三十二期の共有部変更 (`sim/src/operational_net.rs` 新設・readout_contract 後継注記) は既存物理に無波及。差分は新規 8 本 (v321–v326, v330a/b) の +56 PASS。完全再走中は監査層 v151 が台帳の期末更新中間状態 (v33.0-B 材料の登録前) を 3 検査で正しく検出して FAIL — **台帳確定後の再検証で総計 PASS 1371 / FAIL 0** (v28.0 の「儀式 + 再検証」と同型の記録)。**期テーゼ「局所性は状態に宿るのではなく、操作的文脈の可換分解と、その上の Liouvillian 応答の同値類としてのみ識別される」が型 (OperationalNet・禁止変換 11)・定理 (erasure no-go + marked recovery)・負制御 (K₃ 捏造・null 対・非互換 net)・holdout (HOLD-8 20/20 満票) の全てで閉じた**。確定成果: D2 プロトコル型修復と実行前反例 F}oXO + SupportNoiseCertificate (v32.1)・OperationalNet と第二の no-go + JW 型遮断 (v32.2)・marked recovery 三値裁定 + パリティ超選択の機械発見 (v32.3)・応答階層恒等式 + H↔−H no-go + 曲率則の統一 (v32.4)・interaction hypergraph + 遷移率和則 + 条件付き次数分離 (v32.5)・離散円環 bar 定理 + K3-holes の閉形式 retrodiction (v32.6)・HOLD-8 満票 (v33.0)。器械訂正 2 件を監査注記つきで適用 (dust guard・coherent 2 チャネル化)。"
+  status: "第三十二期 完結 — bridge law 登録簿は全能力で空・external_replications = 0・PRED-019 未登録のまま (blocker = Unit D2-R の公募。受け皿は v32.1 で修復済み)"
+  layer: meta
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "tools/suite.sh"
+    result: "results/v330_full_suite.txt"
+    doc: "docs/uft-v33.0.md"
+  limitations:
+    - "儀式は決定性・無波及の検査であって物理的正しさの証拠ではない (PASS 総数はソフトウェア健全性の指標 — README の PASS 分類規約)。"
+    - "完全再走中の v151 3 FAIL は台帳中間状態の正検出 — 再検証 (results/v330_full_suite_reverify.txt) が確定記録。ドリフト検査は PASS/FAIL 数の一致で、数値の末桁は各バイナリ内蔵の判定バーに委ねる。"
+    - "期の全成果は layer: bridge/instrument の toy 機構であり、bridge law 登録簿は空・独立外部再現 0・自然の的中 0 のまま。"
