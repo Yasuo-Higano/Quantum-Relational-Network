@@ -4956,3 +4956,23 @@
     - "Pauli lane は宣言された厳密 Pauli 構造の lane (測定ではない) — ノイズ下の資格 (区間・Straddled) は dense lane の領分で、ノイズつき大型の跨ぎは未構成。"
     - "quadratic lane の読みはブロック分割 + so 閉包まで — v33.5 の複素構造 witness との統合 (大型 quadratic 系の complex mode 回復) は次期候補。"
     - "48 qubit / 48 Majorana は「行列を生成しない」ことの実演であって物理主張ではない (physical_scope: toy)。resource profile / atlas glue の structured 版は未実装。"
+
+- id: QRN-BRIDGE-035
+  version: "v34.0-A"
+  level: C3
+  claim: "HOLD-9 の凍結 (3 検査 PASS + train 20 セル満票): 第三十三期の全器械 (v33.1 修復入口 / v33.2 laboratory interface / v33.3 resource profile / v33.4 atlas glue / v33.5 graded recovery / v33.6 structured backend) を凍結し、**操作の出自 × 文脈整合 × 資源依存局所性**の識別可能性境界を新鮮 holdout で採点する準備。sha256(SECRET) = ef6a8cd9… を公表。採点は従来 3 計量 (selective risk 0 / impossibility recall 1 / answerable recall 1 — 強制回答は risk) + **第三十三期の 5 計量** (origin_certificate_coverage 1 / context_witness_coverage 1 / raw_operation_promotions 0 / scope_violations 0 / transient_factorization_promotions 0)。凍結カーネル (FROZEN-HOLD9 — v340b との逐語一致を [H0] が照合) は器械を呼ぶ駆動部で、器械本体は **lib pin** (6 モジュールの凍結時 sha256-16 を [A0]/[H0] が照合 — HOLD-8 逐語コピー方式の lib 版)。セル 5 群 20 (隠し = 変成 U×置換・対の抽選・γ・コスト・O(6) 回転・汚染振幅・qubit 数): 入力完全性 (raw+流用拒否 / net-owned gens byte 同一 / role-mixed 拒否 / GKLS lane 拒否)・accessibility (独立 knobs Exact / tied 分解拒否+Abstain / 同一閉包別 interface 非同値 / 出自流用拒否)・context/resource (budget profile / 一意 glue / 複数 glue EquivClassOnly / cross-talk 跨ぎ Straddled)・graded (CAR only = Majorana orbit / charge witness = modes / 汚染 witness 棄却 / ordinary odd 拒否)・scale/変成 (dense=Pauli 一致 / 大型 structured + dense ScopeExceeded / 大域共役の共変 / transient 非昇格)。**train (シード 34001) 満票: risk 0.000・recall 1.000/1.000・出自被覆 31/31・証人被覆 7/7・昇格/違反 0** — 設計走行で独立 12 シードも満票 (生成器のシード頑健性)。外部再現の成否はセルに含めない (内部 SECRET は外部独立性でない)。"
+  status: "凍結半 (設計区画) — holdout は未生成。開封・本採点は v34.0-B (調整なし + 期末完全儀式)"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v340a_hold9_freeze.rs"
+    result: "results/v340a_hold9_freeze.txt"
+    doc: "docs/uft-v34.0.md"
+  limitations:
+    - "train は設計区画 — 検証力はない。holdout (v34.0-B) が凍結採点器で本採点する。"
+    - "セル族は dim 8 (+ structured lane の 32–60 qubit) の toy — 軸 (出自・文脈・資源・graded・scale) は網羅するが各軸の深さは有限。"
+    - "lib pin は開封までの器械不変の保証 — 開封後に pin を更新する変更は器械訂正として監査注記を要する (HOLD-8 の dust guard と同じ扱い)。"

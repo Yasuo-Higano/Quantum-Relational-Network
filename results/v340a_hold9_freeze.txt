@@ -1,0 +1,33 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v34.0-A HOLD-9 の凍結 — 出自 × 文脈整合 × 資源依存局所性 (PROMPT/14) ===
+
+  [PASS] [A0] sha256(SECRET) コミットメント公表 + 器械 lib pin (6 モジュール) + 契約自己検査  sha256(SECRET) = ef6a8cd97b5d7693… / lib pin 6 本一致
+  [PASS] [A1] 採点器の健全性 — 強制回答と誤答が risk に数えられ、recall が水増しされない  人工 3 セル: risk = 0.667 (2/3)・強制回答 = 1・imp recall = 0.0・ans recall = 0.5
+      train (シード 34001) のセル表:
+        ✓ IC1-raw-refusal              [棄却] 生の行列 + 流用証明書 → certificate_target_mismatch
+        ✓ IC2-net-owned-gens           [回答] 行列の出所 = net の primitive (byte 同一 true) → exact [2,2,2]
+        ✓ IC3-role-mixed               [棄却] 測定 effect の混入 → role_mixed_recovery
+        ✓ IC4-gkls-lane                [棄却] GKLS (γ > 0) は Leibniz が破れ可換子 lane 資格なし
+        ✓ AC1-independent-knobs        [回答] 資格つき独立 knobs → exact [2,2,2]
+        ✓ AC2-tied-control             [棄却] 数学的分解は rank 1 < 2 で拒否・正直な tied net は abstain
+        ✓ AC3-closure-erasure          [棄却] 両 interface とも exact・orbit matching 不在 (best 0.5625)
+        ✓ AC4-origin-binding           [棄却] X₁ の合成証明書は隠し別行列に流用できない (sha 結束)
+        ✓ CR1-budget-profile           [回答] profile: 資源不足 → [2,2,2] → [2,4] (隠し深さコスト)
+        ✓ CR2-unique-glue              [回答] chart 共有因子の matching (frame 回転不変) → glued [2,2,2]
+        ✓ CR3-multi-glue               [棄却] 整合 atlas 2 つ → equivalence_class_only (tie-break なし)
+        ✓ CR4-crosstalk-straddle       [棄却] cross-talk 区間がバー 0.1 を跨ぐ → 強制判定なし
+        ✓ GR1-majorana-orbit           [棄却] witness なし → majorana_frame_only (O(2N) orbit で止まる)
+        ✓ GR2-charge-witness           [回答] charge witness → J → 3 モード回復 (Σâ†â = Q)
+        ✓ GR3-witness-contaminated     [棄却] quartic 汚染 witness → witness_not_linear_on_frame
+        ✓ GR4-ordinary-odd-refusal     [棄却] odd primitive は ordinary net が構成時拒否
+        ✓ SC1-dense-pauli-agree        [回答] 隠しセル + 隠し置換で dense = Pauli backend
+        ✓ SC2-large-structured         [回答] Pauli backend が行列なしで Exact・dense は ScopeExceeded
+        ✓ SC3-covariance               [回答] dims 不変・orbit は W-共役で厳密に対応 (interface 共変)
+        ✓ SC4-transient-not-promoted   [回答] stable = [2,2,2] のみ・[2,4]@単点 と [8]@頂 は transient
+      selective risk = 0.000 / impossibility recall = 1.000 / answerable recall = 1.000 / 強制回答 = 0
+      origin_certificate_coverage = 1.000 / context_witness_coverage = 1.000 / raw_operation_promotions = 0 / scope_violations = 0 / transient_factorization_promotions = 0
+  [PASS] [A2] train 20 セル満票 — risk 0 / recall 1/1 / 出自被覆 1 / 証人被覆 1 / 昇格・違反 0  セル 20 / 出自つき admit 31/31 / witness つき Exact 7/7
+
+[判定] HOLD-9 は凍結された — 生成器・採点器・バー・lib pin・コミットメントが公開され、holdout は SECRET 開示 (v34.0-B) まで存在しない
+
+総合判定: [PASS]
