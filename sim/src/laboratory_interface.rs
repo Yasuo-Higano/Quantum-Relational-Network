@@ -693,6 +693,24 @@ impl AccessibleOperation {
     pub fn addressability(&self) -> &IndependentAddressabilityCertificate {
         &self.addressability
     }
+    pub fn kind(&self) -> &OpKind {
+        &self.kind
+    }
+    pub fn parity(&self) -> OperatorParity {
+        self.parity
+    }
+    /// 予算 (資源コストの見積り) の付け替え — 単位変換・見積り改訂は自由。
+    /// 予算は資格ではなく resource filter の座標 (資格は origin/addressability が
+    /// sha256 結束で運ぶ — こちらは付け替え不能)。
+    pub fn rebudgeted(&self, budget: ResourceBudget) -> AccessibleOperation {
+        AccessibleOperation {
+            kind: self.kind.clone(),
+            parity: self.parity,
+            origin: self.origin.clone(),
+            addressability: self.addressability.clone(),
+            budget,
+        }
+    }
 }
 
 // ---------------------------------------------------------------- role-typed 文脈 4 型

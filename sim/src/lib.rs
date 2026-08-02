@@ -6,6 +6,7 @@ pub mod laboratory_interface; // Certified Laboratory Interface — 出自証明
 pub mod operational_net; // 操作的文脈の型契約 — marked family of subalgebras (v32.2, PROMPT/13 §2)
 pub mod qrn_core; // 型付き Core Contract — 型境界と bridge law の門 (v27.2, PROMPT/10 §4)
 pub mod readout_contract; // 幾何読み出しの識別可能性契約 — 4 軸の型分離 (v31.0, PROMPT/12)
+pub mod resource_profile; // Resource-Filtered OperationalNet — poset 上の factorization profile (v33.3, PROMPT/14)
 pub mod stag; // 3+1D staggered 半空間の厳密ブロック理論 (v24.1)
 
 pub use qrn_core::EvolutionParameter; // 旧 toy API (evolve の t) が使う外部発展パラメータ型

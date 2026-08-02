@@ -1,0 +1,14 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v33.3 Resource-Filtered OperationalNet — poset 上の factorization profile (PROMPT/14) ===
+
+  [PASS] [R0] 契約自己検査 — resource_profile (新) + laboratory_interface/operational_net/scope_repair/qrn_core 不変  profile は poset 上の constructible データ・昇格規則は chain ≥ 2
+  [PASS] [R1] budget chain — 資源不足 → 局所 [2,2,2] → entangler [2,4] → global [8] (深さ鎖)  depth 0.5 → no_accessible_operations / 1 → exact [2, 2, 2] / 2 → exact [2, 4] / 3 → exact [8] — 読みは budget の関数であり単一の「正解因子分解」は存在しない
+  [PASS] [R2] poset は barcode ではない — 比較不能対 (2,1)/(1,2) が同 dims [2,4] で別 gauge orbit  orbit {12|3} vs {1|23}: matching 不在 (最良 min-overlap 0.2500)・join (2,2) → [8] — 分裂/併合は 1 次元の出生死滅で書けず、profile は poset 上の constructible データ
+  [PASS] [R3] 昇格規則 (禁止変換 17) — stable は chain ≥ 2 の領域のみ・単点の読みは transient (昇格 0)  stable = [("exact [2, 2, 2]", 2)] / transient = [("exact [2, 4]", 1), ("exact [8]", 1)] — 単一閾値で一瞬だけ出現した因子分解は局所性に昇格しない (grid の頂の [8] も調査 grid 相対で transient と正直に記録)
+  [PASS] [R4] 再パラメータ化不変 (成分ごと狭義単調) + スカラー潰しは裁定を反転 (禁止変換 18)  φ = (amp×3, depth²) で profile 点ごと不変 = true / スカラー amp+depth は (2,1) で E23 を accessible にし読みが [2,4] → [8] に反転 — 恣意的な重み付き和は新しい選択バイアス
+  [PASS] [R5] 頂は経路を消す — top budget は両 interface とも [8] に合流・低予算の読みが profile を区別  P (site-first): lo → exact [2, 2, 2] / Q (entangler-first): lo → abstain / 両者 hi → exact [8] — 最終 budget だけを見ると v32.2 erasure no-go に戻る。profile が経路 (どの操作から局所性が組み上がったか) を運ぶ
+  [PASS] [R6] 封鎖の schema/文書 — 概念登録 + 禁止変換 17/18・アンカー  profile・昇格規則・スカラー潰しの禁止が schema/文書の三点で凍結された
+
+[判定] 局所性の読みは budget の関数になった — 昇格できるのは perturbation に生き残る安定同値類だけで、単点の読みと頂の読みは経路を語らない。文脈の overlap 整合 (glue) が v33.4 の主題
+
+総合判定: [PASS]

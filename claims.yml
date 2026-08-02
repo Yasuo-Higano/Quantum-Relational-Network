@@ -4876,3 +4876,23 @@
     - "証明書は exact toy (誤差区間 ±1e-12 級) — 実測定ノイズ・shot 統計下の区間較正と資格判定は未走査 (HOLD-9 変成セルの主題)。"
     - "joint measurability の拒否は canonical 構成の正値性破れ (この構成では立たない) — 一般の非存在は不偏 qubit 対の Busch の iff (教科書的事実, C0) に依る。一般 POVM 対の joint 判定 (SDP) は未実装。"
     - "ResourceBudget は付与まで — budget を動かしたときの読みの変化 (resource-indexed factorization profile)・合成深さとの相互作用は v33.3。MeasurementContext 等の因子分解への統合は v33.4。"
+
+- id: QRN-BRIDGE-031
+  version: "v33.3"
+  level: C3
+  claim: "Resource-Filtered OperationalNet — poset 上の factorization profile (7 検査 PASS, 共有契約 `sim/src/resource_profile.rs` 新設): 中心対象を単一因子分解から **OperationalFactorizationProfile: ResourceBudget ↦ FactorizationReading** へ移す。(i) **budget chain**: 同一 interface の深さ鎖で NoAccessibleOperations (資源不足の正直な記録) → Exact [2,2,2] → [2,4] → [8] — 読みは budget の関数で単一の「正解」は存在しない。資格なしの操作は budget をいくら積んでも現れない (禁止変換 14 の維持)。(ii) **poset は barcode ではない**: 比較不能な budget 対 (amp 2, depth 1)/(amp 1, depth 2) が**同 dims [2,4] で別 gauge orbit** ({12|3} vs {1|23}, matching 不在 min-overlap 0.2500) — 分裂/併合は一次元 birth–death で書けず、有限 poset 上の constructible profile として定義 (zigzag への昇格は写像と安定性定理の後)。(iii) **昇格規則の凍結 (禁止変換 17)**: stable ⟺ (読み + orbit) 同値クラスの領域に比較可能な対 (chain ≥ 2) — 深さ鎖 {1,1.5,2,3} で [2,2,2] は stable・[2,4]@2 と [8]@3 は単点 transient (**grid の頂も調査 grid 相対で transient と正直に記録**)・transient の昇格 0。(iv) **command 再パラメータ化不変 + スカラー潰しの負制御 (禁止変換 18)**: 成分ごとの狭義単調 φ = (amp×3, depth²) で profile 点ごと不変・恣意的な重み付き和 (amp+depth) は budget (2,1) で E23 を accessible にし読みを [2,4] → [8] に**反転** — 全順序化は新しい選択バイアス。(v) **頂は経路を消す (erasure 対照)**: site-first と entangler-first の 2 interface は top budget で同じ [8] に合流し低予算の読み ([2,2,2] vs Abstain) が profile を区別 — v32.2「閉包は marking を消す」の resource 版。same_gauge_orbit を lib へ移植 (v323/v330 凍結コピー不変)。既存 5 依存バイナリ出力 byte 一致。"
+  status: "資源依存局所性の枠が立った — 昇格は安定同値類のみ。文脈の overlap 整合 (glue)・複数 glue の裁定が v33.4 の主題"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v333_resource_profile.rs"
+    result: "results/v333_resource_profile.txt"
+    doc: "docs/uft-v33.3.md"
+  limitations:
+    - "grid は有限・調査者宣言 — stable/transient は grid 相対の裁定 (連続 budget 空間の安定性定理は未構成。頂の transient は grid 拡張のみが解除できる)。"
+    - "誤差軸の perturbation は可換子証明書の区間 (Straddled) に委ねたまま — budget × 誤差の合成摂動は HOLD-9 変成セルで走査する。"
+    - "profile 間の写像 (interface 粗視化への関手性)・安定性定理は未構成 — 成立まで multiparameter persistence の語彙を使わない (PROMPT/14 の barcode 禁止)。"

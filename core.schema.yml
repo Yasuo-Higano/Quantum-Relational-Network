@@ -464,6 +464,23 @@ concepts:
   layer: core
   status: defined
   note: "資格つき操作だけで構成される operational net (v33.2) — DeclaredOperation を受け付ける口は存在しない。制御文脈は addressability 証明書つきで下層 OperationalNet (v32.2/v33.1 契約) に降り、v33.1 修復入口で復元する。測定文脈・準備族・drift regime は型つき保持 (統合は v33.4)"
+# ---- v33.3 (PROMPT/14): Resource-Filtered OperationalNet ----
+- name: ResourceFilteredInterface
+  layer: core
+  status: defined
+  note: "資格つき操作 (コスト = ResourceBudget) と文脈レシピの族 (v33.3) — budget b での accessible 部分 interface = {op : cost ≤ b 成分ごと} から AccessibleOperationalNet を組み v33.1 入口で読む。資格のない操作は budget をいくら積んでも accessible にならない (禁止変換 14 の維持)"
+- name: OperationalFactorizationProfile
+  layer: core
+  status: defined
+  note: "有限 poset (budget grid) 上の constructible profile: ResourceBudget ↦ 読み (v33.3)。**barcode ではない** — 比較不能な budget 対が同 dims で別 gauge orbit を持ち得る (v333 [R2])。頂の読みだけを見ると v32.2 erasure no-go に戻る (profile が経路を運ぶ — [R5])"
+- name: ProfilePoint
+  layer: core
+  status: defined
+  note: "budget 1 点での profile の値 3 種 (v33.3): NoAccessibleOperations (資源不足の正直な記録) / InputRejected (構成時拒否 — Abstain と区別) / Reading (三値裁定 + orbit 照合材料)"
+- name: StableFactorizationRegion
+  layer: core
+  status: defined
+  note: "昇格可能な局所性 (v33.3 凍結規則): (読み + gauge orbit) の同値クラスの領域に**比較可能な対 (chain ≥ 2) が存在する**こと。単一閾値で一瞬だけ出現した読み (単点領域 = transient) は昇格しない (禁止変換 17)。grid の頂・縁で切れる読みは調査 grid 相対で transient と正直に記録"
 
 forbidden_conversions:
 - from: RegulatorSiteId
@@ -514,6 +531,12 @@ forbidden_conversions:
 - from: CertifiedCommutator
   to: JointMeasurementCertificate
   reason: "代数的可換性から role-typed 文脈証明書 (JointMeasurement / IndependentAddressability / ConvexReachability / Stability) への暗黙変換を作らない (v33.2 禁止変換 16 — 禁止変換 12 の役割別展開)。joint measurability は可換性で特徴づけられない: 非可換な unsharp 対 (η = 0.6, ‖[E,F]‖ = 0.25) が明示的 joint POVM で資格を通り、η = 0.8 は正値性破れで拒否される (v332 [C6] — 不偏 qubit 対の canonical 構成)"
+- from: TransientFactorizationPoint
+  to: StableFactorizationRegion
+  reason: "単一閾値で一瞬だけ出現した因子分解を局所性に昇格しない (v33.3 禁止変換 17) — 昇格規則 (凍結) は「(読み + gauge orbit) の領域に比較可能な対 (chain ≥ 2) が存在」のみ。v333 [R3]: 深さ鎖 {1,1.5,2,3} で [2,2,2] は chain で stable・[2,4]@2 と [8]@3 は単点で transient (transient の昇格 0)。grid の頂で切れる読みも調査 grid 相対で transient と正直に記録する"
+- from: ResourceBudget
+  to: ScalarResourceCost
+  reason: "資源予算の成分半順序を恣意的な重み付き和で全順序化しない (v33.3 禁止変換 18) — スカラー化は accessibility の集合を変え裁定を反転させる (v333 [R4]: amp+depth 潰しは budget (2,1) で E23 を accessible にし読みが [2,4] → [8] に反転)。許されるのは成分ごとの狭義単調再パラメータ化のみ (このとき profile は点ごとに不変 — command 再パラメータ化不変性)"
 
 # predictions.yml の各 PRED の分類 — v271 R11:
 #   data_relation = future_observation の PRED は status = registered でなければならない

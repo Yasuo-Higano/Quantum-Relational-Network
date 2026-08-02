@@ -1272,6 +1272,59 @@ impl<'a, G: CommutationGrading> MarkedRecoveryInput<'a, G> {
     }
 }
 
+/// gauge orbit 照合 (v32.3 [F3] の判定器の lib 移植 — v33.3 の profile 安定性が使う):
+/// 成分 traceless 部分代数の集合が置換で min-overlap ≈ 1 に matching できるか。
+/// 返り値 = (同一 orbit か, 最良 min-overlap)。
+pub fn same_gauge_orbit(a: &[Vec<Vec<C64>>], b: &[Vec<Vec<C64>>]) -> (bool, f64) {
+    if a.len() != b.len() {
+        return (false, 0.0);
+    }
+    let k = a.len();
+    if k == 0 {
+        return (true, 1.0);
+    }
+    let overlap = |u: &Vec<Vec<C64>>, w: &Vec<Vec<C64>>| -> f64 {
+        if u.len() != w.len() {
+            return 0.0;
+        }
+        let mut acc = 0.0;
+        for x in w {
+            for y in u {
+                acc += hs_inner(y, x).norm2();
+            }
+        }
+        acc / (u.len() as f64)
+    };
+    let mut perm: Vec<usize> = (0..k).collect();
+    let mut best = 0.0f64;
+    let mut found = false;
+    loop {
+        let mut minov = f64::INFINITY;
+        for i in 0..k {
+            minov = minov.min(overlap(&a[i], &b[perm[i]]));
+        }
+        best = best.max(minov);
+        if minov >= 1.0 - 1e-9 {
+            found = true;
+            break;
+        }
+        let mut i = k as isize - 2;
+        while i >= 0 && perm[i as usize] >= perm[(i + 1) as usize] {
+            i -= 1;
+        }
+        if i < 0 {
+            break;
+        }
+        let mut j = k - 1;
+        while perm[j] <= perm[i as usize] {
+            j -= 1;
+        }
+        perm.swap(i as usize, j);
+        perm[(i as usize + 1)..].reverse();
+    }
+    (found, best)
+}
+
 // ---------------------------------------------------------------- Liouvillian lane の型分離 (v33.1)
 
 fn herm_defect_c64(m: &[C64], n: usize) -> f64 {
