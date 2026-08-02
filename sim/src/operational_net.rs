@@ -367,6 +367,12 @@ impl<G: CommutationGrading> OperationalNet<G> {
         self.commutators[self.pair_index(a.0, b.0)].map(|c| c.verdict(self.threshold))
     }
 
+    /// 証明書そのものの取得 (v33.4 atlas — chart 部分 net が同一の測定記録を継承する
+    /// ために使う。証明書は測定データであり、部分 net で再計算・捏造しない)
+    pub fn commutator_certificate(&self, a: OpId, b: OpId) -> Option<CertifiedCommutator> {
+        self.commutators[self.pair_index(a.0, b.0)]
+    }
+
     /// 操作文脈 (可換分解の一区画) の登録 — 全対に Commuting 証明書があるときのみ
     pub fn add_context(&mut self, members: &[OpId]) -> Result<usize, String> {
         for (k, &a) in members.iter().enumerate() {

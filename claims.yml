@@ -4896,3 +4896,23 @@
     - "grid は有限・調査者宣言 — stable/transient は grid 相対の裁定 (連続 budget 空間の安定性定理は未構成。頂の transient は grid 拡張のみが解除できる)。"
     - "誤差軸の perturbation は可換子証明書の区間 (Straddled) に委ねたまま — budget × 誤差の合成摂動は HOLD-9 変成セルで走査する。"
     - "profile 間の写像 (interface 粗視化への関手性)・安定性定理は未構成 — 成立まで multiparameter persistence の語彙を使わない (PROMPT/14 の barcode 禁止)。"
+
+- id: QRN-BRIDGE-032
+  version: "v33.4"
+  level: C3
+  claim: "Contextual factorization — chart 局所復元と overlap glue (7 検査 PASS, 共有契約 `sim/src/contextual_factorization.rs` 新設): 全系を一望する制御器を仮定せず、持ち場 (chart = 宣言された primitive 部分集合) の atlas から因子分解を読む。(i) **chart 局所復元 (凍結手順)**: 部分 net の成分 (可換子証明書は大域 net から**継承** — 再計算しない) → chart 内証人ゲート (v33.1 の局所版) → 成分閉包の factor 資格。chart は自分の持ち場しか語らない。(ii) **glue 定理の機械照合**: chart A = {X₁,Z₁,X₂,Z₂}・B = {X₂,Z₂,X₃,Z₃} (qubit 2 共有・bridge 文脈 {X₁,X₃}) — 局所 [2,2] × 2 を共有因子の matching (overlap 1) で束ね、被覆 Π d = 8・クラス対証人完備 → **GluedExact [2,2,2] = 直接大域復元 (v33.1 入口) と読み・gauge orbit 一致**。(iii) **変成不変**: chart B の qubit-2 frame を局所 unitary で回しても glue は同一 (u M₂ u† = M₂ — 因子部分代数は集合として frame 非依存)。(iv) **cocycle 不整合 → Abstain**: entangler W = CZ₂₃ で捻れた chart は W M₂(2) W† (overlap 1/3) で matching が破れ、全被覆の整合 chart 群も無い (各 chart 単独は Π d = 4 ≠ 8) → Abstain(GlueInconsistent) — **両 chart とも局所 Exact なのに大域は無い (禁止変換 19: ChartLocalFactorization ↛ GlobalFactorization)**。(v) **複数 glue → EquivalenceClassOnly**: site charts + DFT chart の atlas は整合 atlas 2 つ (site 群・DFT 群とも全被覆・内部整合・相互 matching 破れ ≈ 0.56) → EquivalenceClassOnly{2} (無制約 tie-break 禁止 — v32.3 [F3] の atlas 版)。(vi) **witness 境界の両 lane 一致**: bridge 文脈を外すと glue も直接大域復元も unwitnessed 棄却 — v33.1 の証人規律は atlas を経由しても緩まない。既存 6 依存バイナリ出力 byte 一致。"
+  status: "期テーゼの「role-typed context atlas 上で整合する因子分解」の整合 (glue) が機械化された — graded lane (odd CAR → Majorana frame / Dirac no-go) が v33.5 の主題"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v334_contextual_factorization.rs"
+    result: "results/v334_contextual_factorization.txt"
+    doc: "docs/uft-v33.4.md"
+  limitations:
+    - "chart 復元は control lane の Exact 因子まで — 中心非自明 (superselection) atlas・graded chart は未実装 (前者は sector つき matching・後者は v33.5)。"
+    - "matching バーは exact 証明書域 (overlap ≥ 1−1e-9) — ノイズ下の overlap 区間と Straddled 裁定は HOLD-9 変成セルで走査する。"
+    - "複数 glue の数え上げは chart 群の連結分割に基づく凍結規則 (toy の chart 数 ≤ 3 で厳密) — 一般の極大整合部分 atlas 列挙 (指数的) はスコープ外。MeasurementContext 等の atlas 統合も据え置き。"

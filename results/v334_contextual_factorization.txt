@@ -1,0 +1,14 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v33.4 Contextual factorization — chart 局所復元と overlap glue (PROMPT/14) ===
+
+  [PASS] [A0] 契約自己検査 — contextual_factorization (新) + 既存 4 契約の不変  chart は持ち場しか語らない・大域は glue だけが与える
+  [PASS] [A1] 整合 atlas → GluedExact [2,2,2]・glue 定理 (直接大域復元と読み・orbit 一致)  chart A/B とも局所 [2,2]・共有 qubit 2 の因子 matching (overlap 1) で束ね・被覆 Π = 8・証人完備 — atlas glue = 大域復元
+  [PASS] [A2] 変成不変 — chart B の qubit-2 frame を u₂ で回しても glue は同じ [2,2,2] (u M₂ u† = M₂)  因子部分代数は集合として frame 非依存 — matching は局所 unitary に不変 (変成対照)
+  [PASS] [A3] cocycle 不整合 — entangler W = CZ₂₃ で捻れた chart は matching が破れ Abstain(GlueInconsistent)  A の M₂(2) と B'' の W M₂(2) W† は overlap 1/3 — 両 chart とも局所 Exact なのに大域は無い (chart 局所 Exact ↛ 大域 = 禁止変換 19)
+  [PASS] [A4] 複数 glue — site atlas (S1+S2) と DFT chart が各々全被覆で内部整合・相互 matching 破れ → EquivalenceClassOnly{2}  整合 atlas が 2 つ — 無制約 tie-break で 1 つを選ばない (v32.3 [F3] site×DFT の atlas 版)
+  [PASS] [A5] witness 境界 — bridge 文脈を外すと glue も直接大域復元も unwitnessed で棄却 (両 lane 一致)  v33.1 の証人規律は atlas でも緩まない — 因子対 (1,3) の共同 addressability の証人がない
+  [PASS] [A6] 封鎖の schema/文書 — 概念登録 + 禁止変換 19・impl From 不在・アンカー  chart の局所 Exact から大域への直接路はコンパイル不能
+
+[判定] 局所性は chart atlas の glue として識別されるようになった — 整合すれば大域復元と一致し、捻れれば棄却し、複数の整合 atlas は選ばない。graded lane (Majorana/Dirac) が v33.5 の主題
+
+総合判定: [PASS]

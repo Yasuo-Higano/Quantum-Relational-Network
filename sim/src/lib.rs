@@ -1,5 +1,6 @@
 //! 統一場理論プロジェクト共通数値ライブラリ(外部依存なし)
 
+pub mod contextual_factorization; // 文脈 atlas 上の局所復元と overlap glue (v33.4, PROMPT/14)
 pub mod dd; // double-double 演算 (v22.7/v23.4 の実証経路を v24.1 で昇格)
 pub mod iv; // 区間演算 — 外向き丸めの厳密包含 (v25.2 BZ moment 証明書)
 pub mod laboratory_interface; // Certified Laboratory Interface — 出自証明書と資格つき操作 (v33.2, PROMPT/14)
