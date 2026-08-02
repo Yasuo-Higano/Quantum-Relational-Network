@@ -394,6 +394,23 @@ concepts:
   layer: instrument
   status: certified
   note: "大域静的逆問題の oracle ceiling K(C) = log[(I−C)C⁻¹] = β(h−μI) (v31.1) — 自由フェルミオンの標準的事実で QRN 固有法則ではない。exact/estimate 2 lane・条件数定理 ‖ΔK‖_F ≤ ‖ΔC‖_F/(δ(1−δ)) (飽和例つき)・低温飽和則 (深部モードは sign のみ)。この式だけで bridge 登録・PRED-019 登録は不可"
+# ---- v33.1 (PROMPT/14): 境界監査と型スコープ修復 ----
+- name: MarkedRecoveryInput
+  layer: core
+  status: defined
+  note: "因子分解復元器の唯一の型付き入口 (v33.1) — 生成子行列は net の primitive からのみ取る (gens 別渡しの廃止)。構成は OperationalNet::recovery_input のみで、役割純度 (Control のみ — role-mixed recovery の禁止)・文脈の存在 (NoDeclaredContexts)・被覆 (ContextCoverageIncomplete) を構成時資格審査。contexts が復元定理の入力になった (v331 [B1] が旧手順の contexts 盲目性を機械実証)"
+- name: JointContextWitness
+  layer: instrument
+  status: defined
+  note: "成分対の共同 addressability の操作的証人 (v33.1) — 唯一の構成は宣言済み操作文脈の共有 (OperationalNet::joint_context_witness)。CertifiedCommutator (代数的可換性) からの変換は存在しない (禁止変換 12)。証人不在の成分対を持つ復元は Abstain(OperationalCompatibilityUnwitnessed)"
+- name: HamiltonianCommutatorLiouvillian
+  layer: dynamics
+  status: defined
+  note: "L = −i[H,·] (Schrödinger 規約) の型 (v33.1) — v32.4 応答恒等式 R⁽¹⁾/R⁽²⁾ の資格域はこの lane に限る。資格審査は導分 (Leibniz) 証明書 (classify_generator)。GklsLiouvillian への変換は存在しない (禁止変換 13)"
+- name: GklsLiouvillian
+  layer: dynamics
+  status: defined
+  note: "GKLS 生成子 L(ρ) = −i[H,ρ] + Σ γ_μ (L_μ ρ L_μ† − ½{L_μ†L_μ, ρ}) の型 (v33.1) — γ_μ ≥ 0 を構成時資格審査。v32.4 恒等式の資格域外 (dissipator は Leibniz を破る — v331 [B5] が γ 比例の破れと R⁽¹⁾ 公式の不成立を実測)。一般 GKLS の応答理論 (jump 表現の gauge を含む) は未構成 — 次々期の独立テーマ"
 
 forbidden_conversions:
 - from: RegulatorSiteId
@@ -429,6 +446,12 @@ forbidden_conversions:
 - from: GlobalClosure
   to: OperationalNet
   reason: "閉包は marking を消す — site 生成族も mode 生成族も同じ B(H) に閉じるため、大域代数の同型類から因子分解・操作文脈へ戻る経路は存在しない (v32.2 禁止変換 11 — global-algebra erasure no-go の型化。復元の入力は marked OperationalNet のみ)"
+- from: CertifiedCommutator
+  to: JointContextWitness
+  reason: "代数的可換性 (bracket ノルムの区間証明書) から操作的両立性 (共同 addressability) への暗黙昇格を作らない — 一般 POVM の joint measurability は可換性で特徴づけられず、可換な作用素対が同一実験文脈で共同実行可能とは限らない (v33.1 禁止変換 12)。JointContextWitness の唯一の構成は宣言済み操作文脈の共有で、証人不在は Abstain(OperationalCompatibilityUnwitnessed) — v331 [B4] が全対 Commuting 証明書つきの singleton 文脈 net で機械実証"
+- from: HamiltonianCommutatorLiouvillian
+  to: GklsLiouvillian
+  reason: "可換子 lane の応答恒等式 (v32.4 R⁽¹⁾/R⁽²⁾) の証明書を一般 GKLS 生成子へ昇格しない — dissipator は Leibniz (導分性) を破り (γ 比例)、R⁽¹⁾ = −i Tr(B[H,A]) は GKLS 測定と一致しない (v33.1 禁止変換 13 — v331 [B5] が γ = 0.3 で乖離 1.2・γ = 0 で ≤ 1e-6 への回復を実測)。lane の資格審査は導分証明書 (classify_generator) のみ"
 
 # predictions.yml の各 PRED の分類 — v271 R11:
 #   data_relation = future_observation の PRED は status = registered でなければならない

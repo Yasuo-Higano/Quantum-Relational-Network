@@ -1,0 +1,14 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v33.1 境界監査と型スコープ修復 — 第三十三期 開幕 (PROMPT/14) ===
+
+  [PASS] [B0] 契約自己検査 — v33.1 新契約 + v32.2 契約の不変 + qrn_core/readout_contract 封鎖不変  拒否は型エラー・棄却は裁定 — 二つを混ぜない契約が通った
+  [PASS] [B1] contexts 盲目性 — 旧手順は ∅/atlas で読み完全一致 (入力でなかった)・修復入口は ∅ を構成時拒否  参照手順: ∅ → exact_up_to_local_unitary_and_permutation = atlas → exact_up_to_local_unitary_and_permutation (一致)・修復入口: ∅ → no_declared_contexts (拒否) / atlas → exact_up_to_local_unitary_and_permutation
+  [PASS] [B2] entangler 負制御 — X₁X₂ を 1 本加えるだけで Exact [2,2,2] → [2,4] (閉包は同一 M₈)  6 本 → [2,2,2] / 7 本 → [2,4] (新旧 lane 一致)・閉包 dim 64 = 64 — 選別が答えを入力する循環は型修復では解けない (v33.2 Certified Laboratory Interface の動機)
+  [PASS] [B3] 資格ゲート — role-mixed/文脈 0/被覆不完全は構成時拒否・資格を満たせば旧解を再現 (C⁶ → [2,3])  拒否 3 種 = 型エラー (Abstain と混ぜない)・qutrit×qubit → exact [2,3] — 生成子行列の出所は net の primitive のみ (gens 別渡しの経路なし)
+  [PASS] [B4] 代数的可換 ↛ 操作的両立 — singleton 文脈は全対証明書ありでも Abstain(unwitnessed)・旧手順は Exact (対照)  修復入口 → operational_compatibility_unwitnessed / 旧手順 → exact_up_to_local_unitary_and_permutation — JointContextWitness の唯一の構成は共有文脈 (禁止変換 12)
+  [PASS] [B5] Liouvillian lane 分離 — 導分証明書 (Ĥ 復元 rel ≤ 1e-10)・GKLS は Leibniz γ 比例破れ・R⁽¹⁾ 公式は GKLS で不成立  可換子 lane: leib 0.0e0/resid 0.0e0・GKLS leib 破れ 0.4243 (γ 比 2.000000 = 2)・R⁽¹⁾ 乖離: γ=0.3 → 1.200 / γ=0 → 1.3e-9 (測定 vs GKLS 予測 1.2e-9)
+  [PASS] [B6] 封鎖の source/schema/文書 — 禁止 impl From 不在・禁止変換 12/13 登録・v323 凍結保存・文書アンカー  修復は型・schema・文書の三点で凍結され、旧署名は歴史として保存された
+
+[判定] contexts は定理入力になり、代数的可換と操作的両立・可換子 lane と GKLS は型で分離された — 残る循環 (accessible primitive の選別) が v33.2 の主題
+
+総合判定: [PASS]

@@ -4836,3 +4836,23 @@
     - "儀式は決定性・無波及の検査であって物理的正しさの証拠ではない (PASS 総数はソフトウェア健全性の指標 — README の PASS 分類規約)。"
     - "完全再走中の v151 3 FAIL は台帳中間状態の正検出 — 再検証 (results/v330_full_suite_reverify.txt) が確定記録。ドリフト検査は PASS/FAIL 数の一致で、数値の末桁は各バイナリ内蔵の判定バーに委ねる。"
     - "期の全成果は layer: bridge/instrument の toy 機構であり、bridge law 登録簿は空・独立外部再現 0・自然の的中 0 のまま。"
+
+- id: QRN-BRIDGE-029
+  version: "v33.1"
+  level: C3
+  claim: "境界監査と型スコープ修復 — 第三十三期 開幕 (7 検査 PASS): v32.3 復元器の型スコープの空隙を反例で固定し修復する。(i) **contexts 盲目性の機械実証**: 同一 primitive・同一可換子証明書で contexts だけが異なる (∅ vs atlas) 2 つの site net に対し、v32.3 参照手順 (旧署名 — 歴史的原本 v323 は凍結保存) は成分・最終読みとも完全一致 (両方 Exact [2,2,2]) — **contexts は入力でなかった** (定理の誤りではなく「選別済み primitive family」という仮定の型不在)。(ii) **entangler 負制御 (primitive 選別の循環)**: site 6 本 → Exact [2,2,2] に independently accessible な X₁X₂ を 1 本加えるだけで **[2,4] に併合** (新旧 lane 一致・大域閉包は同一 M₈ dim 64) — 選別自体が答えを入力する循環の機械記録 (型修復では解けない — v33.2 の動機)。(iii) **修復入口 MarkedRecoveryInput**: 生成子行列は net の primitive からのみ (**gens 別渡しの廃止** — 公開コンストラクタは recovery_input のみ)・構成時資格審査 3 種 (**RoleMixedRecovery** [測定混入拒否] / **NoDeclaredContexts** [contexts は定理入力] / **ContextCoverageIncomplete**) は Abstain でなく型エラー・資格を満たせば旧解を再現 (site [2,2,2]・qutrit×qubit [2,3])。(iv) **代数的可換 ↛ 操作的両立 (禁止変換 12)**: singleton 文脈のみの net は全対に definite 証明書があっても Abstain(OperationalCompatibilityUnwitnessed) — 旧手順は同素材を Exact と読む (対照)。JointContextWitness の唯一の構成は宣言済み文脈の共有。(v) **Liouvillian lane の型分離 (禁止変換 13)**: 導分 (Leibniz) 証明書で可換子 lane は厳密 0 通過 + Ĥ 復元 (残差 厳密 0)・GKLS は Leibniz が γ に厳密比例で破れ (比 2.000000)・R⁽¹⁾ 公式は GKLS 測定 (RK4+4 次 stencil) と γ=0.3 で乖離 1.200 (測定は GKLS 自身の線形応答と ≤1.2e-9 一致 = 数値誤差ではない)・γ=0 で ≤1.3e-9 に回復 — HamiltonianCommutatorLiouvillian の証明書は GklsLiouvillian に昇格しない。既存 6 依存バイナリ (v322–v325, v330a/b) の出力は増補後も byte 一致。"
+  status: "第三十三期の境界確定 — 残る循環 (accessible primitive の選別) は v33.2 Certified Laboratory Interface・witness 意味論の完全形 (overlap/glue) は v33.4 の主題"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v331_scope_repair.rs"
+    result: "results/v331_scope_repair.txt"
+    doc: "docs/uft-v33.1.md"
+  limitations:
+    - "toy (dim ≤ 8)・witness 意味論は最小形 (成分対ごとに共有文脈 1 つ) — context overlap の整合・cocycle・複数 glue の裁定は v33.4。add_context 自体の役割型付け (Control/Measurement/Preparation/Drift の文脈別型) は v33.2。"
+    - "導分証明書は行列単位の全対検査 (有限次元 exact) — ノイズ下の生成子推定・トモグラフィ誤差からの lane 判定は未走査 (v33.2 の証明書型の主題)。"
+    - "禁止変換 13 は commutator lane 証明書の GKLS への昇格禁止であって GKLS 理論の否定ではない — 一般 GKLS の応答理論 (jump 表現 gauge・Kossakowski 同値類) は未構成 (次々期候補)。"
