@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 255 件 / 依存辺 434 本 / 仮定 40 件 / 反証条件 15 件。
+主張 256 件 / 依存辺 436 本 / 仮定 40 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -107,7 +107,7 @@
 | QRN-GAUGE-016 | C2 | v14.4 | LR | 1 | 6 | 1 | 1 |
 | QRN-GAUGE-017 | C2 | v14.5 | LR | 1 | 6 | 1 | 1 |
 | QRN-META-014 | C5 | v15.0 | DR | 2 | 0 | 1 | 0 |
-| QRN-META-015 | C2 | v15.1 | CDR | 0 | 1 | 1 | 44 |
+| QRN-META-015 | C2 | v15.1 | CDR | 0 | 1 | 1 | 45 |
 | QRN-TOOL-002 | C2 | v15.2 | CDR | 1 | 1 | 1 | 12 |
 | QRN-CORE-005 | C3 | v15.3 | CDR | 1 | 3 | 2 | 25 |
 | QRN-CONT-001 | C1 | v15.4 | CDR | 1 | 4 | 2 | 12 |
@@ -224,9 +224,9 @@
 | QRN-GRAV-058 | C2 | v27.0-B | CDR | 2 | 2 | 1 | 6 |
 | QRN-GRAV-059 | C2 | v27.0-C | CDR | 3 | 2 | 1 | 5 |
 | QRN-META-028 | C5 | v27.0-D | CDR | 1 | 1 | 1 | 4 |
-| QRN-META-029 | C2 | v27.1 | CDR | 1 | 1 | 1 | 30 |
+| QRN-META-029 | C2 | v27.1 | CDR | 1 | 1 | 1 | 31 |
 | QRN-META-030 | C5 | v27.1 | D | 2 | 1 | 1 | 3 |
-| QRN-META-031 | C2 | v27.2 | CDR | 1 | 2 | 1 | 28 |
+| QRN-META-031 | C2 | v27.2 | CDR | 1 | 2 | 1 | 29 |
 | QRN-META-032 | C2 | v27.3 | CDR | 2 | 1 | 1 | 6 |
 | QRN-META-033 | C2 | v27.4 | CDR | 2 | 1 | 1 | 5 |
 | QRN-META-034 | C5 | v28.0 | DR | 5 | 1 | 1 | 2 |
@@ -241,14 +241,14 @@
 | QRN-BRIDGE-007 | C3 | v29.4b | CDR | 1 | 3 | 2 | 5 |
 | QRN-BRIDGE-008 | C3 | v29.5 | CDR | 1 | 2 | 1 | 3 |
 | QRN-BRIDGE-009 | C3 | v29.6 | CDR | 1 | 2 | 1 | 2 |
-| QRN-META-037 | C4 | v30.0-A | CDR | 1 | 1 | 1 | 20 |
+| QRN-META-037 | C4 | v30.0-A | CDR | 1 | 1 | 1 | 21 |
 | QRN-BRIDGE-010 | C3 | v30.0-A | CDR | 1 | 3 | 1 | 1 |
 | QRN-BRIDGE-011 | C3 | v30.0-B | CDR | 1 | 3 | 1 | 0 |
-| QRN-META-038 | C4 | v31.0 | CDR | 1 | 1 | 1 | 19 |
+| QRN-META-038 | C4 | v31.0 | CDR | 1 | 1 | 1 | 20 |
 | QRN-BRIDGE-012 | C3 | v31.1 | CDR | 1 | 2 | 1 | 10 |
-| QRN-BRIDGE-013 | C3 | v31.2 | CDR | 1 | 2 | 1 | 17 |
+| QRN-BRIDGE-013 | C3 | v31.2 | CDR | 1 | 2 | 1 | 18 |
 | QRN-BRIDGE-014 | C3 | v31.3 | CDR | 2 | 2 | 1 | 8 |
-| QRN-BRIDGE-015 | C3 | v31.4 | CDR | 2 | 2 | 1 | 8 |
+| QRN-BRIDGE-015 | C3 | v31.4 | CDR | 2 | 2 | 1 | 9 |
 | QRN-BRIDGE-016 | C3 | v31.5 | CDR | 2 | 1 | 1 | 0 |
 | QRN-BRIDGE-017 | C3 | v31.6 | CDR | 2 | 3 | 1 | 7 |
 | QRN-BRIDGE-018 | C3 | v31.7 | CDR | 2 | 3 | 1 | 0 |
@@ -257,16 +257,17 @@
 | QRN-META-039 | C4 | v32.0-B | CDR | 2 | 2 | 1 | 0 |
 | QRN-BRIDGE-021 | C3 | v32.1 | CDR | 2 | 3 | 1 | 3 |
 | QRN-META-040 | C2 | v32.1 | CDR | 1 | 1 | 1 | 1 |
-| QRN-BRIDGE-022 | C3 | v32.2 | CDR | 1 | 2 | 1 | 7 |
+| QRN-BRIDGE-022 | C3 | v32.2 | CDR | 1 | 2 | 1 | 8 |
 | QRN-META-041 | C2 | v32.2 | CDR | 1 | 1 | 1 | 1 |
-| QRN-BRIDGE-023 | C3 | v32.3 | CDR | 1 | 2 | 1 | 5 |
-| QRN-BRIDGE-024 | C3 | v32.4 | CDR | 2 | 2 | 1 | 5 |
+| QRN-BRIDGE-023 | C3 | v32.3 | CDR | 1 | 2 | 1 | 6 |
+| QRN-BRIDGE-024 | C3 | v32.4 | CDR | 2 | 2 | 1 | 6 |
 | QRN-BRIDGE-025 | C3 | v32.5 | CDR | 2 | 2 | 1 | 3 |
 | QRN-BRIDGE-026 | C2 | v32.6 | CDR | 0 | 2 | 1 | 0 |
 | QRN-BRIDGE-027 | C3 | v33.0-A | CDR | 4 | 3 | 1 | 2 |
 | QRN-BRIDGE-028 | C3 | v33.0-B | CDR | 1 | 3 | 1 | 1 |
 | QRN-META-042 | C4 | v33.0-B | CDR | 3 | 2 | 1 | 0 |
-| QRN-BRIDGE-029 | C3 | v33.1 | CDR | 3 | 2 | 1 | 0 |
+| QRN-BRIDGE-029 | C3 | v33.1 | CDR | 3 | 2 | 1 | 1 |
+| QRN-BRIDGE-030 | C3 | v33.2 | CDR | 2 | 2 | 1 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -275,8 +276,8 @@
 | 仮定 | type | status | 直接 | 閉包 | 閉包に含まれる主張 (抜粋) |
 |---|---|---|---|---|---|
 | ASM-LATTICE | framework | active | 115 | 176 | QRN-ARROW-001, QRN-BORN-001, QRN-BRIDGE-001, QRN-BRIDGE-002, … |
-| ASM-GAUSS | framework | active | 58 | 94 | QRN-ARROW-001, QRN-BRIDGE-001, QRN-BRIDGE-002, QRN-BRIDGE-003, … |
-| ASM-LOWDIM | framework | active | 37 | 93 | QRN-ARROW-001, QRN-BORN-001, QRN-BRIDGE-001, QRN-BRIDGE-002, … |
+| ASM-GAUSS | framework | active | 58 | 95 | QRN-ARROW-001, QRN-BRIDGE-001, QRN-BRIDGE-002, QRN-BRIDGE-003, … |
+| ASM-LOWDIM | framework | active | 38 | 94 | QRN-ARROW-001, QRN-BORN-001, QRN-BRIDGE-001, QRN-BRIDGE-002, … |
 | ASM-SEED | design | active | 20 | 89 | QRN-BH-001, QRN-BORN-001, QRN-BRIDGE-007, QRN-BRIDGE-008, … |
 | ASM-PDG | data | active | 47 | 70 | QRN-COSMO-001, QRN-COSMO-002, QRN-COSMO-003, QRN-DS-002, … |
 | ASM-TORUS | model | active | 45 | 65 | QRN-KK-001, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
@@ -287,15 +288,15 @@
 | ASM-DIAGPAIR | model | falsified | 4 | 60 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-SIGMA-DATA | model | active | 31 | 54 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-MODK | definition | active | 14 | 49 | QRN-CORE-003, QRN-CORE-014, QRN-GRAV-001, QRN-GRAV-002, … |
-| ASM-EDGE-SEMANTICS | design | active | 2 | 45 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
-| ASM-IEEE754 | trust | active | 38 | 44 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
+| ASM-EDGE-SEMANTICS | design | active | 2 | 46 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
+| ASM-IEEE754 | trust | active | 39 | 45 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
 | ASM-KTM | model | active | 2 | 42 | QRN-EXP-003, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
+| ASM-LEAN-TRUST | trust | active | 6 | 38 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
 | ASM-GAUGE-GROUP | model | active | 14 | 37 | QRN-GAUGE-003, QRN-GAUGE-004, QRN-GAUGE-006, QRN-GAUGE-007, … |
-| ASM-LEAN-TRUST | trust | active | 6 | 37 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
 | ASM-ANOMALY-COEFS | data | active | 14 | 36 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
 | ASM-CHIRALITY | model | active | 11 | 35 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
 | ASM-ALL-CHARGED | definition | active | 11 | 35 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
-| ASM-LAYER-SEMANTICS | convention | active | 14 | 31 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
+| ASM-LAYER-SEMANTICS | convention | active | 14 | 32 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
 | ASM-EFT-VALIDITY | model | active | 3 | 30 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
 | ASM-WINDOW-V31 | window | active | 3 | 30 | QRN-GAUGE-003, QRN-GAUGE-006, QRN-GAUGE-007, QRN-GAUGE-008, … |
 | ASM-Z2-MINIMAL | model | active | 2 | 27 | QRN-BRIDGE-002, QRN-BRIDGE-003, QRN-BRIDGE-004, QRN-BRIDGE-005, … |
@@ -319,7 +320,7 @@
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 237 | 247 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 238 | 248 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CONTINUUM | open | 63 | 102 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-CKM-OOS | open | 12 | 63 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-BMV | open | 8 | 48 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |

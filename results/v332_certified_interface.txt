@@ -1,0 +1,16 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v33.2 Certified Laboratory Interface — 操作の出自証明と controller-free no-go (PROMPT/14) ===
+
+  [PASS] [C0] 契約自己検査 — laboratory_interface (新) + operational_net/scope_repair/qrn_core/readout_contract 不変  出自は型 + sha256 結束・拒否は構成時 — 既存契約は不変
+  [PASS] [C1] 宣言 ≠ 資格 (禁止変換 14) — 門は 3 証明書のみ・sha256 結束 (流用拒否)・予算は成分半順序  declared(X₁, intent=control) → 較正の門で資格 / X₂ への流用 → certificate_target_mismatch / 予算 (1,2,·) vs (2,1,·) 比較不能 = true
+  [PASS] [C2] addressability 証明書 — 独立 6 knobs: rank 6・σ_min 1・xtalk 0 / ε = 0.05 記録つき資格 / ε = 0.3 拒否  rank = 6・σ_min = 1.000000000・xtalk = 1.0e-12 / ε = 0.05 → 記録 0.049938 (バー 0.1 内) / ε = 0.3 → crosstalk_excess
+  [PASS] [C3] tied control no-go (禁止変換 15) — {X₁,X₂} への数学的分解は rank 1 < 2 で拒否・正直な tied net は Abstain  u(t)(X₁+X₂) しか無い装置に「二つの独立 primitive」は立たない — 読みは insufficient_operational_generators (HOLD-9 tied セルの器械)
+  [PASS] [C4] 可アクセス性は関係 — 同じ X₁: interface A = {X₁+X₂} は路なし・B = {X₁+X₂, Z₂} は Synthesized 資格  A: Lie 閉包への相対残差 0.707107 (> 0.5 = 路なし) / B: bracket 2 手 + 線形 1 手 (depth 3)・残差 ≤ 1.0e-12 — 作用素単体の属性ではない
+  [PASS] [C5] controller-free no-go (E3-A) — 同一 (H, drift 0, ρ = I/8) で 4 interface が非同値な読み  site → [2,2,2] (orbit α) / DFT → [2,2,2] (orbit β — matching 不在 overlap 0.5625) / +entangler → [2,4] / tied → abstain — 状態・Hamiltonian・大域代数だけから accessible operations を選ぶ写像は存在しない
+  [PASS] [C6] role-typed 文脈 — joint measurability は可換性より広い (η=0.6 資格/0.8 拒否)・トモグラフィ/凸可達/安定性  ‖[E^X,E^Z]‖ = 0.2546 ≠ 0 でも joint POVM 資格 (禁止変換 16 の裏側)・η=0.8 は正値性破れ・トモグラフィ resid 1.0e-12 (偏り +0.02 は拒否)・凸重み (0.375, 0.625)・drift 変動バー 0.05
+  [PASS] [C7] end-to-end — 全 primitive が出自証明書つきの AccessibleOperationalNet から v33.1 入口で Exact [2,2,2]  出自 = "directly_calibrated" (文字列 provenance なし — sha256 結束)・読み = exact [2,2,2]・未較正行列は構成時拒否
+  [PASS] [C8] 封鎖の source/schema/文書 — 禁止変換 14/15/16 登録・impl From/Ord 不在・アンカー  宣言から資格への直接路はコンパイル不能・予算の全順序化も型で不在
+
+[判定] 操作の出自が証明書になった — 可アクセス性は interface との関係であり、controller-free な因子分解写像は存在しない (第三の no-go)。資源の semantics (budget profile) が v33.3 の主題
+
+総合判定: [PASS]

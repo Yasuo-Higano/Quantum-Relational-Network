@@ -411,6 +411,59 @@ concepts:
   layer: dynamics
   status: defined
   note: "GKLS 生成子 L(ρ) = −i[H,ρ] + Σ γ_μ (L_μ ρ L_μ† − ½{L_μ†L_μ, ρ}) の型 (v33.1) — γ_μ ≥ 0 を構成時資格審査。v32.4 恒等式の資格域外 (dissipator は Leibniz を破る — v331 [B5] が γ 比例の破れと R⁽¹⁾ 公式の不成立を実測)。一般 GKLS の応答理論 (jump 表現の gauge を含む) は未構成 — 次々期の独立テーマ"
+# ---- v33.2 (PROMPT/14): Certified Laboratory Interface ----
+- name: DeclaredOperation
+  layer: core
+  status: defined
+  note: "宣言された操作 = 行列 + 意図のみで**資格なし** (v33.2)。AccessibleOperation への直接変換は存在しない (禁止変換 14) — 通過できる門は較正・合成・トモグラフィの 3 出自証明書のみ"
+- name: AccessibleOperation
+  layer: core
+  status: defined
+  note: "資格つき操作 (v33.2) — 役割 (OpKind)・出自 (OperationOrigin)・独立 addressability・資源予算を運ぶ。構成は certify のみで、出自証明書の対象 sha256 が行列と一致しない場合 (証明書の流用) は構成時拒否"
+- name: OperationOrigin
+  layer: core
+  status: defined
+  note: "操作の出自 3 種 (DirectlyCalibrated / Synthesized / TomographicallyInferred) — 文字列 provenance の廃止 (v33.2): 出自は型と sha256 結束の証明書で運ぶ。旧 PrimitiveOperation.provenance 文字列は v32.2 凍結層の legacy フィールド (新 lane では定数で中立化)"
+- name: IndependentAddressabilityCertificate
+  layer: instrument
+  status: defined
+  note: "独立 addressability の証明書 (v33.2) — command Jacobian の証明つき rank・最小特異値区間・cross-talk 区間・較正記録 sha256。同一 command を複数標的に割り当てる「数学的分解」は rank 不足で構成時拒否 (禁止変換 15 の執行点)。cross-talk 区間のバー跨ぎは Straddled 拒否 (強制判定の禁止)"
+- name: SynthesisCertificate
+  layer: instrument
+  status: defined
+  note: "合成の証明書 (v33.2) — 較正済み生成子からの bracket/線形結合の列を機械実行して検証 (「レシピの主張」ではなく実行結果が資格)。深さ・残差区間・列の sha256 を記録し対象行列に結束"
+- name: TomographyCertificate
+  layer: instrument
+  status: defined
+  note: "トモグラフィ出自の証明書 (v33.2) — 情報完全状態族 (design 行列の σ_min 資格) からの線形再構成・残差区間・データ sha256。残差バー超過・effect 資格 (0 ≤ E ≤ I) 不通過は拒否"
+- name: ResourceBudget
+  layer: core
+  status: defined
+  note: "資源予算 5 成分 (時間・振幅・帯域・深さ・誤差) — **成分ごとの半順序のみ** (v33.2): Ord/PartialOrd を実装しない (恣意的な重み付き和での全順序化は新しい選択バイアス)。v33.3 resource-indexed factorization profile の土台"
+- name: ControlContext
+  layer: core
+  status: defined
+  note: "制御文脈 (v33.2) — 独立 addressability 証明書を要求する role-typed 文脈。可換性 (CertifiedCommutator) だけでは構成できない"
+- name: MeasurementContext
+  layer: core
+  status: defined
+  note: "測定文脈 (v33.2) — joint measurability 証明書を要求する role-typed 文脈。**可換性より広い** (非可換 unsharp 対も共同測定可能) — 因子分解への統合は v33.4"
+- name: PreparationFamily
+  layer: core
+  status: defined
+  note: "準備族 (v33.2) — 凸可達性証明書 (重みの機械検証) を要求する role-typed 文脈"
+- name: DriftRegime
+  layer: core
+  status: defined
+  note: "drift regime (v33.2) — 時間窓内の変動バー (安定性証明書) を要求する role-typed 文脈"
+- name: JointMeasurementCertificate
+  layer: instrument
+  status: defined
+  note: "joint measurability の証明書 (v33.2) — 明示的 joint POVM の機械検証 (各元 PSD・総和 I・marginal 一致)。非可換 unsharp 対 η = 0.6 は資格・η = 0.8 は正値性破れで拒否 (不偏 qubit 対の canonical 構成 = Busch の iff の器械化)。CertifiedCommutator からの変換は存在しない (禁止変換 16)"
+- name: AccessibleOperationalNet
+  layer: core
+  status: defined
+  note: "資格つき操作だけで構成される operational net (v33.2) — DeclaredOperation を受け付ける口は存在しない。制御文脈は addressability 証明書つきで下層 OperationalNet (v32.2/v33.1 契約) に降り、v33.1 修復入口で復元する。測定文脈・準備族・drift regime は型つき保持 (統合は v33.4)"
 
 forbidden_conversions:
 - from: RegulatorSiteId
@@ -452,6 +505,15 @@ forbidden_conversions:
 - from: HamiltonianCommutatorLiouvillian
   to: GklsLiouvillian
   reason: "可換子 lane の応答恒等式 (v32.4 R⁽¹⁾/R⁽²⁾) の証明書を一般 GKLS 生成子へ昇格しない — dissipator は Leibniz (導分性) を破り (γ 比例)、R⁽¹⁾ = −i Tr(B[H,A]) は GKLS 測定と一致しない (v33.1 禁止変換 13 — v331 [B5] が γ = 0.3 で乖離 1.2・γ = 0 で ≤ 1e-6 への回復を実測)。lane の資格審査は導分証明書 (classify_generator) のみ"
+- from: DeclaredOperation
+  to: AccessibleOperation
+  reason: "宣言 (行列 + 意図) は資格ではない — accessible operations の出自は較正・合成・トモグラフィの 3 証明書のみが与える (v33.2 禁止変換 14)。証明書は対象行列の sha256 に結束され、別の行列への流用は CertificateTargetMismatch で構成時拒否 (v332 [C1])"
+- from: OperatorDecomposition
+  to: IndependentlyAddressablePrimitives
+  reason: "装置が u(t)(X₁+X₂) しか操作できないとき、行列を X₁ と X₂ に数学的分解して「二つの独立 primitive」と扱わない (v33.2 禁止変換 15) — 同一 command を複数標的に割り当てる較正は command Jacobian rank 不足で構成時拒否 (v332 [C3]: rank 1 < 2)。独立性が立たない装置の正直な net は Abstain。ただし bracket 合成路が実在すれば Synthesized として資格が立つ (v332 [C4] — 可アクセス性は interface との関係)"
+- from: CertifiedCommutator
+  to: JointMeasurementCertificate
+  reason: "代数的可換性から role-typed 文脈証明書 (JointMeasurement / IndependentAddressability / ConvexReachability / Stability) への暗黙変換を作らない (v33.2 禁止変換 16 — 禁止変換 12 の役割別展開)。joint measurability は可換性で特徴づけられない: 非可換な unsharp 対 (η = 0.6, ‖[E,F]‖ = 0.25) が明示的 joint POVM で資格を通り、η = 0.8 は正値性破れで拒否される (v332 [C6] — 不偏 qubit 対の canonical 構成)"
 
 # predictions.yml の各 PRED の分類 — v271 R11:
 #   data_relation = future_observation の PRED は status = registered でなければならない

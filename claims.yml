@@ -4856,3 +4856,23 @@
     - "toy (dim ≤ 8)・witness 意味論は最小形 (成分対ごとに共有文脈 1 つ) — context overlap の整合・cocycle・複数 glue の裁定は v33.4。add_context 自体の役割型付け (Control/Measurement/Preparation/Drift の文脈別型) は v33.2。"
     - "導分証明書は行列単位の全対検査 (有限次元 exact) — ノイズ下の生成子推定・トモグラフィ誤差からの lane 判定は未走査 (v33.2 の証明書型の主題)。"
     - "禁止変換 13 は commutator lane 証明書の GKLS への昇格禁止であって GKLS 理論の否定ではない — 一般 GKLS の応答理論 (jump 表現 gauge・Kossakowski 同値類) は未構成 (次々期候補)。"
+
+- id: QRN-BRIDGE-030
+  version: "v33.2"
+  level: C3
+  claim: "Certified Laboratory Interface — 操作の出自証明と controller-free no-go (9 検査 PASS, 共有契約 `sim/src/laboratory_interface.rs` 新設): (i) **宣言 ≠ 資格 (禁止変換 14)**: DeclaredOperation (行列 + 意図) から AccessibleOperation への直接変換は不在 — 門は較正 (IndependentAddressabilityCertificate)・合成 (SynthesisCertificate)・トモグラフィ (TomographyCertificate) の 3 出自証明書のみ。証明書は対象行列の **sha256 に結束** (X₁ の証明書の X₂ への流用 = 構成時拒否)・文字列 provenance の廃止 (出自 = 型 + sha256)。(ii) **addressability の資格審査**: command Jacobian の証明つき rank・σ_min・cross-talk 区間 — 独立 6 knobs は rank 6/σ 1.000000000/xtalk ≤ 1e-12・ε = 0.05 は記録つき資格 (0.049938 ≤ 0.1)・ε = 0.3 は CrosstalkExcess・跨ぎは Straddled (強制判定禁止)。(iii) **tied control no-go (禁止変換 15)**: u(t)(X₁+X₂) しか無い装置での {X₁,X₂} への数学的分解は rank 1 < 2 で構成時拒否・正直な tied net は Abstain(Insufficient) — HOLD-9 tied セルの器械。(iv) **可アクセス性は interface との関係**: 同じ X₁ が interface A = {X₁+X₂} では合成路なし (Lie 閉包残差 0.707107)・B = {X₁+X₂, Z₂} では bracket 2 手 + 線形 1 手 (depth 3, 残差 ≤ 1e-12 の機械実行検証) で Synthesized 資格。(v) **controller-free decomposition no-go (E3-A, 第三の no-go)**: 同一の (H, drift H = 0, ρ = I/8) で 4 つの certified interface が非同値な読み — site → Exact [2,2,2] (orbit α)・DFT → [2,2,2] (orbit β, matching 不在 overlap 0.5625)・+entangler → [2,4]・tied → Abstain。**状態・Hamiltonian・大域代数だけから accessible operations を選ぶ写像は存在しない** (状態単独 ✗ v31.4・閉包 ✗ v32.2・controller-free ✗ 本版)。(vi) **role-typed 文脈 4 型 (禁止変換 16)**: MeasurementContext = joint measurability は**可換性より広い** (非可換 unsharp 対 η = 0.6, ‖[E,F]‖ = 0.2546 が明示的 joint POVM で資格・η = 0.8 は正値性破れで拒否 = 不偏 qubit 対の Busch iff の器械化)・トモグラフィ出自 (情報完全 6 状態, 残差 ≤ 1e-12・偏り +0.02 拒否)・凸可達 (重み機械検証)・drift 安定性 (変動バー)。ResourceBudget は 5 成分半順序 (比較不能対の実在・Ord/PartialOrd 不在)。(vii) **end-to-end**: 全 primitive 出自つき AccessibleOperationalNet (DeclaredOperation を受ける口なし) → v33.1 修復入口で Exact [2,2,2]。既存 7 依存バイナリ (v322–v325, v330a/b, v331) の出力は byte 一致。"
+  status: "E3-A (controller-free no-go) が閉じ、E3-B (certified interface 下の復元) の operation 層が立った — 資源依存の読み (budget profile) は v33.3・文脈統合 (overlap/glue) は v33.4 の主題"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v332_certified_interface.rs"
+    result: "results/v332_certified_interface.txt"
+    doc: "docs/uft-v33.2.md"
+  limitations:
+    - "証明書は exact toy (誤差区間 ±1e-12 級) — 実測定ノイズ・shot 統計下の区間較正と資格判定は未走査 (HOLD-9 変成セルの主題)。"
+    - "joint measurability の拒否は canonical 構成の正値性破れ (この構成では立たない) — 一般の非存在は不偏 qubit 対の Busch の iff (教科書的事実, C0) に依る。一般 POVM 対の joint 判定 (SDP) は未実装。"
+    - "ResourceBudget は付与まで — budget を動かしたときの読みの変化 (resource-indexed factorization profile)・合成深さとの相互作用は v33.3。MeasurementContext 等の因子分解への統合は v33.4。"
