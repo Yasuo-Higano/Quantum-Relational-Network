@@ -1,0 +1,39 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v34.3 有限データ昇格不能定理と Robust Promotion (PROMPT/15 §4) ===
+
+[F1] Le Cam 二点下限 — 全数列挙 = Σmin/2 = (1−TV)/2 の三重一致
+  [PASS] [F1a] N=16: min_{全 131072 規則} 平均誤り = Σmin/2 = (1−TV)/2  min = 0.329510411667, TV = 0.340979
+  [PASS] [F1b] Lean 実例 (proofs/FiniteDataNoGo.lean instance_n4): 整数一致  Σmin = 147, Σ|diff| = 218, 全 32 規則の最小 = 147 (2·147 = 512 − 218)
+  [PASS] [F1c] f64 二項と整数重みの一致 (Lean ↔ Rust の橋)  max|Δ| = 1.85e-13
+
+[F2] 観測契約が区別しなければ当てられない (TV = 0 → 誤り ≥ 1/2)
+  [PASS] [F2a] P0 = P1: 全規則の平均誤り = 1/2 (規則に依らない)  min = 0.500000000000
+  [PASS] [F2b] TV(N) は単調増加 — 境界の分解能は観測量の関数 (追加実験が下限を動かす)  TV = 0.0705 (N=4) → 0.1393 (16) → 0.2734 (64) → 0.5156 (256); 強制誤り下限 0.4648 → 0.2422
+
+[F3] Robust Promotion — 誤昇格 ≤ α (厳密和) と selective risk の区別
+  [PASS] [F3a] 全 θ 走査で P(wrong promotion) ≤ α (実測は片側 α/2 以下)  max = 0.01957 at θ = 0.3 (≤ α/2 = 0.025)
+  [PASS] [F3b] selective risk 反例: P(wrong|answer) > α なのに P(wrong) ≤ α — 被覆単独から selective risk は出ない  θ = 0.305: P(wrong) = 0.0113 ≤ α, P(answer) = 0.0354, P(wrong|answer) = 0.318 > α (上限は α/P(answer) = 1.413)
+
+[F4] MarginalIntervals ↛ JointConfidenceRegion / LocalChartCoverage ↛ GlobalGlueCoverage
+  [PASS] [F4a] 周辺 95% 区間の直積 (m = 6 独立パラメータ): joint 被覆 < 95% (破れ)  周辺被覆 0.9724 → 直積 0.8454 (miscoverage 0.155 > α — chart 局所被覆も同型で glue に昇格しない)
+  [PASS] [F4b] Bonferroni (α/m): joint 被覆 ≥ 95% (正しい同時領域の最小構成)  α/6 周辺 0.99728 → 直積 0.9838
+
+[F5] 裁定 5 値 — 各値が到達可能で、境界では Straddled が保証つきの正答
+  [PASS] [F5a] OutOfDomain (支持 {0,1} 違反) と InsufficientObservation (n < n_min)  out_of_domain / insufficient_observation
+  [PASS] [F5b] θ = τ (裁定境界上): P(Straddled) ≥ 1 − α — 棄権が保証つきの正答  P(Straddled) = 0.9665
+  [PASS] [F5c] 符号 orbit (TV = 0): 回答は EquivalenceClassOnly のみ・クラス誤り ≤ α  verdict = equivalence_class_only, P(class wrong) = 0.0413 (符号の強制回答は [F2a] より誤り ≥ 1/2)
+
+[F6] 禁止変換の反例 (全て厳密和)
+  [PASS] [F6-22] PointEstimate ↛ Certificate: 点推定昇格の誤り ≫ α・robust は ≤ α  θ = 0.28 (真は no_edge): 点推定 (k/N > τ で edge) の誤り = 0.312, robust = 0.0050
+  [PASS] [F6-24] GoodnessOfFit ↛ NoiseModelValidity: 一次積率は一致・被覆は崩壊  beta-二項 (平均 0.2500 = θ0 厳密) の下で iid 95% 区間の実被覆 = 0.329
+  [PASS] [F6-25] CalibrationAt(t0) ↛ ValidAt(t1): drift 下で t0 較正区間の t1 被覆が崩壊  θ(t0) = 0.25 → θ(t1) = 0.40: 被覆 = 0.1038 (≥ 0.95 のはずが)
+  [PASS] [F6-26] MeanCrosstalk ↛ UniformBound: 平均はバー内・単一対の漏れ 0.30 が独立性を破る  mean = 0.058 ≤ 0.1 (平均証明書は通過) / max = 0.30 > 0.1 (C2 の一様バーは拒否 — 漏れは操作のたびに 30% 乗る)
+  [PASS] [F6-28] ZeroHoldoutErrors ↛ ZeroPopulationRisk: 0/9 → 28.3%・0/77 → 3.8%・1% には 299 件  片側 95% 上限: 0/9 = 0.2831, 0/77 = 0.0382; ≤ 1% に必要な誤り 0 回答セル = 299
+  [PASS] [F6-29] ModelConditional ↛ ModelFree: 同一周辺 (定常 θ0) の相関鎖で iid 区間の被覆が崩壊  Markov (ρ = 0.8, 周辺平均 0.2500 = θ0 厳密) の下で被覆 = 0.513 — 契約は iid を『登録』し、破れは OutOfDomain で拒否するのが正答
+
+[判定] 有限データの境界が閉じた — 境界近傍の強制回答は原理的に不可能 (第四の no-go)、
+       同時信頼集合の昇格は誤り ≤ α (Robust Promotion)、その保証は無条件確率であって
+       selective risk ではない。点推定・周辺区間・GoF・単一時点較正・平均バー・
+       holdout 0 件・モデル条件付き証明書は、いずれも証明書に昇格しない (22–29)。
+
+総合判定: [PASS]

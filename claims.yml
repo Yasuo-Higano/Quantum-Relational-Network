@@ -5061,3 +5061,23 @@
     - "spec が凍結するのは exact (無ノイズ証明書) 意味論 — 実測ノイズ下の区間資格・同時信頼集合は OCS-1.0 のスコープ外 (v34.3–v34.5 の定理確立後に OCS-2.0 系で拡張)。"
     - "paper_closed = 独立実装可能性の主張であって、独立実装が完了した事実ではない — clean-room 等級への昇格は FollowUp 型の実走行のみが与える (external_replications = 0 は不変)。"
     - "HOLD-5..9 harness・D2-R campaign layer は repository_replay_only と正直に記録 (spec §14) — holdout 生成器の spec 化は SECRET 意味論と衝突するため意図的に閉じない。"
+
+- id: QRN-BRIDGE-037
+  version: "v34.3"
+  level: C2
+  claim: "有限データ昇格不能定理 (第四の no-go) と Robust Promotion Theorem (Lean 10 定理 + 17 検査 PASS, 共有契約 `sim/src/finite_data.rs` 新設): (i) **第四の no-go** — 異なる裁定を要する二つの interface の有限データ分布の全変動距離を TV とすると、どんな強制回答器も平均誤り ≥ (1 − TV)/2 (proofs/FiniteDataNoGo.lean: errMass_ge_minSum・two_minSum_eq・le_cam_two_point — 整数重みリスト帰納で機械証明)。Bayes 規則が下限を達成 (bayes_achieves — 下限は最良)・P0 = P1 なら誤り ≥ 1/2 (indistinguishable_half)。Rust 側 [F1] は N=16 の全 131072 決定規則の全数列挙 = Σmin/2 = (1−TV)/2 の三重一致 + Lean 実例 (N=4, 整数重み 147/512・Σ|diff| = 218) との整数一致で照合。**境界近傍の強制回答は原理的に不可能 — Straddled か追加観測 ([F2b]: TV は N に単調増加) が唯一の正答**。(ii) **Robust Promotion (正側)** — Clopper–Pearson 同時信頼集合を exact reader に通し像が単一クラスのときのみ昇格: 誤昇格 ⊆ 被覆失敗 (promotion_exclusion) から P(wrong promotion) ≤ α (robust_promotion — Lean)。[F3a] 全 θ 走査の厳密和で max 誤昇格 0.0196 ≤ α/2。**[F3b] selective risk は別物**: θ = 0.305 で P(wrong) = 0.011 ≤ α なのに P(wrong|answer) = 0.318 > α — 被覆単独から回答条件付き保証は出ない (上限は α/P(answer))。[F5b] 裁定境界上では P(Straddled) ≥ 1 − α (棄権が保証つき正答)・[F5c] 符号 orbit (TV = 0) は EquivalenceClassOnly が唯一の回答経路 (クラス誤り ≤ α)。(iii) **禁止変換 22–29** (型 + 厳密反例): 22 点推定昇格の誤り 0.312 ≫ α (robust 0.005)・23/27 周辺 95% 直積の joint 被覆 0.845 < 0.95 (Bonferroni α/m は 0.984)・24 同一平均の beta-二項で被覆 0.329 (GoF 一次積率は厳密一致)・25 drift で t1 被覆 0.104・26 平均 cross-talk 0.058 ≤ バー でも単一対 0.30 が独立性を破る・28 誤り 0 の片側 95% 上限 = 0/9 → 28.3%・0/77 → 3.8%・1% には 299 セル (HOLD-10 設計の根拠)・29 同一周辺の相関鎖 (ρ = 0.8) で被覆 0.513。全て解析的厳密和 (二項・beta-二項・Markov 転送行列) — Monte Carlo なし。"
+  status: "有限データ意味論の定理層が立った — RobustVerdict 5 値 (RobustExact/EquivalenceClassOnly/Straddled/InsufficientObservation/OutOfDomain) を凍結。v34.4 (factorization enumerator)・v34.5 (robust atlas — 実 reader の信頼集合持ち上げ) の土台"
+  layer: bridge
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v343_finite_data_nogo.rs"
+    result: "results/v343_finite_data_nogo.txt"
+    doc: "docs/uft-v34.3.md"
+  limitations:
+    - "Lean 形式化は有限結果空間・有理 (整数重み) 確率・決定的規則 — 連続結果空間・ランダム化規則・一般測度は論文側の一般版 (標準的な Le Cam 理論) に委ねる。被覆構成 (Clopper–Pearson) 自体は形式化せず Rust の厳密和で機械検査。"
+    - "toy 契約 (iid Bernoulli 一係数) での器械化 — 実 reader (addressability/glue/J) の信頼集合持ち上げは v34.5、i.i.d. 逸脱 (drift・相関) を契約内で扱う lane (bounded martingale 等) は HOLD-10 までの課題。"
+    - "P(wrong promotion) ≤ α は無条件確率 — selective risk の保証には回答率の下限か条件付き較正が別途必要 ([F3b] が反例)。HOLD-10 の採点はこの区別を導入する (selective risk = 0.000 だけを完成条件にしない)。"

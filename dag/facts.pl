@@ -279,6 +279,7 @@ claim('QRN-BRIDGE-036', 'v34.0-B', c3).
 claim('QRN-META-043', 'v34.0-B', c4).
 claim('QRN-YUK-034', 'v34.1', c2).
 claim('QRN-META-044', 'v34.2', c3).
+claim('QRN-BRIDGE-037', 'v34.3', c2).
 
 % dep(X, Y) — X は Y に依存する (Y が落ちれば X も落ちる)。
 dep('QRN-GRAV-001', 'QRN-C0-001').
@@ -1830,6 +1831,10 @@ fal_of('QRN-YUK-034', 'FAL-CEX-WINDOW').
 asm_of('QRN-META-044', 'ASM-IEEE754').
 asm_of('QRN-META-044', 'ASM-LAYER-SEMANTICS').
 fal_of('QRN-META-044', 'FAL-SUITE').
+asm_of('QRN-BRIDGE-037', 'ASM-EXACT-INTEGER').
+asm_of('QRN-BRIDGE-037', 'ASM-LEAN-TRUST').
+asm_of('QRN-BRIDGE-037', 'ASM-IEEE754').
+fal_of('QRN-BRIDGE-037', 'FAL-SUITE').
 
 % assumption(Id, Type, Scope, Status) / falsifier(Id, Status)。
 assumption('ASM-QM', framework, global, active).
@@ -2420,6 +2425,8 @@ rust_depth('QRN-YUK-034', 0).
 rust_closure('QRN-YUK-034', 0).
 rust_depth('QRN-META-044', 12).
 rust_closure('QRN-META-044', 0).
+rust_depth('QRN-BRIDGE-037', 0).
+rust_closure('QRN-BRIDGE-037', 0).
 rust_blast_asm('ASM-QM', 0).
 rust_blast_asm('ASM-LATTICE', 176).
 rust_blast_asm('ASM-GAUSS', 103).
@@ -2456,11 +2463,11 @@ rust_blast_asm('ASM-STABLE-LABEL', 61).
 rust_blast_asm('ASM-MODK', 49).
 rust_blast_asm('ASM-Z2-MINIMAL', 27).
 rust_blast_asm('ASM-EDGE-SEMANTICS', 54).
-rust_blast_asm('ASM-LEAN-TRUST', 46).
+rust_blast_asm('ASM-LEAN-TRUST', 47).
 rust_blast_asm('ASM-NET-REAL', 7).
-rust_blast_asm('ASM-IEEE754', 54).
+rust_blast_asm('ASM-IEEE754', 55).
 rust_blast_asm('ASM-LAYER-SEMANTICS', 40).
-rust_blast_asm('ASM-EXACT-INTEGER', 1).
+rust_blast_asm('ASM-EXACT-INTEGER', 2).
 rust_blast_fal('FAL-BMV', 48).
 rust_blast_fal('FAL-PAGE', 5).
 rust_blast_fal('FAL-LORENTZ', 5).
@@ -2472,7 +2479,7 @@ rust_blast_fal('FAL-SUSY', 1).
 rust_blast_fal('FAL-NEUTRINO', 15).
 rust_blast_fal('FAL-CKM-OOS', 63).
 rust_blast_fal('FAL-COSMO', 2).
-rust_blast_fal('FAL-SUITE', 257).
+rust_blast_fal('FAL-SUITE', 258).
 rust_blast_fal('FAL-CEX-WINDOW', 42).
 rust_blast_fal('FAL-QNEC', 17).
 rust_blast_fal('FAL-CONTINUUM', 102).

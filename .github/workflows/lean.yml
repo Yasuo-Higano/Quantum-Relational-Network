@@ -63,3 +63,7 @@ jobs:
         # ci.yml 時代は未登録だった (v21.6 で追加されたが CI に載っていなかった) — 分離を機に登録
         working-directory: proofs
         run: lean AnomalyUpstream.lean
+
+      - name: 有限データ昇格不能定理と Robust Promotion (proofs/FiniteDataNoGo.lean, ~2 秒)
+        working-directory: proofs
+        run: lean FiniteDataNoGo.lean
