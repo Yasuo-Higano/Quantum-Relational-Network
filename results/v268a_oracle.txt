@@ -32,4 +32,4 @@
 
 [判定] 事前登録 (a): **Gate 2 開通 — A_oracle 凍結、v26.8-B (staggered TT continuum limit) へ進む資格**
 
-総合判定: [PASS] (11 s)
+総合判定: [PASS] (10 s)

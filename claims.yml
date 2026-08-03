@@ -4940,7 +4940,7 @@
 - id: QRN-BRIDGE-034
   version: "v33.6"
   level: C3
-  claim: "構造化スケーリング — Pauli GF(2) / Majorana quadratic backend (6 検査 PASS, 共有契約 `sim/src/structured_backend.rs` 新設): 一般 dense の高速化ではなく lane の分離。(i) **PauliSymplecticBackend**: 演算子 = GF(2)^{2n} (x|z)・可換性 = symplectic ω・閉包次元 = 2^{dim V}・**中心 = ω の radical** — v33.1 凍結手順 (資格・成分・証人ゲート・三値裁定) を同じ FactorizationReading 型で実装。**n=3 の全 7 セルで dense と裁定完全一致** (site [2,2,2]・entangler [2,4]・number-only/部分 net Insufficient・singleton unwitnessed・部分 address [(2,2),(2,2)] [radical = Z₂]・パリティ [(4,1),(4,1)] [radical = Z₁Z₂Z₃] — 超選択の sector 構造まで radical が数える)。(ii) **48 qubit の証明書 (壁時計 ≤ 5 s)**: site 96 本 → Exact [2×48]・+entangler → [2×46,4]・Z₄₈ 欠落 → [(2⁴⁷,1)×2] — 全て 96×96 GF(2) rank で決まり **2^48 次元行列はどこにも現れない**。(iii) **MajoranaQuadraticBackend**: 実反対称 A・ブロック = 支持成分・閉包 = so 閉包。**quadratic 閉包は full M_d を与えない** (偶 Clifford) — 対応原理「支持分割 = dense 成分・dense *-閉包 dim = 2^{2m−1}」を小 N=3 で機械照合 (8/2 = 予言 8/2)・大 N=24 (48 Majorana) で **so(16) 閉包 (dim 120) × 3 → cross hop で [16,32] (so(32) dim 496)**。(iv) **scope 規律 (禁止変換 21)**: dense は dim > 4096 (凍結バー) で ScopeExceeded (試行しない)・非 Pauli 和 X₁+X₂ は PauliVector に構成不能 (真の Pauli は反可換パターンまで往復復元)・非反対称は quadratic 資格外 — **ScopeExceeded は失敗ではなく正答**。既存 7 依存バイナリ出力 byte 一致。"
+  claim: "構造化スケーリング — Pauli GF(2) / Majorana quadratic backend (6 検査 PASS, 共有契約 `sim/src/structured_backend.rs` 新設): 一般 dense の高速化ではなく lane の分離。(i) **PauliSymplecticBackend**: 演算子 = GF(2)^{2n} (x|z)・可換性 = symplectic ω・閉包次元 = 2^{dim V}・**中心 = ω の radical** — v33.1 凍結手順 (資格・成分・証人ゲート・三値裁定) を同じ FactorizationReading 型で実装。**n=3 の全 7 セルで dense と裁定完全一致** (site [2,2,2]・entangler [2,4]・number-only/部分 net Insufficient・singleton unwitnessed・部分 address [(2,2),(2,2)] [radical = Z₂]・パリティ [(4,1),(4,1)] [radical = Z₁Z₂Z₃] — 超選択の sector 構造まで radical が数える)。(ii) **48 qubit の証明書 (行列なし)**: site 96 本 → Exact [2×48]・+entangler → [2×46,4]・Z₄₈ 欠落 → [(2⁴⁷,1)×2] — 全て 96×96 GF(2) rank で決まり **2^48 次元行列はどこにも現れない**。(iii) **MajoranaQuadraticBackend**: 実反対称 A・ブロック = 支持成分・閉包 = so 閉包。**quadratic 閉包は full M_d を与えない** (偶 Clifford) — 対応原理「支持分割 = dense 成分・dense *-閉包 dim = 2^{2m−1}」を小 N=3 で機械照合 (8/2 = 予言 8/2)・大 N=24 (48 Majorana) で **so(16) 閉包 (dim 120) × 3 → cross hop で [16,32] (so(32) dim 496)**。(iv) **scope 規律 (禁止変換 21)**: dense は dim > 4096 (凍結バー) で ScopeExceeded (試行しない)・非 Pauli 和 X₁+X₂ は PauliVector に構成不能 (真の Pauli は反可換パターンまで往復復元)・非反対称は quadratic 資格外 — **ScopeExceeded は失敗ではなく正答**。既存 7 依存バイナリ出力 byte 一致。"
   status: "PROMPT/14 v33.1–v33.6 の版計画が完走 — 残るは HOLD-9 (v34.0-A/B) と Track X (D2-R campaign layer)。structured lane のノイズ跨ぎ・graded witness 統合・profile/atlas の大型版は次期候補"
   layer: instrument
   evidence_kind: mechanism_demo
@@ -4956,6 +4956,7 @@
     - "Pauli lane は宣言された厳密 Pauli 構造の lane (測定ではない) — ノイズ下の資格 (区間・Straddled) は dense lane の領分で、ノイズつき大型の跨ぎは未構成。"
     - "quadratic lane の読みはブロック分割 + so 閉包まで — v33.5 の複素構造 witness との統合 (大型 quadratic 系の complex mode 回復) は次期候補。"
     - "48 qubit / 48 Majorana は「行列を生成しない」ことの実演であって物理主張ではない (physical_scope: toy)。resource profile / atlas glue の structured 版は未実装。"
+    - "器械訂正 (v34.0-B の儀式が検出): 初版の [S2]/[S3] は壁時計バーを合否条件に含み、JOBS=12 の並列負荷で [S3] が超過して FAIL — 壁時計は「並列化で結果が変わらない」規約 (PROMPT/4) に反する器械バグとして計時を合否から除外 (裁定・数値は不変。儀式記録 results/v340_full_suite.txt の FAIL 2 は正検出として保持)。"
 
 - id: QRN-BRIDGE-035
   version: "v34.0-A"
@@ -4976,3 +4977,43 @@
     - "train は設計区画 — 検証力はない。holdout (v34.0-B) が凍結採点器で本採点する。"
     - "セル族は dim 8 (+ structured lane の 32–60 qubit) の toy — 軸 (出自・文脈・資源・graded・scale) は網羅するが各軸の深さは有限。"
     - "lib pin は開封までの器械不変の保証 — 開封後に pin を更新する変更は器械訂正として監査注記を要する (HOLD-8 の dust guard と同じ扱い)。"
+
+- id: QRN-BRIDGE-036
+  version: "v34.0-B"
+  level: C3
+  claim: "HOLD-9 holdout (初開封) の本採点 — 事前凍結の生成器・採点器・バー・lib pin・調整なし: **20/20 セル満票 — selective risk 0.000・impossibility recall 1.000 (11/11)・answerable recall 1.000 (9/9)・強制回答 0・origin_certificate_coverage 1.000 (31/31)・context_witness_coverage 1.000 (7/7)・raw_operation_promotions 0・scope_violations 0・transient_factorization_promotions 0**。[H0] SECRET 開示 (HOLD9-44eed4c2… の sha256 = コミットメント ef6a8cd9… 照合)・FROZEN-HOLD9 区間の v340a との逐語一致 (kernel sha 317ccd3a…)・**lib pin 6 モジュール不変** (凍結から開封まで器械が変わっていないことの機械照合) を通過し、holdout シード 17251756188301620883 (SECRET 導出) の新鮮セルで: **入力完全性** = raw+流用証明書は CertificateTargetMismatch・net-owned gens は byte 同一で Exact [2,2,2]・role-mixed は構成時拒否・GKLS は可換子 lane 資格なし。**accessibility** = 独立 knobs Exact・tied は分解 rank 拒否 + Abstain・同一閉包の別 interface は orbit matching 不在 (0.5625)・合成証明書の流用拒否。**context/resource** = budget profile (不足 → [2,2,2] → [2,4])・一意 glue [2,2,2]・複数 glue EquivalenceClassOnly{2}・cross-talk 跨ぎ Straddled。**graded** = witness なし MajoranaFrameOnly・charge witness で 3 モード (Σâ†â = Q)・汚染 witness 棄却・ordinary odd 構成時拒否。**scale/変成** = dense = Pauli 裁定一致・大型 structured (隠し 32–60 qubit, 行列なし) + dense ScopeExceeded・大域共役の interface 共変 (orbit 厳密対応)・transient 非昇格 (stable = [2,2,2] のみ)。**器械訂正 1 件 (開封走行で発見・凍結区間に触れない)**: v340b [H2] の区画定数の誤記 8/12 → 9/11 (凍結カーネルの answer_cell 宣言から機械的に定まる値 — 初版の [H2] が正しく FAIL して検出。採点・裁定・凍結区間は不変)。"
+  status: "内部 holdout 満票 (調整なし) — 第三十三期テーゼ「可アクセス性は関係である」の識別可能性境界が新鮮データで機能した。bridge law 登録は独立外部再現 0 のため引き続き行わない"
+  layer: bridge
+  evidence_kind: internal_holdout
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: preregistered_holdout
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v340b_hold9_open.rs"
+    result: "results/v340b_hold9_open.txt"
+    doc: "docs/uft-v34.0.md"
+  limitations:
+    - "内部 holdout であり独立外部再現ではない — bridge law 登録の blocker (R2/R3) は残る。Unit D2-R の公募 (Track X campaign layer) が最優先のまま。"
+    - "セル族は toy (dim 8 + structured 32–60 qubit) — 隠し自由度は変成 unitary・置換・対/セル/qubit 数の抽選・γ・コスト・O(6) 回転・汚染振幅で、セルクラス自体は凍結時に公開 (HOLD-7/8 と同じ設計)。"
+    - "v34.0-A 文書の train 区画注記 12/8 は誤記だった (機械出力は区画数を印字しない) — 正しくは 11/9。v34.0-B 文書で訂正注記 (凍結カーネル・採点は無関係)。"
+
+- id: QRN-META-043
+  version: "v34.0-B"
+  level: C4
+  claim: "第三十三期の統合 — 期末完全儀式と確定残高: **make suite-full で全 203 本を完全再計算 (~18.2h, JOBS=12) し、末桁ドリフト検査 (台帳の期前後比較) で既存 183 非監査バイナリと監査層 12 本の PASS/FAIL が完全一致 (ドリフト 0 件)** — 第三十三期の共有部変更 (laboratory_interface / resource_profile / contextual_factorization / graded_recovery / structured_backend の 5 モジュール新設・operational_net 増補) は既存物理に無波及。儀式は **v336 [S3] の壁時計バー超過 (FAIL 2) を検出** — 計時を合否条件にしたのは「並列化で結果が変わらない」規約 (PROMPT/4) に反する器械バグで、計時を合否から除外して訂正 (裁定・数値は不変・儀式記録 results/v340_full_suite.txt は保持)。**台帳確定後の再検証 (results/v340_full_suite_reverify.txt) で総計 PASS 1429 / FAIL 0** (v33.0/v28.0 の「儀式 + 再検証」と同型)。**期テーゼ「可アクセス性は作用素単体の属性ではなく、系・制御器・測定器・資源・誤差証明書の関係である」が型 (禁止変換 12–21)・定理 (controller-free no-go = 第三の no-go)・負制御 (entangler/tied/スカラー潰し/CZ 捻り/汚染 witness)・holdout (HOLD-9 20/20 満票 + 5 新計量) の全てで閉じた**。確定成果: 境界監査と型スコープ修復 (v33.1)・Certified Laboratory Interface + E3-A (v33.2)・resource profile と昇格規則 (v33.3)・atlas glue 定理 (v33.4)・Majorana/Dirac 境界 (v33.5)・structured backend と ScopeExceeded (v33.6)・D2-R campaign layer (Track X)・HOLD-9 満票 (v34.0)。器械訂正 2 件を監査注記つきで適用 ([H2] 区画定数・v336 壁時計バー — いずれも凍結区間/採点/裁定に触れない scaffolding)。"
+  status: "第三十三期 完結 — bridge law 登録簿は全能力で空・external_replications = 0・PRED-019 未登録のまま (blocker = Unit D2-R の外部報告のみ。受け皿は campaign layer で拡充済み)。次期はユーザー PROMPT 待ち"
+  layer: meta
+  evidence_kind: reproduction
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "tools/suite.sh"
+    result: "results/v340_full_suite.txt"
+    doc: "docs/uft-v34.0.md"
+  limitations:
+    - "儀式は決定性・無波及の検査であって物理的正しさの証拠ではない (PASS 総数はソフトウェア健全性の指標 — README の PASS 分類規約)。"
+    - "儀式中の v336 FAIL 2 は壁時計器械バグの正検出 — 再検証 (results/v340_full_suite_reverify.txt) が確定記録。ドリフト検査は PASS/FAIL 数の一致で、数値の末桁は各バイナリ内蔵の判定バーに委ねる。"
+    - "期の全成果は layer: bridge/instrument の toy 機構であり、bridge law 登録簿は空・独立外部再現 0・自然の的中 0 のまま。"

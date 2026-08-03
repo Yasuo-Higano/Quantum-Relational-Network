@@ -13,7 +13,8 @@
 //!        手順の裁定を行列なしで再現する
 //!   [S2] **48 qubit の証明書 (2^48 次元行列はどこにも現れない)**: site 96 本 →
 //!        Exact [2×48]・+entangler → [2×46, 4]・X₄₈ 欠落 → SuperselectionSectors
-//!        [(2^47, 1)×2] — 全て GF(2) rank (96×96) の厳密線形代数・壁時計バー内
+//!        [(2^47, 1)×2] — 全て GF(2) rank (96×96) の厳密線形代数 (計時は合否条件に
+//!        しない — 壁時計は並列負荷依存で決定性規約に反する: v34.0-B 儀式の器械訂正)
 //!   [S3] **Majorana quadratic backend と dense 対応原理**: 小 N = 3 で支持分割 =
 //!        dense 非可換成分・dense *-閉包次元 = 2^{2m−1} (偶 Clifford — full M_d では
 //!        ない: パリティ超選択) の予言が一致。大 N = 24 (48 Majorana) で 3 ブロック
@@ -28,7 +29,6 @@
 
 use std::fs;
 use std::path::Path;
-use std::time::Instant;
 use uft_sim::operational_net::{
     algebra_closure, commutator, hs_norm, CertifiedCommutator, ControlGenerator,
     FactorizationReading, OpId, OpKind, OperationalNet, OperatorParity, OrdinaryCommutation,
@@ -256,7 +256,6 @@ fn main() {
             s[pos] = ch;
             s.iter().collect()
         };
-        let t0 = Instant::now();
         // site 96 本
         let mut strs: Vec<String> = Vec::new();
         for i in 0..nq {
@@ -319,12 +318,11 @@ fn main() {
         if r3.as_ref().map(|r| r == &want_ss) != Ok(true) {
             bad.push(format!("Z₄₇ 欠落の読みが {:?}", r3.map(|r| r.as_str().to_string())));
         }
-        let elapsed = t0.elapsed().as_secs_f64();
-        if elapsed > 5.0 {
-            bad.push(format!("壁時計バー超過 ({:.1} s)", elapsed));
-        }
+        // 計時は合否条件にしない (壁時計は並列負荷に依存し「並列化で結果が変わらない」
+        // 規約に反する — v34.0-B の儀式 [JOBS=12] が旧版の壁時計バー超過を検出した
+        // 器械訂正。規模の主張は「行列を生成しない」構成そのもので担う)
         check(
-            "[S2] 48 qubit の証明書 — Exact [2×48]・+entangler [2×46,4]・Z₄₇ 欠落 → [(2^47,1)×2] (行列なし・壁時計 ≤ 5 s)",
+            "[S2] 48 qubit の証明書 — Exact [2×48]・+entangler [2×46,4]・Z₄₇ 欠落 → [(2^47,1)×2] (行列なし)",
             bad.is_empty(),
             "GF(2) rank (96×96) の厳密線形代数のみ — 2^48 次元の行列はどこにも現れない (dense はこの入力を ScopeExceeded で拒否する [S4])".into(),
         );
@@ -385,7 +383,6 @@ fn main() {
             ));
         }
         // 大 N = 24 (48 Majorana): 3 ブロック × 16 → so(16) dim 120・cross hop で併合
-        let t0 = Instant::now();
         let m48 = 48usize;
         let mut gens48 = Vec::new();
         for blk in 0..3 {
@@ -409,15 +406,12 @@ fn main() {
         if !(bm48b == vec![16, 32] && lf48b == vec![true, true]) {
             bad.push(format!("cross hop 後 {:?} / {:?}", bm48b, lf48b));
         }
-        let elapsed = t0.elapsed().as_secs_f64();
-        if elapsed > 30.0 {
-            bad.push(format!("壁時計バー超過 ({:.1} s)", elapsed));
-        }
+        // 計時は合否条件にしない ([S2] と同じ器械訂正 — 儀式の並列負荷で検出)
         check(
             "[S3] Majorana quadratic backend — 小 N 対応原理 (支持分割 = dense 成分・閉包 dim = 2^{2m−1})・大 N = 48 Majorana so(16)³ → so(32) 併合",
             bad.is_empty(),
             format!(
-                "N=3: [2,4] blocks・dense 閉包 {}/{} = 予言 {}/{} (偶 Clifford — full M_d ではない = パリティ超選択の quadratic 版) / N=24: [16,16,16] so 閉包 120×3・cross hop → [16,32] (so(32) dim 496)・壁時計バー内 — 2^24 は現れない",
+                "N=3: [2,4] blocks・dense 閉包 {}/{} = 予言 {}/{} (偶 Clifford — full M_d ではない = パリティ超選択の quadratic 版) / N=24: [16,16,16] so 閉包 120×3・cross hop → [16,32] (so(32) dim 496) — 2^24 は現れない",
                 cl_block1, cl_block2, pred1, pred2
             ),
         );
