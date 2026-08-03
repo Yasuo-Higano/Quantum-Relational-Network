@@ -1,21 +1,21 @@
 === v6.1 主張台帳 (claims.yml) の機械検証 ===
 
-[1] 書式解析: 269 件の主張を解析  [PASS]
-[2] id 一意性・命名規則: 全 269 件 OK  [PASS]
+[1] 書式解析: 270 件の主張を解析  [PASS]
+[2] id 一意性・命名規則: 全 270 件 OK  [PASS]
 [3] 等級・必須フィールド: OK  [PASS]
-[4] 証拠ファイルの実在: 全 695 参照 OK  [PASS]
+[4] 証拠ファイルの実在: 全 698 参照 OK  [PASS]
 [5] 限界の明示 (C0 以外は必須): OK  [PASS]
-[6] バイナリ被覆: 全 208 本が台帳から参照されている  [PASS]
-[7] 6 軸の完備性・語彙 (layer/evidence_kind/independence/universality/data_relation/physical_scope): 全 269 件 OK  [PASS]
+[6] バイナリ被覆: 全 209 本が台帳から参照されている  [PASS]
+[7] 6 軸の完備性・語彙 (layer/evidence_kind/independence/universality/data_relation/physical_scope): 全 270 件 OK  [PASS]
 
 ---- 等級別の集計 ----
   C0 教科書的・既存定理 (前提)                7 件
   C1 既存結果の再現実装                    35 件
   C2 制限付き計算定理                     60 件
-  C3 toy model による機構提示            53 件
+  C3 toy model による機構提示            54 件
   C4 現象論的 fit / オーダー推定            82 件
   C5 解釈・哲学・スローガン                  32 件
-  計 269 件
+  計 270 件
 
 ---- 期別の主張数 ----
   v0.x : 14 件
@@ -47,6 +47,7 @@
   v32.x : 11 件
   v33.x : 9 件
   v34.x : 9 件
+  v35.x : 1 件
   v4.x : 7 件
   v5.x : 4 件
   v6.x : 10 件

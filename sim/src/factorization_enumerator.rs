@@ -106,9 +106,39 @@ fn matrix_units(n: usize) -> Vec<Vec<C64>> {
     out
 }
 
-/// 全行列空間内の可換子零空間 = commutant のエルミート正規直交基底
+/// 全行列空間内の可換子零空間 = commutant のエルミート正規直交基底。
+/// closure_center_basis の零空間しきい値は稠密 (無理数成分) の共役族で数値塵の
+/// 方向を拾い得る — 返す基底の可換性を**機械再検証**して塵を落とす (証明書は
+/// 再実行で検証する、の規律。v35.0-A の設計走行が発見した故障モード)。
 pub fn commutant_basis(gens: &[Vec<C64>], n: usize) -> Vec<Vec<C64>> {
-    closure_center_basis(&matrix_units(n), gens, n)
+    let raw = closure_center_basis(&matrix_units(n), gens, n);
+    let mut clean: Vec<Vec<C64>> = Vec::new();
+    for m in raw {
+        let mn = hs_norm(&m).max(1e-300);
+        let mut worst = 0.0f64;
+        for g in gens {
+            let gn = hs_norm(g).max(1e-300);
+            let c = commutator_c(&m, g, n);
+            worst = worst.max(hs_norm(&c) / (mn * gn));
+        }
+        if worst < 1e-11 {
+            push_ortho(&mut clean, &m, 1e-9);
+        }
+    }
+    clean
+}
+
+/// (診断用) 基底元ごとの最悪可換子残差
+pub fn commutant_residuals(gens: &[Vec<C64>], n: usize) -> Vec<f64> {
+    let raw = closure_center_basis(&matrix_units(n), gens, n);
+    raw.iter()
+        .map(|m| {
+            let mn = hs_norm(m).max(1e-300);
+            gens.iter()
+                .map(|g| hs_norm(&commutator_c(m, g, n)) / (mn * hs_norm(g).max(1e-300)))
+                .fold(0.0, f64::max)
+        })
+        .collect()
 }
 
 /// 射影 p の像の正規直交列 → 等長 V (n×r, 列優先で r 本の n ベクトル)
@@ -415,7 +445,11 @@ pub fn enumerate_candidates(
             commute[i][j] = mx < 1e-9;
         }
     }
-    // 部分集合列挙: simple メンバーの可換集合 S — 補因子 = (∨S)′ が simple なら候補
+    // 部分集合列挙: simple メンバーの**極大**可換集合 S — 補因子 = (∨S)′ が
+    // simple なら候補。極大性を要求する理由: S の外に S と可換な simple メンバー
+    // j があるとき、S 単独の補因子 (合成 commutant) は j の閉包を含む冗長な表現で、
+    // 稠密 (無理数成分) の共役族では commutant の数値零空間が不安定になる
+    // (v35.0-A の設計走行が発見)。明示のメンバーがあるならそれを使う。
     let mut cands: Vec<(Vec<usize>, Vec<Vec<Vec<C64>>>)> = Vec::new();
     'subset: for mask in 1u32..(1 << k) {
         let idx: Vec<usize> = (0..k).filter(|&i| (mask >> i) & 1 == 1).collect();
@@ -427,6 +461,15 @@ pub fn enumerate_candidates(
                 if !commute[idx[a]][idx[b]] {
                     continue 'subset;
                 }
+            }
+        }
+        // 極大性: S の外の simple メンバー j が S 全体と可換なら S は非極大
+        for j in 0..k {
+            if !idx.contains(&j)
+                && members[j].simple
+                && idx.iter().all(|&i| commute[j][i])
+            {
+                continue 'subset;
             }
         }
         let prod_n: usize = idx.iter().map(|&i| members[i].simple_dim).product();

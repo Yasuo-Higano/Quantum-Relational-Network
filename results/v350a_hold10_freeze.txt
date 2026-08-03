@@ -1,0 +1,33 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v35.0-A HOLD-10 の凍結 — 二層 holdout (S 30 + C 640) の準備 (PROMPT/15 §6) ===
+
+  [PASS] [A0] lib pin 8 モジュール (v33 の 6 本 + finite_data + factorization_enumerator)  凍結時 sha256-16 と一致 (開封まで器械不変の保証)
+  [PASS] [A1] sha256(SECRET) コミットメント公表 + 凍結バー  sha256(SECRET) = c3a62f1b55d708e5… / バー: answers ≥ 300・wrong_upper ≤ 0.01・coverage ≥ 0.98・答率 ≥ 0.95・α_cell = 0.0002
+
+[A2] train (シード 35001, 可視) — S 30 セル + C 640 セル
+      [PASS] S: selective risk  0
+      [PASS] S: impossibility recall  21/21
+      [PASS] S: answerable recall  9/9
+      [PASS] S: 強制回答  0
+      [PASS] C: answers ≥ 300  469
+      [PASS] C: wrong_promotion_upper_95 ≤ 0.01  0.00637 (W = 0)
+      [PASS] C: coverage_lower_95 ≥ 0.98  0.99461 (554/554)
+      [PASS] C: boundary_abstention_recall = 1  10/10
+      [PASS] C: misspecification_recall = 1  32/32
+      [PASS] C: answerable_recall ≥ 0.95  0.9736 (405/416)
+      [PASS] C: 強制符号回答 = 0 (sign orbit は class 回答のみ — 誤りは wrong 束縛に計上)  class 32/32 (miss は W に計上)
+      [PASS] C: insufficient 正棄却  22/22
+      [PASS] C: marginal_to_joint_promotions = 0  0
+      [PASS] C: calibration_window_reuse = 0  0
+      [PASS] C: structured_dense_decision_drift = 0  0 不一致 / 32
+  [PASS] [A2] train 満票 (S 4 指標 + C 12 指標)  回答セル 9 / 非識別 21
+  [PASS] [A3] 設計走行 12 シード満票 (生成器のシード頑健性 — 隠しパラメータ縮退の設計時確認)  12/12 シードで S+C 全指標 PASS
+
+[設計値] 誤り 0 の片側 95% 上限: 0/300 = 0.00994・0/420 = 0.00711 (v343 [F6-28] が一次ソース)
+
+[判定] HOLD-10 は凍結された — 生成器・採点器・バー・lib pin・SECRET コミットメント。
+       開封 (v35.0-B) は SECRET 開示 → holdout 初生成 → 調整なしの本採点。
+       selective risk = 0.000 だけを完成条件にしない (population 上限と
+       境界棄却・misspec 検出・lane 一致を別採点する)。
+
+総合判定: [PASS]

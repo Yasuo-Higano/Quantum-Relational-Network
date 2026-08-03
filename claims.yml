@@ -5141,3 +5141,23 @@
     - "受け皿であって実データではない — recorded_runs = 0 が正直な現状。drift gate は split-half の一次検査 (bounded martingale / time-averaged certificate の本格 lane は HOLD-10 までの課題 — PROMPT/15 §6)。"
     - "配布パケットの実配布・実施者の獲得は人間の作業 (リポジトリは受け皿の完備までを担う)。OUTREACH_LEDGER への記録は実際の接触が起きたときのみ。"
     - "physical_scope: laboratory は受け皿の対象がラボ記録であることを表す — 本 claim 自体が実験結果を含むわけではない (fixture は較正用と明記)。"
+
+- id: QRN-BRIDGE-040
+  version: "v35.0-A"
+  level: C3
+  claim: "HOLD-10 の凍結 (4 検査 PASS + train 満票 + 設計 12 シード満票): PROMPT/15 §6「30 セル満票だけでは不十分」— 二層 holdout を凍結した。**HOLD-10S** = 30 セル (5 群 × 6: noise/provenance [iid 資格・相関 run・drift・欠測・ブロック混合・hash 流用]・addressability/synthesis [clear/tied/境界/mean-vs-worst/coherent 蓄積/較正窓越境]・factorization/context [unique orbit/複数 orbit/中心非自明/cocycle 失敗/区間跨ぎ/nonlocal relocation]・graded/J [clear gap/縮退/BCS pairing/quartic 汚染/奇数本/J 跨ぎ]・structured/resource [dense=Pauli/quadratic ブロック/interval cost/morphism/ScopeExceeded/GKLS])。**HOLD-10C** = 凍結生成分布の 640 セル coverage campaign (clear 416・near 96・境界 10・符号 orbit 32・drift 16・markov 16・欠測 22・dual-lane 32 — 回答 ≥ 300 を設計)。**採点 16 指標** (凍結バー): S 4 (risk 0/impossibility 21/answerable 9/強制 0) + C 12 — **wrong_promotion の片側 95% 上限 ≤ 0.01** (誤り 0 でも 299+ 回答が必要 — v343 [F6-28] が設計の一次ソース)・coverage 下限 ≥ 0.98・境界棄却 recall 1・**misspecification recall 1 (drift + 相関 lane — PROMPT/15 §6 必須の相関 lane を遷移数ゲートで実装)**・回答率 ≥ 0.95・marginal→joint 0・窓再利用 0・structured/dense 裁定 drift 0。α_cell = 0.0002 (促進)・α_gate = 0.001 (契約 3 ゲート)。**lib pin 8 モジュール** (v33 の 6 本は HOLD-9 pin と同値 + finite_data + factorization_enumerator)・sha256(SECRET) = c3a62f1b… 公表・FROZEN-HOLD10 区間 (開封側と逐語一致を [H0] が照合)。**設計走行が enumerator の故障モードを発見・修復**: 稠密共役族で commutant の数値零空間が不安定 → (i) commutant_basis の可換性機械再検証 (塵の除去)・(ii) 候補 = 族の極大可換 simple 部分集合 (明示メンバーがあるのに合成 commutant で置き換えない) — 修復後 probe 300 走で故障 0・既存 v344/v345 出力 byte 一致。"
+  status: "凍結半 — holdout は未生成。開封・本採点は v35.0-B (調整なし)。selective risk = 0.000 だけを完成条件にしない"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v350a_hold10_freeze.rs"
+    result: "results/v350a_hold10_freeze.txt"
+    doc: "docs/uft-v35.0.md"
+  limitations:
+    - "train + 設計 12 シードは設計区画 — 検証力はない。holdout (v35.0-B) が凍結採点器で本採点する。"
+    - "C 層の population 上限は回答セルの i.i.d. 解釈を追加仮定として登録した上での片側 95% 上限 (セルは凍結分布からの独立抽選なので設計上は正当 — 実データにはそのまま延長しない)。"
+    - "synthetic lane である (DataProvenance::SyntheticCoverage) — v35.0 の科学的完成条件 (外部報告/実データ予測/新 no-go) は v34.6 の凍結どおり別判定。"
