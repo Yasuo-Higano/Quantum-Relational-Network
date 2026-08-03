@@ -1,0 +1,20 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v34.4 sector-aware factorization candidate enumerator (PROMPT/15 §5) ===
+
+  [PASS] [W1] M₂⊗M₃ (d=6): UniqueFactorization [2,3]  verdict = unique_factorization
+  [PASS] [W2] 3 qubit site 族 (d=8): UniqueFactorization [2,2,2]  成分 3 個
+  [PASS] [W8a] SWAP 置換 witness: 共役族の候補は同一 orbit (成分置換で matching)  min overlap (最良置換) = 1.000000000000
+  [PASS] [W3] multiplicity {a⊕a} ⊂ M₄: Wedderburn 証明書 n=2, m=2 + Unique [2,2]  dim A = n² (4), dim A′ = m² (4), 積 span = d² true, A″=A true, verdict = unique_factorization
+  [PASS] [W4] M₂⊕M₃ (d=5): Sectorwise [(2,1),(3,1)] 全証明書 PASS・tensor 要求は Obstruction  verdict = sectorwise_factorization / demand → nontrivial_center_obstruction
+  [PASS] [W4b] {a⊕a⊕b} (d=7): sector 内 multiplicity — [(3, m=1), (2, m=2)] 証明書 PASS  sectors = [(3, 3, 1), (4, 2, 2)]
+  [PASS] [W5] site vs CNOT 共役 (d=4): FactorizationCandidateSet{2} — どちらも [2,2]・tie-break なし  候補 2 個
+  [PASS] [W8b] 非同値 witness: site 候補と bell 候補は orbit 不一致 (overlap ≪ 0.9)  min overlap (最良置換) = 0.3333
+  [PASS] [W6] number op のみ (abelian 閉包): IncompletePrimitiveSet — rank-1 sector の皮を被せない  verdict = incomplete_primitive_set
+  [PASS] [W7] d = 128 > バー 64: ScopeExceeded (試行しない — 正答)  verdict = scope_exceeded
+
+[判定] complete finite factorization candidate search が証明書つきで立った —
+       中心・sector・multiplicity を分離し、非同値候補は集合のまま返し (tie-break
+       禁止)、abelian 族と scope 超過は正直に拒否する。FollowUp FAC-001 の
+       「未提供」への応答。
+
+総合判定: [PASS]

@@ -5081,3 +5081,23 @@
     - "Lean 形式化は有限結果空間・有理 (整数重み) 確率・決定的規則 — 連続結果空間・ランダム化規則・一般測度は論文側の一般版 (標準的な Le Cam 理論) に委ねる。被覆構成 (Clopper–Pearson) 自体は形式化せず Rust の厳密和で機械検査。"
     - "toy 契約 (iid Bernoulli 一係数) での器械化 — 実 reader (addressability/glue/J) の信頼集合持ち上げは v34.5、i.i.d. 逸脱 (drift・相関) を契約内で扱う lane (bounded martingale 等) は HOLD-10 までの課題。"
     - "P(wrong promotion) ≤ α は無条件確率 — selective risk の保証には回答率の下限か条件付き較正が別途必要 ([F3b] が反例)。HOLD-10 の採点はこの区別を導入する (selective risk = 0.000 だけを完成条件にしない)。"
+
+- id: QRN-BRIDGE-038
+  version: "v34.4"
+  level: C3
+  claim: "sector-aware complete finite factorization candidate enumerator (10 検査 PASS, 共有契約 `sim/src/factorization_enumerator.rs` 新設 — FollowUp FAC-001「complete tensor-factor candidate search は未提供」への応答): 与えられた *-部分代数の族から (1) joint 中心の最小中心射影列挙 (v32.3 Lagrange kernel 継承) → (2) **各 sector の Wedderburn 証明書** (dim A_α = n²・dim A′_α = m²・n·m = d_α・積 span(A_α·A′_α) = d_α²・二重可換子 A″ = A — 同型 M_{n_α} ⊗ I_{m_α} の存在は証明書 + 標準構造定理 [C0]) → (3) multiplicity m_α / simple n_α の分離 → (4) 族の可換 simple 部分集合 + simple 補因子 (joint commutant) からの候補列挙 (積 span = d² 証明書つき) → (5) **局所 unitary × 成分置換 witness** (traceless 部分空間 overlap matching — OCS §F3 意味論・バー 0.9) → (6) 非同値候補は集合のまま (tie-break 禁止)。出力 6 型を凍結: UniqueFactorization / FactorizationCandidateSet / SectorwiseFactorization / IncompletePrimitiveSet / NontrivialCenterObstruction / ScopeExceeded。機械検証: [W1] M₂⊗M₃ → Unique [2,3]・[W2] 3 qubit → Unique [2,2,2]・[W3] multiplicity {a⊕a} ⊂ M₄ → 証明書 n = m = 2 + Unique [2,2]・[W4] M₂⊕M₃ → Sectorwise [(2,1),(3,1)] + **大域 tensor 要求は NontrivialCenterObstruction** (中心非自明の tensor 昇格禁止の器械化)・[W4b] {a⊕a⊕b} (d=7) → sector 内 multiplicity [(3,1),(2,2)]・[W5] site vs CNOT 共役 → **FactorizationCandidateSet{2}** (両方 [2,2]・overlap 1/3 で非同値 — 無制約選択の禁止)・[W6] abelian 族 (number op のみ) → **IncompletePrimitiveSet** (rank-1 sector の皮を被せない — v32.3 Insufficient の enumerator 版)・[W7] d = 128 → ScopeExceeded (正答)・[W8] SWAP 置換 witness overlap 1.000000000000 / 非同値 witness 0.3333。"
+  status: "任意の有限次元 *-代数族に対する候補列挙が証明書つきで立った — v34.5 (robust atlas) で信頼集合上に持ち上げ、構造化 lane (Pauli radical) との統合は次期候補"
+  layer: instrument
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v344_factorization_enumerator.rs"
+    result: "results/v344_factorization_enumerator.txt"
+    doc: "docs/uft-v34.4.md"
+  limitations:
+    - "候補列挙は宣言された族の可換部分集合が生成する分解に限る — 族に含まれない因子の発見 (無制約の全 bipartition 走査) はしない (E3 no-go: 因子分解は marking が運ぶ、の enumerator 版)。補因子は joint commutant が simple のときのみ資格。"
+    - "Wedderburn 同型の明示的 unitary は構成しない — 証明書 (次元・積 span・二重可換子) と標準理論 (C0) で存在を保証する形。role constraints / controller certificate との接続 (accessible 族だけを入力に取る門) は v33.2 経由で行い、本 enumerator 自体は代数入力。"
+    - "dense バー 64 (ScopeExceeded)・全置換 witness は成分数 ≤ 5 想定 — 構造化 backend (GF(2) radical) への同じ列挙意味論の移植は次期候補。"

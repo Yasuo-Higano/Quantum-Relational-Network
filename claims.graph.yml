@@ -1383,3 +1383,8 @@
   deps: []
   asm: [ASM-EXACT-INTEGER, ASM-LEAN-TRUST, ASM-IEEE754]
   fal: [FAL-SUITE]
+
+- id: QRN-BRIDGE-038
+  deps: [QRN-BRIDGE-023]
+  asm: [ASM-IEEE754]
+  fal: [FAL-SUITE]
