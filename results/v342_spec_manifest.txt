@@ -1,0 +1,19 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v34.2 standalone operational core spec の凍結監査 (PROMPT/15 §3) ===
+
+  [PASS] [M0] spec (OCS-1.0) の実在と SHA-256 凍結 pin  sha256 = bb3b4d4bff722225…
+  [PASS] [M1] spec の規範アンカー (14 節・4 等級・probe 分離・バー表・規律文)  24 アンカー
+  [PASS] [M2] closure manifest — 13 フィールド・参照実在・正直な境界 ≥ 1  20 エントリ (paper_closed 18 / replay_only 2)
+  [PASS] [M3] 出力値非掲載の規律文 + 4 再現性等級の語彙一致 (spec ↔ manifest)  spec は手順・恒等式・バー・裁定のみを凍結する
+
+[M4] 規範インスタンス (spec §10) の機械実証 — probe 型分離の主リポジトリ側受理
+  [PASS] [M4a] N1: signed covariance probe = 結合重み 1 (厳密恒等式 T8)  probe 応答 = 1.000000000000, ‖P₂hP₁‖² = 1.0
+  [PASS] [M4a'] N1: Hamiltonian quench の応答 = 0 (別実験 — T9 の null)  quench 応答 = 0.0e0 (結合 1 に対し零 — probe 型が契約の必須フィールド)
+  [PASS] [M4b] N2: 積状態 signed probe の応答 = 1 − Δ² 厳密 (V 項は不変) — T10  Δ=0 V=0: 1.000000000000; Δ=0.3 V=0: 0.910000000000; Δ=0.7 V=0: 0.510000000000; Δ=0 V=1.3: 1.000000000000; 
+  [PASS] [M4c] N3: Busch 対 — joint POVM 資格 ⟺ 2η² ≤ 1 (η=0.6 資格 / η=0.8 拒否)・非可換対  min eig: η=0.6 → +0.0379 (資格) / η=0.8 → -0.0328 (joint_candidate_not_positive)・‖[E^x,E^z]‖ = 0.255
+
+[判定] operational core は paper-closed になった — 独立実装の入力は spec ひとつ。
+       出力値は spec に無く、閉じない領域 (holdout harness・campaign) は
+       manifest が repository_replay_only と正直に記録する。
+
+総合判定: [PASS]

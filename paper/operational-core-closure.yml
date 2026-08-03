@@ -1,0 +1,296 @@
+# =====================================================================
+# Publication closure manifest (v34.2, PROMPT/15 §3) — 論文で閉じているか
+# =====================================================================
+# 各エントリは operational-core-spec.md (OCS-1.0) の規範単位ひとつに対応し、
+# 「どの再現性等級で閉じているか」を機械可読にする:
+#   paper_closed: true  = spec だけで独立実装可能 (結果値なし)
+#   repository_replay_only: true = 現状はリポジトリ再走でのみ再現可能
+#   expected_outputs_in_spec: false = spec は出力値を含まない (全行で false 固定)
+# 検証は sim/src/bin/v342_spec_manifest.rs (spec sha256 凍結・アンカー・
+# 規範インスタンスの実行) が行う。
+# =====================================================================
+
+spec_file: "paper/operational-core-spec.md"
+spec_version: "OCS-1.0"
+reproducibility_grades: [repository_replay, paper_closed, clean_room, organizationally_external]
+
+entries:
+- id: OCS-K1
+  spec_section: "1"
+  theorem_or_algorithm: "役割 4 型 (準備/制御/測定/drift) と grading 2 レーンの構成時資格"
+  claim_ids: [QRN-BRIDGE-022]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "宣言された primitive family (役割・grading つき)"
+  required_input_artifacts: "primitive 行列 + 役割宣言"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "資格通過 or 構成時拒否 (role/grading)"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-A1
+  spec_section: "2"
+  theorem_or_algorithm: "IndependentAddressabilityCertificate (C2: rank・σ_min ≥ 0.5・cross-talk 区間 ≤ 0.1)"
+  claim_ids: [QRN-BRIDGE-030]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "command 族と標的生成子の 1:1 較正データ"
+  required_input_artifacts: "応答行列 M_jk (HS 正規化)"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "資格 or 拒否 or Straddled (区間がバーを跨ぐ)"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-A2
+  spec_section: "2"
+  theorem_or_algorithm: "SynthesisCertificate (C3: bracket 語の機械再実行・残差 ≤ 1e-9)"
+  claim_ids: [QRN-BRIDGE-030]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "資格済み基底生成子族"
+  required_input_artifacts: "合成語 (スカラー和と Lie bracket の列)"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "Synthesized 資格 or no_synthesis_path or 残差超過"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-A3
+  spec_section: "2"
+  theorem_or_algorithm: "TomographyCertificate (C4: 情報完全族の線形逆問題 + effect 資格)"
+  claim_ids: [QRN-BRIDGE-030]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "情報完全な準備族と頻度データ"
+  required_input_artifacts: "準備族・測定頻度"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "資格 or not_informationally_complete or 残差/資格拒否"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-X1
+  spec_section: "3"
+  theorem_or_algorithm: "role-typed 文脈 4 型 + joint measurability 証明書 (N3 Busch 対: 2η² ≤ 1 資格)"
+  claim_ids: [QRN-BRIDGE-030]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "joint POVM 候補の明示構成"
+  required_input_artifacts: "effect 対と joint 候補 R_ab"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "文脈資格 or joint_candidate_not_positive 等の拒否"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-R1
+  spec_section: "4"
+  theorem_or_algorithm: "ResourceBudget 5 成分半順序 + profile + 昇格規則 (chain ≥ 2)・スカラー潰し禁止 (T7)"
+  claim_ids: [QRN-BRIDGE-031]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "budget grid と budget つき操作族"
+  required_input_artifacts: "grid・各操作の budget"
+  equivalence_relation: "読み + gauge orbit の同値クラス"
+  allowed_conclusion: "profile (点ごと読み)・stable/transient 分類"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-F1
+  spec_section: "5"
+  theorem_or_algorithm: "marked recovery 凍結手順 (F2) + 裁定語彙 (F4) + witness ゲート (T2)"
+  claim_ids: [QRN-BRIDGE-023, QRN-BRIDGE-029]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "certified commutator 区間 + 宣言文脈 (control 役割のみ)"
+  required_input_artifacts: "marked net (primitive・役割・grading・区間・文脈)"
+  equivalence_relation: "局所 unitary × 置換 (orbit バー 0.9)"
+  allowed_conclusion: "Exact/SuperselectionSectors/EquivalenceClassOnly/Abstain(5 理由)"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-T1
+  spec_section: "10-11"
+  theorem_or_algorithm: "erasure no-go (T1, N5): 閉包は marking を運ばない"
+  claim_ids: [QRN-BRIDGE-022]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "site 族 vs Fourier 共役族の閉包と読み"
+  required_input_artifacts: "d=8 の 2 生成族"
+  equivalence_relation: "gauge orbit matching"
+  allowed_conclusion: "閉包一致 + orbit 非同値 (禁止変換 11)"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-T3
+  spec_section: "11"
+  theorem_or_algorithm: "controller-free decomposition no-go (T3, 第三の no-go)"
+  claim_ids: [QRN-BRIDGE-030]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "同一 (H, drift, ρ) 上の 4 interface"
+  required_input_artifacts: "4 通りの certified interface"
+  equivalence_relation: "gauge orbit matching"
+  allowed_conclusion: "interface 依存の非同値な読み (controller-free 写像の不在)"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-T4
+  spec_section: "10-11"
+  theorem_or_algorithm: "tied control no-go (T4, N4): rank 1 < 2 の拒否"
+  claim_ids: [QRN-BRIDGE-030]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "単一 command 装置の較正データ"
+  required_input_artifacts: "tied command 応答"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "insufficient_command_rank 拒否 + 正直 net の Abstain"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-G1
+  spec_section: "6"
+  theorem_or_algorithm: "atlas glue (G2) + glue 定理 (T5) + cocycle 不整合 Abstain (FT-19)"
+  claim_ids: [QRN-BRIDGE-032]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "chart 宣言 + 大域 net から継承した証明書"
+  required_input_artifacts: "chart 族・overlap・bridge 文脈"
+  equivalence_relation: "overlap matching (exact バー 1e-9)・gauge orbit"
+  allowed_conclusion: "GluedExact/EquivalenceClassOnly/Abstain(4 理由)"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-M1
+  spec_section: "7"
+  theorem_or_algorithm: "Majorana/Dirac 境界 (T6): O(2N) 不変 no-go + charge witness → J → U(N) を除くモード回復"
+  claim_ids: [QRN-BRIDGE-033]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "CAR frame + (任意で) 線形 witness"
+  required_input_artifacts: "γ 族・witness Q"
+  equivalence_relation: "witness なし O(2N) / witness あり U(N)"
+  allowed_conclusion: "MajoranaFrameOnly/ComplexModeFactorization/Abstain(2 理由)"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-P1
+  spec_section: "8"
+  theorem_or_algorithm: "SignedInitialCovarianceProbe 恒等式 (T8): (n̈⁺−n̈⁻)/(4ε) = ‖P_j h P_i‖²"
+  claim_ids: [QRN-BRIDGE-013, QRN-BRIDGE-024]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "一粒子 lane・Γ± = I/2 ± εP_i・密度読み出し"
+  required_input_artifacts: "h・射影対 (P_i, P_j)"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "厳密恒等式 (有限次元)"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-P2
+  spec_section: "8-10"
+  theorem_or_algorithm: "probe 型分離 (T9, N1): HamiltonianQuench は別実験 — quench null (Γ0 = I/2 で応答 0 vs 結合 1)"
+  claim_ids: [QRN-META-044]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "probe 型は観測契約の必須フィールド"
+  required_input_artifacts: "N1 構成 (h = σ_x, P_1, P_2)"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "型不一致は OutOfDomain (SignedInitialCovarianceProbe ↛ HamiltonianQuench)"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-P3
+  spec_section: "8-10"
+  theorem_or_algorithm: "応答則のスコープ (T10, N2): pairing で 1−Δ² — NumberConservingResponse ↛ BCSResponse"
+  claim_ids: [QRN-META-044]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "積状態 probe (p = 1/2 ± ε)・charge witness 必須"
+  required_input_artifacts: "N2 構成 (2 モード hopping + pairing Δ)"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "witness 破れは OutOfDomain・N2 で応答 = 1−Δ² 厳密"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-B1
+  spec_section: "9"
+  theorem_or_algorithm: "Pauli GF(2) symplectic lane (B1): ω グラフ・閉包 2^dim・中心 = radical・dense 裁定一致"
+  claim_ids: [QRN-BRIDGE-034]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "宣言された Pauli 構造 (測定ではない)"
+  required_input_artifacts: "(x|z) 符号化された生成族"
+  equivalence_relation: "dense と同一の裁定語彙"
+  allowed_conclusion: "構造化証明書 (行列なし) or not_pauli_string"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-B2
+  spec_section: "9"
+  theorem_or_algorithm: "Majorana quadratic lane (B2): 支持ブロック・so 閉包・対応原理 2^(2m−1)・ScopeExceeded (FT-21)"
+  claim_ids: [QRN-BRIDGE-034]
+  assumption_ids: [ASM-IEEE754]
+  observation_contract: "実反対称 A の宣言構造"
+  required_input_artifacts: "A 行列 (支持グラフ)"
+  equivalence_relation: "dense 対応原理"
+  allowed_conclusion: "ブロック読み or not_antisymmetric / dense は dim > 4096 で ScopeExceeded"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-D1
+  spec_section: "12"
+  theorem_or_algorithm: "裁定の全順序 (fail-closed 優先順位 7 段) と selective risk / answerable recall の採点意味論"
+  claim_ids: [QRN-BRIDGE-023, QRN-BRIDGE-030]
+  assumption_ids: [ASM-LAYER-SEMANTICS]
+  observation_contract: "全評価に共通 (優先順位は総順序)"
+  required_input_artifacts: "評価器の実装"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "上位条件成立時の下位裁定は採点誤り"
+  falsifier: "FAL-SUITE"
+  paper_closed: true
+  repository_replay_only: false
+  expected_outputs_in_spec: false
+
+- id: OCS-H1
+  spec_section: "14"
+  theorem_or_algorithm: "HOLD-5..9 の holdout 生成器・採点 harness (凍結・SECRET・lib pin)"
+  claim_ids: [QRN-BRIDGE-035, QRN-BRIDGE-036]
+  assumption_ids: [ASM-SEED]
+  observation_contract: "内部 holdout (外部独立性ではない)"
+  required_input_artifacts: "リポジトリの凍結カーネル一式"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "spec では閉じない (正直な境界)"
+  falsifier: "FAL-SUITE"
+  paper_closed: false
+  repository_replay_only: true
+  expected_outputs_in_spec: false
+
+- id: OCS-Z1
+  spec_section: "14"
+  theorem_or_algorithm: "D2-R campaign layer (公募の受け皿・funnel 台帳)"
+  claim_ids: [QRN-META-043]
+  assumption_ids: [ASM-LAYER-SEMANTICS]
+  observation_contract: "外部再現の登録手続き"
+  required_input_artifacts: "reproducer/ + campaigns/d2r-v1"
+  equivalence_relation: "not_applicable"
+  allowed_conclusion: "spec では閉じない (reproducer/ が別途凍結)"
+  falsifier: "FAL-SUITE"
+  paper_closed: false
+  repository_replay_only: true
+  expected_outputs_in_spec: false

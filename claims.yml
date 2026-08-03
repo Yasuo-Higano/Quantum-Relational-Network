@@ -5041,3 +5041,23 @@
     - "反例の初出は FollowUp (同一人間 operator の cross-model clean-room) — 独立性は algorithmically_diverse 止まりで external ではない。ただし普遍命題の反証は 1 つの厳密証人で数学的に決着する (独立性は証人の信用度にのみ影響し、整数再検算で解消済み)。"
     - "[E3] は代数 (skew scale) の族内定理 — 格子上の厳密縮退・深さ (どの (磁束, N) が指数を守るか) は別問題で開いたまま (QRN-YUK-015 発見 1)。等スケール反例 F の格子 Dirac 実装 (固有面が座標平面に整列しない一般磁束) も未走査。"
     - "physical_scope は effective_model (磁束コンパクト化模型の数学) — 自然の観測量への含意はない。"
+
+- id: QRN-META-044
+  version: "v34.2"
+  level: C3
+  claim: "standalone operational core spec (OCS-1.0) の凍結と publication closure manifest (8 検査 PASS):第三十三期の operational core (役割 4 型・出自 3 証明書 [addressability σ_min ≥ 0.5 / cross-talk ≤ 0.1 区間 / 合成残差 ≤ 1e-9 / トモグラフィ]・role-typed 文脈 [joint POVM 証人]・ResourceBudget 5 成分半順序と昇格規則 chain ≥ 2・marked recovery 凍結手順 [τ = 1e-3・witness ゲート・orbit バー 0.9]・atlas glue・Majorana/Dirac 境界 [O(2N) vs U(N)]・Pauli GF(2) / quadratic backend・裁定優先順位 7 段) を、**ソースにも出力値にもアクセスせず独立実装できる paper-closed 仕様** (paper/operational-core-spec.md, sha256 = bb3b4d4b… で凍結・出力値非掲載 expected_outputs_in_spec: false) に閉じた。claim ごとの閉包状態は paper/operational-core-closure.yml (20 エントリ — paper_closed 18 / repository_replay_only 2 [HOLD harness・campaign layer] の正直な境界) が機械可読化し v342 が常設検査。**FollowUp の probe 型分離を規範インスタンスとして主リポジトリ側でも機械実証**: [M4a] N1 quench null — 同一 h = σ_x で signed covariance probe 応答 = ‖P₂hP₁‖² = 1 厳密・Hamiltonian quench (Γ₀ = I/2) 応答 = 0 厳密 (SignedInitialCovarianceProbe ↛ HamiltonianQuench)・[M4b] N2 pairing — 2 モード JW 積状態 probe で応答 = 1 − Δ² 厳密 (Δ ∈ {0, 0.3, 0.7}・対角 V 項は不変 — NumberConservingResponse ↛ BCSResponse)・[M4c] N3 Busch 対 — joint POVM 資格 ⟺ 2η² ≤ 1 (η = 0.6 資格 / 0.8 は joint_candidate_not_positive・非可換対 — joint measurability は可換性より広い)。再現性 4 等級 (repository replay / paper-closed / clean-room / organizationally external) を spec §0 で定義。"
+  status: "paper-closed spec の凍結 — FollowUp specification-limited 判定への応答。以後の clean-room 実装の入力は spec ひとつ (曖昧性は結果に合わせず OCS 版バンプで解消する規約)。有限データ (shot noise) 意味論は OCS-1.0 のスコープ外と明記 (v34.3 の定理の後に spec 化)"
+  layer: instrument
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v342_spec_manifest.rs"
+    result: "results/v342_spec_manifest.txt"
+    doc: "docs/uft-v34.2.md"
+  limitations:
+    - "spec が凍結するのは exact (無ノイズ証明書) 意味論 — 実測ノイズ下の区間資格・同時信頼集合は OCS-1.0 のスコープ外 (v34.3–v34.5 の定理確立後に OCS-2.0 系で拡張)。"
+    - "paper_closed = 独立実装可能性の主張であって、独立実装が完了した事実ではない — clean-room 等級への昇格は FollowUp 型の実走行のみが与える (external_replications = 0 は不変)。"
+    - "HOLD-5..9 harness・D2-R campaign layer は repository_replay_only と正直に記録 (spec §14) — holdout 生成器の spec 化は SECRET 意味論と衝突するため意図的に閉じない。"
