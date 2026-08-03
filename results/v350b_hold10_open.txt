@@ -1,0 +1,64 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v35.0-B HOLD-10 開封 — holdout 本採点 (調整なし) ===
+
+  [PASS] [H0] SECRET 開示 = コミットメント照合・FROZEN-HOLD10 逐語一致・lib pin 8 本不変  sha256(HOLD10-51335c5…) = c3a62f1b55d708e5… / 逐語一致 true / pin true
+
+[H1] holdout シード = 15384046040323535768 (sha256(SECRET + "-seed") 先頭 16 hex — SECRET 導出)
+
+  ---- HOLD-10S (30 セル) の裁定表 ----
+    [✓] N1 iid record + edge certify → robust_exact
+    [✓] N2 相関 ± run → OutOfDomain → out_of_domain(correlated)
+    [✓] N3 drift → OutOfDomain → out_of_domain(drift)
+    [✓] N4 missing channel → Insufficient → insufficient_observation
+    [✓] N5 model mismatch (ブロック混合) → OutOfDomain → out_of_domain(mixture)
+    [✓] N6 証明書 hash 不一致 → 構成時拒否 → certificate_target_mismatch
+    [✓] A1 clear rank → 資格 → σ_lo = 0.934
+    [✓] A2 tied → 確実拒否 → σ_hi = 0.040 < 0.5
+    [✓] A3 near-boundary → Straddled → σ ∈ [0.403, 0.603] ∋ 0.5
+    [✓] A4 mean 良好/worst 不良 → 一様バー拒否 → mean 0.141 / worst 0.293
+    [✓] A5 coherent accumulation → 合成上界拒否 → per-op 0.023 資格 / 8-op worst 0.184 > 0.1
+    [✓] A6 較正窓の越境 → 拒否 (CalibrationAt(t0) ↛ ValidAt(t1)) → t1 − t0 = 2.64 > 窓 1.61
+    [✓] F1 unique orbit → Unique [2,2] → unique_factorization
+    [✓] F2 multiple orbit → CandidateSet{2} (tie-break なし) → factorization_candidate_set
+    [✓] F3 nontrivial center → Sectorwise (証明書つき) → sectorwise_factorization
+    [✓] F4 cocycle 失敗 → Abstain(GlueInconsistent) → overlap_hi = 0.382 < 0.9
+    [✓] F5 overlap 区間が 0.9 を跨ぐ → Straddled → o ∈ [0.846, 0.946]
+    [✓] F6 nonlocal relocation → EquivalenceClassOnly (orbit 不一致確定) → orbit overlap = 0.331 (確実に非同値)
+    [✓] G1 clear charge gap → J 構成資格 → σ_lo = 0.760 > 0
+    [✓] G2 縮退 (部分 charge) → 区間 ∋ 0 で構成拒否 → σ_min = 0.0e0 (区間 ∋ 0)
+    [✓] G3 BCS pairing → charge witness 破れ (OutOfDomain) → ‖[H_pair, N]‖ = 2.216 ≠ 0 (Δ = 0.55)
+    [✓] G4 quartic 汚染 → WitnessNotLinearOnFrame → witness_not_linear_on_frame
+    [✓] G5 奇数本 frame → OddCount 拒否 → odd_count
+    [✓] G6 confidence set が J/no-J を跨ぐ → Straddled → σ ∈ [-0.129, 0.351] ∋ 0
+    [✓] S1 dense = Pauli (隠し entangler コイン) — graph 裁定一致 → 辺 3 対一致・entangler true
+    [✓] S2 quadratic Majorana — 隠しブロック分割の回復 → blocks = [6, 6]
+    [✓] S3 interval cost — [0,2,2,s,4,4] (跨ぎ点 Straddled・stable chain 2) → pattern = 022s44
+    [✓] S4 profile morphism — 狭義単調再パラメータ化で採用判定不変 → φ(b) = b² + 0.1b
+    [✓] S5 dense dim 128 → ScopeExceeded (正答) → scope_exceeded
+    [✓] S6 general GKLS → NonDerivation (Leibniz 破れ ∝ γ) → Leibniz 残差 = 1.549 (γ = 0.77)
+
+  ---- 採点 16 指標 (凍結バー・調整なし) ----
+    [PASS] S: selective risk  0
+    [PASS] S: impossibility recall  21/21
+    [PASS] S: answerable recall  9/9
+    [PASS] S: 強制回答  0
+    [PASS] C: answers ≥ 300  476
+    [PASS] C: wrong_promotion_upper_95 ≤ 0.01  0.00627 (W = 0)
+    [PASS] C: coverage_lower_95 ≥ 0.98  0.99461 (554/554)
+    [PASS] C: boundary_abstention_recall = 1  10/10
+    [PASS] C: misspecification_recall = 1  32/32
+    [PASS] C: answerable_recall ≥ 0.95  0.9904 (412/416)
+    [PASS] C: 強制符号回答 = 0 (sign orbit は class 回答のみ — 誤りは wrong 束縛に計上)  class 32/32 (miss は W に計上)
+    [PASS] C: insufficient 正棄却  22/22
+    [PASS] C: marginal_to_joint_promotions = 0  0
+    [PASS] C: calibration_window_reuse = 0  0
+    [PASS] C: structured_dense_decision_drift = 0  0 不一致 / 32
+  [PASS] [H1] holdout 本採点 — 16 指標  回答 476 (W = 0)・被覆 554/554・境界棄却 10/10・misspec 32/32
+  [PASS] [H2] population-risk の片側 95% 上限の報告 (観測誤りだけで完成としない)  wrong_promotion 上限 = 0.00627 (W = 0 / 回答 476) — セル i.i.d. (凍結分布からの独立抽選) の登録仮定下
+
+[判定] HOLD-10 開封 満票 — ただし期末表現は「instrumental closure」に留める:
+       外部 D2-R 報告 0・実データ上の事前登録予測 0・(第四の no-go は本期の
+       計画内成果であり完成条件の「新しい」no-go には数えない)。synthetic
+       holdout の満票は器械の閉包であって QRN の物理的前進ではない (v34.6 凍結)。
+
+総合判定: [PASS]

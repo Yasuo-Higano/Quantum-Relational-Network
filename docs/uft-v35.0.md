@@ -67,6 +67,72 @@ train (シード 35001, 可視): S 30 セル満票 + C 640 セル 12 指標満�
 「設計走行はシード頑健性の確認」(v34.0-A) が「設計走行は器械の故障モード検出」
 としても機能した初の期。
 
-## 4. 開封 (v35.0-B — 開封時に追記)
+## 4. 開封 (v35.0-B) — 本採点の確定表
 
-*(凍結時点では空欄 — SECRET 開示・holdout 本採点・期末統合はここに追記される)*
+SECRET を開示 (`HOLD10-51335c5…` — [H0] が sha256 = コミットメント c3a62f1b… と
+FROZEN-HOLD10 区間の v350a との逐語一致・**lib pin 8 モジュール不変**を機械照合) し、
+holdout シード 15384046040323535768 (SECRET 導出) で S 30 + C 640 セルを初生成・
+本採点した (調整なし):
+
+```text
+HOLD-10S: 30/30 — selective risk 0・impossibility recall 21/21・
+          answerable recall 9/9・強制回答 0
+HOLD-10C: 回答 476 (設計 ≥ 300) — W (誤昇格) = 0
+  wrong_promotion の片側 95% 上限 = 0.00627 ≤ 0.01   ← HOLD-9 に無かった報告
+  coverage 554/554 (下限 0.99461 ≥ 0.98)
+  boundary_abstention_recall 10/10・misspecification_recall 32/32
+  (drift 16 + 相関 Markov 16 — 遷移数ゲート)
+  answerable_recall 0.9904 (412/416)・強制符号回答 0・insufficient 22/22
+  marginal_to_joint 0・窓再利用 0・structured/dense 裁定 drift 0
+```
+
+観測誤り 0 は「population リスク 0」ではない — 上限 0.63% が本 holdout が言える
+上界であり、それを**指標として初めて要求・報告した**のが HOLD-10 の新しさ
+(HOLD-9 の 9 回答の上限は 28.3% だった)。
+
+## 5. 第三十四期の統合 — 期末判定は「instrumental closure」
+
+**期テーゼ「可アクセス性証明書は実験者の宣言ではなく、登録済み観測契約の下で
+有限データから得られる同時信頼集合である。集合が裁定境界を跨ぐ場合、Straddled /
+EquivalenceClassOnly / Abstain は失敗ではなく有限データから導かれる唯一の正答で
+ある」— 定理 (第四の no-go + Robust Promotion, Lean 10 定理)・型 (禁止変換 22–29・
+DataProvenance)・器械 (robust atlas・enumerator・real-data lane)・holdout
+(HOLD-10 二層満票 + population 上限) の全てで閉じた。**
+
+| 版 | 成果 (確定) |
+|---|---|
+| v34.1 | FollowUp 受理 (REP-001 / Partially Replicated / external 0 維持)・Yukawa erratum (QRN-YUK-034 refuted_as_stated・族内定理・位相 ↛ 計量) |
+| v34.2 | OCS-1.0 paper-closed spec (sha256 凍結・出力値なし)・closure manifest 20・probe 型分離の機械実証 (quench null / 1−Δ² / Busch) |
+| v34.3 | 第四の no-go (Le Cam, Lean) + Robust Promotion (誤昇格 ≤ α)・selective risk ≠ coverage・禁止変換 22–29・0/n 上限の機械化 |
+| v34.4 | sector-aware factorization enumerator (Wedderburn 証明書・出力 6 型) |
+| v34.5 | robust atlas (σ_min 下界・worst-case xtalk・glue 区間・spectral-gap J・interval cost・lane 一致) |
+| v34.6 | real-data lane (synthetic ↛ experimental)・D2-R 配布パケット・完成条件の凍結 |
+| v35.0 | HOLD-10 凍結 → 開封 **S 30/30 + C 16 指標満票・population 上限 0.63%** (調整なし) |
+
+**期末判定 (v34.6 で凍結した規約による)**: 外部 D2-R 報告 0・実データ上の事前登録
+予測 0・完成条件に数える「新しい」厳密 no-go なし (第四の no-go は本期の計画内
+成果) — よって期末表現は **instrumental closure** であり「QRN の物理的前進」とは
+呼ばない。**正直な残高 (不変)**: bridge law 登録簿は全能力で空・PRED-019 未登録・
+自然の観測量の的中 0・external_replications = 0・recorded_runs = 0。
+blocker は v34.6 の受け皿に対する**外部の実施者と実データ**のみ。
+
+**開発記録 (第三十四期)**:
+- 反例の受理で期を開けた (v34.1 — 本プロジェクト初の外部起源 erratum)。
+- 設計走行が器械の故障モードを 2 つ検出し凍結前に修復した (v35.0-A §3) —
+  「設計走行はシード頑健性の確認」から「故障検出器」へ役割が広がった。
+- 期を通じて v33 の 6 モジュールの lib pin が不変 — 第三十四期は第三十三期の
+  器械に触れずにその上へ積んだ (加法的な期)。
+
+**期末完全儀式**: 全 211 本の完全再計算 (`make suite-full`) を v35.0-B コミット後に
+起動 — 儀式記録とドリフト検査は完了後の追補コミットで確定する (走行 ~18–20h。
+past 期は B コミットに同梱したが、本期は起動と記録を分離して手続きを明示する)。
+
+## 6. 未解決 (第三十五期への課題 — PROMPT/15 の優先順位の残り)
+
+1. **外部独立再現 (最優先・据え置き)** — D2R_PACKET の実配布と実施者獲得。
+2. 実データ (recorded lane) の初回受理と事前登録予測。
+3. profile の set-valued 関手性と安定性定理 (定義は v34.5 で器械化済み)。
+4. 一般 GKLS 応答 (jump gauge・Kossakowski 同値類)・BCS 型 witness (本期は
+   OutOfDomain 負制御まで)。
+5. OCS-2.0 (有限データ意味論の spec 化 — v34.3–v34.5 の定理が材料)。
+6. gravity・PRED-019 (凍結継続)。

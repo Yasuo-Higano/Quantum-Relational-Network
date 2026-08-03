@@ -5161,3 +5161,41 @@
     - "train + 設計 12 シードは設計区画 — 検証力はない。holdout (v35.0-B) が凍結採点器で本採点する。"
     - "C 層の population 上限は回答セルの i.i.d. 解釈を追加仮定として登録した上での片側 95% 上限 (セルは凍結分布からの独立抽選なので設計上は正当 — 実データにはそのまま延長しない)。"
     - "synthetic lane である (DataProvenance::SyntheticCoverage) — v35.0 の科学的完成条件 (外部報告/実データ予測/新 no-go) は v34.6 の凍結どおり別判定。"
+
+- id: QRN-BRIDGE-041
+  version: "v35.0-B"
+  level: C3
+  claim: "HOLD-10 holdout (初開封) の本採点 — 事前凍結の生成器・採点器・バー・lib pin・調整なし: **S 30/30 + C 16 指標満票**。[H0] SECRET 開示 (HOLD10-51335c5… の sha256 = コミットメント c3a62f1b… 照合)・FROZEN-HOLD10 区間の v350a との逐語一致・**lib pin 8 モジュール不変**を通過し、holdout シード 15384046040323535768 (SECRET 導出) の新鮮セルで: **HOLD-10S** = selective risk 0・impossibility recall 21/21 (相関 run/drift/欠測/混合/hash 流用/tied/境界/mean-worst/蓄積/窓越境/複数 orbit/cocycle/跨ぎ/relocation/縮退/pairing/汚染/奇数本/J 跨ぎ/ScopeExceeded/GKLS 全て期待理由で正棄却)・answerable recall 9/9 (iid+edge・clear rank・unique orbit・sectorwise・clear gap J・dense=Pauli・quadratic ブロック・interval cost chain・morphism)・強制回答 0。**HOLD-10C** = 回答 476 (設計 ≥ 300)・**W (誤昇格) = 0 → wrong_promotion の片側 95% 上限 = 0.00627 ≤ 0.01 (HOLD-9 に無かった population 報告 — 9 回答の上限 28.3% から 45 倍改善)**・coverage 554/554 (下限 0.99461 ≥ 0.98)・境界棄却 10/10・**misspecification recall 32/32 (drift 16 + Markov 相関 16 — 遷移数ゲートの相関 lane)**・回答率 0.9904・強制符号回答 0・insufficient 22/22・marginal→joint 0・窓再利用 0・structured/dense 裁定 drift 0。"
+  status: "内部 holdout 満票 (調整なし) — ただし期末表現は instrumental closure (外部報告 0・実データ 0 — v34.6 で凍結した完成条件による)。bridge law 登録は行わない"
+  layer: bridge
+  evidence_kind: internal_holdout
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: preregistered_holdout
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v350b_hold10_open.rs"
+    result: "results/v350b_hold10_open.txt"
+    doc: "docs/uft-v35.0.md"
+  limitations:
+    - "内部 holdout であり独立外部再現ではない — blocker (R2/R3) は不変。synthetic lane の満票は器械の閉包であって QRN の物理的前進ではない (v34.6 の凍結どおり期末表現は instrumental closure)。"
+    - "population 上限 0.63% は回答セル i.i.d. (凍結分布からの独立抽選) の登録仮定下の片側 95% 上限 — 実データ・adversarial 分布シフトには延長しない。"
+    - "セル族は toy (dim ≤ 8 + 構造化 lane・一係数 Bernoulli 統計量) — 実 reader の多統計量同時領域 (v34.5) は S 群で意味論的に、C 群は edge reader の大規模統計で採点した (実 reader の 600 セル級 campaign は次期候補)。"
+
+- id: QRN-META-046
+  version: "v35.0-B"
+  level: C4
+  claim: "第三十四期の統合 — 期テーゼ「可アクセス性証明書は実験者の宣言ではなく、登録済み観測契約の下で有限データから得られる同時信頼集合である。局所性・因子分解・context glue・複素構造は、その信頼集合全体で同じ裁定が成立するときに限り昇格できる。集合が裁定境界を跨ぐ場合、Straddled / EquivalenceClassOnly / Abstain は失敗ではなく、有限データから導かれる唯一の正答である」が、**定理** (第四の no-go = Le Cam 二点下限の Lean 機械証明 + Robust Promotion 誤昇格 ≤ α + selective risk ≠ coverage の分離)・**型** (禁止変換 22–29・DataProvenance synthetic ↛ experimental・RobustVerdict 5 値)・**器械** (OCS-1.0 paper-closed spec [sha256 凍結]・factorization enumerator・robust atlas・real-data lane 受け皿)・**holdout** (HOLD-10 二層: S 30/30 + C 16 指標満票・population 上限 0.63% の初報告) の全てで閉じた。反証の正式受理 (FollowUp YUK-005 → QRN-YUK-034 refuted_as_stated) で期を開け、FollowUp の specification-limited 判定に OCS-1.0 で応答し、v33 の 6 モジュール lib pin 不変のまま (加法的な期) 有限データ層を積んだ。**期末判定 = instrumental closure** (v34.6 で凍結した完成条件: 外部 D2-R 報告 0・実データ上の事前登録予測 0・完成条件に数える新 no-go なし — synthetic holdout の満票は器械の閉包であって物理的前進ではない、と自ら宣言して閉じる)。"
+  status: "第三十四期 完結 (instrumental closure) — bridge law 登録簿は全能力で空・external_replications = 0・recorded_runs = 0・PRED-019 未登録のまま。期末完全儀式 (全 211 本) は v35.0-B コミット後に起動し追補コミットで記録する。次期はユーザー PROMPT 待ち (候補は uft-v35.0.md §6)"
+  layer: meta
+  evidence_kind: interpretation
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    doc: "docs/uft-v35.0.md"
+    result: "results/v350b_hold10_open.txt"
+  limitations:
+    - "instrumental closure は正直な自己限定 — 有限データ意味論の器械は閉じたが、それを現実の裁定に使う入力 (外部実施者・実装置の記録) はまだ 0 件。次期の本当の前進は内部満票の追加ではなく外部の一件 (PROMPT/15 の結語)。"
+    - "儀式 (完全再計算) の記録は追補コミット — 本 claim の時点では起動のみ (past 期は B コミット同梱・本期は分離を明示)。"
