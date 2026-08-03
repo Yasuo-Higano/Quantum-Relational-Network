@@ -5101,3 +5101,23 @@
     - "候補列挙は宣言された族の可換部分集合が生成する分解に限る — 族に含まれない因子の発見 (無制約の全 bipartition 走査) はしない (E3 no-go: 因子分解は marking が運ぶ、の enumerator 版)。補因子は joint commutant が simple のときのみ資格。"
     - "Wedderburn 同型の明示的 unitary は構成しない — 証明書 (次元・積 span・二重可換子) と標準理論 (C0) で存在を保証する形。role constraints / controller certificate との接続 (accessible 族だけを入力に取る門) は v33.2 経由で行い、本 enumerator 自体は代数入力。"
     - "dense バー 64 (ScopeExceeded)・全置換 witness は成分数 ≤ 5 想定 — 構造化 backend (GF(2) radical) への同じ列挙意味論の移植は次期候補。"
+
+- id: QRN-BRIDGE-039
+  version: "v34.5"
+  level: C3
+  claim: "robust atlas — exact reader の同時信頼集合への持ち上げ (13 検査 PASS): v34.3 の意味論 (統計量ごとの区間・Bonferroni 同時割当・集合の全域で裁定一致のときだけ回答) を v33 の各 reader に持ち上げた。[R0] **合成 reader の被覆定理の実例**: 2 統計量 (σ 系 lo > 0.5 ∧ 漏れ系 hi ≤ 0.1, α/2 ずつ) の全結果空間 31² を厳密列挙し、資格が偽の全境界セルで P(誤証明書) ≤ α (max 0.020)。[R1] **addressability**: σ_min の同時下界 σ_lo = σ_min(M̂) − ‖ΔM‖_F (Weyl — box 全 16 角で厳密性照合 min corner = σ_lo) と **worst-case cross-talk 上界** (平均 0.155 が通る box を max+w = 0.32 で拒否 — 禁止変換 26 の robust 版)・資格/tied 確実拒否/跨ぎ Straddled の 3 セル。[R2] **glue**: 候補 orbit 間 overlap の区間裁定 — matching (o = 1)・非同値 (o = 1/3 厳密 — v34.4 の site×CNOT 値)・境界 0.88±0.05 → Straddled。[R3] **charge witness**: skew K の spectral-gap 証明書 — 完全 charge は σ_min − ‖ΔK‖_F = 0.88 > 0 (zero crossing なし) のときのみ **J = K(−K²)^{−1/2} を構成** (実反対称・J² = −I 厳密 0)・部分 charge は σ(part) ∋ 0 で構成拒否。[R4] **interval cost**: 確実採用 (hi ≤ b)/確実排除 (lo > b)/跨ぎ (点 Straddled) の 3 値 — grid 6 点で 資源不足 → [2,2] (chain 2 stable) → Straddled → 併合 (chain 2 stable)・**中点潰しの負制御** (点推定は跨ぎ点 b = 1.9 で確定読みを返す — 禁止変換 18/22 の合流)・set-valued profile の単調性の器械化 (関手性定理は次期)。[R5] **dense/Pauli GF(2) の同一区間意味論**: 統計量の lane 一致 (dense ‖[·,·]‖ 正規化 = 反可換 bit, 全 15 対)・site 族の graph 裁定確定 (N = 8000, α/15 — **N = 5000 では CP 上限 1.3e-3 が τ = 1e-3 を跨ぎ確定不能: 分解能は観測量の関数**)・不足ショット (N = 100) は両 lane とも Straddled が正答・対応原理 (dense 閉包/中心 = 2^{dim V}/2^{radical} — site と部分 address)。"
+  status: "証明書の観測化の器械が揃った (synthetic lane — 実測ノイズではない)。v34.6 = real-data lane との分離・v35.0 = HOLD-10 で新鮮採点。profile の関手性定理・一般 GKLS は次期以降"
+  layer: bridge
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v345_robust_atlas.rs"
+    result: "results/v345_robust_atlas.txt"
+    doc: "docs/uft-v34.5.md"
+  limitations:
+    - "synthetic lane (登録契約 = iid Bernoulli 統計量・決定的代表カウント) — 実測ノイズ・drift・相関はスコープ外 (禁止変換 24/25/29 が境界を型で守る。real-data lane は v34.6)。"
+    - "同時割当は Bonferroni (保守的) — タイトな同時領域 (gauge orbit 上の GST 型信頼集合) は未構成。composition (channel 列全体の confidence region) は本版では σ/xtalk/overlap/gap の統計量区間まで。"
+    - "set-valued profile は定義と単調性の器械化まで — 関手性 (interface 粗視化への lax functor) と安定性定理は成立まで multiparameter persistence の語彙を使わない (v33.3 の凍結の継承)。"

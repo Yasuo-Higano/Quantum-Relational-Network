@@ -1,0 +1,36 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v34.5 robust atlas — exact reader の同時信頼集合への持ち上げ (PROMPT/15 §5) ===
+
+[R0] 合成 robust reader の被覆定理の実例 (全結果空間の厳密列挙)
+  [PASS] [R0] 資格が偽の全境界セルで P(誤証明書) ≤ α (31² 結果の厳密和・Bonferroni α/2)  max P(誤証明書) = 0.00000
+
+[R1] addressability — σ_min 同時下界 (Weyl) と worst-case cross-talk
+  [PASS] [R1a] 3 セル: 資格 (σ_lo > 0.5 ∧ xtalk_hi ≤ 0.1) / tied 確実拒否 / 跨ぎ Straddled  資格セル: σ_lo = 0.930, xtalk_hi = 0.050 / tied: σ 区間 ⊂ [0, 0.5) / 跨ぎ: Straddled
+  [PASS] [R1b] 同時下界の厳密性: box 全 16 角の σ_min ≥ σ_lo (Weyl ‖ΔM‖_F 束縛)  min corner = 0.9300 ≥ σ_lo = 0.9300
+  [PASS] [R1c] worst-case 上界: 平均 0.155…でなく max+w = 0.32 で判定 → 拒否 (平均証明書は禁止)  mean = 0.155 / worst-case 上界 = 0.320 > 0.1
+
+[R2] glue — 候補 orbit 間 overlap の区間裁定
+  [PASS] [R2] 3 セル: matching (o=1)・非同値 (o=1/3)・境界 0.88±0.05 → Straddled  o(same) = 1.000000, o(site,bell) = 0.333333 (= 1/3 厳密), 境界セル = Straddled
+
+[R3] charge witness — skew K の spectral-gap 証明書と J の構成
+  [PASS] [R3a] spectral gap: 完全 charge は σ_min − ‖ΔK‖_F > 0 (zero crossing なし)・部分 charge は 0 を跨ぐ  σ_min(full) = 1.0000 (下界 0.8800 > 0) / σ(part) ∈ [0.0e0, 1.000] — 縮退で構成拒否
+  [PASS] [R3b] gap 資格下の構成: J = K(−K²)^{−1/2} — 実反対称・J² = −I ≤ 1e-12  ‖J²+I‖∞ = 0.0e0, ‖J+Jᵀ‖∞ = 0.0e0
+
+[R4] resource cost — interval cost の 3 値採用と set-valued profile
+  [PASS] [R4a] grid 6 点の 3 値採用: 資源不足 → [2,2] (chain 2 = stable) → 跨ぎ Straddled → 併合 (chain 2 = stable)  readings = ["no_accessible", "[2,2]", "[2,2]", "straddled", "[8→4]", "[8→4]"]
+  [PASS] [R4b] 中点潰しの負制御: 点推定は b = 1.9 で確定読みを返す (robust は Straddled)  点推定 = [2,2] / robust = straddled
+  [PASS] [R4c] set-valued profile の単調性 (定義の器械化 — 関手性定理は次期)  確実読みの鎖: 不足 ≤ [2,2] ≤ 併合 (跨ぎ点は class から除外して記録)
+
+[R5] dense / Pauli GF(2) — 同じ confidence-region 意味論で裁定一致
+  [PASS] [R5a] 統計量の lane 一致: dense ‖[·,·]‖ 正規化 = Pauli 反可換 bit (全 15 対)  同じ真値 → 同じ記録 → 同じ区間 → 同じ graph 裁定 (構成から)
+  [PASS] [R5b] site 族 (N = 8000, α/15): site 内 = edge・site 間 = non-edge が全対で確定  15 対の graph 裁定が確定 (τ = 0.001 — N = 5000 では上限 1.3e-3 が跨ぐ)
+  [PASS] [R5c] N = 100 では非可換 0 でも certify 不能 (hi > τ) — 両 lane とも Straddled が正答  hi(k=0, N=100) = 0.0620 > τ = 0.001
+  [PASS] [R5d] 対応原理: dense 閉包/中心 = 2^{dim V}/2^{radical} (site 成分と部分 address)  site: 閉包 4 = 2^2, 中心 1 = 2^0 / 部分 address: 閉包 8 = 2^3, 中心 2 = 2^1
+
+[判定] exact reader が同時信頼集合の上に持ち上がった — σ_min の同時下界・worst-case
+       cross-talk・orbit 距離の区間・spectral-gap 証明書つき J・interval cost の
+       3 値採用・dense/structured の同一区間意味論。裁定は集合の全域で一致する
+       ときだけ返り、跨ぎは Straddled が正答である。synthetic lane であり実測
+       ノイズではない (v34.6 の real-data lane と区別)。
+
+総合判定: [PASS]
