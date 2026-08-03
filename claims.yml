@@ -1640,8 +1640,8 @@
 - id: QRN-YUK-015
   version: "v13.2"
   level: C4
-  claim: "N=18 傾き T4 の最終決着 (Lanczos による再挑戦): 指数 Pf=3 の 7 磁束のうち格子上で厳密 3 重縮退を保つのは 3 点のみで、(2,2,1,-1) は N=6 で厳密・N=18 で分裂 (3.8e-2) — 格子上の指数は磁束と格子の整合の数論である (発見 1)。厳密な点の深さは全て単一タワー帯 [-5.2,-5.8] に張り付く: Pf = f+f- = 3 (素数) が第 2 固有面を平坦化し 2 タワーの抑制の掛け算を構造的に禁じる (発見 2)。勝者 (3,3,1,-6) の全 36 Wilson 証拠は lnZ9 = -34.88 (N=6 から 60 nats 改善、S3 対に 15.0 nats 及ばず)。「σ は因子化近似の影」仮説は棄却 — σ はコンパクト化の既約な離散データ (v10.3) の解釈が対抗仮説の棄却で強化された。"
-  status: "幾何拘束付き現象論の系統走査 (最終決着; 残差 <1e-11・二分性・単一タワー帯の 3 検査つき)"
+  claim: "N=18 傾き T4 の走査決着 (Lanczos による再挑戦 — v34.1 正誤表適用済): 指数 Pf=3 の 7 磁束のうち格子上で厳密 3 重縮退を保つのは 3 点のみで、(2,2,1,-1) は N=6 で厳密・N=18 で分裂 (3.8e-2) — 格子上の指数は磁束と格子の整合の数論である (発見 1)。厳密な点の深さは全て単一タワー帯 [-5.2,-5.8] に張り付く (発見 2 — **走査した admissible family (座標 2-平面 + 傾き対 Pf = Q₁Q₂ + ts・f13 = f24 = 0 の 7 点・N∈{6,18}) の範囲内の有限結果**。族内では (f₊−f₋)² = ΣF² − 6 ≥ 1 が整数論的に強制される [QRN-YUK-034 E3 — 窓なしの定理] が、素数性そのものが平坦化を強制するという原文の普遍推論は撤回)。勝者 (3,3,1,-6) の全 36 Wilson 証拠は lnZ9 = -34.88 (N=6 から 60 nats 改善、S3 対に 15.0 nats 及ばず)。「σ は因子化近似の影」仮説は走査族の範囲で棄却 — σ はコンパクト化の既約な離散データ (v10.3) の解釈が走査済み対抗仮説の棄却で強化された (無対 index-3 構成の一般的排除は開いた問い)。"
+  status: "幾何拘束付き現象論の系統走査 (走査族内の決着; 残差 <1e-11・二分性・単一タワー帯の 3 検査つき。v34.1 正誤表: 発見 2 の普遍形は QRN-YUK-034 で refuted_as_stated)"
   layer: phenomenology
   evidence_kind: reproduction
   independence: same_implementation
@@ -1655,6 +1655,7 @@
   limitations:
     - "族は Pf=3・|磁束|≤6 の 7 点・N∈{6,18}。f+≈f-≈√3 型 (最深のはず) は本族では全て格子分裂 — 分裂を避けて √3 に近づく (磁束,N) の数論は開いた問い。"
     - "深さ代理は cfg0 の r1。素数 3 の議論は固有面分解に基づく構造論 (格子の厳密定理ではない)。"
+    - "正誤表 (v34.1): 原文の発見 2 は『Pf = f+f- = 3 (素数) が第 2 固有面を平坦化し 2 タワーの抑制の掛け算を構造的に禁じる』・原 status は『最終決着』だった — FollowUp YUK-005 の整数反例 (Pf=3・FᵀF=3I₄・両 skew singular value = √3, QRN-YUK-034 で受理) により普遍形を撤回し、主張本文を走査族限定に分割。族内不等 (f₊−f₋)² ≥ 1 は v341 [E3] で窓なしの定理に厳密化 (族内観測は正しく、その普遍化だけが誤りだった)。"
 
 - id: QRN-META-013
   version: "v14.0"
@@ -1672,6 +1673,7 @@
     result: "results/v140_full_suite.txt"
   limitations:
     - "σ・磁束・Wilson 線を一括で決める上位原理 (弦の真空選択と同格) は残高のまま。次期の的は執筆 (対の物語が論文の核)・v4.3 域 Lean・格子指数の数論。"
+    - "Erratum (v34.1): 『位置・向き・傾きの全代替が素数 3 の構造論で落ちた』のうち傾き代替の棄却根拠を訂正 — 落ちたのは走査族の有限結果 (QRN-YUK-015) によってであり、『素数 3 の構造論』の普遍形は QRN-YUK-034 の整数反例 (Pf=3・FᵀF=3I₄・両 skew singular value = √3) で refuted_as_stated。『住所替え』の結論は走査済み構成の範囲で維持されるが『構造的に落ちた』は撤回。一般教訓: 位相・代数的不変量 (Pfaffian) から計量依存の幾何量 (skew scale) への昇格には metric/lattice compatibility bridge が必要 — 無証明昇格の警戒族として第三十四期の型設計に登録。"
 
 - id: QRN-GAUGE-016
   version: "v14.4"
@@ -5017,3 +5019,25 @@
     - "儀式は決定性・無波及の検査であって物理的正しさの証拠ではない (PASS 総数はソフトウェア健全性の指標 — README の PASS 分類規約)。"
     - "儀式中の v336 FAIL 2 は壁時計器械バグの正検出 — 再検証 (results/v340_full_suite_reverify.txt) が確定記録。ドリフト検査は PASS/FAIL 数の一致で、数値の末桁は各バイナリ内蔵の判定バーに委ねる。"
     - "期の全成果は layer: bridge/instrument の toy 機構であり、bridge law 登録簿は空・独立外部再現 0・自然の的中 0 のまま。"
+
+# ---------- 第三十四期 (v34.1–): 申告証明書から観測証明書へ (PROMPT/15) ----------
+
+- id: QRN-YUK-034
+  version: "v34.1"
+  level: C2
+  claim: "素数 Pfaffian 推論の反証の正式受理 (FollowUp YUK-005 → 本リポジトリの整数演算で再検算, 14 検査 PASS): 「Pf(F) = 3 (素数) が 2 つの磁気固有面 (skew singular value f±) を不均等にし一方を平坦化する」(v13.2 発見 2 の普遍形・geometric-yukawa Abstract の 'index 3, being prime, forces one magnetic eigenplane to flatten') は**偽** — 反例 F = [[0,1,1,1],[-1,0,1,-1],[-1,-1,0,1],[-1,1,-1,0]] は Pf(F) = 3・FᵀF = 3I₄・det F = 9 = Pf² (全て i64 厳密) で両 skew singular value = √3 (等スケール)。素数性は積 f₊f₋ = |Pf| を固定するが不等性を強制しない (f± は整数である必要がない)。[E2] 分離の両方向: unimodular S (det 1) で F' = SᵀFS は Pf 不変 3 のまま Σ' = 8 → f₊ − f₋ = √2 — **Pfaffian (基底不変の代数・位相量) は skew scale (計量依存の幾何量) をどちらの向きにも決めない** (metric/lattice compatibility bridge なしの昇格禁止)。[E3] 族内定理 (窓なし): v13.2 の走査族 (座標 2-平面 + 傾き対, Pf = Q₁Q₂ + ts, f13 = f24 = 0) では a²+b²+c²+d² = 6 ∧ ab+cd = ±3 の整数解が存在せず (Σ=6 ⇒ |成分| ≤ 2 の全数 96 点で完全)、Σ ≥ 2|Pf| = 6 (AM-GM) と合わせ **族内 Pf = ±3 ⇒ (f₊−f₋)² = Σ − 6 ≥ 1** — 最小ギャップは (2,1,1,1) 型 16 点の f₊ − f₋ = 1 厳密 (f± = (√13±1)/2)・v13.2 の 7 走査点は gap² ∈ {4,13,25,49}。反例は 6 成分全て非零で族外 — **族内観測 (QRN-YUK-015) は正しく、その普遍化だけが誤りだった**。[E4] 台帳・論文の正誤表アンカー (claims 分割・blockquote 化・REP-001) の機械検査。"
+  status: "refuted_as_stated の正式記録 — 普遍推論は撤回 (原文は QRN-YUK-015 の正誤表と論文 Erratum に逐語保存)・有限走査結果は QRN-YUK-015 に分離保持。反例の出自は FollowUp (cross-model clean-room, replications.yml REP-001 — organizationally external ではない) で、数学的決着は本リポジトリの整数再検算による (普遍命題は 1 つの厳密証人で反証される)"
+  layer: phenomenology
+  evidence_kind: theorem
+  independence: algorithmically_diverse
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: effective_model
+  evidence:
+    code: "sim/src/bin/v341_yukawa_erratum.rs"
+    result: "results/v341_yukawa_erratum.txt"
+    doc: "docs/uft-v34.1.md"
+  limitations:
+    - "反例の初出は FollowUp (同一人間 operator の cross-model clean-room) — 独立性は algorithmically_diverse 止まりで external ではない。ただし普遍命題の反証は 1 つの厳密証人で数学的に決着する (独立性は証人の信用度にのみ影響し、整数再検算で解消済み)。"
+    - "[E3] は代数 (skew scale) の族内定理 — 格子上の厳密縮退・深さ (どの (磁束, N) が指数を守るか) は別問題で開いたまま (QRN-YUK-015 発見 1)。等スケール反例 F の格子 Dirac 実装 (固有面が座標平面に整列しない一般磁束) も未走査。"
+    - "physical_scope は effective_model (磁束コンパクト化模型の数学) — 自然の観測量への含意はない。"

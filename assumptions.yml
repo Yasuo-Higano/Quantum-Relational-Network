@@ -331,3 +331,11 @@
   status: active
   statement: "7 層分類 (core/dynamics/adapter/instrument/bridge/phenomenology/meta) と 6 軸語彙 (core.schema.yml) が各概念・主張の役割を過不足なく一意に表せる、という分類規約。誤分類は v271_core_audit の網羅性を破る (検査は分類の完備性と禁止昇格の不在であり、分類自体の正しさではない)。"
   note: "境界例 (複数層にまたがる主張) は meta に逃がし、判断は core.schema.yml の note と docs/qrn-terminology.md §5 に記録する。"
+
+- id: ASM-EXACT-INTEGER
+  type: trust
+  scope: local
+  introduced: "v34.1"
+  status: active
+  statement: "i64 整数演算の厳密性 (オーバーフローなし域 — 本用途の最大値は det の余因子展開 ~10³ で余裕 15 桁) と、固定 for ループ直積による有限列挙の範囲完全性を信頼する。v341 の反例検証 (Pf・FᵀF・det) と族内定理 (Σ=6 の全数・最小 Σ=7) の前提。"
+  note: "Σ = a²+b²+c²+d² = 6 の列挙は |成分| ≤ 2 が Σ 自身から従うため窓仮定を含まない (完全)。最小ギャップ探索の |成分| ≤ 6 は v13.2 の走査窓の再現で、族内不等 (f₊−f₋)² ≥ 1 自体は窓に依存しない (Σ ≥ 2|Pf| と Σ ≠ 6 から従う)。"

@@ -1,0 +1,32 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v34.1 Yukawa erratum — 素数 Pfaffian 推論の反証の正式受理 (PROMPT/15 §1) ===
+
+[E1] FollowUp 反例の整数再検算 (受理の数学的決着)
+  [PASS] [E1a] 反対称・Pf(F) = 3 (i64 厳密)  Pf = 3 (af−be+cd = 1·1 − 1·(−1) + 1·1)
+  [PASS] [E1b] FᵀF = 3I₄ (i64 厳密) ⇒ 両 skew singular value = √3 (等スケール)  Σ_{i<j}F² = 6 = 2|Pf| (等号 ⟺ f₊ = f₋)
+  [PASS] [E1c] det F = 9 = Pf² (整合)  det = 9
+  [PASS] [E1d] jacobi_eigh: FᵀF の固有値 4 本とも 3 (数値照合)  max|λ−3| = 0.00e0
+  [PASS] [E1e] 素朴推論の予測 ({9,9,1,1}) と厳密値 ({3,3,3,3}) の乖離  予測との最小距離 2.000 (等スケール √3 は整数スケールのどの分解でもない)
+
+[E2] Pfaffian (位相・代数) と skew scale (計量) の分離 — unimodular 変換
+  [PASS] [E2a] det S = 1 (unimodular) で Pf(SᵀFS) = det(S)·Pf(F) = 3 (不変)  Pf(F') = 3
+  [PASS] [E2b] Σ' = 8 ⇒ (f₊−f₋)² = 2 — 同じ Pf = 3 で不等スケールに反転  Σ' = 8, gap² = 2 (F は 6/0 だった)
+  [PASS] [E2c] jacobi_eigh: F'ᵀF' 固有値 = 4 ± √7 (各 2 重) — 数値照合  f₊ = 2.577935, f₋ = 1.163722, 積 = 3.000000000000 (= |Pf| = 3)
+
+[E3] v13.2 走査族の内側では不等が整数論的に強制される (窓なしの定理)
+  [PASS] [E3a] 族内の等スケール解 (Σ=6 ∧ |Pf|=3) は存在しない — 全数列挙  Σ=6 の整数点 96 個を走査、|ab+cd| = 3 は 0 個
+  [PASS] [E3b] 族内 (|成分| ≤ 6) の最小 Σ = 7 ⇒ 最小ギャップ f₊−f₋ = 1 厳密  Pf=3 の族点 528 個中、最小 Σ = 7 の実現 16 個 (例 [-2, -1, -1, -1] — f₊f₋=3, f₊−f₋=1 ⇒ f± = (√13±1)/2)
+  [PASS] [E3c] (2,1,1,1) の jacobi 照合: f₊ − f₋ = 1.000000000000  gap = 1.000000000000
+  [PASS] [E3d] v13.2 の 7 走査点は全て Pf = 3・gap² = Σ−6 ∈ {4,13,25,49}  gap² = [4, 4, 13, 49, 25, 25, 49]
+  [PASS] [E3e] 反例 F は走査族の外 (f13 = f24 = 0 が破れ、6 成分全て非零)  f13 = 1, f24 = -1
+
+[E4] 台帳・論文の正誤表アンカー (分割・撤回・受理の機械検査)
+  [PASS] [E4a] claims.yml — QRN-YUK-034 登録・QRN-YUK-015 の走査族限定への分割・META-013 の Erratum  034 true / 015 正誤表 true / META-013 true
+  [PASS] [E4b] 論文 2 本 — 撤回文は blockquote 引用のみ・Erratum (v34.1) 節あり  paper/geometric-yukawa-full.md: 裸の残存 0 / erratum true; paper/geometric-yukawa.md: 裸の残存 0 / erratum true; 
+  [PASS] [E4c] replications.yml — REP-001 (cross_model_clean_room) 登録・external_replications = 0 維持  多次元独立性 profile での登録 (一次元の external カウントは動かさない)
+
+[判定] 反例は整数演算で受理された — 素数性は積を固定するが不等性を強制しない。
+       族内不等 (f₊−f₋)² ≥ 1 は生き残り、その普遍化だけが撤回された。
+       位相・代数的不変量から計量依存量への昇格には bridge が必要である。
+
+総合判定: [PASS]

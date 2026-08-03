@@ -5,7 +5,7 @@
   [PASS] [P1] JSON 4 ファイルの構文 (最小パーサ)  全て well-formed
   [PASS] [P2] TOLERANCES ↔ 凍結一次ソース (v62 証明書・v25.2 凍結値・oracle −1/10・PRED-016 バー)  外部への約束と内部の凍結が同一の数
   [PASS] [P3] 単位 A の領域 (D₁) と期待解 (SM 15 成分) ↔ certificates の一致  領域も答えも証明書から転写されている (転記ミスの機械検出)
-  [PASS] [P4] replications.yml — 6 条件定義・計数 = claims 台帳 (現在どちらも 0)  external_replications = 0 / entries = 0 / claims 側 = 0
+  [PASS] [P4] replications.yml — 6 条件定義・計数 = claims 台帳 (現在どちらも 0)  external_replications = 0 / entries = 1 / claims 側 = 0
   [PASS] [P5] CLAIMS.md の昇格対象 id が claims.yml に実在  15 id を確認
   [PASS] [P6] クリーンルーム条項 (同一 AI 非独立・失敗も公開) の文書アンカー  外部への約束が文書に凍結されている
 

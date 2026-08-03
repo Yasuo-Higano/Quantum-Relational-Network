@@ -52,6 +52,26 @@ protocol_errata:
   scan: "n=7 連結同型類 853 中 22 で余剰辺 (欠落 0)・n=4..6 は 0 — v321_d2_erratum [E2]"
   superseded_by: "D2-S (B3SupportMarginCertificate scoped) + D2-R (応答 end-to-end) — reproducer/protocols/v32.1/"
 
+# =====================================================================
+# v34.1: 多次元独立性 profile (PROMPT/15 §2)
+# =====================================================================
+# 「独立か否か」の一次元分類は情報を失う — 第三十三期テーゼ (可アクセス性は
+# 対象単体の属性ではなく関係である) を再現の独立性にも適用し、entries に
+# 以下の profile フィールドを追加する (v274 [P4] の 6 条件・external 計数は不変):
+#   replication_kind: same_implementation | algorithmically_diverse |
+#                     cross_model_clean_room | organizationally_external
+#   human_operator: shared | different
+#   implementation_agent: same_model | different_model | human
+#   repository_independence: shared | independent
+#   numerical_kernel: shared | independent
+#   generator: shared | independent
+#   freeze_before_holdout: true | false
+#   secret_holder: 誰が SECRET を保持したか (自由文)
+#   organization: not_external | external
+#   verdict: replicated | partially_replicated | not_replicated
+#   counts_as_external_replication: true | false  (6 条件全充足のときのみ true)
+independence_profile_version: "v34.1"
+
 # entries の書式 (v31.0 拡張 — 旧フィールドに加えて claim/capability scope を必須化):
 # - id: REP-001
 #   unit: "A | B | C | D1 | D2 | D3 | D4"
@@ -76,4 +96,37 @@ protocol_errata:
 #   result_including_failures_public: true/false
 #   note: "..."
 
-entries: []
+entries:
+- id: REP-001
+  unit: "paper-set (reproducer/ 単位 A–D の走行ではなく、papers/ 供給一式の clean-room 再現)"
+  claim_ids: "[FollowUp 側台帳の ANOM/YUK/CP/MSR/PREQ/BW/GRAV 系 — 本リポジトリの claim では QRN-YUK-034 (反例受理) が対応]"
+  capabilities: "[]"
+  replication_level: "end_to_end (凍結 holdout 120 セルの一度開封)"
+  independence_scope: "same_author_clean_room"
+  protocol_commit: "5557eb9cd35286ecb5cbb86db307068683966618 (FollowUp phase 6 freeze)"
+  generator_hash: "FollowUp 内部生成 (reproducer/ 凍結入力ではない — freeze_manifest.json 参照)"
+  input_hash: "papers/ 供給一式 (FollowUp AGENTS.md が許可入力を凍結)"
+  author: "OpenAI Codex (cross-model clean-room) + shared human operator (Yasuo-Higano)"
+  repository: "https://github.com/Yasuo-Higano/Quantum-Relational-Network-FollowUp"
+  commit: "51359aa (reports/final_report.md 確定)"
+  date: "2026-08-02"
+  language: "Julia (標準ライブラリのみ)"
+  status: "partially_replicated"
+  different_author: false
+  independent_repository: true
+  no_shared_numerical_kernel: true
+  protocol_frozen_before_run: true
+  commit_hash_recorded: true
+  result_including_failures_public: true
+  replication_kind: cross_model_clean_room
+  human_operator: shared
+  implementation_agent: different_model
+  repository_independence: independent
+  numerical_kernel: independent
+  generator: independent
+  freeze_before_holdout: true
+  secret_holder: "FollowUp 側でローカル生成・実装 agent には凍結後まで不開示 (locally_generated_agent_opaque)"
+  organization: not_external
+  verdict: partially_replicated
+  counts_as_external_replication: false
+  note: "different_author = false (shared human operator) のため 6 条件を満たさず external_replications に数えない (0 維持)。内容: 120 セル holdout を 2026-08-02 に一度開封 — Answer 77 / EquivalenceClassOnly 12 / InsufficientObservation 11 / OutOfDomain 10 / Abstain 10・selective risk 0・answerable recall 1・impossibility recall 1・最大数値誤差 ~2.78e-16。有限次元応答・支持分解・代数診断・homology は再現、多くの paper-specific claim は specification-limited (paper だけで独立実装可能な core spec の不在 — v34.2 の動機)。YUK-005 反例 (素数 Pfaffian 推論の反証) は QRN-YUK-034 で正式受理。区別された probe 型 (SignedInitialCovarianceProbe ≠ HamiltonianQuench / NumberConservingResponse ≠ BCS/PairingResponse) は v34.2 spec の型分離に登録予定。"

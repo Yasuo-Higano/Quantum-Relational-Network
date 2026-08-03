@@ -3,7 +3,7 @@
 **このファイルは `v151_audit --write` が生成する。手で編集しない。**
 機械可読版は [claims.graph.json](claims.graph.json)、辺の定義は [claims.graph.yml](claims.graph.yml)。
 
-主張 263 件 / 依存辺 453 本 / 仮定 40 件 / 反証条件 15 件。
+主張 264 件 / 依存辺 453 本 / 仮定 41 件 / 反証条件 15 件。
 等級順位 C0 < C1 < C2 < {C3,C4} < C5 の単調性・非循環性は CI で機械検証される。
 
 ## 主張 × 証拠・依存
@@ -275,6 +275,7 @@
 | QRN-BRIDGE-035 | C3 | v34.0-A | CDR | 6 | 3 | 1 | 2 |
 | QRN-BRIDGE-036 | C3 | v34.0-B | CDR | 1 | 3 | 1 | 1 |
 | QRN-META-043 | C4 | v34.0-B | CDR | 2 | 2 | 1 | 0 |
+| QRN-YUK-034 | C2 | v34.1 | CDR | 0 | 2 | 2 | 0 |
 
 ## 仮定の影響範囲 — これを抜くと何が落ちるか
 
@@ -295,7 +296,7 @@
 | ASM-DIAGPAIR | model | falsified | 4 | 60 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-SIGMA-DATA | model | active | 31 | 54 | QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, QRN-LEP-004, … |
 | ASM-EDGE-SEMANTICS | design | active | 2 | 53 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
-| ASM-IEEE754 | trust | active | 46 | 52 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
+| ASM-IEEE754 | trust | active | 47 | 53 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
 | ASM-MODK | definition | active | 14 | 49 | QRN-CORE-003, QRN-CORE-014, QRN-GRAV-001, QRN-GRAV-002, … |
 | ASM-LEAN-TRUST | trust | active | 6 | 45 | QRN-BRIDGE-012, QRN-BRIDGE-013, QRN-BRIDGE-014, QRN-BRIDGE-015, … |
 | ASM-KTM | model | active | 2 | 42 | QRN-EXP-003, QRN-LEP-001, QRN-LEP-002, QRN-LEP-003, … |
@@ -321,17 +322,18 @@
 | ASM-WINDOW-EXC | window | active | 1 | 2 | QRN-GAUGE-015, QRN-META-011 |
 | ASM-WICK | framework | active | 1 | 1 | QRN-STAT-001 |
 | ASM-ENVARIANCE | framework | active | 1 | 1 | QRN-BORN-002 |
+| ASM-EXACT-INTEGER | trust | active | 1 | 1 | QRN-YUK-034 |
 | ASM-QM | framework | active | 0 | 0 |  |
 
 ## 反証条件の射程 — これが発火すると何が落ちるか
 
 | 反証条件 | status | 直接 | 閉包 | 条件 (要約) |
 |---|---|---|---|---|
-| FAL-SUITE | open | 245 | 255 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
+| FAL-SUITE | open | 246 | 256 | 再現スイートの回帰 FAIL — コードの再実行が主張の数値を再現しない (乱数は固定シード)。 |
 | FAL-CONTINUUM | open | 63 | 102 | readout の残差 residual(N)=A·N^(−p)+B の fit で B≠0 が確立する (格子を細かくしても消えない系統残差)。 |
 | FAL-CKM-OOS | open | 12 | 63 | out-of-sample の CKM/PMNS 予測が系統的に失敗する (holdout 量が帯を外れる)。 |
 | FAL-BMV | open | 8 | 48 | BMV 型実験で、QRN の予測位相 Δφ=Gm²τΔx²/(ħd³) にて C≡0 かつ (C,V) が古典包絡 (C=0, V≤e^(−Δφ/2)) の内側に留まる。 |
-| FAL-CEX-WINDOW | open | 15 | 41 | 明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。 |
+| FAL-CEX-WINDOW | open | 16 | 42 | 明示された探索窓の内側で反例 (条件を満たす非 SM 解、または SM が条件を満たさないこと) が提示される。 |
 | FAL-AREALAW | open | 4 | 39 | アナログ系 (冷却原子等) で面積則・エンタングルメント第一法則の系統的破れが観測される。 |
 | FAL-EXOTIC-CHIRAL | open | 4 | 30 | SM 1 世代の外のカイラル物質 (第 4 世代・分数電荷ハドロン・エキゾチック表現) が発見される。 |
 | FAL-QNEC | open | 6 | 17 | QNEC 型不等式の真の破れ (誤差予算を超える負ギャップが N を上げても縮まない) が数値または理論で確立する。 |

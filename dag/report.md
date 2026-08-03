@@ -3,7 +3,7 @@
 **このファイルは `sh dag/run.sh` が生成する。手で編集しない。**
 Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導出値と全数照合済み。
 
-主張 263 / 依存辺 453 / 仮定 40 / 反証条件 15 / 最大深さ 34
+主張 264 / 依存辺 453 / 仮定 41 / 反証条件 15 / 最大深さ 34
 
 ## 仮定の影響範囲 (抜くと落ちる主張の閉包 — 降順)
 
@@ -21,8 +21,8 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-STABLE-LABEL | convention | 61 |
 | ASM-DIAGPAIR | model | 60 |
 | ASM-SIGMA-DATA | model | 54 |
+| ASM-IEEE754 | trust | 53 |
 | ASM-EDGE-SEMANTICS | design | 53 |
-| ASM-IEEE754 | trust | 52 |
 | ASM-MODK | definition | 49 |
 | ASM-LEAN-TRUST | trust | 45 |
 | ASM-KTM | model | 42 |
@@ -47,6 +47,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-ORBIFOLD | model | 3 |
 | ASM-WINDOW-EXC | window | 2 |
 | ASM-WICK | framework | 1 |
+| ASM-EXACT-INTEGER | trust | 1 |
 | ASM-ENVARIANCE | framework | 1 |
 | ASM-QM | framework | 0 |
 
@@ -54,11 +55,11 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 
 | 反証条件 | status | 閉包 |
 |---|---|---|
-| FAL-SUITE | open | 255 |
+| FAL-SUITE | open | 256 |
 | FAL-CONTINUUM | open | 102 |
 | FAL-CKM-OOS | open | 63 |
 | FAL-BMV | open | 48 |
-| FAL-CEX-WINDOW | open | 41 |
+| FAL-CEX-WINDOW | open | 42 |
 | FAL-AREALAW | open | 39 |
 | FAL-EXOTIC-CHIRAL | open | 30 |
 | FAL-QNEC | open | 17 |
@@ -74,7 +75,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 
 | 深さ | 主張数 |
 |---|---|
-| 0 | 43 |
+| 0 | 44 |
 | 1 | 33 |
 | 2 | 25 |
 | 3 | 19 |
