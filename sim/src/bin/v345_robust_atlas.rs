@@ -260,7 +260,6 @@ fn main() {
     println!("\n[R2] glue — 候補 orbit 間 overlap の区間裁定");
     {
         // 統計量: v34.4 の overlap (site vs site = 1.0 / site vs CNOT 共役 = 1/3)
-        let d = 4usize;
         let mk_comp = |strs: [&str; 3]| -> Vec<Vec<C64>> {
             strs.iter()
                 .map(|s| {

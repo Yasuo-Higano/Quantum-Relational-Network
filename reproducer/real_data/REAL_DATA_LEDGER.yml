@@ -1,0 +1,24 @@
+# =====================================================================
+# Recorded Experimental Lane の台帳 (v34.6, PROMPT/15 §7)
+# =====================================================================
+# 数は実記録のみ — 捏造・シミュレーションでの水増しは禁止 (OUTREACH_LEDGER と
+# 同じ規約)。synthetic データをこの台帳に数えることは lane 分離の違反。
+# entries が増えるのは、RECORD.schema.json に適合する実記録の受理時のみ。
+# v346_real_data_lane が整合を常設監査する。
+# =====================================================================
+
+version: "v34.6"
+
+recorded_runs: 0
+externally_operated_runs: 0
+preregistered_prediction_hits: 0
+
+# entries の書式:
+# - id: RDR-001
+#   record_file: "..."
+#   device: "..."
+#   operator_external: true/false
+#   drift_gate: "passed | out_of_domain"
+#   prereg_scored: "hit | miss | straddled | not_yet"
+#   date: "YYYY-MM-DD"
+entries: []

@@ -3,7 +3,7 @@
 **このファイルは `sh dag/run.sh` が生成する。手で編集しない。**
 Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導出値と全数照合済み。
 
-主張 268 / 依存辺 468 / 仮定 41 / 反証条件 15 / 最大深さ 34
+主張 269 / 依存辺 469 / 仮定 41 / 反証条件 15 / 最大深さ 34
 
 ## 仮定の影響範囲 (抜くと落ちる主張の閉包 — 降順)
 
@@ -20,12 +20,12 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-OVERLAP | model | 62 |
 | ASM-STABLE-LABEL | convention | 61 |
 | ASM-DIAGPAIR | model | 60 |
-| ASM-IEEE754 | trust | 57 |
+| ASM-IEEE754 | trust | 58 |
 | ASM-EDGE-SEMANTICS | design | 56 |
 | ASM-SIGMA-DATA | model | 54 |
+| ASM-LEAN-TRUST | trust | 50 |
 | ASM-MODK | definition | 49 |
-| ASM-LEAN-TRUST | trust | 49 |
-| ASM-LAYER-SEMANTICS | convention | 42 |
+| ASM-LAYER-SEMANTICS | convention | 43 |
 | ASM-KTM | model | 42 |
 | ASM-GAUGE-GROUP | model | 37 |
 | ASM-ANOMALY-COEFS | data | 36 |
@@ -44,8 +44,8 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | ASM-NET-REAL | ontology | 7 |
 | ASM-WINDOW-PAIR | window | 5 |
 | ASM-WINDOW-U1CUBE | window | 4 |
+| ASM-EXACT-INTEGER | trust | 4 |
 | ASM-ORBIFOLD | model | 3 |
-| ASM-EXACT-INTEGER | trust | 3 |
 | ASM-WINDOW-EXC | window | 2 |
 | ASM-WICK | framework | 1 |
 | ASM-ENVARIANCE | framework | 1 |
@@ -55,7 +55,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 
 | 反証条件 | status | 閉包 |
 |---|---|---|
-| FAL-SUITE | open | 260 |
+| FAL-SUITE | open | 261 |
 | FAL-CONTINUUM | open | 102 |
 | FAL-CKM-OOS | open | 63 |
 | FAL-BMV | open | 48 |
@@ -76,7 +76,7 @@ Prolog (swipl) による独立推論であり、Rust 監査 `v151_audit` の導�
 | 深さ | 主張数 |
 |---|---|
 | 0 | 45 |
-| 1 | 33 |
+| 1 | 34 |
 | 2 | 25 |
 | 3 | 19 |
 | 4 | 17 |

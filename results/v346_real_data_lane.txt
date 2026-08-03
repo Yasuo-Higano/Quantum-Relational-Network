@@ -1,0 +1,17 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v34.6 real-data lane — synthetic と実測の構造的分離 (PROMPT/15 §7) ===
+
+  [PASS] [L0] DataProvenance 型 (synthetic_coverage / recorded_experimental) — 変換不在の宣言  synthetic_coverage ≠ recorded_experimental
+  [PASS] [L1] レーン文書とスキーマの規範アンカー (二 lane 分離・v35.0 完成条件 3 択・捏造禁止)  13 アンカー
+  [PASS] [L2] fixture 分別: 適合 2 (stationary/drifting)・不適合 2 (synthetic 提出/事前登録欠落)  synthetic 提出の拒否理由: provenance 'synthetic_coverage' は本 lane に提出できない (lane 分離)
+  [PASS] [L3] 事前登録: sha256(開示予測) = commitment (HOLD の SECRET 機構と同型)  コミット → データ → 開示 の順序が hash で検証可能
+  [PASS] [L4] drift gate: stationary (6/20 vs 6/20) 通過・drifting (2/20 vs 14/20) は OutOfDomain  split-half CP 区間の disjoint = iid 契約の破れの正検出 (禁止変換 25/29 の運用形)
+  [PASS] [L5] 台帳: recorded_runs = 0 = entries 件数・fixture は実記録に数えない (捏造禁止)  entries = 0 / 全計数 0
+  [PASS] [L6] D2R_PACKET (配布用): 約束の凍結・6 条件・OCS-1.0 参照 — campaign layer は不変  配布パケット完備 (schema 改良ではなく配布と実施者の獲得へ)
+
+[判定] 実測と synthetic が型と受け皿で分離された — 実記録の受理・externally operated
+       run は外部の人間の仕事であり、本版は受け皿と採点規則の凍結と、台帳 0 の
+       正直な監査を提供する。v35.0 の科学的完成条件 (外部報告 / 実データ予測 /
+       新 no-go のいずれか) はこの分離の上で判定される。
+
+総合判定: [PASS]

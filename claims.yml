@@ -5121,3 +5121,23 @@
     - "synthetic lane (登録契約 = iid Bernoulli 統計量・決定的代表カウント) — 実測ノイズ・drift・相関はスコープ外 (禁止変換 24/25/29 が境界を型で守る。real-data lane は v34.6)。"
     - "同時割当は Bonferroni (保守的) — タイトな同時領域 (gauge orbit 上の GST 型信頼集合) は未構成。composition (channel 列全体の confidence region) は本版では σ/xtalk/overlap/gap の統計量区間まで。"
     - "set-valued profile は定義と単調性の器械化まで — 関手性 (interface 粗視化への lax functor) と安定性定理は成立まで multiparameter persistence の語彙を使わない (v33.3 の凍結の継承)。"
+
+- id: QRN-META-045
+  version: "v34.6"
+  level: C3
+  claim: "real-data lane — synthetic と実測の構造的分離と受け皿 (7 検査 PASS): (i) **lane の型分離** — DataProvenance (SyntheticCoverage / RecordedExperimental, `sim/src/finite_data.rs`) の間に変換は存在しない (synthetic shot noise を「実測ノイズ」と呼ぶことの型レベル禁止 — PROMPT/15 非交渉 6)。(ii) **recorded experimental lane の受け皿** (`reproducer/real_data/`): RECORD.schema.json (provenance const・チャネル shot 配列 {0,1}・**事前登録コミットメント sha256** [データ開示前の commit が検証可能]・**vendor topology commitment** [freeze 後開示]・失敗込み公開 = true 必須)・fixture 較正 正 2 / 負 2 (synthetic の提出と事前登録欠落は構造検証で拒否)。(iii) **drift gate**: split-half Clopper–Pearson 区間 (Bonferroni α/2m) の disjoint 検査 — stationary (6/20 vs 6/20) 通過・drifting (2/20 vs 14/20) は **OutOfDomain (iid 契約の破れの正検出 — 禁止変換 25/29 の運用形。破れたデータに iid 証明書を発行しない)**。(iv) **事前登録機構**: sha256(開示予測) = commitment の機械照合 (HOLD の SECRET 機構と同型)。(v) **台帳の正直さ**: REAL_DATA_LEDGER.yml — recorded_runs = externally_operated_runs = preregistered_prediction_hits = 0 (数は実記録のみ・fixture は数えない)。(vi) **D2-R 配布パケット** (`reproducer/D2R_PACKET.md`): 6 条件・凍結された約束 (一件で足りる・失敗も公開・結果に合わせず版を上げる)・OCS-1.0 を clean-room 実装の唯一の入力として参照 — campaign layer (d2r-v1) は凍結のまま不変 (PROMPT/15 §8「schema の改良ではなく配布と実施者の獲得」)。"
+  status: "受け皿と採点規則が凍結された — 実記録の受理・externally operated run は外部の人間の仕事 (本リポジトリからは作れない)。v35.0 の科学的完成条件 = 外部 D2-R 報告 / 実データ上の事前登録予測 / 新しい厳密 no-go のいずれか (無ければ期末表現は instrumental closure に留める)"
+  layer: instrument
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: laboratory
+  evidence:
+    code: "sim/src/bin/v346_real_data_lane.rs"
+    result: "results/v346_real_data_lane.txt"
+    doc: "docs/uft-v34.6.md"
+  limitations:
+    - "受け皿であって実データではない — recorded_runs = 0 が正直な現状。drift gate は split-half の一次検査 (bounded martingale / time-averaged certificate の本格 lane は HOLD-10 までの課題 — PROMPT/15 §6)。"
+    - "配布パケットの実配布・実施者の獲得は人間の作業 (リポジトリは受け皿の完備までを担う)。OUTREACH_LEDGER への記録は実際の接触が起きたときのみ。"
+    - "physical_scope: laboratory は受け皿の対象がラボ記録であることを表す — 本 claim 自体が実験結果を含むわけではない (fixture は較正用と明記)。"

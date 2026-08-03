@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qrn-recorded-experimental-record-v1",
+  "title": "QRN Recorded Experimental Lane record (v34.6)",
+  "type": "object",
+  "required": [
+    "provenance",
+    "device",
+    "operator",
+    "channels",
+    "preregistration",
+    "vendor_topology_commitment",
+    "results_including_failures_public"
+  ],
+  "properties": {
+    "provenance": {
+      "const": "recorded_experimental",
+      "description": "synthetic データをこの lane に提出することは不適合 (lane 分離の型)"
+    },
+    "device": {
+      "type": "object",
+      "required": ["vendor", "device_id", "acquired_at"],
+      "properties": {
+        "vendor": { "type": "string" },
+        "device_id": { "type": "string" },
+        "acquired_at": { "type": "string", "description": "ISO 8601" }
+      }
+    },
+    "operator": {
+      "type": "object",
+      "required": ["name", "organization", "organizationally_external"],
+      "properties": {
+        "name": { "type": "string" },
+        "organization": { "type": "string" },
+        "organizationally_external": { "type": "boolean" }
+      }
+    },
+    "channels": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["channel_id", "shots"],
+        "properties": {
+          "channel_id": { "type": "string" },
+          "shots": {
+            "type": "array",
+            "items": { "type": "integer", "minimum": 0, "maximum": 1 },
+            "minItems": 1
+          },
+          "used_in_calibration": { "type": "boolean" }
+        }
+      }
+    },
+    "preregistration": {
+      "type": "object",
+      "required": ["commitment_sha256", "committed_at"],
+      "properties": {
+        "commitment_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$",
+          "description": "未使用チャネル予測の sha256 — データ開示より前の commit が検証可能であること"
+        },
+        "committed_at": { "type": "string" },
+        "disclosed_prediction": {
+          "type": "string",
+          "description": "開示後に埋める (sha256 が commitment と一致すること)"
+        }
+      }
+    },
+    "vendor_topology_commitment": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "装置トポロジ記述の sha256 — freeze 後に開示"
+    },
+    "results_including_failures_public": { "const": true }
+  }
+}

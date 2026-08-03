@@ -33,6 +33,28 @@
 
 use crate::ln_gamma;
 
+// ---------------------------------------------------------------- lane の型 (v34.6)
+
+/// データの出自 lane (v34.6, PROMPT/15 §7) — **二つの間に変換は存在しない**:
+/// synthetic shot noise を「実測ノイズ」と呼ぶことは型で禁止する。
+/// SyntheticCoverage = 真の interface が既知 (生成器が作る)・coverage を直接採点。
+/// RecordedExperimental = 実装置の記録・latent 未知・model fit / drift /
+/// 事前登録予測 (未使用チャネル) を採点。受け皿は reproducer/real_data/。
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum DataProvenance {
+    SyntheticCoverage,
+    RecordedExperimental,
+}
+
+impl DataProvenance {
+    pub fn as_str(self) -> &'static str {
+        match self {
+            DataProvenance::SyntheticCoverage => "synthetic_coverage",
+            DataProvenance::RecordedExperimental => "recorded_experimental",
+        }
+    }
+}
+
 // ---------------------------------------------------------------- 裁定 5 値
 
 /// 同時信頼集合上の裁定 (PROMPT/15 §4 の 5 値 — 凍結語彙)。
