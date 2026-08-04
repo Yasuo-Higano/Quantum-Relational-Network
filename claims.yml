@@ -5186,7 +5186,7 @@
   version: "v35.0-B"
   level: C4
   claim: "第三十四期の統合 — 期テーゼ「可アクセス性証明書は実験者の宣言ではなく、登録済み観測契約の下で有限データから得られる同時信頼集合である。局所性・因子分解・context glue・複素構造は、その信頼集合全体で同じ裁定が成立するときに限り昇格できる。集合が裁定境界を跨ぐ場合、Straddled / EquivalenceClassOnly / Abstain は失敗ではなく、有限データから導かれる唯一の正答である」が、**定理** (第四の no-go = Le Cam 二点下限の Lean 機械証明 + Robust Promotion 誤昇格 ≤ α + selective risk ≠ coverage の分離)・**型** (禁止変換 22–29・DataProvenance synthetic ↛ experimental・RobustVerdict 5 値)・**器械** (OCS-1.0 paper-closed spec [sha256 凍結]・factorization enumerator・robust atlas・real-data lane 受け皿)・**holdout** (HOLD-10 二層: S 30/30 + C 16 指標満票・population 上限 0.63% の初報告) の全てで閉じた。反証の正式受理 (FollowUp YUK-005 → QRN-YUK-034 refuted_as_stated) で期を開け、FollowUp の specification-limited 判定に OCS-1.0 で応答し、v33 の 6 モジュール lib pin 不変のまま (加法的な期) 有限データ層を積んだ。**期末判定 = instrumental closure** (v34.6 で凍結した完成条件: 外部 D2-R 報告 0・実データ上の事前登録予測 0・完成条件に数える新 no-go なし — synthetic holdout の満票は器械の閉包であって物理的前進ではない、と自ら宣言して閉じる)。"
-  status: "第三十四期 完結 (instrumental closure) — bridge law 登録簿は全能力で空・external_replications = 0・recorded_runs = 0・PRED-019 未登録のまま。期末完全儀式 (全 211 本) は v35.0-B コミット後に起動し追補コミットで記録する。次期はユーザー PROMPT 待ち (候補は uft-v35.0.md §6)"
+  status: "第三十四期 完結 (instrumental closure) — bridge law 登録簿は全能力で空・external_replications = 0・recorded_runs = 0・PRED-019 未登録のまま。期末完全儀式 (追補 2026-08-04 確定): 全 211 本 完全再計算 総計 PASS 1547 / FAIL 0・既存 203 本の PASS/FAIL 期前後完全一致 (ドリフト 0 件)・新規 8 本 +118 (会計一致)・差分は計時文字列のみ。次期はユーザー PROMPT 待ち (候補は uft-v35.0.md §6)"
   layer: meta
   evidence_kind: interpretation
   independence: same_implementation
@@ -5198,4 +5198,4 @@
     result: "results/v350b_hold10_open.txt"
   limitations:
     - "instrumental closure は正直な自己限定 — 有限データ意味論の器械は閉じたが、それを現実の裁定に使う入力 (外部実施者・実装置の記録) はまだ 0 件。次期の本当の前進は内部満票の追加ではなく外部の一件 (PROMPT/15 の結語)。"
-    - "儀式 (完全再計算) の記録は追補コミット — 本 claim の時点では起動のみ (past 期は B コミット同梱・本期は分離を明示)。"
+    - "儀式は決定性・無波及の検査であって物理的正しさの証拠ではない (PASS 総数はソフトウェア健全性の指標 — README の PASS 分類規約)。起動 (v35.0-B) と記録 (追補コミット) を分離した — 儀式中の器械不変が git 履歴で機械検証できる。"

@@ -29,4 +29,4 @@ staggered の 2× との対比が taste 数の交差検証)。外挿 2 モデル
 
 [判定] 事前登録 (a): **Wilson-D も 1×A_oracle に収束 — 二離散化 universality (D チャネル) 成立** (taste 数 2 vs 1 の交差検証込み)。X チャネル完成で PRED-016 採点へ
 
-総合判定: [PASS] (8 s)
+総合判定: [PASS] (7 s)
