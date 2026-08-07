@@ -1,0 +1,59 @@
+{
+  "schema_version": "record-v2-acquisition",
+  "provenance": "recorded_experimental",
+  "evolution_provenance": "compiled_digital_channel_family",
+  "preregistration_sha256": "a14e792fe5542f77d58911e5fd6ddca9594f607af7dd8973bd851495547287bd",
+  "device": {
+    "vendor": "fixture-vendor",
+    "device_id": "fixture-device-1"
+  },
+  "operator": {
+    "name": "fixture operator",
+    "organization": "fixture org",
+    "organizationally_external": false
+  },
+  "acquisition_randomization_seed": "fixture-seed-20260808",
+  "channels": [
+    {
+      "channel_id": "ch-A",
+      "source_id": "n1",
+      "target_id": "n2",
+      "probe_sign": "plus",
+      "epsilon": 0.05,
+      "evolution_time": 1.0,
+      "evolution_family_id": "F1",
+      "job_id": "job-0001",
+      "program_hash": "bd72bde1538b9744cd3313fefcf3a0501975a82344ce38cecc4676b9ffab3e9e",
+      "compiler_or_pulse_version": "fixture-compiler 1.0",
+      "calibration_snapshot_hash": "ffa39c51e023cc19f15cbb11b0aff56b7bd8f7c976cddd6758f949c82e2699e2",
+      "used_in_calibration": true,
+      "raw_artifact_sha256": "8667f204c35506254ce5ae8e35e2e7473ab5f55b256e424fed29d65c8d1b1090",
+      "data": {
+        "kind": "ordered_shots",
+        "acquired_at": "2026-08-08T01:00:00Z",
+        "shots": [0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0]
+      }
+    },
+    {
+      "channel_id": "ch-D",
+      "source_id": "n1",
+      "target_id": "n4",
+      "probe_sign": "minus",
+      "epsilon": 0.05,
+      "evolution_time": 1.0,
+      "evolution_family_id": "F1",
+      "job_id": "job-0002",
+      "program_hash": "bd72bde1538b9744cd3313fefcf3a0501975a82344ce38cecc4676b9ffab3e9e",
+      "compiler_or_pulse_version": "fixture-compiler 1.0",
+      "calibration_snapshot_hash": "ffa39c51e023cc19f15cbb11b0aff56b7bd8f7c976cddd6758f949c82e2699e2",
+      "used_in_calibration": false,
+      "raw_artifact_sha256": "8667f204c35506254ce5ae8e35e2e7473ab5f55b256e424fed29d65c8d1b1090",
+      "data": {
+        "kind": "ordered_shots",
+        "acquired_at": "2026-08-08T01:10:00Z",
+        "shots": [1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1]
+      }
+    }
+  ],
+  "results_including_failures_public": true
+}

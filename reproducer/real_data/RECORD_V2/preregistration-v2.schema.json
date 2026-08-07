@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qrn-record-v2-preregistration",
+  "title": "QRN Recorded Lane v2 — A. 事前登録 (v35.1, PROMPT/16 §3.1)",
+  "description": "データ取得より前に commit する。解析コード・採点規則・held-out チャネル・予測コミットメントを凍結する段。取得後の変更は禁止 (MANIFEST drift として機械検出)。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "observation_contract_hash",
+    "analysis_commit",
+    "calibration_channels",
+    "held_out_channels",
+    "prediction_commitment_sha256",
+    "score_rule",
+    "model_misspecification_gates",
+    "topology_and_mapping_commitment",
+    "committed_at"
+  ],
+  "properties": {
+    "schema_version": { "const": "record-v2-preregistration" },
+    "observation_contract_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "観測契約 (probe 摂動・観測量・時刻族の宣言文書) の sha256"
+    },
+    "analysis_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$",
+      "description": "解析コードを凍結した git commit (取得前に存在が検証可能であること)"
+    },
+    "calibration_channels": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "held_out_channels": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "calibration に使わない予測対象チャネル (calibration_channels と非交差)"
+    },
+    "prediction_commitment_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "held-out チャネル予測 (plaintext) の sha256 — 開示は disclosure-v2 で"
+    },
+    "score_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "alpha"],
+      "properties": {
+        "type": { "enum": ["held_out_interval_hit"] },
+        "alpha": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.1 },
+        "notes": { "type": "string" }
+      },
+      "description": "採点規則 — 予測バーと開示後 CP 区間の照合 (RobustExact 意味論・跨ぎは Straddled)"
+    },
+    "model_misspecification_gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "drift_gate_alpha",
+        "correlation_gate_alpha",
+        "signed_linearity_epsilon_pair"
+      ],
+      "properties": {
+        "drift_gate_alpha": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.1 },
+        "correlation_gate_alpha": { "type": "number", "exclusiveMinimum": 0, "maximum": 0.1 },
+        "signed_linearity_epsilon_pair": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": { "type": "number", "exclusiveMinimum": 0 },
+          "description": "二つの ε による signed-linearity 検査 (差分が ε に一次で乗ること)"
+        },
+        "negative_control_channels": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "model-misspecification 負制御チャネル (任意)"
+        }
+      }
+    },
+    "topology_and_mapping_commitment": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "hidden topology + physical→anonymous label mapping (plaintext) の sha256 — hardware operator が commit"
+    },
+    "committed_at": { "type": "string", "description": "ISO 8601" }
+  }
+}

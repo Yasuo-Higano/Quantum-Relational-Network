@@ -5199,3 +5199,23 @@
   limitations:
     - "instrumental closure は正直な自己限定 — 有限データ意味論の器械は閉じたが、それを現実の裁定に使う入力 (外部実施者・実装置の記録) はまだ 0 件。次期の本当の前進は内部満票の追加ではなく外部の一件 (PROMPT/15 の結語)。"
     - "儀式は決定性・無波及の検査であって物理的正しさの証拠ではない (PASS 総数はソフトウェア健全性の指標 — README の PASS 分類規約)。起動 (v35.0-B) と記録 (追補コミット) を分離した — 儀式中の器械不変が git 履歴で機械検証できる。"
+
+- id: QRN-META-047
+  version: "v35.1"
+  level: C3
+  claim: "実験前仕様修復 (12 検査 PASS — instrument maintenance・物理的前進に数えない): (i) **RECORD v2 三段 schema** (reproducer/real_data/RECORD_V2/ — preregistration [観測契約 hash・解析 commit・held-out・予測/topology コミットメント・採点規則・misspec gates] / acquisition [provenance const・evolution_provenance 3 値・source/target/probe_sign/ε/evolution_time/evolution_family_id/program_hash/used_in_calibration 必須 boolean/raw_artifact_sha256・データ = 相関粒度 3 型の oneOf] / disclosure [開示・照合・失敗込み採点]) を**データ取得前に**別 hash で凍結 (v1 不変 — 取得後の変更は MANIFEST drift として機械検出)。全 object に additionalProperties:false (採点後の追記の型レベル禁止)・三段 sha256 結束・± probe 対の program_hash 同一性規則。(ii) **相関粒度型** (sim/src/record_v2.rs): OrderedShots (split-half + 遷移数ゲート → IidConsistent 到達可能) / TimestampedBatches (batch drift + overdispersion のみ → CorrelationUnresolved まで) / AggregateCounts (常に CorrelationUnassessed) — **禁止変換 30** (AggregateCounts ↛ IidCertificate)・**禁止変換 31** (TimestampedBatches ↛ IidCertificate)。IidCertificate は private 門で assess() のみが構成。較正: iid 偽検出 0/2000・持続 Markov (stay 0.9, n=800) 非 IidConsistent 200/200 (遷移数 175 + split-half 25・誤資格 0)・χ²_{m−1} は近似と登録し偽検出 0.0070 ≤ 2α。(iii) **FollowUp status 一本化** (QRN-FollowUp commit 1435c1e): FINAL_STATUS.json 唯一ソース + sync_status.jl 生成 + CI drift 検査 — plan の陳腐化 status (Phase 7 未開封表示) を修復・README/final_report は byte 不変でマーカー化。(iv) **D2-R outreach kit** (campaigns/d2r-v1-outreach/ 4 点凍結): 3 cohort × 10 = 30 件の固定 campaign・数値 kernel 非共有・**停止規則の事前登録** (30 件 0 なら protocol_externalizability = failed_at_current_burden — 物理の反証ではない)・d2r-v1 は逐語不変 (MANIFEST ピン af967b3e…)。"
+  status: "recorded lane の受け皿が v2 粒度で完備 — 実記録の受理・outreach 送信は人間の作業 (funnel 全段 0 のまま)。最初の counted run は OrderedShots または細かい TimestampedBatches に限定 (PROMPT/16 §1.2)"
+  layer: instrument
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: laboratory
+  evidence:
+    code: "sim/src/bin/v351_record_v2.rs"
+    result: "results/v351_record_v2.txt"
+    doc: "docs/uft-v35.1.md"
+  limitations:
+    - "instrument maintenance であり物理的前進ではない (PROMPT/16 §2 の非交渉)。recorded_runs = external_replications = 0・bridge law 空・PRED-019 未登録は全て不変。"
+    - "相関ゲートの通過は iid の証明ではなく「登録ゲートで破れが検出されなかった」の記録 (検出力は n の関数 — 初版バー FAIL の解剖を uft-v35.1.md §3 に記録)。overdispersion の χ² は近似 (登録済み)。"
+    - "outreach の実施と応答は第三者の領分 — OUTREACH_LEDGER への記録は実接触のみ (捏造禁止の継承)。"

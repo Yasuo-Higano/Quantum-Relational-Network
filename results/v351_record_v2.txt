@@ -1,0 +1,16 @@
+=== v35.1 実験前仕様修復 — RECORD v2・相関粒度型・outreach kit (PROMPT/16 §3–4) ===
+
+  [PASS] [P0] record_v2 自己検証 (χ² 分位・粒度到達集合) + lib self_test  χ²₁₁(0.995) = 26.7568 (期待 26.7568)
+  [PASS] [P1] v1 凍結: RECORD.schema.json 不変 (v34.6 ピン) + lane 文書に v2 節  sha256 = 780cd728f2ffed3f…
+  [PASS] [P2] v2 MANIFEST: 三段 schema の凍結 hash 一致 (取得後の変更は drift として検出)  prereg/acquisition/disclosure 3 本認証
+  [PASS] [P3] schema 構造: 全 object に additionalProperties:false・oneOf 3 粒度・必須フィールド  3 schema とも構造規約を満たす
+  [PASS] [P4] fixture 較正 正 4/負 3 + 三段 sha256 結束 + コミットメント照合 + held-out 整合 + ± 対規則  prereg a14e792f… → acq 2edb7b8a… → disclosure (連鎖照合 OK)
+  [PASS] [P5a] 裁定較正: iid/Markov/drift/短列/良性バッチ/batch drift/過分散/aggregate の 8 セル  全セル期待裁定 (IidConsistent は OrderedShots のみ)
+  [PASS] [P5b] ordered level 較正: iid 偽検出率 ≤ 1.5α (CP ゲートの保守性)  偽検出 0/2000 = 0.0000 (α = 0.01)
+  [PASS] [P5c] ordered power 較正: Markov (stay 0.9, n=800) 非 IidConsistent 率 ≥ 0.95  検出 200/200 (遷移数 175 + split-half 25), 誤資格 0
+  [PASS] [P5d] batches level 較正: iid 偽検出率 ≤ 2α (χ²_{m−1} は近似と登録)  偽検出 14/2000 = 0.0070
+  [PASS] [P5e] batches power 較正: 交互 0.38/0.62 の検出率 ≥ 0.9  検出 200/200
+  [PASS] [P6] outreach kit: d2r-v1 不変ピン・kit MANIFEST 4 本・停止規則の事前登録・コードなし  配布物は凍結・d2r-v1 は逐語不変・30 件 0 なら failed_at_current_burden
+  [PASS] [P7] FollowUp 整合: REP-001 = partially_replicated / shared operator / external 0 維持  cross-model clean-room は organizationally external に数えない
+
+[判定] 全検査 PASS — RECORD v2 は取得前に凍結・相関粒度は型で分離・d2r-v1 は不変

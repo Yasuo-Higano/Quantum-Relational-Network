@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "qrn-record-v2-disclosure",
+  "title": "QRN Recorded Lane v2 — C. 開示と採点 (v35.1, PROMPT/16 §3.1)",
+  "description": "取得完了後の開示段。予測 plaintext・hidden topology・label mapping を開示し、コミットメント照合・採点・最終 verdict (失敗を含む) を記録する。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "preregistration_sha256",
+    "acquisition_sha256",
+    "disclosed_prediction",
+    "disclosed_topology",
+    "disclosed_label_mapping",
+    "commitment_verification",
+    "score",
+    "final_verdict",
+    "failures_public"
+  ],
+  "properties": {
+    "schema_version": { "const": "record-v2-disclosure" },
+    "preregistration_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "対応する preregistration-v2 ファイルの sha256"
+    },
+    "acquisition_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "対応する acquisition-v2 ファイルの sha256"
+    },
+    "disclosed_prediction": {
+      "type": "string",
+      "description": "held-out チャネル予測の plaintext — sha256 が prediction_commitment_sha256 と一致すること"
+    },
+    "disclosed_topology": {
+      "type": "string",
+      "description": "hidden topology の plaintext"
+    },
+    "disclosed_label_mapping": {
+      "type": "string",
+      "description": "physical→anonymous label mapping の plaintext — topology と合わせた sha256 が topology_and_mapping_commitment と一致すること"
+    },
+    "commitment_verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prediction_sha256_matches", "topology_mapping_sha256_matches"],
+      "properties": {
+        "prediction_sha256_matches": { "type": "boolean" },
+        "topology_mapping_sha256_matches": { "type": "boolean" }
+      },
+      "description": "照合結果は boolean のまま記録 — false の run は verdict = aborted でも公開する"
+    },
+    "score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["held_out_total", "hits", "misses", "straddled"],
+      "properties": {
+        "held_out_total": { "type": "integer", "minimum": 0 },
+        "hits": { "type": "integer", "minimum": 0 },
+        "misses": { "type": "integer", "minimum": 0 },
+        "straddled": { "type": "integer", "minimum": 0 },
+        "notes": { "type": "string" }
+      }
+    },
+    "final_verdict": {
+      "enum": ["hit", "miss", "straddled", "out_of_domain", "aborted"],
+      "description": "out_of_domain = misspecification gate (drift/相関/signed-linearity) の破れの正検出。failed run も台帳 recorded_runs には数える (完成条件の hit には数えない)"
+    },
+    "failures_public": { "const": true }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "record-v2-disclosure",
+  "preregistration_sha256": "a14e792fe5542f77d58911e5fd6ddca9594f607af7dd8973bd851495547287bd",
+  "acquisition_sha256": "2edb7b8aecc98fbefdf819fb270a8384c8d3e053b6986e238287f9c8f66de27c",
+  "disclosed_prediction": "held_out ch-D: edge_weight in [0.18, 0.42]; held_out ch-E: no_edge (weight <= 0.05)",
+  "disclosed_topology": "line graph: n1-n2-n3-n4 (edges: n1n2, n2n3, n3n4)",
+  "disclosed_label_mapping": "physical q0->n3, q1->n1, q2->n4, q3->n2",
+  "commitment_verification": {
+    "prediction_sha256_matches": true,
+    "topology_mapping_sha256_matches": true
+  },
+  "score": {
+    "held_out_total": 2,
+    "hits": 1,
+    "misses": 0,
+    "straddled": 1,
+    "notes": "fixture — 実採点ではない (較正用)"
+  },
+  "final_verdict": "straddled",
+  "failures_public": true
+}

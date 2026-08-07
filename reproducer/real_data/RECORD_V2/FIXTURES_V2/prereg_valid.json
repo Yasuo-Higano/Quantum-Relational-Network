@@ -1,0 +1,20 @@
+{
+  "schema_version": "record-v2-preregistration",
+  "observation_contract_hash": "6bf26a34e7120d1188fbaec7097723864e029aeda8abfef4a19f32dd2cd901f3",
+  "analysis_commit": "0123456789abcdef0123456789abcdef01234567",
+  "calibration_channels": ["ch-A", "ch-B", "ch-C"],
+  "held_out_channels": ["ch-D", "ch-E"],
+  "prediction_commitment_sha256": "bb4180334d5311ec5e0c2706bcf040047d45bcd2a91cf39b30151847b42d06a9",
+  "score_rule": {
+    "type": "held_out_interval_hit",
+    "alpha": 0.05,
+    "notes": "予測バーと開示後 CP 区間の RobustExact 照合 — 跨ぎは Straddled"
+  },
+  "model_misspecification_gates": {
+    "drift_gate_alpha": 0.001,
+    "correlation_gate_alpha": 0.001,
+    "signed_linearity_epsilon_pair": [0.05, 0.1]
+  },
+  "topology_and_mapping_commitment": "0fe79e9c0da64cbdbef72ab5c48759c012d5de61f7a609b7a93eef7a02a4007a",
+  "committed_at": "2026-08-08T00:00:00Z"
+}
