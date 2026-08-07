@@ -1,0 +1,11 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v35.4 adversary packet A/B と OCS-2.0 gating (PROMPT/16 §9) ===
+
+  [PASS] [K1] packet A/B の実在と sha256 凍結 pin  A = e23e82db5ca2128d…, B = 76d7267cb48b8e68…
+  [PASS] [K2] claim ID 全数 (A: OQ-0..8 / B: RP-1..6) と必須フィールド  A 9 claims / B 6 claims — status/falsifier/forbidden interpretation 完備
+  [PASS] [K3] paper-closed: 内部参照なし・記録済み出力値なしの宣言  両 packet とも自己完結 (コード・出力値の持ち込みなし)
+  [PASS] [K4] adversary 規律: RefutedAsStated/Inconclusive の一級受理・規約導出は渡さない  反証・不確定を成果として受理する宣言つき
+  [PASS] [K5] OCS-2.0 gating: A/B の反証受理前に spec を凍結しない (ファイル不在 + 宣言)  OCS-2.0 は未凍結 (正しい状態) — OCS-1.0 は不変
+  [PASS] [K6] scope discipline: no-go の契約 scope 明示 + full-time 問題が open 攻撃面  no-go は契約 scope つき — 誇張なし・攻撃面は open と宣言
+
+[判定] 全検査 PASS — packet A/B は凍結・OCS-2.0 は反証受理まで gating

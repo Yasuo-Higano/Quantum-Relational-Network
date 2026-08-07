@@ -5259,3 +5259,23 @@
     - "set-valued 安定性・interleaving 一般には先行研究がある — 主張は観測商 + 有限データ信頼集合 + budget poset の同時扱いに限る (安定性一般の新規性を主張しない)。"
     - "Lean の被覆は有限結果空間の整数重み (toy α = 1/2 の最小反例) — 実 CP 区間の破れ率はシード固定の数値実測。2 予算 chain の定理まで (多パラメータ persistence は凍結継続)。"
     - "anytime-valid 信頼列など intersection 以外の nesting 構成は設計選択肢として記録のみ (OCS-2.0 の材料)。"
+
+- id: QRN-META-048
+  version: "v35.4"
+  level: C3
+  claim: "FollowUp adversary packet A/B と OCS-2.0 gating (6 検査 PASS): (i) **FollowUp の役割の確定** — 外部再現ではなく paper-closed theorem adversary (REP-001 は shared human operator — 組織的外部性なし、は final report 自身の明示)。論文更新を atomic packet 単位に固定。(ii) **Packet A** (paper/packet-a-open-response.md, sha256 = e23e82db… pin): GQF-1..6 の paper-closed 版 9 claims — 各 claim に status/domain/量化子/入出力型/gauge/falsifier/forbidden interpretation・**OQ-0 較正課題は covariance 規約 (転置) を意図的に渡さない** (v35.2 [G1] の既知失敗モードを独立導出の試金石に)・OQ-7 (gauge 族の完全性) と OQ-8 (full-time 契約の Hamiltonian 識別可能性 — **OQ-3 の scope discipline を最初に攻撃させる**) を open 問題として供給。(iii) **Packet B** (packet-b-resource-profile.md, sha256 = 76d7267c… pin): RPF-1..5 + RP-2q (累積 restriction 非 nesting の独立検証) + RP-6 (代替 nesting 構成の設計問題)。(iv) **OCS-2.0 gating**: A/B の反証と修正を受理した後にだけ凍結 — paper/ に ocs-2.0 ファイルが存在しないことを [K5] が常設監査 (早期凍結は FAIL)。(v) **staging**: packet を QRN-FollowUp/papers/ に byte 同一で配置 (commit c346e44 — AGENTS.md の許可入力経路・原実装/結果値/Lean 証明は渡さない)。RefutedAsStated / Inconclusive は一級の成果として受理する。"
+  status: "clean-room rerun の実施は人間の作業 (別モデルの adversary agent + 新規事前登録 freeze が必要)。GQF/RPF no-go を完成条件 3 に数える資格は FollowUp の反例探索通過まで発生しない — 本版は依頼の凍結であって検証ではない"
+  layer: instrument
+  evidence_kind: mechanism_demo
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v354_packets.rs"
+    result: "results/v354_packets.txt"
+    doc: "docs/uft-v35.4.md"
+  limitations:
+    - "packet の発行は検証の依頼であって検証ではない。RefutedAsStated が返れば v34.1 Yukawa erratum と同じ手続きで受理・訂正する (packet は結果に合わせて変えない — 版を上げる)。"
+    - "FollowUp は shared human operator の cross-model adversary — 組織的外部再現 (D2-R) の代用にしない (相互代用の禁止は PROMPT/16 §10)。"
+    - "OCS-2.0 の内容リスト (同時 α 配分・optional stopping 等) は記録のみ — 凍結は gating 通過後。"
