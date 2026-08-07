@@ -1423,3 +1423,8 @@
   deps: [QRN-BRIDGE-037]
   asm: [ASM-IEEE754]
   fal: [FAL-SUITE]
+
+- id: QRN-BRIDGE-043
+  deps: [QRN-BRIDGE-037]
+  asm: [ASM-IEEE754]
+  fal: [FAL-SUITE]

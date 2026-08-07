@@ -629,7 +629,7 @@ fn main() {
     }
 
     // [8] Lean 定理数の照合
-    let lean_expected: [(&str, usize); 12] = [
+    let lean_expected: [(&str, usize); 13] = [
         ("Anomaly.lean", 3),
         ("AnomalyArray.lean", 2),
         ("AnomalyArrayBig.lean", 2),
@@ -642,6 +642,7 @@ fn main() {
         ("Projector.lean", 13),
         ("ProjectorND.lean", 14),
         ("QrnPromotion.lean", 12),
+        ("ResourceProfile.lean", 8),
     ];
     let lean_total_expected: usize = lean_expected.iter().map(|(_, n)| n).sum();
     {

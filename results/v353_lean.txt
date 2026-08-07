@@ -1,0 +1,15 @@
+=== v35.3 set-valued resource profile の形式化 (PROMPT/16 §7) 2026-08-08 ===
+
+実行: ~/.elan/bin/lean proofs/ResourceProfile.lean   (終了コード 0 = 全定理検証)
+~/.elan/bin/lean proofs/ResourceProfile.lean  0.20s user 0.09s system 91% cpu 0.321 total
+終了コード: 0
+
+定理 8 本:
+  rpf2_refinement
+  rpf1_coverage
+  rpf1_not_nested
+  rpf1_no_functoriality
+  rpf3_margin_stability
+  rpf4_boundary_instability
+  rpf5_chain_soundness
+  rpf5_transient

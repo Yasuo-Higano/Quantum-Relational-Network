@@ -1,0 +1,13 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v35.3 set-valued resource profile — RPF-1..5 (PROMPT/16 §7) ===
+
+  [PASS] [R1a] RPF-1: 独立標本の CP 区間は高頻度で nesting が破れる (被覆 ≠ samplewise nesting)  独立標本の破れ率 = 0.437 (n 100 → 300)
+  [PASS] [R1b] RPF-1: 累積標本 (restriction) でも nesting は自動でない (破れ率を正直に記録)  累積標本の破れ率 = 0.266 — 0 でも構成なしの保証はない (Lean 反例が最小証人)
+  [PASS] [R1c] intersection 構成 (α/2 + 逐次交差): nesting 違反 0・被覆 ≥ 1 − α を測定  違反 0/4000, 被覆 = 0.9700 (登録下限 0.95)
+  [PASS] [R2] RPF-2: nested 構成で r(Q_{b'}) ⊆ Q_b の違反 0 (精密化は単調 — lax refinement)  違反 0/4000 (読みが実際に狭まった回数 647 — 精密化は起きている)
+  [PASS] [R3] RPF-3: margin 未満の摂動で verdict flip 0・margin 超は flip 証人あり  margin 未満 flip 0/4000, 証人: Edge → Straddled (摂動 0.1 > margin 0.05)
+  [PASS] [R4] RPF-4: 摂動 1/n で verdict 距離 1 — 比 n が非有界 (global Lipschitz 定数は存在しない)  1/10→比10, 1/100→比100, 1/1000→比1000, 1/100000→比100000
+  [PASS] [R5] RPF-5: 独立標本の単点読みは transient (消失率 > 0)・nested 2-chain の健全性違反 0 — chain ≥ 2 規則 (禁止変換 17) の導出  singleton 371 件中 transient 273 (0.74) / nested 2-chain 違反 0
+  [PASS] [R6] Lean 橋: rpf1 反例 (被覆 1/2 両立・標本 true で {false} ⊄ {true}) の整数一致  cbLow/cbHigh の被覆計数 = (1,1)/(1,1), nesting 破れ証人 θ = false
+
+[判定] 全検査 PASS — 関手性は被覆から出ない (構成で買う)・安定性は margin 条件つき・chain ≥ 2 は系

@@ -5239,3 +5239,23 @@
     - "lane は有限モード・number-conserving・quasi-free・Markov — 一般 GKLS (Kossakowski 同値類)・quadratic dephasing・non-Markov は lane 外 (構成時拒否 / OutOfDomain)。"
     - "Lean は ℤ[i] 値の一般恒等式 (→ 多項式恒等式) — ℤ→ℂ の稠密性論法と ODE 解析は未形式化 (jet 恒等式と dense 較正で挟む)。GQF-5 の宣言スケール (R2=2R, QN=2Q) は [G4b] が dense と ×4 整合で較正。"
     - "no-go の契約 scope: GQF-3 の反例対は全時刻応答では異なる (curvature-only 契約の no-go)・GQF-5 は単一時点値 — 全時刻契約での識別可能性・商の完全分類は開いた問題として FollowUp に攻撃を依頼する。"
+
+- id: QRN-BRIDGE-043
+  version: "v35.3"
+  level: C2
+  claim: "set-valued resource profile の数学的地位 — RPF 定理群 (8 検査 PASS + Lean 8 定理 [proofs/ResourceProfile.lean]): (i) **RPF-1 非関手性 no-go**: 被覆有効な予算別信頼集合に samplewise nesting は出ない — Lean 最小反例 (2 点 Θ・2 値データ・α = 1/2 で被覆 1/2 両立・恒等細分でも Q_{b'} ⊄ Q_b) + CP 区間の実測 (p = 0.42, n 100→300, 4000 標本): **独立標本の破れ率 0.437・累積標本 (restriction) でも 0.266** —「資源を増やせば読みは自動的に精密化する」は偽。(ii) **RPF-2 条件付き refinement 定理** (型多相の純論理・有限性/可測性の仮定なし): q_b = r∘q_{b'} (細分) + samplewise nesting の下で r(Q_{b'}(D)) ⊆ Q_b(D) — intersection 構成 (α/2 同時配分 + 逐次交差) が nesting を構成で買い (違反 0/4000・被覆 0.970 ≥ 0.95)、lax refinement が成立 (読みが狭まった標本 647 — 精密化は起きた上で単調)。(iii) **RPF-3 margin 安定性** (全整数値の一般定理): 端点摂動 < margin で離散 verdict 不変 (数値: 4000 件 flip 0)。(iv) **RPF-4 大域不安定性**: boundary で摂動 1/n・verdict 距離 1 の対が全 n に存在 (比 10→10⁵ の発散表) — global Lipschitz 安定性は存在しない (margin 条件が最良・Straddled 一級市民の定理側根拠)。(v) **RPF-5 chain ≥ 2 昇格規則の導出**: v33.3 の凍結規則 (禁止変換 17) が (a) 健全性 = RPF-2 の系 (nested 2-chain の singleton 昇格は粗い側で排除されない — 違反 0) + (b) 単点 transient (独立標本で singleton 371 件中 273 件 = 74% が消失 — 実測 + Lean 反例) の系になる。"
+  status: "profile の関手性の語彙が解禁できる条件が確定した — functor ではなく『nesting を構成したときの lax refinement』。累積標本単独では不十分 (0.266) という発見は OCS-2.0 の同時 α 配分設計に直結。budget poset 全体の多パラメータ一般論は語彙凍結を継続"
+  layer: bridge
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v353_profile_refinement.rs"
+    result: "results/v353_profile_refinement.txt"
+    doc: "docs/uft-v35.3.md"
+  limitations:
+    - "set-valued 安定性・interleaving 一般には先行研究がある — 主張は観測商 + 有限データ信頼集合 + budget poset の同時扱いに限る (安定性一般の新規性を主張しない)。"
+    - "Lean の被覆は有限結果空間の整数重み (toy α = 1/2 の最小反例) — 実 CP 区間の破れ率はシード固定の数値実測。2 予算 chain の定理まで (多パラメータ persistence は凍結継続)。"
+    - "anytime-valid 信頼列など intersection 以外の nesting 構成は設計選択肢として記録のみ (OCS-2.0 の材料)。"
