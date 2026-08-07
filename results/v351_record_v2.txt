@@ -1,3 +1,4 @@
+[self_test] OK (jacobi residual 3.11e-15)
 === v35.1 実験前仕様修復 — RECORD v2・相関粒度型・outreach kit (PROMPT/16 §3–4) ===
 
   [PASS] [P0] record_v2 自己検証 (χ² 分位・粒度到達集合) + lib self_test  χ²₁₁(0.995) = 26.7568 (期待 26.7568)

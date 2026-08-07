@@ -7,6 +7,7 @@ pub mod finite_data; // 有限データ証明書 — 同時信頼集合と Robus
 pub mod graded_recovery; // Majorana frame と Dirac pairing の識別境界 (v33.5, PROMPT/14)
 pub mod iv; // 区間演算 — 外向き丸めの厳密包含 (v25.2 BZ moment 証明書)
 pub mod laboratory_interface; // Certified Laboratory Interface — 出自証明書と資格つき操作 (v33.2, PROMPT/14)
+pub mod open_response; // 開放系 signed-response 観測商 — quasi-free GKLS lane (v35.2, PROMPT/16)
 pub mod operational_net; // 操作的文脈の型契約 — marked family of subalgebras (v32.2, PROMPT/13 §2)
 pub mod qrn_core; // 型付き Core Contract — 型境界と bridge law の門 (v27.2, PROMPT/10 §4)
 pub mod readout_contract; // 幾何読み出しの識別可能性契約 — 4 軸の型分離 (v31.0, PROMPT/12)

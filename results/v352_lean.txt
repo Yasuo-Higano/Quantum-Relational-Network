@@ -1,0 +1,23 @@
+=== v35.2 開放系 signed-response 観測商の形式化 (PROMPT/16 §5) 2026-08-08 ===
+
+実行: ~/.elan/bin/lean proofs/OpenQuotient.lean   (終了コード 0 = 全定理検証)
+~/.elan/bin/lean proofs/OpenQuotient.lean  3.89s user 0.35s system 103% cpu 4.097 total
+終了コード: 0
+
+定理 16 本:
+  gqf1_affine_cancellation
+  gqf1_probe_difference
+  gqf2_block_frobenius
+  gqf2_first_derivative_zero
+  gqf2_curvature_2x2
+  gqf2_curvature_block
+  gqf3_same_curvature
+  gqf3_different_hamiltonian
+  gqf3_no_map
+  gqf4_block_diagonal_reduction
+  gqf4_neg_i_isometry
+  gqf4_scale_two
+  gqf4_scale_norm
+  gqf5_same_charge_response
+  gqf5_no_map
+  gqf5_closed_charge_conservation

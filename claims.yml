@@ -5219,3 +5219,23 @@
     - "instrument maintenance であり物理的前進ではない (PROMPT/16 §2 の非交渉)。recorded_runs = external_replications = 0・bridge law 空・PRED-019 未登録は全て不変。"
     - "相関ゲートの通過は iid の証明ではなく「登録ゲートで破れが検出されなかった」の記録 (検出力は n の関数 — 初版バー FAIL の解剖を uft-v35.1.md §3 に記録)。overdispersion の χ² は近似 (登録済み)。"
     - "outreach の実施と応答は第三者の領分 — OUTREACH_LEDGER への記録は実接触のみ (捏造禁止の継承)。"
+
+- id: QRN-BRIDGE-042
+  version: "v35.2"
+  level: C2
+  claim: "開放系 signed-response 観測商 — GQF 定理群 (quasi-free lane, 18 検査 PASS + Lean 16 定理 [proofs/OpenQuotient.lean — 全整数値の一般恒等式・格子 4 点法から強化]): (i) **covariance 閉包の第一原理較正** — number-conserving quasi-free GKLS の Ċ = XC + CX† + Y (X = −ih − ½(Λᵀ+M), Y = M, Λ = Σℓℓ†, M = Σgg†) を dense Lindblad (2^N Jordan–Wigner RK4) と max|Δ| ≤ 3e-15 で一致させ規約を凍結 — **初版の Λ 非転置を [G1] が 5e-2 の不一致で検出し反交換子縮約から Λᵀ を確定** (較正セルの存在理由)。(ii) **GQF-1 affine 消去**: 符号つき差分から Y が恒等的に消え Ḋ = XD + DX† (機械 4e-17・生軌道は Y 依存の負制御つき)。(iii) **GQF-2 有効 drift 曲率**: (n̈⁺−n̈⁻)(0)/(4ε) = ‖P_j X P_i‖²_F — jet 恒等式 (2 軌道 node block 版まで Lean 化)・Richardson 有限差分 1e-7。**開放系で曲率が読むのは Hamiltonian ではなく有効 drift**。(iv) **GQF-3 Hamiltonian 昇格 no-go (禁止変換 32)**: coherent hopping (h≠0,ℓ=0) と collective loss (h=0,Λ=2(1,−1)(1,−1)ᵀ) が同一曲率 1 — 曲率統計から Hamiltonian support への写像は存在しない (Lean gqf3_no_map ∀f)。昇格の唯一の門 = DissipatorLocalityCertificate (Γ cross-block の機械検査 — collective loss は拒否)。(v) **GQF-4 正側の門**: block 対角 dissipator で cross block = −ih₂₁ 厳密 → 曲率は ‖P_j h P_i‖² へ還元 ([C3] 差 0.0)。(vi) **GQF-5 charge attribution no-go (禁止変換 33)**: 電荷応答値 −8 が loss (Λ=diag(8,0), C=diag(1,0)) と BdG pairing (pure BCS 状態・散逸ゼロ) で同一 (Lean 整数対 + dense dN/dt×4 較正) — 値から pairing は選べない。正側: Δ=0 閉鎖 Nambu の電荷統計恒等 0 (Lean 一般定理) → 散逸ゼロ証明書下で ≠0 ⇒ Δ≠0。(vii) **GQF-6 有限 shot**: Richardson 4 点 + 登録バイアス (4/3)R⁴δ² + CP 伝播 + v35.1 相関ゲート継承 — RobustEdge/RobustNoEdge/Straddled/Insufficient の 4 裁定・相関 shot は OutOfDomainCorrelated。(viii) **観測商**: local phase gauge・global frequency・複素共役が全時刻応答表を保存 (X ≠ X̄ でも応答同一 → EquivalenceClassOnly) — reader は [X]_C を返す。"
+  status: "GQF-3/GQF-5 は「広い観測契約族を排除する新しい厳密 no-go」の候補 — 契約 scope (CurvatureOnlyOpenResponse / 単一時点電荷値) を明示済み。正式に完成条件 3 へ数えるのは FollowUp の反例探索 (v35.4 Packet A) を通してから。全時刻契約の商の完全分類は未解決と正直に記録"
+  layer: bridge
+  evidence_kind: theorem
+  independence: same_implementation
+  universality: not_applicable
+  data_relation: not_applicable
+  physical_scope: toy
+  evidence:
+    code: "sim/src/bin/v352_open_quotient.rs"
+    result: "results/v352_open_quotient.txt"
+    doc: "docs/uft-v35.2.md"
+  limitations:
+    - "lane は有限モード・number-conserving・quasi-free・Markov — 一般 GKLS (Kossakowski 同値類)・quadratic dephasing・non-Markov は lane 外 (構成時拒否 / OutOfDomain)。"
+    - "Lean は ℤ[i] 値の一般恒等式 (→ 多項式恒等式) — ℤ→ℂ の稠密性論法と ODE 解析は未形式化 (jet 恒等式と dense 較正で挟む)。GQF-5 の宣言スケール (R2=2R, QN=2Q) は [G4b] が dense と ×4 整合で較正。"
+    - "no-go の契約 scope: GQF-3 の反例対は全時刻応答では異なる (curvature-only 契約の no-go)・GQF-5 は単一時点値 — 全時刻契約での識別可能性・商の完全分類は開いた問題として FollowUp に攻撃を依頼する。"

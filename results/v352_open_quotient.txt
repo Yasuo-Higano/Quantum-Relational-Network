@@ -1,0 +1,23 @@
+[self_test] OK (jacobi residual 3.11e-15)
+=== v35.2 開放系 signed-response 観測商 — GQF-1..6 (PROMPT/16 §5–6) ===
+
+  [PASS] [G1a] covariance 閉包 (N=2, loss+gain): dense Lindblad (JW/RK4) と Van Loan の一致  max|Δ| = 1.89e-15 (t = 0.4) — 規約 X = −ih − ½(Λᵀ+M), Y = M を凍結
+  [PASS] [G1b] covariance 閉包 (N=3, loss のみ・複素振幅)  max|Δ| = 2.78e-15
+  [PASS] [G2a] GQF-1: Y ≠ 0 でも Δ(t) = 2ε e^{Xt}P e^{X†t} (affine 項の厳密消去)  max|Δ − hom| = 4.16e-17
+  [PASS] [G2b] 負制御: 生の単側軌道は Y に依存 (差分だけが Y を消す)  |C_Y − C_0| = 2.80e-2 ≫ 0 (Δ 側は 1e-13)
+  [PASS] [G3a] GQF-2 jet 恒等式: Tr(P_j(X²P+2XPX†+PX†²))/2 = ‖P_j X P_i‖² (複素乱択 4×4・2 次元 node)  |jet − frob| = 0.00e0 (w = 0.345060)
+  [PASS] [G3b] GQF-2 有限差分 (Richardson): 厳密軌道からの K̂ = ‖P_j X P_i‖²  |K̂ − w| = 1.25e-7
+  [PASS] [G4a] Lean 橋: GQF-3 対の曲率 (1, 1)・GQF-5 対の電荷統計 (−8, −8) が整数一致  w_A = 1, w_B = 1, S_loss = -8, S_pair = -8
+  [PASS] [G4b] 宣言スケールの物理較正: dense dN/dt × 4 = 宣言統計 (BCS 状態の pairing 電荷応答)  dN/dt = -1.9999999999999996 (dense JW), 4× = -7.999999999999998 = S_pair
+  [PASS] [C1] coherent hopping: w₂₁ = |h₂₁|² = 1・散逸ゼロ証明書で HamiltonianTopology へ昇格  w₂₁ = 1.000000000000000
+  [PASS] [C2] collective loss: 同一曲率 w₂₁ = 1 (GQF-3 反例対) — Hamiltonian 昇格は証明書段階で拒否  w₂₁ = 1.000000000000000 (coherent と同値), cross-node 散逸 = 2 > bar → 禁止変換 32
+  [PASS] [C3] 対角 loss: w₂₁ = |h₂₁|² が閉鎖系と厳密一致 (GQF-4)・証明書 PASS で昇格可  open 0.7300000000000001 = closed 0.7300000000000001 (差 0.0e0)
+  [PASS] [C4] pairing (Nambu Δ ≠ 0) の宣言: number-conserving lane は構成時 OutOfDomain (強制回答なし)  Δ ≠ 0 → Err(PairingOutOfDomain)
+  [PASS] [C5] 二 ε signed-linearity ゲート: 正直 lane は比 1 (厳密)・probe 依存生成子は OutOfDomain  |r_clean − 1| = 8.9e-16, |r_back − 1| = 1.67e-2 (生成子可変の検出)
+  [PASS] [C6] gauge 不変: local phase D X D† + 周波数 iωI は曲率と全時刻応答表を保存 (観測商の軌道)  max|Δw| = 5.6e-17, max|Δ応答表| = 1.0e-15, ‖X − X'‖ = 0.87
+  [PASS] [C7] 複素共役 X̄: 全時刻応答表が同一・X ≠ X̄ — 契約は X を商までしか識別しない (EquivalenceClassOnly)  max|Δ応答表| = 0.0e0, ‖X − X̄‖ = 0.65
+  [PASS] [C8] 有限 shot 裁定: edge → RobustEdge / 無辺 → RobustNoEdge / w ≈ τ → Straddled / 不足 → Insufficient  RobustEdge / RobustNoEdge / Straddled / InsufficientObservation
+  [PASS] [C9] 相関 shot: 遷移数ゲート (record_v2) が読みを拒否 → OutOfDomainCorrelated  OutOfDomainCorrelated
+  [PASS] [C10] GQF-5: 同値 −8 の電荷応答 — loss は証明書拒否 (witness 不能)・散逸ゼロ証明書のみ pairing witness を解錠 (禁止変換 33)  S_loss = -8.000000000000002 (resp = -8.000000000000002), cert_loss = Err(8.0), witness = -8
+
+[判定] 全検査 PASS — 曲率が読むのは有効 drift の観測商 (Hamiltonian への昇格は証明書の門のみ)
